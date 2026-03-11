@@ -122,6 +122,23 @@ total = (
 - **Debt threshold** — members with fewer than 10 debt events get a neutral score (50) to avoid extreme ratios
 - **Accuracy scales with codebase design quality** — well-structured codebases (Clean Architecture, DDD) yield more meaningful scores. If the score doesn't match gut feeling, it may signal poor codebase structure rather than a metric problem
 
+## How This Differs from Existing Metrics
+
+| Framework | What it measures | Signal source | Individual? | Key limitation |
+|---|---|---|---|---|
+| **DORA** | Deployment speed & stability | CI/CD pipeline | No (team) | Doesn't measure code quality or individual impact |
+| **SPACE** | 5 holistic dimensions | Surveys + tools | Both | Survey-heavy, 3–6 months to implement |
+| **McKinsey** | Org productivity | DORA + SPACE + custom | Mixed | [Widely criticized](https://newsletter.pragmaticengineer.com/p/measuring-developer-productivity) for output theater |
+| **LOC / Commits** | Activity volume | Git | Yes | Trivially gameable, penalizes refactoring |
+| **Code Churn** | % of recent code rewritten | Git | No (team) | Arbitrary time window, context-blind |
+| **Bus Factor** | Knowledge concentration risk | Git blame | No (team) | Only identifies risk, not impact |
+| **Git analytics tools** (Pluralsight Flow, LinearB, etc.) | Activity & cycle time | Git + integrations | Both | Still activity-focused — measures *when*, not *whether it lasted* |
+| **Engineering Impact Score** | **Code that survives over time** | **Git log + blame** | **Yes** | Accuracy depends on codebase design quality |
+
+The core gap this model fills: **existing frameworks measure activity or velocity, not whether individual contributions actually lasted.** DORA tells you how fast code reaches production. This model tells you whether it was worth deploying.
+
+Time-decayed survival is also naturally resistant to gaming — you can't inflate your score with busy work, because only code that remains in the codebase months later counts.
+
 ## Quick Start
 
 ### Install via Homebrew
