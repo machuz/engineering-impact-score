@@ -27,8 +27,10 @@ func Score(raw *metric.RawScores, cfg *config.Config) []Result {
 	normSurv := Normalize(raw.Survival)
 	normDesign := Normalize(raw.Design)
 	normBreadth := Normalize(raw.Breadth)
-	normDebt := NormalizeDebt(raw.DebtCleanup)
 	normIndisp := Normalize(raw.Indispensability)
+
+	// Debt is already on 0-100 scale, use directly
+	normDebt := raw.DebtCleanup
 
 	// Collect all authors
 	authors := raw.Authors()
@@ -66,9 +68,4 @@ func Score(raw *metric.RawScores, cfg *config.Config) []Result {
 	})
 
 	return results
-}
-
-// NormalizeDebt handles debt cleanup specially: ratio values where >1 is good
-func NormalizeDebt(values map[string]float64) map[string]float64 {
-	return Normalize(values)
 }

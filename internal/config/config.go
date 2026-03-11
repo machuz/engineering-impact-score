@@ -1,6 +1,8 @@
 package config
 
 import (
+	"fmt"
+	"math"
 	"os"
 
 	"gopkg.in/yaml.v3"
@@ -100,7 +102,35 @@ func Load(path string) (*Config, error) {
 		return nil, err
 	}
 
+	if err := cfg.Validate(); err != nil {
+		return nil, err
+	}
+
 	return cfg, nil
+}
+
+func (c *Config) Validate() error {
+	if c.Tau <= 0 {
+		return fmt.Errorf("tau must be positive, got %f", c.Tau)
+	}
+	if c.SampleSize <= 0 {
+		return fmt.Errorf("sample_size must be positive, got %d", c.SampleSize)
+	}
+	if c.DebtThreshold < 0 {
+		return fmt.Errorf("debt_threshold must be non-negative, got %d", c.DebtThreshold)
+	}
+
+	w := c.Weights
+	sum := w.Production + w.Quality + w.Survival + w.Design + w.Breadth + w.DebtCleanup + w.Indispensability
+	if math.Abs(sum-1.0) > 0.01 {
+		return fmt.Errorf("weights must sum to 1.0, got %f", sum)
+	}
+
+	if c.BusFactor.Critical <= c.BusFactor.High {
+		return fmt.Errorf("bus_factor.critical (%f) must be greater than bus_factor.high (%f)", c.BusFactor.Critical, c.BusFactor.High)
+	}
+
+	return nil
 }
 
 func (c *Config) ResolveAuthor(name string) string {

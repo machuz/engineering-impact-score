@@ -20,9 +20,3 @@ func Normalize(values map[string]float64) map[string]float64 {
 	}
 	return result
 }
-
-// NormalizeQuality is special: quality is already 0-100, but we still
-// normalize relative to the max in the group for consistency
-func NormalizeQuality(values map[string]float64) map[string]float64 {
-	return Normalize(values)
-}

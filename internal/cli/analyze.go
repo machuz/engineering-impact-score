@@ -82,9 +82,10 @@ func runAnalyze(args []string) error {
 	start := time.Now()
 
 	raw := metric.NewRawScores()
+	qualityCounts := make(map[string]int) // track repo count per author for correct averaging
 
-	// Track breadth (repos per author)
-	authorRepos := make(map[string]map[string]bool)
+	// Track breadth (repos per author) with commit counts
+	authorRepoCommits := make(map[string]map[string]int) // author -> repo -> commit count
 
 	// Deduplicate repos by resolving to real paths
 	seen := make(map[string]bool)
@@ -132,18 +133,18 @@ func runAnalyze(args []string) error {
 
 		// Quality
 		qual := metric.CalcQuality(commits)
-		mergeMapAvg(raw.Quality, qual)
+		mergeMapAvg(raw.Quality, qual, qualityCounts)
 
 		// Design
 		design := metric.CalcDesign(commits, cfg.ArchitecturePatterns)
 		mergeMap(raw.Design, design)
 
-		// Track breadth
+		// Track breadth with commit counts per repo
 		for _, c := range commits {
-			if _, ok := authorRepos[c.Author]; !ok {
-				authorRepos[c.Author] = make(map[string]bool)
+			if _, ok := authorRepoCommits[c.Author]; !ok {
+				authorRepoCommits[c.Author] = make(map[string]int)
 			}
-			authorRepos[c.Author][repoName] = true
+			authorRepoCommits[c.Author][repoName]++
 		}
 
 		// Step 2: Blame analysis (feeds Survival, Indispensability)
@@ -170,7 +171,7 @@ func runAnalyze(args []string) error {
 		blameLines = filterBlameLines(blameLines, cfg)
 
 		// Survival
-		surv := metric.CalcSurvival(blameLines, cfg.Tau)
+		surv := metric.CalcSurvival(blameLines, cfg.Tau, start)
 		mergeMap(raw.Survival, surv)
 
 		// Indispensability
@@ -189,9 +190,18 @@ func runAnalyze(args []string) error {
 		}
 	}
 
-	// Breadth
-	for author, repos := range authorRepos {
-		raw.Breadth[author] = float64(len(repos))
+	// Breadth: count repos where author has >= 3 commits
+	const minCommitsForBreadth = 3
+	for author, repos := range authorRepoCommits {
+		count := 0
+		for _, commits := range repos {
+			if commits >= minCommitsForBreadth {
+				count++
+			}
+		}
+		if count > 0 {
+			raw.Breadth[author] = float64(count)
+		}
 	}
 
 	// Score and rank
@@ -283,13 +293,16 @@ func mergeMap(dst, src map[string]float64) {
 	}
 }
 
-// mergeMapAvg keeps a running average for quality scores across repos
-func mergeMapAvg(dst, src map[string]float64) {
+// mergeMapAvg keeps a correct running average for quality scores across repos
+func mergeMapAvg(dst, src map[string]float64, counts map[string]int) {
 	for k, v := range src {
-		if existing, ok := dst[k]; ok {
-			dst[k] = (existing + v) / 2
+		n := counts[k]
+		if n > 0 {
+			// Cumulative average: (oldAvg * n + newValue) / (n + 1)
+			dst[k] = (dst[k]*float64(n) + v) / float64(n+1)
 		} else {
 			dst[k] = v
 		}
+		counts[k] = n + 1
 	}
 }

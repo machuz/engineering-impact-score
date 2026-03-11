@@ -7,28 +7,35 @@ import (
 	"github.com/machuz/engineering-impact-score/internal/git"
 )
 
+// CalcDesign scores architecture contributions weighted by lines changed.
+// A commit touching architecture files scores the sum of (insertions + deletions)
+// for those architecture files, giving more credit to substantial design work.
 func CalcDesign(commits []git.Commit, archPatterns []string) map[string]float64 {
 	result := make(map[string]float64)
 
 	for _, c := range commits {
-		if touchesArchitecture(c.FileStats, archPatterns) {
-			result[c.Author]++
+		archLines := archLinesChanged(c.FileStats, archPatterns)
+		if archLines > 0 {
+			result[c.Author] += float64(archLines)
 		}
 	}
 
 	return result
 }
 
-func touchesArchitecture(files []git.FileStat, patterns []string) bool {
+// archLinesChanged returns total lines changed in architecture files for a commit.
+func archLinesChanged(files []git.FileStat, patterns []string) int {
+	total := 0
 	for _, fs := range files {
 		normalized := filepath.ToSlash(fs.Filename)
 		for _, pattern := range patterns {
 			if matchArchPattern(normalized, pattern) {
-				return true
+				total += fs.Insertions + fs.Deletions
+				break
 			}
 		}
 	}
-	return false
+	return total
 }
 
 func matchArchPattern(filename, pattern string) bool {

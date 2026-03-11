@@ -7,8 +7,7 @@ import (
 	"github.com/machuz/engineering-impact-score/internal/git"
 )
 
-func CalcSurvival(blameLines []git.BlameLine, tau float64) map[string]float64 {
-	now := time.Now()
+func CalcSurvival(blameLines []git.BlameLine, tau float64, now time.Time) map[string]float64 {
 	result := make(map[string]float64)
 
 	for _, bl := range blameLines {

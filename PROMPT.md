@@ -77,21 +77,19 @@ Sum weighted lines per author.
 
 **Note:** For large repos, sample up to 500 files to keep runtime reasonable.
 
-#### Step 4: Design (architecture commits)
+#### Step 4: Design (architecture line changes)
 
-For each repo in the domain:
-```bash
-git log --all --no-merges --format="%an" -- <architecture_patterns from config>
-```
-Count commits per author across all architecture patterns.
+For each repo in the domain, from the git log data (Step 1), identify commits that touch architecture files matching `architecture_patterns` from config.
 
-#### Step 5: Breadth (repo count)
+For each such commit, sum `insertions + deletions` **only for the architecture files** (not all files in the commit). This gives more credit to substantial design work than to incidental one-line changes.
+
+#### Step 5: Breadth (repo count with threshold)
 
 For each repo in `all_repos` from config:
 ```bash
-git log --all --no-merges --format="%an" | sort -u
+git log --all --no-merges --format="%an" | sort | uniq -c | sort -rn
 ```
-Count how many repos each author has commits in.
+Count how many repos each author has **3 or more commits** in. A one-line drive-by fix should not count as breadth — only repos with meaningful contribution (>= 3 commits) qualify.
 
 #### Step 6: Debt Cleanup
 
@@ -114,9 +112,12 @@ git blame <hash>^ -- <file> --line-porcelain 2>/dev/null | grep "^author "
 3. Track:
    - `debt_generated[original_author] += 1` when someone else fixes their code
    - `debt_cleaned[fixer] += 1` when they fix someone else's code
-   - `debt_ratio = debt_cleaned / max(debt_generated, 1)`
 
-4. If `debt_generated + debt_cleaned < debt_threshold` (from config): use neutral score 50.
+4. Calculate score on 0-100 scale:
+   - If `debt_generated + debt_cleaned < debt_threshold` (from config): use neutral score 50
+   - Otherwise: `score = 50 + 50 × (cleaned - generated) / (cleaned + generated)`
+   - Range: 0 (pure debt creator) → 50 (balanced) → 100 (pure cleaner)
+   - Clamp to [0, 100]
 
 #### Step 7: Indispensability (Bus Factor)
 
@@ -140,6 +141,8 @@ For each metric, normalize within the domain:
 ```
 norm(value, max_in_domain) = min(value / max_in_domain × 100, 100)
 ```
+
+**Exception:** Debt Cleanup is already on a 0-100 scale, so it is used directly without normalization.
 
 Calculate total score using weights from config:
 ```
