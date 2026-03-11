@@ -26,14 +26,16 @@ A 7-axis scoring model that measures an engineer's real impact on a codebase. No
 
 ## Score Guide
 
-| Score | Assessment | Approx. Hourly Rate (JPY) |
-|---|---|---|
-| 80–100 | Irreplaceable core member | ¥12,000–20,000 |
-| 60–79 | Near-core | ¥9,000–15,000 |
-| **40–59** | **Senior equivalent (40+ is genuinely strong)** | **¥7,000–11,000** |
-| 30–39 | Mid-level | ¥6,000–9,000 |
-| 20–29 | Junior–Mid | ¥5,000–8,000 |
-| –19 | Junior | ¥3,500–6,000 |
+| Score | Assessment | Approx. Hourly (JPY) | Approx. Total Comp (USD) |
+|---|---|---|---|
+| 80–100 | Irreplaceable core member | ¥12,000–20,000 | $250K–400K+ |
+| 60–79 | Near-core | ¥9,000–15,000 | $180K–300K |
+| **40–59** | **Senior equivalent (40+ is genuinely strong)** | **¥7,000–11,000** | **$140K–220K** |
+| 30–39 | Mid-level | ¥6,000–9,000 | $100K–160K |
+| 20–29 | Junior–Mid | ¥5,000–8,000 | $80K–120K |
+| –19 | Junior | ¥3,500–6,000 | $60K–90K |
+
+USD figures are rough estimates and vary significantly by market (SF vs. Midwest, US vs. Europe, etc.).
 
 **40 = Senior.** This metric is deliberately harsh. Scoring 40+ across 7 relative axes requires serious, well-rounded ability.
 
