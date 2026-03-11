@@ -135,6 +135,7 @@ total = (
 If this metric helped you see your team differently, consider supporting the project:
 
 - [GitHub Sponsors](https://github.com/sponsors/machuz)
+- PayPay: `w_machu7`
 
 ## License
 
