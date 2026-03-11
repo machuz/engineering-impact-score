@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/fatih/color"
@@ -22,6 +23,8 @@ func runAnalyze(args []string) error {
 	tau := fs.Float64("tau", 0, "Survival decay parameter (overrides config)")
 	sampleSize := fs.Int("sample", 0, "Max files to blame per repo (overrides config)")
 	workers := fs.Int("workers", 4, "Number of concurrent blame workers")
+	recursive := fs.Bool("recursive", false, "Recursively find git repos under given paths")
+	maxDepth := fs.Int("depth", 2, "Max directory depth for recursive search")
 
 	if err := fs.Parse(args); err != nil {
 		return err
@@ -41,6 +44,23 @@ func runAnalyze(args []string) error {
 		repoPaths[i] = abs
 	}
 
+	// Recursive: find git repos under given paths
+	if *recursive {
+		var discovered []string
+		for _, root := range repoPaths {
+			repos, err := findGitRepos(root, *maxDepth)
+			if err != nil {
+				return fmt.Errorf("scan %s: %w", root, err)
+			}
+			discovered = append(discovered, repos...)
+		}
+		if len(discovered) == 0 {
+			return fmt.Errorf("no git repos found under %v (depth=%d)", repoPaths, *maxDepth)
+		}
+		repoPaths = discovered
+		fmt.Fprintf(os.Stderr, "Found %d git repos\n\n", len(repoPaths))
+	}
+
 	// Load config
 	cfg, err := config.Load(*configPath)
 	if err != nil {
@@ -53,6 +73,11 @@ func runAnalyze(args []string) error {
 		cfg.SampleSize = *sampleSize
 	}
 
+	// Print alias info if configured
+	if len(cfg.Aliases) > 0 {
+		fmt.Fprintf(os.Stderr, "Loaded %d author aliases from config\n", len(cfg.Aliases))
+	}
+
 	ctx := context.Background()
 	start := time.Now()
 
@@ -61,6 +86,24 @@ func runAnalyze(args []string) error {
 	// Track breadth (repos per author)
 	authorRepos := make(map[string]map[string]bool)
 
+	// Deduplicate repos by resolving to real paths
+	seen := make(map[string]bool)
+	var dedupedPaths []string
+	for _, p := range repoPaths {
+		real, err := filepath.EvalSymlinks(p)
+		if err != nil {
+			real = p
+		}
+		if !seen[real] {
+			seen[real] = true
+			dedupedPaths = append(dedupedPaths, p)
+		} else {
+			fmt.Fprintf(os.Stderr, "SKIP: %s (duplicate of already queued repo)\n", filepath.Base(p))
+		}
+	}
+	repoPaths = dedupedPaths
+
+	analyzedRepos := 0
 	for _, repoPath := range repoPaths {
 		// Verify it's a git repo
 		if _, err := os.Stat(filepath.Join(repoPath, ".git")); os.IsNotExist(err) {
@@ -68,6 +111,7 @@ func runAnalyze(args []string) error {
 			continue
 		}
 
+		analyzedRepos++
 		repoName := filepath.Base(repoPath)
 		bold := color.New(color.Bold)
 		bold.Printf("Analyzing: %s\n", repoName)
@@ -136,7 +180,7 @@ func runAnalyze(args []string) error {
 		// Step 3: Debt cleanup
 		fmt.Fprintf(os.Stderr, "  [3/4] Debt analysis...\n")
 		fixCommits := metric.GetFixCommits(commits)
-		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold)
+		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.ResolveAuthor)
 		mergeMap(raw.DebtCleanup, debt)
 
 		// Step 4: Output per-repo bus factor
@@ -163,12 +207,52 @@ func runAnalyze(args []string) error {
 
 	// Output
 	elapsed := time.Since(start)
-	output.PrintSummary(filtered, len(repoPaths))
+	output.PrintSummary(filtered, analyzedRepos)
 	output.PrintRankings(filtered)
 
 	color.New(color.FgHiBlack).Printf("Completed in %s\n", elapsed.Round(time.Second))
 
 	return nil
+}
+
+// findGitRepos walks a directory tree up to maxDepth and returns paths containing .git
+func findGitRepos(root string, maxDepth int) ([]string, error) {
+	var repos []string
+
+	rootDepth := len(splitPath(root))
+
+	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return nil // skip errors
+		}
+
+		if !info.IsDir() {
+			return nil
+		}
+
+		depth := len(splitPath(path)) - rootDepth
+		if depth > maxDepth {
+			return filepath.SkipDir
+		}
+
+		// Check if this directory is a git repo (not a submodule — submodules have .git as a file, not a dir)
+		gitDir := filepath.Join(path, ".git")
+		if fi, err := os.Stat(gitDir); err == nil {
+			if fi.IsDir() {
+				repos = append(repos, path)
+			}
+			// Whether .git is a dir or file (submodule), don't descend further
+			return filepath.SkipDir
+		}
+
+		return nil
+	})
+
+	return repos, err
+}
+
+func splitPath(p string) []string {
+	return strings.Split(filepath.ToSlash(p), "/")
 }
 
 func filterCommits(commits []git.Commit, cfg *config.Config) []git.Commit {

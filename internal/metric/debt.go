@@ -11,9 +11,16 @@ type DebtData struct {
 	Cleaned   map[string]int
 }
 
-func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, maxSample int, debtThreshold int) (map[string]float64, *DebtData) {
+// ResolveFunc maps a git author name to its canonical name
+type ResolveFunc func(string) string
+
+func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, maxSample int, debtThreshold int, resolve ResolveFunc) (map[string]float64, *DebtData) {
 	generated := make(map[string]int)
 	cleaned := make(map[string]int)
+
+	if resolve == nil {
+		resolve = func(s string) string { return s }
+	}
 
 	// Sample fix commits
 	sample := fixCommits
@@ -22,7 +29,7 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 	}
 
 	for _, fc := range sample {
-		fixer := fc.Author
+		fixer := resolve(fc.Author)
 
 		// Get changed files
 		files, err := git.DiffTreeFiles(ctx, repoPath, fc.Hash)
@@ -41,6 +48,7 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 			}
 
 			for _, origAuthor := range authors {
+				origAuthor = resolve(origAuthor)
 				if origAuthor != fixer && origAuthor != "" {
 					generated[origAuthor]++
 					cleaned[fixer]++
