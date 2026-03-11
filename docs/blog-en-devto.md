@@ -342,6 +342,27 @@ Git history contains all of these signals.
 
 ---
 
+## How This Differs from DORA, SPACE, and Other Metrics
+
+If you're familiar with engineering productivity frameworks, you might wonder: how does this relate to what already exists?
+
+| Framework | What it measures | Key limitation |
+|---|---|---|
+| **DORA** | Deployment speed & stability | Team-level. Doesn't measure code quality or individual impact |
+| **SPACE** | 5 holistic dimensions (surveys + tools) | Survey-heavy, 3–6 months to implement |
+| **LOC / Commits** | Activity volume | Trivially gameable, penalizes refactoring |
+| **Code Churn** | % of recent code rewritten | Context-blind — can't distinguish refactoring from instability |
+| **Bus Factor** | Knowledge concentration risk | Only identifies risk, not impact |
+| **Git analytics tools** (Pluralsight Flow, LinearB) | Activity & cycle time | Measures *when* code was written, not *whether it lasted* |
+
+**The gap:** existing frameworks measure activity or velocity. None of them ask the question *"did this individual's code actually survive?"*
+
+DORA tells you how fast code reaches production. This model tells you whether it was worth deploying.
+
+Time-decayed survival is also naturally resistant to gaming. You can't inflate your score with busy work — only code that remains in the codebase months later counts. And the debt cleanup axis makes it structurally impossible to score high by generating work for others.
+
+---
+
 ## Accuracy Scales with Design Quality
 
 This model has an interesting property: **higher codebase design quality yields higher scoring accuracy**.
