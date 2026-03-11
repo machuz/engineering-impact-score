@@ -1,0 +1,41 @@
+version: 2
+
+project_name: eis
+
+builds:
+  - main: ./cmd/eis
+    binary: eis
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+
+archives:
+  - format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+
+brews:
+  - repository:
+      owner: machuz
+      name: homebrew-tap
+    homepage: https://github.com/machuz/engineering-impact-score
+    description: "Quantify engineer impact from git history alone — 7-axis scoring CLI"
+    license: MIT
+    install: |
+      bin.install "eis"
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^chore:"
