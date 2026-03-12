@@ -48,11 +48,11 @@ The 7-axis distribution reveals archetypes:
 | **Architect** | ◎ | △–○ | ◎ | ◎ | ○ | ◎ | ◎ | — |
 | **Mass Producer** | ◎ | ✕ | ✕ | △ | △ | ✕ | △ | **High** |
 | **Solid Cleaner** | ○ | ◎ | ◎ | ○ | ○ | ◎ | △ | — |
-| **Political** | ✕ | △ | ✕ | ✕ | ◎ | △ | ✕ | **High** |
+| **Drifter** | ✕ | △ | ✕ | ✕ | ◎ | △ | ✕ | **High** |
 | **Specialist** | ◎ | ◎ | ◎ | ○ | ✕ | ○ | ◎ | △ Silo |
 | **Growing** | △ | ◎ | ○ | ✕ | △ | ○ | ✕ | — |
 
-**Mass Producer and Political types look productive on individual metrics** but score low overall. Only multi-axis evaluation exposes them.
+**Mass Producer and Drifter types look productive on individual metrics** but score low overall. Only multi-axis evaluation exposes them.
 
 ## Key Formulas
 
@@ -198,7 +198,7 @@ eis analyze --config eis.yaml --recursive ~/projects
 ### What You Get
 
 - **Rankings table** with all 7 axis scores and total
-- **Archetype classification** (Architect, Solid Cleaner, Mass Producer, Political, etc.)
+- **Archetype classification** (Architect, Solid Cleaner, Mass Producer, Drifter, etc.)
 - **Bus Factor risk map** showing modules with dangerous ownership concentration
 - Color-coded output for quick visual scanning
 

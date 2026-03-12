@@ -164,7 +164,7 @@ Produce:
    - **Architect**: Prod↑ Surv↑ Design↑ Debt↑
    - **Solid Cleaner**: Prod→ Qual↑ Surv↑ Debt↑
    - **Mass Producer**: Prod↑ Qual↓ Surv↓ Debt↓
-   - **Political**: Breadth↑ Prod↓ Surv↓ Design↓
+   - **Drifter**: Breadth↑ Prod↓ Surv↓ Design↓
    - **Specialist**: narrow but deep
    - **Growing**: low volume, high quality
 

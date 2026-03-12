@@ -22,9 +22,9 @@ func classifyArchetype(r Result) string {
 		return "Solid Cleaner"
 	}
 
-	// Political: high breadth but low production and design (wide but shallow)
+	// Drifter: high breadth but low production and design (wide but shallow)
 	if high(r.Breadth) && low(r.Production) && low(r.Design) {
-		return "Political"
+		return "Drifter"
 	}
 
 	// Specialist: high survival but narrow scope (deep in one area)
