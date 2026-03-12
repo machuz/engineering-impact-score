@@ -29,9 +29,14 @@ func classifyArchetype(r Result) string {
 		return "Solid Cleaner"
 	}
 
-	// Drifter: high breadth but low production and design (wide but shallow)
+	// Spreader: high breadth but low production and design (wide but shallow)
 	if high(r.Breadth) && low(r.Production) && low(r.Design) {
-		return "Drifter"
+		return "Spreader"
+	}
+
+	// Silent Killer: low production, low survival, low debt cleanup (net drain on team)
+	if low(r.Production) && low(r.Survival) && low(r.DebtCleanup) {
+		return "Silent Killer"
 	}
 
 	// Specialist: high survival but narrow scope (deep in one area)

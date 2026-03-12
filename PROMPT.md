@@ -165,7 +165,8 @@ Produce:
    - **Former Architect**: Design↑ Indisp↑ Surv↓ (system still depends on them but they're inactive)
    - **Solid Cleaner**: Prod→ Qual↑ Surv↑ Debt↑
    - **Mass Producer**: Prod↑ Qual↓ Surv↓ Debt↓
-   - **Drifter**: Breadth↑ Prod↓ Surv↓ Design↓
+   - **Spreader**: Breadth↑ Prod↓ Surv↓ Design↓
+   - **Silent Killer**: Prod↓ Surv↓ Debt↓ (net drain on team capacity)
    - **Specialist**: narrow but deep
    - **Growing**: low volume, high quality
 

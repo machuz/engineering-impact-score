@@ -8,7 +8,7 @@
 
 It estimates who actually builds and sustains a system by combining production, survival, design, and maintenance signals. No surveys, no subjective reviews — just `git log` and `git blame`.
 
-> On my team (14 repos, 10+ engineers), this matched gut feeling with eerie accuracy.
+> In practice, this surfaced patterns that naive metrics miss: former architects, silent cleaners, debt generators, and bus-factor risks.
 
 ![Terminal Output](docs/images/terminal-output.svg)
 
@@ -17,6 +17,48 @@ It estimates who actually builds and sustains a system by combining production, 
 Most engineering metrics measure activity: commits, pull requests, and lines of code.
 
 This project tries to measure something harder: who actually builds durable systems, shapes architecture, and keeps a codebase healthy over time.
+
+## Quick Start
+
+```bash
+# Install
+go install github.com/machuz/engineering-impact-score/cmd/eis@latest
+# or
+brew tap machuz/tap && brew install eis
+
+# Try it on your repo
+eis analyze .
+```
+
+That's it. No AI tokens, no API keys, no cloud dependencies.
+
+```bash
+# Auto-discover repos under a directory
+eis analyze --recursive ~/workspace
+
+# With config (aliases, domain mapping, weights)
+eis analyze --config eis.yaml --recursive ~/projects
+
+# Export as JSON or CSV
+eis analyze --format json --recursive ~/workspace > result.json
+```
+
+## How This Differs from Existing Metrics
+
+| Framework | What it measures | Signal source | Individual? | Key limitation |
+|---|---|---|---|---|
+| **DORA** | Deployment speed & stability | CI/CD pipeline | No (team) | Doesn't measure code quality or individual impact |
+| **SPACE** | 5 holistic dimensions | Surveys + tools | Both | Survey-heavy, 3-6 months to implement |
+| **McKinsey** | Org productivity | DORA + SPACE + custom | Mixed | [Widely criticized](https://newsletter.pragmaticengineer.com/p/measuring-developer-productivity) for output theater |
+| **LOC / Commits** | Activity volume | Git | Yes | Trivially gameable, penalizes refactoring |
+| **Code Churn** | % of recent code rewritten | Git | No (team) | Arbitrary time window, context-blind |
+| **Bus Factor** | Knowledge concentration risk | Git blame | No (team) | Only identifies risk, not impact |
+| **Git analytics tools** (Pluralsight Flow, LinearB, etc.) | Activity & cycle time | Git + integrations | Both | Still activity-focused — measures *when*, not *whether it lasted* |
+| **Engineering Impact Score** | **Code that survives over time** | **Git log + blame** | **Yes** | Accuracy depends on codebase design quality |
+
+The core gap this model fills: **existing frameworks measure activity or velocity, not whether individual contributions actually lasted.** DORA tells you how fast code reaches production. This model tells you whether it was worth deploying.
+
+Time-decayed survival is also naturally resistant to gaming — you can't inflate your score with busy work, because only code that remains in the codebase months later counts.
 
 ## The 7 Axes
 
@@ -36,12 +78,12 @@ This project tries to measure something harder: who actually builds durable syst
 
 | Score | Assessment | Approx. Hourly (JPY) | Approx. Total Comp (USD) |
 |---|---|---|---|
-| 80–100 | Irreplaceable core member | ¥12,000–20,000 | $250K–400K+ |
-| 60–79 | Near-core | ¥9,000–15,000 | $180K–300K |
-| **40–59** | **Senior equivalent (40+ is genuinely strong)** | **¥7,000–11,000** | **$140K–220K** |
-| 30–39 | Mid-level | ¥6,000–9,000 | $100K–160K |
-| 20–29 | Junior–Mid | ¥5,000–8,000 | $80K–120K |
-| –19 | Junior | ¥3,500–6,000 | $60K–90K |
+| 80-100 | Irreplaceable core member | ¥12,000-20,000 | $250K-400K+ |
+| 60-79 | Near-core | ¥9,000-15,000 | $180K-300K |
+| **40-59** | **Senior equivalent (40+ is genuinely strong)** | **¥7,000-11,000** | **$140K-220K** |
+| 30-39 | Mid-level | ¥6,000-9,000 | $100K-160K |
+| 20-29 | Junior-Mid | ¥5,000-8,000 | $80K-120K |
+| -19 | Junior | ¥3,500-6,000 | $60K-90K |
 
 USD figures are rough estimates and vary significantly by market (SF vs. Midwest, US vs. Europe, etc.).
 
@@ -55,17 +97,22 @@ The 7-axis distribution reveals archetypes:
 
 | Type | Prod | Qual | Surv | Design | Breadth | Debt | Indisp | Risk |
 |---|---|---|---|---|---|---|---|---|
-| **Architect** | ◎ | △–○ | ◎ | ◎ | ○ | ◎ | ◎ | — |
+| **Architect** | ◎ | △-○ | ◎ | ◎ | ○ | ◎ | ◎ | — |
 | **Former Architect** | △ | △ | ✕ | ◎ | ○ | △ | ◎ | **⚠️ Handoff** |
 | **Mass Producer** | ◎ | ✕ | ✕ | △ | △ | ✕ | △ | **High** |
 | **Solid Cleaner** | ○ | ◎ | ◎ | ○ | ○ | ◎ | △ | — |
-| **Drifter** | ✕ | △ | ✕ | ✕ | ◎ | △ | ✕ | **High** |
+| **Spreader** | ✕ | △ | ✕ | ✕ | ◎ | △ | ✕ | **High** |
+| **Silent Killer** | ✕ | ✕ | ✕ | ✕ | △ | ✕ | ✕ | **High** |
 | **Specialist** | ◎ | ◎ | ◎ | ○ | ✕ | ○ | ◎ | △ Silo |
 | **Growing** | △ | ◎ | ○ | ✕ | △ | ○ | ✕ | — |
 
 **Former Architect** is detected by the gap between raw and time-decayed survival: code still exists in the codebase (high raw) but the author is no longer active (low decayed). Combined with high Design or Indispensability, this signals an unfilled departure — a handoff priority alert.
 
-**Mass Producer and Drifter types look productive on individual metrics** but score low overall. Only multi-axis evaluation exposes them.
+**Spreader**: wide presence across repos but low production, low survival, and no design involvement. Touches everything, improves nothing.
+
+**Silent Killer**: low production, low survival, low debt cleanup. Neither builds nor cleans — their presence is a net drain on team capacity.
+
+**Mass Producer and Spreader types look productive on individual metrics** but score low overall. Only multi-axis evaluation exposes them.
 
 ![Archetypes Radar](docs/images/archetypes-radar.svg)
 
@@ -144,121 +191,6 @@ total = (
 - **Debt threshold** — members with fewer than 10 debt events get a neutral score (50) to avoid extreme ratios
 - **Accuracy scales with codebase design quality** — well-structured codebases (Clean Architecture, DDD) yield more meaningful scores. If the score doesn't match gut feeling, it may signal poor codebase structure rather than a metric problem
 
-## How This Differs from Existing Metrics
-
-| Framework | What it measures | Signal source | Individual? | Key limitation |
-|---|---|---|---|---|
-| **DORA** | Deployment speed & stability | CI/CD pipeline | No (team) | Doesn't measure code quality or individual impact |
-| **SPACE** | 5 holistic dimensions | Surveys + tools | Both | Survey-heavy, 3–6 months to implement |
-| **McKinsey** | Org productivity | DORA + SPACE + custom | Mixed | [Widely criticized](https://newsletter.pragmaticengineer.com/p/measuring-developer-productivity) for output theater |
-| **LOC / Commits** | Activity volume | Git | Yes | Trivially gameable, penalizes refactoring |
-| **Code Churn** | % of recent code rewritten | Git | No (team) | Arbitrary time window, context-blind |
-| **Bus Factor** | Knowledge concentration risk | Git blame | No (team) | Only identifies risk, not impact |
-| **Git analytics tools** (Pluralsight Flow, LinearB, etc.) | Activity & cycle time | Git + integrations | Both | Still activity-focused — measures *when*, not *whether it lasted* |
-| **Engineering Impact Score** | **Code that survives over time** | **Git log + blame** | **Yes** | Accuracy depends on codebase design quality |
-
-The core gap this model fills: **existing frameworks measure activity or velocity, not whether individual contributions actually lasted.** DORA tells you how fast code reaches production. This model tells you whether it was worth deploying.
-
-Time-decayed survival is also naturally resistant to gaming — you can't inflate your score with busy work, because only code that remains in the codebase months later counts.
-
-## Quick Start
-
-### Install via Homebrew
-
-```bash
-brew tap machuz/tap
-brew install eis
-```
-
-### Run
-
-```bash
-# Analyze current repo
-eis analyze .
-
-# Analyze multiple repos
-eis analyze /path/to/repo1 /path/to/repo2
-
-# Auto-discover git repos under a directory
-eis analyze --recursive /path/to/workspace
-
-# Search deeper (default depth: 2)
-eis analyze --recursive --depth 3 ~/projects
-```
-
-### Configuration (Optional)
-
-Create `eis.yaml` in your working directory:
-
-```yaml
-aliases:
-  "John Smith": "john"
-  "J. Smith": "john"
-
-exclude_authors:
-  - "dependabot[bot]"
-
-# Domain separation (overrides auto-detection from file extensions)
-domains:
-  backend:
-    - "api-*"
-    - "worker"
-  frontend:
-    - "web-*"
-    - "app"
-  infra:
-    - "tf-*"
-  firmware:
-    - "raden"
-
-exclude_repos:
-  - "deprecated-service"
-
-# Production: absolute scale (changes per day / this value * 100, capped at 100)
-production_daily_ref: 1000
-
-weights:
-  production: 0.15
-  quality: 0.10
-  survival: 0.25
-  design: 0.20
-  breadth: 0.10
-  debt_cleanup: 0.15
-  indispensability: 0.05
-
-tau: 180
-sample_size: 500
-```
-
-```bash
-eis analyze --config eis.yaml --recursive ~/projects
-```
-
-### What You Get
-
-- **Rankings table** with all 7 axis scores and total
-- **Archetype classification** (Architect, Solid Cleaner, Mass Producer, Drifter, etc.)
-- **Bus Factor risk map** showing modules with dangerous ownership concentration
-- Color-coded output for quick visual scanning
-- **JSON / CSV export** (`--format json|csv`) for dashboards and programmatic use
-
-### Supported Languages
-
-Works out of the box with: Go, TypeScript/JavaScript, Python, Rust, Java, Ruby, C/C++ (including firmware/embedded), Scala, Haskell, OCaml. Additional extensions can be added via `blame_extensions` in `eis.yaml`.
-
-### Requirements
-
-- Git repos cloned locally
-- That's it. No AI tokens, no API keys, no cloud dependencies
-
-### Alternative: Claude Code
-
-For deeper qualitative analysis (actionable insights, team recommendations), you can also use Claude Code:
-
-```bash
-claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Scores for my team. Use config.yaml for configuration."
-```
-
 ## CLI Options
 
 ```
@@ -292,6 +224,26 @@ See [`config.example.yaml`](config.example.yaml) for all options:
 - **Survival tau**: decay half-life in days (default: 180)
 - **Debt threshold**: minimum events for debt score (default: 10)
 
+### What You Get
+
+- **Rankings table** with all 7 axis scores and total
+- **Archetype classification** (Architect, Solid Cleaner, Mass Producer, Spreader, etc.)
+- **Bus Factor risk map** showing modules with dangerous ownership concentration
+- Color-coded output for quick visual scanning
+- **JSON / CSV export** (`--format json|csv`) for dashboards and programmatic use
+
+### Supported Languages
+
+Works out of the box with: Go, TypeScript/JavaScript, Python, Rust, Java, Ruby, C/C++ (including firmware/embedded), Scala, Haskell, OCaml. Additional extensions can be added via `blame_extensions` in `eis.yaml`.
+
+### Alternative: Claude Code
+
+For deeper qualitative analysis (actionable insights, team recommendations), you can also use Claude Code:
+
+```bash
+claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Scores for my team. Use config.yaml for configuration."
+```
+
 ## Blog Posts
 
 - [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/11/153212) — 日本語版フル記事（実測結果付き）
@@ -311,10 +263,10 @@ See [`config.example.yaml`](config.example.yaml) for all options:
 - [x] Domain separation (BE/FE/Infra/Firmware) with auto-detection
 - [x] Absolute scoring for Production (per-day rate) and Quality (fix ratio)
 - [x] Configurable domain mapping, repo exclusion
+- [x] JSON / CSV output format (`--format json|csv`)
 - [ ] GitHub Action for automated quarterly tracking
 - [ ] HTML dashboard visualization
 - [ ] Multi-language commit message support for Quality detection
-- [x] JSON / CSV output format (`--format json|csv`)
 
 ## Special Thanks
 

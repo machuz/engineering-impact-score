@@ -120,7 +120,7 @@
   <text x="700" y="242" class="total-low">30.5</text>
   <text x="770" y="242" class="type">Mass Producer</text>
 
-  <!-- Row 6 - Drifter -->
+  <!-- Row 6 - Spreader -->
   <text x="20" y="262" class="rank">6</text>
   <text x="46" y="262" class="name">frank</text>
   <text x="230" y="262" class="score">18</text>
@@ -131,7 +131,7 @@
   <text x="560" y="262" class="score">22</text>
   <text x="620" y="262" class="score">0</text>
   <text x="700" y="262" class="total-low">25.1</text>
-  <text x="770" y="262" class="type">Drifter</text>
+  <text x="770" y="262" class="type">Spreader</text>
 
   <!-- Row 7 - Growing -->
   <text x="20" y="282" class="rank">7</text>

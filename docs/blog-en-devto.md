@@ -285,11 +285,15 @@ Not the highest output, but low fix ratio and high durability. Quietly fixes eve
 
 Unsexy but invaluable. This type deserves higher compensation than their production numbers suggest.
 
-### Drifter: Breadth↑ Prod↓ Surv↓ Design↓
+### Spreader: Breadth↑ Prod↓ Surv↓ Design↓
 
 Shows up in many repositories but produces little, designs nothing, and nothing survives. **Wide presence, zero depth.**
 
 In my own experience, I had a high-hourly-rate contractor who fit this pattern exactly. Breadth was the only high axis. Total score: mid-20s. The numbers were brutally honest.
+
+### Silent Killer: Prod↓ Surv↓ Debt↓
+
+Low production, low survival, low debt cleanup. Neither builds nor cleans. **Their presence is a net drain on team capacity** — occupying a seat and consuming review bandwidth without contributing durable output. Unlike a Spreader who at least touches many repos, a Silent Killer may not even have visible breadth. The most dangerous aspect: they're easy to overlook because they don't cause obvious problems. They just don't produce value.
 
 ### Specialist / Growing
 
@@ -303,11 +307,12 @@ Specialist: dominant in a narrow area but no cross-repo presence. Bus factor ris
 | Former Architect | △ | △ | ✕ | ◎ | ○ | △ | ◎ | **⚠️ Handoff** |
 | Mass Producer | ◎ | ✕ | ✕ | △ | △ | ✕ | △ | **⚠️ High** |
 | Solid Cleaner | ○ | ◎ | ◎ | ○ | ○ | ◎ | △ | — |
-| Drifter | ✕ | △ | ✕ | ✕ | ◎ | △ | ✕ | **⚠️ High** |
+| Spreader | ✕ | △ | ✕ | ✕ | ◎ | △ | ✕ | **⚠️ High** |
+| Silent Killer | ✕ | ✕ | ✕ | ✕ | △ | ✕ | ✕ | **⚠️ High** |
 | Specialist | ◎ | ◎ | ◎ | ○ | ✕ | ○ | ◎ | △ Silo |
 | Growing | △ | ◎ | ○ | ✕ | △ | ○ | ✕ | — |
 
-**Mass Producer and Drifter types score low overall but can look impressive on individual metrics.** Organizations that evaluate on production alone or breadth alone will reward exactly the wrong people. Only multi-axis evaluation exposes them.
+**Mass Producer, Spreader, and Silent Killer types score low overall but can look impressive on individual metrics (or fly under the radar entirely).** Organizations that evaluate on production alone or breadth alone will reward exactly the wrong people. Only multi-axis evaluation exposes them.
 
 ![Archetypes Radar](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/archetypes-radar.png)
 
@@ -327,11 +332,11 @@ Yes, I score highest. I'm the tech lead and I designed the metric — if the per
 | 2 | Member A (departed) | 69 | 73 | 12 | 67 | 81 | 11 | 100 | **52.8** | Former Architect |
 | 3 | Member B | 17 | 69 | 50 | 14 | 48 | 88 | 35 | **44.5** | Solid Cleaner |
 | 4 | Member C | 27 | 84 | 30 | 28 | 52 | 71 | 8 | **41.8** | Solid |
-| — | Member X (departed) | 6 | 79 | ≈0 | 4 | 78 | —† | 0 | **24.9** | Drifter |
+| — | Member X (departed) | 6 | 79 | ≈0 | 4 | 78 | —† | 0 | **24.9** | Spreader |
 
 † Insufficient sample (fewer than 10 fix-commit involvements). Neutral value 50 used in total score calculation.
 
-**Member X** was a high-rate contractor. Total score: 24.9. Breadth was the only high number — Production 6, Design 4, Survival nearly zero. **The Drifter archetype in its purest form.** If this model had existed earlier, we could have detected it before the contract even started.
+**Member X** was a high-rate contractor. Total score: 24.9. Breadth was the only high number — Production 6, Design 4, Survival nearly zero. **The Spreader archetype in its purest form.** If this model had existed earlier, we could have detected it before the contract even started.
 
 **Member A** built the original architecture during the early days — Design 67, Breadth 81. But Indispensability 100 is the highest on the team, meaning **the most modules are still owned by someone who already left**. Time decay dropped their Survival to 12, but the codebase is still shaped by their decisions. The numbers clearly show they were an Architect while active.
 
