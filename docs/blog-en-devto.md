@@ -261,11 +261,15 @@ Once scores are calculated, recognizable archetypes appear in the 7-axis distrib
 ![Engineering Archetypes plotted in Production vs Survival space](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/engineering-archetypes-paper-figure.png)
 *Different engineer archetypes emerge naturally when production and time-decayed survival are plotted together.*
 
-### Architect: Prod↑ Surv↑ Design↑ Debt↑
+### Architect-Builder: Prod↑ Surv↑ Design↑ Debt○
 
-High output, and all of it survives. Designs the architecture personally. Cleans up others' debt too. The backbone of the team. If this person leaves, the product stalls.
+High output, and all of it survives. Designs the architecture personally. Cleans up others' debt too. **The full package** — designs, builds heavily, AND maintains. The backbone of the team. If this person leaves, the product stalls.
 
-Quality score sometimes dips — but that's usually because they're **aggressively making design changes** (introducing new architectural layers, refactoring abstractions). When Design is high, low Quality is evidence of *proactive improvement*, not sloppiness.
+Quality score sometimes dips — but that's usually because they're **aggressively making design changes** (introducing new architectural layers, refactoring abstractions). When Design is high, low Quality is evidence of *proactive improvement*, not sloppiness. Production gate ensures this can't be inflated by solo ownership.
+
+### Architect: Design↑ RobustSurv↑ Breadth○
+
+High design influence with durable code, but not necessarily high production. **The classic architect who shapes systems, reviews, and guides** — delegates much of the implementation to others. Requires robust survival when change pressure data is available: code surviving only in dormant modules (because nobody touches it) does not qualify as architectural influence.
 
 ### Former Architect: Raw Surv↑ Surv↓ Design↑ or Indisp↑
 
@@ -321,7 +325,8 @@ Specialist: dominant in a narrow area but no cross-repo presence. Bus factor ris
 
 | Type | Prod | Qual | Surv | Design | Breadth | Debt | Indisp | Risk |
 |---|---|---|---|---|---|---|---|---|
-| Architect | ◎ | △–○ | ◎ | ◎ | ○ | ◎ | ◎ | — |
+| Architect-Builder | ◎ | △–○ | ◎ | ◎ | ○ | ◎ | ◎ | — |
+| Architect | △–○ | △–○ | ◎ (Robust) | ◎ | ○ | △ | ○ | — |
 | Former Architect | △ | △ | ✕ | ◎ | ○ | △ | ◎ | **⚠️ Handoff** |
 | Churn Producer | ◎ | ✕ | ✕ | △ | △ | ✕ | △ | **⚠️ High** |
 | Rescue Producer | ◎ | △ | ✕ | △ | △ | ◎ | △ | Medium |

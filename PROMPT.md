@@ -161,7 +161,8 @@ Produce:
 ```
 
 2. **Archetype classification** for each member:
-   - **Architect**: Prod↑ Surv↑ Design↑ Debt↑
+   - **Architect-Builder**: Prod↑ Surv↑ Design↑ Debt○ (designs, builds heavily, cleans up — the full package)
+   - **Architect**: Design↑ RobustSurv↑ Breadth○ (high design influence, delegates implementation)
    - **Former Architect**: Design↑ Indisp↑ Surv↓ (system still depends on them but they're inactive)
    - **Solid Cleaner**: Prod→ Qual↑ Surv↑ Debt↑
    - **Churn Producer**: Prod↑ Qual↓ Surv↓ (high output but terrible quality, constant rework)

@@ -97,7 +97,8 @@ The 7-axis distribution reveals archetypes:
 
 | Type | Prod | Qual | Surv | Design | Breadth | Debt | Indisp | Risk |
 |---|---|---|---|---|---|---|---|---|
-| **Architect** | ◎ | △-○ | ◎ | ◎ | ○ | ◎ | ◎ | — |
+| **Architect-Builder** | ◎ | △-○ | ◎ | ◎ | ○ | ◎ | ◎ | — |
+| **Architect** | △-○ | △-○ | ◎ (Robust) | ◎ | ○ | △ | ○ | — |
 | **Former Architect** | △ | △ | ✕ | ◎ | ○ | △ | ◎ | **⚠️ Handoff** |
 | **Churn Producer** | ◎ | ✕ | ✕ | △ | △ | ✕ | △ | **High** |
 | **Rescue Producer** | ◎ | △ | ✕ | △ | △ | ◎ | △ | Medium |
@@ -111,6 +112,10 @@ The 7-axis distribution reveals archetypes:
 | **Specialist** | ◎ | ◎ | ◎ | ○ | ✕ | ○ | ◎ | △ Silo |
 | **Balanced** | ○ | ○ | ○ | △ | ○ | ○ | △ | — |
 | **Growing** | △ | ◎ | ○ | ✕ | △ | ○ | ✕ | — |
+
+**Architect-Builder**: designs, builds heavily, AND cleans up others' code. The full package — high production, high survival, high design, decent debt cleanup. Production gate ensures this can't be inflated by solo ownership.
+
+**Architect**: high design influence with durable code, but not necessarily high production. The classic architect who shapes systems and delegates implementation. Requires robust survival when change pressure data is available — code surviving only in dormant modules doesn't qualify.
 
 **Former Architect** is detected by the gap between raw and time-decayed survival: code still exists in the codebase (high raw) but the author is no longer active (low decayed). Combined with high Design or Indispensability, this signals an unfilled departure — a handoff priority alert.
 
@@ -222,6 +227,9 @@ Flags:
   --tau <days>        Survival decay parameter (default: 180)
   --sample <n>        Max files to blame per repo (default: 500)
   --workers <n>       Concurrent blame workers (default: 4)
+  --domain <name>     Only analyze repos in this domain (e.g. Backend, Frontend, Firmware)
+  --active-days <n>   Days to consider author active (default: 30)
+  --pressure-mode     Change pressure mode: include (default) or ignore
 ```
 
 ## Configuration
@@ -240,6 +248,7 @@ See [`config.example.yaml`](config.example.yaml) for all options:
 - **Blame extensions**: file extensions for blame analysis
 - **Weights**: customize axis weights (default: Survival 25%, Design 20%, Production 15%, Debt 15%, Quality 10%, Breadth 10%, Indispensability 5%)
 - **Survival tau**: decay half-life in days (default: 180)
+- **Active days**: how recently an author must have committed to be marked active (default: 30)
 - **Debt threshold**: minimum events for debt score (default: 10)
 
 ### What You Get
