@@ -138,6 +138,7 @@ func PrintTeamJSON(teams []team.TeamResult) error {
 				Breadth:          round1(m.Breadth),
 				DebtCleanup:      round1(m.DebtCleanup),
 				Indispensability: round1(m.Indispensability),
+				Gravity:          round1(m.Gravity),
 				Total:            round1(m.Total),
 				Role:             m.Role,
 				RoleConf:         m.RoleConf,

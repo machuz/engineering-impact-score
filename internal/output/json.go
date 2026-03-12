@@ -35,6 +35,7 @@ type jsonMember struct {
 	Breadth          float64 `json:"breadth"`
 	DebtCleanup      float64 `json:"debt_cleanup"`
 	Indispensability float64 `json:"indispensability"`
+	Gravity          float64 `json:"gravity"`
 	Total            float64 `json:"total"`
 	Role             string  `json:"role"`
 	RoleConf         float64 `json:"role_confidence"`
@@ -82,6 +83,7 @@ func (w *JSONWriter) AddDomain(domainName string, repoCount int, results []score
 			Breadth:          round1(r.Breadth),
 			DebtCleanup:      round1(r.DebtCleanup),
 			Indispensability: round1(r.Indispensability),
+			Gravity:          round1(r.Gravity),
 			Total:            round1(r.Total),
 			Role:             r.Role,
 			RoleConf:         r.RoleConf,

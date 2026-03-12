@@ -33,9 +33,9 @@ func PrintRankings(results []scorer.Result) {
 
 	var tbl table.Table
 	if hasPressure {
-		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Robust", "Dormant", "Design", "Breadth", "Debt", "Indisp", "Total", "Role", "Style", "State")
+		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Robust", "Dormant", "Design", "Breadth", "Debt", "Indisp", "Grav", "Total", "Role", "Style", "State")
 	} else {
-		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Surv", "Design", "Breadth", "Debt", "Indisp", "Total", "Role", "Style", "State")
+		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Surv", "Design", "Breadth", "Debt", "Indisp", "Grav", "Total", "Role", "Style", "State")
 	}
 	tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt).WithWidthFunc(stripAnsiWidth).WithWriter(os.Stdout)
 
@@ -56,6 +56,8 @@ func PrintRankings(results []scorer.Result) {
 		if r.RecentlyActive {
 			activeStr = activeFmt("✓")
 		}
+		gravStr := formatGravity(r.Gravity)
+
 		if hasPressure {
 			tbl.AddRow(
 				i+1,
@@ -69,6 +71,7 @@ func PrintRankings(results []scorer.Result) {
 				fmt.Sprintf("%.0f", r.Breadth),
 				fmt.Sprintf("%.0f", r.DebtCleanup),
 				fmt.Sprintf("%.0f", r.Indispensability),
+				gravStr,
 				totalStr,
 				roleStr,
 				styleStr,
@@ -86,6 +89,7 @@ func PrintRankings(results []scorer.Result) {
 				fmt.Sprintf("%.0f", r.Breadth),
 				fmt.Sprintf("%.0f", r.DebtCleanup),
 				fmt.Sprintf("%.0f", r.Indispensability),
+				gravStr,
 				totalStr,
 				roleStr,
 				styleStr,
@@ -126,6 +130,19 @@ func formatAxis(name string, conf float64, labelFmt, confFmt func(string, ...int
 		return "—"
 	}
 	return fmt.Sprintf("%s %s", labelFmt("%s", name), confFmt("(%.2f)", conf))
+}
+
+func formatGravity(g float64) string {
+	switch {
+	case g >= 60:
+		return color.New(color.FgHiMagenta, color.Bold).Sprintf("%.0f", g)
+	case g >= 40:
+		return color.New(color.FgHiYellow).Sprintf("%.0f", g)
+	case g >= 20:
+		return color.New(color.FgWhite).Sprintf("%.0f", g)
+	default:
+		return color.New(color.FgHiBlack).Sprintf("%.0f", g)
+	}
 }
 
 func formatTotal(total float64) string {

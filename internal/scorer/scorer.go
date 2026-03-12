@@ -20,6 +20,7 @@ type Result struct {
 	Breadth          float64
 	DebtCleanup      float64
 	Indispensability float64
+	Gravity          float64 // structural influence: f(Indispensability, Breadth, Design)
 	Total            float64
 	TotalCommits   int
 	RecentlyActive bool    // true if author has commits within active_days (default 30)
@@ -125,6 +126,11 @@ func Score(raw *metric.RawScores, cfg *config.Config, authorLastDate map[string]
 				r.DebtCleanup*w.DebtCleanup +
 				r.Indispensability*w.Indispensability
 		}
+
+		// Gravity: structural influence on the system.
+		// Weighted combination of the three axes that determine how much
+		// the system's shape depends on this engineer's work.
+		r.Gravity = r.Indispensability*0.40 + r.Breadth*0.30 + r.Design*0.30
 
 		role, style, state := classifyTopology(r)
 		r.Role = role.Name
