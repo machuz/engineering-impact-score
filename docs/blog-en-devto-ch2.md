@@ -316,6 +316,22 @@ The numbers tell a story:
 
 **The numbers started to tell a story.** Not just "who is strong" but "what state is the team in, and what happens next."
 
+## Good Design Creates Common Sense
+
+The reason our Backend team is classified as Legacy-Heavy is clear: when a former architect left, several modules remained that only they had touched. A large chunk of `git blame` points to a Former member.
+
+And yet, the team hasn't collapsed.
+
+Why? Because those modules were built on well-organized design. We received verbal handoffs, but there was no comprehensive documentation or complete knowledge transfer. Still, the design embedded in the code's structure gave the remaining engineers enough understanding to operate confidently.
+
+**Strong design leaves knowledge in structure, not in people.** And that structure creates shared understanding across the team.
+
+I think of this as "good design creates common sense." Great design doesn't necessarily require documentation or complete knowledge transfer. The code's structure itself communicates the module's intent and usage.
+
+EIS currently measures quantitative signals — history, code survival rates, structural influence. This "common sense through design" — why a Former member's code still runs healthily — isn't directly observable yet.
+
+But if it becomes possible, we could move beyond simple Legacy-Heavy warnings and distinguish between **"historically heavy but structurally sound"** and **"genuinely dangerous dependency structures."** That may be EIS's next frontier.
+
 ## How to Use It
 
 ![eis team terminal output](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-output.png)
