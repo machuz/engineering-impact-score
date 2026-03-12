@@ -10,6 +10,8 @@ A 7-axis scoring model that measures an engineer's real impact on a codebase. No
 
 > On my team (14 repos, 10+ engineers), this matched gut feeling with eerie accuracy.
 
+![Terminal Output](docs/images/terminal-output.svg)
+
 ## The 7 Axes
 
 | Axis | Weight | What it measures |
@@ -39,6 +41,8 @@ USD figures are rough estimates and vary significantly by market (SF vs. Midwest
 
 **40 = Senior.** This metric is deliberately harsh. Scoring 40+ across 7 relative axes requires serious, well-rounded ability.
 
+![Score Guide](docs/images/score-guide.svg)
+
 ## Engineer Archetypes
 
 The 7-axis distribution reveals archetypes:
@@ -56,6 +60,8 @@ The 7-axis distribution reveals archetypes:
 **Former Architect** is detected by the gap between raw and time-decayed survival: code still exists in the codebase (high raw) but the author is no longer active (low decayed). Combined with high Design or Indispensability, this signals an unfilled departure — a handoff priority alert.
 
 **Mass Producer and Drifter types look productive on individual metrics** but score low overall. Only multi-axis evaluation exposes them.
+
+![Archetypes Radar](docs/images/archetypes-radar.svg)
 
 ## Key Formulas
 

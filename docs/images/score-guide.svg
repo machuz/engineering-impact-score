@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200" viewBox="0 0 800 200">
+  <defs>
+    <style>
+      text { font-family: -apple-system, 'Segoe UI', sans-serif; }
+      .title { font-size: 16px; font-weight: 700; fill: #1a1a2e; }
+      .band-label { font-size: 13px; font-weight: 600; }
+      .band-desc { font-size: 11px; fill: #666; }
+      .tick { font-size: 10px; fill: #999; }
+    </style>
+    <linearGradient id="barGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5c6370"/>
+      <stop offset="20%" stop-color="#abb2bf"/>
+      <stop offset="30%" stop-color="#abb2bf"/>
+      <stop offset="40%" stop-color="#e5c07b"/>
+      <stop offset="60%" stop-color="#e5c07b"/>
+      <stop offset="60%" stop-color="#98c379"/>
+      <stop offset="80%" stop-color="#98c379"/>
+      <stop offset="80%" stop-color="#c678dd"/>
+      <stop offset="100%" stop-color="#c678dd"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="200" rx="8" fill="#fafbfc"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="title">Engineering Impact Score Guide</text>
+
+  <!-- Main bar -->
+  <rect x="60" y="50" width="680" height="36" rx="6" fill="url(#barGradient)"/>
+
+  <!-- Divider lines -->
+  <line x1="196" y1="50" x2="196" y2="86" stroke="white" stroke-width="2"/>
+  <line x1="264" y1="50" x2="264" y2="86" stroke="white" stroke-width="2"/>
+  <line x1="332" y1="50" x2="332" y2="86" stroke="white" stroke-width="2"/>
+  <line x1="468" y1="50" x2="468" y2="86" stroke="white" stroke-width="2"/>
+  <line x1="604" y1="50" x2="604" y2="86" stroke="white" stroke-width="2"/>
+
+  <!-- Score ticks -->
+  <text x="60" y="104" text-anchor="middle" class="tick">0</text>
+  <text x="196" y="104" text-anchor="middle" class="tick">20</text>
+  <text x="264" y="104" text-anchor="middle" class="tick">30</text>
+  <text x="332" y="104" text-anchor="middle" class="tick">40</text>
+  <text x="468" y="104" text-anchor="middle" class="tick">60</text>
+  <text x="604" y="104" text-anchor="middle" class="tick">80</text>
+  <text x="740" y="104" text-anchor="middle" class="tick">100</text>
+
+  <!-- Band labels -->
+  <text x="128" y="72" text-anchor="middle" class="band-label" fill="white" font-size="11">Junior</text>
+  <text x="230" y="72" text-anchor="middle" class="band-label" fill="white" font-size="11">Jr-Mid</text>
+  <text x="298" y="72" text-anchor="middle" class="band-label" fill="white" font-size="11">Mid</text>
+  <text x="400" y="72" text-anchor="middle" class="band-label" fill="#1a1a2e" font-size="11">Senior</text>
+  <text x="536" y="72" text-anchor="middle" class="band-label" fill="white" font-size="11">Near-core</text>
+  <text x="672" y="72" text-anchor="middle" class="band-label" fill="white" font-size="11">Irreplaceable</text>
+
+  <!-- Descriptions -->
+  <text x="128" y="124" text-anchor="middle" class="band-desc">Learning</text>
+  <text x="128" y="138" text-anchor="middle" class="band-desc">the basics</text>
+
+  <text x="230" y="124" text-anchor="middle" class="band-desc">Building</text>
+  <text x="230" y="138" text-anchor="middle" class="band-desc">competence</text>
+
+  <text x="298" y="124" text-anchor="middle" class="band-desc">Reliable</text>
+  <text x="298" y="138" text-anchor="middle" class="band-desc">contributor</text>
+
+  <text x="400" y="124" text-anchor="middle" class="band-desc" font-weight="600">40+ is genuinely</text>
+  <text x="400" y="138" text-anchor="middle" class="band-desc" font-weight="600">strong</text>
+
+  <text x="536" y="124" text-anchor="middle" class="band-desc">Strong across</text>
+  <text x="536" y="138" text-anchor="middle" class="band-desc">multiple axes</text>
+
+  <text x="672" y="124" text-anchor="middle" class="band-desc">Core member</text>
+  <text x="672" y="138" text-anchor="middle" class="band-desc">of the team</text>
+
+  <!-- Footnote -->
+  <text x="400" y="175" text-anchor="middle" font-size="11" fill="#999" font-family="-apple-system, sans-serif">This metric is deliberately harsh. Scoring 40+ across 7 relative axes requires serious, well-rounded ability.</text>
+</svg>
