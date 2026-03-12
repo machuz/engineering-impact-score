@@ -58,29 +58,40 @@ internal/
 | Debt Cleanup | 15% | 絶対値（0-100） | 他者の負債清掃率 |
 | Indispensability | 5% | 相対値 | モジュール80%+所有 |
 
-## アーキタイプ一覧（archetype.go のルール定義順 = 優先順位）
+## 3軸エンジニアトポロジー（archetype.go）
 
-1. Architect-Builder — Prod↑ Surv↑ Design↑ Debt○（設計し、自分で作り、他人のコードも直す）
-2. Architect — Design↑ RobustSurv↑ Breadth○（設計力は高いが実装は多くない。Robust必須）
-3. Former Architect — RawSurv↑ Surv↓ (Design↑ or Indisp↑)
-4. Churn Producer — Prod-Surv gap≥30 + notLow(Prod) + Qual↓ + Surv↓
-5. Rescue Producer — Prod↑ Surv↓ Debt↑
-6. Resilient Producer — Prod↑ Surv↓ RobustSurv○（試行錯誤の末に変更圧に強いものを生む）
-7. Mass Producer — Prod↑ Surv↓
-8. Solid Cleaner — Qual↑ Surv↑ Debt↑
-9. Spreader — Breadth↑ Prod↓ Surv↓ Design↓
-10. Silent Killer — Prod↓ Surv↓ Debt↓ (commits≥100のみ)
-11. Fragile Fortress — Surv↑ Prod↓ Qual<70（変更圧がないから残っているだけ）
-12. Specialist — Surv↑ Breadth↓
-13. Quality Anchor — Qual↑ notLow(Prod)
-14. Growing — Prod↓ Qual↑
+v0.9.0で単一アーキタイプから3軸独立分類に移行。破壊的変更。
+
+### Role（何を貢献するか）
+1. Architect — Design↑ + RobustSurv↑ + Breadth○（Robust必須）
+2. Anchor — Qual↑ + notLow(Prod)
+3. Cleaner — Qual↑ + Surv↑ + Debt↑
+4. Producer — notLow(Prod)
+5. Specialist — Surv↑ + Breadth↓
+
+### Style（どう貢献するか）
+1. Builder — Prod↑ + Design↑ + Debt○
+2. Resilient — Prod↑ + Surv↓ + RobustSurv○
+3. Rescue — Prod↑ + Surv↓ + Debt↑
+4. Churn — Prod-Surv gap≥30 + notLow(Prod) + Qual↓ + Surv↓
+5. Mass — Prod↑ + Surv↓
+6. Balanced — Total≥30
+7. Spread — Breadth↑ + Prod↓ + Surv↓ + Design↓
+
+### State（ライフサイクルフェーズ）
+1. Former — RawSurv↑ + Surv↓ + (Design↑ or Indisp↑)
+2. Silent — Prod↓ + Surv↓ + Debt↓（commits≥100のみ）
+3. Fragile — Surv↑ + Prod↓ + Qual<70（変更圧がないから残っているだけ）
+4. Growing — Prod↓ + Qual↑
+5. Active — 直近コミットあり
 
 ### 分類ロジック
 
 - soft-match関数: `highness(v)`, `lowness(v)`, `notLow(v)` → 0.0〜1.0
 - 最小信頼度閾値: 0.10（これ未満はフィルタ）
 - 優先マージン: 0.15以内なら定義順（priority）で解決
-- Primary + Secondary を返す
+- 各軸独立に最良マッチを返す（confidence付き）
+- 該当なしは「—」
 
 ## ドキュメント更新対象
 

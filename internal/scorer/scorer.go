@@ -21,11 +21,14 @@ type Result struct {
 	DebtCleanup      float64
 	Indispensability float64
 	Total            float64
-	TotalCommits     int
-	RecentlyActive   bool   // true if author has commits within active_days (default 30)
-	Archetype        string // primary archetype name
-	ArchetypeConf    float64        // primary archetype confidence (0.0-1.0)
-	Secondary        ArchetypeMatch // second-best archetype match
+	TotalCommits   int
+	RecentlyActive bool    // true if author has commits within active_days (default 30)
+	Role           string  // Role axis: what they contribute (Architect, Anchor, Cleaner, Producer, Specialist, —)
+	RoleConf       float64 // Role confidence (0.0-1.0)
+	Style          string  // Style axis: how they contribute (Builder, Resilient, Rescue, Churn, Mass, Balanced, Spread, —)
+	StyleConf      float64 // Style confidence (0.0-1.0)
+	State          string  // State axis: lifecycle phase (Active, Growing, Former, Silent, Fragile, —)
+	StateConf      float64 // State confidence (0.0-1.0)
 }
 
 func Score(raw *metric.RawScores, cfg *config.Config, authorLastDate map[string]time.Time) []Result {
@@ -123,10 +126,13 @@ func Score(raw *metric.RawScores, cfg *config.Config, authorLastDate map[string]
 				r.Indispensability*w.Indispensability
 		}
 
-		primary, secondary := classifyArchetypeWithConfidence(r)
-		r.Archetype = primary.Name
-		r.ArchetypeConf = primary.Confidence
-		r.Secondary = secondary
+		role, style, state := classifyTopology(r)
+		r.Role = role.Name
+		r.RoleConf = role.Confidence
+		r.Style = style.Name
+		r.StyleConf = style.Confidence
+		r.State = state.Name
+		r.StateConf = state.Confidence
 
 		results = append(results, r)
 	}

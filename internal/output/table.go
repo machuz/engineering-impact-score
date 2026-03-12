@@ -33,31 +33,28 @@ func PrintRankings(results []scorer.Result) {
 
 	var tbl table.Table
 	if hasPressure {
-		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Robust", "Dormant", "Design", "Breadth", "Debt", "Indisp", "Total", "Type", "2nd")
+		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Robust", "Dormant", "Design", "Breadth", "Debt", "Indisp", "Total", "Role", "Style", "State")
 	} else {
-		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Surv", "Design", "Breadth", "Debt", "Indisp", "Total", "Type", "2nd")
+		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Surv", "Design", "Breadth", "Debt", "Indisp", "Total", "Role", "Style", "State")
 	}
 	tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt).WithWidthFunc(stripAnsiWidth).WithWriter(os.Stdout)
 
 	nameFmt := color.New(color.FgHiYellow).SprintfFunc()
-	typeFmt := color.New(color.FgHiBlue).SprintfFunc()
+	labelFmt := color.New(color.FgHiBlue).SprintfFunc()
 	activeFmt := color.New(color.FgHiGreen).SprintfFunc()
 	inactiveFmt := color.New(color.FgHiBlack).SprintfFunc()
 	confFmt := color.New(color.FgHiBlack).SprintfFunc()
 
 	for i, r := range results {
 		totalStr := formatTotal(r.Total)
-		typeStr := r.Archetype
-		if typeStr != "" && typeStr != "—" {
-			typeStr = fmt.Sprintf("%s %s", typeFmt("%s", r.Archetype), confFmt("(%.2f)", r.ArchetypeConf))
-		}
+
+		roleStr := formatAxis(r.Role, r.RoleConf, labelFmt, confFmt)
+		styleStr := formatAxis(r.Style, r.StyleConf, labelFmt, confFmt)
+		stateStr := formatAxis(r.State, r.StateConf, labelFmt, confFmt)
+
 		activeStr := inactiveFmt("—")
 		if r.RecentlyActive {
 			activeStr = activeFmt("✓")
-		}
-		secondaryStr := ""
-		if r.Secondary.Name != "" && r.Secondary.Confidence > 0 {
-			secondaryStr = confFmt("%s (%.2f)", r.Secondary.Name, r.Secondary.Confidence)
 		}
 		if hasPressure {
 			tbl.AddRow(
@@ -73,8 +70,9 @@ func PrintRankings(results []scorer.Result) {
 				fmt.Sprintf("%.0f", r.DebtCleanup),
 				fmt.Sprintf("%.0f", r.Indispensability),
 				totalStr,
-				typeStr,
-				secondaryStr,
+				roleStr,
+				styleStr,
+				stateStr,
 			)
 		} else {
 			tbl.AddRow(
@@ -89,8 +87,9 @@ func PrintRankings(results []scorer.Result) {
 				fmt.Sprintf("%.0f", r.DebtCleanup),
 				fmt.Sprintf("%.0f", r.Indispensability),
 				totalStr,
-				typeStr,
-				secondaryStr,
+				roleStr,
+				styleStr,
+				stateStr,
 			)
 		}
 	}
@@ -120,6 +119,13 @@ func PrintBusFactorRisks(risks []metric.ModuleRisk) {
 
 	tbl.Print()
 	fmt.Println()
+}
+
+func formatAxis(name string, conf float64, labelFmt, confFmt func(string, ...interface{}) string) string {
+	if name == "" || name == "—" {
+		return "—"
+	}
+	return fmt.Sprintf("%s %s", labelFmt("%s", name), confFmt("(%.2f)", conf))
 }
 
 func formatTotal(total float64) string {

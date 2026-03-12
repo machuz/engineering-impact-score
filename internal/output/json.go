@@ -22,28 +22,26 @@ type jsonDomain struct {
 }
 
 type jsonMember struct {
-	Rank             int            `json:"rank"`
-	Member           string         `json:"member"`
-	Active           bool           `json:"active"`
-	Commits          int            `json:"commits"`
-	Production       float64        `json:"production"`
-	Quality          float64        `json:"quality"`
-	Survival         float64        `json:"survival"`
-	RobustSurvival   float64        `json:"robust_survival"`
-	DormantSurvival  float64        `json:"dormant_survival"`
-	Design           float64        `json:"design"`
-	Breadth          float64        `json:"breadth"`
-	DebtCleanup      float64        `json:"debt_cleanup"`
-	Indispensability float64        `json:"indispensability"`
-	Total            float64        `json:"total"`
-	Type             string         `json:"type"`
-	TypeConf         float64        `json:"type_confidence"`
-	Secondary        *jsonArchetype `json:"secondary,omitempty"`
-}
-
-type jsonArchetype struct {
-	Type       string  `json:"type"`
-	Confidence float64 `json:"confidence"`
+	Rank             int     `json:"rank"`
+	Member           string  `json:"member"`
+	Active           bool    `json:"active"`
+	Commits          int     `json:"commits"`
+	Production       float64 `json:"production"`
+	Quality          float64 `json:"quality"`
+	Survival         float64 `json:"survival"`
+	RobustSurvival   float64 `json:"robust_survival"`
+	DormantSurvival  float64 `json:"dormant_survival"`
+	Design           float64 `json:"design"`
+	Breadth          float64 `json:"breadth"`
+	DebtCleanup      float64 `json:"debt_cleanup"`
+	Indispensability float64 `json:"indispensability"`
+	Total            float64 `json:"total"`
+	Role             string  `json:"role"`
+	RoleConf         float64 `json:"role_confidence"`
+	Style            string  `json:"style"`
+	StyleConf        float64 `json:"style_confidence"`
+	State            string  `json:"state"`
+	StateConf        float64 `json:"state_confidence"`
 }
 
 type jsonBusFactor struct {
@@ -85,14 +83,12 @@ func (w *JSONWriter) AddDomain(domainName string, repoCount int, results []score
 			DebtCleanup:      round1(r.DebtCleanup),
 			Indispensability: round1(r.Indispensability),
 			Total:            round1(r.Total),
-			Type:             r.Archetype,
-			TypeConf:         r.ArchetypeConf,
-		}
-		if r.Secondary.Name != "" && r.Secondary.Confidence > 0 {
-			m.Secondary = &jsonArchetype{
-				Type:       r.Secondary.Name,
-				Confidence: r.Secondary.Confidence,
-			}
+			Role:             r.Role,
+			RoleConf:         r.RoleConf,
+			Style:            r.Style,
+			StyleConf:        r.StyleConf,
+			State:            r.State,
+			StateConf:        r.StateConf,
 		}
 		d.Members = append(d.Members, m)
 	}

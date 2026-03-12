@@ -157,25 +157,33 @@ Produce:
 
 1. **Rankings table** per domain:
 ```
-| # | Member | Prod | Qual | Surv | Design | Breadth | Debt | Indisp | Total | Archetype |
+| # | Member | Prod | Qual | Robust | Dormant | Design | Breadth | Debt | Indisp | Total | Role | Style | State |
 ```
 
-2. **Archetype classification** for each member:
-   - **Architect-Builder**: Prod↑ Surv↑ Design↑ Debt○ (designs, builds heavily, cleans up — the full package)
-   - **Architect**: Design↑ RobustSurv↑ Breadth○ (high design influence, delegates implementation)
-   - **Former Architect**: Design↑ Indisp↑ Surv↓ (system still depends on them but they're inactive)
-   - **Solid Cleaner**: Prod→ Qual↑ Surv↑ Debt↑
-   - **Churn Producer**: Prod↑ Qual↓ Surv↓ (high output but terrible quality, constant rework)
-   - **Rescue Producer**: Prod↑ Surv↓ Debt↑ (high output cleaning up others' legacy code)
-   - **Resilient Producer**: Prod↑ Surv↓ RobustSurv○ (iterates heavily but durable under change pressure)
-   - **Mass Producer**: Prod↑ Surv↓ (high output but code doesn't survive)
-   - **Quality Anchor**: Qual↑ Prod mid — reliable but not yet shaping design
-   - **Spreader**: Breadth↑ Prod↓ Surv↓ Design↓
-   - **Silent Killer**: Prod↓ Surv↓ Debt↓ (net drain on team capacity; requires >= 100 commits)
-   - **Fragile Fortress**: Surv↑ Prod↓ Qual<70 — code survives only due to low change pressure, not quality
-   - **Balanced**: Total 30+ but no dominant axis
-   - **Specialist**: narrow but deep
-   - **Growing**: low volume, high quality
+2. **3-axis topology** for each member (Role / Style / State):
+
+   **Role** (what they contribute):
+   - **Architect**: Design↑ RobustSurv↑ Breadth○
+   - **Anchor**: Qual↑ notLow(Prod)
+   - **Cleaner**: Qual↑ Surv↑ Debt↑
+   - **Producer**: notLow(Prod)
+   - **Specialist**: Surv↑ Breadth↓
+
+   **Style** (how they contribute):
+   - **Builder**: Prod↑ Design↑ Debt○
+   - **Resilient**: Prod↑ Surv↓ RobustSurv○
+   - **Rescue**: Prod↑ Surv↓ Debt↑
+   - **Churn**: Prod↑ Qual↓ Surv↓ gap≥30
+   - **Mass**: Prod↑ Surv↓
+   - **Balanced**: Total≥30
+   - **Spread**: Breadth↑ Prod↓ Surv↓ Design↓
+
+   **State** (lifecycle phase):
+   - **Active**: recent commits
+   - **Growing**: Prod↓ Qual↑
+   - **Former**: RawSurv↑ Surv↓ Design/Indisp↑
+   - **Silent**: Prod↓ Surv↓ Debt↓ (≥100 commits)
+   - **Fragile**: Surv↑ Prod↓ Qual<70
 
 3. **Bus Factor risk map**: modules with CRITICAL/HIGH concentration
 

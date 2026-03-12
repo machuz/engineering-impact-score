@@ -91,51 +91,58 @@ USD figures are rough estimates and vary significantly by market (SF vs. Midwest
 
 ![Score Guide](docs/images/score-guide.svg)
 
-## Engineer Archetypes
+## Engineer Topology (3-Axis Classification)
 
-The 7-axis distribution reveals archetypes:
+Instead of a single archetype label, EIS v0.9+ classifies each engineer along 3 independent axes. This gives a richer, more composable picture than a flat type.
 
-| Type | Prod | Qual | Surv | Design | Breadth | Debt | Indisp | Risk |
-|---|---|---|---|---|---|---|---|---|
-| **Architect-Builder** | ◎ | △-○ | ◎ | ◎ | ○ | ◎ | ◎ | — |
-| **Architect** | △-○ | △-○ | ◎ (Robust) | ◎ | ○ | △ | ○ | — |
-| **Former Architect** | △ | △ | ✕ | ◎ | ○ | △ | ◎ | **⚠️ Handoff** |
-| **Churn Producer** | ◎ | ✕ | ✕ | △ | △ | ✕ | △ | **High** |
-| **Rescue Producer** | ◎ | △ | ✕ | △ | △ | ◎ | △ | Medium |
-| **Resilient Producer** | ◎ | △ | ✕ (Robust○) | △ | △ | △ | △ | Low |
-| **Mass Producer** | ◎ | △ | ✕ | △ | △ | ✕ | △ | **High** |
-| **Solid Cleaner** | ○ | ◎ | ◎ | ○ | ○ | ◎ | △ | — |
-| **Quality Anchor** | ○ | ◎ | △ | △ | ○ | ○ | △ | — |
-| **Spreader** | ✕ | △ | ✕ | ✕ | ◎ | △ | ✕ | **High** |
-| **Silent Killer** | ✕ | ✕ | ✕ | ✕ | △ | ✕ | ✕ | **High** |
-| **Fragile Fortress** | ✕ | ✕-△ | ◎ | △ | △ | △ | △ | **⚠️ Hidden** |
-| **Specialist** | ◎ | ◎ | ◎ | ○ | ✕ | ○ | ◎ | △ Silo |
-| **Balanced** | ○ | ○ | ○ | △ | ○ | ○ | △ | — |
-| **Growing** | △ | ◎ | ○ | ✕ | △ | ○ | ✕ | — |
+### Role — what they contribute
 
-**Architect-Builder**: designs, builds heavily, AND cleans up others' code. The full package — high production, high survival, high design, decent debt cleanup. Production gate ensures this can't be inflated by solo ownership.
+| Role | Key Signals | Description |
+|---|---|---|
+| **Architect** | Design↑ RobustSurv↑ Breadth○ | Shapes system design with durable code under change pressure |
+| **Anchor** | Qual↑ notLow(Prod) | Reliable quality contributor, not yet shaping architecture |
+| **Cleaner** | Qual↑ Surv↑ Debt↑ | High quality, durable code, actively cleans others' debt |
+| **Producer** | notLow(Prod) | Meaningful production output |
+| **Specialist** | Surv↑ Breadth↓ | Deep in narrow area, high survival but low breadth |
+| **—** | | No dominant role signal |
 
-**Architect**: high design influence with durable code, but not necessarily high production. The classic architect who shapes systems and delegates implementation. Requires robust survival when change pressure data is available — code surviving only in dormant modules doesn't qualify.
+### Style — how they contribute
 
-**Former Architect** is detected by the gap between raw and time-decayed survival: code still exists in the codebase (high raw) but the author is no longer active (low decayed). Combined with high Design or Indispensability, this signals an unfilled departure — a handoff priority alert.
+| Style | Key Signals | Description |
+|---|---|---|
+| **Builder** | Prod↑ Design↑ Debt○ | Designs, builds heavily, AND cleans up — the full package |
+| **Resilient** | Prod↑ Surv↓ RobustSurv○ | Iterates heavily but what survives under pressure is durable |
+| **Rescue** | Prod↑ Surv↓ Debt↑ | Takes over and rewrites inherited legacy code |
+| **Churn** | Prod↑ Qual↓ Surv↓ gap≥30 | Constant rework — most commits are fixes or reverts |
+| **Mass** | Prod↑ Surv↓ | High output but code doesn't survive |
+| **Balanced** | Total≥30 | Steady contributor, no dominant pattern |
+| **Spread** | Breadth↑ Prod↓ Surv↓ Design↓ | Wide presence, shallow depth everywhere |
+| **—** | | No dominant style signal |
 
-**Quality Anchor**: high first-pass quality with mid-level production. Writes reliable code but hasn't yet reached design influence or high survival. With the right opportunities, this type can grow into Solid Cleaner or Architect.
+### State — lifecycle phase
 
-**Spreader**: wide presence across repos but low production, low survival, and no design involvement. Touches everything, improves nothing.
+| State | Key Signals | Risk |
+|---|---|---|
+| **Active** | Recent commits | — |
+| **Growing** | Prod↓ Qual↑ | — |
+| **Former** | RawSurv↑ Surv↓ Design/Indisp↑ | **⚠️ Handoff** |
+| **Silent** | Prod↓ Surv↓ Debt↓ (≥100 commits) | **High** |
+| **Fragile** | Surv↑ Prod↓ Qual<70 | **⚠️ Hidden** |
+| **—** | | No dominant state signal |
 
-**Balanced**: no axis stands out, but Total is 30+. Steady contributor without a dominant strength or weakness. Not flashy, but not a problem either.
+### Reading the output
 
-**Churn Producer**: mid-to-high production with terrible quality and low survival — detected when the gap between Production and Survival exceeds 30 points. Most commits are fixes or reverts, generating a constant stream of rework. Unlike Mass Producer (who may write decent first-pass code), the Churn Producer's quality score is near zero.
+Each engineer gets a 3-label profile. Examples:
 
-**Rescue Producer**: high production with low survival but high debt cleanup. This engineer is actively taking over and cleaning up others' code — often seen when someone inherits legacy modules from departed team members. Unlike Mass Producer or Churn Producer, the low survival isn't from writing bad code but from rewriting inherited debt.
+| Profile | Interpretation |
+|---|---|
+| Architect / Builder / Active | Core contributor: designs, builds, cleans, currently active |
+| Producer / Mass / — | High output but code doesn't last |
+| — / Spread / Silent | Wide but shallow, not contributing meaningfully |
+| Anchor / Balanced / Growing | Reliable quality, steady pace, improving |
+| — / — / Fragile | Code survives only due to low change pressure |
 
-**Resilient Producer**: high production with low total survival but decent robust survival. This engineer iterates heavily — writing, rewriting, experimenting — but what survives under change pressure is durable. The total survival is low because of the iteration, but the robust survival proves the end result is solid. This is the builder who improves through trial and error. Requires `--pressure-mode=include` (default).
-
-**Silent Killer**: low production, low survival, low debt cleanup. Neither builds nor cleans — their presence is a net drain on team capacity. Only applied to authors with >= 100 commits; low-activity contributors are not labeled.
-
-**Fragile Fortress**: high survival with low production and mediocre quality (< 70). The code survives not because it's well-written, but because nobody is changing it. If change pressure increases, this code will likely collapse. A hidden risk that survival score alone cannot reveal.
-
-**Mass Producer, Churn Producer, and Spreader types look productive on individual metrics** but score low overall. Only multi-axis evaluation exposes them.
+**Churn, Mass, and Spread styles look productive on individual metrics** but score low overall. Only multi-axis evaluation exposes them.
 
 ![Archetypes Radar](docs/images/archetypes-radar.svg)
 
@@ -253,8 +260,8 @@ See [`config.example.yaml`](config.example.yaml) for all options:
 
 ### What You Get
 
-- **Rankings table** with all 7 axis scores, total, and **Active** indicator (✓ = committed within last 6 months)
-- **Archetype classification** with confidence scores (0.0-1.0) and secondary archetype — e.g., `Quality Anchor (0.85)` primary, `Former Architect (0.65)` secondary
+- **Rankings table** with all 7 axis scores, total, and **Active** indicator (✓ = committed within last 30 days)
+- **3-axis topology** (Role / Style / State) with confidence scores (0.0-1.0) — e.g., `Architect (1.00) / Builder (0.86) / Active (0.80)`
 - **Bus Factor risk map** showing modules with dangerous ownership concentration
 - Color-coded output for quick visual scanning
 - **JSON / CSV export** (`--format json|csv`) for dashboards and programmatic use

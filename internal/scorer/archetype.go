@@ -1,182 +1,176 @@
 package scorer
 
-// ArchetypeMatch holds an archetype name and its confidence score (0.0-1.0).
-type ArchetypeMatch struct {
+// AxisMatch holds a classification label and its confidence score (0.0-1.0).
+type AxisMatch struct {
 	Name       string
 	Confidence float64
 }
 
-// classifyArchetypeWithConfidence scores all archetypes and returns primary + secondary.
-func classifyArchetypeWithConfidence(r Result) (primary ArchetypeMatch, secondary ArchetypeMatch) {
-	type rule struct {
-		name  string
-		score func() float64
-	}
+// classifyTopology returns 3-axis classification: Role, Style, State.
+func classifyTopology(r Result) (role AxisMatch, style AxisMatch, state AxisMatch) {
+	role = classifyRole(r)
+	style = classifyStyle(r)
+	state = classifyState(r)
+	return
+}
 
-	// Helpers: how strongly a value matches "high" (>=60) or "low" (<30)
-	// Returns 0.0-1.0 as a soft match
-	highness := func(v float64) float64 {
-		if v >= 80 {
-			return 1.0
-		}
-		if v >= 60 {
-			return 0.5 + (v-60)/40
-		}
-		if v >= 40 {
-			return (v - 40) / 40 * 0.3
-		}
-		return 0
-	}
-	lowness := func(v float64) float64 {
-		if v < 10 {
-			return 1.0
-		}
-		if v < 30 {
-			return 0.5 + (30-v)/40
-		}
-		if v < 50 {
-			return (50 - v) / 40 * 0.3
-		}
-		return 0
-	}
-	// notLow: 1.0 if >= 50, ramps from 0 at 10 to 1.0 at 50
-	notLow := func(v float64) float64 {
-		if v >= 50 {
-			return 1.0
-		}
-		if v >= 30 {
-			return 0.5 + (v-30)/40
-		}
-		if v >= 10 {
-			return (v - 10) / 40 * 0.3
-		}
-		return 0
-	}
+// --- Role: what they contribute to the team ---
 
-	// min of values
-	minf := func(vals ...float64) float64 {
-		m := vals[0]
-		for _, v := range vals[1:] {
-			if v < m {
-				m = v
-			}
-		}
-		return m
-	}
-	// average of values
-	avgf := func(vals ...float64) float64 {
-		sum := 0.0
-		for _, v := range vals {
-			sum += v
-		}
-		return sum / float64(len(vals))
-	}
-
-	rules := []rule{
-		{"Architect-Builder", func() float64 {
-			// Designs, builds heavily, AND cleans up others' code.
-			// The full package: high production + high survival + high design + decent debt cleanup.
-			// Production gate alone filters out solo-inflated non-builders (e.g. izumi Prod=14).
-			// Total survival is used here — robust not required because high production
-			// already proves active engagement with the codebase.
-			return minf(highness(r.Production), highness(r.Survival), highness(r.Design), notLow(r.DebtCleanup))
-		}},
+func classifyRole(r Result) AxisMatch {
+	rules := []classifyRule{
+		// Architect: high design influence with durable code under pressure.
+		// Requires robust survival when pressure data exists.
 		{"Architect", func() float64 {
-			// High design influence with durable code, but not necessarily high production.
-			// When pressure data exists, requires robust survival — code that survives only
-			// because nobody touches it does not make an architect.
 			surv := r.Survival
 			if r.DormantSurvival > 0 || r.RobustSurvival > 0 {
 				surv = r.RobustSurvival
 			}
 			return minf(highness(r.Design), highness(surv), notLow(r.Breadth))
 		}},
-		{"Former Architect", func() float64 {
-			return minf(highness(r.RawSurvival), lowness(r.Survival),
-				maxf(highness(r.Design), highness(r.Indispensability)))
+		// Anchor: reliable quality contributor, not yet shaping design.
+		{"Anchor", func() float64 {
+			return minf(highness(r.Quality), notLow(r.Production))
 		}},
-		{"Churn Producer", func() float64 {
-			if r.Production-r.Survival < 30 {
-				return 0
-			}
-			return minf(notLow(r.Production), lowness(r.Quality), lowness(r.Survival))
+		// Cleaner: high quality, high survival, high debt cleanup.
+		{"Cleaner", func() float64 {
+			return minf(highness(r.Quality), highness(r.Survival), highness(r.DebtCleanup))
 		}},
-		{"Rescue Producer", func() float64 {
-			return minf(highness(r.Production), lowness(r.Survival), highness(r.DebtCleanup))
+		// Producer: meaningful production output.
+		{"Producer", func() float64 {
+			return notLow(r.Production)
 		}},
-		{"Resilient Producer", func() float64 {
-			// High production + low total survival + decent robust survival
-			// = iterates heavily, but what survives under change pressure is durable.
+		// Specialist: deep in narrow area, high survival but low breadth.
+		{"Specialist", func() float64 {
+			return minf(highness(r.Survival), lowness(r.Breadth))
+		}},
+	}
+
+	return pickBest(rules, 0.10)
+}
+
+// --- Style: how they contribute ---
+
+func classifyStyle(r Result) AxisMatch {
+	rules := []classifyRule{
+		// Builder: designs, builds heavily, AND cleans up. The full package.
+		// Production gate filters solo-inflated non-builders.
+		{"Builder", func() float64 {
+			return minf(highness(r.Production), highness(r.Design), notLow(r.DebtCleanup))
+		}},
+		// Resilient: iterates heavily but what survives under pressure is durable.
+		{"Resilient", func() float64 {
 			if r.RobustSurvival == 0 {
 				return 0
 			}
 			return minf(highness(r.Production), lowness(r.Survival), notLow(r.RobustSurvival))
 		}},
-		{"Mass Producer", func() float64 {
+		// Rescue: high output cleaning up others' legacy code.
+		{"Rescue", func() float64 {
+			return minf(highness(r.Production), lowness(r.Survival), highness(r.DebtCleanup))
+		}},
+		// Churn: high output but terrible quality, constant rework.
+		{"Churn", func() float64 {
+			if r.Production-r.Survival < 30 {
+				return 0
+			}
+			return minf(notLow(r.Production), lowness(r.Quality), lowness(r.Survival))
+		}},
+		// Mass: high output but code doesn't survive.
+		{"Mass", func() float64 {
 			return minf(highness(r.Production), lowness(r.Survival))
 		}},
-		{"Solid Cleaner", func() float64 {
-			return minf(highness(r.Quality), highness(r.Survival), highness(r.DebtCleanup))
+		// Balanced: steady contributor, no dominant pattern.
+		{"Balanced", func() float64 {
+			if r.Total < 30 {
+				return 0
+			}
+			return 0.30
 		}},
-		{"Spreader", func() float64 {
+		// Spread: wide presence, low depth everywhere.
+		{"Spread", func() float64 {
 			return minf(highness(r.Breadth), lowness(r.Production), lowness(r.Survival), lowness(r.Design))
 		}},
-		{"Silent Killer", func() float64 {
+	}
+
+	return pickBest(rules, 0.10)
+}
+
+// --- State: lifecycle phase ---
+
+func classifyState(r Result) AxisMatch {
+	rules := []classifyRule{
+		// Former: code still in codebase (high raw) but no longer active (low decayed).
+		{"Former", func() float64 {
+			return minf(highness(r.RawSurvival), lowness(r.Survival),
+				maxf(highness(r.Design), highness(r.Indispensability)))
+		}},
+		// Silent: neither builds nor cleans — net drain. Requires ≥100 commits.
+		{"Silent", func() float64 {
 			if r.TotalCommits < 100 {
 				return 0
 			}
 			return minf(lowness(r.Production), lowness(r.Survival), lowness(r.DebtCleanup))
 		}},
-		{"Fragile Fortress", func() float64 {
-			// High dormant survival + low robust survival + mediocre quality
-			// = code survives only because it's not under change pressure.
+		// Fragile: code survives only because it's not under change pressure.
+		{"Fragile", func() float64 {
 			if r.Quality >= 70 {
-				return 0 // genuinely good quality → not fragile
+				return 0
 			}
-			// When robust/dormant data is available, use it for precise detection
 			if r.DormantSurvival > 0 || r.RobustSurvival > 0 {
 				return minf(highness(r.DormantSurvival), lowness(r.RobustSurvival), lowness(r.Production))
 			}
-			// Fallback: original heuristic
 			return minf(highness(r.Survival), lowness(r.Production))
 		}},
-		{"Specialist", func() float64 {
-			return minf(highness(r.Survival), lowness(r.Breadth))
-		}},
-		{"Quality Anchor", func() float64 {
-			return minf(highness(r.Quality), notLow(r.Production))
-		}},
+		// Growing: low volume, high quality — on a growth trajectory.
 		{"Growing", func() float64 {
 			return minf(lowness(r.Production), highness(r.Quality))
 		}},
+		// Active: recently contributing.
+		{"Active", func() float64 {
+			if r.RecentlyActive {
+				return 0.80
+			}
+			return 0
+		}},
 	}
 
-	// Score all rules, tracking rule index for priority
+	return pickBest(rules, 0.10)
+}
+
+// --- shared helpers ---
+
+type classifyRule struct {
+	name  string
+	score func() float64
+}
+
+func pickBest(rules []classifyRule, minConf float64) AxisMatch {
 	type match struct {
-		ArchetypeMatch
-		priority int // lower = higher priority (rule definition order)
+		AxisMatch
+		priority int
 	}
+
 	var matches []match
 	for i, rule := range rules {
 		score := rule.score()
-		if score >= 0.10 {
-			matches = append(matches, match{ArchetypeMatch{rule.name, score}, i})
+		if score >= minConf {
+			matches = append(matches, match{AxisMatch{rule.name, score}, i})
 		}
 	}
 
-	// Sort by confidence descending, but use rule priority as tiebreaker
-	// when scores are within a margin (0.15). This ensures more specific
-	// archetypes (defined earlier) win over generic ones at similar confidence.
+	if len(matches) == 0 {
+		return AxisMatch{Name: "—", Confidence: 0}
+	}
+
+	// Sort: confidence descending, priority as tiebreaker within margin.
 	const priorityMargin = 0.15
 	for i := 0; i < len(matches); i++ {
 		for j := i + 1; j < len(matches); j++ {
 			swap := false
 			diff := matches[j].Confidence - matches[i].Confidence
 			if diff > priorityMargin {
-				// j is clearly better → swap
 				swap = true
 			} else if abs(diff) <= priorityMargin && matches[j].priority < matches[i].priority {
-				// similar confidence → prefer higher priority (lower index)
 				swap = true
 			}
 			if swap {
@@ -185,34 +179,62 @@ func classifyArchetypeWithConfidence(r Result) (primary ArchetypeMatch, secondar
 		}
 	}
 
-	if len(matches) == 0 {
-		// Fallback
-		name := "—"
-		if r.Total >= 40 {
-			name = "Solid"
-		} else if r.Total >= 30 {
-			name = "Balanced"
-		}
-		return ArchetypeMatch{Name: name, Confidence: avgf(0.3)}, ArchetypeMatch{}
-	}
-
-	primary = matches[0].ArchetypeMatch
-
-	// Round confidence
-	primary.Confidence = roundConf(primary.Confidence)
-
-	if len(matches) > 1 {
-		secondary = matches[1].ArchetypeMatch
-		secondary.Confidence = roundConf(secondary.Confidence)
-	}
-
-	return primary, secondary
+	best := matches[0].AxisMatch
+	best.Confidence = roundConf(best.Confidence)
+	return best
 }
 
-// classifyArchetype returns just the archetype name (backward compatible).
-func classifyArchetype(r Result) string {
-	p, _ := classifyArchetypeWithConfidence(r)
-	return p.Name
+// Helpers: how strongly a value matches "high" (>=60) or "low" (<30)
+// Returns 0.0-1.0 as a soft match
+func highness(v float64) float64 {
+	if v >= 80 {
+		return 1.0
+	}
+	if v >= 60 {
+		return 0.5 + (v-60)/40
+	}
+	if v >= 40 {
+		return (v - 40) / 40 * 0.3
+	}
+	return 0
+}
+
+func lowness(v float64) float64 {
+	if v < 10 {
+		return 1.0
+	}
+	if v < 30 {
+		return 0.5 + (30-v)/40
+	}
+	if v < 50 {
+		return (50 - v) / 40 * 0.3
+	}
+	return 0
+}
+
+// notLow: 1.0 if >= 50, ramps from 0 at 10 to 1.0 at 50
+func notLow(v float64) float64 {
+	if v >= 50 {
+		return 1.0
+	}
+	if v >= 30 {
+		return 0.5 + (v-30)/40
+	}
+	if v >= 10 {
+		return (v - 10) / 40 * 0.3
+	}
+	return 0
+}
+
+// min of values
+func minf(vals ...float64) float64 {
+	m := vals[0]
+	for _, v := range vals[1:] {
+		if v < m {
+			m = v
+		}
+	}
+	return m
 }
 
 func abs(x float64) float64 {
