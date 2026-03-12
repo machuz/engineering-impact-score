@@ -94,6 +94,14 @@ func classifyArchetypeWithConfidence(r Result) (primary ArchetypeMatch, secondar
 		{"Rescue Producer", func() float64 {
 			return minf(highness(r.Production), lowness(r.Survival), highness(r.DebtCleanup))
 		}},
+		{"Resilient Producer", func() float64 {
+			// High production + low total survival + decent robust survival
+			// = iterates heavily, but what survives under change pressure is durable.
+			if r.RobustSurvival == 0 {
+				return 0
+			}
+			return minf(highness(r.Production), lowness(r.Survival), notLow(r.RobustSurvival))
+		}},
 		{"Mass Producer", func() float64 {
 			return minf(highness(r.Production), lowness(r.Survival))
 		}},
