@@ -12,6 +12,7 @@ type Result struct {
 	Production       float64
 	Quality          float64
 	Survival         float64
+	RawSurvival      float64 // normalized raw blame (no decay), used for archetype detection
 	Design           float64
 	Breadth          float64
 	DebtCleanup      float64
@@ -28,6 +29,7 @@ func Score(raw *metric.RawScores, cfg *config.Config) []Result {
 	normDesign := Normalize(raw.Design)
 	normBreadth := Normalize(raw.Breadth)
 	normIndisp := Normalize(raw.Indispensability)
+	normRawSurv := Normalize(raw.RawSurvival)
 
 	// Debt is already on 0-100 scale, use directly
 	normDebt := raw.DebtCleanup
@@ -47,6 +49,7 @@ func Score(raw *metric.RawScores, cfg *config.Config) []Result {
 			Breadth:          normBreadth[author],
 			DebtCleanup:      normDebt[author],
 			Indispensability: normIndisp[author],
+			RawSurvival:      normRawSurv[author],
 		}
 
 		r.Total = r.Production*w.Production +

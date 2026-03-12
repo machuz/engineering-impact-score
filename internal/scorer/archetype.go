@@ -13,8 +13,9 @@ func classifyArchetype(r Result) string {
 	}
 
 	// Former Architect: designed the system but no longer active
-	// High design + indispensability + low survival = the hole hasn't been filled
-	if high(r.Design) && high(r.Indispensability) && low(r.Survival) {
+	// High raw survival (code still in codebase) + low decayed survival (inactive) = departed
+	// Combined with high design or indispensability = was an architect
+	if high(r.RawSurvival) && low(r.Survival) && (high(r.Design) || high(r.Indispensability)) {
 		return "Former Architect"
 	}
 

@@ -171,8 +171,9 @@ func runAnalyze(args []string) error {
 		blameLines = filterBlameLines(blameLines, cfg)
 
 		// Survival
-		surv := metric.CalcSurvival(blameLines, cfg.Tau, start)
-		mergeMap(raw.Survival, surv)
+		survResult := metric.CalcSurvival(blameLines, cfg.Tau, start)
+		mergeMap(raw.Survival, survResult.Decayed)
+		mergeMap(raw.RawSurvival, survResult.Raw)
 
 		// Indispensability
 		indisp, risks := metric.CalcIndispensability(blameLines, cfg.BusFactor.Critical, cfg.BusFactor.High)
