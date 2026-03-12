@@ -150,6 +150,10 @@ Architectural work tends to appear in specific areas of a codebase.
 
 Frequent commits in these areas signal **architectural involvement**. It's not measuring whether a design decision was *correct* — it's measuring **who participates in shaping the system structure**. Someone who never touches architecture files is unlikely to be making good design decisions. As an approximation, it works surprisingly well.
 
+**These patterns must be customized per project.** The defaults assume Clean Architecture / DDD directory structures. If your architecture lives in Protobuf definitions, Terraform configs, or migration files, add those patterns — otherwise the Design axis will be blind to your actual architecture.
+
+There's a meta-insight here: **defining which files are "architecture files" is itself an act of articulating your team's design philosophy.** Asking "where do design decisions manifest in our codebase?" forces you to clarify your team's architectural boundaries. The configuration step becomes a design conversation.
+
 ---
 
 ## Breadth: Operating Across the System
