@@ -310,7 +310,7 @@ State captures **where the engineer is in their trajectory** relative to the cod
 
 **Churn, Mass, Spread, and Silent patterns score low overall but can look impressive on individual metrics (or fly under the radar entirely).** Organizations that evaluate on production alone or breadth alone will reward exactly the wrong people. Only multi-axis evaluation exposes them. Rescue style is a notable exception — low survival looks alarming, but high debt cleanup reveals active legacy rescue rather than new debt generation. Resilient style is another positive exception — low total survival resembles Mass, but decent robust survival reveals iteration toward durable code. Fragile state is a subtle case — high survival looks reassuring, but combined with low production and mediocre quality, it signals dormant code that will break under change pressure.
 
-![Archetypes Radar](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/archetypes-radar.png)
+![Archetypes Radar](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/archetypes-radar.png?v=0.9.1)
 
 ---
 
@@ -498,7 +498,7 @@ eis analyze --config eis.yaml --recursive ~/projects
 
 Runs in seconds to minutes. Color-coded output with 7-axis scores, 3-axis topology (Role / Style / State), and Bus Factor risks — right in your terminal.
 
-![Terminal Output](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/terminal-output.png)
+![Terminal Output](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/terminal-output.png?v=0.9.1)
 
 ## Final Thought
 
