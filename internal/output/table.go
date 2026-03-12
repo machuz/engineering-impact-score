@@ -25,11 +25,18 @@ func PrintRankings(results []scorer.Result) {
 	tbl := table.New("#", "Member", "Prod", "Qual", "Surv", "Design", "Breadth", "Debt", "Indisp", "Total", "Type")
 	tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt).WithWidthFunc(stripAnsiWidth).WithWriter(os.Stdout)
 
+	nameFmt := color.New(color.FgHiYellow).SprintfFunc()
+	typeFmt := color.New(color.FgHiBlue).SprintfFunc()
+
 	for i, r := range results {
 		totalStr := formatTotal(r.Total)
+		typeStr := r.Archetype
+		if typeStr != "" && typeStr != "—" {
+			typeStr = typeFmt("%s", r.Archetype)
+		}
 		tbl.AddRow(
 			i+1,
-			r.Author,
+			nameFmt("%s", r.Author),
 			fmt.Sprintf("%.0f", r.Production),
 			fmt.Sprintf("%.0f", r.Quality),
 			fmt.Sprintf("%.0f", r.Survival),
@@ -38,7 +45,7 @@ func PrintRankings(results []scorer.Result) {
 			fmt.Sprintf("%.0f", r.DebtCleanup),
 			fmt.Sprintf("%.0f", r.Indispensability),
 			totalStr,
-			r.Archetype,
+			typeStr,
 		)
 	}
 

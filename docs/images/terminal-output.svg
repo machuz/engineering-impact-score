@@ -5,14 +5,14 @@
       text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; font-size: 13px; }
       .header { fill: #56b6c2; font-weight: 700; }
       .rank { fill: #abb2bf; }
-      .name { fill: #abb2bf; }
+      .name { fill: #e5c07b; }
       .score { fill: #abb2bf; }
       .total-high { fill: #c678dd; font-weight: 700; }
       .total-mid { fill: #98c379; font-weight: 700; }
       .total-senior { fill: #e5c07b; }
       .total-low { fill: #abb2bf; }
       .total-junior { fill: #5c6370; }
-      .type { fill: #abb2bf; }
+      .type { fill: #61afef; }
       .domain-title { fill: #e06c75; font-weight: 700; font-size: 15px; }
       .summary { fill: #5c6370; font-size: 12px; }
       .prompt { fill: #98c379; font-size: 13px; }
