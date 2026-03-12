@@ -324,7 +324,7 @@ The numbers tell a story:
 
 ## Good Design Creates Common Sense
 
-The reason our Backend team is classified as Legacy-Heavy is clear: when a former architect left, several modules remained that only they had touched. A large chunk of `git blame` points to a Former member.
+The reason our Backend team is classified as Legacy-Heavy is clear: a former architect with enormous output left the team. The sheer volume of what they built means several modules remain that only they had touched. A large chunk of `git blame` points to a Former member.
 
 And yet, the team hasn't collapsed.
 
