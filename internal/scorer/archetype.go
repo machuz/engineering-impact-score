@@ -73,13 +73,23 @@ func classifyArchetypeWithConfidence(r Result) (primary ArchetypeMatch, secondar
 	}
 
 	rules := []rule{
-		{"Architect", func() float64 {
-			// Prefer RobustSurvival when available (code survives under change pressure)
+		{"Architect-Builder", func() float64 {
+			// Designs, builds heavily, AND cleans up others' code.
+			// The full package: high production + high survival + high design + decent debt cleanup.
 			surv := r.Survival
 			if r.RobustSurvival > 0 {
 				surv = r.RobustSurvival
 			}
-			return minf(highness(r.Production), highness(surv), highness(r.Design))
+			return minf(highness(r.Production), highness(surv), highness(r.Design), notLow(r.DebtCleanup))
+		}},
+		{"Architect", func() float64 {
+			// High design influence with durable code, but not necessarily high production.
+			// The classic architect: shapes systems, reviews, guides — delegates much of the implementation.
+			surv := r.Survival
+			if r.RobustSurvival > 0 {
+				surv = r.RobustSurvival
+			}
+			return minf(highness(r.Design), highness(surv), notLow(r.Breadth))
 		}},
 		{"Former Architect", func() float64 {
 			return minf(highness(r.RawSurvival), lowness(r.Survival),
