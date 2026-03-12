@@ -341,7 +341,7 @@ health ≥ 40   → yellow (moderate: worth watching)
 health < 40   → red (fragile gravity: high influence, poor durability)
 ```
 
-In practice, this reveals striking patterns. On my backend team, my own Gravity is 97 (green) — Design 100, Survival 100, and Indispensability 43 indicate well-distributed structural influence backed by durable code. But on our firmware team, one member has Gravity 100 (red) — Indispensability 100 means they own nearly every module, but quality is low. **"If this person leaves, everything collapses" AND "the code itself is fragile"** — the most dangerous combination, instantly visible as red gravity.
+In practice, this reveals striking patterns. On my backend team, my own Gravity is 97 (green) — Design 100, Survival 100, and Indispensability 43 indicate well-distributed structural influence backed by durable code. On another domain, one member has Gravity 100 (red) — extremely high Indispensability means they own the vast majority of modules, but quality is lacking. **"If this person leaves, everything collapses" AND "the code itself is fragile"** — the most dangerous combination, instantly visible as red gravity.
 
 Gravity is intentionally excluded from the total score. The total score answers "how strong is this engineer?" Gravity answers a different question: "how much structural influence do they have, and is it healthy?" They're orthogonal dimensions. In terminal output, Gravity appears as a color-coded column next to each member's scores.
 
