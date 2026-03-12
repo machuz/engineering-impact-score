@@ -101,6 +101,7 @@ The 7-axis distribution reveals archetypes:
 | **Former Architect** | △ | △ | ✕ | ◎ | ○ | △ | ◎ | **⚠️ Handoff** |
 | **Churn Producer** | ◎ | ✕ | ✕ | △ | △ | ✕ | △ | **High** |
 | **Rescue Producer** | ◎ | △ | ✕ | △ | △ | ◎ | △ | Medium |
+| **Resilient Producer** | ◎ | △ | ✕ (Robust○) | △ | △ | △ | △ | Low |
 | **Mass Producer** | ◎ | △ | ✕ | △ | △ | ✕ | △ | **High** |
 | **Solid Cleaner** | ○ | ◎ | ◎ | ○ | ○ | ◎ | △ | — |
 | **Quality Anchor** | ○ | ◎ | △ | △ | ○ | ○ | △ | — |
@@ -122,6 +123,8 @@ The 7-axis distribution reveals archetypes:
 **Churn Producer**: mid-to-high production with terrible quality and low survival — detected when the gap between Production and Survival exceeds 30 points. Most commits are fixes or reverts, generating a constant stream of rework. Unlike Mass Producer (who may write decent first-pass code), the Churn Producer's quality score is near zero.
 
 **Rescue Producer**: high production with low survival but high debt cleanup. This engineer is actively taking over and cleaning up others' code — often seen when someone inherits legacy modules from departed team members. Unlike Mass Producer or Churn Producer, the low survival isn't from writing bad code but from rewriting inherited debt.
+
+**Resilient Producer**: high production with low total survival but decent robust survival. This engineer iterates heavily — writing, rewriting, experimenting — but what survives under change pressure is durable. The total survival is low because of the iteration, but the robust survival proves the end result is solid. This is the builder who improves through trial and error. Requires `--pressure-mode=include` (default).
 
 **Silent Killer**: low production, low survival, low debt cleanup. Neither builds nor cleans — their presence is a net drain on team capacity. Only applied to authors with >= 100 commits; low-activity contributors are not labeled.
 

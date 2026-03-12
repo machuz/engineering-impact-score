@@ -166,6 +166,7 @@ Produce:
    - **Solid Cleaner**: Prod→ Qual↑ Surv↑ Debt↑
    - **Churn Producer**: Prod↑ Qual↓ Surv↓ (high output but terrible quality, constant rework)
    - **Rescue Producer**: Prod↑ Surv↓ Debt↑ (high output cleaning up others' legacy code)
+   - **Resilient Producer**: Prod↑ Surv↓ RobustSurv○ (iterates heavily but durable under change pressure)
    - **Mass Producer**: Prod↑ Surv↓ (high output but code doesn't survive)
    - **Quality Anchor**: Qual↑ Prod mid — reliable but not yet shaping design
    - **Spreader**: Breadth↑ Prod↓ Surv↓ Design↓

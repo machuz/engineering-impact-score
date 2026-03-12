@@ -64,14 +64,15 @@ internal/
 2. Former Architect — RawSurv↑ Surv↓ (Design↑ or Indisp↑)
 3. Churn Producer — Prod-Surv gap≥30 + notLow(Prod) + Qual↓ + Surv↓
 4. Rescue Producer — Prod↑ Surv↓ Debt↑
-5. Mass Producer — Prod↑ Surv↓
-6. Solid Cleaner — Qual↑ Surv↑ Debt↑
-7. Spreader — Breadth↑ Prod↓ Surv↓ Design↓
-8. Silent Killer — Prod↓ Surv↓ Debt↓ (commits≥100のみ)
-9. Fragile Fortress — Surv↑ Prod↓ Qual<70（変更圧がないから残っているだけ）
-10. Specialist — Surv↑ Breadth↓
-11. Quality Anchor — Qual↑ notLow(Prod)
-12. Growing — Prod↓ Qual↑
+5. Resilient Producer — Prod↑ Surv↓ RobustSurv○（試行錯誤の末に変更圧に強いものを生む）
+6. Mass Producer — Prod↑ Surv↓
+7. Solid Cleaner — Qual↑ Surv↑ Debt↑
+8. Spreader — Breadth↑ Prod↓ Surv↓ Design↓
+9. Silent Killer — Prod↓ Surv↓ Debt↓ (commits≥100のみ)
+10. Fragile Fortress — Surv↑ Prod↓ Qual<70（変更圧がないから残っているだけ）
+11. Specialist — Surv↑ Breadth↓
+12. Quality Anchor — Qual↑ notLow(Prod)
+13. Growing — Prod↓ Qual↑
 
 ### 分類ロジック
 

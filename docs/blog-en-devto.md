@@ -281,6 +281,10 @@ High production but terrible quality — most commits are fixes or reverts, and 
 
 High production with low survival but high debt cleanup. **This engineer is actively taking over and cleaning up others' legacy code** — often seen when someone inherits modules from departed team members. Unlike Mass Producer or Churn Producer, the low survival isn't from writing bad code but from rewriting inherited debt. The code doesn't "survive" because it's *replacing* old code, not failing. Detected when the gap between Production and Survival exceeds 30 points.
 
+### Resilient Producer: Prod↑ Surv↓ RobustSurv○
+
+High production, low total survival, but decent robust survival. **This engineer iterates heavily — writing, rewriting, experimenting — but what survives under change pressure is durable.** The total survival is low because of the iteration, but the robust survival proves the end result is solid. This is the builder who improves through trial and error. Unlike Mass Producer, their work has lasting value in the modules that matter most. Requires change pressure analysis (`--pressure-mode=include`, the default).
+
 ### Mass Producer: Prod↑ Surv↓ Debt↓
 
 Writes a lot of code, but nothing survives. **A cycle of writing and replacing.** Worse — low debt cleanup means their bugs are being fixed by *other people*.
@@ -321,6 +325,7 @@ Specialist: dominant in a narrow area but no cross-repo presence. Bus factor ris
 | Former Architect | △ | △ | ✕ | ◎ | ○ | △ | ◎ | **⚠️ Handoff** |
 | Churn Producer | ◎ | ✕ | ✕ | △ | △ | ✕ | △ | **⚠️ High** |
 | Rescue Producer | ◎ | △ | ✕ | △ | △ | ◎ | △ | Medium |
+| Resilient Producer | ◎ | △ | ✕ (Robust○) | △ | △ | △ | △ | Low |
 | Mass Producer | ◎ | △ | ✕ | △ | △ | ✕ | △ | **⚠️ High** |
 | Solid Cleaner | ○ | ◎ | ◎ | ○ | ○ | ◎ | △ | — |
 | Quality Anchor | ○ | ◎ | △ | △ | ○ | ○ | △ | — |
@@ -331,7 +336,7 @@ Specialist: dominant in a narrow area but no cross-repo presence. Bus factor ris
 | Specialist | ◎ | ◎ | ◎ | ○ | ✕ | ○ | ◎ | △ Silo |
 | Growing | △ | ◎ | ○ | ✕ | △ | ○ | ✕ | — |
 
-**Mass Producer, Churn Producer, Spreader, and Silent Killer types score low overall but can look impressive on individual metrics (or fly under the radar entirely).** Organizations that evaluate on production alone or breadth alone will reward exactly the wrong people. Only multi-axis evaluation exposes them. Rescue Producer is a notable exception — low survival looks alarming, but high debt cleanup reveals they're actively rescuing legacy code rather than generating new debt. Fragile Fortress is another subtle case — high survival looks reassuring, but combined with low production and mediocre quality, it signals dormant code that will break under change pressure.
+**Mass Producer, Churn Producer, Spreader, and Silent Killer types score low overall but can look impressive on individual metrics (or fly under the radar entirely).** Organizations that evaluate on production alone or breadth alone will reward exactly the wrong people. Only multi-axis evaluation exposes them. Rescue Producer is a notable exception — low survival looks alarming, but high debt cleanup reveals they're actively rescuing legacy code rather than generating new debt. Resilient Producer is another positive exception — low total survival looks like Mass Producer, but decent robust survival reveals they're iterating toward durable code. Fragile Fortress is another subtle case — high survival looks reassuring, but combined with low production and mediocre quality, it signals dormant code that will break under change pressure.
 
 ![Archetypes Radar](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/archetypes-radar.png)
 
