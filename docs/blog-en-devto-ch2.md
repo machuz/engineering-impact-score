@@ -227,6 +227,7 @@ These metrics reveal **structural quality** that Role distribution alone cannot 
 After running this on multiple teams — now with 5-axis classification and structural metrics — patterns emerge:
 
 **Strong teams share:**
+
 - Architect + Builder present (someone designs, someone implements design)
 - 3+ role types (minimum: Architect / Anchor / Producer)
 - 20%+ Growing ratio (juniors are developing)
@@ -234,6 +235,7 @@ After running this on multiple teams — now with 5-axis classification and stru
 - Quality Consistency above 70
 
 **Dangerous compositions:**
+
 - Mass/Churn-heavy: high volume, low durability
 - No Architect: nobody shapes the design layer → implicit decisions accumulate
 - Silent accumulation: headcount says 8, effective contributors are 4
@@ -276,6 +278,7 @@ EIS detects dangerous metric combinations and surfaces them as plain-text warnin
 ```
 
 Warning types:
+
 - **Bus factor risk**: few core members carrying many repos
 - **Risk ratio**: percentage of inactive/at-risk members
 - **Top contributor concentration**: what happens if they leave (simulated ProdDensity drop)
@@ -299,18 +302,21 @@ A Backend team with an Architect scoring 90+ and two Silent former members isn't
 Running `eis team` on our actual product (12 Backend repos + 9 Frontend repos):
 
 **Backend — Elite / Legacy-Heavy**:
+
 - 4 core members carrying 12 repos, 3 risk members (2 Silent + 1 Former)
 - Architect + 2 Anchors = AAR 0.50 (healthy range)
 - ProdDensity 60 — decent for 4 people, but top contributor accounts for 46% of production
 - `Legacy-Heavy` phase: not declining, but the historical weight is real
 
 **Frontend — Feature Factory / Legacy-Heavy**:
+
 - 6 core members, 4 risk (all Silent)
 - Architect exists but structural coverage is only 20%
 - Gravity warning: one member has high structural influence with low robust survival
 - 40% risk ratio — nearly half of effective members are inactive
 
 The numbers tell a story:
+
 - **Backend**: Strong but carrying historical weight. An Elite team by character, but fragile — one departure changes everything.
 - **Frontend**: A strong core exists, but the team is trending Feature Factory. Architecture influence hasn't propagated.
 
