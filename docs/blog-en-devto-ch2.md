@@ -355,6 +355,7 @@ Chapter 1 answers "What kind of engineer is this person?"
 Chapter 2 answers "What state is this team in?"
 
 Together, they enable:
+
 - **Hiring**: see which Role is missing → define the position
 - **Team formation**: maximize complementarity
 - **1-on-1s**: discuss growth direction based on score trajectories
