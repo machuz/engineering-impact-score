@@ -296,7 +296,7 @@ A Backend team with an Architect scoring 90+ and two Silent former members isn't
 
 ## Real-World Results — Our Team
 
-Running `eis team` on our actual product (a poker room management platform, 12 Backend repos + 9 Frontend repos):
+Running `eis team` on our actual product (12 Backend repos + 9 Frontend repos):
 
 **Backend — Elite / Legacy-Heavy**:
 - 4 core members carrying 12 repos, 3 risk members (2 Silent + 1 Former)
