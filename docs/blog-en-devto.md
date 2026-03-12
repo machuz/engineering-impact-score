@@ -250,6 +250,8 @@ Comp figures are rough estimates and vary significantly by market (SF vs. Midwes
 
 **40 = Senior.** If that seems low, consider what it takes: with relative scoring across 7 axes, just putting up decent numbers across the board requires serious, well-rounded ability. Production, quality, survival, design, breadth, debt cleanup — doing well in all of them simultaneously is structurally difficult. If your senior scores 40, that's *normal*. An engineer in the 40s can compete in any market.
 
+![Score Guide](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/score-guide.svg)
+
 ---
 
 ## Patterns That Emerge
@@ -306,6 +308,8 @@ Specialist: dominant in a narrow area but no cross-repo presence. Bus factor ris
 | Growing | △ | ◎ | ○ | ✕ | △ | ○ | ✕ | — |
 
 **Mass Producer and Drifter types score low overall but can look impressive on individual metrics.** Organizations that evaluate on production alone or breadth alone will reward exactly the wrong people. Only multi-axis evaluation exposes them.
+
+![Archetypes Radar](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/archetypes-radar.svg)
 
 ---
 
@@ -474,6 +478,8 @@ eis analyze --config eis.yaml --recursive ~/projects
 ```
 
 Runs in seconds to minutes. Color-coded output with 7-axis scores, archetypes, and Bus Factor risks — right in your terminal.
+
+![Terminal Output](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/terminal-output.svg)
 
 ## Final Thought
 
