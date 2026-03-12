@@ -11,11 +11,34 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/machuz/engineering-impact-score/internal/config"
+	"github.com/machuz/engineering-impact-score/internal/domain"
 	"github.com/machuz/engineering-impact-score/internal/git"
 	"github.com/machuz/engineering-impact-score/internal/metric"
 	"github.com/machuz/engineering-impact-score/internal/output"
 	"github.com/machuz/engineering-impact-score/internal/scorer"
 )
+
+// domainAccumulator holds per-domain scoring state
+type domainAccumulator struct {
+	raw               *metric.RawScores
+	qualityCounts     map[string]int
+	debtCounts        map[string]int
+	authorRepoCommits map[string]map[string]int // author -> repo -> commit count
+	authorFirstDate   map[string]time.Time      // earliest commit date per author
+	authorLastDate    map[string]time.Time       // latest commit date per author
+	repoCount         int
+}
+
+func newDomainAccumulator() *domainAccumulator {
+	return &domainAccumulator{
+		raw:               metric.NewRawScores(),
+		qualityCounts:     make(map[string]int),
+		debtCounts:        make(map[string]int),
+		authorRepoCommits: make(map[string]map[string]int),
+		authorFirstDate:   make(map[string]time.Time),
+		authorLastDate:    make(map[string]time.Time),
+	}
+}
 
 func runAnalyze(args []string) error {
 	fs := flag.NewFlagSet("analyze", flag.ExitOnError)
@@ -81,11 +104,8 @@ func runAnalyze(args []string) error {
 	ctx := context.Background()
 	start := time.Now()
 
-	raw := metric.NewRawScores()
-	qualityCounts := make(map[string]int) // track repo count per author for correct averaging
-
-	// Track breadth (repos per author) with commit counts
-	authorRepoCommits := make(map[string]map[string]int) // author -> repo -> commit count
+	// Per-domain accumulators
+	accumulators := make(map[domain.Domain]*domainAccumulator)
 
 	// Deduplicate repos by resolving to real paths
 	seen := make(map[string]bool)
@@ -104,7 +124,7 @@ func runAnalyze(args []string) error {
 	}
 	repoPaths = dedupedPaths
 
-	analyzedRepos := 0
+	totalAnalyzed := 0
 	for _, repoPath := range repoPaths {
 		// Verify it's a git repo
 		if _, err := os.Stat(filepath.Join(repoPath, ".git")); os.IsNotExist(err) {
@@ -112,10 +132,29 @@ func runAnalyze(args []string) error {
 			continue
 		}
 
-		analyzedRepos++
 		repoName := filepath.Base(repoPath)
+
+		// Skip excluded repos
+		if cfg.IsExcludedRepo(repoName) {
+			fmt.Fprintf(os.Stderr, "SKIP: %s (excluded in config)\n", repoName)
+			continue
+		}
+
+		// Determine domain: config override first, then auto-detect
+		repoDomain := resolveRepoDomain(ctx, repoPath, repoName, cfg)
+
 		bold := color.New(color.Bold)
-		bold.Printf("Analyzing: %s\n", repoName)
+		domainLabel := color.New(color.FgCyan).Sprintf("[%s]", repoDomain)
+		bold.Printf("Analyzing: %s %s\n", repoName, domainLabel)
+
+		// Get or create accumulator for this domain
+		acc, ok := accumulators[repoDomain]
+		if !ok {
+			acc = newDomainAccumulator()
+			accumulators[repoDomain] = acc
+		}
+		acc.repoCount++
+		totalAnalyzed++
 
 		// Step 1: Parse git log (feeds Production, Quality, Design)
 		fmt.Fprintf(os.Stderr, "  [1/4] Parsing git log...\n")
@@ -130,22 +169,30 @@ func runAnalyze(args []string) error {
 
 		// Production
 		prod := metric.CalcProduction(commits, cfg.ExcludeFilePatterns)
-		mergeMap(raw.Production, prod)
+		mergeMap(acc.raw.Production, prod)
 
 		// Quality
 		qual := metric.CalcQuality(commits)
-		mergeMapAvg(raw.Quality, qual, qualityCounts)
+		mergeMapAvg(acc.raw.Quality, qual, acc.qualityCounts)
 
 		// Design
 		design := metric.CalcDesign(commits, cfg.ArchitecturePatterns)
-		mergeMap(raw.Design, design)
+		mergeMap(acc.raw.Design, design)
 
-		// Track breadth with commit counts per repo
+		// Track breadth with commit counts per repo, and date ranges for production rate
 		for _, c := range commits {
-			if _, ok := authorRepoCommits[c.Author]; !ok {
-				authorRepoCommits[c.Author] = make(map[string]int)
+			if _, ok := acc.authorRepoCommits[c.Author]; !ok {
+				acc.authorRepoCommits[c.Author] = make(map[string]int)
 			}
-			authorRepoCommits[c.Author][repoName]++
+			acc.authorRepoCommits[c.Author][repoName]++
+
+			// Track earliest and latest commit dates per author
+			if first, ok := acc.authorFirstDate[c.Author]; !ok || c.Date.Before(first) {
+				acc.authorFirstDate[c.Author] = c.Date
+			}
+			if last, ok := acc.authorLastDate[c.Author]; !ok || c.Date.After(last) {
+				acc.authorLastDate[c.Author] = c.Date
+			}
 		}
 
 		// Step 2: Blame analysis (feeds Survival, Indispensability)
@@ -176,18 +223,18 @@ func runAnalyze(args []string) error {
 
 		// Survival
 		survResult := metric.CalcSurvival(blameLines, cfg.Tau, start)
-		mergeMap(raw.Survival, survResult.Decayed)
-		mergeMap(raw.RawSurvival, survResult.Raw)
+		mergeMap(acc.raw.Survival, survResult.Decayed)
+		mergeMap(acc.raw.RawSurvival, survResult.Raw)
 
 		// Indispensability
 		indisp, risks := metric.CalcIndispensability(blameLines, cfg.BusFactor.Critical, cfg.BusFactor.High)
-		mergeMap(raw.Indispensability, indisp)
+		mergeMap(acc.raw.Indispensability, indisp)
 
 		// Step 3: Debt cleanup
 		fmt.Fprintf(os.Stderr, "  [3/4] Debt analysis...\n")
 		fixCommits := metric.GetFixCommits(commits)
 		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.ResolveAuthor)
-		mergeMap(raw.DebtCleanup, debt)
+		mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
 
 		// Step 4: Output per-repo bus factor
 		if len(risks) > 0 {
@@ -195,39 +242,96 @@ func runAnalyze(args []string) error {
 		}
 	}
 
-	// Breadth: count repos where author has >= 3 commits
-	const minCommitsForBreadth = 3
-	for author, repos := range authorRepoCommits {
-		count := 0
-		for _, commits := range repos {
-			if commits >= minCommitsForBreadth {
-				count++
+	// Score and output per domain
+	fmt.Println()
+	domains := domain.AllDomains()
+	// Also include Unknown if present
+	if _, ok := accumulators[domain.Unknown]; ok {
+		domains = append(domains, domain.Unknown)
+	}
+
+	for _, d := range domains {
+		acc, ok := accumulators[d]
+		if !ok {
+			continue
+		}
+
+		// Breadth: count repos where author has >= 3 commits
+		const minCommitsForBreadth = 3
+		for author, repos := range acc.authorRepoCommits {
+			count := 0
+			for _, commits := range repos {
+				if commits >= minCommitsForBreadth {
+					count++
+				}
+			}
+			if count > 0 {
+				acc.raw.Breadth[author] = float64(count)
 			}
 		}
-		if count > 0 {
-			raw.Breadth[author] = float64(count)
+
+		// Convert production total to per-day rate for absolute scoring
+		for author, total := range acc.raw.Production {
+			first := acc.authorFirstDate[author]
+			last := acc.authorLastDate[author]
+			days := last.Sub(first).Hours() / 24
+			if days < 1 {
+				days = 1
+			}
+			acc.raw.Production[author] = total / days
 		}
+
+		// Score and rank
+		results := scorer.Score(acc.raw, cfg)
+
+		// Filter out excluded authors from results
+		var filtered []scorer.Result
+		for _, r := range results {
+			if !cfg.IsExcludedAuthor(r.Author) {
+				filtered = append(filtered, r)
+			}
+		}
+
+		if len(filtered) == 0 {
+			continue
+		}
+
+		// Output with domain header
+		color.New(color.FgHiCyan, color.Bold).Printf("═══ %s ═══\n", d)
+		output.PrintSummary(filtered, acc.repoCount)
+		output.PrintRankings(filtered)
 	}
 
-	// Score and rank
-	results := scorer.Score(raw, cfg)
-
-	// Filter out excluded authors from results
-	var filtered []scorer.Result
-	for _, r := range results {
-		if !cfg.IsExcludedAuthor(r.Author) {
-			filtered = append(filtered, r)
-		}
-	}
-
-	// Output
 	elapsed := time.Since(start)
-	output.PrintSummary(filtered, analyzedRepos)
-	output.PrintRankings(filtered)
-
-	color.New(color.FgHiBlack).Printf("Completed in %s\n", elapsed.Round(time.Second))
+	color.New(color.FgHiBlack).Printf("Completed in %s (%d repos total)\n", elapsed.Round(time.Second), totalAnalyzed)
 
 	return nil
+}
+
+// resolveRepoDomain determines the domain for a repo.
+// Config overrides take priority, then auto-detection from file extensions.
+func resolveRepoDomain(ctx context.Context, repoPath, repoName string, cfg *config.Config) domain.Domain {
+	// Check config overrides first
+	if domain.MatchRepoPattern(repoName, cfg.Domains.Backend) {
+		return domain.Backend
+	}
+	if domain.MatchRepoPattern(repoName, cfg.Domains.Frontend) {
+		return domain.Frontend
+	}
+	if domain.MatchRepoPattern(repoName, cfg.Domains.Infra) {
+		return domain.Infra
+	}
+	if domain.MatchRepoPattern(repoName, cfg.Domains.Firmware) {
+		return domain.Firmware
+	}
+
+	// Auto-detect from file extensions
+	files, err := git.ListAllFiles(ctx, repoPath)
+	if err != nil || len(files) == 0 {
+		return domain.Unknown
+	}
+
+	return domain.DetectFromFiles(files)
 }
 
 // findGitRepos walks a directory tree up to maxDepth and returns paths containing .git

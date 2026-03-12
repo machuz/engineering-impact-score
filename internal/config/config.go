@@ -19,6 +19,18 @@ type Config struct {
 	Aliases              map[string]string `yaml:"aliases"`
 	Weights              Weights           `yaml:"weights"`
 	BusFactor            BusFactor         `yaml:"bus_factor"`
+	Domains              DomainsConfig     `yaml:"domains"`
+	BreadthMax           int               `yaml:"breadth_max"`
+	ProductionDailyRef   float64           `yaml:"production_daily_ref"`
+	ExcludeRepos         []string          `yaml:"exclude_repos"`
+}
+
+// DomainsConfig allows explicit repo-to-domain mapping (overrides auto-detection)
+type DomainsConfig struct {
+	Backend  []string `yaml:"backend"`
+	Frontend []string `yaml:"frontend"`
+	Infra    []string `yaml:"infra"`
+	Firmware []string `yaml:"firmware"`
 }
 
 type Weights struct {
@@ -41,6 +53,8 @@ func Default() *Config {
 		Tau:          180,
 		SampleSize:   500,
 		DebtThreshold: 10,
+		BreadthMax:        5,
+		ProductionDailyRef: 1000,
 		ExcludeFilePatterns: []string{
 			"package-lock.json",
 			"yarn.lock",
@@ -138,6 +152,15 @@ func (c *Config) ResolveAuthor(name string) string {
 		return canonical
 	}
 	return name
+}
+
+func (c *Config) IsExcludedRepo(repoName string) bool {
+	for _, excluded := range c.ExcludeRepos {
+		if repoName == excluded {
+			return true
+		}
+	}
+	return false
 }
 
 func (c *Config) IsExcludedAuthor(name string) bool {

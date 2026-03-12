@@ -22,14 +22,27 @@ type Result struct {
 }
 
 func Score(raw *metric.RawScores, cfg *config.Config) []Result {
-	// Normalize each axis
-	normProd := Normalize(raw.Production)
-	normQual := Normalize(raw.Quality)
+	// Production: absolute scale — raw.Production is already per-day rate
+	// Score = min(per_day / production_daily_ref * 100, 100)
+	normProd := make(map[string]float64)
+	for author, perDay := range raw.Production {
+		score := perDay / cfg.ProductionDailyRef * 100
+		if score > 100 {
+			score = 100
+		}
+		normProd[author] = score
+	}
 	normSurv := Normalize(raw.Survival)
 	normDesign := Normalize(raw.Design)
-	normBreadth := Normalize(raw.Breadth)
 	normIndisp := Normalize(raw.Indispensability)
 	normRawSurv := Normalize(raw.RawSurvival)
+
+	// Quality is already on 0-100 absolute scale (100 - fix_ratio), use directly
+	// This makes Quality scores comparable across organizations
+	normQual := raw.Quality
+
+	// Breadth: relative scale — normalized within the group
+	normBreadth := Normalize(raw.Breadth)
 
 	// Debt is already on 0-100 scale, use directly
 	normDebt := raw.DebtCleanup

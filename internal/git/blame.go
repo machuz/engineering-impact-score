@@ -27,6 +27,15 @@ func ListFiles(ctx context.Context, repoPath string, patterns []string) ([]strin
 	return lines, nil
 }
 
+// ListAllFiles returns all tracked files in the repo (for domain auto-detection)
+func ListAllFiles(ctx context.Context, repoPath string) ([]string, error) {
+	lines, err := RunLines(ctx, repoPath, "ls-files")
+	if err != nil {
+		return nil, err
+	}
+	return lines, nil
+}
+
 func SampleFiles(files []string, maxFiles int) []string {
 	if len(files) <= maxFiles {
 		return files
