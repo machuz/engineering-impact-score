@@ -50,6 +50,8 @@ Options for analyze:
   --sample <n>                Max files to blame per repo (default: 500)
   --workers <n>               Number of concurrent blame workers (default: 4)
   --format <fmt>              Output format: table, csv, json (default: table)
+  --active-days <n>           Days to consider author active (default: 30)
+  --pressure-mode <mode>      Change pressure mode: include or ignore (default: include)
 
 Config file (eis.yaml):
   aliases:                    Map git author names to canonical names
@@ -59,5 +61,6 @@ Config file (eis.yaml):
   blame_extensions:           File extensions for blame analysis
   weights:                    Axis weights (must sum to 1.0)
   tau:                        Survival decay (default: 180 days)
+  active_days:                Days to consider author active (default: 30)
   debt_threshold:             Min events for debt score (default: 10)`)
 }

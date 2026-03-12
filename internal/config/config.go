@@ -23,6 +23,7 @@ type Config struct {
 	BreadthMax           int               `yaml:"breadth_max"`
 	ProductionDailyRef   float64           `yaml:"production_daily_ref"`
 	ExcludeRepos         []string          `yaml:"exclude_repos"`
+	ActiveDays           int               `yaml:"active_days"`
 }
 
 // DomainsConfig allows explicit repo-to-domain mapping (overrides auto-detection)
@@ -54,6 +55,7 @@ func Default() *Config {
 		SampleSize:   500,
 		DebtThreshold: 10,
 		BreadthMax:        5,
+		ActiveDays:         30,
 		ProductionDailyRef: 1000,
 		ExcludeFilePatterns: []string{
 			"package-lock.json",

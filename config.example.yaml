@@ -94,6 +94,9 @@ weights:
 # Survival decay parameter
 survival_tau: 180  # days. weight = exp(-age / tau)
 
+# Active days — how recently an author must have committed to be marked "active"
+active_days: 30  # default 30 days (1 month)
+
 # Debt cleanup threshold
 # Members with fewer than this many total debt events get neutral score (50)
 debt_threshold: 10

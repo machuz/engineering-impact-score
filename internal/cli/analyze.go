@@ -53,6 +53,7 @@ func runAnalyze(args []string) error {
 	maxDepth := fs.Int("depth", 2, "Max directory depth for recursive search")
 	formatFlag := fs.String("format", "table", "Output format: table, csv, json")
 	pressureMode := fs.String("pressure-mode", "include", "Change pressure mode: include (split robust/dormant) or ignore (classic survival)")
+	activeDays := fs.Int("active-days", 0, "Days to consider author active (overrides config, default 30)")
 
 	if err := fs.Parse(args); err != nil {
 		return err
@@ -99,6 +100,9 @@ func runAnalyze(args []string) error {
 	}
 	if *sampleSize > 0 {
 		cfg.SampleSize = *sampleSize
+	}
+	if *activeDays > 0 {
+		cfg.ActiveDays = *activeDays
 	}
 
 	// Quiet mode for structured output (suppress progress to stderr)

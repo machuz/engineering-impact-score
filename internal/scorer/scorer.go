@@ -22,7 +22,7 @@ type Result struct {
 	Indispensability float64
 	Total            float64
 	TotalCommits     int
-	RecentlyActive   bool   // true if author has commits within last 6 months
+	RecentlyActive   bool   // true if author has commits within active_days (default 30)
 	Archetype        string // primary archetype name
 	ArchetypeConf    float64        // primary archetype confidence (0.0-1.0)
 	Secondary        ArchetypeMatch // second-best archetype match
@@ -65,7 +65,7 @@ func Score(raw *metric.RawScores, cfg *config.Config, authorLastDate map[string]
 		// Determine if author has been active in last 6 months
 		recentlyActive := false
 		if lastDate, ok := authorLastDate[author]; ok {
-			recentlyActive = time.Since(lastDate).Hours()/24 <= 180
+			recentlyActive = time.Since(lastDate).Hours()/24 <= float64(cfg.ActiveDays)
 		}
 
 		r := Result{
