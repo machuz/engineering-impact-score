@@ -132,6 +132,8 @@ riskRatio = (Former + Silent + Fragile) / memberCount × 100  (%)
 
 第1章でエンジニア個人の3軸トポロジー（Role / Style / State）を導入した。v0.10.0では、この個人トポロジーを**チームレベルに集約**して、チームの「型」を5つの軸で分類する。
 
+![チーム5軸分類フロー：Code → Engineer → Team のボトムアップ構造推定](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-classification-flow.png)
+
 **コードからエンジニアの特性を読み取り、エンジニアの分布からチームの構造を逆算している。** git logとgit blameという生データから出発して、個人→チーム→組織構造と、ボトムアップに全体像を組み上げていく。
 
 #### 5つの軸
@@ -269,6 +271,8 @@ Structure × Culture × Phase × Risk + 構造指標（AAR、Anchor Density、Pr
 **「少人数チームの異常値は、すごさとリスクの両面」** ——Productivity Densityが高いチームは確かに生産性が異常だが、1人抜けたときの崩壊リスクも高い。バス係数の個人版がIndispensabilityだとすれば、チーム版がProductivity Densityの裏側にある。
 
 ### 使い方
+
+![eis team ターミナル出力例](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-output.png)
 
 ```bash
 # インストール

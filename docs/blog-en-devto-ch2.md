@@ -119,6 +119,8 @@ Percentage of members in Former, Silent, or Fragile state. Above 25% is a warnin
 
 In Chapter 1, we introduced the 3-axis topology (Role / Style / State) for individual engineers. In v0.10.0, we **aggregate individual topologies into team-level classifications** across five axes.
 
+![Team 5-Axis Classification Flow: Bottom-up structure discovery from Code → Engineer → Team](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-classification-flow.png)
+
 The insight behind this: **we're reverse-engineering structure from code, through individual engineers.** Starting from raw git log and git blame, we read individual characteristics, then derive team structure bottom-up — code → engineer → team → organizational architecture.
 
 ### The Five Axes
@@ -246,6 +248,8 @@ After running this on multiple teams — now with 5-axis classification and stru
 **Small-team anomalies are two-sided.** High Productivity Density is both a strength and a risk. If one person leaves a 3-person team scoring 80+ density, the impact is catastrophic.
 
 ## How to Use It
+
+![eis team terminal output](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-output.png)
 
 ```bash
 # Install

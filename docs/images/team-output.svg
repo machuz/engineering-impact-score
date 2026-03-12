@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="720" viewBox="0 0 820 720">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; font-size: 12px; }
+      .header { fill: #56b6c2; font-weight: 700; }
+      .label { fill: #abb2bf; }
+      .value { fill: #abb2bf; }
+      .highlight { fill: #e5c07b; font-weight: 700; }
+      .type { fill: #61afef; }
+      .conf { fill: #5c6370; }
+      .domain-title { fill: #e06c75; font-weight: 700; font-size: 15px; }
+      .character { fill: #c678dd; font-weight: 700; font-size: 15px; }
+      .section { fill: #56b6c2; font-weight: 700; font-size: 13px; }
+      .bar-fill { fill: #61afef; }
+      .bar-bg { fill: #3e4451; }
+      .bar-good { fill: #98c379; }
+      .bar-warn { fill: #e5c07b; }
+      .bar-bad { fill: #e06c75; }
+      .summary { fill: #5c6370; font-size: 12px; }
+      .prompt { fill: #98c379; font-size: 13px; }
+      .cmd { fill: #abb2bf; font-size: 13px; }
+      .dim { fill: #5c6370; }
+      .aar-healthy { fill: #98c379; font-weight: 700; }
+      .aar-warn { fill: #e5c07b; }
+    </style>
+  </defs>
+
+  <!-- Terminal background -->
+  <rect width="820" height="720" rx="10" fill="#282c34"/>
+
+  <!-- Title bar -->
+  <rect width="820" height="32" rx="10" fill="#21252b"/>
+  <rect y="22" width="820" height="10" fill="#21252b"/>
+  <circle cx="20" cy="16" r="6" fill="#e06c75"/>
+  <circle cx="40" cy="16" r="6" fill="#e5c07b"/>
+  <circle cx="60" cy="16" r="6" fill="#98c379"/>
+  <text x="410" y="20" text-anchor="middle" fill="#5c6370" font-size="12">Terminal — eis team</text>
+
+  <!-- Command line -->
+  <text x="20" y="58" class="prompt">❯</text>
+  <text x="36" y="58" class="cmd">eis team --config eis.yaml --recursive ~/workspace</text>
+
+  <!-- Team header -->
+  <text x="20" y="92" class="domain-title">═══ Backend / backend-core ═══</text>
+  <text x="20" y="112" class="character">★ Fortress</text>
+  <text x="112" y="112" class="conf">(0.85)</text>
+  <text x="20" y="132" class="summary">5 active / 8 total members · 12 repos</text>
+
+  <!-- 4-axis Classification -->
+  <text x="20" y="160" class="section">Classification:</text>
+
+  <text x="30" y="180" class="label">Structure:</text>
+  <text x="130" y="180" class="type">Architectural Engine</text>
+  <text x="298" y="180" class="conf">(0.92)</text>
+  <text x="400" y="180" class="label">Culture:</text>
+  <text x="478" y="180" class="type">Builder</text>
+  <text x="536" y="180" class="conf">(0.88)</text>
+
+  <text x="30" y="200" class="label">Phase:</text>
+  <text x="130" y="200" class="type">Mature</text>
+  <text x="190" y="200" class="conf">(0.75)</text>
+  <text x="400" y="200" class="label">Risk:</text>
+  <text x="478" y="200" class="type">Healthy</text>
+  <text x="544" y="200" class="conf">(1.00)</text>
+
+  <!-- Role Distribution -->
+  <text x="20" y="234" class="section">Role Distribution:</text>
+
+  <!-- Architect bar -->
+  <text x="30" y="254" class="label">Architect</text>
+  <rect x="120" y="244" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="120" y="244" width="50" height="12" rx="2" class="bar-fill"/>
+  <text x="330" y="254" class="dim">2 (25%)</text>
+
+  <!-- Anchor bar -->
+  <text x="30" y="274" class="label">Anchor</text>
+  <rect x="120" y="264" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="120" y="264" width="50" height="12" rx="2" class="bar-fill"/>
+  <text x="330" y="274" class="dim">2 (25%)</text>
+
+  <!-- Producer bar -->
+  <text x="30" y="294" class="label">Producer</text>
+  <rect x="120" y="284" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="120" y="284" width="50" height="12" rx="2" class="bar-fill"/>
+  <text x="330" y="294" class="dim">2 (25%)</text>
+
+  <!-- Cleaner bar -->
+  <text x="30" y="314" class="label">Cleaner</text>
+  <rect x="120" y="304" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="120" y="304" width="25" height="12" rx="2" class="bar-fill"/>
+  <text x="330" y="314" class="dim">1 (12%)</text>
+
+  <!-- — bar -->
+  <text x="30" y="334" class="dim">—</text>
+  <rect x="120" y="324" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="120" y="324" width="25" height="12" rx="2" class="bar-fill"/>
+  <text x="330" y="334" class="dim">1 (12%)</text>
+
+  <!-- Style Distribution (right side) -->
+  <text x="430" y="234" class="section">Style Distribution:</text>
+
+  <text x="440" y="254" class="label">Builder</text>
+  <rect x="520" y="244" width="160" height="12" rx="2" class="bar-bg"/>
+  <rect x="520" y="244" width="60" height="12" rx="2" class="bar-fill"/>
+  <text x="690" y="254" class="dim">3 (37%)</text>
+
+  <text x="440" y="274" class="label">Balanced</text>
+  <rect x="520" y="264" width="160" height="12" rx="2" class="bar-bg"/>
+  <rect x="520" y="264" width="40" height="12" rx="2" class="bar-fill"/>
+  <text x="690" y="274" class="dim">2 (25%)</text>
+
+  <text x="440" y="294" class="label">Mass</text>
+  <rect x="520" y="284" width="160" height="12" rx="2" class="bar-bg"/>
+  <rect x="520" y="284" width="20" height="12" rx="2" class="bar-fill"/>
+  <text x="690" y="294" class="dim">1 (12%)</text>
+
+  <text x="440" y="314" class="label">Spread</text>
+  <rect x="520" y="304" width="160" height="12" rx="2" class="bar-bg"/>
+  <rect x="520" y="304" width="30" height="12" rx="2" class="bar-fill"/>
+  <text x="690" y="314" class="dim">2 (25%)</text>
+
+  <!-- Team Health -->
+  <text x="20" y="372" class="section">Team Health:</text>
+
+  <!-- Complementarity -->
+  <text x="30" y="394" class="label">Complementarity</text>
+  <rect x="190" y="384" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="190" y="384" width="156" height="12" rx="2" class="bar-good"/>
+  <text x="400" y="394" class="value">78/100</text>
+
+  <!-- Growth Potential -->
+  <text x="30" y="414" class="label">Growth Potential</text>
+  <rect x="190" y="404" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="190" y="404" width="120" height="12" rx="2" class="bar-fill"/>
+  <text x="400" y="414" class="value">60/100</text>
+
+  <!-- Sustainability -->
+  <text x="30" y="434" class="label">Sustainability</text>
+  <rect x="190" y="424" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="190" y="424" width="144" height="12" rx="2" class="bar-good"/>
+  <text x="400" y="434" class="value">72/100</text>
+
+  <!-- Debt Balance -->
+  <text x="30" y="454" class="label">Debt Balance</text>
+  <rect x="190" y="444" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="190" y="444" width="110" height="12" rx="2" class="bar-fill"/>
+  <text x="400" y="454" class="value">55/100</text>
+
+  <!-- Productivity Density -->
+  <text x="30" y="474" class="label">Productivity Den.</text>
+  <rect x="190" y="464" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="190" y="464" width="160" height="12" rx="2" class="bar-good"/>
+  <text x="400" y="474" class="value">80/100</text>
+
+  <!-- Quality Consistency -->
+  <text x="30" y="494" class="label">Quality Consist.</text>
+  <rect x="190" y="484" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="190" y="484" width="184" height="12" rx="2" class="bar-good"/>
+  <text x="400" y="494" class="value">92/100</text>
+
+  <!-- Risk Ratio -->
+  <text x="30" y="514" class="label">Risk Ratio</text>
+  <rect x="190" y="504" width="200" height="12" rx="2" class="bar-bg"/>
+  <rect x="190" y="504" width="24" height="12" rx="2" class="bar-warn"/>
+  <text x="400" y="514" class="value">12%</text>
+
+  <!-- Team Health (right side) -->
+  <text x="480" y="372" class="section">Averages:</text>
+
+  <text x="490" y="394" class="label">Production</text>
+  <text x="600" y="394" class="value">54.6</text>
+  <text x="490" y="414" class="label">Quality</text>
+  <text x="600" y="414" class="value">75.1</text>
+  <text x="490" y="434" class="label">Survival</text>
+  <text x="600" y="434" class="value">20.1</text>
+  <text x="490" y="454" class="label">Design</text>
+  <text x="600" y="454" class="value">21.3</text>
+  <text x="490" y="474" class="label">Breadth</text>
+  <text x="600" y="474" class="value">60.8</text>
+  <text x="490" y="494" class="label">Debt Cleanup</text>
+  <text x="600" y="494" class="value">54.4</text>
+  <text x="490" y="514" class="label">Total</text>
+  <text x="600" y="514" class="highlight">35.3</text>
+
+  <!-- Structure Metrics -->
+  <text x="20" y="552" class="section">Structure Metrics:</text>
+
+  <text x="30" y="574" class="label">AAR (Architect/Anchor)</text>
+  <text x="250" y="574" class="aar-healthy">0.50</text>
+  <text x="290" y="574" class="dim">[healthy: 0.3-0.8]</text>
+
+  <text x="30" y="594" class="label">Anchor Density</text>
+  <text x="250" y="594" class="value">0.25</text>
+
+  <text x="30" y="614" class="label">Architecture Coverage</text>
+  <text x="250" y="614" class="value">0.50</text>
+
+  <!-- State Distribution -->
+  <text x="480" y="552" class="section">State Distribution:</text>
+
+  <text x="490" y="574" class="label">Active</text>
+  <text x="570" y="574" class="value">5 (62%)</text>
+  <text x="490" y="594" class="label">Former</text>
+  <text x="570" y="594" class="value">1 (12%)</text>
+  <text x="490" y="614" class="label">Growing</text>
+  <text x="570" y="614" class="value">1 (12%)</text>
+  <text x="490" y="634" class="label">Silent</text>
+  <text x="570" y="634" class="value">1 (12%)</text>
+
+  <!-- Footer -->
+  <text x="20" y="668" class="summary">Completed in 2m37s (12 repos total)</text>
+
+  <!-- Version -->
+  <text x="20" y="696" class="summary">eis v0.10.0 — github.com/machuz/engineering-impact-score</text>
+</svg>

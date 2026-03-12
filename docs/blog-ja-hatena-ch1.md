@@ -577,7 +577,7 @@ tau: 180
 
 実行すると、7軸スコア・総合点・3軸トポロジー（Role / Style / State）・Bus Factorリスクがターミナルに色分けで出力される。数秒〜数分で完了する。
 
-![ターミナル出力例](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/terminal-output.png?v=0.9.1)
+![ターミナル出力例](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/terminal-output.png?v=0.10.0)
 
 **自分のチームの戦闘力、コマンド一発で測れます。**
 
