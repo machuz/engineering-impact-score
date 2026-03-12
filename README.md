@@ -272,6 +272,10 @@ See [`config.example.yaml`](config.example.yaml) for all options:
 - [ ] Multi-language commit message support for Quality detection
 - [ ] JSON / CSV output format
 
+## Special Thanks
+
+- [@reizist](https://github.com/reizist) — identified that `exclude_file_patterns` was not applied to git log and blame targets
+
 ## Support
 
 If this metric helped you see your team differently, consider supporting the project:

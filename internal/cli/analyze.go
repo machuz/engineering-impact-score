@@ -124,8 +124,9 @@ func runAnalyze(args []string) error {
 			return fmt.Errorf("parse log %s: %w", repoName, err)
 		}
 
-		// Apply author aliases and filter excluded authors
+		// Apply author aliases, filter excluded authors, and strip excluded file patterns
 		commits = filterCommits(commits, cfg)
+		commits = filterFileStats(commits, cfg.ExcludeFilePatterns)
 
 		// Production
 		prod := metric.CalcProduction(commits, cfg.ExcludeFilePatterns)
@@ -154,6 +155,9 @@ func runAnalyze(args []string) error {
 			fmt.Fprintf(os.Stderr, "  Warning: could not list files: %v\n", err)
 			continue
 		}
+
+		// Filter out excluded file patterns from blame targets
+		files = filterFiles(files, cfg.ExcludeFilePatterns)
 
 		blameLines, err := git.ConcurrentBlameFiles(ctx, repoPath, files, cfg.SampleSize, *workers,
 			func(done, total int) {
@@ -274,6 +278,37 @@ func filterCommits(commits []git.Commit, cfg *config.Config) []git.Commit {
 			continue
 		}
 		result = append(result, c)
+	}
+	return result
+}
+
+// filterFileStats removes excluded file patterns from commit FileStats
+func filterFileStats(commits []git.Commit, excludePatterns []string) []git.Commit {
+	if len(excludePatterns) == 0 {
+		return commits
+	}
+	for i := range commits {
+		var filtered []git.FileStat
+		for _, fs := range commits[i].FileStats {
+			if !metric.IsExcluded(fs.Filename, excludePatterns) {
+				filtered = append(filtered, fs)
+			}
+		}
+		commits[i].FileStats = filtered
+	}
+	return commits
+}
+
+// filterFiles removes excluded file patterns from a file list
+func filterFiles(files []string, excludePatterns []string) []string {
+	if len(excludePatterns) == 0 {
+		return files
+	}
+	var result []string
+	for _, f := range files {
+		if !metric.IsExcluded(f, excludePatterns) {
+			result = append(result, f)
+		}
 	}
 	return result
 }

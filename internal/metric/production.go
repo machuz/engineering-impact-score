@@ -11,7 +11,7 @@ func CalcProduction(commits []git.Commit, excludePatterns []string) map[string]f
 
 	for _, c := range commits {
 		for _, fs := range c.FileStats {
-			if isExcluded(fs.Filename, excludePatterns) {
+			if IsExcluded(fs.Filename, excludePatterns) {
 				continue
 			}
 			result[c.Author] += float64(fs.Insertions + fs.Deletions)
@@ -21,7 +21,8 @@ func CalcProduction(commits []git.Commit, excludePatterns []string) map[string]f
 	return result
 }
 
-func isExcluded(filename string, patterns []string) bool {
+// IsExcluded checks if a filename matches any of the exclude patterns.
+func IsExcluded(filename string, patterns []string) bool {
 	for _, pattern := range patterns {
 		matched, _ := filepath.Match(pattern, filename)
 		if matched {
