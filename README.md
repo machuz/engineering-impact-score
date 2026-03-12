@@ -239,7 +239,10 @@ See [`config.example.yaml`](config.example.yaml) for all options:
 
 - **Aliases**: merge variant git author names into canonical names
 - **Exclude authors**: filter out bots and non-human contributors
-- **Architecture patterns**: define which files count as "design files"
+- **Architecture patterns**: define which files count as "design files" for the Design axis. Defaults:
+  - Backend: `*/repository/*interface*`, `*/domainservice/`, `*/router.go`, `*/middleware/`, `di/*.go`
+  - Frontend: `*/core/`, `*/stores/`, `*/hooks/`, `*/types/`
+  - Override in `eis.yaml` to match your project structure (e.g., `*/proto/`, `*/migrations/`, `Makefile`)
 - **Blame extensions**: file extensions for blame analysis
 - **Weights**: customize axis weights (default: Survival 25%, Design 20%, Production 15%, Debt 15%, Quality 10%, Breadth 10%, Indispensability 5%)
 - **Survival tau**: decay half-life in days (default: 180)
