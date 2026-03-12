@@ -19,6 +19,28 @@ import (
 	"github.com/machuz/engineering-impact-score/internal/scorer"
 )
 
+// AnalyzeOptions holds CLI flags for the analysis pipeline.
+type AnalyzeOptions struct {
+	ConfigPath   string
+	Tau          float64
+	SampleSize   int
+	Workers      int
+	Recursive    bool
+	MaxDepth     int
+	Format       string
+	PressureMode string
+	ActiveDays   int
+	DomainFilter string
+}
+
+// DomainResults holds scored results for a single domain.
+type DomainResults struct {
+	Domain    domain.Domain
+	Results   []scorer.Result
+	Risks     []metric.ModuleRisk
+	RepoCount int
+}
+
 // domainAccumulator holds per-domain scoring state
 type domainAccumulator struct {
 	raw               *metric.RawScores
@@ -57,11 +79,68 @@ func runAnalyze(args []string) error {
 	activeDays := fs.Int("active-days", 0, "Days to consider author active (overrides config, default 30)")
 	domainFilter := fs.String("domain", "", "Only analyze repos in this domain (e.g. Backend, Frontend, Firmware)")
 
-	if err := fs.Parse(args); err != nil {
+	flagArgs, pathArgs := separateArgs(args, fs)
+	if err := fs.Parse(flagArgs); err != nil {
 		return err
 	}
 
-	repoPaths := fs.Args()
+	opts := AnalyzeOptions{
+		ConfigPath:   *configPath,
+		Tau:          *tau,
+		SampleSize:   *sampleSize,
+		Workers:      *workers,
+		Recursive:    *recursive,
+		MaxDepth:     *maxDepth,
+		Format:       *formatFlag,
+		PressureMode: *pressureMode,
+		ActiveDays:   *activeDays,
+		DomainFilter: *domainFilter,
+	}
+
+	domainResults, cfg, err := RunAnalyzePipeline(opts, pathArgs)
+	if err != nil {
+		return err
+	}
+
+	return outputAnalyzeResults(domainResults, cfg, opts.Format)
+}
+
+func outputAnalyzeResults(domainResults []DomainResults, cfg *config.Config, format string) error {
+	var jsonWriter *output.JSONWriter
+	if format == "json" {
+		jsonWriter = output.NewJSONWriter()
+	}
+
+	csvHeaderWritten := false
+
+	for _, dr := range domainResults {
+		switch format {
+		case "json":
+			jsonWriter.AddDomain(string(dr.Domain), dr.RepoCount, dr.Results, dr.Risks)
+		case "csv":
+			output.PrintRankingsCSV(string(dr.Domain), dr.Results, !csvHeaderWritten)
+			csvHeaderWritten = true
+		default:
+			fmt.Println()
+			color.New(color.FgHiCyan, color.Bold).Printf("═══ %s ═══\n", dr.Domain)
+			output.PrintSummary(dr.Results, dr.RepoCount)
+			output.PrintRankings(dr.Results)
+		}
+	}
+
+	if format == "json" {
+		if err := jsonWriter.Flush(); err != nil {
+			return fmt.Errorf("json output: %w", err)
+		}
+	}
+
+	return nil
+}
+
+// RunAnalyzePipeline runs the full analysis pipeline and returns per-domain results.
+// This is the shared core used by both `eis analyze` and `eis team`.
+func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *config.Config, error) {
+	repoPaths := paths
 	if len(repoPaths) == 0 {
 		repoPaths = []string{"."}
 	}
@@ -70,45 +149,45 @@ func runAnalyze(args []string) error {
 	for i, p := range repoPaths {
 		abs, err := filepath.Abs(p)
 		if err != nil {
-			return fmt.Errorf("resolve path %s: %w", p, err)
+			return nil, nil, fmt.Errorf("resolve path %s: %w", p, err)
 		}
 		repoPaths[i] = abs
 	}
 
 	// Recursive: find git repos under given paths
-	if *recursive {
+	if opts.Recursive {
 		var discovered []string
 		for _, root := range repoPaths {
-			repos, err := findGitRepos(root, *maxDepth)
+			repos, err := findGitRepos(root, opts.MaxDepth)
 			if err != nil {
-				return fmt.Errorf("scan %s: %w", root, err)
+				return nil, nil, fmt.Errorf("scan %s: %w", root, err)
 			}
 			discovered = append(discovered, repos...)
 		}
 		if len(discovered) == 0 {
-			return fmt.Errorf("no git repos found under %v (depth=%d)", repoPaths, *maxDepth)
+			return nil, nil, fmt.Errorf("no git repos found under %v (depth=%d)", repoPaths, opts.MaxDepth)
 		}
 		repoPaths = discovered
 		fmt.Fprintf(os.Stderr, "Found %d git repos\n\n", len(repoPaths))
 	}
 
 	// Load config
-	cfg, err := config.Load(*configPath)
+	cfg, err := config.Load(opts.ConfigPath)
 	if err != nil {
-		return fmt.Errorf("load config: %w", err)
+		return nil, nil, fmt.Errorf("load config: %w", err)
 	}
-	if *tau > 0 {
-		cfg.Tau = *tau
+	if opts.Tau > 0 {
+		cfg.Tau = opts.Tau
 	}
-	if *sampleSize > 0 {
-		cfg.SampleSize = *sampleSize
+	if opts.SampleSize > 0 {
+		cfg.SampleSize = opts.SampleSize
 	}
-	if *activeDays > 0 {
-		cfg.ActiveDays = *activeDays
+	if opts.ActiveDays > 0 {
+		cfg.ActiveDays = opts.ActiveDays
 	}
 
 	// Quiet mode for structured output (suppress progress to stderr)
-	quiet := *formatFlag == "json" || *formatFlag == "csv"
+	quiet := opts.Format == "json" || opts.Format == "csv"
 
 	// Print alias info if configured
 	if !quiet && len(cfg.Aliases) > 0 {
@@ -117,6 +196,10 @@ func runAnalyze(args []string) error {
 
 	ctx := context.Background()
 	start := time.Now()
+	workers := opts.Workers
+	if workers == 0 {
+		workers = 4
+	}
 
 	// Per-domain accumulators
 	accumulators := make(map[domain.Domain]*domainAccumulator)
@@ -158,7 +241,7 @@ func runAnalyze(args []string) error {
 		repoDomain := resolveRepoDomain(ctx, repoPath, repoName, cfg)
 
 		// Skip repos outside the requested domain
-		if *domainFilter != "" && !strings.EqualFold(string(repoDomain), *domainFilter) {
+		if opts.DomainFilter != "" && !strings.EqualFold(string(repoDomain), opts.DomainFilter) {
 			continue
 		}
 
@@ -179,7 +262,7 @@ func runAnalyze(args []string) error {
 		fmt.Fprintf(os.Stderr, "  [1/4] Parsing git log...\n")
 		commits, err := git.ParseLog(ctx, repoPath)
 		if err != nil {
-			return fmt.Errorf("parse log %s: %w", repoName, err)
+			return nil, nil, fmt.Errorf("parse log %s: %w", repoName, err)
 		}
 
 		// Apply author aliases, filter excluded authors, and strip excluded file patterns
@@ -226,7 +309,7 @@ func runAnalyze(args []string) error {
 		// Filter out excluded file patterns from blame targets
 		files = filterFiles(files, cfg.ExcludeFilePatterns)
 
-		blameLines, err := git.ConcurrentBlameFiles(ctx, repoPath, files, cfg.SampleSize, *workers,
+		blameLines, err := git.ConcurrentBlameFiles(ctx, repoPath, files, cfg.SampleSize, workers,
 			func(done, total int) {
 				fmt.Fprintf(os.Stderr, "  [2/4] Blame: %d/%d files\r", done, total)
 			})
@@ -242,7 +325,7 @@ func runAnalyze(args []string) error {
 		blameLines = filterBlameLines(blameLines, cfg)
 
 		// Survival: split by change pressure or use classic mode
-		if *pressureMode == "include" {
+		if opts.PressureMode == "include" {
 			repoPressure := metric.CalcChangePressure(commits, blameLines)
 			for mod, p := range repoPressure {
 				key := repoName + "/" + mod
@@ -291,25 +374,18 @@ func runAnalyze(args []string) error {
 
 		// Step 4: Accumulate bus factor risks per domain; print immediately for table format
 		acc.risks = append(acc.risks, risks...)
-		if *formatFlag == "table" && len(risks) > 0 {
+		if opts.Format == "table" && len(risks) > 0 {
 			output.PrintBusFactorRisks(risks)
 		}
 	}
 
-	// Score and output per domain
+	// Score per domain
 	domains := domain.AllDomains()
-	// Also include Unknown if present
 	if _, ok := accumulators[domain.Unknown]; ok {
 		domains = append(domains, domain.Unknown)
 	}
 
-	// For JSON, accumulate all domains before writing
-	var jsonWriter *output.JSONWriter
-	if *formatFlag == "json" {
-		jsonWriter = output.NewJSONWriter()
-	}
-
-	csvHeaderWritten := false
+	var results []DomainResults
 
 	for _, d := range domains {
 		acc, ok := accumulators[d]
@@ -343,11 +419,11 @@ func runAnalyze(args []string) error {
 		}
 
 		// Score and rank
-		results := scorer.Score(acc.raw, cfg, acc.authorLastDate)
+		scored := scorer.Score(acc.raw, cfg, acc.authorLastDate)
 
 		// Filter out excluded authors from results
 		var filtered []scorer.Result
-		for _, r := range results {
+		for _, r := range scored {
 			if !cfg.IsExcludedAuthor(r.Author) {
 				filtered = append(filtered, r)
 			}
@@ -357,32 +433,20 @@ func runAnalyze(args []string) error {
 			continue
 		}
 
-		switch *formatFlag {
-		case "json":
-			jsonWriter.AddDomain(string(d), acc.repoCount, filtered, acc.risks)
-		case "csv":
-			output.PrintRankingsCSV(string(d), filtered, !csvHeaderWritten)
-			csvHeaderWritten = true
-		default:
-			fmt.Println()
-			color.New(color.FgHiCyan, color.Bold).Printf("═══ %s ═══\n", d)
-			output.PrintSummary(filtered, acc.repoCount)
-			output.PrintRankings(filtered)
-		}
+		results = append(results, DomainResults{
+			Domain:    d,
+			Results:   filtered,
+			Risks:     acc.risks,
+			RepoCount: acc.repoCount,
+		})
 	}
 
-	if *formatFlag == "json" {
-		if err := jsonWriter.Flush(); err != nil {
-			return fmt.Errorf("json output: %w", err)
-		}
-	}
-
-	if *formatFlag == "table" {
+	if opts.Format == "table" {
 		elapsed := time.Since(start)
 		color.New(color.FgHiBlack).Printf("Completed in %s (%d repos total)\n", elapsed.Round(time.Second), totalAnalyzed)
 	}
 
-	return nil
+	return results, cfg, nil
 }
 
 // resolveRepoDomain determines the domain for a repo.
@@ -508,6 +572,42 @@ func mergeMap(dst, src map[string]float64) {
 	for k, v := range src {
 		dst[k] += v
 	}
+}
+
+// separateArgs splits CLI args into flags (--foo, --foo=bar, --foo bar) and
+// positional paths. This allows flags to appear after positional arguments,
+// which Go's flag package does not support by default.
+func separateArgs(args []string, fs *flag.FlagSet) (flags []string, paths []string) {
+	knownFlags := make(map[string]bool)
+	fs.VisitAll(func(f *flag.Flag) {
+		knownFlags[f.Name] = true
+	})
+
+	for i := 0; i < len(args); i++ {
+		a := args[i]
+		if strings.HasPrefix(a, "-") {
+			flags = append(flags, a)
+			// Check if this flag takes a value (not a bool flag)
+			name := strings.TrimLeft(a, "-")
+			if idx := strings.Index(name, "="); idx >= 0 {
+				// --flag=value — already included
+				continue
+			}
+			// Look up if this is a bool flag
+			if f := fs.Lookup(name); f != nil {
+				if _, ok := f.Value.(interface{ IsBoolFlag() bool }); !ok {
+					// Non-bool flag: next arg is the value
+					if i+1 < len(args) {
+						i++
+						flags = append(flags, args[i])
+					}
+				}
+			}
+		} else {
+			paths = append(paths, a)
+		}
+	}
+	return
 }
 
 // mergeMapAvg keeps a correct running average for quality scores across repos

@@ -115,6 +115,10 @@ func round1(v float64) float64 {
 	return math.Round(v*10) / 10
 }
 
+func round2(v float64) float64 {
+	return math.Round(v*100) / 100
+}
+
 // PrintRankingsJSON is a convenience for single-domain output (not used in multi-domain flow).
 func PrintRankingsJSON(domain string, repoCount int, results []scorer.Result, risks []metric.ModuleRisk) {
 	w := NewJSONWriter()

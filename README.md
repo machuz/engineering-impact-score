@@ -41,6 +41,12 @@ eis analyze --config eis.yaml --recursive ~/projects
 
 # Export as JSON or CSV
 eis analyze --format json --recursive ~/workspace > result.json
+
+# Team-level analysis (aggregates individual scores)
+eis team --recursive ~/workspace
+
+# Team analysis with JSON output (paste into AI for deeper insights)
+eis team --format json --recursive ~/workspace
 ```
 
 ## How This Differs from Existing Metrics
@@ -224,9 +230,10 @@ total = (
 ## CLI Options
 
 ```
-eis analyze [flags] [path...]
+eis analyze [flags] [path...]    Individual rankings
+eis team [flags] [path...]       Team-level analysis
 
-Flags:
+Shared flags:
   --config <path>     Config file (default: eis.yaml)
   --recursive         Recursively find git repos under given paths
   --depth <n>         Max directory depth for recursive search (default: 2)
@@ -238,6 +245,20 @@ Flags:
   --active-days <n>   Days to consider author active (default: 30)
   --pressure-mode     Change pressure mode: include (default) or ignore
 ```
+
+### Team Health (7 axes)
+
+`eis team` aggregates individual scores and computes team-level health:
+
+| Axis | What it measures |
+|---|---|
+| **Complementarity** | Role diversity coverage (5 known roles) |
+| **Growth Potential** | Growing members + mentor (Builder/Cleaner) presence |
+| **Sustainability** | Inverse of risk state ratio (Former/Silent/Fragile) |
+| **Debt Balance** | Average debt cleanup tendency (50 = neutral) |
+| **Productivity Density** | Output per member, with small-team bonus |
+| **Quality Consistency** | Average quality + low variance |
+| **Risk Ratio** | % of members in risk states |
 
 ## Configuration
 
@@ -257,6 +278,7 @@ See [`config.example.yaml`](config.example.yaml) for all options:
 - **Survival tau**: decay half-life in days (default: 180)
 - **Active days**: how recently an author must have committed to be marked active (default: 30)
 - **Debt threshold**: minimum events for debt score (default: 10)
+- **Teams**: named team definitions for `eis team` (optional — if omitted, each domain = one team)
 
 ### What You Get
 
@@ -280,8 +302,13 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 
 ## Blog Posts
 
+**Chapter 1 — Individual Scoring**
 - [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/11/153212) — 日本語版フル記事（実測結果付き）
 - [English / dev.to](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c) — English version with images and real-world rankings
+
+**Chapter 2 — Team Analysis**
+- [Japanese / はてなブログ](docs/blog-ja-hatena-ch2.md) — チーム分析の章
+- [English / dev.to](docs/blog-en-devto-ch2.md) — Team health metrics and patterns
 
 ## Roadmap
 
@@ -298,6 +325,7 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 - [x] Absolute scoring for Production (per-day rate) and Quality (fix ratio)
 - [x] Configurable domain mapping, repo exclusion
 - [x] JSON / CSV output format (`--format json|csv`)
+- [x] Team-level analysis (`eis team`) with 7 health axes
 - [ ] GitHub Action for automated quarterly tracking
 - [ ] HTML dashboard visualization
 - [ ] Multi-language commit message support for Quality detection

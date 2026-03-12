@@ -105,3 +105,18 @@ debt_threshold: 10
 bus_factor:
   critical: 0.80  # >= 80% ownership = CRITICAL
   high: 0.60      # >= 60% ownership = HIGH
+
+# Teams: named groups for `eis team` command (optional)
+# If omitted, each domain is treated as a single team.
+# teams:
+#   backend-core:
+#     domain: Backend       # must match a domain name
+#     members:
+#       - alice
+#       - bob
+#       - charlie
+#   frontend-app:
+#     domain: Frontend
+#     members:
+#       - dave
+#       - eve

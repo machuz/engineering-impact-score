@@ -19,11 +19,18 @@ type Config struct {
 	Aliases              map[string]string `yaml:"aliases"`
 	Weights              Weights           `yaml:"weights"`
 	BusFactor            BusFactor         `yaml:"bus_factor"`
-	Domains              DomainsConfig     `yaml:"domains"`
-	BreadthMax           int               `yaml:"breadth_max"`
-	ProductionDailyRef   float64           `yaml:"production_daily_ref"`
-	ExcludeRepos         []string          `yaml:"exclude_repos"`
-	ActiveDays           int               `yaml:"active_days"`
+	Domains              DomainsConfig        `yaml:"domains"`
+	Teams                map[string]TeamEntry `yaml:"teams"`
+	BreadthMax           int                  `yaml:"breadth_max"`
+	ProductionDailyRef   float64              `yaml:"production_daily_ref"`
+	ExcludeRepos         []string             `yaml:"exclude_repos"`
+	ActiveDays           int                  `yaml:"active_days"`
+}
+
+// TeamEntry defines a named team with its members and optional domain scope.
+type TeamEntry struct {
+	Domain  string   `yaml:"domain"`
+	Members []string `yaml:"members"`
 }
 
 // DomainsConfig allows explicit repo-to-domain mapping (overrides auto-detection)
