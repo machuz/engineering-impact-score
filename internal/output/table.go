@@ -56,7 +56,7 @@ func PrintRankings(results []scorer.Result) {
 		if r.RecentlyActive {
 			activeStr = activeFmt("✓")
 		}
-		gravStr := formatGravity(r.Gravity)
+		gravStr := formatGravity(r)
 
 		if hasPressure {
 			tbl.AddRow(
@@ -132,16 +132,34 @@ func formatAxis(name string, conf float64, labelFmt, confFmt func(string, ...int
 	return fmt.Sprintf("%s %s", labelFmt("%s", name), confFmt("(%.2f)", conf))
 }
 
-func formatGravity(g float64) string {
-	switch {
-	case g >= 60:
-		return color.New(color.FgHiMagenta, color.Bold).Sprintf("%.0f", g)
-	case g >= 40:
-		return color.New(color.FgHiYellow).Sprintf("%.0f", g)
-	case g >= 20:
-		return color.New(color.FgWhite).Sprintf("%.0f", g)
-	default:
+// formatGravity colors gravity by its health quality.
+// High gravity + high quality/survival = green (healthy structural influence).
+// High gravity + low quality/survival = red (fragile structural dependency).
+// Low gravity = dim (not enough influence to matter).
+func formatGravity(r scorer.Result) string {
+	g := r.Gravity
+	if g < 20 {
 		return color.New(color.FgHiBlack).Sprintf("%.0f", g)
+	}
+
+	// Gravity health: how durable is this structural influence?
+	// Quality and RobustSurvival indicate whether the gravity is sustainable.
+	health := r.Quality*0.6 + r.RobustSurvival*0.4
+	if r.RobustSurvival == 0 && r.DormantSurvival == 0 {
+		// No pressure data available — fall back to Quality + Survival
+		health = r.Quality*0.6 + r.Survival*0.4
+	}
+
+	switch {
+	case health >= 60:
+		// Healthy gravity: durable structural influence
+		return color.New(color.FgHiGreen, color.Bold).Sprintf("%.0f", g)
+	case health >= 40:
+		// Moderate gravity quality
+		return color.New(color.FgHiYellow).Sprintf("%.0f", g)
+	default:
+		// Fragile gravity: high influence but poor durability
+		return color.New(color.FgHiRed, color.Bold).Sprintf("%.0f", g)
 	}
 }
 
