@@ -239,8 +239,15 @@ func buildStructureMetricLines(tr team.TeamResult) []string {
 	anchors := tr.RoleDist["Anchor"]
 	aarLabel := formatAAR(h.AAR)
 	aarColor := aarScoreColor(h.AAR)
-	lines = append(lines, fmt.Sprintf("  %-12s %s  (%d Arch / %d Anch)",
-		"AAR", aarColor.Sprint(aarLabel), architects, anchors))
+	if h.AAR > 0 {
+		// Normal ratio — show counts
+		lines = append(lines, fmt.Sprintf("  %-12s %s  (%d Arch / %d Anch)",
+			"AAR", aarColor.Sprint(aarLabel), architects, anchors))
+	} else {
+		// N/A or ∞ — label is self-explanatory
+		lines = append(lines, fmt.Sprintf("  %-12s %s",
+			"AAR", aarColor.Sprint(aarLabel)))
+	}
 
 	// Anchor Density
 	densityPct := h.AnchorDensity * 100
