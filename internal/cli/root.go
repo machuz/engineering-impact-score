@@ -2,7 +2,7 @@ package cli
 
 import "fmt"
 
-const version = "0.1.0"
+var version = "dev"
 
 func Run(args []string) error {
 	if len(args) == 0 {
