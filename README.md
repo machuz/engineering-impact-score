@@ -12,6 +12,12 @@ It estimates who actually builds and sustains a system by combining production, 
 
 ![Terminal Output](docs/images/terminal-output.svg)
 
+## Why This Matters
+
+Most engineering metrics measure activity: commits, pull requests, and lines of code.
+
+This project tries to measure something harder: who actually builds durable systems, shapes architecture, and keeps a codebase healthy over time.
+
 ## The 7 Axes
 
 | Axis | Weight | What it measures |
