@@ -249,6 +249,12 @@ High output, and all of it survives. Designs the architecture personally. Cleans
 
 Quality score sometimes dips — but that's usually because they're **aggressively making design changes** (introducing new architectural layers, refactoring abstractions). When Design is high, low Quality is evidence of *proactive improvement*, not sloppiness.
 
+### Former Architect: Raw Surv↑ Surv↓ Design↑ or Indisp↑
+
+Detected by the **gap between raw and time-decayed survival**. Code still exists in the codebase (high raw survival) but the author is no longer active (low decayed survival). Combined with high Design or Indispensability, this signals someone who **once built the system's architecture but has since departed**.
+
+Their code still shapes the codebase, but nobody is maintaining the design decisions behind it. This archetype functions as a **handoff priority alert** — modules dominated by a Former Architect need active knowledge transfer before they become unmaintainable.
+
 ### Mass Producer: Prod↑ Qual↓ Surv↓ Debt↓
 
 Writes a lot of code, but the fix ratio is high and nothing survives. **A cycle of writing and breaking.** Worse — low debt cleanup means their bugs are being fixed by *other people*.
@@ -276,6 +282,7 @@ Specialist: dominant in a narrow area but no cross-repo presence. Bus factor ris
 | Type | Prod | Qual | Surv | Design | Breadth | Debt | Indisp | Risk |
 |---|---|---|---|---|---|---|---|---|
 | Architect | ◎ | △–○ | ◎ | ◎ | ○ | ◎ | ◎ | — |
+| Former Architect | △ | △ | ✕ | ◎ | ○ | △ | ◎ | **⚠️ Handoff** |
 | Mass Producer | ◎ | ✕ | ✕ | △ | △ | ✕ | △ | **⚠️ High** |
 | Solid Cleaner | ○ | ◎ | ◎ | ○ | ○ | ◎ | △ | — |
 | Drifter | ✕ | △ | ✕ | ✕ | ◎ | △ | ✕ | **⚠️ High** |

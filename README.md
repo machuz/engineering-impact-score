@@ -53,6 +53,8 @@ The 7-axis distribution reveals archetypes:
 | **Specialist** | ◎ | ◎ | ◎ | ○ | ✕ | ○ | ◎ | △ Silo |
 | **Growing** | △ | ◎ | ○ | ✕ | △ | ○ | ✕ | — |
 
+**Former Architect** is detected by the gap between raw and time-decayed survival: code still exists in the codebase (high raw) but the author is no longer active (low decayed). Combined with high Design or Indispensability, this signals an unfilled departure — a handoff priority alert.
+
 **Mass Producer and Drifter types look productive on individual metrics** but score low overall. Only multi-axis evaluation exposes them.
 
 ## Key Formulas
