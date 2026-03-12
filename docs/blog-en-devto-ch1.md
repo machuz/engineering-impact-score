@@ -215,11 +215,13 @@ If one engineer owns more than 80% of the lines in a module, that module becomes
 Metrics use a **hybrid approach**:
 
 **Absolute axes** (comparable across organizations):
+
 - Production: `min(changes_per_day / production_daily_ref * 100, 100)`
 - Quality: `100 - fix_ratio` (directly on 0-100 scale)
 - Debt Cleanup: bounded 0-100 scale
 
 **Relative axes** (normalized within domain):
+
 - Survival, Design, Breadth, Indispensability: top person gets 100
 
 Scored per domain (Backend / Frontend / Infra / Firmware separately). Domain is auto-detected from file extensions or configured explicitly.
