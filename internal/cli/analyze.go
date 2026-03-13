@@ -191,6 +191,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 
 	// Quiet mode for structured output (suppress progress to stderr)
 	quiet := opts.Format == "json" || opts.Format == "csv"
+	spinnerQuiet = quiet
 
 	// Print alias info if configured
 	if !quiet && len(cfg.Aliases) > 0 {
@@ -269,8 +270,9 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		totalAnalyzed++
 
 		// Step 1: Parse git log (feeds Production, Quality, Design)
-		fmt.Fprintf(os.Stderr, "  [1/4] Parsing git log...\n")
+		stopSpin := spinner("[1/4] Parsing git log...")
 		commits, err := git.ParseLog(ctx, repoPath)
+		stopSpin()
 		if err != nil {
 			return nil, nil, fmt.Errorf("parse log %s: %w", repoName, err)
 		}
@@ -309,7 +311,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		}
 
 		// Step 2: Blame analysis (feeds Survival, Indispensability)
-		fmt.Fprintf(os.Stderr, "  [2/4] Blame analysis...\n")
+		stopSpin = spinner("[2/4] Blame analysis...")
 		files, err := git.ListFiles(ctx, repoPath, cfg.BlameExtensions)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "  Warning: could not list files: %v\n", err)
@@ -325,10 +327,18 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 				fmt.Fprintf(os.Stderr, "\n%s", msg)
 			}
 		}
+		spinStopped := false
 		blameLines, err := git.ConcurrentBlameFiles(ctx, repoPath, files, cfg.SampleSize, workers,
 			func(done, total int) {
+				if !spinStopped {
+					stopSpin()
+					spinStopped = true
+				}
 				fmt.Fprintf(os.Stderr, "%s\r", progressBar("[2/4] Blame", done, total))
 			}, blameVerbose)
+		if !spinStopped {
+			stopSpin()
+		}
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "  Warning: blame error: %v\n", err)
 		}
@@ -384,17 +394,25 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 
 		// Step 3: Debt cleanup
 		fixCommits := metric.GetFixCommits(commits)
-		fmt.Fprintf(os.Stderr, "  [3/4] Debt analysis (%d fix commits)...\n", len(fixCommits))
+		stopSpin = spinner(fmt.Sprintf("[3/4] Debt analysis (%d fix commits)...", len(fixCommits)))
 		var debtVerbose metric.VerboseFunc
 		if opts.Verbose {
 			debtVerbose = func(msg string) {
 				fmt.Fprintf(os.Stderr, "\n%s", msg)
 			}
 		}
+		debtSpinStopped := false
 		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.ResolveAuthor,
 			func(done, total int) {
+				if !debtSpinStopped {
+					stopSpin()
+					debtSpinStopped = true
+				}
 				fmt.Fprintf(os.Stderr, "%s\r", progressBar("[3/4] Debt", done, total))
 			}, debtVerbose)
+		if !debtSpinStopped {
+			stopSpin()
+		}
 		fmt.Fprintln(os.Stderr)
 		mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
 
@@ -634,6 +652,37 @@ func separateArgs(args []string, fs *flag.FlagSet) (flags []string, paths []stri
 		}
 	}
 	return
+}
+
+// spinner runs an animated spinner on stderr until the returned stop function is called.
+// In quiet mode, it returns a no-op function.
+var spinnerQuiet bool
+
+func spinner(label string) func() {
+	if spinnerQuiet {
+		return func() {}
+	}
+	frames := []string{"⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"}
+	done := make(chan struct{})
+	go func() {
+		cyan := color.New(color.FgCyan)
+		i := 0
+		for {
+			select {
+			case <-done:
+				return
+			default:
+				fmt.Fprintf(os.Stderr, "  %s %s\r", cyan.Sprint(frames[i%len(frames)]), label)
+				i++
+				time.Sleep(80 * time.Millisecond)
+			}
+		}
+	}()
+	return func() {
+		close(done)
+		time.Sleep(10 * time.Millisecond) // let goroutine exit cleanly
+		fmt.Fprintf(os.Stderr, "  %s %s\n", color.New(color.FgGreen).Sprint("✓"), label)
+	}
 }
 
 // progressBar renders a compact progress bar with color: [████░░░░░░] 12/50
