@@ -25,6 +25,7 @@ type Config struct {
 	ProductionDailyRef   float64              `yaml:"production_daily_ref"`
 	ExcludeRepos         []string             `yaml:"exclude_repos"`
 	ActiveDays           int                  `yaml:"active_days"`
+	BlameTimeout         int                  `yaml:"blame_timeout"`
 }
 
 // TeamEntry defines a named team with its members and optional domain scope.
@@ -63,6 +64,7 @@ func Default() *Config {
 		DebtThreshold: 10,
 		BreadthMax:        5,
 		ActiveDays:         30,
+		BlameTimeout:       120,
 		ProductionDailyRef: 1000,
 		ExcludeFilePatterns: []string{
 			"package-lock.json",

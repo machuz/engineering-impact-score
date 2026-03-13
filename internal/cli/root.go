@@ -66,5 +66,6 @@ Config file (eis.yaml):
   tau:                        Survival decay (default: 180 days)
   active_days:                Days to consider author active (default: 30)
   debt_threshold:             Min events for debt score (default: 10)
+  blame_timeout:              Per-file blame timeout in seconds (default: 120)
   teams:                      Team definitions (optional, see config.example.yaml)`)
 }

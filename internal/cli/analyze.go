@@ -282,37 +282,46 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		commits = filterCommits(commits, cfg)
 		commits = filterFileStats(commits, cfg.ExcludeFilePatterns)
 
-		// Production
+		// Also fetch merge commits for fix detection in Quality
+		mergeCommits, _ := git.ParseMergeCommits(ctx, repoPath)
+		mergeCommits = filterCommits(mergeCommits, cfg)
+
+		// Production (non-merge only)
 		prod := metric.CalcProduction(commits, cfg.ExcludeFilePatterns)
 		mergeMap(acc.raw.Production, prod)
 
-		// Quality
-		qual := metric.CalcQuality(commits)
+		// Quality: include merge commits so fix subjects in merge messages are counted
+		allCommits := append(commits, mergeCommits...)
+		qual := metric.CalcQuality(allCommits)
 		mergeMapAvg(acc.raw.Quality, qual, acc.qualityCounts)
 
-		// Design
+		// Design (non-merge only — uses numstat)
 		design := metric.CalcDesign(commits, cfg.ArchitecturePatterns)
 		mergeMap(acc.raw.Design, design)
 
 		// Track breadth with commit counts per repo, and date ranges for production rate
 		for _, c := range commits {
-			// Date ranges include all commits (merge + non-merge) for activity detection
+			if _, ok := acc.authorRepoCommits[c.Author]; !ok {
+				acc.authorRepoCommits[c.Author] = make(map[string]int)
+			}
+			acc.authorRepoCommits[c.Author][repoName]++
+			acc.raw.TotalCommits[c.Author]++
+
 			if first, ok := acc.authorFirstDate[c.Author]; !ok || c.Date.Before(first) {
 				acc.authorFirstDate[c.Author] = c.Date
 			}
 			if last, ok := acc.authorLastDate[c.Author]; !ok || c.Date.After(last) {
 				acc.authorLastDate[c.Author] = c.Date
 			}
-
-			// Skip merge commits for counting (breadth, totalCommits)
-			if c.IsMerge {
-				continue
+		}
+		// Also track activity dates from merge commits
+		for _, c := range mergeCommits {
+			if first, ok := acc.authorFirstDate[c.Author]; !ok || c.Date.Before(first) {
+				acc.authorFirstDate[c.Author] = c.Date
 			}
-			if _, ok := acc.authorRepoCommits[c.Author]; !ok {
-				acc.authorRepoCommits[c.Author] = make(map[string]int)
+			if last, ok := acc.authorLastDate[c.Author]; !ok || c.Date.After(last) {
+				acc.authorLastDate[c.Author] = c.Date
 			}
-			acc.authorRepoCommits[c.Author][repoName]++
-			acc.raw.TotalCommits[c.Author]++
 		}
 
 		// Step 2: Blame analysis (feeds Survival, Indispensability)
@@ -402,7 +411,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		}
 		spin.Clear()
 		debtProg := newLiveProgress("[3/4] Debt")
-		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.ResolveAuthor,
+		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.BlameTimeout, cfg.ResolveAuthor,
 			func(done, total int) {
 				debtProg.Update(done, total)
 			}, debtVerbose)

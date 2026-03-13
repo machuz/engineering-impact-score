@@ -22,12 +22,11 @@ type FileStat struct {
 	Filename   string
 }
 
+// ParseLog returns non-merge commits with numstat file stats.
 func ParseLog(ctx context.Context, repoPath string) ([]Commit, error) {
-	// Include merge commits (no --no-merges) so fix detection works on merge subjects.
-	// %P = parent hashes; merge commits have 2+ parents separated by spaces.
 	lines, err := RunLines(ctx, repoPath,
-		"log", "--all",
-		"--format=COMMIT:%H|%P|%an|%ai|%s",
+		"log", "--all", "--no-merges",
+		"--format=COMMIT:%H|%an|%ai|%s",
 		"--numstat",
 	)
 	if err != nil {
@@ -42,19 +41,16 @@ func ParseLog(ctx context.Context, repoPath string) ([]Commit, error) {
 			if current != nil {
 				commits = append(commits, *current)
 			}
-			parts := strings.SplitN(line[7:], "|", 5)
-			if len(parts) < 5 {
+			parts := strings.SplitN(line[7:], "|", 4)
+			if len(parts) < 4 {
 				continue
 			}
-			parents := parts[1]
-			isMerge := strings.Contains(parents, " ")
-			date, _ := time.Parse("2006-01-02 15:04:05 -0700", parts[3])
+			date, _ := time.Parse("2006-01-02 15:04:05 -0700", parts[2])
 			current = &Commit{
 				Hash:    parts[0],
-				Author:  parts[2],
+				Author:  parts[1],
 				Date:    date,
-				Subject: parts[4],
-				IsMerge: isMerge,
+				Subject: parts[3],
 			}
 			continue
 		}
@@ -80,6 +76,39 @@ func ParseLog(ctx context.Context, repoPath string) ([]Commit, error) {
 
 	if current != nil {
 		commits = append(commits, *current)
+	}
+
+	return commits, nil
+}
+
+// ParseMergeCommits returns merge-only commits (no file stats).
+// Used to detect fix/revert subjects in merge commit messages.
+func ParseMergeCommits(ctx context.Context, repoPath string) ([]Commit, error) {
+	lines, err := RunLines(ctx, repoPath,
+		"log", "--all", "--merges",
+		"--format=COMMIT:%H|%an|%ai|%s",
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	var commits []Commit
+	for _, line := range lines {
+		if !strings.HasPrefix(line, "COMMIT:") {
+			continue
+		}
+		parts := strings.SplitN(line[7:], "|", 4)
+		if len(parts) < 4 {
+			continue
+		}
+		date, _ := time.Parse("2006-01-02 15:04:05 -0700", parts[2])
+		commits = append(commits, Commit{
+			Hash:    parts[0],
+			Author:  parts[1],
+			Date:    date,
+			Subject: parts[3],
+			IsMerge: true,
+		})
 	}
 
 	return commits, nil

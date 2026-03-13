@@ -27,7 +27,7 @@ type VerboseFunc func(msg string)
 // 50 = neutral (equal generation and cleanup, or insufficient data)
 // >50 = net cleaner, <50 = net debt creator
 // Formula: 50 + 50 * (cleaned - generated) / (cleaned + generated)
-func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, maxSample int, debtThreshold int, resolve ResolveFunc, progressFn ProgressFunc, verboseFn VerboseFunc) (map[string]float64, *DebtData) {
+func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, maxSample int, debtThreshold int, blameTimeoutSec int, resolve ResolveFunc, progressFn ProgressFunc, verboseFn VerboseFunc) (map[string]float64, *DebtData) {
 	generated := make(map[string]int)
 	cleaned := make(map[string]int)
 
@@ -74,16 +74,21 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 			if verboseFn != nil {
 				verboseFn(fmt.Sprintf("    blaming %s ...", f))
 			}
-			// Blame at parent to find original authors (with 30s timeout per file)
-			fileCtx, fileCancel := context.WithTimeout(ctx, 30*time.Second)
+			// Blame at parent to find original authors (with configurable timeout per file)
+			timeout := time.Duration(blameTimeoutSec) * time.Second
+			if timeout <= 0 {
+				timeout = 120 * time.Second
+			}
+			fileCtx, fileCancel := context.WithTimeout(ctx, timeout)
 			fileStart := time.Now()
 			authors, err := git.BlameFileAtParent(fileCtx, repoPath, fc.Hash, f)
+			timedOut := fileCtx.Err() != nil
 			fileCancel()
 			elapsed := time.Since(fileStart)
-			if err != nil || fileCtx.Err() != nil {
+			if err != nil || timedOut {
 				if verboseFn != nil {
-					if fileCtx.Err() != nil {
-						verboseFn(fmt.Sprintf("    blame %s: TIMEOUT (>30s, skipped)", f))
+					if timedOut {
+						verboseFn(fmt.Sprintf("    blame %s: TIMEOUT (>%ds, skipped)", f, blameTimeoutSec))
 					} else {
 						verboseFn(fmt.Sprintf("    blame %s: error (%v)", f, err))
 					}
