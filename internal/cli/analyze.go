@@ -291,7 +291,10 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		mergeMap(acc.raw.Production, prod)
 
 		// Quality: include merge commits so fix subjects in merge messages are counted
-		allCommits := append(commits, mergeCommits...)
+		// Use make+copy+append to avoid slice backing array corruption
+		allCommits := make([]git.Commit, len(commits), len(commits)+len(mergeCommits))
+		copy(allCommits, commits)
+		allCommits = append(allCommits, mergeCommits...)
 		qual := metric.CalcQuality(allCommits)
 		mergeMapAvg(acc.raw.Quality, qual, acc.qualityCounts)
 
