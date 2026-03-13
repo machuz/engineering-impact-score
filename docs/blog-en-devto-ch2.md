@@ -241,6 +241,45 @@ After running this on multiple teams — now with 5-axis classification and stru
 - Silent accumulation: headcount says 8, effective contributors are 4
 - Producer monoculture: everyone builds, nobody cleans
 
+## Growth Model — Climbing Three Layers
+
+EIS's Role classification maps to three layers of engineering growth.
+
+```
+  Design Layer        Architect
+                      ↑ Design decisions are embedded in code as structure
+  ──────────────────────────────────
+  Stabilization Layer Anchor / Cleaner
+                      ↑ Quality rises, code survives, others' debt gets cleaned
+  ──────────────────────────────────
+  Implementation Layer Producer / Growing
+                       Write code. Ship it.
+```
+
+**Implementation Layer**: Write and ship code. Growing engineers start here. Production exists but Survival is still low.
+
+**Stabilization Layer**: Quality improves, code starts surviving. You can fix other people's code too. Anchors and Cleaners live here.
+
+**Design Layer**: You touch architecture files and shape the structure. Architects live here.
+
+Growth means climbing these layers. EIS score trajectories make this observable:
+
+- Survival rising → moving from Implementation to Stabilization
+- Design rising → moving from Stabilization to Design
+- DebtCleanup rising → expanding team contribution
+
+In team context, **teams with high Growth Potential have environments where this climb is possible**. An Anchor at the Stabilization layer, an Architect at the Design layer. Role models exist, so Growing members can reach the next layer. Without role models, they keep spinning at Implementation.
+
+And there's a downward direction too.
+
+```
+  Design Layer        → Former (design knowledge leaves with the person)
+  Stabilization Layer → Silent (contributions stop), Fragile (only untouched code remains)
+  Implementation Layer → Silent (stops writing)
+```
+
+Helping members climb the layers, and catching early when someone is falling into a Risk state. **That's the management job EIS makes visible.** Track score trajectories quarter over quarter, and you can see who's climbing, who's plateaued, and who's slipping — in numbers.
+
 ## A Sociological Observation
 
 **Teams with a Builder or Cleaner grow people faster.** When a role model exists — someone whose code demonstrably survives and whose reviews teach — Growing members transition to Active at roughly double the rate.
