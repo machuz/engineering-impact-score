@@ -23,7 +23,11 @@ func CalcQuality(commits []git.Commit) map[string]float64 {
 			ac = &counts{}
 			authorCounts[c.Author] = ac
 		}
-		ac.total++
+		// Merge commits contribute fixes but NOT to total count,
+		// so they don't inflate Quality by diluting fix ratio.
+		if !c.IsMerge {
+			ac.total++
+		}
 
 		if isFixCommit(c.Subject) {
 			ac.fixes++
