@@ -270,9 +270,9 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		totalAnalyzed++
 
 		// Step 1: Parse git log (feeds Production, Quality, Design)
-		stopSpin := spinner("[1/4] Parsing git log...")
+		spin := spinner("[1/4] Parsing git log...")
 		commits, err := git.ParseLog(ctx, repoPath)
-		stopSpin()
+		spin.Stop()
 		if err != nil {
 			return nil, nil, fmt.Errorf("parse log %s: %w", repoName, err)
 		}
@@ -311,7 +311,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		}
 
 		// Step 2: Blame analysis (feeds Survival, Indispensability)
-		stopSpin = spinner("[2/4] Blame analysis...")
+		spin = spinner("[2/4] Blame analysis...")
 		files, err := git.ListFiles(ctx, repoPath, cfg.BlameExtensions)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "  Warning: could not list files: %v\n", err)
@@ -327,17 +327,17 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 				fmt.Fprintf(os.Stderr, "\n%s", msg)
 			}
 		}
-		spinStopped := false
+		blameClear := false
 		blameLines, err := git.ConcurrentBlameFiles(ctx, repoPath, files, cfg.SampleSize, workers,
 			func(done, total int) {
-				if !spinStopped {
-					stopSpin()
-					spinStopped = true
+				if !blameClear {
+					spin.Clear()
+					blameClear = true
 				}
 				fmt.Fprintf(os.Stderr, "%s\r", progressBar("[2/4] Blame", done, total))
 			}, blameVerbose)
-		if !spinStopped {
-			stopSpin()
+		if !blameClear {
+			spin.Stop()
 		}
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "  Warning: blame error: %v\n", err)
@@ -394,24 +394,24 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 
 		// Step 3: Debt cleanup
 		fixCommits := metric.GetFixCommits(commits)
-		stopSpin = spinner(fmt.Sprintf("[3/4] Debt analysis (%d fix commits)...", len(fixCommits)))
+		spin = spinner(fmt.Sprintf("[3/4] Debt analysis (%d fix commits)...", len(fixCommits)))
 		var debtVerbose metric.VerboseFunc
 		if opts.Verbose {
 			debtVerbose = func(msg string) {
 				fmt.Fprintf(os.Stderr, "\n%s", msg)
 			}
 		}
-		debtSpinStopped := false
+		debtClear := false
 		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.ResolveAuthor,
 			func(done, total int) {
-				if !debtSpinStopped {
-					stopSpin()
-					debtSpinStopped = true
+				if !debtClear {
+					spin.Clear()
+					debtClear = true
 				}
 				fmt.Fprintf(os.Stderr, "%s\r", progressBar("[3/4] Debt", done, total))
 			}, debtVerbose)
-		if !debtSpinStopped {
-			stopSpin()
+		if !debtClear {
+			spin.Stop()
 		}
 		fmt.Fprintln(os.Stderr)
 		mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
@@ -654,16 +654,26 @@ func separateArgs(args []string, fs *flag.FlagSet) (flags []string, paths []stri
 	return
 }
 
-// spinner runs an animated spinner on stderr until the returned stop function is called.
-// In quiet mode, it returns a no-op function.
+// spinResult holds the stop functions for a spinner.
+type spinResult struct {
+	// Stop stops the spinner and prints a ✓ completion line.
+	Stop func()
+	// Clear stops the spinner and clears the line (for transitioning to progress bar).
+	Clear func()
+}
+
+// spinner runs an animated spinner on stderr until Stop or Clear is called.
+// In quiet mode, both functions are no-ops.
 var spinnerQuiet bool
 
-func spinner(label string) func() {
+func spinner(label string) spinResult {
 	if spinnerQuiet {
-		return func() {}
+		noop := func() {}
+		return spinResult{Stop: noop, Clear: noop}
 	}
 	frames := []string{"⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"}
 	done := make(chan struct{})
+	stopped := false
 	go func() {
 		cyan := color.New(color.FgCyan)
 		i := 0
@@ -678,10 +688,24 @@ func spinner(label string) func() {
 			}
 		}
 	}()
-	return func() {
+	doStop := func() {
+		if stopped {
+			return
+		}
+		stopped = true
 		close(done)
-		time.Sleep(10 * time.Millisecond) // let goroutine exit cleanly
-		fmt.Fprintf(os.Stderr, "  %s %s\n", color.New(color.FgGreen).Sprint("✓"), label)
+		time.Sleep(10 * time.Millisecond)
+	}
+	return spinResult{
+		Stop: func() {
+			doStop()
+			fmt.Fprintf(os.Stderr, "  %s %s\n", color.New(color.FgGreen).Sprint("✓"), label)
+		},
+		Clear: func() {
+			doStop()
+			// Clear the spinner line with spaces and return carriage
+			fmt.Fprintf(os.Stderr, "\r%s\r", strings.Repeat(" ", len(label)+10))
+		},
 	}
 }
 
