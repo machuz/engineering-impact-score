@@ -2,7 +2,9 @@ package metric
 
 import (
 	"context"
+	"fmt"
 	"math"
+	"time"
 
 	"github.com/machuz/engineering-impact-score/internal/git"
 )
@@ -18,11 +20,14 @@ type ResolveFunc func(string) string
 // ProgressFunc reports debt analysis progress (done, total fix commits)
 type ProgressFunc func(done, total int)
 
+// VerboseFunc logs detailed per-operation info (message string)
+type VerboseFunc func(msg string)
+
 // CalcDebt calculates debt cleanup scores on a 0-100 scale.
 // 50 = neutral (equal generation and cleanup, or insufficient data)
 // >50 = net cleaner, <50 = net debt creator
 // Formula: 50 + 50 * (cleaned - generated) / (cleaned + generated)
-func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, maxSample int, debtThreshold int, resolve ResolveFunc, progressFn ProgressFunc) (map[string]float64, *DebtData) {
+func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, maxSample int, debtThreshold int, resolve ResolveFunc, progressFn ProgressFunc, verboseFn VerboseFunc) (map[string]float64, *DebtData) {
 	generated := make(map[string]int)
 	cleaned := make(map[string]int)
 
@@ -44,14 +49,22 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 		}
 
 		fixer := resolve(fc.Author)
+		commitStart := time.Now()
 
 		// Get changed files
 		files, err := git.DiffTreeFiles(ctx, repoPath, fc.Hash)
 		if err != nil {
+			if verboseFn != nil {
+				verboseFn(fmt.Sprintf("  [debt] skip commit %s (diff-tree error: %v)", fc.Hash[:8], err))
+			}
 			if progressFn != nil {
 				progressFn(i+1, total)
 			}
 			continue
+		}
+
+		if verboseFn != nil {
+			verboseFn(fmt.Sprintf("  [debt] commit %d/%d %s by %s (%d files)", i+1, total, fc.Hash[:8], fixer, len(files)))
 		}
 
 		for _, f := range files {
@@ -59,9 +72,17 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 				continue
 			}
 			// Blame at parent to find original authors
+			fileStart := time.Now()
 			authors, err := git.BlameFileAtParent(ctx, repoPath, fc.Hash, f)
+			elapsed := time.Since(fileStart)
 			if err != nil {
+				if verboseFn != nil {
+					verboseFn(fmt.Sprintf("    blame %s: error (%v)", f, err))
+				}
 				continue
+			}
+			if verboseFn != nil && elapsed > 2*time.Second {
+				verboseFn(fmt.Sprintf("    blame %s: %d authors (SLOW: %v)", f, len(authors), elapsed.Round(time.Millisecond)))
 			}
 
 			for _, origAuthor := range authors {
@@ -71,6 +92,10 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 					cleaned[fixer]++
 				}
 			}
+		}
+
+		if verboseFn != nil {
+			verboseFn(fmt.Sprintf("  [debt] commit %s done in %v", fc.Hash[:8], time.Since(commitStart).Round(time.Millisecond)))
 		}
 
 		if progressFn != nil {

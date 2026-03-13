@@ -21,6 +21,7 @@ func runTeam(args []string) error {
 	pressureMode := fs.String("pressure-mode", "include", "Change pressure mode: include or ignore")
 	activeDays := fs.Int("active-days", 0, "Days to consider author active (overrides config)")
 	domainFilter := fs.String("domain", "", "Only analyze repos in this domain")
+	verbose := fs.Bool("verbose", false, "Show detailed debug output (file-level timing)")
 
 	flagArgs, pathArgs := separateArgs(args, fs)
 	if err := fs.Parse(flagArgs); err != nil {
@@ -38,6 +39,7 @@ func runTeam(args []string) error {
 		PressureMode: *pressureMode,
 		ActiveDays:   *activeDays,
 		DomainFilter: *domainFilter,
+		Verbose:      *verbose,
 	}
 
 	// Run the shared analysis pipeline

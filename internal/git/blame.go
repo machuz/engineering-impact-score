@@ -189,7 +189,7 @@ func BlameFileStream(ctx context.Context, repoPath, filepath string) ([]BlameLin
 }
 
 // ConcurrentBlameFiles runs blame on files concurrently with a worker pool
-func ConcurrentBlameFiles(ctx context.Context, repoPath string, files []string, maxFiles, workers int, progressFn func(done, total int)) ([]BlameLine, error) {
+func ConcurrentBlameFiles(ctx context.Context, repoPath string, files []string, maxFiles, workers int, progressFn func(done, total int), verboseFn func(string)) ([]BlameLine, error) {
 	sampled := SampleFiles(files, maxFiles)
 	total := len(sampled)
 
@@ -198,8 +198,10 @@ func ConcurrentBlameFiles(ctx context.Context, repoPath string, files []string, 
 	}
 
 	type result struct {
+		file  string
 		lines []BlameLine
 		err   error
+		dur   time.Duration
 	}
 
 	fileCh := make(chan string, total)
@@ -209,8 +211,9 @@ func ConcurrentBlameFiles(ctx context.Context, repoPath string, files []string, 
 	for w := 0; w < workers; w++ {
 		go func() {
 			for f := range fileCh {
+				start := time.Now()
 				lines, err := BlameFileStream(ctx, repoPath, f)
-				resultCh <- result{lines, err}
+				resultCh <- result{f, lines, err, time.Since(start)}
 			}
 		}()
 	}
@@ -228,6 +231,13 @@ func ConcurrentBlameFiles(ctx context.Context, repoPath string, files []string, 
 		if r.err == nil {
 			allLines = append(allLines, r.lines...)
 		}
+		if verboseFn != nil && (r.dur > 2*time.Second || r.err != nil) {
+			if r.err != nil {
+				verboseFn(fmt.Sprintf("  [blame] %s: error (%v)", r.file, r.err))
+			} else {
+				verboseFn(fmt.Sprintf("  [blame] %s: %d lines (SLOW: %v)", r.file, len(r.lines), r.dur.Round(time.Millisecond)))
+			}
+		}
 		if progressFn != nil && (i+1)%50 == 0 {
 			progressFn(i+1, total)
 		}
@@ -237,6 +247,15 @@ func ConcurrentBlameFiles(ctx context.Context, repoPath string, files []string, 
 	}
 
 	return allLines, nil
+}
+
+// IsShallowRepo checks if the repository is a shallow clone
+func IsShallowRepo(ctx context.Context, repoPath string) bool {
+	lines, err := RunLines(ctx, repoPath, "rev-parse", "--is-shallow-repository")
+	if err != nil || len(lines) == 0 {
+		return false
+	}
+	return lines[0] == "true"
 }
 
 func init() {

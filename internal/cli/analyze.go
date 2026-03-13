@@ -31,6 +31,7 @@ type AnalyzeOptions struct {
 	PressureMode string
 	ActiveDays   int
 	DomainFilter string
+	Verbose      bool
 }
 
 // DomainResults holds scored results for a single domain.
@@ -78,6 +79,7 @@ func runAnalyze(args []string) error {
 	pressureMode := fs.String("pressure-mode", "include", "Change pressure mode: include (split robust/dormant) or ignore (classic survival)")
 	activeDays := fs.Int("active-days", 0, "Days to consider author active (overrides config, default 30)")
 	domainFilter := fs.String("domain", "", "Only analyze repos in this domain (e.g. Backend, Frontend, Firmware)")
+	verbose := fs.Bool("verbose", false, "Show detailed debug output (file-level timing)")
 
 	flagArgs, pathArgs := separateArgs(args, fs)
 	if err := fs.Parse(flagArgs); err != nil {
@@ -95,6 +97,7 @@ func runAnalyze(args []string) error {
 		PressureMode: *pressureMode,
 		ActiveDays:   *activeDays,
 		DomainFilter: *domainFilter,
+		Verbose:      *verbose,
 	}
 
 	domainResults, cfg, err := RunAnalyzePipeline(opts, pathArgs)
@@ -249,6 +252,13 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		domainLabel := color.New(color.FgCyan).Sprintf("[%s]", repoDomain)
 		bold.Printf("Analyzing: %s %s\n", repoName, domainLabel)
 
+		// Shallow clone warning
+		if git.IsShallowRepo(ctx, repoPath) {
+			warn := color.New(color.FgYellow)
+			warn.Fprintf(os.Stderr, "  ⚠ WARNING: shallow clone detected — git blame may hang or produce inaccurate results\n")
+			warn.Fprintf(os.Stderr, "    Run: git fetch --unshallow\n")
+		}
+
 		// Get or create accumulator for this domain
 		acc, ok := accumulators[repoDomain]
 		if !ok {
@@ -309,10 +319,16 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		// Filter out excluded file patterns from blame targets
 		files = filterFiles(files, cfg.ExcludeFilePatterns)
 
+		var blameVerbose func(string)
+		if opts.Verbose {
+			blameVerbose = func(msg string) {
+				fmt.Fprintf(os.Stderr, "\n%s", msg)
+			}
+		}
 		blameLines, err := git.ConcurrentBlameFiles(ctx, repoPath, files, cfg.SampleSize, workers,
 			func(done, total int) {
 				fmt.Fprintf(os.Stderr, "%s\r", progressBar("[2/4] Blame", done, total))
-			})
+			}, blameVerbose)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "  Warning: blame error: %v\n", err)
 		}
@@ -369,10 +385,16 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		// Step 3: Debt cleanup
 		fixCommits := metric.GetFixCommits(commits)
 		fmt.Fprintf(os.Stderr, "  [3/4] Debt analysis (%d fix commits)...\n", len(fixCommits))
+		var debtVerbose metric.VerboseFunc
+		if opts.Verbose {
+			debtVerbose = func(msg string) {
+				fmt.Fprintf(os.Stderr, "\n%s", msg)
+			}
+		}
 		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.ResolveAuthor,
 			func(done, total int) {
 				fmt.Fprintf(os.Stderr, "%s\r", progressBar("[3/4] Debt", done, total))
-			})
+			}, debtVerbose)
 		fmt.Fprintln(os.Stderr)
 		mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
 

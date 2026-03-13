@@ -54,6 +54,7 @@ Options (shared by analyze and team):
   --active-days <n>           Days to consider author active (default: 30)
   --pressure-mode <mode>      Change pressure mode: include or ignore (default: include)
   --domain <name>             Filter to single domain
+  --verbose                   Show detailed debug output (file-level timing, slow ops)
 
 Config file (eis.yaml):
   aliases:                    Map git author names to canonical names
