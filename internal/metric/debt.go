@@ -71,6 +71,9 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 			if f == "" {
 				continue
 			}
+			if verboseFn != nil {
+				verboseFn(fmt.Sprintf("    blaming %s ...", f))
+			}
 			// Blame at parent to find original authors
 			fileStart := time.Now()
 			authors, err := git.BlameFileAtParent(ctx, repoPath, fc.Hash, f)
@@ -81,8 +84,12 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 				}
 				continue
 			}
-			if verboseFn != nil && elapsed > 2*time.Second {
-				verboseFn(fmt.Sprintf("    blame %s: %d authors (SLOW: %v)", f, len(authors), elapsed.Round(time.Millisecond)))
+			if verboseFn != nil {
+				if elapsed > 2*time.Second {
+					verboseFn(fmt.Sprintf("    blame %s: %d authors (SLOW: %v)", f, len(authors), elapsed.Round(time.Millisecond)))
+				} else {
+					verboseFn(fmt.Sprintf("    blame %s: %d authors (%v)", f, len(authors), elapsed.Round(time.Millisecond)))
+				}
 			}
 
 			for _, origAuthor := range authors {
