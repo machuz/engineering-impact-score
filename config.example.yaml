@@ -1,65 +1,9 @@
 # Engineering Impact Score - Configuration
-# Copy this file to config.yaml and customize for your team.
-
-# Domains: group repositories by BE / FE / Infra
-# Scores are normalized within each domain separately.
-domains:
-  BE:
-    repos:
-      - /path/to/backend/api
-      - /path/to/backend/worker
-      - /path/to/backend/auth-service
-    # Architecture files for Design score (glob patterns)
-    architecture_patterns:
-      - "*/repository/*interface*"
-      - "*/domainservice/"
-      - "*/partprocess/"
-      - "*/delegateprocess/"
-      - "*/router.go"
-      - "*/middleware/"
-      - "di/*.go"
-    # File extensions to include in blame analysis
-    blame_extensions:
-      - "*.go"
-
-  FE:
-    repos:
-      - /path/to/frontend/web-app
-      - /path/to/frontend/admin
-      - /path/to/frontend/mobile-app
-    architecture_patterns:
-      - "*/core/"
-      - "*/stores/"
-      - "*/types/"
-      - "*/hooks/"
-      - "*/lib/"
-      - "*/components/ui/"
-    blame_extensions:
-      - "*.ts"
-      - "*.tsx"
-      - "*.vue"
-
-  # Infra:
-  #   repos:
-  #     - /path/to/infra/terraform
-  #   architecture_patterns: []  # Infra has no Design axis
-  #   blame_extensions:
-  #     - "*.tf"
-  #     - "*.go"
-  #     - "*.sh"
-
-# All repos for Breadth calculation (can include repos not in any domain)
-all_repos:
-  - /path/to/backend/api
-  - /path/to/backend/worker
-  - /path/to/frontend/web-app
-  - /path/to/frontend/admin
-  # ... add all your repos
+# Copy this file to eis.yaml and customize for your team.
 
 # Git author aliases (map variant names to canonical name)
 aliases:
   # "Git Name": "Canonical Name"
-  # Example:
   # "John D.": "john-doe"
   # "john.doe@company.com": "john-doe"
 
@@ -69,17 +13,90 @@ exclude_authors:
   - "renovate[bot]"
   - "dependabot[bot]"
 
+# Domain classification (overrides auto-detection from file extensions)
+# Repos not listed here use auto-detection.
+# Scores are normalized within each domain separately.
+domains:
+  backend:
+    - api
+    - worker
+    - auth-service
+  frontend:
+    - web-app
+    - admin
+    - mobile-app
+  # infra:
+  #   - terraform
+  #   - deployment
+  # firmware:
+  #   - embedded-controller
+
+# Repos to exclude from analysis
+exclude_repos:
+  - docs-only-repo
+  - deprecated-service
+
+# Architecture files for Design score (glob patterns, top-level)
+architecture_patterns:
+  - "*/repository/*interface*"
+  - "*/domainservice/"
+  - "*/router.go"
+  - "*/middleware/"
+  - "di/*.go"
+  - "*/core/"
+  - "*/stores/"
+  - "*/hooks/"
+  - "*/types/"
+
+# File extensions to include in blame analysis (top-level)
+blame_extensions:
+  - "*.go"
+  - "*.ts"
+  - "*.tsx"
+  - "*.py"
+  - "*.rs"
+  - "*.java"
+  - "*.rb"
+  - "*.c"
+  - "*.h"
+  - "*.cpp"
+  - "*.hpp"
+  - "*.cc"
+  - "*.S"
+  - "*.scala"
+  - "*.hs"
+  - "*.ml"
+  - "*.mli"
+  - "*.sql"
+
 # Files to exclude from Production (lines changed) calculation
 exclude_file_patterns:
   - "package-lock.json"
   - "yarn.lock"
   - "pnpm-lock.yaml"
+  - "go.sum"
   - "docs/swagger*"
   - "docs/doc.go"
   - "docs/openapi*"
   - "*generated*"
   - "mock_*"
   - "*.gen.*"
+
+# Survival decay parameter
+tau: 180  # days. weight = exp(-age / tau)
+
+# Active days — how recently an author must have committed to be marked "active"
+active_days: 30  # default 30 days (1 month)
+
+# Maximum repos counted for Breadth score normalization
+breadth_max: 5
+
+# Production baseline: daily lines changed for 100% score
+production_daily_ref: 1000
+
+# Debt cleanup threshold
+# Members with fewer than this many total debt events get neutral score (50)
+debt_threshold: 10
 
 # Scoring weights (must sum to 1.0)
 weights:
@@ -90,16 +107,6 @@ weights:
   breadth: 0.10
   debt_cleanup: 0.15
   indispensability: 0.05
-
-# Survival decay parameter
-survival_tau: 180  # days. weight = exp(-age / tau)
-
-# Active days — how recently an author must have committed to be marked "active"
-active_days: 30  # default 30 days (1 month)
-
-# Debt cleanup threshold
-# Members with fewer than this many total debt events get neutral score (50)
-debt_threshold: 10
 
 # Bus factor thresholds
 bus_factor:
