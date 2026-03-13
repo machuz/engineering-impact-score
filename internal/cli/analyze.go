@@ -327,22 +327,23 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 				fmt.Fprintf(os.Stderr, "\n%s", msg)
 			}
 		}
-		blameClear := false
+		blameStarted := false
 		blameLines, err := git.ConcurrentBlameFiles(ctx, repoPath, files, cfg.SampleSize, workers,
 			func(done, total int) {
-				if !blameClear {
+				if !blameStarted {
 					spin.Clear()
-					blameClear = true
+					blameStarted = true
 				}
 				fmt.Fprintf(os.Stderr, "%s\r", progressBar("[2/4] Blame", done, total))
 			}, blameVerbose)
-		if !blameClear {
+		if !blameStarted {
 			spin.Stop()
+		} else {
+			fmt.Fprintln(os.Stderr)
 		}
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "  Warning: blame error: %v\n", err)
 		}
-		fmt.Fprintln(os.Stderr)
 
 		// Apply aliases to blame lines
 		for i := range blameLines {
@@ -401,19 +402,24 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 				fmt.Fprintf(os.Stderr, "\n%s", msg)
 			}
 		}
-		debtClear := false
+		debtStarted := false
+		debtTotal := len(fixCommits)
+		if debtTotal > 50 {
+			debtTotal = 50
+		}
 		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.ResolveAuthor,
 			func(done, total int) {
-				if !debtClear {
+				if !debtStarted {
 					spin.Clear()
-					debtClear = true
+					debtStarted = true
 				}
 				fmt.Fprintf(os.Stderr, "%s\r", progressBar("[3/4] Debt", done, total))
 			}, debtVerbose)
-		if !debtClear {
+		if !debtStarted {
 			spin.Stop()
+		} else {
+			fmt.Fprintln(os.Stderr)
 		}
-		fmt.Fprintln(os.Stderr)
 		mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
 
 		// Step 4: Accumulate bus factor risks per domain; print immediately for table format
@@ -709,7 +715,11 @@ func spinner(label string) spinResult {
 	}
 }
 
-// progressBar renders a compact progress bar with color: [████░░░░░░] 12/50
+// spinFrames for inline spinner in progress bar
+var spinFrames = []string{"⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"}
+var spinIdx int
+
+// progressBar renders a compact progress bar with spinner/checkmark prefix
 func progressBar(label string, done, total int) string {
 	const barWidth = 20
 	pct := float64(done) / float64(total)
@@ -723,7 +733,15 @@ func progressBar(label string, done, total int) string {
 	filledBar := cyan.Sprint(strings.Repeat("█", filled))
 	emptyBar := dim.Sprint(strings.Repeat("░", barWidth-filled))
 	count := green.Sprintf("%d/%d", done, total)
-	return fmt.Sprintf("  %s [%s%s] %s", label, filledBar, emptyBar, count)
+
+	var prefix string
+	if done >= total {
+		prefix = green.Sprint("✓")
+	} else {
+		prefix = cyan.Sprint(spinFrames[spinIdx%len(spinFrames)])
+		spinIdx++
+	}
+	return fmt.Sprintf("  %s %s [%s%s] %s", prefix, label, filledBar, emptyBar, count)
 }
 
 // mergeMapAvg keeps a correct running average for quality scores across repos
