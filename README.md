@@ -97,6 +97,8 @@ USD figures are rough estimates and vary significantly by market (SF vs. Midwest
 
 **40 = Senior.** This metric is deliberately harsh. Scoring 40+ across 7 relative axes requires serious, well-rounded ability.
 
+> **Important: EIS measures impact on *this codebase*, not absolute engineering ability.** A high score means "on this codebase, this person's contributions are surviving, shaping architecture, and cleaning up debt." It does not mean they are a better engineer than someone with a lower score. Conversely, high Survival might mean the code can't be refactored away due to poor design — not that the code is good. If scores don't match your gut feeling, that's a signal worth investigating: it may reveal codebase design issues rather than people issues.
+
 ![Score Guide](docs/images/score-guide.svg)
 
 ## Engineer Topology (3-Axis Classification)
