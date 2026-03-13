@@ -15,11 +15,14 @@ type DebtData struct {
 // ResolveFunc maps a git author name to its canonical name
 type ResolveFunc func(string) string
 
+// ProgressFunc reports debt analysis progress (done, total fix commits)
+type ProgressFunc func(done, total int)
+
 // CalcDebt calculates debt cleanup scores on a 0-100 scale.
 // 50 = neutral (equal generation and cleanup, or insufficient data)
 // >50 = net cleaner, <50 = net debt creator
 // Formula: 50 + 50 * (cleaned - generated) / (cleaned + generated)
-func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, maxSample int, debtThreshold int, resolve ResolveFunc) (map[string]float64, *DebtData) {
+func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, maxSample int, debtThreshold int, resolve ResolveFunc, progressFn ProgressFunc) (map[string]float64, *DebtData) {
 	generated := make(map[string]int)
 	cleaned := make(map[string]int)
 
@@ -33,12 +36,21 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 		sample = sample[:maxSample]
 	}
 
-	for _, fc := range sample {
+	total := len(sample)
+	for i, fc := range sample {
+		// Check context cancellation
+		if ctx.Err() != nil {
+			break
+		}
+
 		fixer := resolve(fc.Author)
 
 		// Get changed files
 		files, err := git.DiffTreeFiles(ctx, repoPath, fc.Hash)
 		if err != nil {
+			if progressFn != nil {
+				progressFn(i+1, total)
+			}
 			continue
 		}
 
@@ -59,6 +71,10 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 					cleaned[fixer]++
 				}
 			}
+		}
+
+		if progressFn != nil {
+			progressFn(i+1, total)
 		}
 	}
 

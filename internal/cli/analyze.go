@@ -367,9 +367,13 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		mergeMap(acc.raw.Indispensability, indisp)
 
 		// Step 3: Debt cleanup
-		fmt.Fprintf(os.Stderr, "  [3/4] Debt analysis...\n")
 		fixCommits := metric.GetFixCommits(commits)
-		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.ResolveAuthor)
+		fmt.Fprintf(os.Stderr, "  [3/4] Debt analysis (%d fix commits)...\n", len(fixCommits))
+		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.ResolveAuthor,
+			func(done, total int) {
+				fmt.Fprintf(os.Stderr, "  [3/4] Debt: %d/%d fix commits\r", done, total)
+			})
+		fmt.Fprintln(os.Stderr)
 		mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
 
 		// Step 4: Accumulate bus factor risks per domain; print immediately for table format
