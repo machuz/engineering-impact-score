@@ -74,13 +74,19 @@ func CalcDebt(ctx context.Context, repoPath string, fixCommits []git.Commit, max
 			if verboseFn != nil {
 				verboseFn(fmt.Sprintf("    blaming %s ...", f))
 			}
-			// Blame at parent to find original authors
+			// Blame at parent to find original authors (with 30s timeout per file)
+			fileCtx, fileCancel := context.WithTimeout(ctx, 30*time.Second)
 			fileStart := time.Now()
-			authors, err := git.BlameFileAtParent(ctx, repoPath, fc.Hash, f)
+			authors, err := git.BlameFileAtParent(fileCtx, repoPath, fc.Hash, f)
+			fileCancel()
 			elapsed := time.Since(fileStart)
-			if err != nil {
+			if err != nil || fileCtx.Err() != nil {
 				if verboseFn != nil {
-					verboseFn(fmt.Sprintf("    blame %s: error (%v)", f, err))
+					if fileCtx.Err() != nil {
+						verboseFn(fmt.Sprintf("    blame %s: TIMEOUT (>30s, skipped)", f))
+					} else {
+						verboseFn(fmt.Sprintf("    blame %s: error (%v)", f, err))
+					}
 				}
 				continue
 			}
