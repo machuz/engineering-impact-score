@@ -119,13 +119,23 @@ func classifyState(r Result) AxisMatch {
 			}
 			return minf(lowness(r.Production), lowness(r.Survival), lowness(r.DebtCleanup))
 		}},
-		// Fragile: code survives only because it's not under change pressure.
+		// Fragile: code survives only because no one touches it — untested by collaboration.
+		// Key signals: high dormant ratio + high indispensability (solo ownership).
+		// Uses raw dormant/robust ratio to avoid Normalize distortion in small domains.
 		{"Fragile", func() float64 {
+			if r.RawDormantSurv > 0 || r.RawRobustSurv > 0 {
+				total := r.RawDormantSurv + r.RawRobustSurv
+				if total > 0 {
+					dormantRatio := r.RawDormantSurv / total * 100
+					// Fragile = mostly dormant + solo ownership + not a high producer
+					if dormantRatio >= 80 && r.Indispensability >= 60 && r.Production < 40 {
+						return 0.85 + (dormantRatio-80)/200 // 0.85-0.95
+					}
+				}
+			}
+			// Fallback: no pressure data
 			if r.Quality >= 70 {
 				return 0
-			}
-			if r.DormantSurvival > 0 || r.RobustSurvival > 0 {
-				return minf(highness(r.DormantSurvival), lowness(r.RobustSurvival), lowness(r.Production))
 			}
 			return minf(highness(r.Survival), lowness(r.Production))
 		}},

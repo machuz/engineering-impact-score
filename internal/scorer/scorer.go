@@ -16,6 +16,8 @@ type Result struct {
 	RawSurvival      float64 // normalized raw blame (no decay), used for archetype detection
 	RobustSurvival   float64 // survival in high change-pressure modules
 	DormantSurvival  float64 // survival in low change-pressure modules
+	RawRobustSurv    float64 // raw (pre-normalize) robust survival, for archetype detection
+	RawDormantSurv   float64 // raw (pre-normalize) dormant survival, for archetype detection
 	Design           float64
 	Breadth          float64
 	DebtCleanup      float64
@@ -87,6 +89,8 @@ func Score(raw *metric.RawScores, cfg *config.Config, authorLastDate map[string]
 			Survival:         normSurv[author],
 			RobustSurvival:   normRobustSurv[author],
 			DormantSurvival:  normDormantSurv[author],
+			RawRobustSurv:    raw.RobustSurvival[author],
+			RawDormantSurv:   raw.DormantSurvival[author],
 			Design:           normDesign[author],
 			Breadth:          normBreadth[author],
 			DebtCleanup:      normDebt[author],
