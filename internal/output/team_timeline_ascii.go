@@ -36,8 +36,19 @@ func PrintTeamTimelineASCII(tl timeline.TeamTimeline) {
 
 	data := [][]float64{avgTotalData, avgProdData, avgQualData, avgSurvData, avgDesignData}
 
+	// Calculate chart width to match label axis spacing
+	chartWidth := 60
+	if len(labels) > 1 {
+		spacing := chartWidth / (len(labels) - 1)
+		if spacing < len(labels[0])+2 {
+			spacing = len(labels[0]) + 2
+			chartWidth = spacing * (len(labels) - 1)
+		}
+	}
+
 	chart := asciigraph.PlotMany(data,
 		asciigraph.Height(15),
+		asciigraph.Width(chartWidth),
 		asciigraph.SeriesColors(
 			asciigraph.Blue,
 			asciigraph.Green,
