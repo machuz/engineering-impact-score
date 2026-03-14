@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="182" viewBox="0 0 1180 182">
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="162" viewBox="0 0 1180 162">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
@@ -7,7 +7,7 @@
   </defs>
 
   <!-- Terminal background -->
-  <rect width="1180" height="182" rx="10" fill="#282828"/>
+  <rect width="1180" height="162" rx="10" fill="#282828"/>
 
   <!-- Title bar -->
   <rect width="1180" height="32" rx="10" fill="#1d2021"/>
