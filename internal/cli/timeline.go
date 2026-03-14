@@ -34,7 +34,8 @@ func runTimeline(args []string) error {
 	spanFlag := fs.String("span", "3m", "Period span: 3m, 6m, 1y")
 	periodsFlag := fs.Int("periods", 4, "Number of periods to show (0=all)")
 	sinceFlag := fs.String("since", "", "Start date (e.g. 2024-01-01, overrides --periods)")
-	formatFlag := fs.String("format", "table", "Output format: table, csv, json")
+	formatFlag := fs.String("format", "table", "Output format: table, csv, json, ascii, html, svg")
+	outputFlag := fs.String("output", "", "Output file/directory path (html: file path, svg: directory; defaults: eis-timeline.html / current dir)")
 	recursive := fs.Bool("recursive", false, "Recursively find git repos under given paths")
 	maxDepth := fs.Int("depth", 2, "Max directory depth for recursive search")
 	domainFilter := fs.String("domain", "", "Only analyze specific domain")
@@ -97,7 +98,7 @@ func runTimeline(args []string) error {
 		cfg.ActiveDays = *activeDays
 	}
 
-	quiet := *formatFlag == "json" || *formatFlag == "csv"
+	quiet := *formatFlag == "json" || *formatFlag == "csv" || *formatFlag == "html" || *formatFlag == "svg"
 	spinnerQuiet = quiet
 
 	if !quiet && len(cfg.Aliases) > 0 {
@@ -468,7 +469,15 @@ func runTimeline(args []string) error {
 		}
 	}
 
-	// Build and output individual timelines
+	// Build per-domain author timelines (filtered)
+	type builtDomainTimeline struct {
+		domain    domain.Domain
+		span      string
+		periods   []timeline.PeriodResult
+		timelines []timeline.AuthorTimeline
+	}
+
+	var builtTimelines []builtDomainTimeline
 	for _, dt := range domainTimelines {
 		timelines := timeline.BuildTimeline(dt.periods)
 
@@ -486,20 +495,17 @@ func runTimeline(args []string) error {
 			timelines = filtered
 		}
 
-		switch *formatFlag {
-		case "json":
-			output.PrintTimelineJSON(string(dt.domain), *spanFlag, dt.periods, timelines)
-		case "csv":
-			output.PrintTimelineCSV(string(dt.domain), timelines)
-		default:
-			output.PrintTimelineTable(string(dt.domain), *spanFlag, timelines)
-		}
+		builtTimelines = append(builtTimelines, builtDomainTimeline{
+			domain:    dt.domain,
+			span:      *spanFlag,
+			periods:   dt.periods,
+			timelines: timelines,
+		})
 	}
 
-	// Build and output team timelines
+	// Build team timelines
 	var teamTimelines []timeline.TeamTimeline
 	for _, dt := range domainTimelines {
-		// Build TeamPeriodResults by aggregating each period's scored results
 		teamPeriodResults := buildTeamPeriodResults(dt.domain, dt.periods, cfg)
 
 		for teamName, periods := range teamPeriodResults {
@@ -509,15 +515,80 @@ func runTimeline(args []string) error {
 		}
 	}
 
-	if len(teamTimelines) > 0 {
-		switch *formatFlag {
-		case "json":
-			output.PrintTeamTimelineJSON(teamTimelines)
-		case "csv":
-			output.PrintTeamTimelineCSV(teamTimelines)
-		default:
-			for _, tl := range teamTimelines {
-				output.PrintTeamTimelineTable(tl)
+	// Output individual timelines
+	if *formatFlag == "html" || *formatFlag == "svg" {
+		// Collect all domain data (shared by html and svg)
+		var htmlDomains []output.DomainTimelineData
+		for _, bt := range builtTimelines {
+			htmlDomains = append(htmlDomains, output.DomainTimelineData{
+				DomainName: string(bt.domain),
+				Span:       bt.span,
+				Timelines:  bt.timelines,
+			})
+		}
+
+		if *formatFlag == "html" {
+			outPath := *outputFlag
+			if outPath == "" {
+				outPath = "eis-timeline.html"
+			}
+
+			f, err := os.Create(outPath)
+			if err != nil {
+				return fmt.Errorf("create output file: %w", err)
+			}
+			defer f.Close()
+
+			if err := output.WriteTimelineHTML(f, htmlDomains, teamTimelines); err != nil {
+				return fmt.Errorf("write HTML: %w", err)
+			}
+
+			fmt.Fprintf(os.Stderr, "Timeline HTML written to %s\n", outPath)
+		} else {
+			// SVG
+			outDir := *outputFlag
+			if outDir == "" {
+				outDir = "."
+			}
+
+			files, err := output.WriteTimelineSVG(outDir, htmlDomains, teamTimelines)
+			if err != nil {
+				return fmt.Errorf("write SVG: %w", err)
+			}
+
+			for _, f := range files {
+				fmt.Fprintf(os.Stderr, "SVG written: %s\n", f)
+			}
+			fmt.Fprintf(os.Stderr, "Generated %d SVG files\n", len(files))
+		}
+	} else {
+		for _, bt := range builtTimelines {
+			switch *formatFlag {
+			case "json":
+				output.PrintTimelineJSON(string(bt.domain), *spanFlag, bt.periods, bt.timelines)
+			case "csv":
+				output.PrintTimelineCSV(string(bt.domain), bt.timelines)
+			case "ascii":
+				output.PrintTimelineASCII(string(bt.domain), *spanFlag, bt.timelines)
+			default:
+				output.PrintTimelineTable(string(bt.domain), *spanFlag, bt.timelines)
+			}
+		}
+
+		if len(teamTimelines) > 0 {
+			switch *formatFlag {
+			case "json":
+				output.PrintTeamTimelineJSON(teamTimelines)
+			case "csv":
+				output.PrintTeamTimelineCSV(teamTimelines)
+			case "ascii":
+				for _, tl := range teamTimelines {
+					output.PrintTeamTimelineASCII(tl)
+				}
+			default:
+				for _, tl := range teamTimelines {
+					output.PrintTeamTimelineTable(tl)
+				}
 			}
 		}
 	}
