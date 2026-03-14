@@ -1,0 +1,453 @@
+---
+title: "Why Backend Architects Concentrate: The Convergent Evolution Model"
+published: true
+description: "Chapter 4 of Engineering Impact Score. Backend teams evolve differently — and departed Architects leave souls that must be laid to rest."
+tags: opensource, productivity, git, career
+cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/engineering-impact-framework-diagram-fixed.png
+---
+
+*Departed Architects leave souls in the codebase. Laying them to rest is sacred work.*
+
+## Previously
+
+In [Chapter 3](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-xxxx), I explored a frontend team and discovered two evolution paths for Architects:
+
+- **Inheritance Architect**: Anchor → guards and refines existing structure
+- **Emergent Architect**: High-Gravity Producer → creates new gravitational fields
+
+In frontend, multiple aesthetics of structure can coexist. This means multiple Architect candidates can emerge. **Structural competition** happens.
+
+But when I ran EIS on a Backend team, I saw a completely different landscape.
+
+---
+
+## The Backend Team Portrait
+
+Here's the Backend team's data:
+
+```
+#   Member     Active  Prod  Qual  Robust  Dormant  Design  Grav  Total  Role              Style             State
+1   machuz     ✓       100   66    100     100      100     97    92.4   Architect (1.00)  Builder (1.00)    Active (0.80)
+2   Engineer F —       93    75    36      21       47      76    55.5   Anchor (0.87)     Resilient (0.66)  Former (0.73)
+3   Engineer G ✓       52    78    21      32       12      26    37.3   Anchor (0.96)     Balanced (0.30)   Active (0.80)
+4   Engineer H ✓       49    90    20      25       10      31    35.6   Anchor (0.98)     Balanced (0.30)   Active (0.80)
+```
+
+And the team metrics:
+
+```
+═══ Backend (4 core + 3 risk / 12 total, 13 repos) ═══
+  ★ Elite (1.00)
+
+⚠ Warnings:
+  43% risk ratio — 3 of 7 effective members are Former/Silent/Fragile
+  Top contributor (machuz) accounts for 46% of core production
+  ProdDensity drops to 39 without them
+
+Classification:
+  Structure: Emerging Architecture (0.66)
+  Phase: Legacy-Heavy (0.67)
+  Risk: Talent Drain (0.43)
+```
+
+The role distribution:
+
+```
+Role Distribution:
+  Architect    █░░░░░░░░░  1 (14%)
+  Anchor       ████░░░░░░  3 (43%)
+  —            ████░░░░░░  3 (43%)
+```
+
+**1 Architect. 3 Anchors. 0 Producers.**
+
+This is a completely different structure from frontend.
+
+---
+
+## Why Backend Architects Concentrate
+
+In frontend, multiple Architects can emerge.
+
+In backend, that rarely happens.
+
+The reason is simple.
+
+**Backend has "correct answers" for structure.**
+
+For example, backend systems often have stable patterns like:
+
+- Domain layer
+- Application layer
+- Repository layer
+- Transaction boundaries
+- Event boundaries
+
+These design patterns have reusable structures across many systems.
+
+In other words:
+
+| FE | Multiple aesthetics of structure exist |
+|---|---|
+| BE | Correct answers tend to exist |
+
+Because of this difference, **Backend Architects concentrate rather than proliferate**.
+
+Think of it like a solar system:
+
+```
+Star (Architect)
+    ↓
+  Planets (Anchors)
+    ↓
+  Vacuum (No Producers)
+```
+
+This structure isn't unusual for Backend teams.
+
+---
+
+## The Soul of a Departed Architect
+
+Look at Engineer F:
+
+```
+Engineer F  —  Prod 93 | Qual 75 | Robust 36 | Design 47 | Total 55.5
+Role: Anchor (0.87) | Style: Resilient (0.66) | State: Former (0.73)
+```
+
+Engineer F is a **departed Architect**.
+
+But even with time decay applied, **they're still ranked #2 on the team**.
+
+What does this mean?
+
+**The assets they created are still massively present in the codebase.**
+
+---
+
+### What Former State Means
+
+In EIS, Former state is only detected **when significant assets remain**.
+
+Former state conditions:
+
+- Raw Survival (no time decay) is high
+- Survival (with time decay) is low
+- AND Design or Indispensability is high
+
+This means: **"This person once shaped the structure. They're no longer active. But their code remains."**
+
+You don't become Former just by leaving. **Only those who left assets worth leaving** become Former.
+
+Engineer F meets exactly these conditions.
+
+---
+
+### Still #2 Despite Time Decay
+
+This is the emotional part.
+
+EIS uses **time-decayed Survival**. Code from 2 years ago has a weight of just 0.02.
+
+And yet Engineer F is still #2.
+
+This means **they continue to have massive influence on the codebase even after departure**.
+
+This isn't "the afterimage of someone who was once strong."
+
+**It's real assets that still support the codebase today.**
+
+---
+
+## Laying the Former to Rest
+
+But Former state has another meaning.
+
+**It's something that needs to be laid to rest.**
+
+The team metrics show:
+
+```
+Phase: Legacy-Heavy (0.67)
+Risk: Talent Drain (0.43)
+```
+
+Legacy-Heavy means **strong but historically heavy team**.
+
+Departed members' code remains in large quantities. That's not inherently bad — good design is why it remains.
+
+---
+
+### Good Design Creates Common Sense
+
+Here's an important fact.
+
+**This team hasn't collapsed.**
+
+Several modules that only Engineer F touched still exist. Most of git blame belongs to the Former member.
+
+Yet the team functions normally.
+
+Why?
+
+**Because those modules were built under well-organized design.**
+
+We received verbal handoffs. But complete documentation or knowledge transfer didn't happen. Still, **the design embedded as structure in the code gives later engineers a certain understanding**.
+
+This is what I call "good design creates common sense."
+
+Excellent design doesn't necessarily require complete documentation or knowledge transfer. **The structure of the code itself communicates the module's intent and usage.**
+
+Strong design leaves knowledge in structure, not in people. And that structure creates shared understanding across the team.
+
+---
+
+### Legacy-Heavy Converges
+
+EIS currently handles quantitative metrics like history and code survival rates. "Common sense through design" — why Former members' code still functions healthily — can't be directly observed yet.
+
+If that became possible, we could distinguish between "structurally healthy despite heavy history" and "truly dangerous dependency structures."
+
+But we may not need to measure that far.
+
+**Strong teams gradually replace Former members' code with their own. Legacy-Heavy resolves over time. It converges toward the right state.**
+
+EIS can naturally capture this convergence process through Survival trends and Risk Ratio changes.
+
+---
+
+However, as time passes, **the risk that fewer people understand that code** increases.
+
+That's why laying the Former to rest becomes necessary.
+
+---
+
+### Souls Get Absorbed into Debt
+
+What does laying a Former to rest mean?
+
+It means **being absorbed into Debt Cleanup**.
+
+```
+Team Averages:
+  Debt Cleanup   47.0
+```
+
+Active members touch Former's code. Understand it. Fix it. Rewrite it.
+
+Then Former's blame lines decrease. They're replaced by active members' lines.
+
+This is **laying to rest**.
+
+EIS visualizes this process:
+
+- Former's Survival gradually decreases
+- Active members' Debt Cleanup increases
+- Team's Legacy-Heavy degree decreases
+
+**This is sacred work.**
+
+The departed Architect's soul, through active members' hands, gradually dissolves into the codebase.
+
+---
+
+## The True Meaning of Anchor
+
+This Backend team has 3 Anchors:
+
+- Engineer F (Former)
+- Engineer G
+- Engineer H
+
+Anchor isn't just "quality guardian."
+
+**Anchor means structure-understanding engineer.**
+
+Anchor traits:
+
+- Deep understanding of existing structure
+- Doesn't break structure
+- Guards quality
+- Maintains system integrity
+
+In other words, Anchor is **an engineer who understands structure and produces on top of it**.
+
+And in Backend, this Anchor becomes **the evolution path to Architect**.
+
+---
+
+## Backend Architect Evolution
+
+In frontend:
+
+```
+Producer
+↓
+High-Gravity Producer
+↓
+Emergent Architect
+```
+
+But in Backend, this is more common:
+
+```
+Producer
+↓
+Anchor
+↓
+Inheritance Architect
+```
+
+This is the **Convergent Evolution Model**.
+
+---
+
+### The Reproducing Architect
+
+Backend Architects are characterized by **being able to reproduce structure**.
+
+Say a design like this worked in one codebase:
+
+```
+Domain + Application + Repository
+```
+
+A skilled Backend Architect can **reproduce that structure in a different system**.
+
+So Backend Architect means:
+
+- Someone who creates structure
+- **AND someone who can reproduce structure**
+
+If FE Architects are the type who "create emergent new structures," Backend Architects are the type who "**purify and reproduce structures**."
+
+---
+
+## Producer Vacuum
+
+Another interesting point.
+
+This team has **no Producers**.
+
+```
+Architect  1
+Anchor     3
+Producer   0
+```
+
+Producer means "someone who doesn't fully understand structure but produces on top of it."
+
+Without Producers, team structure looks like:
+
+```
+Architect
+↓
+Anchor
+↓
+Production Vacuum
+```
+
+This is a state I'd call **Producer Vacuum**.
+
+With Producers:
+
+```
+Architect
+↓
+Anchor
+↓
+Producer
+```
+
+A three-layer structure forms.
+
+This is the most stable form for Backend teams.
+
+---
+
+## Architect Bus Factor = 1
+
+EIS raises warnings for this team:
+
+```
+Top contributor (machuz) accounts for 46% of core production
+ProdDensity drops to 39 without them
+```
+
+This means **Architect Bus Factor = 1**.
+
+If the Architect leaves, team productivity density drops significantly.
+
+This is the most typical risk for Backend teams.
+
+In frontend, Emergent Architect candidates can mitigate this problem.
+
+But in Backend, **because correct structural answers exist, Architects tend to concentrate**.
+
+Result: Bus Factor risk increases.
+
+---
+
+## Prescription for This Team
+
+What does this Backend team need?
+
+1. **Fill the Producer layer**: Allow reverse flow from Anchor → Producer. Create an environment where people can produce without fully understanding structure
+2. **Accelerate laying Former to rest**: Active members take over departed Architect's code. Consciously increase Debt Cleanup
+3. **Open the Anchor → Architect path**: Let structure-understanding Anchors participate in design decisions
+
+#2 is especially important.
+
+Legacy-Heavy state isn't "bad." It's proof that **good design remains**.
+
+But understanding it, taking it over, and rewriting when needed — **someone has to do that work**.
+
+That work is visualized as Debt Cleanup.
+
+---
+
+## FE vs BE Evolution Models Compared
+
+Summary:
+
+| | FE | BE |
+|---|---|---|
+| Structure | Multiple aesthetics exist | Correct answers tend to exist |
+| Architect | Can distribute | Tends to concentrate |
+| Evolution Model | Branching (Emergent or Inheritance) | Convergent (Inheritance dominant) |
+| Risk | Structural collision | Bus Factor concentration |
+
+Neither is better.
+
+**The nature of the domain determines the evolution model.**
+
+EIS visualizes these differences and can suggest appropriate prescriptions for each.
+
+---
+
+## What This Discovery Means
+
+Chapter 3 showed frontend's branching evolution model.
+
+Chapter 4 showed backend's convergent evolution model.
+
+And one more concept emerged: **laying the Former to rest**.
+
+Departed Architects' souls remain in the codebase.
+
+Active members take them over, understand them, rewrite them.
+
+**That sacred work is visualized as Debt Cleanup.**
+
+Cold numbers, it turns out, tell the most human stories.
+
+That might be the essence of EIS.
+
+---
+
+**GitHub:** [machuz/engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology. `brew tap machuz/tap && brew install eis` and you're set.
+
+If this was useful:
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
