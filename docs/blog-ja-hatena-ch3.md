@@ -78,7 +78,7 @@ Role: Producer (0.80) | Style: Balanced (0.30)
 
 ---
 
-**Engineer D** — Producer / Balanced / Active（高Gravity）
+**Engineer D** — Producer / Emergent / Active（高Gravity）
 
 このチームで唯一、**強い重力を持っている**。
 
@@ -86,7 +86,7 @@ Role: Producer (0.80) | Style: Balanced (0.30)
 
 ```
 Prod 49 | Qual 66 | Robust 12 | Dormant 44 | Design 5 | Grav 68 | Indisp 100 | Total 39.0
-Role: Producer (0.96) | Style: Balanced (0.30)
+Role: Producer (0.96) | Style: Emergent (0.78)
 ```
 
 しかしDormantが示す通り、**まだ誰も触っていないところが多い**。Engineer Dが先行して生み出したコードに、まだみんなで触れていない。
@@ -98,6 +98,16 @@ Role: Producer (0.96) | Style: Balanced (0.30)
 でも、全く残ってないわけじゃない。ちゃんと残っている。でもそれが、感覚じゃ感じられない。
 
 **この指標は、それをちゃんと拾う。**
+
+そしてv0.11.0で追加された**Style: Emergent**が、まさにこの状態を捉えている。
+
+Emergentとは「まだ形になりきっていないが、生まれつつある」という意味だ。
+
+- 新しい構造を提案して、既存の構造とぶつかっている最中
+- まだチームに揉まれきっていない（Robust低い）が、重力は生み出している
+- 時間が経てばArchitectに進化する前段階
+
+**創発型Architect候補の状態そのものが、Styleとして可視化された。**
 
 ---
 

@@ -90,7 +90,7 @@ They haven't created gravitational code yet — the kind everyone else builds on
 
 ---
 
-**Engineer D** — Producer / Balanced / Active (High Gravity)
+**Engineer D** — Producer / Emergent / Active (High Gravity)
 
 The only one on this team **generating real gravity**.
 
@@ -98,7 +98,7 @@ Engineers who can create gravity are rare. Genuinely rare.
 
 ```
 Prod 49 | Qual 66 | Robust 12 | Dormant 44 | Design 5 | Grav 68 | Indisp 100 | Total 39.0
-Role: Producer (0.96) | Style: Balanced (0.30)
+Role: Producer (0.96) | Style: Emergent (0.78)
 ```
 
 But Dormant is high — **much of their code hasn't been touched by others yet**. They built ahead of the team.
@@ -108,6 +108,16 @@ And Robust is low.
 **This is the number that shows Engineer D's struggle most clearly.** Their gravitational field is getting overwritten. The code they shaped is being reshaped.
 
 But it's not all gone. Some of it remains. You can't feel that intuitively — but the metrics pick it up.
+
+And as of v0.11.0, **Style: Emergent** captures exactly this state.
+
+Emergent means "not yet fully formed, but coming into being."
+
+- Proposing new structure, currently colliding with existing structure
+- Not yet battle-tested by the team (low Robust), but generating gravity
+- The pre-stage before evolving into Architect
+
+**The Emergent Architect candidate is now visible as a Style.**
 
 ---
 
