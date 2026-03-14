@@ -1,5 +1,5 @@
 ---
-title: "Beyond Individual Scores: Measuring Team Health from Git History"
+title: "Git Archaeology #2 — Beyond Individual Scores: Measuring Team Health from Git History"
 published: true
 description: "Chapter 2 of Engineering Impact Score. Team-level analysis — complementarity, risk ratio, productivity density — all from git data you already have."
 tags: opensource, productivity, git, teams

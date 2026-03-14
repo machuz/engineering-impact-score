@@ -308,15 +308,19 @@ For deeper qualitative analysis (actionable insights, team recommendations), you
 claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Scores for my team. Use config.yaml for configuration."
 ```
 
-## Blog Posts
+## Blog Posts — git考古学 / Git Archaeology
 
-**Chapter 1 — Individual Scoring**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/11/153212) — 日本語版フル記事（実測結果付き）
-- [English / dev.to](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c) — English version with images and real-world rankings
+**#1 — Individual Scoring**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/11/153212) — git考古学 #1：履歴だけでエンジニアの「戦闘力」を定量化する
+- [English / dev.to](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c) — Git Archaeology #1: Measuring Engineering Impact from Git History Alone
 
-**Chapter 2 — Team Analysis**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/13/060851) — チーム分析の章
-- [English / dev.to](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f) — Team health metrics and patterns
+**#2 — Team Analysis**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/13/060851) — git考古学 #2：エンジニアの「戦闘力」から、チームの「構造力」へ
+- [English / dev.to](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f) — Git Archaeology #2: Beyond Individual Scores — Measuring Team Health
+
+**#3 — Architect Evolution**
+- [Japanese / はてなブログ](#) — git考古学 #3：Architectには流派がある——Git履歴が暴く進化の分岐モデル
+- [English / dev.to](#) — Git Archaeology #3: Two Paths to Architect — How Engineers Evolve Differently
 
 ## Roadmap
 
