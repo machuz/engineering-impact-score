@@ -77,10 +77,7 @@ This structure isn't unusual for Backend teams.
 
 Look at Engineer F:
 
-```
-Engineer F  —  Prod 93 | Qual 75 | Robust 36 | Design 47 | Total 55.5
-Role: Anchor (0.87) | Style: Resilient (0.66) | State: Former (0.73)
-```
+![Engineer F profile](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-engineer-f.svg)
 
 Engineer F is a **departed Architect**.
 
@@ -134,10 +131,7 @@ But Former state has another meaning.
 
 The team metrics show:
 
-```
-Phase: Legacy-Heavy (0.67)
-Risk: Talent Drain (0.43)
-```
+![Phase and Risk indicators](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-phase-risk.svg)
 
 Legacy-Heavy means **strong but historically heavy team**.
 
@@ -195,10 +189,7 @@ What does laying a Former to rest mean?
 
 It means **being absorbed into Debt Cleanup**.
 
-```
-Team Averages:
-  Debt Cleanup   47.0
-```
+![Team average Debt Cleanup score](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-debt-avg.svg)
 
 Active members touch Former's code. Understand it. Fix it. Rewrite it.
 
@@ -247,23 +238,11 @@ And in Backend, this Anchor becomes **the evolution path to Architect**.
 
 In frontend:
 
-```
-Producer
-↓
-High-Gravity Producer
-↓
-Emergent Architect
-```
+![Frontend evolution path: Producer to Emergent Architect](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-diagram-fe-evolution.svg)
 
 But in Backend, this is more common:
 
-```
-Producer
-↓
-Anchor
-↓
-Inheritance Architect
-```
+![Backend evolution path: Producer to Inheritance Architect](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-diagram-be-evolution.svg)
 
 This is the **Convergent Evolution Model**.
 
@@ -275,9 +254,7 @@ Backend Architects are characterized by **being able to reproduce structure**.
 
 Say a design like this worked in one codebase:
 
-```
-Domain + Application + UseCase
-```
+![Design pattern: Domain + Application + UseCase](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-design-pattern.svg)
 
 A skilled Backend Architect can **reproduce that structure in a different system**.
 
@@ -296,35 +273,19 @@ Another interesting point.
 
 This team has **no Producers**.
 
-```
-Architect  1
-Anchor     3
-Producer   0
-```
+![Role distribution: Architect 1, Anchor 3, Producer 0](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-role-count.svg)
 
 Producer means "someone who doesn't fully understand structure but produces on top of it."
 
 Without Producers, team structure looks like:
 
-```
-Architect
-↓
-Anchor
-↓
-Production Vacuum
-```
+![Producer vacuum diagram](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-diagram-producer-vacuum.svg)
 
 This is a state I'd call **Producer Vacuum**.
 
 With Producers:
 
-```
-Architect
-↓
-Anchor
-↓
-Producer
-```
+![Three-layer structure: Architect, Anchor, Producer](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-diagram-three-layer.svg)
 
 A three-layer structure forms.
 
@@ -336,10 +297,7 @@ This is the most stable form for Backend teams.
 
 EIS raises warnings for this team:
 
-```
-Top contributor (machuz) accounts for 46% of core production
-ProdDensity drops to 39 without them
-```
+![Bus factor warning](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-bus-factor.svg)
 
 This means **Architect Bus Factor = 1**.
 
@@ -418,9 +376,7 @@ Engineer H is doing really good work. When I invited them to join this team, the
 
 And even more honestly, **what I really want to brag about is the team**.
 
-```
-★ Elite (1.00)
-```
+![Elite team classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-elite.svg)
 
 That this team gets an Elite classification. That it functions despite carrying Legacy-Heavy weight. That it's moving forward while laying departed Architects' assets to rest.
 

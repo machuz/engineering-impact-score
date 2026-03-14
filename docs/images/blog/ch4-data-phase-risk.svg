@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="84" viewBox="0 0 380 84">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+    </style>
+  </defs>
+
+  <!-- Card background -->
+  <rect width="380" height="84" rx="8" fill="#1d2021"/>
+
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="4" height="84" rx="2" fill="#d3869b"/>
+
+  <!-- Category label -->
+  <text x="352" y="18" text-anchor="end" fill="#504945" font-size="10">Classification</text>
+
+  <text y="28" font-size="12"><tspan x="24" fill="#928374">Phase: </tspan><tspan x="74.39999999999999" fill="#fabd2f">Legacy-Heavy</tspan><tspan x="160.79999999999998" fill="#928374"> (0.67)</tspan></text>
+  <text y="46" font-size="12"><tspan x="24" fill="#928374">Risk:  </tspan><tspan x="74.39999999999999" fill="#fb4934">Talent Drain</tspan><tspan x="160.79999999999998" fill="#928374"> (0.43)</tspan></text>
+</svg>

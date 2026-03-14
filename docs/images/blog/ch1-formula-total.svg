@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="224" viewBox="0 0 480 224">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+    </style>
+  </defs>
+
+  <!-- Card background -->
+  <rect width="480" height="224" rx="8" fill="#1d2021"/>
+
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="4" height="224" rx="2" fill="#8ec07c"/>
+
+  <!-- Category label -->
+  <text x="452" y="18" text-anchor="end" fill="#504945" font-size="10">Formula</text>
+
+  <text y="28" font-size="14"><tspan x="24" fill="#83a598">score</tspan><tspan x="66.0" fill="#928374"> =</tspan></text>
+  <text y="50" font-size="14"><tspan x="24" fill="#928374">  </tspan><tspan x="40.8" fill="#ebdbb2">production</tspan><tspan x="124.8" fill="#928374"> × </tspan><tspan x="150.0" fill="#d3869b">0.15</tspan></text>
+  <text y="72" font-size="14"><tspan x="24" fill="#928374">  + </tspan><tspan x="57.6" fill="#ebdbb2">quality</tspan><tspan x="116.4" fill="#928374"> × </tspan><tspan x="141.60000000000002" fill="#d3869b">0.10</tspan></text>
+  <text y="94" font-size="14"><tspan x="24" fill="#928374">  + </tspan><tspan x="57.6" fill="#ebdbb2">survival</tspan><tspan x="124.80000000000001" fill="#928374"> × </tspan><tspan x="150.0" fill="#d3869b">0.25</tspan></text>
+  <text y="116" font-size="14"><tspan x="24" fill="#928374">  + </tspan><tspan x="57.6" fill="#ebdbb2">design</tspan><tspan x="108.0" fill="#928374"> × </tspan><tspan x="133.2" fill="#d3869b">0.20</tspan></text>
+  <text y="138" font-size="14"><tspan x="24" fill="#928374">  + </tspan><tspan x="57.6" fill="#ebdbb2">breadth</tspan><tspan x="116.4" fill="#928374"> × </tspan><tspan x="141.60000000000002" fill="#d3869b">0.10</tspan></text>
+  <text y="160" font-size="14"><tspan x="24" fill="#928374">  + </tspan><tspan x="57.6" fill="#ebdbb2">debt_cleanup</tspan><tspan x="158.4" fill="#928374"> × </tspan><tspan x="183.60000000000002" fill="#d3869b">0.15</tspan></text>
+  <text y="182" font-size="14"><tspan x="24" fill="#928374">  + </tspan><tspan x="57.6" fill="#ebdbb2">indispensability</tspan><tspan x="192.0" fill="#928374"> × </tspan><tspan x="217.2" fill="#d3869b">0.05</tspan></text>
+</svg>

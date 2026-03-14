@@ -105,17 +105,13 @@ EISはエンジニアの能力だけで決まるのではなく、**コードベ
 
 ### 3. `--per-repo` でクロスリポ分析する
 
-```bash
-eis analyze --recursive --per-repo ~/workspace
-```
+![リポ別分析](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-bash-per-repo.svg)
 
 `--per-repo` フラグを付けると、ドメイン全体の集約スコアに加えて、リポジトリごとの独立したスコアリング結果が表示される。あるリポではProducerだが、別のリポではArchitectになっている——そういうパターンは、そのエンジニアの適応力と潜在能力を示している。
 
 ### 4. タイムラインで「重力場の変化」を見る
 
-```bash
-eis timeline --span 6m --periods 0 --recursive ~/workspace
-```
+![タイムラインコマンド](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-bash-timeline.svg)
 
 コードベースの構造は固定ではない。チームメンバーの入退場、リファクタリング、新規機能の追加——これらによって重力場は変化する。タイムラインで見ると、「構造が弱まった瞬間にスコアが上がるエンジニア」と「構造の強さに関わらず安定してスコアを維持するエンジニア」が区別できる。
 

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="66" viewBox="0 0 540 66">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+    </style>
+  </defs>
+
+  <!-- Card background -->
+  <rect width="540" height="66" rx="8" fill="#1d2021"/>
+
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="4" height="66" rx="2" fill="#fe8019"/>
+
+  <!-- Category label -->
+  <text x="512" y="18" text-anchor="end" fill="#504945" font-size="10">Bash</text>
+
+  <text y="28" font-size="12"><tspan x="24" fill="#b8bb26">eis</tspan><tspan x="45.599999999999994" fill="#ebdbb2"> timeline --author alice --recursive ~/workspace</tspan></text>
+</svg>

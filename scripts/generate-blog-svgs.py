@@ -198,6 +198,107 @@ def state_color(state):
     return 'fg'
 
 
+# ─── Code Card SVG (non-terminal style) ───
+
+CARD_FONT_SIZE = 14
+CARD_LINE_HEIGHT = 22
+CARD_CODE_FONT_SIZE = 12
+CARD_CODE_LINE_HEIGHT = 18
+CARD_PADDING_LEFT = 24
+CARD_PADDING_TOP = 28
+CARD_PADDING_BOTTOM = 20
+CARD_ACCENT_WIDTH = 4
+
+# Accent colors by type
+ACCENT_COLORS = {
+    'formula': '#8ec07c',   # aqua
+    'python': '#b8bb26',    # green
+    'yaml': '#fabd2f',      # yellow
+    'bash': '#fe8019',      # orange
+    'diagram': '#83a598',   # blue
+    'data': '#d3869b',      # purple
+}
+
+
+class CodeCardSVG:
+    """Builder for Gruvbox code card SVG (no terminal chrome)."""
+
+    def __init__(self, card_type='formula', width=720, label=None):
+        self.card_type = card_type
+        self.width = width
+        self.label = label or card_type.capitalize()
+        self.accent = ACCENT_COLORS.get(card_type, COLORS['aqua'])
+        self.lines = []
+        self.y = CARD_PADDING_TOP
+        self._font_size = CARD_FONT_SIZE if card_type == 'formula' else CARD_CODE_FONT_SIZE
+        self._line_height = CARD_LINE_HEIGHT if card_type == 'formula' else CARD_CODE_LINE_HEIGHT
+
+    def add_line(self, text, color='fg', bold=False):
+        weight = ' font-weight="700"' if bold else ''
+        self.lines.append(
+            f'  <text x="{CARD_PADDING_LEFT}" y="{self.y}" fill="{COLORS[color]}" '
+            f'font-size="{self._font_size}"{weight}>{escape(text)}</text>'
+        )
+        self.y += self._line_height
+
+    def add_spans(self, spans):
+        """Add a line with mixed colors: [(text, color, bold?), ...]"""
+        x = CARD_PADDING_LEFT
+        parts = []
+        cw = self._font_size * 0.6  # char width approx
+        for span in spans:
+            text, color = span[0], span[1]
+            bold = span[2] if len(span) > 2 else False
+            weight = ' font-weight="700"' if bold else ''
+            parts.append(
+                f'<tspan x="{x}" fill="{COLORS[color]}"{weight}>{escape(text)}</tspan>'
+            )
+            x += len(text) * cw
+        self.lines.append(f'  <text y="{self.y}" font-size="{self._font_size}">{"".join(parts)}</text>')
+        self.y += self._line_height
+
+    def add_blank(self, count=1):
+        self.y += self._line_height * count
+
+    def add_separator(self):
+        line_y = self.y - self._line_height + 5
+        self.lines.append(
+            f'  <line x1="{CARD_PADDING_LEFT}" y1="{line_y}" x2="{self.width - 20}" y2="{line_y}" '
+            f'stroke="{COLORS["separator"]}" stroke-width="1"/>'
+        )
+        self.y += 4
+
+    def render(self):
+        height = self.y + CARD_PADDING_BOTTOM
+        svg_parts = [
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.width}" height="{height}" viewBox="0 0 {self.width} {height}">',
+            '  <defs>',
+            "    <style>",
+            "      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');",
+            "      text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }",
+            '    </style>',
+            '  </defs>',
+            '',
+            f'  <!-- Card background -->',
+            f'  <rect width="{self.width}" height="{height}" rx="8" fill="{COLORS["bg_dark"]}"/>',
+            '',
+            f'  <!-- Accent bar -->',
+            f'  <rect x="0" y="0" width="{CARD_ACCENT_WIDTH}" height="{height}" rx="2" fill="{self.accent}"/>',
+            '',
+            f'  <!-- Category label -->',
+            f'  <text x="{self.width - 28}" y="18" text-anchor="end" fill="{COLORS["separator"]}" font-size="10">{escape(self.label)}</text>',
+            '',
+        ]
+        svg_parts.extend(self.lines)
+        svg_parts.append('</svg>')
+        return '\n'.join(svg_parts)
+
+    def save(self, path):
+        with open(path, 'w') as f:
+            f.write(self.render())
+        print(f"  Generated: {path}")
+
+
 # ─── IMAGE OUTPUT DIRECTORY ───
 IMG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'docs', 'images', 'blog')
 os.makedirs(IMG_DIR, exist_ok=True)
@@ -1033,6 +1134,650 @@ def cover_ch8_visual(svg):
 
 
 # ════════════════════════════════════════════════════════════
+# CODE CARD GENERATORS
+# ════════════════════════════════════════════════════════════
+
+
+# ── Chapter 1 Code Cards ──
+
+def ch1_formula_production():
+    c = CodeCardSVG('formula', width=720)
+    c.add_spans([
+        ('production_score', 'blue'), (' = ', 'fg_dim'), ('min', 'yellow'), ('(', 'fg_dim'),
+        ('changes_per_day', 'fg'), (' / ', 'fg_dim'), ('production_daily_ref', 'fg'),
+        (' × ', 'fg_dim'), ('100', 'purple'), (', ', 'fg_dim'), ('100', 'purple'), (')', 'fg_dim'),
+    ])
+    c.save(os.path.join(IMG_DIR, 'ch1-formula-production.svg'))
+
+
+def ch1_formula_quality():
+    c = CodeCardSVG('formula', width=560)
+    c.add_spans([
+        ('quality', 'blue'), (' = ', 'fg_dim'), ('100', 'purple'), (' - ', 'fg_dim'), ('fix_ratio', 'fg'),
+    ])
+    c.add_spans([
+        ('fix_ratio', 'blue'), (' = ', 'fg_dim'), ('fix_commits', 'fg'), (' / ', 'fg_dim'),
+        ('total_commits', 'fg'), (' × ', 'fg_dim'), ('100', 'purple'),
+    ])
+    c.save(os.path.join(IMG_DIR, 'ch1-formula-quality.svg'))
+
+
+def ch1_code_survival():
+    c = CodeCardSVG('python', width=620)
+    c.add_spans([('import', 'red'), (' math', 'fg')])
+    c.add_spans([('from', 'red'), (' collections ', 'fg'), ('import', 'red'), (' defaultdict', 'fg')])
+    c.add_blank()
+    c.add_spans([('tau', 'blue'), (' = ', 'fg_dim'), ('180', 'purple'), ('  ', 'fg'), ('# days', 'fg_dim')])
+    c.add_blank()
+    c.add_spans([('weighted_survival', 'blue'), (' = ', 'fg_dim'), ('defaultdict', 'yellow'), ('(', 'fg_dim'), ('float', 'aqua'), (')', 'fg_dim')])
+    c.add_spans([('for', 'red'), (' line ', 'fg'), ('in', 'red'), (' blame_lines:', 'fg')])
+    c.add_spans([('    days_alive', 'fg'), (' = ', 'fg_dim'), ('(now - line.committer_time).days', 'fg')])
+    c.add_spans([('    weight', 'blue'), (' = ', 'fg_dim'), ('math.exp', 'yellow'), ('(', 'fg_dim'), ('-days_alive / tau', 'fg'), (')', 'fg_dim')])
+    c.add_spans([('    weighted_survival', 'fg'), ('[line.author]', 'fg'), (' += ', 'fg_dim'), ('weight', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch1-code-survival.svg'))
+
+
+def ch1_code_debt():
+    c = CodeCardSVG('python', width=620)
+    c.add_spans([('for', 'red'), (' fix_commit ', 'fg'), ('in', 'red'), (' fix_commits:', 'fg')])
+    c.add_spans([('    fixer', 'blue'), (' = ', 'fg_dim'), ('fix_commit.author', 'fg')])
+    c.add_spans([('    ', 'fg'), ('for', 'red'), (' changed_line ', 'fg'), ('in', 'red'), (' fix_commit.changed_lines:', 'fg')])
+    c.add_spans([('        original_author', 'blue'), (' = ', 'fg_dim'), ('git_blame', 'yellow'), ('(file, at=parent_commit)', 'fg')])
+    c.add_spans([('        ', 'fg'), ('if', 'red'), (' original_author != fixer:', 'fg')])
+    c.add_spans([('            debt_generated', 'fg'), ('[original_author]', 'fg'), (' += ', 'fg_dim'), ('1', 'purple')])
+    c.add_spans([('            debt_cleaned', 'fg'), ('[fixer]', 'fg'), (' += ', 'fg_dim'), ('1', 'purple')])
+    c.add_blank()
+    c.add_spans([('debt_ratio', 'blue'), (' = ', 'fg_dim'), ('debt_cleaned', 'fg'), (' / ', 'fg_dim'), ('max', 'yellow'), ('(debt_generated, ', 'fg'), ('1', 'purple'), (')', 'fg_dim')])
+    c.add_line('# > 1 = Cleaner  |  < 1 = Debt creator', color='fg_dim')
+    c.save(os.path.join(IMG_DIR, 'ch1-code-debt.svg'))
+
+
+def ch1_code_indispensability():
+    c = CodeCardSVG('python', width=640)
+    c.add_spans([('for', 'red'), (' module ', 'fg'), ('in', 'red'), (' all_modules:', 'fg')])
+    c.add_spans([('    top_share', 'blue'), (' = ', 'fg_dim'), ('max', 'yellow'), ('(blame_distribution[module].values())', 'fg'), (' / ', 'fg_dim'), ('total', 'fg')])
+    c.add_spans([('    ', 'fg'), ('if', 'red'), (' top_share >= ', 'fg'), ('0.8', 'purple'), (':', 'fg')])
+    c.add_spans([('        critical_modules', 'fg'), ('[top_author].append(module)', 'fg')])
+    c.add_spans([('    ', 'fg'), ('elif', 'red'), (' top_share >= ', 'fg'), ('0.6', 'purple'), (':', 'fg')])
+    c.add_spans([('        high_risk_modules', 'fg'), ('[top_author].append(module)', 'fg')])
+    c.add_blank()
+    c.add_spans([
+        ('indispensability', 'blue'), (' = ', 'fg_dim'),
+        ('critical_count', 'fg'), (' × ', 'fg_dim'), ('1.0', 'purple'),
+        (' + ', 'fg_dim'), ('high_count', 'fg'), (' × ', 'fg_dim'), ('0.5', 'purple'),
+    ])
+    c.save(os.path.join(IMG_DIR, 'ch1-code-indispensability.svg'))
+
+
+def ch1_formula_total():
+    c = CodeCardSVG('formula', width=480)
+    c.add_spans([('score', 'blue'), (' =', 'fg_dim')])
+    for name, weight in [('production', '0.15'), ('quality', '0.10'), ('survival', '0.25'),
+                          ('design', '0.20'), ('breadth', '0.10'), ('debt_cleanup', '0.15'),
+                          ('indispensability', '0.05')]:
+        prefix = '  ' if name == 'production' else '  + '
+        c.add_spans([(prefix, 'fg_dim'), (name, 'fg'), (' × ', 'fg_dim'), (weight, 'purple')])
+    c.save(os.path.join(IMG_DIR, 'ch1-formula-total.svg'))
+
+
+def ch1_formula_gravity():
+    c = CodeCardSVG('formula', width=720)
+    c.add_spans([
+        ('Gravity', 'blue'), (' = ', 'fg_dim'),
+        ('Indispensability', 'fg'), (' × ', 'fg_dim'), ('0.40', 'purple'),
+        (' + ', 'fg_dim'), ('Breadth', 'fg'), (' × ', 'fg_dim'), ('0.30', 'purple'),
+        (' + ', 'fg_dim'), ('Design', 'fg'), (' × ', 'fg_dim'), ('0.30', 'purple'),
+    ])
+    c.save(os.path.join(IMG_DIR, 'ch1-formula-gravity.svg'))
+
+
+def ch1_formula_gravity_health():
+    c = CodeCardSVG('formula', width=660, label='Formula')
+    c.add_spans([
+        ('health', 'blue'), (' = ', 'fg_dim'),
+        ('Quality', 'fg'), (' × ', 'fg_dim'), ('0.6', 'purple'),
+        (' + ', 'fg_dim'), ('RobustSurvival', 'fg'), (' × ', 'fg_dim'), ('0.4', 'purple'),
+    ])
+    c.add_blank()
+    c.add_spans([('Gravity < 20', 'fg'), ('  → ', 'fg_dim'), ('dim gray', 'fg_dim'), (' (low influence)', 'fg_dim')])
+    c.add_spans([('health ≥ 60', 'fg'), ('  → ', 'fg_dim'), ('green', 'green'), (' (healthy gravity)', 'fg_dim')])
+    c.add_spans([('health ≥ 40', 'fg'), ('  → ', 'fg_dim'), ('yellow', 'yellow'), (' (moderate)', 'fg_dim')])
+    c.add_spans([('health < 40', 'fg'), ('  → ', 'fg_dim'), ('red', 'red'), (' (fragile gravity)', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch1-formula-gravity-health.svg'))
+
+
+def ch1_bash_install():
+    c = CodeCardSVG('bash', width=420)
+    c.add_spans([('brew', 'green'), (' tap machuz/tap', 'fg')])
+    c.add_spans([('brew', 'green'), (' install eis', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch1-bash-install.svg'))
+
+
+def ch1_bash_usage():
+    c = CodeCardSVG('bash', width=580)
+    c.add_line('# Analyze current repo', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' analyze .', 'fg')])
+    c.add_blank()
+    c.add_line('# Auto-discover repos under a directory', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' analyze --recursive ~/projects', 'fg')])
+    c.add_blank()
+    c.add_line('# With config', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' analyze --config eis.yaml --recursive ~/projects', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch1-bash-usage.svg'))
+
+
+def ch1_bash_gitlog():
+    """JA-only: git log command."""
+    c = CodeCardSVG('bash', width=620)
+    c.add_spans([('git', 'green'), (' log --all --no-merges --format=', 'fg'), ('"COMMIT:%an||%s"', 'yellow'), (' --numstat', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch1-bash-gitlog.svg'))
+
+
+def ch1_code_fixdetect():
+    """JA-only: fix detection regex."""
+    c = CodeCardSVG('python', width=720)
+    c.add_spans([('is_fix', 'blue'), (' = ', 'fg_dim'), ('re.match', 'yellow'), ('(', 'fg_dim'),
+                 ('r"^(fix|revert|hotfix)"', 'green'), (', subject.lower())', 'fg')])
+    c.add_spans([('        ', 'fg'), ('or', 'red'), (' ', 'fg'), ('"修正"', 'green'), (' ', 'fg'), ('in', 'red'), (' subject', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch1-code-fixdetect.svg'))
+
+
+def ch1_yaml_config():
+    """JA-only: eis.yaml example."""
+    c = CodeCardSVG('yaml', width=500)
+    c.add_spans([('aliases', 'blue'), (':', 'fg_dim')])
+    c.add_spans([('  ', 'fg'), ('"John Smith"', 'green'), (': ', 'fg_dim'), ('"john"', 'green')])
+    c.add_spans([('  ', 'fg'), ('"J. Smith"', 'green'), (': ', 'fg_dim'), ('"john"', 'green')])
+    c.add_spans([('exclude_authors', 'blue'), (':', 'fg_dim')])
+    c.add_spans([('  - ', 'fg_dim'), ('"dependabot[bot]"', 'green')])
+    c.add_spans([('domains', 'blue'), (':', 'fg_dim')])
+    c.add_spans([('  ', 'fg'), ('backend', 'aqua'), (': ', 'fg_dim'), ('[', 'fg_dim'), ('"api-*"', 'green'), (', ', 'fg_dim'), ('"worker"', 'green'), (']', 'fg_dim')])
+    c.add_spans([('  ', 'fg'), ('frontend', 'aqua'), (': ', 'fg_dim'), ('[', 'fg_dim'), ('"web-*"', 'green'), (', ', 'fg_dim'), ('"app"', 'green'), (']', 'fg_dim')])
+    c.add_spans([('  ', 'fg'), ('firmware', 'aqua'), (': ', 'fg_dim'), ('[', 'fg_dim'), ('"raden"', 'green'), (']', 'fg_dim')])
+    c.add_spans([('exclude_repos', 'blue'), (': ', 'fg_dim'), ('[', 'fg_dim'), ('"deprecated-service"', 'green'), (']', 'fg_dim')])
+    c.add_spans([('production_daily_ref', 'blue'), (': ', 'fg_dim'), ('1000', 'purple')])
+    c.add_spans([('tau', 'blue'), (': ', 'fg_dim'), ('180', 'purple')])
+    c.save(os.path.join(IMG_DIR, 'ch1-yaml-config.svg'))
+
+
+# ── Chapter 2 Code Cards ──
+
+def ch2_bash_team():
+    c = CodeCardSVG('bash', width=580)
+    c.add_line('# Simplest: domain = team', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' team --recursive ~/workspace', 'fg')])
+    c.add_blank()
+    c.add_line('# With explicit team definitions', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' team --config eis.yaml --recursive ~/workspace', 'fg')])
+    c.add_blank()
+    c.add_line('# JSON output', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' team --format json --recursive ~/workspace', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch2-bash-team.svg'))
+
+
+def ch2_yaml_teams():
+    c = CodeCardSVG('yaml', width=440)
+    c.add_line('# eis.yaml (optional)', color='fg_dim')
+    c.add_spans([('teams', 'blue'), (':', 'fg_dim')])
+    c.add_spans([('  ', 'fg'), ('backend-core', 'aqua'), (':', 'fg_dim')])
+    c.add_spans([('    ', 'fg'), ('domain', 'blue'), (': ', 'fg_dim'), ('Backend', 'green')])
+    c.add_spans([('    ', 'fg'), ('members', 'blue'), (': ', 'fg_dim'), ('[alice, bob, charlie]', 'fg')])
+    c.add_spans([('  ', 'fg'), ('frontend-app', 'aqua'), (':', 'fg_dim')])
+    c.add_spans([('    ', 'fg'), ('domain', 'blue'), (': ', 'fg_dim'), ('Frontend', 'green')])
+    c.add_spans([('    ', 'fg'), ('members', 'blue'), (': ', 'fg_dim'), ('[dave, eve]', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch2-yaml-teams.svg'))
+
+
+def ch2_formula_complementarity():
+    c = CodeCardSVG('formula', width=580)
+    c.add_spans([('coverage', 'blue'), (' = ', 'fg_dim'), ('uniqueRoles', 'fg'), (' / ', 'fg_dim'), ('5', 'purple')])
+    c.add_spans([('bonus', 'blue'), (' = ', 'fg_dim'), ('Architect', 'purple'), ('(+10)', 'fg_dim'),
+                 (' + ', 'fg_dim'), ('Anchor', 'blue'), ('(+5)', 'fg_dim'),
+                 (' + ', 'fg_dim'), ('Cleaner', 'aqua'), ('(+5)', 'fg_dim')])
+    c.add_spans([('score', 'blue'), (' = ', 'fg_dim'), ('coverage', 'fg'), (' × ', 'fg_dim'), ('80', 'purple'),
+                 (' + ', 'fg_dim'), ('bonus', 'fg'), ('  ', 'fg'), ('(clamped 0-100)', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch2-formula-complementarity.svg'))
+
+
+def ch2_formula_growth():
+    c = CodeCardSVG('formula', width=580)
+    c.add_spans([('score', 'blue'), (' = ', 'fg_dim'), ('growingRatio', 'fg'), (' × ', 'fg_dim'), ('60', 'purple'),
+                 (' + ', 'fg_dim'), ('Builder', 'green'), ('(+20)', 'fg_dim'),
+                 (' + ', 'fg_dim'), ('Cleaner', 'aqua'), ('(+20)', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch2-formula-growth.svg'))
+
+
+def ch2_formula_sustainability():
+    c = CodeCardSVG('formula', width=620)
+    c.add_spans([('riskRatio', 'blue'), (' = ', 'fg_dim'), ('(Former + Silent + Fragile)', 'fg'), (' / ', 'fg_dim'), ('memberCount', 'fg')])
+    c.add_spans([('score', 'blue'), (' = ', 'fg_dim'), ('(1 - riskRatio)', 'fg'), (' × ', 'fg_dim'), ('80', 'purple'),
+                 (' + ', 'fg_dim'), ('Architect', 'purple'), ('(+20)', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch2-formula-sustainability.svg'))
+
+
+def ch2_formula_productivity():
+    c = CodeCardSVG('formula', width=520)
+    c.add_spans([('base', 'blue'), (' = ', 'fg_dim'), ('avg', 'yellow'), ('(members.Production)', 'fg')])
+    c.add_spans([('bonus:', 'fg_dim')])
+    c.add_spans([('  ≤3 members', 'fg'), (' && ', 'fg_dim'), ('base ≥ 50', 'fg'), (' → ', 'fg_dim'), ('×1.2', 'green')])
+    c.add_spans([('  ≤5 members', 'fg'), (' && ', 'fg_dim'), ('base ≥ 50', 'fg'), (' → ', 'fg_dim'), ('×1.1', 'green')])
+    c.save(os.path.join(IMG_DIR, 'ch2-formula-productivity.svg'))
+
+
+def ch2_formula_quality_consistency():
+    c = CodeCardSVG('formula', width=620)
+    c.add_spans([
+        ('score', 'blue'), (' = ', 'fg_dim'),
+        ('avgQuality', 'fg'), (' × ', 'fg_dim'), ('0.6', 'purple'),
+        (' + ', 'fg_dim'), ('(100 - stdev × 2)', 'fg'), (' × ', 'fg_dim'), ('0.4', 'purple'),
+    ])
+    c.save(os.path.join(IMG_DIR, 'ch2-formula-quality-consistency.svg'))
+
+
+def ch2_formula_weight():
+    c = CodeCardSVG('formula', width=520)
+    c.add_spans([
+        ('weight', 'blue'), (' = ', 'fg_dim'),
+        ('member.Total', 'fg'), (' / ', 'fg_dim'), ('100', 'purple'),
+        ('  ', 'fg'), ('(minimum 0.1)', 'fg_dim'),
+    ])
+    c.save(os.path.join(IMG_DIR, 'ch2-formula-weight.svg'))
+
+
+def ch2_diagram_growth_model():
+    c = CodeCardSVG('diagram', width=620, label='Model')
+    c.add_spans([('  Design Layer        ', 'fg'), ('Architect', 'purple', True)])
+    c.add_spans([('                      ', 'fg'), ('↑ Design decisions embedded in code', 'fg_dim')])
+    c.add_line('  ──────────────────────────────────', color='separator')
+    c.add_spans([('  Stabilization Layer ', 'fg'), ('Anchor', 'blue', True), (' / ', 'fg_dim'), ('Cleaner', 'aqua', True)])
+    c.add_spans([('                      ', 'fg'), ('↑ Quality rises, code survives', 'fg_dim')])
+    c.add_line('  ──────────────────────────────────', color='separator')
+    c.add_spans([('  Implementation Layer ', 'fg'), ('Producer', 'yellow', True), (' / ', 'fg_dim'), ('Growing', 'blue', True)])
+    c.add_spans([('                       ', 'fg'), ('Write code. Ship it.', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch2-diagram-growth-model.svg'))
+
+
+def ch2_diagram_decline():
+    c = CodeCardSVG('diagram', width=680, label='Model')
+    c.add_spans([('  Design Layer        ', 'fg'), ('→ ', 'fg_dim'), ('Former', 'fg_dim'), (' (design knowledge leaves)', 'fg_dim')])
+    c.add_spans([('  Stabilization Layer ', 'fg'), ('→ ', 'fg_dim'), ('Silent', 'fg_dim'), (', ', 'fg_dim'), ('Fragile', 'red')])
+    c.add_spans([('  Implementation Layer ', 'fg'), ('→ ', 'fg_dim'), ('Silent', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch2-diagram-decline.svg'))
+
+
+def ch2_bash_install_team():
+    c = CodeCardSVG('bash', width=620)
+    c.add_line('# Install', color='fg_dim')
+    c.add_spans([('brew', 'green'), (' tap machuz/tap && ', 'fg'), ('brew', 'green'), (' install eis', 'fg')])
+    c.add_blank()
+    c.add_line('# Team analysis', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' team --recursive ~/workspace', 'fg')])
+    c.add_blank()
+    c.add_line('# JSON → paste into AI', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' team --format json --recursive ~/workspace | pbcopy', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch2-bash-install-team.svg'))
+
+
+def ch2_formula_debt_balance():
+    """JA-only: Debt Balance formula."""
+    c = CodeCardSVG('formula', width=520)
+    c.add_spans([
+        ('score', 'blue'), (' = ', 'fg_dim'), ('avg', 'yellow'), ('(members.DebtCleanup)', 'fg'),
+        ('  ', 'fg'), ('// 0-100', 'fg_dim'),
+    ])
+    c.save(os.path.join(IMG_DIR, 'ch2-formula-debt-balance.svg'))
+
+
+def ch2_formula_risk_ratio():
+    """JA-only: Risk Ratio formula."""
+    c = CodeCardSVG('formula', width=720)
+    c.add_spans([
+        ('riskRatio', 'blue'), (' = ', 'fg_dim'),
+        ('(Former + Silent + Fragile)', 'fg'), (' / ', 'fg_dim'),
+        ('memberCount', 'fg'), (' × ', 'fg_dim'), ('100', 'purple'),
+        ('  ', 'fg'), ('(%)', 'fg_dim'),
+    ])
+    c.save(os.path.join(IMG_DIR, 'ch2-formula-risk-ratio.svg'))
+
+
+# ── Chapter 3 Code Cards ──
+
+def ch3_gravity_calc_d():
+    c = CodeCardSVG('formula', width=560)
+    c.add_spans([('100', 'purple'), (' × ', 'fg_dim'), ('0.4', 'purple'), (' + ', 'fg_dim'),
+                 ('88', 'purple'), (' × ', 'fg_dim'), ('0.3', 'purple'), (' + ', 'fg_dim'),
+                 ('5', 'fg_dim'), (' × ', 'fg_dim'), ('0.3', 'purple'), (' = ', 'fg_dim'), ('68', 'yellow', True)])
+    c.save(os.path.join(IMG_DIR, 'ch3-gravity-calc-d.svg'))
+
+
+def ch3_gravity_calc_a():
+    c = CodeCardSVG('formula', width=560)
+    c.add_spans([('60', 'yellow'), (' × ', 'fg_dim'), ('0.4', 'purple'), (' + ', 'fg_dim'),
+                 ('100', 'purple'), (' × ', 'fg_dim'), ('0.3', 'purple'), (' + ', 'fg_dim'),
+                 ('100', 'purple'), (' × ', 'fg_dim'), ('0.3', 'purple'), (' = ', 'fg_dim'), ('84', 'purple', True)])
+    c.save(os.path.join(IMG_DIR, 'ch3-gravity-calc-a.svg'))
+
+
+def ch3_data_warning():
+    c = CodeCardSVG('data', width=780, label='Warning')
+    c.add_spans([('⚠ ', 'yellow'), ('Warnings:', 'yellow', True)])
+    c.add_spans([('  Fragile gravity — ', 'fg'), ('Engineer D', 'yellow'), (' (Grav 68)', 'fg'),
+                 (' has high influence but low robust survival (', 'fg_dim'), ('12', 'red'), (')', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch3-data-warning.svg'))
+
+
+def ch3_data_team_metrics():
+    c = CodeCardSVG('data', width=440, label='Classification')
+    c.add_spans([('Structure: ', 'fg_dim'), ('Architectural Team', 'purple'), (' (0.34)', 'fg_dim')])
+    c.add_spans([('Culture:   ', 'fg_dim'), ('Builder', 'green'), (' (0.40)', 'fg_dim')])
+    c.add_spans([('Phase:     ', 'fg_dim'), ('Mature', 'green'), (' (1.00)', 'fg_dim')])
+    c.add_spans([('Risk:      ', 'fg_dim'), ('Healthy', 'green'), (' (0.30)', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch3-data-team-metrics.svg'))
+
+
+def ch3_data_pattern():
+    c = CodeCardSVG('data', width=480, label='Pattern')
+    c.add_spans([('Producer', 'yellow'), (' + ', 'fg_dim'), ('High Gravity', 'purple'), (' + ', 'fg_dim'), ('Low Robust', 'red')])
+    c.save(os.path.join(IMG_DIR, 'ch3-data-pattern.svg'))
+
+
+def ch3_data_anchor_mass():
+    c = CodeCardSVG('data', width=240, label='Pattern')
+    c.add_spans([('Anchor', 'blue'), (' + ', 'fg_dim'), ('Mass', 'yellow')])
+    c.save(os.path.join(IMG_DIR, 'ch3-data-anchor-mass.svg'))
+
+
+def ch3_diagram_be_evolution():
+    c = CodeCardSVG('diagram', width=360, label='Evolution')
+    c.add_spans([('Producer', 'yellow')])
+    c.add_line('↓', color='fg_dim')
+    c.add_spans([('Anchor', 'blue')])
+    c.add_line('↓', color='fg_dim')
+    c.add_spans([('Inheritance Architect', 'purple')])
+    c.save(os.path.join(IMG_DIR, 'ch3-diagram-be-evolution.svg'))
+
+
+def ch3_diagram_fe_evolution():
+    c = CodeCardSVG('diagram', width=360, label='Evolution')
+    c.add_spans([('Producer', 'yellow')])
+    c.add_line('↓', color='fg_dim')
+    c.add_spans([('High-Gravity Producer', 'yellow')])
+    c.add_line('↓', color='fg_dim')
+    c.add_spans([('Emergent Architect', 'purple')])
+    c.save(os.path.join(IMG_DIR, 'ch3-diagram-fe-evolution.svg'))
+
+
+# ── Chapter 4 Code Cards ──
+
+def ch4_data_engineer_f():
+    c = CodeCardSVG('data', width=720, label='Profile')
+    c.add_spans([('Engineer F', 'yellow', True), ('  —  ', 'fg_dim'),
+                 ('Prod ', 'fg_dim'), ('93', 'purple'), (' | ', 'fg_dim'),
+                 ('Qual ', 'fg_dim'), ('75', 'green'), (' | ', 'fg_dim'),
+                 ('Robust ', 'fg_dim'), ('36', 'fg'), (' | ', 'fg_dim'),
+                 ('Design ', 'fg_dim'), ('47', 'yellow'), (' | ', 'fg_dim'),
+                 ('Total ', 'fg_dim'), ('55.5', 'yellow', True)])
+    c.add_spans([('Role: ', 'fg_dim'), ('Anchor (0.87)', 'blue'), (' | ', 'fg_dim'),
+                 ('Style: ', 'fg_dim'), ('Resilient (0.66)', 'blue'), (' | ', 'fg_dim'),
+                 ('State: ', 'fg_dim'), ('Former (0.73)', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch4-data-engineer-f.svg'))
+
+
+def ch4_data_phase_risk():
+    c = CodeCardSVG('data', width=380, label='Classification')
+    c.add_spans([('Phase: ', 'fg_dim'), ('Legacy-Heavy', 'yellow'), (' (0.67)', 'fg_dim')])
+    c.add_spans([('Risk:  ', 'fg_dim'), ('Talent Drain', 'red'), (' (0.43)', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch4-data-phase-risk.svg'))
+
+
+def ch4_data_debt_avg():
+    c = CodeCardSVG('data', width=360, label='Averages')
+    c.add_spans([('Team Averages:', 'fg_dim')])
+    c.add_spans([('  Debt Cleanup   ', 'fg'), ('47.0', 'yellow')])
+    c.save(os.path.join(IMG_DIR, 'ch4-data-debt-avg.svg'))
+
+
+def ch4_diagram_fe_evolution():
+    """Same as ch3 FE evolution."""
+    ch3_diagram_fe_evolution()  # Reuses the same SVG
+
+
+def ch4_diagram_be_evolution():
+    """Same as ch3 BE evolution."""
+    ch3_diagram_be_evolution()  # Reuses the same SVG
+
+
+def ch4_data_design_pattern():
+    c = CodeCardSVG('data', width=440, label='Pattern')
+    c.add_spans([('Domain', 'purple'), (' + ', 'fg_dim'), ('Application', 'blue'), (' + ', 'fg_dim'), ('UseCase', 'aqua')])
+    c.save(os.path.join(IMG_DIR, 'ch4-data-design-pattern.svg'))
+
+
+def ch4_data_role_count():
+    c = CodeCardSVG('data', width=260, label='Roles')
+    c.add_spans([('Architect  ', 'fg_dim'), ('1', 'purple')])
+    c.add_spans([('Anchor     ', 'fg_dim'), ('3', 'blue')])
+    c.add_spans([('Producer   ', 'fg_dim'), ('0', 'red')])
+    c.save(os.path.join(IMG_DIR, 'ch4-data-role-count.svg'))
+
+
+def ch4_diagram_producer_vacuum():
+    c = CodeCardSVG('diagram', width=320, label='Structure')
+    c.add_spans([('Architect', 'purple')])
+    c.add_line('↓', color='fg_dim')
+    c.add_spans([('Anchor', 'blue')])
+    c.add_line('↓', color='fg_dim')
+    c.add_spans([('Production Vacuum', 'red')])
+    c.save(os.path.join(IMG_DIR, 'ch4-diagram-producer-vacuum.svg'))
+
+
+def ch4_diagram_three_layer():
+    c = CodeCardSVG('diagram', width=280, label='Structure')
+    c.add_spans([('Architect', 'purple')])
+    c.add_line('↓', color='fg_dim')
+    c.add_spans([('Anchor', 'blue')])
+    c.add_line('↓', color='fg_dim')
+    c.add_spans([('Producer', 'yellow')])
+    c.save(os.path.join(IMG_DIR, 'ch4-diagram-three-layer.svg'))
+
+
+def ch4_data_bus_factor():
+    c = CodeCardSVG('data', width=560, label='Warning')
+    c.add_spans([('Top contributor (', 'fg'), ('machuz', 'yellow'), (') accounts for ', 'fg'), ('46%', 'red', True), (' of core production', 'fg')])
+    c.add_spans([('ProdDensity drops to ', 'fg'), ('39', 'red'), (' without them', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch4-data-bus-factor.svg'))
+
+
+def ch4_data_elite():
+    c = CodeCardSVG('data', width=260, label='Character')
+    c.add_spans([('★ ', 'yellow'), ('Elite', 'purple', True), (' (1.00)', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch4-data-elite.svg'))
+
+
+# ── Chapter 5 Code Cards ──
+
+def ch5_bash_timeline():
+    c = CodeCardSVG('bash', width=660)
+    c.add_line('# Default: last 4 quarters in 3-month spans', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' timeline --recursive ~/workspace', 'fg')])
+    c.add_blank()
+    c.add_line('# From 2024, quarterly', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' timeline --span 3m --since 2024-01-01 --recursive ~/workspace', 'fg')])
+    c.add_blank()
+    c.add_line('# Half-year spans, full history', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' timeline --span 6m --periods 0 --recursive ~/workspace', 'fg')])
+    c.add_blank()
+    c.add_line('# Specific members only', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' timeline --author alice,bob --recursive ~/workspace', 'fg')])
+    c.add_blank()
+    c.add_line('# JSON output', color='fg_dim')
+    c.add_spans([('eis', 'green'), (' timeline --format json --recursive ~/workspace', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch5-bash-timeline.svg'))
+
+
+def ch5_data_role_transitions():
+    c = CodeCardSVG('data', width=720, label='Transitions')
+    c.add_spans([
+        ('Architect', 'purple'), (' → ', 'fg_dim'), ('Anchor', 'blue'), (' → ', 'fg_dim'),
+        ('Architect', 'purple'), (' → ', 'fg_dim'), ('Producer', 'yellow'), (' → ', 'fg_dim'),
+        ('Producer', 'yellow'), (' → ', 'fg_dim'), ('Producer', 'yellow'),
+    ])
+    c.save(os.path.join(IMG_DIR, 'ch5-data-role-transitions.svg'))
+
+
+def ch5_data_hesitation():
+    c = CodeCardSVG('data', width=820, label='Timeline')
+    c.add_spans([('Period         ', 'fg_dim'), ('Total', 'fg_dim'), ('  Prod', 'fg_dim'), ('  Qual', 'fg_dim'),
+                 ('  Surv', 'fg_dim'), ('  Design', 'fg_dim'), ('  Role', 'fg_dim'), ('        Style', 'fg_dim')])
+    c.add_separator()
+    c.add_spans([('2025-Q2 (Apr)  ', 'fg'), ('73.2', 'yellow'), ('    67', 'green'), ('    91', 'purple'),
+                 ('   100', 'purple'), ('     100', 'purple'), ('  Architect', 'purple'), ('    Builder', 'green')])
+    c.add_spans([('2025-Q3 (Jul)  ', 'fg'), ('72.4', 'yellow'), ('    73', 'green'), ('    97', 'purple'),
+                 ('   100', 'purple'), ('      73', 'green'), ('  Anchor', 'blue'), ('       Balanced', 'blue'),
+                 ('  ← here', 'yellow')])
+    c.add_spans([('2025-Q4 (Oct)  ', 'fg'), ('81.7', 'purple'), ('   100', 'purple'), ('    68', 'green'),
+                 ('   100', 'purple'), ('     100', 'purple'), ('  Architect', 'purple'), ('    Balanced', 'blue')])
+    c.save(os.path.join(IMG_DIR, 'ch5-data-hesitation.svg'))
+
+
+def ch5_data_new_universe():
+    c = CodeCardSVG('data', width=700, label='Per-Repo')
+    c.add_spans([('Quarter  ', 'fg_dim'), ('Repo A (existing)', 'fg_dim'), ('  Repo B (existing)', 'fg_dim'), ('  Repo C (new)', 'fg_dim')])
+    c.add_separator()
+    c.add_spans([('2025-Q4  ', 'fg'), ('       5', 'fg_dim'), ('                 5', 'fg_dim'),
+                 ('         ', 'fg'), ('1,352', 'yellow', True), ('  ← here', 'yellow')])
+    c.save(os.path.join(IMG_DIR, 'ch5-data-new-universe.svg'))
+
+
+def ch5_data_transition():
+    c = CodeCardSVG('data', width=820, label='Timeline')
+    c.add_spans([('Period         ', 'fg_dim'), ('Total', 'fg_dim'), ('  Prod', 'fg_dim'), ('  Qual', 'fg_dim'),
+                 ('  Surv', 'fg_dim'), ('  Design', 'fg_dim'), ('  Role', 'fg_dim'), ('        Style', 'fg_dim')])
+    c.add_separator()
+    c.add_spans([('2025-Q3 (Jul)  ', 'fg'), ('72.4', 'yellow'), ('    73', 'green'), ('    97', 'purple'),
+                 ('   100', 'purple'), ('      73', 'green'), ('  Anchor', 'blue'), ('       Balanced', 'blue'),
+                 ('  ← producing', 'fg_dim')])
+    c.add_spans([('2025-Q4 (Oct)  ', 'fg'), ('81.7', 'purple'), ('   100', 'purple'), ('    68', 'green'),
+                 ('   100', 'purple'), ('     100', 'purple'), ('  Architect', 'purple'), ('    Balanced', 'blue'),
+                 ('  ← creating', 'yellow')])
+    c.save(os.path.join(IMG_DIR, 'ch5-data-transition.svg'))
+
+
+def ch5_data_return():
+    c = CodeCardSVG('data', width=860, label='Timeline')
+    c.add_spans([('Period         ', 'fg_dim'), ('Total', 'fg_dim'), ('  Prod', 'fg_dim'), ('  Qual', 'fg_dim'),
+                 ('  Surv', 'fg_dim'), ('  Design', 'fg_dim'), ('  Role', 'fg_dim'), ('        Style', 'fg_dim'),
+                 ('      State', 'fg_dim')])
+    c.add_separator()
+    c.add_spans([('2025-Q4 (Oct)  ', 'fg'), ('81.7', 'purple'), ('   100', 'purple'), ('    68', 'green'),
+                 ('   100', 'purple'), ('     100', 'purple'), ('  Architect', 'purple'), ('    Balanced', 'blue')])
+    c.add_spans([('2026-Q1 (Jan)  ', 'fg'), ('78.1', 'green'), ('   100', 'purple'), ('    84', 'purple'),
+                 ('    83', 'purple'), ('     100', 'purple'), ('  Anchor', 'blue'), ('       Builder', 'green'),
+                 ('      Active', 'green')])
+    c.save(os.path.join(IMG_DIR, 'ch5-data-return.svg'))
+
+
+def ch5_bash_timeline_author():
+    c = CodeCardSVG('bash', width=540)
+    c.add_spans([('eis', 'green'), (' timeline --author alice --recursive ~/workspace', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch5-bash-timeline-author.svg'))
+
+
+# ── Chapter 6 Code Cards ──
+
+def ch6_data_architect_quarter():
+    c = CodeCardSVG('data', width=520, label='Timeline')
+    c.add_spans([('Period   ', 'fg_dim'), ('Total', 'fg_dim'), ('  Role', 'fg_dim'), ('       Style', 'fg_dim')])
+    c.add_separator()
+    c.add_spans([('2024-Q3  ', 'fg'), ('56.1', 'yellow'), ('  Anchor', 'blue'), ('     Balanced', 'blue')])
+    c.add_spans([('2024-Q4  ', 'fg'), ('75.7', 'green'), ('  Architect', 'purple'), ('  Balanced', 'blue')])
+    c.save(os.path.join(IMG_DIR, 'ch6-data-architect-quarter.svg'))
+
+
+def ch6_data_simultaneous():
+    c = CodeCardSVG('data', width=780, label='Timeline')
+    c.add_spans([('Period   ', 'fg_dim'), ('Engineer I', 'fg_dim'), ('           ', 'fg'),
+                 ('Engineer J', 'fg_dim')])
+    c.add_separator()
+    c.add_spans([('2025-Q2  ', 'fg'), ('73.2', 'yellow'), ('  ', 'fg'), ('Architect', 'purple'),
+                 ('    ', 'fg'), ('63.8', 'green'), ('  ', 'fg'), ('Architect', 'purple')])
+    c.save(os.path.join(IMG_DIR, 'ch6-data-simultaneous.svg'))
+
+
+def ch6_data_engineer_j_transitions():
+    c = CodeCardSVG('data', width=720, label='Transitions')
+    c.add_spans([
+        ('Architect', 'purple'), (' → ', 'fg_dim'), ('Anchor', 'blue'), (' → ', 'fg_dim'),
+        ('Architect', 'purple'), (' → ', 'fg_dim'), ('Producer', 'yellow'), (' → ', 'fg_dim'),
+        ('Producer', 'yellow'), (' → ', 'fg_dim'), ('Producer', 'yellow'),
+    ])
+    c.save(os.path.join(IMG_DIR, 'ch6-data-engineer-j-transitions.svg'))
+
+
+def ch6_data_health():
+    c = CodeCardSVG('data', width=340, label='Health')
+    c.add_spans([('Growth Potential: ', 'fg'), ('20.0', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch6-data-health.svg'))
+
+
+def ch6_data_producer_vacuum():
+    c = CodeCardSVG('data', width=360, label='Classification')
+    c.add_spans([('Character: ', 'fg_dim'), ('Balanced', 'blue')])
+    c.add_spans([('Phase:     ', 'fg_dim'), ('Declining', 'red')])
+    c.save(os.path.join(IMG_DIR, 'ch6-data-producer-vacuum.svg'))
+
+
+def ch6_data_effective_members():
+    c = CodeCardSVG('data', width=360, label='Classification')
+    c.add_spans([('Effective Members: ', 'fg_dim'), ('5', 'green')])
+    c.add_spans([('Total:             ', 'fg_dim'), ('48.3', 'yellow'), (' (average)', 'fg_dim')])
+    c.save(os.path.join(IMG_DIR, 'ch6-data-effective-members.svg'))
+
+
+def ch6_data_machuz_phases():
+    c = CodeCardSVG('data', width=560, label='Timeline')
+    c.add_spans([('Period   ', 'fg_dim'), ('Total', 'fg_dim'), ('  Role', 'fg_dim'), ('       Style', 'fg_dim')])
+    c.add_separator()
+    c.add_spans([('2024-H2  ', 'fg'), ('76.4', 'green'), ('  Anchor', 'blue'), ('     Builder', 'green')])
+    c.add_spans([('2025-H1  ', 'fg'), ('58.4', 'yellow'), ('  Producer', 'yellow'), ('   Balanced', 'blue')])
+    c.add_spans([('2025-H2  ', 'fg'), ('92.5', 'purple'), ('  Architect', 'purple'), ('  Builder', 'green')])
+    c.save(os.path.join(IMG_DIR, 'ch6-data-machuz-phases.svg'))
+
+
+def ch6_bash_timeline_cmd():
+    c = CodeCardSVG('bash', width=620)
+    c.add_spans([('eis', 'green'), (' timeline --span 6m --periods 0 --recursive ~/workspace', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch6-bash-timeline.svg'))
+
+
+def ch6_data_decline_model():
+    """Reuse same decline diagram as ch2 — same content."""
+    pass  # ch2_diagram_decline already generates this
+
+
+# ── Chapter 7 Code Cards ──
+
+def ch7_bash_html():
+    c = CodeCardSVG('bash', width=700)
+    c.add_spans([('eis', 'green'), (' timeline --format html --output timeline.html --recursive ~/workspace', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch7-bash-html.svg'))
+
+
+# ── Chapter 8 Code Cards ──
+
+def ch8_bash_per_repo():
+    c = CodeCardSVG('bash', width=540)
+    c.add_spans([('eis', 'green'), (' analyze --recursive --per-repo ~/workspace', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch8-bash-per-repo.svg'))
+
+
+def ch8_bash_timeline_cmd():
+    c = CodeCardSVG('bash', width=620)
+    c.add_spans([('eis', 'green'), (' timeline --span 6m --periods 0 --recursive ~/workspace', 'fg')])
+    c.save(os.path.join(IMG_DIR, 'ch8-bash-timeline.svg'))
+
+
+# ════════════════════════════════════════════════════════════
 # MAIN
 # ════════════════════════════════════════════════════════════
 
@@ -1094,5 +1839,90 @@ if __name__ == '__main__':
     cover_image(6, "Teams Evolve", "The Laws of Organization Revealed by Timelines", cover_ch6_visual)
     cover_image(7, "Observing the Universe of Code", "Four Forces, Gravity, and Seasoned Design", cover_ch7_visual)
     cover_image(8, "Engineering Relativity", "Why the Same Engineer Gets Different Scores", cover_ch8_visual)
+
+    # ═══ Code Card SVGs ═══
+    print("\n  Generating code card SVGs...")
+
+    # ── Chapter 1 ──
+    ch1_formula_production()
+    ch1_formula_quality()
+    ch1_code_survival()
+    ch1_code_debt()
+    ch1_code_indispensability()
+    ch1_formula_total()
+    ch1_formula_gravity()
+    ch1_formula_gravity_health()
+    ch1_bash_install()
+    ch1_bash_usage()
+    # JA-only
+    ch1_bash_gitlog()
+    ch1_code_fixdetect()
+    ch1_yaml_config()
+
+    # ── Chapter 2 ──
+    ch2_bash_team()
+    ch2_yaml_teams()
+    ch2_formula_complementarity()
+    ch2_formula_growth()
+    ch2_formula_sustainability()
+    ch2_formula_productivity()
+    ch2_formula_quality_consistency()
+    ch2_formula_weight()
+    ch2_diagram_growth_model()
+    ch2_diagram_decline()
+    ch2_bash_install_team()
+    # JA-only
+    ch2_formula_debt_balance()
+    ch2_formula_risk_ratio()
+
+    # ── Chapter 3 ──
+    ch3_gravity_calc_d()
+    ch3_gravity_calc_a()
+    ch3_data_warning()
+    ch3_data_team_metrics()
+    ch3_data_pattern()
+    ch3_data_anchor_mass()
+    ch3_diagram_be_evolution()
+    ch3_diagram_fe_evolution()
+
+    # ── Chapter 4 ──
+    ch4_data_engineer_f()
+    ch4_data_phase_risk()
+    ch4_data_debt_avg()
+    ch4_diagram_fe_evolution()
+    ch4_diagram_be_evolution()
+    ch4_data_design_pattern()
+    ch4_data_role_count()
+    ch4_diagram_producer_vacuum()
+    ch4_diagram_three_layer()
+    ch4_data_bus_factor()
+    ch4_data_elite()
+
+    # ── Chapter 5 ──
+    ch5_bash_timeline()
+    ch5_data_role_transitions()
+    ch5_data_hesitation()
+    ch5_data_new_universe()
+    ch5_data_transition()
+    ch5_data_return()
+    ch5_bash_timeline_author()
+
+    # ── Chapter 6 ──
+    ch6_data_architect_quarter()
+    ch6_data_simultaneous()
+    ch6_data_engineer_j_transitions()
+    ch6_data_health()
+    ch6_data_producer_vacuum()
+    ch6_data_effective_members()
+    ch6_data_machuz_phases()
+    ch6_bash_timeline_cmd()
+    ch6_data_decline_model()
+
+    # ── Chapter 7 ──
+    ch7_bash_html()
+
+    # ── Chapter 8 ──
+    ch8_bash_per_repo()
+    ch8_bash_timeline_cmd()
 
     print(f"\nDone! Generated SVGs in {IMG_DIR}")

@@ -148,10 +148,7 @@ This isn't "growing into an Architect." It's **"an existing architectural vision
 
 Meanwhile, Engineer I's Frontend timeline (from Chapter 5):
 
-```
-2024-Q3     56.1  Anchor   Balanced
-2024-Q4     75.7  Architect Balanced
-```
+![Architect by Q4](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-data-architect-quarter.svg)
 
 **Architect by their second quarter.** Engineer I also had Architect experience externally. But unlike machuz, they shortened the adaptation period and immediately began designing with their own architectural approach.
 
@@ -182,9 +179,7 @@ In Frontend, when Engineer I became Architect, Engineer J dropped to Anchor. **A
 
 But quarterly data (Chapter 5) reveals:
 
-```
-2025-Q2   Engineer I  73.2  Architect    Engineer J  63.8  Architect
-```
+![Simultaneous Architects](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-data-simultaneous.svg)
 
 **In 2025-Q2, two Architects existed simultaneously.**
 
@@ -204,9 +199,7 @@ The **Design Vacuum risk** in Frontend's team timeline is the flip side of this 
 
 Look at Engineer J's transitions again:
 
-```
-Architect → Anchor → Architect → Producer → Producer → Producer
-```
+![Engineer J Transitions](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-data-engineer-j-transitions.svg)
 
 **An Architect who finishes building structure becomes a Producer.**
 
@@ -220,9 +213,7 @@ The same pattern can be predicted for machuz's Backend. Currently maintaining 92
 
 This is where Backend's team Health metric becomes meaningful:
 
-```
-Growth Potential: 20.0
-```
+![Growth Potential](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-data-health.svg)
 
 Growth Potential at 20. **The seeds of the next-generation Architect are still weak.** This is Backend's medium-term risk.
 
@@ -286,10 +277,7 @@ Look at Backend 2024-H2. machuz as Anchor Builder (76.4), Engineer F as Architec
 
 That period's team classification:
 
-```
-Character: Balanced
-Phase: Declining
-```
+![Producer Vacuum](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-data-producer-vacuum.svg)
 
 **The Architect builds structure, the Anchor maintains it. But nobody is producing on top of that structure.**
 
@@ -297,10 +285,7 @@ Structure without production. That's Producer Vacuum.
 
 Compare with Backend 2026-H1:
 
-```
-Effective Members: 5
-Total: 48.3 (average)
-```
+![Effective Members](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-data-effective-members.svg)
 
 machuz (Architect Builder) plus multiple Anchors/Producers. People producing on top of the structure. That's why it reached Elite / Architectural Engine.
 
@@ -312,11 +297,7 @@ machuz (Architect Builder) plus multiple Anchors/Producers. People producing on 
 
 Look at machuz's timeline one more time:
 
-```
-2024-H2     76.4  Anchor  Builder
-2025-H1     58.4  Producer Balanced
-2025-H2     92.5  Architect Builder
-```
+![machuz Phases](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-data-machuz-phases.svg)
 
 **Architect Builder appeared in the numbers after passing through a Producer phase in 2025-H1.**
 
@@ -350,9 +331,7 @@ But with `eis timeline`, **you can discover your own team's laws yourself.**
 
 ### 1. Organizational Review
 
-```bash
-eis timeline --span 6m --periods 0 --recursive ~/workspace
-```
+![Timeline Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-bash-timeline.svg)
 
 Generate half-year team timelines and track Phase / Risk trends. If Declining persists, something needs to change.
 

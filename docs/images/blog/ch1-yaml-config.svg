@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="264" viewBox="0 0 500 264">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+    </style>
+  </defs>
+
+  <!-- Card background -->
+  <rect width="500" height="264" rx="8" fill="#1d2021"/>
+
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="4" height="264" rx="2" fill="#fabd2f"/>
+
+  <!-- Category label -->
+  <text x="472" y="18" text-anchor="end" fill="#504945" font-size="10">Yaml</text>
+
+  <text y="28" font-size="12"><tspan x="24" fill="#83a598">aliases</tspan><tspan x="74.39999999999999" fill="#928374">:</tspan></text>
+  <text y="46" font-size="12"><tspan x="24" fill="#ebdbb2">  </tspan><tspan x="38.4" fill="#b8bb26">&quot;John Smith&quot;</tspan><tspan x="124.79999999999998" fill="#928374">: </tspan><tspan x="139.2" fill="#b8bb26">&quot;john&quot;</tspan></text>
+  <text y="64" font-size="12"><tspan x="24" fill="#ebdbb2">  </tspan><tspan x="38.4" fill="#b8bb26">&quot;J. Smith&quot;</tspan><tspan x="110.4" fill="#928374">: </tspan><tspan x="124.80000000000001" fill="#b8bb26">&quot;john&quot;</tspan></text>
+  <text y="82" font-size="12"><tspan x="24" fill="#83a598">exclude_authors</tspan><tspan x="132.0" fill="#928374">:</tspan></text>
+  <text y="100" font-size="12"><tspan x="24" fill="#928374">  - </tspan><tspan x="52.8" fill="#b8bb26">&quot;dependabot[bot]&quot;</tspan></text>
+  <text y="118" font-size="12"><tspan x="24" fill="#83a598">domains</tspan><tspan x="74.39999999999999" fill="#928374">:</tspan></text>
+  <text y="136" font-size="12"><tspan x="24" fill="#ebdbb2">  </tspan><tspan x="38.4" fill="#8ec07c">backend</tspan><tspan x="88.79999999999998" fill="#928374">: </tspan><tspan x="103.19999999999999" fill="#928374">[</tspan><tspan x="110.39999999999999" fill="#b8bb26">&quot;api-*&quot;</tspan><tspan x="160.79999999999998" fill="#928374">, </tspan><tspan x="175.2" fill="#b8bb26">&quot;worker&quot;</tspan><tspan x="232.79999999999998" fill="#928374">]</tspan></text>
+  <text y="154" font-size="12"><tspan x="24" fill="#ebdbb2">  </tspan><tspan x="38.4" fill="#8ec07c">frontend</tspan><tspan x="96.0" fill="#928374">: </tspan><tspan x="110.4" fill="#928374">[</tspan><tspan x="117.60000000000001" fill="#b8bb26">&quot;web-*&quot;</tspan><tspan x="168.0" fill="#928374">, </tspan><tspan x="182.4" fill="#b8bb26">&quot;app&quot;</tspan><tspan x="218.4" fill="#928374">]</tspan></text>
+  <text y="172" font-size="12"><tspan x="24" fill="#ebdbb2">  </tspan><tspan x="38.4" fill="#8ec07c">firmware</tspan><tspan x="96.0" fill="#928374">: </tspan><tspan x="110.4" fill="#928374">[</tspan><tspan x="117.60000000000001" fill="#b8bb26">&quot;raden&quot;</tspan><tspan x="168.0" fill="#928374">]</tspan></text>
+  <text y="190" font-size="12"><tspan x="24" fill="#83a598">exclude_repos</tspan><tspan x="117.6" fill="#928374">: </tspan><tspan x="132.0" fill="#928374">[</tspan><tspan x="139.2" fill="#b8bb26">&quot;deprecated-service&quot;</tspan><tspan x="283.2" fill="#928374">]</tspan></text>
+  <text y="208" font-size="12"><tspan x="24" fill="#83a598">production_daily_ref</tspan><tspan x="168.0" fill="#928374">: </tspan><tspan x="182.4" fill="#d3869b">1000</tspan></text>
+  <text y="226" font-size="12"><tspan x="24" fill="#83a598">tau</tspan><tspan x="45.599999999999994" fill="#928374">: </tspan><tspan x="59.99999999999999" fill="#d3869b">180</tspan></text>
+</svg>

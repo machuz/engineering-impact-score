@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="228" viewBox="0 0 620 228">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+    </style>
+  </defs>
+
+  <!-- Card background -->
+  <rect width="620" height="228" rx="8" fill="#1d2021"/>
+
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="4" height="228" rx="2" fill="#b8bb26"/>
+
+  <!-- Category label -->
+  <text x="592" y="18" text-anchor="end" fill="#504945" font-size="10">Python</text>
+
+  <text y="28" font-size="12"><tspan x="24" fill="#fb4934">import</tspan><tspan x="67.19999999999999" fill="#ebdbb2"> math</tspan></text>
+  <text y="46" font-size="12"><tspan x="24" fill="#fb4934">from</tspan><tspan x="52.8" fill="#ebdbb2"> collections </tspan><tspan x="146.39999999999998" fill="#fb4934">import</tspan><tspan x="189.59999999999997" fill="#ebdbb2"> defaultdict</tspan></text>
+  <text y="82" font-size="12"><tspan x="24" fill="#83a598">tau</tspan><tspan x="45.599999999999994" fill="#928374"> = </tspan><tspan x="67.19999999999999" fill="#d3869b">180</tspan><tspan x="88.79999999999998" fill="#ebdbb2">  </tspan><tspan x="103.19999999999999" fill="#928374"># days</tspan></text>
+  <text y="118" font-size="12"><tspan x="24" fill="#83a598">weighted_survival</tspan><tspan x="146.39999999999998" fill="#928374"> = </tspan><tspan x="167.99999999999997" fill="#fabd2f">defaultdict</tspan><tspan x="247.19999999999996" fill="#928374">(</tspan><tspan x="254.39999999999995" fill="#8ec07c">float</tspan><tspan x="290.4" fill="#928374">)</tspan></text>
+  <text y="136" font-size="12"><tspan x="24" fill="#fb4934">for</tspan><tspan x="45.599999999999994" fill="#ebdbb2"> line </tspan><tspan x="88.79999999999998" fill="#fb4934">in</tspan><tspan x="103.19999999999999" fill="#ebdbb2"> blame_lines:</tspan></text>
+  <text y="154" font-size="12"><tspan x="24" fill="#ebdbb2">    days_alive</tspan><tspan x="124.79999999999998" fill="#928374"> = </tspan><tspan x="146.39999999999998" fill="#ebdbb2">(now - line.committer_time).days</tspan></text>
+  <text y="172" font-size="12"><tspan x="24" fill="#83a598">    weight</tspan><tspan x="96.0" fill="#928374"> = </tspan><tspan x="117.6" fill="#fabd2f">math.exp</tspan><tspan x="175.2" fill="#928374">(</tspan><tspan x="182.39999999999998" fill="#ebdbb2">-days_alive / tau</tspan><tspan x="304.79999999999995" fill="#928374">)</tspan></text>
+  <text y="190" font-size="12"><tspan x="24" fill="#ebdbb2">    weighted_survival</tspan><tspan x="175.2" fill="#ebdbb2">[line.author]</tspan><tspan x="268.79999999999995" fill="#928374"> += </tspan><tspan x="297.59999999999997" fill="#ebdbb2">weight</tspan></text>
+</svg>

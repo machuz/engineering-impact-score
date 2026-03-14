@@ -18,9 +18,7 @@
 
 ![Timeline HTML Dashboard](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/timeline-html-output.png?v=0.11.0)
 
-```bash
-eis timeline --format html --output timeline.html --recursive ~/workspace
-```
+![HTMLダッシュボード](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch7-bash-html.svg)
 
 Chart.jsベースの折れ線グラフで、個人・チームのスコア推移、Health指標、メンバーシップ構成、Classification変遷が一覧できる。ツールチップにはRole/Style/State/Confidenceが表示され、Transitionマーカーが変化のタイミングを示す。
 

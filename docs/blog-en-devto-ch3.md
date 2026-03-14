@@ -141,23 +141,17 @@ Here's an important nuance.
 
 EIS calculates Gravity as:
 
-```
-Gravity = Indisp × 0.4 + Breadth × 0.3 + Design × 0.3
-```
+![Gravity Formula](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch1-formula-gravity.svg)
 
 For Engineer D:
 
-```
-100 × 0.4 + 88 × 0.3 + 5 × 0.3 = 68
-```
+![Engineer D Gravity Calculation](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-gravity-calc-d.svg)
 
 Most of that 68 comes from **Indispensability (sole ownership) and Breadth (spread)**. Design is only 5. This isn't "structural center" — it's "widely held by one person."
 
 For Engineer A:
 
-```
-60 × 0.4 + 100 × 0.3 + 100 × 0.3 = 84
-```
+![Engineer A Gravity Calculation](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-gravity-calc-a.svg)
 
 Design 100 drives this Gravity. They're creating the structural center.
 
@@ -222,21 +216,13 @@ High Survival feels reassuring, but without checking the Dormant ratio, you miss
 
 This team's metrics include a warning:
 
-```
-⚠ Warnings:
-  Fragile gravity — Engineer D (Grav 68) has high influence but low robust survival (12)
-```
+![Data Warning](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-data-warning.svg)
 
 **Engineer D's struggle surfaces as a Warning.** High gravity, but low robust survival.
 
 Yet this team is strong:
 
-```
-Structure: Architectural Team (0.34)
-Culture: Builder (0.40)
-Phase: Mature (1.00)
-Risk: Healthy (0.30)
-```
+![Team Metrics](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-data-team-metrics.svg)
 
 Why?
 
@@ -306,9 +292,7 @@ What's needed is someone who **brings a different structural proposal, clashes w
 
 That earlier pattern:
 
-```
-Producer + High Gravity + Low Robust
-```
+![Engineer D Pattern](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-data-pattern.svg)
 
 isn't just immaturity.
 
@@ -322,9 +306,7 @@ So "Architect candidate" is imprecise. More accurately: **Emergent Architect can
 
 Engineer B shows:
 
-```
-Anchor + Mass
-```
+![Engineer B Pattern](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-data-anchor-mass.svg)
 
 This doesn't mean "unlikely to become Architect."
 
@@ -356,23 +338,11 @@ Here's the synthesis.
 
 **Backend-style evolution:**
 
-```
-Producer
-↓
-Anchor
-↓
-Inheritance Architect
-```
+![Backend Evolution Path](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-diagram-be-evolution.svg)
 
 **Frontend-style evolution:**
 
-```
-Producer
-↓
-High-Gravity Producer
-↓
-Emergent Architect
-```
+![Frontend Evolution Path](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-diagram-fe-evolution.svg)
 
 Career paths aren't a single line. They're a **branching evolution model**.
 

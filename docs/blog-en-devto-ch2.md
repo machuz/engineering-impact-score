@@ -28,29 +28,11 @@ Conversely, a team averaging 50 points — but with one Architect, one Cleaner, 
 
 The new `eis team` command aggregates individual scores into team-level metrics.
 
-```bash
-# Simplest: domain = team (no config needed)
-eis team --recursive ~/workspace
-
-# With explicit team definitions
-eis team --config eis.yaml --recursive ~/workspace
-
-# JSON output (paste into AI for deeper analysis)
-eis team --format json --recursive ~/workspace
-```
+![Team Commands](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-bash-team.svg)
 
 If no `teams` section exists in config, each domain (Backend / Frontend / Infra) is treated as a single team. Zero config required.
 
-```yaml
-# eis.yaml (optional)
-teams:
-  backend-core:
-    domain: Backend
-    members: [alice, bob, charlie]
-  frontend-app:
-    domain: Frontend
-    members: [dave, eve]
-```
+![Team Config](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-yaml-teams.svg)
 
 ## Seven Team Health Axes
 
@@ -58,11 +40,7 @@ teams:
 
 How many of the 5 known roles are present? Architect gets the biggest bonus because design leadership is the most critical gap.
 
-```
-coverage = uniqueRoles / 5
-bonus = Architect(+10) + Anchor(+5) + Cleaner(+5)
-score = coverage × 80 + bonus  (clamped 0-100)
-```
+![Complementarity Formula](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-formula-complementarity.svg)
 
 A team with only Producers and no Architect scores 16. A fully diverse team hits 100.
 
@@ -70,9 +48,7 @@ A team with only Producers and no Architect scores 16. A fully diverse team hits
 
 Growing members + mentoring capacity.
 
-```
-score = growingRatio × 60 + Builder(+20) + Cleaner(+20)
-```
+![Growth Potential Formula](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-formula-growth.svg)
 
 Having Growing juniors is necessary but not sufficient. Without a Builder or Cleaner as a role model, growth stalls. Both must be present for the score to climb.
 
@@ -80,10 +56,7 @@ Having Growing juniors is necessary but not sufficient. Without a Builder or Cle
 
 What percentage of the team is in a risk state (Former, Silent, Fragile)?
 
-```
-riskRatio = (Former + Silent + Fragile) / memberCount
-score = (1 - riskRatio) × 80 + Architect(+20)
-```
+![Sustainability Formula](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-formula-sustainability.svg)
 
 Former members whose code still dominates blame. Silent members who haven't meaningfully contributed in months. Fragile members whose code survives only because nobody touches it. These are the hidden drags on team velocity.
 
@@ -95,11 +68,7 @@ Average Debt Cleanup score across members. 50 is neutral; above 50 means the tea
 
 Average production score with a small-team bonus. Three people running a large-scale API server will show an abnormally high density — impressive, but also risky.
 
-```
-base = avg(members.Production)
-bonus: ≤3 members && base ≥ 50 → ×1.2
-        ≤5 members && base ≥ 50 → ×1.1
-```
+![Productivity Density Formula](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-formula-productivity.svg)
 
 This quantifies the "this amount of code from this few people is insane" feeling.
 
@@ -107,9 +76,7 @@ This quantifies the "this amount of code from this few people is insane" feeling
 
 A team averaging 80 quality with tight variance is healthy. A team averaging 80 but ranging from 95 to 40 is not — the low end drags reviews, and quality gates become performative.
 
-```
-score = avgQuality × 0.6 + (100 - stdev × 2) × 0.4
-```
+![Quality Consistency Formula](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-formula-quality-consistency.svg)
 
 ### 7. Risk Ratio — Blunt Truth
 
@@ -139,9 +106,7 @@ Character is a meta-classification synthesized from the other four — the team'
 
 Classification uses **member Total score as influence weight**:
 
-```
-weight = member.Total / 100  (minimum 0.1)
-```
+![Weighted Classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-formula-weight.svg)
 
 An Architect scoring 90 and an Architect scoring 15 on the same team don't contribute equally to the team's character. The high-scorer shapes the team far more. Ethnographically, **strong performers with high output propagate more culture to the team**. The formula encodes this directly.
 
@@ -247,16 +212,7 @@ After running this on multiple teams — now with 5-axis classification and stru
 
 EIS's Role classification maps to three layers of engineering growth.
 
-```
-  Design Layer        Architect
-                      ↑ Design decisions are embedded in code as structure
-  ──────────────────────────────────
-  Stabilization Layer Anchor / Cleaner
-                      ↑ Quality rises, code survives, others' debt gets cleaned
-  ──────────────────────────────────
-  Implementation Layer Producer / Growing
-                       Write code. Ship it.
-```
+![Growth Model](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-diagram-growth-model.svg)
 
 **Implementation Layer**: Write and ship code. Growing engineers start here. Production exists but Survival is still low.
 
@@ -274,11 +230,7 @@ In team context, **teams with high Growth Potential have environments where this
 
 And there's a downward direction too.
 
-```
-  Design Layer        → Former (design knowledge leaves with the person)
-  Stabilization Layer → Silent (contributions stop), Fragile (only untouched code remains)
-  Implementation Layer → Silent (stops writing)
-```
+![Decline Model](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-diagram-decline.svg)
 
 Helping members climb the layers, and catching early when someone is falling into a Risk state. **That's the management job EIS makes visible.** Track score trajectories quarter over quarter, and you can see who's climbing, who's plateaued, and who's slipping — in numbers.
 
@@ -379,16 +331,7 @@ In practice, though, we may not need to measure that directly. A strong team wil
 
 ![eis team terminal output](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-output.png)
 
-```bash
-# Install
-brew tap machuz/tap && brew install eis
-
-# Team analysis
-eis team --recursive ~/workspace
-
-# JSON → paste into Claude / ChatGPT
-eis team --format json --recursive ~/workspace | pbcopy
-```
+![Install and Team Commands](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch2-bash-install-team.svg)
 
 Deep insights are intentionally out of scope. The tool produces quantitative data; humans (or AI) interpret it. This separation is by design.
 

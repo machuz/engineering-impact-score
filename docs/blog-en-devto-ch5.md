@@ -24,22 +24,7 @@ Engineers change. They grow. They hesitate. When team dynamics shift, the way th
 
 I added a `timeline` command to EIS.
 
-```bash
-# Default: last 4 quarters in 3-month spans
-eis timeline --recursive ~/workspace
-
-# From 2024, quarterly
-eis timeline --span 3m --since 2024-01-01 --recursive ~/workspace
-
-# Half-year spans, full history
-eis timeline --span 6m --periods 0 --recursive ~/workspace
-
-# Specific members only
-eis timeline --author alice,bob --recursive ~/workspace
-
-# JSON output (for feeding into AI analysis)
-eis timeline --format json --recursive ~/workspace
-```
+![Timeline Commands](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch5-bash-timeline.svg)
 
 The mechanism is simple:
 
@@ -98,9 +83,7 @@ In other words, that quarter's Frontend structure was **built by Engineer J**.
 
 The Role transitions afterward are fascinating:
 
-```
-Architect → Anchor → Architect → Producer → Producer → Producer
-```
+![Role Transitions](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch5-data-role-transitions.svg)
 
 After building the structure as an Architect Builder, they shifted to Anchor, briefly returned to Architect, and finally settled into Producer.
 
@@ -130,11 +113,7 @@ And here's where it gets interesting — **a curious wobble**.
 
 ### The 2025-Q3 "Hesitation"
 
-```
-2025-Q2 (Apr)        73.2    67    91   100     100  Architect    Builder
-2025-Q3 (Jul)        72.4    73    97   100      73  Anchor       Balanced     ← here
-2025-Q4 (Oct)        81.7   100    68   100     100  Architect    Balanced
-```
+![2025-Q3 Hesitation](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch5-data-hesitation.svg)
 
 In 2025-Q3, they dropped from Architect to Anchor. Style shifted from Builder to Balanced.
 
@@ -198,10 +177,7 @@ Q3's "hesitation" wasn't just friction. It was also **strategic patience**.
 
 ### A New Universe
 
-```
-Quarter      Repo A (existing)   Repo B (existing)   Repo C (new)
-2025-Q4             5                   5             1,352          ← here
-```
+![New Universe](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch5-data-new-universe.svg)
 
 In 2025-Q4, the new product launched.
 
@@ -211,10 +187,7 @@ Commits to existing repos dropped to single digits. In their place: 1,352 commit
 
 This number is extraordinary. One engineer producing this volume in half a year can't be explained by raw productivity alone.
 
-```
-2025-Q3 (Jul)        72.4    73    97   100      73  Anchor       Balanced     ← producing in existing structure
-2025-Q4 (Oct)        81.7   100    68   100     100  Architect    Balanced     ← creating new structure
-```
+![Transition](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch5-data-transition.svg)
 
 Design: 73 → 100. Anchor → Architect.
 
@@ -250,10 +223,7 @@ Their ability didn't change. **The universe changed.**
 
 ### And Then, the Return
 
-```
-2025-Q4 (Oct)        81.7   100    68   100     100  Architect    Balanced
-2026-Q1 (Jan)        78.1   100    84    83     100  Anchor       Builder      Active
-```
+![Return](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch5-data-return.svg)
 
 Design stayed at 100 the following quarter too. The structure-building in web-admin continued.
 
@@ -327,9 +297,7 @@ Some practical uses for timelines:
 
 ### 1. Material for 1:1s
 
-```bash
-eis timeline --author alice --recursive ~/workspace
-```
+![Timeline Author](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch5-bash-timeline-author.svg)
 
 Pull up a member's individual timeline at the start of a 1:1. "Your Design dropped this quarter. What happened?"
 
