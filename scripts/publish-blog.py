@@ -293,10 +293,11 @@ def init_mapping():
             if lines[0].startswith("# "):
                 title = lines[0][2:].strip()
                 title_to_file[title.lower()] = f.name
-                # Also try matching chapter number
-                ch_match = re.search(r"#(\d+)", title)
-                if ch_match:
-                    title_to_file[f"ch{ch_match.group(1)}"] = f.name
+
+        # Also extract chapter number from filename for fallback matching
+        ch_match = re.search(r"ch(\d+)", f.name)
+        if ch_match:
+            title_to_file[f"#{ ch_match.group(1) }"] = f.name
 
     # dev.to
     if os.environ.get("DEVTO_API_KEY"):

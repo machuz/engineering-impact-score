@@ -1,2 +1,58 @@
 {
+  "blog-ja-hatena-ch1.md": {
+    "hatena_id": "17179246901363697956",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/11/153212"
+  },
+  "blog-en-devto-ch1.md": {
+    "devto_id": 3340356
+  },
+  "blog-ja-hatena-ch2.md": {
+    "hatena_id": "17179246901364269041",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/13/060851"
+  },
+  "blog-en-devto-ch2.md": {
+    "devto_id": 3345221
+  },
+  "blog-ja-hatena-ch3.md": {
+    "hatena_id": "17179246901364765998",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/14/135648"
+  },
+  "blog-en-devto-ch3.md": {
+    "devto_id": 3350296
+  },
+  "blog-ja-hatena-ch4.md": {
+    "hatena_id": "17179246901364801303",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/14/155124"
+  },
+  "blog-en-devto-ch4.md": {
+    "devto_id": 3350879
+  },
+  "blog-ja-hatena-ch5.md": {
+    "hatena_id": "17179246901364838681",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/14/180329"
+  },
+  "blog-en-devto-ch5.md": {
+    "devto_id": 3350886
+  },
+  "blog-ja-hatena-ch6.md": {
+    "hatena_id": "17179246901364849628",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/14/184223"
+  },
+  "blog-en-devto-ch6.md": {
+    "devto_id": 3350980
+  },
+  "blog-ja-hatena-ch7.md": {
+    "hatena_id": "17179246901364899039",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/14/213413"
+  },
+  "blog-en-devto-ch7.md": {
+    "devto_id": 3351617
+  },
+  "blog-ja-hatena-ch8.md": {
+    "hatena_id": "17179246901364933177",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/14/233602"
+  },
+  "blog-en-devto-ch8.md": {
+    "devto_id": 3351856
+  }
 }

@@ -23,6 +23,9 @@ on:
         required: false
         default: ''
 
+permissions:
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest

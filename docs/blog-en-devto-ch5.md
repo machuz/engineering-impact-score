@@ -183,7 +183,9 @@ In 2025-Q4, the new product launched.
 
 I handed it to Engineer I.
 
-Commits to existing repos dropped to single digits. In their place: 1,352 commits to the new repo. **1,352 commits in three months.** The following quarter, another 1,333. That's 2,685 commits in six months.
+Honestly, whether we could hit the tight schedule was uncertain. But given I's implementation speed and ability, and with me covering the gaps, I judged the odds of success were far from low. I told the business side we'd go with a new engineering structure — and got their buy-in.
+
+Commits to existing repos dropped to single digits. In their place: 1,352 commits to the new repo. **1,352 commits in three months.** The following quarter, another 1,333. That's 2,685 commits in six months — +257,362 / -202,390 lines of hand-written TS/TSX (excluding API auto-generation).
 
 This number is extraordinary. One engineer producing this volume in half a year can't be explained by raw productivity alone.
 
@@ -232,6 +234,8 @@ Through friction, through strategic patience, they found their stage in a new un
 A young Architect who hits friction either retreats or bulldozes. A mature Architect **pulls back to read the team's reaction, then re-engages**. And a good leader **reads the timing and prepares the stage**.
 
 Engineer I's timeline and `--per-repo` record that maturation process — quarter by quarter, repository by repository.
+
+And here's another telling number. Engineer H, an existing team member, started joining Engineer I's new universe. Engineer H's commits in web-admin jumped from 86 in Q4 to 283 in Q1 — more than tripling. They were adapting to the gravitational field Engineer I created, and accelerating. The new structure wasn't just one person's output — it was beginning to function as the team's gravity.
 
 ---
 
