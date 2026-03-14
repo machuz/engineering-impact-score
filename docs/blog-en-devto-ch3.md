@@ -10,7 +10,7 @@ cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/m
 
 ## Previously
 
-In [Chapter 1](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c), I introduced a 7-axis scoring model for individual engineers. In [Chapter 2](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-51il), I aggregated those scores into team-level health metrics.
+In [Chapter 1](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c), I introduced a 7-axis scoring model for individual engineers. In [Chapter 2](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f), I aggregated those scores into team-level health metrics.
 
 But staring at the data long enough, I noticed something else.
 
@@ -39,15 +39,13 @@ The scores consistently matched my intuition.
 
 Looking at one frontend team's EIS data, I started seeing the evolution paths emerge.
 
+![Engineer Archetypes](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-engineer-profiles.png?v=2)
+
 ---
 
 **Engineer A** — Architect / Builder / Active
 
-The structural center of the team.
-
-![Engineer Archetypes](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-engineer-profiles.png?v=2)
-
-This is the team's gravitational core.
+The structural center of the team. This is the team's gravitational core.
 
 ---
 
@@ -436,4 +434,8 @@ And that's also a theory of team design.
 
 If this was useful:
 
-[![Sponsor](https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
+
+---
+
+← [Chapter 2: Team Health](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f) | [Chapter 4: Backend Architects Converge →](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d)

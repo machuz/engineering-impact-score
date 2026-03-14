@@ -1,5 +1,7 @@
 # git考古学 #9 —— Origin：コード宇宙のビッグバン
 
+![Cover](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/cover-ch9.svg)
+
 *すべての宇宙には起源がある。コード宇宙では、それは最初のcommitだ。*
 
 ### 前章までのあらすじ

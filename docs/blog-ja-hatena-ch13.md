@@ -1,5 +1,7 @@
 # git考古学 #13 —— Cosmology of Code：コード宇宙論
 
+![Cover](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/cover-ch13.svg)
+
 *git考古学はコード宇宙の天文学である。*
 
 ### 前章までのあらすじ

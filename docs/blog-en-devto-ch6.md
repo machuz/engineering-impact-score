@@ -371,4 +371,8 @@ Snapshots show "now." Timelines show "change." Laws predict "what happens next."
 
 If this article was useful:
 
-[![Sponsor](https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
+
+---
+
+← [Chapter 5: Timeline](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5) | [Chapter 7: Observing the Universe of Code →](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0)

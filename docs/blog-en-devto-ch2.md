@@ -358,3 +358,7 @@ Let's turn team strength from a prayer into a metric.
 **GitHub:** [machuz/engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, full methodology, and blog posts. Install with `brew tap machuz/tap && brew install eis`.
 
 **Support:** If this helped you see your team differently — [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz) / PayPay: `w_machu7`
+
+---
+
+← [Chapter 1: Measuring Engineering Impact](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c) | [Chapter 3: Two Paths to Architect →](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga)

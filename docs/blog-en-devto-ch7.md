@@ -202,9 +202,9 @@ They might be **someone who bends the gravity of codebases**.
 ### Series
 
 - [Chapter 1: Measuring Engineering Impact from Git History Alone](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c)
-- [Chapter 2: Beyond Individual Scores: Measuring Team Health from Git History](https://dev.to/machuz/git-archaeology-2-team-analysis-how-individual-scores-reveal-team-health-4e6a)
-- [Chapter 3: Two Paths to Architect: How Engineers Evolve Differently](https://dev.to/machuz/git-archaeology-3-archetypes-behind-the-numbers-there-are-people-48kl)
-- [Chapter 4: Backend Architects Converge: The Sacred Work of Laying Souls to Rest](https://dev.to/machuz/git-archaeology-4-the-normalization-trap-top-of-a-repo-means-nothing-11c5)
+- [Chapter 2: Beyond Individual Scores: Measuring Team Health from Git History](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f)
+- [Chapter 3: Two Paths to Architect: How Engineers Evolve Differently](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga)
+- [Chapter 4: Backend Architects Converge: The Sacred Work of Laying Souls to Rest](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d)
 - [Chapter 5: Timeline: Scores Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
 - [Chapter 6: Teams Evolve: The Laws of Organization Revealed by Timelines](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4jf3)
 - **Chapter 7: Observing the Universe of Code** (this post)
@@ -213,4 +213,8 @@ They might be **someone who bends the gravity of codebases**.
 
 If this was useful:
 
-[![Sponsor](https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
+
+---
+
+← [Chapter 6: Teams Evolve](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4jf3) | [Chapter 8: Engineering Relativity →](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)

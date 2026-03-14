@@ -27,15 +27,13 @@ EISを様々なエンジニアに適用して見えてきたこと：
 
 あるFEチームのEISを見ていて、Architectの進化経路が見えてきた。
 
+![Engineer Archetypes](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-engineer-profiles.svg)
+
 ---
 
 **Engineer A** — Architect / Builder / Active
 
-現行構造を成立させているチームの中心。
-
-![Engineer Archetypes](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-engineer-profiles.svg)
-
-このチームの重力の中心だ。
+現行構造を成立させているチームの中心。このチームの重力の中心だ。
 
 ---
 
@@ -405,3 +403,7 @@ Architect不在。Anchor不在。Cleaner不在。
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
 
 PayPay: `w_machu7`
+
+---
+
+← [第2章：チームの「構造力」](https://ma2k8.hateblo.jp/entry/2026/03/13/060851) | [第4章：Backend Architectは収束する →](https://ma2k8.hateblo.jp/entry/2026/03/14/155124)

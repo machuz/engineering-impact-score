@@ -1,5 +1,7 @@
 # git考古学 #12 —— Collapse：良いArchitectとBlack Hole Engineer
 
+![Cover](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/cover-ch12.svg)
+
 *宇宙にはもう一つの性質がある。崩壊だ。*
 
 ### 前章までのあらすじ

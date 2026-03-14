@@ -368,3 +368,7 @@ Architectがいるのにチームが機能していない場合、Producer Vacuu
 [![Sponsor](https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
 
 PayPay: `w_machu7`
+
+---
+
+← [第5章：タイムライン](https://ma2k8.hateblo.jp/entry/2026/03/14/180329) | [第7章：コードの宇宙を観測する →](https://ma2k8.hateblo.jp/entry/2026/03/14/213413)

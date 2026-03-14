@@ -478,4 +478,8 @@ That might be the essence of EIS.
 
 If this was useful:
 
-[![Sponsor](https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
+
+---
+
+← [Chapter 3: Two Paths to Architect](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga) | [Chapter 5: Timeline →](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
