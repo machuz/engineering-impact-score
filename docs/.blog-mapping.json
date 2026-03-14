@@ -69,5 +69,29 @@
   "blog-en-devto-ch9.md": {
     "devto_id": 3352854,
     "devto_url": "https://dev.to/machuz/git-archaeology-9-collapse-good-architects-and-black-hole-engineers-1dcn"
+  },
+  "blog-en-devto-ch10.md": {
+    "devto_id": 3352919,
+    "devto_url": "https://dev.to/machuz/git-archaeology-10-dark-matter-the-invisible-gravity-45ne"
+  },
+  "blog-en-devto-ch11.md": {
+    "devto_id": 3352920,
+    "devto_url": "https://dev.to/machuz/git-archaeology-11-entropy-the-universe-always-tends-toward-disorder-ak9"
+  },
+  "blog-ja-hatena-ch10.md": {
+    "hatena_id": "17179246901364984264",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/15/062608"
+  },
+  "blog-ja-hatena-ch11.md": {
+    "hatena_id": "17179246901364984271",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/15/062609"
+  },
+  "blog-ja-hatena-ch12.md": {
+    "hatena_id": "17179246901364984281",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/15/062610"
+  },
+  "blog-ja-hatena-ch13.md": {
+    "hatena_id": "17179246901364984300",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/15/062611"
   }
 }
