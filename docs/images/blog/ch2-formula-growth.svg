@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="580" height="70" viewBox="0 0 580 70">
+<svg xmlns="http://www.w3.org/2000/svg" width="580" height="48" viewBox="0 0 580 48">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
@@ -7,10 +7,10 @@
   </defs>
 
   <!-- Card background -->
-  <rect width="580" height="70" rx="8" fill="#1d2021"/>
+  <rect width="580" height="48" rx="8" fill="#1d2021"/>
 
   <!-- Accent bar -->
-  <rect x="0" y="0" width="4" height="70" rx="2" fill="#8ec07c"/>
+  <rect x="0" y="0" width="4" height="48" rx="2" fill="#8ec07c"/>
 
   <!-- Category label -->
   <text x="552" y="18" text-anchor="end" fill="#504945" font-size="10">Formula</text>
