@@ -17,6 +17,8 @@ func Run(args []string) error {
 		return runTeam(args[1:])
 	case "timeline":
 		return runTimeline(args[1:])
+	case "cache":
+		return runCache(args[1:])
 	case "version":
 		fmt.Printf("eis v%s\n", version)
 		return nil
@@ -36,6 +38,8 @@ Usage:
   eis analyze [path...]       Analyze git repos and output individual rankings
   eis team [path...]          Analyze and aggregate into team-level metrics
   eis timeline [path...]      Track score evolution over time periods
+  eis cache clear              Clear cached data
+  eis cache status             Show cache size
   eis version                 Print version
   eis help                    Show this help
 
@@ -51,6 +55,7 @@ Examples:
   eis timeline --author machuz,ponsaaan ~/work    Filter to specific authors
 
 Options (shared by analyze, team, and timeline):
+  --no-cache                  Skip disk cache (re-run all git operations)
   --config <path>             Config file (default: eis.yaml in CWD)
   --recursive                 Recursively find git repos under given paths
   --depth <n>                 Max directory depth for recursive search (default: 2)

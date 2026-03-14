@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/fatih/color"
+	"github.com/machuz/engineering-impact-score/internal/cache"
 	"github.com/machuz/engineering-impact-score/internal/config"
 	"github.com/machuz/engineering-impact-score/internal/domain"
 	"github.com/machuz/engineering-impact-score/internal/git"
@@ -46,6 +47,7 @@ func runTimeline(args []string) error {
 	activeDays := fs.Int("active-days", 0, "Days to consider author active (overrides config)")
 	pressureMode := fs.String("pressure-mode", "include", "Change pressure mode: include or ignore")
 	verbose := fs.Bool("verbose", false, "Show detailed debug output")
+	noCache := fs.Bool("no-cache", false, "Skip disk cache")
 
 	flagArgs, pathArgs := separateArgs(args, fs)
 	if err := fs.Parse(flagArgs); err != nil {
@@ -173,6 +175,9 @@ func runTimeline(args []string) error {
 		wk = 4
 	}
 
+	// Initialize cache
+	cacheStore := cache.New(!*noCache)
+
 	// Deduplicate repos
 	seen := make(map[string]bool)
 	var dedupedPaths []string
@@ -217,17 +222,40 @@ func runTimeline(args []string) error {
 			color.New(color.Bold).Printf("Loading: %s %s\n", repoName, domainLabel)
 		}
 
-		// Parse all commits once
-		spin := spinner("[1/1] Parsing git log...")
-		commits, err := git.ParseLog(ctx, repoPath)
-		spin.Stop()
-		if err != nil {
-			return fmt.Errorf("parse log %s: %w", repoName, err)
+		// Get HEAD hash for cache keys
+		headHash, _ := git.HeadHash(ctx, repoPath)
+
+		// Parse all commits once (with cache)
+		var commits []git.Commit
+		logCacheKey := cache.LogKey(repoPath, headHash)
+		if headHash != "" && cacheStore.Get(logCacheKey, &commits) {
+			if !quiet {
+				fmt.Fprintf(os.Stderr, "  %s git log (cached)\n", color.New(color.FgGreen).Sprint("✓"))
+			}
+		} else {
+			spin := spinner("[1/1] Parsing git log...")
+			commits, err = git.ParseLog(ctx, repoPath)
+			spin.Stop()
+			if err != nil {
+				return fmt.Errorf("parse log %s: %w", repoName, err)
+			}
+			if headHash != "" {
+				cacheStore.Set(logCacheKey, commits)
+			}
 		}
 		commits = filterCommits(commits, cfg)
 		commits = filterFileStats(commits, cfg.ExcludeFilePatterns)
 
-		mergeCommits, _ := git.ParseMergeCommits(ctx, repoPath)
+		var mergeCommits []git.Commit
+		mergeCacheKey := cache.MergeLogKey(repoPath, headHash)
+		if headHash != "" && cacheStore.Get(mergeCacheKey, &mergeCommits) {
+			// cached
+		} else {
+			mergeCommits, _ = git.ParseMergeCommits(ctx, repoPath)
+			if headHash != "" {
+				cacheStore.Set(mergeCacheKey, mergeCommits)
+			}
+		}
 		mergeCommits = filterCommits(mergeCommits, cfg)
 
 		repos = append(repos, repoInfo{
@@ -351,18 +379,29 @@ func runTimeline(args []string) error {
 					continue
 				}
 
-				if !quiet {
-					spin := spinner(fmt.Sprintf("  Blame %s @ %s...", repo.name, window.Label))
-					spin.Clear()
-				}
-				blameProg := newLiveProgress(fmt.Sprintf("  Blame %s", repo.name))
-				blameLines, err := git.ConcurrentBlameFilesAtCommit(ctx, repo.path, boundaryCommit, files, cfg.SampleSize, wk,
-					func(done, total int) {
-						blameProg.Update(done, total)
-					}, blameVerbose)
-				blameProg.Stop()
-				if err != nil {
-					fmt.Fprintf(os.Stderr, "  Warning: blame error: %v\n", err)
+				var blameLines []git.BlameLine
+				blameCacheKey := cache.BlameAtCommitKey(repo.path, boundaryCommit, files, cfg.SampleSize)
+				if cacheStore.Get(blameCacheKey, &blameLines) {
+					if !quiet {
+						fmt.Fprintf(os.Stderr, "  %s Blame %s (cached)\n", color.New(color.FgGreen).Sprint("✓"), repo.name)
+					}
+				} else {
+					if !quiet {
+						spin := spinner(fmt.Sprintf("  Blame %s @ %s...", repo.name, window.Label))
+						spin.Clear()
+					}
+					blameProg := newLiveProgress(fmt.Sprintf("  Blame %s", repo.name))
+					blameLines, err = git.ConcurrentBlameFilesAtCommit(ctx, repo.path, boundaryCommit, files, cfg.SampleSize, wk,
+						func(done, total int) {
+							blameProg.Update(done, total)
+						}, blameVerbose)
+					blameProg.Stop()
+					if err != nil {
+						fmt.Fprintf(os.Stderr, "  Warning: blame error: %v\n", err)
+					}
+					if len(blameLines) > 0 {
+						cacheStore.Set(blameCacheKey, blameLines)
+					}
 				}
 
 				// Apply aliases
@@ -412,7 +451,20 @@ func runTimeline(args []string) error {
 				// Debt
 				fixCommits := metric.GetFixCommits(periodCommits)
 				if len(fixCommits) > 0 {
-					debt, _ := metric.CalcDebt(ctx, repo.path, fixCommits, 50, cfg.DebtThreshold, cfg.BlameTimeout, cfg.ResolveAuthor, nil, nil)
+					var debt map[string]float64
+					var fixHashes []string
+					for _, fc := range fixCommits {
+						fixHashes = append(fixHashes, fc.Hash)
+					}
+					debtCacheKey := cache.DebtKey(repo.path, fixHashes)
+					if cacheStore.Get(debtCacheKey, &debt) {
+						// cached
+					} else {
+						debt, _ = metric.CalcDebt(ctx, repo.path, fixCommits, 50, cfg.DebtThreshold, cfg.BlameTimeout, cfg.ResolveAuthor, nil, nil)
+						if len(debt) > 0 {
+							cacheStore.Set(debtCacheKey, debt)
+						}
+					}
 					mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
 				}
 			}

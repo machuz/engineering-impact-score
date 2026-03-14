@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/fatih/color"
+	"github.com/machuz/engineering-impact-score/internal/cache"
 	"github.com/machuz/engineering-impact-score/internal/config"
 	"github.com/machuz/engineering-impact-score/internal/domain"
 	"github.com/machuz/engineering-impact-score/internal/git"
@@ -33,6 +34,7 @@ type AnalyzeOptions struct {
 	ActiveDays   int
 	DomainFilter string
 	Verbose      bool
+	NoCache      bool
 }
 
 // DomainResults holds scored results for a single domain.
@@ -81,6 +83,7 @@ func runAnalyze(args []string) error {
 	activeDays := fs.Int("active-days", 0, "Days to consider author active (overrides config, default 30)")
 	domainFilter := fs.String("domain", "", "Only analyze repos in this domain (e.g. Backend, Frontend, Firmware)")
 	verbose := fs.Bool("verbose", false, "Show detailed debug output (file-level timing)")
+	noCache := fs.Bool("no-cache", false, "Skip disk cache")
 
 	flagArgs, pathArgs := separateArgs(args, fs)
 	if err := fs.Parse(flagArgs); err != nil {
@@ -99,6 +102,7 @@ func runAnalyze(args []string) error {
 		ActiveDays:   *activeDays,
 		DomainFilter: *domainFilter,
 		Verbose:      *verbose,
+		NoCache:      *noCache,
 	}
 
 	domainResults, cfg, err := RunAnalyzePipeline(opts, pathArgs)
@@ -206,6 +210,9 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		workers = 4
 	}
 
+	// Initialize cache
+	cacheStore := cache.New(!opts.NoCache)
+
 	// Per-domain accumulators
 	accumulators := make(map[domain.Domain]*domainAccumulator)
 
@@ -270,12 +277,27 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		acc.repoCount++
 		totalAnalyzed++
 
+		// Get HEAD hash for cache keys
+		headHash, _ := git.HeadHash(ctx, repoPath)
+
 		// Step 1: Parse git log (feeds Production, Quality, Design)
 		spin := spinner("[1/4] Parsing git log...")
-		commits, err := git.ParseLog(ctx, repoPath)
-		spin.Stop()
-		if err != nil {
-			return nil, nil, fmt.Errorf("parse log %s: %w", repoName, err)
+		var commits []git.Commit
+		logCacheKey := cache.LogKey(repoPath, headHash)
+		if headHash != "" && cacheStore.Get(logCacheKey, &commits) {
+			spin.Stop()
+			if !quiet {
+				fmt.Fprintf(os.Stderr, "  (cached)\n")
+			}
+		} else {
+			commits, err = git.ParseLog(ctx, repoPath)
+			spin.Stop()
+			if err != nil {
+				return nil, nil, fmt.Errorf("parse log %s: %w", repoName, err)
+			}
+			if headHash != "" {
+				cacheStore.Set(logCacheKey, commits)
+			}
 		}
 
 		// Apply author aliases, filter excluded authors, and strip excluded file patterns
@@ -283,7 +305,16 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		commits = filterFileStats(commits, cfg.ExcludeFilePatterns)
 
 		// Also fetch merge commits for fix detection in Quality
-		mergeCommits, _ := git.ParseMergeCommits(ctx, repoPath)
+		var mergeCommits []git.Commit
+		mergeCacheKey := cache.MergeLogKey(repoPath, headHash)
+		if headHash != "" && cacheStore.Get(mergeCacheKey, &mergeCommits) {
+			// cached
+		} else {
+			mergeCommits, _ = git.ParseMergeCommits(ctx, repoPath)
+			if headHash != "" {
+				cacheStore.Set(mergeCacheKey, mergeCommits)
+			}
+		}
 		mergeCommits = filterCommits(mergeCommits, cfg)
 
 		// Production (non-merge only)
@@ -345,14 +376,26 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 			}
 		}
 		spin.Clear()
-		blameProg := newLiveProgress("[2/4] Blame")
-		blameLines, err := git.ConcurrentBlameFiles(ctx, repoPath, files, cfg.SampleSize, workers,
-			func(done, total int) {
-				blameProg.Update(done, total)
-			}, blameVerbose)
-		blameProg.Stop()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "  Warning: blame error: %v\n", err)
+
+		var blameLines []git.BlameLine
+		blameCacheKey := cache.BlameKey(repoPath, headHash, files, cfg.SampleSize)
+		if headHash != "" && cacheStore.Get(blameCacheKey, &blameLines) {
+			if !quiet {
+				fmt.Fprintf(os.Stderr, "  %s [2/4] Blame (cached)\n", color.New(color.FgGreen).Sprint("✓"))
+			}
+		} else {
+			blameProg := newLiveProgress("[2/4] Blame")
+			blameLines, err = git.ConcurrentBlameFiles(ctx, repoPath, files, cfg.SampleSize, workers,
+				func(done, total int) {
+					blameProg.Update(done, total)
+				}, blameVerbose)
+			blameProg.Stop()
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "  Warning: blame error: %v\n", err)
+			}
+			if headHash != "" && len(blameLines) > 0 {
+				cacheStore.Set(blameCacheKey, blameLines)
+			}
 		}
 
 		// Apply aliases to blame lines
@@ -413,12 +456,28 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 			}
 		}
 		spin.Clear()
-		debtProg := newLiveProgress("[3/4] Debt")
-		debt, _ := metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.BlameTimeout, cfg.ResolveAuthor,
-			func(done, total int) {
-				debtProg.Update(done, total)
-			}, debtVerbose)
-		debtProg.Stop()
+
+		var debt map[string]float64
+		var fixHashes []string
+		for _, fc := range fixCommits {
+			fixHashes = append(fixHashes, fc.Hash)
+		}
+		debtCacheKey := cache.DebtKey(repoPath, fixHashes)
+		if headHash != "" && cacheStore.Get(debtCacheKey, &debt) {
+			if !quiet {
+				fmt.Fprintf(os.Stderr, "  %s [3/4] Debt (cached)\n", color.New(color.FgGreen).Sprint("✓"))
+			}
+		} else {
+			debtProg := newLiveProgress("[3/4] Debt")
+			debt, _ = metric.CalcDebt(ctx, repoPath, fixCommits, 50, cfg.DebtThreshold, cfg.BlameTimeout, cfg.ResolveAuthor,
+				func(done, total int) {
+					debtProg.Update(done, total)
+				}, debtVerbose)
+			debtProg.Stop()
+			if headHash != "" && len(debt) > 0 {
+				cacheStore.Set(debtCacheKey, debt)
+			}
+		}
 		mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
 
 		// Step 4: Accumulate bus factor risks per domain; print immediately for table format

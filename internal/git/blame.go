@@ -417,6 +417,18 @@ func FindCommitAtDate(ctx context.Context, repoPath string, before time.Time) (s
 	return lines[0], nil
 }
 
+// HeadHash returns the current HEAD commit hash for a repo.
+func HeadHash(ctx context.Context, repoPath string) (string, error) {
+	lines, err := RunLines(ctx, repoPath, "rev-parse", "HEAD")
+	if err != nil {
+		return "", err
+	}
+	if len(lines) == 0 {
+		return "", fmt.Errorf("no HEAD found")
+	}
+	return lines[0], nil
+}
+
 // IsShallowRepo checks if the repository is a shallow clone
 func IsShallowRepo(ctx context.Context, repoPath string) bool {
 	lines, err := RunLines(ctx, repoPath, "rev-parse", "--is-shallow-repository")
