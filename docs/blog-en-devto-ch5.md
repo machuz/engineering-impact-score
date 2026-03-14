@@ -228,9 +228,9 @@ Engineer I had a design vision they'd been carrying — a conviction about how F
 
 But the timing wasn't right yet.
 
-**"Once we're past the proof phase and into the business phase, I'll hand it to you. Wait for me."**
+**"Once the engineering org has proven itself and the business side is ready to go all-in on engineering, I'll hand it to you. Wait for me."**
 
-I was certain their design was right. I was certain the whole team would benefit from a structure built around their strengths. So — please, wait a little longer.
+I was certain their design was right. I was certain the whole team would benefit from a structure built around their strengths. But as a startup, the business side wasn't yet fully invested in engineering. The ambition to become a tech company was there — but the timing hadn't arrived. So — please, wait a little longer.
 
 Q3's "hesitation" wasn't just friction. It was also **strategic patience**.
 
