@@ -444,7 +444,17 @@ That this team gets an Elite classification. That it functions despite carrying 
 
 I wanted to say "my team is strong." But "somehow strong" isn't convincing.
 
-So I made it measurable.
+And critically, **I wanted to brag on a playing field where bias can't enter**.
+
+When someone subjectively says "that person is strong," it might just be the evaluator's bias. Maybe the person who's good at politics gets high ratings.
+
+But git history doesn't lie.
+
+Does the code survive? Are they involved in design? Are they creating debt, or cleaning it up?
+
+**Reverse-engineering from history leaves no room for bias.**
+
+So I built the numbers on this playing field.
 
 And those numbers matched my intuition. The team really was strong.
 
