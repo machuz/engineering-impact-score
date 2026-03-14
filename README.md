@@ -348,6 +348,14 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 - [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/184223) — git考古学 #6：チームは進化する——タイムラインが暴く組織の法則
 - [English / dev.to](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei) — Git Archaeology #6: Teams Evolve — The Laws of Organization Revealed by Timelines
 
+**#7 — Observing the Universe of Code**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/213413) — git考古学 #7：コードの宇宙を観測する
+- [English / dev.to](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0) — Git Archaeology #7: Observing the Universe of Code
+
+**#8 — Engineering Relativity**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/233602) — git考古学 #8：エンジニアリング相対性理論——同じエンジニアが異なるスコアを得る理由
+- [English / dev.to](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl) — Git Archaeology #8: Engineering Relativity — Why the Same Engineer Gets Different Scores
+
 ## Roadmap
 
 - [x] Scoring methodology and formulas
