@@ -1,0 +1,438 @@
+---
+title: "Two Paths to Architect: How Engineers Evolve Differently"
+published: true
+description: "Chapter 3 of Engineering Impact Score. Architects don't come from one mold — inheritance vs. emergence, and why cold numbers tell the most human stories."
+tags: opensource, productivity, git, career
+cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/engineering-impact-framework-diagram-fixed.png
+---
+
+*Cold numbers, it turns out, tell the most human stories.*
+
+## Previously
+
+In [Chapter 1](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c), I introduced a 7-axis scoring model for individual engineers. In [Chapter 2](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-51il), I aggregated those scores into team-level health metrics.
+
+But staring at the data long enough, I noticed something else.
+
+**Architects don't all come from the same mold.**
+
+There are two distinct evolution paths. And understanding them changes how you read the numbers — and the people behind them.
+
+---
+
+## Score Intuition
+
+Before diving in, let me share the gut-feel calibration I've developed after running EIS across many engineers:
+
+- **10–20**: Contractors who didn't work out, or hires we regretted
+- **Low 20s**: Engineers I felt "meh" about
+- **30+**: People I actively wanted to work with
+- **40+**: Senior-level
+
+The scores consistently matched my intuition.
+
+**40 is senior.** That's how strict this model is. Hitting 40+ across seven axes requires sustained, high-quality contribution. Real senior engineering is hard.
+
+---
+
+## A Team Portrait
+
+Looking at one frontend team's EIS data, I started seeing the evolution paths emerge.
+
+---
+
+**Engineer A** — Architect / Builder / Active
+
+The structural center of the team.
+
+```
+Prod 100 | Qual 84 | Robust 100 | Dormant 100 | Design 100 | Grav 84 | Total 88.9
+Role: Architect (1.00) | Style: Builder (1.00)
+```
+
+This is the team's gravitational core.
+
+---
+
+**Engineer B** — Anchor / Mass / Active
+
+Producing like crazy. But Robust is only 11.
+
+```
+Prod 100 | Qual 87 | Robust 11 | Dormant 18 | Design 39 | Grav 32 | Total 44.6
+Role: Anchor (1.00) | Style: Mass (0.81)
+```
+
+Most of their code gets rewritten by Engineer A.
+
+But **they keep producing until 11% survives**.
+
+Anchor means they're trying to guard quality. Mass means their precision is still rough. **The struggle and the effort — both show up in the numbers.**
+
+This isn't just "immature." They're in the early stage of an Anchor-to-Architect path. They're building the instincts for **Inheritance Architect**.
+
+---
+
+**Engineer C** — Producer / Balanced / Active
+
+The one who listens to everyone, synthesizes feedback, and writes code that reflects the team's consensus.
+
+```
+Prod 42 | Qual 44 | Robust 39 | Dormant 39 | Design 9 | Grav 29 | Total 39.5
+Role: Producer (0.80) | Style: Balanced (0.30)
+```
+
+That's why their code is robust.
+
+**Producer means they're shipping real code** — not just attending meetings. The label doesn't attach unless you're actually producing. It's proof of standing shoulder-to-shoulder with the team.
+
+They haven't created gravitational code yet — the kind everyone else builds on top of. But they're pushing the team forward as an adaptive Producer.
+
+---
+
+**Engineer D** — Producer / Balanced / Active (High Gravity)
+
+The only one on this team **generating real gravity**.
+
+Engineers who can create gravity are rare. Genuinely rare.
+
+```
+Prod 49 | Qual 66 | Robust 12 | Dormant 44 | Design 5 | Grav 68 | Indisp 100 | Total 39.0
+Role: Producer (0.96) | Style: Balanced (0.30)
+```
+
+But Dormant is high — **much of their code hasn't been touched by others yet**. They built ahead of the team.
+
+And Robust is low.
+
+**This is the number that shows Engineer D's struggle most clearly.** Their gravitational field is getting overwritten. The code they shaped is being reshaped.
+
+But it's not all gone. Some of it remains. You can't feel that intuitively — but the metrics pick it up.
+
+---
+
+**Engineer E** — Producer / Churn / —
+
+The more they write, the more debt they create.
+
+```
+Prod 37 | Qual 23 | Robust 10 | Dormant 2 | Design 2 | Grav 35 | Total 19.2
+Role: Producer (0.68) | Style: Churn (0.67)
+```
+
+Their code is systematically replaced.
+
+**Style: Churn says it all.** Producing, but not surviving. This is another reality the metrics surface.
+
+---
+
+## Numbers Tell Stories
+
+Here's what struck me looking at this data.
+
+**These metrics visualize the stories that accumulate day by day.**
+
+Engineer B: "Producing like mad, but only 11% survives. And yet — still producing." That's pain. But it's also grit. Both show up in the numbers.
+
+Engineer D: "Has gravity. But keeps getting overwritten. But not completely erased." That's pain too. But something remains. Something you can't feel intuitively — but the metrics catch it.
+
+**Cold numbers turn out to be the most emotional.**
+
+Daily effort etched into the codebase. Struggle. Persistence. Things that slowly remain. These metrics make that visible.
+
+---
+
+## Two Kinds of Gravity
+
+Here's an important nuance.
+
+**Gravity comes in two flavors.**
+
+EIS calculates Gravity as:
+
+```
+Gravity = Indisp × 0.4 + Breadth × 0.3 + Design × 0.3
+```
+
+For Engineer D:
+
+```
+100 × 0.4 + 88 × 0.3 + 5 × 0.3 = 68
+```
+
+Most of that 68 comes from **Indispensability (sole ownership) and Breadth (spread)**. Design is only 5. This isn't "structural center" — it's "widely held by one person."
+
+For Engineer A:
+
+```
+60 × 0.4 + 100 × 0.3 + 100 × 0.3 = 84
+```
+
+Design 100 drives this Gravity. They're creating the structural center.
+
+---
+
+Two types of gravity:
+
+**Structural Gravity**
+
+Design-based. Creating the center of the architecture. Other code radiates outward from there.
+
+**Occupancy Gravity**
+
+Indispensability-based. Widely held by one person. Nobody else has touched it.
+
+---
+
+When we say "engineers who create gravity are rare" or "great engineers generate gravity wherever they go" — **these two types are qualitatively different**.
+
+Engineer A has structural gravity. Engineer D has occupancy gravity.
+
+But this isn't a dismissal of Engineer D.
+
+**Occupancy gravity is the precursor to structural gravity.**
+
+First you hold wide territory. Nobody else has touched it yet. Collisions and rewrites happen. Then Design rises.
+
+The path is: **Occupancy Gravity → Structural Gravity**.
+
+Emergent Architects walk exactly this road.
+
+---
+
+## What the Team Metrics Show
+
+This team's metrics include a warning:
+
+```
+⚠ Warnings:
+  Fragile gravity — Engineer D (Grav 68) has high influence but low robust survival (12)
+```
+
+**Engineer D's struggle surfaces as a Warning.** High gravity, but low robust survival.
+
+Yet this team is strong:
+
+```
+Structure: Architectural Team (0.34)
+Culture: Builder (0.40)
+Phase: Mature (1.00)
+Risk: Healthy (0.30)
+```
+
+Why?
+
+Because **the current structure and the next structure coexist**.
+
+---
+
+## Two Evolution Paths
+
+Now for the main thesis.
+
+**Architects come in two schools.**
+
+---
+
+**Inheritance Architect**
+
+Evolves from Anchor.
+
+Traits:
+
+- Deep understanding of existing structure
+- Knows the real-world constraints
+- Better at refinement than destruction
+- Strengthens the system without breaking it
+
+This path is especially strong in **backend**.
+
+Backend tends to have clearer responsibility separation, domain boundaries, and "closer to correct" designs.
+
+So **copying good structure, guarding it, and purifying it** has high value.
+
+---
+
+**Emergent Architect**
+
+Evolves from High-Gravity Producer.
+
+Traits:
+
+- Creates new structure rather than inheriting existing one
+- Early friction is high
+- Gets overwritten, collides with others
+- But eventually creates a new center
+
+This path is especially interesting in **frontend**.
+
+Frontend doesn't have the same "one correct answer" as backend.
+
+---
+
+## The Beauty of Frontend
+
+This is important.
+
+Frontend — unlike backend — deals with UX, layout, state management, interaction, abstraction granularity. **Multiple aesthetics coexist.**
+
+So a frontend Architect who only **inherits the correct answer** is weak.
+
+What's needed is someone who **brings a different structural proposal, clashes with existing structure, and forges a stronger gravitational field**.
+
+**In frontend, the collision of ideas is beautiful.**
+
+---
+
+## Reading Engineer D
+
+That earlier pattern:
+
+```
+Producer + High Gravity + Low Robust
+```
+
+isn't just immaturity.
+
+It can also mean: **proposing new structure that competes with the existing one**.
+
+So "Architect candidate" is imprecise. More accurately: **Emergent Architect candidate**.
+
+---
+
+## Reading Engineer B
+
+Engineer B shows:
+
+```
+Anchor + Mass
+```
+
+This doesn't mean "unlikely to become Architect."
+
+It means: **has the foundation for Inheritance Architect, but style is still rough**.
+
+- Positioned on the side of guarding structure
+- Has quality awareness
+- But still producing with too much collision
+
+They're at the **early stage of Inheritance Architect**.
+
+---
+
+## What Comes After the Struggle
+
+These metrics reflect effort and impact on the current codebase.
+
+How things evolve from here depends on the ecosystem.
+
+But engineers who can produce this kind of gravity — even if their score temporarily drops, even if they go through painful stretches — **will eventually settle into a score commensurate with their intellectual potential**.
+
+If anyone on this team will hit 60–80 and challenge Engineer A's dominance through domain knowledge and craft — **it's Engineer D and no one else**.
+
+---
+
+## Career Models Aren't Linear
+
+Here's the synthesis.
+
+**Backend-style evolution:**
+
+```
+Producer
+↓
+Anchor
+↓
+Inheritance Architect
+```
+
+**Frontend-style evolution:**
+
+```
+Producer
+↓
+High-Gravity Producer
+↓
+Emergent Architect
+```
+
+Career paths aren't a single line. They're a **branching evolution model**.
+
+And the two types aren't opposites — they're **complementary**.
+
+The ideal team probably looks like:
+
+- Inheritance Architect
+- Emergent Architect candidate
+- Anchor
+- Producer
+
+In other words: **the power to guard, the power to break and rebuild, the power to stabilize, the power to ship**.
+
+---
+
+## The Danger of Producer-Only Teams
+
+On the flip side, there's a dangerous team composition.
+
+**Everyone is a Producer.**
+
+It looks active. Code ships daily. PRs merge constantly.
+
+But:
+
+- **Nobody touches the design layer** → tacit knowledge accumulates
+- **Nobody pays down debt** → code rots in 3 months
+- **Nobody guards quality** → fix rate keeps climbing
+
+Everyone writes, nobody cleans up. Everyone pushes forward, nobody solidifies the foundation.
+
+EIS makes this instantly visible:
+
+```
+Role Distribution:
+  Producer     ██████████  5 (100%)
+```
+
+No Architect. No Anchor. No Cleaner.
+
+**Complementarity score tanks.**
+
+Production is high, but Survival is low across the board. Quality is scattered. In six months, you're left with a mountain of tech debt.
+
+What this team needs isn't another Producer. It's **an Architect — or at least an Anchor**.
+
+---
+
+## This Team's Composition
+
+With this lens, the team looks cleaner:
+
+- **Engineer A**: Architect holding the current structure
+- **Engineer B**: Anchor who can grow toward Inheritance Architect
+- **Engineer C**: Adaptive Producer pushing the team forward
+- **Engineer D**: Emergent Architect candidate with high gravity
+
+This isn't "one Architect + followers."
+
+**The current structure and the next structure coexist.**
+
+That's strong.
+
+---
+
+## What This Discovery Means
+
+This discovery elevates EIS's career model.
+
+Not a single line — a **branching evolution model**.
+
+And that's also a theory of team design.
+
+---
+
+**GitHub:** [machuz/engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology. `brew tap machuz/tap && brew install eis` and you're set.
+
+If this was useful:
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
