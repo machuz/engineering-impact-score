@@ -146,7 +146,7 @@ Conversely, an engineer who is Architect in only one repository is creating grav
 EIS cross-repository analysis makes this reproducibility **numerically verifiable**:
 
 ```
-Author     Backend API    Frontend    Lambda     Pattern
+Author     Backend API    Frontend    Firmware   Pattern
 machuz     Architect      Architect   Architect  Reproducible
 alice      Architect      Producer    —          Context-dependent
 bob        Producer       Producer    Producer   Consistently Producer

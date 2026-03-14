@@ -144,7 +144,7 @@ eis timeline --span 6m --periods 0 --recursive ~/workspace
 EISのクロスリポジトリ分析は、この再現性を**数値で確認**できる。
 
 ```
-Author     Backend API    Frontend    Lambda     Pattern
+Author     Backend API    Frontend    Firmware   Pattern
 machuz     Architect      Architect   Architect  再現性あり
 alice      Architect      Producer    —          コンテキスト依存
 bob        Producer       Producer    Producer   一貫してProducer
