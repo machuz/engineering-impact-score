@@ -3,7 +3,7 @@ title: "Git Archaeology #4 — Backend Architects Converge: The Sacred Work of L
 published: true
 description: "Chapter 4 of Engineering Impact Score. Backend teams evolve differently — and departed Architects leave souls that must be laid to rest."
 tags: opensource, productivity, git, career
-cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/cover-ch4.svg
+cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch4.png
 ---
 
 *Departed Architects leave souls in the codebase. Laying them to rest is sacred work.*
@@ -25,11 +25,11 @@ But when I ran EIS on a Backend team, I saw a completely different landscape.
 
 Here's the Backend team's data:
 
-![Backend Team](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-backend-team.svg)
+![Backend Team](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-backend-team.png)
 
 And the team metrics:
 
-![Team Classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-team-classification.svg)
+![Team Classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-team-classification.png)
 
 **1 Architect. 3 Anchors. 0 Producers.**
 
@@ -67,7 +67,7 @@ Because of this difference, **Backend Architects concentrate rather than prolife
 
 Think of it like a solar system:
 
-![Backend Structure](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-structure.svg)
+![Backend Structure](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-structure.png)
 
 This structure isn't unusual for Backend teams.
 
@@ -77,7 +77,7 @@ This structure isn't unusual for Backend teams.
 
 Look at Engineer F:
 
-![Engineer F profile](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-engineer-f.svg)
+![Engineer F profile](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-data-engineer-f.png)
 
 Engineer F is a **departed Architect**.
 
@@ -131,7 +131,7 @@ But Former state has another meaning.
 
 The team metrics show:
 
-![Phase and Risk indicators](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-phase-risk.svg)
+![Phase and Risk indicators](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-data-phase-risk.png)
 
 Legacy-Heavy means **strong but historically heavy team**.
 
@@ -189,7 +189,7 @@ What does laying a Former to rest mean?
 
 It means **being absorbed into Debt Cleanup**.
 
-![Team average Debt Cleanup score](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-debt-avg.svg)
+![Team average Debt Cleanup score](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-data-debt-avg.png)
 
 Active members touch Former's code. Understand it. Fix it. Rewrite it.
 
@@ -238,11 +238,11 @@ And in Backend, this Anchor becomes **the evolution path to Architect**.
 
 In frontend:
 
-![Frontend evolution path: Producer to Emergent Architect](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-diagram-fe-evolution.svg)
+![Frontend evolution path: Producer to Emergent Architect](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-diagram-fe-evolution.png)
 
 But in Backend, this is more common:
 
-![Backend evolution path: Producer to Inheritance Architect](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-diagram-be-evolution.svg)
+![Backend evolution path: Producer to Inheritance Architect](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-diagram-be-evolution.png)
 
 This is the **Convergent Evolution Model**.
 
@@ -254,7 +254,7 @@ Backend Architects are characterized by **being able to reproduce structure**.
 
 Say a design like this worked in one codebase:
 
-![Design pattern: Domain + Application + UseCase](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-design-pattern.svg)
+![Design pattern: Domain + Application + UseCase](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-data-design-pattern.png)
 
 A skilled Backend Architect can **reproduce that structure in a different system**.
 
@@ -273,19 +273,19 @@ Another interesting point.
 
 This team has **no Producers**.
 
-![Role distribution: Architect 1, Anchor 3, Producer 0](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-role-count.svg)
+![Role distribution: Architect 1, Anchor 3, Producer 0](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-data-role-count.png)
 
 Producer means "someone who doesn't fully understand structure but produces on top of it."
 
 Without Producers, team structure looks like:
 
-![Producer vacuum diagram](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-diagram-producer-vacuum.svg)
+![Producer vacuum diagram](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-diagram-producer-vacuum.png)
 
 This is a state I'd call **Producer Vacuum**.
 
 With Producers:
 
-![Three-layer structure: Architect, Anchor, Producer](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-diagram-three-layer.svg)
+![Three-layer structure: Architect, Anchor, Producer](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-diagram-three-layer.png)
 
 A three-layer structure forms.
 
@@ -297,7 +297,7 @@ This is the most stable form for Backend teams.
 
 EIS raises warnings for this team:
 
-![Bus factor warning](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-bus-factor.svg)
+![Bus factor warning](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-data-bus-factor.png)
 
 This means **Architect Bus Factor = 1**.
 
@@ -376,7 +376,7 @@ Engineer H is doing really good work. When I invited them to join this team, the
 
 And even more honestly, **what I really want to brag about is the team**.
 
-![Elite team classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-data-elite.svg)
+![Elite team classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch4-data-elite.png)
 
 That this team gets an Elite classification. That it functions despite carrying Legacy-Heavy weight. That it's moving forward while laying departed Architects' assets to rest.
 

@@ -3,7 +3,7 @@ title: "Git Archaeology #7 — Observing the Universe of Code"
 published: true
 description: "Chapter 7 of Engineering Impact Score. Codebases have gravitational structures. Great engineers don't just write code — they bend the gravity of codebases."
 tags: opensource, productivity, git, career
-cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/cover-ch7.svg
+cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch7.png
 ---
 
 *Great engineers don't just write code. They bend the gravity of codebases.*
@@ -24,7 +24,7 @@ First, the practical part. `eis timeline --format html` now outputs an interacti
 
 ![Timeline HTML Dashboard](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/timeline-html-output.png?v=0.11.0)
 
-![HTML Dashboard Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch7-bash-html.svg)
+![HTML Dashboard Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch7-bash-html.png)
 
 Chart.js-based line charts show individual and team score trajectories, health metrics, membership composition, and classification changes at a glance. Tooltips display Role/Style/State with confidence scores. Transition markers highlight exactly when changes happened.
 
@@ -100,7 +100,7 @@ But structurally, this is the **evolution of the code universe**.
 
 In EIS team timelines, this evolution is traceable through concrete metrics:
 
-![Team Classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch7-team-classification.svg)
+![Team Classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch7-team-classification.png)
 
 **Architectural Team → Maintenance Team → Architectural Engine**
 

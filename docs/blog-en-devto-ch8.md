@@ -3,7 +3,7 @@ title: "Git Archaeology #8 — Engineering Relativity: Why the Same Engineer Get
 published: true
 description: "Chapter 8 of Engineering Impact Score. The same engineer produces different EIS scores in different codebases — and that's not a bug, it's physics."
 tags: opensource, productivity, git, career
-cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/cover-ch8.svg
+cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch8.png
 ---
 
 *The same object is lighter on the Moon and heavier on Jupiter. The same thing happens in codebases.*
@@ -75,7 +75,7 @@ This has important implications for engineering evaluation.
 
 Imagine an engineer whose scores look like this:
 
-![Repo Scores](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-repo-scores.svg)
+![Repo Scores](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-repo-scores.png)
 
 Naturally, 60 looks "better."
 
@@ -97,7 +97,7 @@ How do you account for this relativity when reading EIS? Here are some approache
 
 Look at `eis analyze --team`:
 
-![Structure Comparison](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-structure-comparison.svg)
+![Structure Comparison](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-structure-comparison.png)
 
 Total: 40 inside an Architectural Engine and Total: 40 inside an Unstructured team have completely different meanings.
 
@@ -107,13 +107,13 @@ The more Architects on a team, the harder it is to raise your Design axis. This 
 
 ### 3. Use `--per-repo` for Cross-Repo Analysis
 
-![Per-Repo Analysis](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-bash-per-repo.svg)
+![Per-Repo Analysis](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-bash-per-repo.png)
 
 The `--per-repo` flag scores each repository independently and produces a cross-repo comparison table. Producer in one repo, Architect in another — that pattern reveals adaptability and latent capability.
 
 ### 4. Watch "Gravitational Field Changes" in Timelines
 
-![Timeline Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-bash-timeline.svg)
+![Timeline Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-bash-timeline.png)
 
 Codebase structure isn't static. Member departures, refactoring, new features — these shift the gravitational field. In timelines, you can distinguish "engineers whose scores rise when structure weakens" from "engineers who maintain stable scores regardless of structural strength."
 
@@ -133,7 +133,7 @@ Conversely, an engineer who is Architect in only one repository is creating grav
 
 EIS `--per-repo` analysis makes this reproducibility **numerically verifiable**:
 
-![Per-Repo Breakdown](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-per-repo-breakdown.svg)
+![Per-Repo Breakdown](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-per-repo-breakdown.png)
 
 ---
 

@@ -3,7 +3,7 @@ title: "Git Archaeology #3 — Two Paths to Architect: How Engineers Evolve Diff
 published: true
 description: "Chapter 3 of Engineering Impact Score. Architects don't come from one mold — inheritance vs. emergence, and why cold numbers tell the most human stories."
 tags: opensource, productivity, git, career
-cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/cover-ch3.svg
+cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch3.png
 ---
 
 *Cold numbers, it turns out, tell the most human stories.*
@@ -45,7 +45,7 @@ Looking at one frontend team's EIS data, I started seeing the evolution paths em
 
 The structural center of the team.
 
-![Engineer Archetypes](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-engineer-profiles.svg)
+![Engineer Archetypes](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-engineer-profiles.png)
 
 This is the team's gravitational core.
 
@@ -141,17 +141,17 @@ Here's an important nuance.
 
 EIS calculates Gravity as:
 
-![Gravity Formula](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch1-formula-gravity.svg)
+![Gravity Formula](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch1-formula-gravity.png)
 
 For Engineer D:
 
-![Engineer D Gravity Calculation](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-gravity-calc-d.svg)
+![Engineer D Gravity Calculation](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-gravity-calc-d.png)
 
 Most of that 68 comes from **Indispensability (sole ownership) and Breadth (spread)**. Design is only 5. This isn't "structural center" — it's "widely held by one person."
 
 For Engineer A:
 
-![Engineer A Gravity Calculation](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-gravity-calc-a.svg)
+![Engineer A Gravity Calculation](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-gravity-calc-a.png)
 
 Design 100 drives this Gravity. They're creating the structural center.
 
@@ -216,13 +216,13 @@ High Survival feels reassuring, but without checking the Dormant ratio, you miss
 
 This team's metrics include a warning:
 
-![Data Warning](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-data-warning.svg)
+![Data Warning](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-data-warning.png)
 
 **Engineer D's struggle surfaces as a Warning.** High gravity, but low robust survival.
 
 Yet this team is strong:
 
-![Team Metrics](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-data-team-metrics.svg)
+![Team Metrics](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-data-team-metrics.png)
 
 Why?
 
@@ -292,7 +292,7 @@ What's needed is someone who **brings a different structural proposal, clashes w
 
 That earlier pattern:
 
-![Engineer D Pattern](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-data-pattern.svg)
+![Engineer D Pattern](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-data-pattern.png)
 
 isn't just immaturity.
 
@@ -306,7 +306,7 @@ So "Architect candidate" is imprecise. More accurately: **Emergent Architect can
 
 Engineer B shows:
 
-![Engineer B Pattern](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-data-anchor-mass.svg)
+![Engineer B Pattern](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-data-anchor-mass.png)
 
 This doesn't mean "unlikely to become Architect."
 
@@ -338,11 +338,11 @@ Here's the synthesis.
 
 **Backend-style evolution:**
 
-![Backend Evolution Path](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-diagram-be-evolution.svg)
+![Backend Evolution Path](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-diagram-be-evolution.png)
 
 **Frontend-style evolution:**
 
-![Frontend Evolution Path](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-diagram-fe-evolution.svg)
+![Frontend Evolution Path](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-diagram-fe-evolution.png)
 
 Career paths aren't a single line. They're a **branching evolution model**.
 
@@ -377,7 +377,7 @@ Everyone writes, nobody cleans up. Everyone pushes forward, nobody solidifies th
 
 EIS makes this instantly visible:
 
-![Producer-Only Warning](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch3-producer-warning.svg)
+![Producer-Only Warning](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch3-producer-warning.png)
 
 No Architect. No Anchor. No Cleaner.
 
