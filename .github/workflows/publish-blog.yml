@@ -1,0 +1,69 @@
+name: Publish Blog Posts
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/blog-*.md'
+
+  # Manual trigger for republishing
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 'Specific file to publish (e.g. docs/blog-en-devto-ch8.md), or "all" for all blog files'
+        required: false
+        default: ''
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need HEAD~1 for diff
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Publish changed blog posts
+        if: github.event_name == 'push'
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+          HATENA_USER_ID: ${{ secrets.HATENA_USER_ID }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: python scripts/publish-blog.py --changed
+
+      - name: Publish specific file (manual)
+        if: github.event_name == 'workflow_dispatch' && inputs.file != '' && inputs.file != 'all'
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+          HATENA_USER_ID: ${{ secrets.HATENA_USER_ID }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: python scripts/publish-blog.py "${{ inputs.file }}"
+
+      - name: Publish all blog posts (manual)
+        if: github.event_name == 'workflow_dispatch' && inputs.file == 'all'
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+          HATENA_USER_ID: ${{ secrets.HATENA_USER_ID }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: |
+          for f in docs/blog-*.md; do
+            python scripts/publish-blog.py "$f"
+          done
+
+      - name: Commit mapping updates
+        run: |
+          if git diff --quiet docs/.blog-mapping.json 2>/dev/null; then
+            echo "No mapping changes"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add docs/.blog-mapping.json
+            git commit -m "chore: update blog mapping [skip ci]"
+            git push
+          fi
