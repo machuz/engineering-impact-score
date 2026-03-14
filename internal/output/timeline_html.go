@@ -204,13 +204,13 @@ const timelineHTMLTemplate = `<!DOCTYPE html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
   :root {
-    --bg: #1a1a2e;
-    --bg-card: #16213e;
-    --bg-nav: #0f3460;
-    --text: #e0e0e0;
-    --text-muted: #8892a0;
-    --accent: #4A90D9;
-    --border: #2a2a4a;
+    --bg: #282828;
+    --bg-card: #3c3836;
+    --bg-nav: #1d2021;
+    --text: #ebdbb2;
+    --text-muted: #928374;
+    --accent: #83a598;
+    --border: #504945;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -247,7 +247,7 @@ const timelineHTMLTemplate = `<!DOCTYPE html>
     font-size: 13px;
     transition: background 0.15s, color 0.15s;
   }
-  nav a:hover { background: rgba(74,144,217,0.15); color: #fff; }
+  nav a:hover { background: rgba(131,165,152,0.15); color: #ebdbb2; }
   nav .nav-section {
     padding: 10px 16px 4px;
     font-size: 12px;
@@ -265,7 +265,7 @@ const timelineHTMLTemplate = `<!DOCTYPE html>
   h1 {
     font-size: 24px;
     margin-bottom: 8px;
-    color: #fff;
+    color: #ebdbb2;
   }
   .subtitle {
     color: var(--text-muted);
@@ -290,7 +290,7 @@ const timelineHTMLTemplate = `<!DOCTYPE html>
   .chart-card h3 {
     font-size: 15px;
     margin-bottom: 12px;
-    color: #fff;
+    color: #ebdbb2;
   }
   .chart-container {
     position: relative;
@@ -310,7 +310,7 @@ const timelineHTMLTemplate = `<!DOCTYPE html>
     padding: 3px 8px;
     margin: 2px 4px 2px 0;
     border-radius: 4px;
-    background: rgba(74,144,217,0.15);
+    background: rgba(131,165,152,0.15);
     color: var(--accent);
   }
   .classification-row {
@@ -326,11 +326,11 @@ const timelineHTMLTemplate = `<!DOCTYPE html>
     border-radius: 12px;
     font-weight: 600;
   }
-  .badge-character { background: #1abc9c33; color: #1abc9c; }
-  .badge-structure { background: #9b59b633; color: #9b59b6; }
-  .badge-culture   { background: #e67e2233; color: #e67e22; }
-  .badge-phase     { background: #3498db33; color: #3498db; }
-  .badge-risk      { background: #e74c3c33; color: #e74c3c; }
+  .badge-character { background: #8ec07c33; color: #8ec07c; }
+  .badge-structure { background: #d3869b33; color: #d3869b; }
+  .badge-culture   { background: #fe801933; color: #fe8019; }
+  .badge-phase     { background: #83a59833; color: #83a598; }
+  .badge-risk      { background: #fb493433; color: #fb4934; }
   .class-period {
     background: var(--bg);
     border-radius: 6px;
@@ -365,22 +365,22 @@ const timelineHTMLTemplate = `<!DOCTYPE html>
 const DATA = {{.JSONData}};
 
 const COLORS = {
-  total:      '#4A90D9',
-  production: '#50C878',
-  quality:    '#FFB347',
-  survival:   '#9B59B6',
-  design:     '#1ABC9C'
+  total:      '#83a598',
+  production: '#b8bb26',
+  quality:    '#fabd2f',
+  survival:   '#d3869b',
+  design:     '#8ec07c'
 };
 
 const HEALTH_COLORS = [
-  '#4A90D9', '#50C878', '#FFB347', '#9B59B6',
-  '#1ABC9C', '#E74C3C', '#F39C12'
+  '#83a598', '#b8bb26', '#fabd2f', '#d3869b',
+  '#8ec07c', '#fb4934', '#fe8019'
 ];
 
 const MEMBER_COLORS = {
-  core:      '#4A90D9',
-  effective: '#50C878',
-  total:     '#FFB347'
+  core:      '#83a598',
+  effective: '#b8bb26',
+  total:     '#fabd2f'
 };
 
 function makeId(str) {
@@ -394,7 +394,7 @@ function buildNav() {
   if (DATA.domains && DATA.domains.length > 0) {
     html += '<div class="nav-section">Individual</div>';
     for (const d of DATA.domains) {
-      html += '<a href="#domain-' + makeId(d.domainName) + '" style="font-weight:600;color:#fff;padding-left:16px">' + d.domainName + '</a>';
+      html += '<a href="#domain-' + makeId(d.domainName) + '" style="font-weight:600;color:#ebdbb2;padding-left:16px">' + d.domainName + '</a>';
       for (const tl of d.timelines) {
         html += '<a href="#author-' + makeId(d.domainName + '-' + tl.author) + '">' + tl.author + '</a>';
       }
@@ -440,15 +440,15 @@ function createScoreChart(canvasId, labels, periods, transitions) {
           type: 'line',
           xMin: idx,
           xMax: idx,
-          borderColor: '#ffffff44',
+          borderColor: '#ebdbb244',
           borderWidth: 1,
           borderDash: [5, 5],
           label: {
             display: true,
             content: tr.axis + ': ' + tr.from + ' -> ' + tr.to,
             position: 'start',
-            backgroundColor: '#16213e',
-            color: '#e0e0e0',
+            backgroundColor: '#3c3836',
+            color: '#ebdbb2',
             font: { size: 10 }
           }
         };
@@ -470,17 +470,17 @@ function createScoreChart(canvasId, labels, periods, transitions) {
       scales: {
         y: {
           min: 0, max: 100,
-          grid: { color: '#2a2a4a' },
-          ticks: { color: '#8892a0' }
+          grid: { color: '#504945' },
+          ticks: { color: '#928374' }
         },
         x: {
-          grid: { color: '#2a2a4a' },
-          ticks: { color: '#8892a0' }
+          grid: { color: '#504945' },
+          ticks: { color: '#928374' }
         }
       },
       plugins: {
         legend: {
-          labels: { color: '#e0e0e0', usePointStyle: true, pointStyle: 'circle' }
+          labels: { color: '#ebdbb2', usePointStyle: true, pointStyle: 'circle' }
         },
         tooltip: {
           callbacks: {
@@ -526,11 +526,11 @@ function createTeamScoreChart(canvasId, labels, periods) {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        y: { min: 0, max: 100, grid: { color: '#2a2a4a' }, ticks: { color: '#8892a0' } },
-        x: { grid: { color: '#2a2a4a' }, ticks: { color: '#8892a0' } }
+        y: { min: 0, max: 100, grid: { color: '#504945' }, ticks: { color: '#928374' } },
+        x: { grid: { color: '#504945' }, ticks: { color: '#928374' } }
       },
       plugins: {
-        legend: { labels: { color: '#e0e0e0', usePointStyle: true, pointStyle: 'circle' } }
+        legend: { labels: { color: '#ebdbb2', usePointStyle: true, pointStyle: 'circle' } }
       }
     }
   });
@@ -564,11 +564,11 @@ function createHealthChart(canvasId, labels, periods) {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        y: { min: 0, grid: { color: '#2a2a4a' }, ticks: { color: '#8892a0' } },
-        x: { grid: { color: '#2a2a4a' }, ticks: { color: '#8892a0' } }
+        y: { min: 0, grid: { color: '#504945' }, ticks: { color: '#928374' } },
+        x: { grid: { color: '#504945' }, ticks: { color: '#928374' } }
       },
       plugins: {
-        legend: { labels: { color: '#e0e0e0', usePointStyle: true, pointStyle: 'circle' } }
+        legend: { labels: { color: '#ebdbb2', usePointStyle: true, pointStyle: 'circle' } }
       }
     }
   });
@@ -590,11 +590,11 @@ function createMembershipChart(canvasId, labels, periods) {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        y: { beginAtZero: true, grid: { color: '#2a2a4a' }, ticks: { color: '#8892a0', stepSize: 1 } },
-        x: { grid: { color: '#2a2a4a' }, ticks: { color: '#8892a0' } }
+        y: { beginAtZero: true, grid: { color: '#504945' }, ticks: { color: '#928374', stepSize: 1 } },
+        x: { grid: { color: '#504945' }, ticks: { color: '#928374' } }
       },
       plugins: {
-        legend: { labels: { color: '#e0e0e0', usePointStyle: true, pointStyle: 'rect' } }
+        legend: { labels: { color: '#ebdbb2', usePointStyle: true, pointStyle: 'rect' } }
       }
     }
   });
