@@ -1,5 +1,5 @@
 ---
-title: "Why Backend Architects Concentrate: The Convergent Evolution Model"
+title: "Backend Architects Converge: The Sacred Work of Laying Souls to Rest"
 published: true
 description: "Chapter 4 of Engineering Impact Score. Backend teams evolve differently — and departed Architects leave souls that must be laid to rest."
 tags: opensource, productivity, git, career
@@ -431,6 +431,14 @@ EIS visualizes these differences and can suggest appropriate prescriptions for e
 My score of 92.4 at #1 feels good — like my ability as an Architect is being validated.
 
 But honestly, **I also work an absurd number of hours**.
+
+And there's another thing that makes me happy.
+
+**I could only achieve this Architect score because I inherited solid design from Engineer F and made it even better.**
+
+I didn't create the structure from zero. There was good design left by the previous Architect. I understood it, protected it, and refined it further. This score rests on that inheritance.
+
+This is the essence of being an Inheritance Architect.
 
 And even more honestly, **what I really want to brag about is the team**.
 
