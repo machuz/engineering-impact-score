@@ -356,6 +356,26 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 - [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/233602) — git考古学 #8：エンジニアリング相対性理論——同じエンジニアが異なるスコアを得る理由
 - [English / dev.to](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl) — Git Archaeology #8: Engineering Relativity — Why the Same Engineer Gets Different Scores
 
+**#9 — Origin: The Big Bang of Code Universes**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/054313) — git考古学 #9：Origin——コード宇宙のビッグバン
+- [English / dev.to](https://dev.to/machuz/git-archaeology-9-collapse-good-architects-and-black-hole-engineers-1dcn) — Git Archaeology #9: Origin — The Big Bang of Code Universes
+
+**#10 — Dark Matter: The Invisible Gravity**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/062608) — git考古学 #10：Dark Matter——見えない重力
+- [English / dev.to](https://dev.to/machuz/git-archaeology-10-dark-matter-the-invisible-gravity-45ne) — Git Archaeology #10: Dark Matter — The Invisible Gravity
+
+**#11 — Entropy: The Universe Always Tends Toward Disorder**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/062609) — git考古学 #11：Entropy——宇宙は常に無秩序に向かう
+- [English / dev.to](https://dev.to/machuz/git-archaeology-11-entropy-the-universe-always-tends-toward-disorder-ak9) — Git Archaeology #11: Entropy — The Universe Always Tends Toward Disorder
+
+**#12 — Collapse: Good Architects and Black Hole Engineers**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/062610) — git考古学 #12：Collapse——良いArchitectとBlack Hole Engineer
+- [English / dev.to](https://dev.to/machuz/git-archaeology-12-collapse-good-architects-and-black-hole-engineers-3fed) — Git Archaeology #12: Collapse — Good Architects and Black Hole Engineers
+
+**#13 — Cosmology of Code**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/062611) — git考古学 #13：Cosmology of Code——コード宇宙論
+- [English / dev.to](https://dev.to/machuz/git-archaeology-13-cosmology-of-code-dci) — Git Archaeology #13: Cosmology of Code
+
 ## Roadmap
 
 - [x] Scoring methodology and formulas
