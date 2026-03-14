@@ -10,7 +10,7 @@ cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/m
 
 ## Previously
 
-In [Chapter 4](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-xxxx), I explored the Backend team's Architect concentration and the concept of "laying departed Architects' souls to rest."
+In [Chapter 4](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d), I explored the Backend team's Architect concentration and the concept of "laying departed Architects' souls to rest."
 
 But that analysis had a limitation. **It was a single point-in-time snapshot.**
 

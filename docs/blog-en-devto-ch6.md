@@ -10,7 +10,7 @@ cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/m
 
 ## Previously
 
-In [Chapter 5](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-xxxx), I used `eis timeline` to trace individual timelines — Engineer F's departure and machuz's rise, Engineer I's "hesitation" and return.
+In [Chapter 5](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5), I used `eis timeline` to trace individual timelines — Engineer F's departure and machuz's rise, Engineer I's "hesitation" and return.
 
 But those were individual stories. **A team is a collection of individuals.** When individuals change, the team's nature changes too.
 
