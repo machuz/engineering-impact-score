@@ -4,14 +4,16 @@
     "hatena_url": ""
   },
   "blog-en-devto-ch1.md": {
-    "devto_id": 3340356
+    "devto_id": 3340356,
+    "devto_url": "https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c"
   },
   "blog-ja-hatena-ch2.md": {
     "hatena_id": "17179246901364269041",
     "hatena_url": ""
   },
   "blog-en-devto-ch2.md": {
-    "devto_id": 3345221
+    "devto_id": 3345221,
+    "devto_url": "https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f"
   },
   "blog-ja-hatena-ch3.md": {
     "hatena_id": "17179246901364765998",
@@ -25,7 +27,8 @@
     "hatena_url": ""
   },
   "blog-en-devto-ch4.md": {
-    "devto_id": 3350879
+    "devto_id": 3350879,
+    "devto_url": "https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d"
   },
   "blog-ja-hatena-ch5.md": {
     "hatena_id": "17179246901364838681",
@@ -53,6 +56,7 @@
     "hatena_url": ""
   },
   "blog-en-devto-ch8.md": {
-    "devto_id": 3351856
+    "devto_id": 3351856,
+    "devto_url": "https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl"
   }
 }
