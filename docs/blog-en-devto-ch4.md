@@ -67,13 +67,7 @@ Because of this difference, **Backend Architects concentrate rather than prolife
 
 Think of it like a solar system:
 
-```
-Star (Architect)
-    ↓
-  Planets (Anchors)
-    ↓
-  Vacuum (No Producers)
-```
+![Backend Structure](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-structure.svg)
 
 This structure isn't unusual for Backend teams.
 

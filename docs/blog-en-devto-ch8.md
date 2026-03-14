@@ -3,7 +3,7 @@ title: "Git Archaeology #8 — Engineering Relativity: Why the Same Engineer Get
 published: true
 description: "Chapter 8 of Engineering Impact Score. The same engineer produces different EIS scores in different codebases — and that's not a bug, it's physics."
 tags: opensource, productivity, git, career
-cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/engineering-impact-framework-diagram-fixed.png
+cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/cover-ch8.svg
 ---
 
 *The same object is lighter on the Moon and heavier on Jupiter. The same thing happens in codebases.*
@@ -75,10 +75,7 @@ This has important implications for engineering evaluation.
 
 Imagine an engineer whose scores look like this:
 
-```
-Repo A (Backend API)           Total: 35
-Repo B (New microservice)      Total: 60
-```
+![Repo Scores](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-repo-scores.svg)
 
 Naturally, 60 looks "better."
 
@@ -100,10 +97,7 @@ How do you account for this relativity when reading EIS? Here are some approache
 
 Look at `eis analyze --team`:
 
-```
-Structure: Architectural Engine  →  Strong gravitational field (scores are hard-earned)
-Structure: Unstructured          →  Weak gravitational field (scores come easily)
-```
+![Structure Comparison](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-structure-comparison.svg)
 
 Total: 40 inside an Architectural Engine and Total: 40 inside an Unstructured team have completely different meanings.
 
@@ -145,14 +139,7 @@ Conversely, an engineer who is Architect in only one repository is creating grav
 
 EIS `--per-repo` analysis makes this reproducibility **numerically verifiable**:
 
-```
-─── Backend Per-Repository Breakdown ───
-
-Author     api-manage      api            worker         Pattern
-machuz     Architect 94    Architect 73   Architect 76   Reproducible
-alice      Producer 34     Architect 71   30             Context-dependent
-bob        Anchor 41       30             Cleaner 34     Variable
-```
+![Per-Repo Breakdown](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-per-repo-breakdown.svg)
 
 ---
 

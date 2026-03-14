@@ -96,13 +96,7 @@ EISの指標で見ると、こういうチームには特徴がある。
 
 EISのチームタイムラインで見ると、この進化は具体的な指標で追える。
 
-```
-Classification:
-  Period         2024-H1            2024-H2             2025-H1
-  Character      Elite              Guardian            Elite
-  Structure      Architectural Team Maintenance Team    Architectural Engine
-  Risk           Bus Factor         Design Vacuum       Healthy
-```
+![Team Classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch7-team-classification.svg)
 
 **Architectural Team → Maintenance Team → Architectural Engine**
 

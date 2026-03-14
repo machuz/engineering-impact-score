@@ -71,10 +71,7 @@ EISはエンジニアの能力だけで決まるのではなく、**コードベ
 
 例えばあるエンジニアのスコアが：
 
-```
-Repo A (Backend API)     Total: 35
-Repo B (新規マイクロサービス)  Total: 60
-```
+![Repo Scores](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-repo-scores.svg)
 
 普通は60の方が「優秀」に見える。
 
@@ -98,10 +95,7 @@ Repo B (新規マイクロサービス)  Total: 60
 
 `eis analyze --team` の結果を見る。
 
-```
-Structure: Architectural Engine  →  強い重力場（スコアが出にくい環境）
-Structure: Unstructured          →  弱い重力場（スコアが出やすい環境）
-```
+![Structure Comparison](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-structure-comparison.svg)
 
 同じTotal: 40でも、Architectural Engineの中の40と、Unstructuredの中の40は意味が全く違う。
 
@@ -143,14 +137,7 @@ eis timeline --span 6m --periods 0 --recursive ~/workspace
 
 EISの `--per-repo` 分析は、この再現性を**数値で確認**できる。
 
-```
-─── Backend Per-Repository Breakdown ───
-
-Author     api-manage      api            worker         Pattern
-machuz     Architect 94    Architect 73   Architect 76   Reproducible
-alice      Producer 34     Architect 71   30             Context-dependent
-bob        Anchor 41       30             Cleaner 34     Variable
-```
+![Per-Repo Breakdown](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch8-per-repo-breakdown.svg)
 
 ---
 

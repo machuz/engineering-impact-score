@@ -232,14 +232,7 @@ Growth Potential at 20. **The seeds of the next-generation Architect are still w
 
 In the Frontend 6-month timeline, one engineer has a uniquely dramatic trajectory.
 
-```
---- Engineer K (Frontend) ---
-2024-H1     87.8  Architect Builder
-2024-H2     14.6  — —
-2025-H1      7.1  — — Silent
-2025-H2      3.2  — —
-2026-H1      3.2  — —
-```
+![Engineer K](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-engineer-k.svg)
 
 **Total 87.8 in 2024-H1. Architect Builder.** Production 81, Survival 100, Design 100.
 
@@ -255,11 +248,7 @@ But as the team grew and other engineers (Engineer I, Engineer J) joined and beg
 
 This isn't failure. It's **proof of success.** Other engineers are building on top of the structure you created alone. That's why the score drops.
 
-```
-Engineer K:  87.8 → 14.6 → 7.1 → 3.2 → 3.2
-Engineer I:   — → 72.7 → 83.8 → 85.1 → 78.1
-Engineer J:  25.9 → 74.9 → 54.3 → 38.6 → 54.2
-```
+![Gravity Transfer](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-gravity-transfer.svg)
 
 **Engineer K's score transferred to Engineers I and J.** The total isn't conserved, but the generational transfer of structural influence is clear.
 
@@ -273,12 +262,7 @@ EIS captures both.
 
 Timeline data shows that **reaching Architect almost always requires passing through Builder**:
 
-```
-machuz:     Anchor → Anchor Builder → Producer Balanced → Architect Builder
-Engineer I: Anchor Balanced → Architect Balanced → Architect Builder
-Engineer J: Anchor Growing → Architect Balanced → Architect Builder
-Engineer F: (first appearance) Architect Builder
-```
+![Evolution Paths](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-evolution-paths.svg)
 
 machuz passed through Anchor Builder before reaching Architect. Engineer I went Architect Balanced → Architect Builder. Engineer J also went Architect Balanced → Architect Builder.
 
@@ -354,32 +338,7 @@ Engineer I could become Architect immediately after joining because, we can infe
 
 Here are the evolution models extracted from timelines:
 
-```
-┌──────────────────────────────────────────────────────────┐
-│              Evolution Model Overview                    │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│  [Growing] → [Anchor] → [Producer] → [Architect]        │
-│                  ↑            │            │             │
-│                  │            │   structure │             │
-│                  │            ←─────────────┘             │
-│                  │       (metabolism: back to Producer)   │
-│                                                          │
-│  * Permeation: respect existing, produce, then permeate   │
-│                [Anchor] → [Producer] → [Architect]        │
-│  * Immediate:  [Anchor(brief)] → [Architect] direct       │
-│  * Founding:   [Architect] → score decline (= success)    │
-│                                                          │
-├──────────────────────────────────────────────────────────┤
-│  BE: Architect seats tend to concentrate (observed: 1)    │
-│  FE: Architect seats are fluid (observed: 1–2)           │
-├──────────────────────────────────────────────────────────┤
-│  Builder prerequisite: Builder experience needed for      │
-│                        Architect                         │
-│  Producer fuel: using structure deeply powers design      │
-│  Producer Vacuum: no producers = structure sits idle      │
-└──────────────────────────────────────────────────────────┘
-```
+![Evolution Model](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-evolution-model.svg)
 
 These laws were inductively derived from our team's real data. Whether the same laws hold for other teams is unknown.
 

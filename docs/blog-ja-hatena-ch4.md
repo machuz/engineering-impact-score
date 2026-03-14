@@ -19,39 +19,11 @@ FEでは構造の美学が複数存在するため、Architect候補が複数生
 
 今回分析したBackendチームの指標はこうなっている。
 
-```
-#   Member     Active  Prod  Qual  Robust  Dormant  Design  Grav  Total  Role              Style             State
-1   machuz     ✓       100   66    100     100      100     97    92.4   Architect (1.00)  Builder (1.00)    Active (0.80)
-2   Engineer F —       93    75    36      21       47      76    55.5   Anchor (0.87)     Resilient (0.66)  Former (0.73)
-3   Engineer G ✓       52    78    21      32       12      26    37.3   Anchor (0.96)     Balanced (0.30)   Active (0.80)
-4   Engineer H ✓       49    90    20      25       10      31    35.6   Anchor (0.98)     Balanced (0.30)   Active (0.80)
-```
+![Backend Team](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-backend-team.svg)
 
 そしてチーム指標。
 
-```
-═══ Backend (4 core + 3 risk / 12 total, 13 repos) ═══
-  ★ Elite (1.00)
-
-⚠ Warnings:
-  43% risk ratio — 3 of 7 effective members are Former/Silent/Fragile
-  Top contributor (machuz) accounts for 46% of core production
-  ProdDensity drops to 39 without them
-
-Classification:
-  Structure: Emerging Architecture (0.66)
-  Phase: Legacy-Heavy (0.67)
-  Risk: Talent Drain (0.43)
-```
-
-役割分布を見ると：
-
-```
-Role Distribution:
-  Architect    █░░░░░░░░░  1 (14%)
-  Anchor       ████░░░░░░  3 (43%)
-  —            ████░░░░░░  3 (43%)
-```
+![Team Classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-team-classification.svg)
 
 **Architect 1人。Anchor 3人。Producer 0人。**
 
@@ -91,13 +63,7 @@ FEではArchitectが複数生まれる可能性がある。
 
 宇宙で例えるなら：
 
-```
-恒星（Architect）
-    ↓
-  惑星（Anchor）
-    ↓
-  真空（Producer不在）
-```
+![Backend Structure](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch4-structure.svg)
 
 という構造だ。
 

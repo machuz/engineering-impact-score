@@ -3,7 +3,7 @@ title: "Git Archaeology #7 — Observing the Universe of Code"
 published: true
 description: "Chapter 7 of Engineering Impact Score. Codebases have gravitational structures. Great engineers don't just write code — they bend the gravity of codebases."
 tags: opensource, productivity, git, career
-cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/engineering-impact-framework-diagram-fixed.png
+cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/cover-ch7.svg
 ---
 
 *Great engineers don't just write code. They bend the gravity of codebases.*
@@ -102,13 +102,7 @@ But structurally, this is the **evolution of the code universe**.
 
 In EIS team timelines, this evolution is traceable through concrete metrics:
 
-```
-Classification:
-  Period         2024-H1            2024-H2             2025-H1
-  Character      Elite              Guardian            Elite
-  Structure      Architectural Team Maintenance Team    Architectural Engine
-  Risk           Bus Factor         Design Vacuum       Healthy
-```
+![Team Classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch7-team-classification.svg)
 
 **Architectural Team → Maintenance Team → Architectural Engine**
 
