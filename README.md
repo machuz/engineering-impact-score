@@ -319,8 +319,20 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 - [English / dev.to](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f) — Git Archaeology #2: Beyond Individual Scores — Measuring Team Health
 
 **#3 — Architect Evolution**
-- [Japanese / はてなブログ](#) — git考古学 #3：Architectには流派がある——Git履歴が暴く進化の分岐モデル
-- [English / dev.to](#) — Git Archaeology #3: Two Paths to Architect — How Engineers Evolve Differently
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/135648) — git考古学 #3：Architectには流派がある——Git履歴が暴く進化の分岐モデル
+- [English / dev.to](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga) — Git Archaeology #3: Two Paths to Architect — How Engineers Evolve Differently
+
+**#4 — Backend Architect Concentration**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/155124) — git考古学 #4：Backend Architectは収束する——成仏という聖なる仕事
+- [English / dev.to](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d) — Git Archaeology #4: Backend Architects Converge — The Sacred Work of Laying Souls to Rest
+
+**#5 — Timeline**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/180329) — git考古学 #5：タイムライン——スコアは嘘をつかないし、遠慮も映る
+- [English / dev.to](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5) — Git Archaeology #5: Timeline — Scores Don't Lie, and They Capture Hesitation Too
+
+**#6 — Team Timeline & Evolution Models**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/184223) — git考古学 #6：チームは進化する——タイムラインが暴く組織の法則
+- [English / dev.to](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei) — Git Archaeology #6: Teams Evolve — The Laws of Organization Revealed by Timelines
 
 ## Roadmap
 
@@ -339,7 +351,8 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 - [x] JSON / CSV output format (`--format json|csv`)
 - [x] Team-level analysis (`eis team`) with 7 health axes
 - [ ] GitHub Action for automated quarterly tracking
-- [ ] HTML dashboard visualization
+- [x] Timeline analysis (`eis timeline`) with per-period scoring
+- [x] Chart visualization (`--format ascii|html|svg`)
 - [ ] Multi-language commit message support for Quality detection
 
 ## Special Thanks
