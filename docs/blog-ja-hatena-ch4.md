@@ -1,0 +1,451 @@
+### 前章までのあらすじ
+
+[第3章](https://ma2k8.hateblo.jp/entry/2026/03/14/xxxxxx)では、FEチームを題材に、Architectには2つの進化経路があることを紹介した。
+
+- **継承型Architect**: Anchor → 既存構造を守り洗練
+- **創発型Architect**: High-Gravity Producer → 新しい重力場を創発
+
+FEでは構造の美学が複数存在するため、Architect候補が複数生まれることがある。つまり**構造の競争**が起きる。
+
+しかしBackendチームをEISで見ると、まったく違う景色が見えてくる。
+
+---
+
+## Backendチームの構図
+
+今回分析したBackendチームの指標はこうなっている。
+
+```
+#   Member     Active  Prod  Qual  Robust  Dormant  Design  Grav  Total  Role              Style             State
+1   machuz     ✓       100   66    100     100      100     97    92.4   Architect (1.00)  Builder (1.00)    Active (0.80)
+2   Engineer F —       93    75    36      21       47      76    55.5   Anchor (0.87)     Resilient (0.66)  Former (0.73)
+3   Engineer G ✓       52    78    21      32       12      26    37.3   Anchor (0.96)     Balanced (0.30)   Active (0.80)
+4   Engineer H ✓       49    90    20      25       10      31    35.6   Anchor (0.98)     Balanced (0.30)   Active (0.80)
+```
+
+そしてチーム指標。
+
+```
+═══ Backend (4 core + 3 risk / 12 total, 13 repos) ═══
+  ★ Elite (1.00)
+
+⚠ Warnings:
+  43% risk ratio — 3 of 7 effective members are Former/Silent/Fragile
+  Top contributor (machuz) accounts for 46% of core production
+  ProdDensity drops to 39 without them
+
+Classification:
+  Structure: Emerging Architecture (0.66)
+  Phase: Legacy-Heavy (0.67)
+  Risk: Talent Drain (0.43)
+```
+
+役割分布を見ると：
+
+```
+Role Distribution:
+  Architect    █░░░░░░░░░  1 (14%)
+  Anchor       ████░░░░░░  3 (43%)
+  —            ████░░░░░░  3 (43%)
+```
+
+**Architect 1人。Anchor 3人。Producer 0人。**
+
+これはFEとは全く違う構造だ。
+
+---
+
+## Backend Architectはなぜ1人に集中するのか
+
+FEではArchitectが複数生まれる可能性がある。
+
+しかしBackendではそうならないことが多い。
+
+理由は単純だ。
+
+**Backendには構造の正解が存在しやすい。**
+
+例えばBackendでは、次のような構造が比較的安定した解として存在する：
+
+- Domain層
+- Application層
+- Repository層
+- Transaction境界
+- Event境界
+
+このような設計パターンは、多くのシステムで再利用可能な構造を持っている。
+
+つまり：
+
+| FE | 構造の美学が複数ある |
+|---|---|
+| BE | 構造の正解が存在する |
+
+この違いがある。
+
+その結果、Backendでは**Architectが増殖するより、集中する**。
+
+宇宙で例えるなら：
+
+```
+恒星（Architect）
+    ↓
+  惑星（Anchor）
+    ↓
+  真空（Producer不在）
+```
+
+という構造だ。
+
+---
+
+## 退職したArchitectの魂
+
+ここでEngineer Fに注目したい。
+
+```
+Engineer F  —  Prod 93 | Qual 75 | Robust 36 | Design 47 | Total 55.5
+Role: Anchor (0.87) | Style: Resilient (0.66) | State: Former (0.73)
+```
+
+Engineer Fは**退職済みのArchitect**だ。
+
+しかし時間減衰をかけてもなお、**チーム2位のスコアを叩き出している**。
+
+これが何を意味するか。
+
+**この人が作った資産が、今もコードベースに大量に残っている。**
+
+---
+
+### Former状態の意味
+
+EISでは、**残っている資産が多い場合にのみ**Former状態が検出される。
+
+Former状態の条件：
+
+- Raw Survival（時間減衰なし）が高い
+- Survival（時間減衰あり）が低い
+- かつ、Design または Indispensability が高い
+
+つまり**「かつてこの人は構造を作っていた。今は活動していない。でもコードは残っている」**という状態だ。
+
+単に退職しただけではFormerにはならない。**残すべき資産を残した人だけ**がFormerになる。
+
+Engineer Fは、まさにその条件を満たしている。
+
+---
+
+### 時間減衰を入れてもなお2位
+
+ここがエモい。
+
+EISは**時間減衰付きのSurvival**を使っている。2年前のコードは重み0.02まで下がる。
+
+それでもEngineer Fは2位だ。
+
+つまり**退職後もなお、コードベースに大きな影響を持ち続けている**。
+
+これは「強かった人が去った後の残像」ではない。
+
+**今もコードベースを支えている現実の資産**だ。
+
+---
+
+## Formerを成仏させる
+
+しかしFormer状態には、もう一つの意味がある。
+
+**成仏させるべき対象**だ。
+
+チーム指標を見ると：
+
+```
+Phase: Legacy-Heavy (0.67)
+Risk: Talent Drain (0.43)
+```
+
+Legacy-Heavyとは、**強いが履歴が重いチーム**という意味だ。
+
+退職したメンバーのコードが多く残っている。それ自体は悪いことではない。良い設計だったからこそ残っている。
+
+---
+
+### 良い設計はコモンセンスを生む
+
+ここで重要な事実がある。
+
+**このチームは崩壊していない。**
+
+Engineer Fしか触っていなかったモジュールがいくつか残っている。git blameの大部分がFormerメンバーのものだ。
+
+しかし実際には、チームは普通に機能している。
+
+なぜか。
+
+**それらのモジュールが、十分に整理された設計のもとで作られていたからだ。**
+
+口頭での引き継ぎは受けた。しかし完全なドキュメントや知識移転が行われたわけではない。それでも、**構造としてコードに埋め込まれた設計が、後から読むエンジニアに一定の理解を与えている**。
+
+これは「良い設計がコモンセンスを生む」という現象だと思う。
+
+優れた設計は、ドキュメントや知識の完全な移転を必ずしも必要としない。**コードの構造自体が、そのモジュールの意図と使い方を伝える。**
+
+強い設計は、人ではなく構造に知識を残す。そして、その構造がチームの共通理解を作る。
+
+---
+
+### Legacy-Heavyの収束
+
+EISは現時点では履歴やコード生存率といった定量的な指標を扱っている。「設計によるコモンセンス」——つまり、Formerメンバーのコードがなぜ今でも健全に動いているのか——は、まだ直接的には観測できていない。
+
+もしそれが可能になれば、「履歴として重いだけの健全な構造」と「本当に危険な依存構造」を区別できるようになるはずだ。
+
+ただ、実際にはそこまで測りに行く必要はないかもしれない。
+
+**強いチームであれば、Formerメンバーのコードを徐々に自分たちのコードに置き換えていく。Legacy-Heavyは時間とともに解消される。あるべき姿に収束していく。**
+
+EISはその収束の過程を、Survivalの推移やRisk Ratioの変化として自然に捉えることができる。
+
+---
+
+しかし時間が経つにつれて、**そのコードを理解できる人が減っていく**リスクもある。
+
+だからFormerを成仏させる作業が必要になる。
+
+---
+
+### 魂はDebtに吸い込まれていく
+
+Formerを成仏させるとは何か。
+
+それは**Debt Cleanupに吸い込まれていく**ということだ。
+
+```
+Team Averages:
+  Debt Cleanup   47.0
+```
+
+現役メンバーがFormerのコードを触る。理解する。直す。書き換える。
+
+するとFormerのblame行は減っていく。現役メンバーの行に置き換わる。
+
+これが**成仏**だ。
+
+EISではこのプロセスが可視化できる：
+
+- FormerのSurvivalが徐々に下がる
+- 現役メンバーのDebt Cleanupが上がる
+- チームのLegacy-Heavy度が下がる
+
+**尊い作業だ。**
+
+退職したArchitectの魂が、現役メンバーの手によって、少しずつコードベースに溶け込んでいく。
+
+---
+
+## Anchorの本当の意味
+
+このBackendチームには3人のAnchorがいる。
+
+- Engineer F（Former）
+- Engineer G
+- Engineer H
+
+Anchorは単なる「品質守護者」ではない。
+
+**Anchorとは、構造理解型エンジニア**である。
+
+Anchorの特徴：
+
+- 既存構造の理解が深い
+- 構造を壊さない
+- 品質を守る
+- システムの整合性を維持する
+
+つまりAnchorは**構造を理解し、構造の上で生産するエンジニア**だ。
+
+そしてBackendでは、このAnchorが**Architectへの進化経路**になる。
+
+---
+
+## Backend Architectの進化
+
+FEでは：
+
+```
+Producer
+↓
+High-Gravity Producer
+↓
+創発型Architect
+```
+
+という進化が見られた。
+
+しかしBackendでは、こうなることが多い：
+
+```
+Producer
+↓
+Anchor
+↓
+継承型Architect
+```
+
+つまり**収束型進化モデル**である。
+
+---
+
+### 再現型Architect
+
+Backend Architectの特徴は**構造を再現できること**にある。
+
+例えばあるコードベースで成立した：
+
+```
+Domain + Application + Repository
+```
+
+という設計があったとする。
+
+優れたBackend Architectは、**その構造を別のシステムでも再現できる**。
+
+つまりBackend Architectとは：
+
+- 構造を生み出す人
+- **かつ、構造を再現できる人**
+
+FE Architectが「新しい構造を創発する」タイプだとすれば、Backend Architectは「**構造を純化し、再現する**」タイプだと言える。
+
+---
+
+## Producer Vacuum
+
+もう一つ興味深い点がある。
+
+このチームには**Producerが存在しない**。
+
+```
+Architect  1
+Anchor     3
+Producer   0
+```
+
+Producerとは「構造を完全には理解していないが、構造の上で生産する人」である。
+
+Producerがいない場合、チーム構造はこうなる：
+
+```
+Architect
+↓
+Anchor
+↓
+生産の空洞
+```
+
+これは**Producer Vacuum**と呼べる状態だ。
+
+Producerが存在すると：
+
+```
+Architect
+↓
+Anchor
+↓
+Producer
+```
+
+という三層構造が成立する。
+
+この形がBackendチームの最も安定した形だ。
+
+---
+
+## Architect Bus Factor = 1
+
+EISはこのチームに対して警告を出している。
+
+```
+Top contributor (machuz) accounts for 46% of core production
+ProdDensity drops to 39 without them
+```
+
+つまり**Architect Bus Factor = 1**である。
+
+Architectが抜けると、チームの生産密度が大きく下がる。
+
+これはBackendチームにとって最も典型的なリスクだ。
+
+FEでは創発型Architect候補が生まれることで、この問題が緩和される。
+
+しかしBackendでは**構造の正解が存在するがゆえに、Architectが集中しやすい**。
+
+結果として、Bus Factorリスクが高くなる。
+
+---
+
+## このチームの処方箋
+
+このBackendチームに必要なのは何か。
+
+1. **Producer層の補充**: Anchor → Producer の逆流を許容する。構造を完全に理解していなくても生産できる環境を作る
+2. **Formerの成仏促進**: 退職したArchitectのコードを現役メンバーが引き継ぐ。Debt Cleanupを意識的に上げる
+3. **Anchor → Architect のパス開通**: 構造理解型のAnchorが、設計判断に参加できるようにする
+
+特に2番目は重要だ。
+
+Legacy-Heavy状態は「悪い」のではない。**良い設計が残っている**証拠でもある。
+
+しかしそれを理解し、引き継ぎ、必要なら書き換える作業は、**誰かがやらなければならない**。
+
+その作業はDebt Cleanupとして可視化される。
+
+---
+
+## FEとBEの進化モデル比較
+
+まとめると：
+
+| | FE | BE |
+|---|---|---|
+| 構造 | 複数の美学が存在 | 正解が存在しやすい |
+| Architect | 分散しうる | 集中しやすい |
+| 進化モデル | 分岐型（創発 or 継承） | 収束型（継承が主流） |
+| リスク | 構造の衝突 | Bus Factor集中 |
+
+どちらが良いという話ではない。
+
+**ドメインの性質が、進化モデルを規定する。**
+
+EISはその違いを可視化し、それぞれに適した処方箋を示すことができる。
+
+---
+
+## この発見の意味
+
+第3章ではFEの分岐型進化モデルを示した。
+
+第4章ではBEの収束型進化モデルを示した。
+
+そしてもう一つ、**Formerの成仏**という概念が見えてきた。
+
+退職したArchitectの魂は、コードベースに残る。
+
+それを現役メンバーが引き継ぎ、理解し、書き換えていく。
+
+**その尊い作業が、Debt Cleanupとして可視化される。**
+
+冷たい数字が、実は一番エモい。
+
+それがEISの本質なのかもしれない。
+
+---
+
+**GitHub:** [machuz/engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLIツール、計算式、方法論を公開しています。`brew tap machuz/tap && brew install eis` ですぐ使えます。
+
+この記事が参考になったら：
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
+
+PayPay: `w_machu7`
