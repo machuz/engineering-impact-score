@@ -436,7 +436,7 @@ And there's another thing that makes me happy.
 
 **I could only achieve this Architect score because I inherited solid design from Engineer F and made it even better.**
 
-Backend has time-tested good design passed down through generations — structures refined by those who came before. I learned them, built on them, and when I met Engineer F, we already shared the same understanding. That's why common sense emerged and inheritance became possible.
+Backend has time-tested good design passed down through generations — structures refined by those who came before. I learned them and built on them. Engineer F also learned them and built on them. When we met, we already shared the same understanding. That's why common sense emerged and inheritance became possible.
 
 On top of that foundation, I added `delegateProcess` and `partProcess` — not textbook patterns, but ones I'm convinced are useful. I enhanced existing concepts that already had business impact. I organized and modeled new core business functionality well.
 
