@@ -10,7 +10,7 @@ It estimates who actually builds and sustains a system by combining production, 
 
 > In practice, this surfaced patterns that naive metrics miss: former architects, silent cleaners, debt generators, and bus-factor risks.
 
-![Terminal Output](docs/images/terminal-output.svg?v=0.10.0)
+![Terminal Output](docs/images/terminal-output.svg?v=0.11.0)
 
 ## Why This Matters
 
@@ -99,7 +99,7 @@ USD figures are rough estimates and vary significantly by market (SF vs. Midwest
 
 > **Important: EIS measures impact on *this codebase*, not absolute engineering ability.** A high score means "on this codebase, this person's contributions are surviving, shaping architecture, and cleaning up debt." It does not mean they are a better engineer than someone with a lower score. Conversely, high Survival might mean the code can't be refactored away due to poor design — not that the code is good. If scores don't match your gut feeling, that's a signal worth investigating: it may reveal codebase design issues rather than people issues.
 
-![Score Guide](docs/images/score-guide.svg)
+![Score Guide](docs/images/score-guide.svg?v=0.11.0)
 
 ## Engineer Topology (3-Axis Classification)
 
@@ -154,7 +154,7 @@ Each engineer gets a 3-label profile. Examples:
 
 **Churn, Mass, and Spread styles look productive on individual metrics** but score low overall. Only multi-axis evaluation exposes them.
 
-![Archetypes Radar](docs/images/archetypes-radar.svg?v=0.10.0)
+![Archetypes Radar](docs/images/archetypes-radar.svg?v=0.11.0)
 
 ## Key Formulas
 
@@ -254,7 +254,7 @@ Shared flags:
 
 Aggregates individual scores into team-level health metrics and **5-axis team classification** (Structure / Culture / Phase / Risk / Character). Classification is influence-weighted — high-scoring members shape the team's identity more.
 
-![Team Output](docs/images/team-output.svg)
+![Team Output](docs/images/team-output.svg?v=0.11.0)
 
 | Health Axis | What it measures |
 |---|---|
@@ -272,9 +272,9 @@ Structural metrics (AAR, Anchor Density, Architecture Coverage) and full classif
 
 Tracks how individual scores, roles, and team health evolve over time. Supports 3-month, 6-month, or yearly spans.
 
-![Timeline Output](docs/images/timeline-output.svg)
+![Timeline Output](docs/images/timeline-output.svg?v=0.11.0)
 
-![Timeline Chart Output](docs/images/timeline-chart-output.svg)
+![Timeline Chart Output](docs/images/timeline-chart-output.svg?v=0.11.0)
 
 ```bash
 eis timeline --recursive ~/workspace                     # Default: last 4 quarters
