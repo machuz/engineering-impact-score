@@ -93,5 +93,9 @@
   "blog-ja-hatena-ch13.md": {
     "hatena_id": "17179246901364984300",
     "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/15/062611"
+  },
+  "blog-en-devto-ch12.md": {
+    "devto_id": 3352936,
+    "devto_url": "https://dev.to/machuz/git-archaeology-12-collapse-good-architects-and-black-hole-engineers-3fed"
   }
 }
