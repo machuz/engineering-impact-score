@@ -436,9 +436,11 @@ And there's another thing that makes me happy.
 
 **I could only achieve this Architect score because I inherited solid design from Engineer F and made it even better.**
 
-I didn't create the structure from zero. There was good design left by the previous Architect. I understood it, protected it, and refined it further. This score rests on that inheritance.
+Backend has time-tested good design passed down through generations — structures refined by those who came before. I learned them, built on them, and when I met Engineer F, we already shared the same understanding. That's why common sense emerged and inheritance became possible.
 
-This is the essence of being an Inheritance Architect.
+On top of that foundation, I added `delegateProcess` and `partProcess` — not textbook patterns, but ones I'm convinced are useful. I enhanced existing concepts that already had business impact. I organized and modeled new core business functionality well.
+
+That accumulation is what these numbers represent.
 
 And even more honestly, **what I really want to brag about is the team**.
 
