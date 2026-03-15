@@ -1,4 +1,4 @@
-# Engineering Impact Score (EIS) — Claude Code Guide
+# Engineering Impact Score (EIS, pronounced "ace") — Claude Code Guide
 
 ## 言語ガイドライン
 
