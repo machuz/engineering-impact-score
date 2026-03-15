@@ -26,7 +26,7 @@ First, the practical part. `eis timeline --format html` now outputs an interacti
 
 ![Timeline HTML Dashboard](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/timeline-html-output.png?v=0.11.0)
 
-![HTML Dashboard Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch7-bash-html.png?v=2)
+![HTML Dashboard Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch7-bash-html.png?v=4)
 
 Chart.js-based line charts show individual and team score trajectories, health metrics, membership composition, and classification changes at a glance. Tooltips display Role/Style/State with confidence scores. Transition markers highlight exactly when changes happened.
 
@@ -104,7 +104,7 @@ But structurally, this is the **evolution of the code universe**.
 
 In EIS team timelines, this evolution is traceable through concrete metrics:
 
-![Team Classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch7-team-classification.png?v=2)
+![Team Classification](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch7-team-classification.png?v=4)
 
 **Architectural Team → Maintenance Team → Architectural Engine**
 

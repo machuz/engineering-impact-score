@@ -64,7 +64,7 @@ The same type of engineer exists in code universes.
 
 Their characteristics:
 
-![Black Hole Pattern](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-black-hole-pattern.png?v=2)
+![Black Hole Pattern](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-black-hole-pattern.png?v=4)
 
 High technical skill. High output. Strong influence.
 
@@ -84,7 +84,7 @@ Work concentrates, dependencies concentrate, code concentrates.
 
 The result — **the center of the universe becomes one engineer.**
 
-![Good Architect vs Black Hole](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-good-vs-blackhole.png?v=2)
+![Good Architect vs Black Hole](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-good-vs-blackhole.png?v=4)
 
 A good Architect distributes gravity. Leaves structure. Gives the universe order.
 
@@ -100,7 +100,7 @@ When the black hole disappears, the center of the universe disappears.
 
 What happens then?
 
-![Collapse Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-collapse-timeline.png?v=2)
+![Collapse Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-collapse-timeline.png?v=4)
 
 Design decisions stop. Dependencies break. Nobody can touch the code.
 
@@ -134,7 +134,7 @@ Because the code universe collapses the moment they leave.
 
 Teams where `eis analyze --team` shows a Bus Factor near 1 are at risk of Black Hole collapse.
 
-![Bus Factor Check](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-bash-team.png?v=2)
+![Bus Factor Check](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-bash-team.png?v=4)
 
 Bus Factor = 1 means "if one person leaves, it collapses." This is the clearest sign of a Black Hole.
 
@@ -142,13 +142,13 @@ Bus Factor = 1 means "if one person leaves, it collapses." This is the clearest 
 
 Use `--per-repo` to examine individual score distributions.
 
-![Per-Repo Detection](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-bash-per-repo.png?v=2)
+![Per-Repo Detection](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-bash-per-repo.png?v=4)
 
 One person with extremely high Indispensability while everyone else is extremely low — this distribution is the signature of a Black Hole.
 
 ### 3. Watch for "One Person Stays Architect Forever" in Timelines
 
-![Timeline Detection](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-bash-timeline.png?v=2)
+![Timeline Detection](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch12-bash-timeline.png?v=4)
 
 A good Architect's timeline shows an Architect → Producer transition (like Engineer J in Chapter 5). Once the structure is built, they produce on top of it.
 

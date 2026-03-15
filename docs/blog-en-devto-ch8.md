@@ -77,7 +77,7 @@ This has important implications for engineering evaluation.
 
 Imagine an engineer whose scores look like this:
 
-![Repo Scores](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-repo-scores.png?v=2)
+![Repo Scores](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-repo-scores.png?v=4)
 
 Naturally, 60 looks "better."
 
@@ -105,7 +105,7 @@ How do you account for this relativity when reading EIS? Here are some approache
 
 Look at `eis analyze --team`:
 
-![Structure Comparison](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-structure-comparison.png?v=2)
+![Structure Comparison](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-structure-comparison.png?v=4)
 
 Total: 40 inside an Architectural Engine and Total: 40 inside an Unstructured team have completely different meanings.
 
@@ -115,13 +115,13 @@ The more Architects on a team, the harder it is to raise your Design axis. This 
 
 ### 3. Use `--per-repo` for Cross-Repo Analysis
 
-![Per-Repo Analysis](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-bash-per-repo.png?v=2)
+![Per-Repo Analysis](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-bash-per-repo.png?v=4)
 
 The `--per-repo` flag scores each repository independently and produces a cross-repo comparison table. Producer in one repo, Architect in another — that pattern reveals adaptability and latent capability.
 
 ### 4. Watch "Gravitational Field Changes" in Timelines
 
-![Timeline Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-bash-timeline.png?v=2)
+![Timeline Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-bash-timeline.png?v=4)
 
 Codebase structure isn't static. Member departures, refactoring, new features — these shift the gravitational field. In timelines, you can distinguish "engineers whose scores rise when structure weakens" from "engineers who maintain stable scores regardless of structural strength."
 
@@ -141,7 +141,7 @@ Conversely, an engineer who is Architect in only one repository is creating grav
 
 EIS `--per-repo` analysis makes this reproducibility **numerically verifiable**:
 
-![Per-Repo Breakdown](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-per-repo-breakdown.png?v=2)
+![Per-Repo Breakdown](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-per-repo-breakdown.png?v=4)
 
 ---
 

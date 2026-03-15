@@ -26,7 +26,7 @@ Engineers change. They grow. They hesitate. When team dynamics shift, the way th
 
 I added a `timeline` command to EIS.
 
-![Timeline Commands](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-bash-timeline.png?v=2)
+![Timeline Commands](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-bash-timeline.png?v=4)
 
 The mechanism is simple:
 
@@ -51,7 +51,7 @@ I'll focus on three key members.
 
 ### Engineer F's Arc: An Architect Speaks Even After Departure
 
-![Engineer F Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-engineer-f-timeline.png?v=2)
+![Engineer F Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-engineer-f-timeline.png?v=4)
 
 **In the first half of 2024, Engineer F was putting up numbers on par with machuz.**
 
@@ -73,7 +73,7 @@ The subject of Chapter 4's "laying souls to rest" is exactly this person. And th
 
 ### Engineer J's Arc: They Were an Architect Builder
 
-![Engineer J Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-engineer-j-timeline.png?v=2)
+![Engineer J Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-engineer-j-timeline.png?v=4)
 
 **2024-Q4: Engineer J, Total 91.7. Architect Builder.**
 
@@ -85,7 +85,7 @@ In other words, that quarter's Frontend structure was **built by Engineer J**.
 
 The Role transitions afterward are fascinating:
 
-![Role Transitions](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-data-role-transitions.png?v=2)
+![Role Transitions](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-data-role-transitions.png?v=4)
 
 After building the structure as an Architect Builder, they shifted to Anchor, briefly returned to Architect, and finally settled into Producer.
 
@@ -97,7 +97,7 @@ This means "the Architect's work is done." The structure was built. Now they pro
 
 ### Engineer I's Arc: Architect From Day One
 
-![Engineer I Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-engineer-i-timeline.png?v=2)
+![Engineer I Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-engineer-i-timeline.png?v=4)
 
 **Architect by their second quarter. Consistently in Architect territory ever since.**
 
@@ -115,7 +115,7 @@ And here's where it gets interesting — **a curious wobble**.
 
 ### The 2025-Q3 "Hesitation"
 
-![2025-Q3 Hesitation](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-data-hesitation.png?v=2)
+![2025-Q3 Hesitation](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-data-hesitation.png?v=4)
 
 In 2025-Q3, they dropped from Architect to Anchor. Style shifted from Builder to Balanced.
 
@@ -151,7 +151,7 @@ The timeline alone tells us "design involvement decreased." But `eis analyze --r
 
 Here's Engineer I's per-repo commit distribution:
 
-![Per-Repo Commits](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-per-repo-commits.png?v=2)
+![Per-Repo Commits](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-per-repo-commits.png?v=4)
 
 **The true shape of Q3's "hesitation" emerges.**
 
@@ -179,7 +179,7 @@ Q3's "hesitation" wasn't just friction. It was also **strategic patience**.
 
 ### A New Universe
 
-![New Universe](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-data-new-universe.png?v=2)
+![New Universe](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-data-new-universe.png?v=4)
 
 In 2025-Q4, the new product launched.
 
@@ -191,7 +191,7 @@ Commits to existing repos dropped to single digits. In their place: 1,352 commit
 
 This number is extraordinary. One engineer producing this volume in half a year can't be explained by raw productivity alone.
 
-![Transition](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-data-transition.png?v=2)
+![Transition](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-data-transition.png?v=4)
 
 Design: 73 → 100. Anchor → Architect.
 
@@ -227,7 +227,7 @@ Their ability didn't change. **The universe changed.**
 
 ### And Then, the Return
 
-![Return](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-data-return.png?v=2)
+![Return](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-data-return.png?v=4)
 
 Design stayed at 100 the following quarter too. The structure-building in web-admin continued.
 
@@ -245,7 +245,7 @@ And here's another telling number. Engineer H, an existing team member, started 
 
 `eis timeline` auto-detects changes:
 
-![Transitions](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-transitions.png?v=2)
+![Transitions](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-transitions.png?v=4)
 
 Just lining up Role and Style changes tells you what happened.
 
@@ -261,7 +261,7 @@ You can read that the Architect's work is finished just from the transitions.
 
 Lining up the timelines reveals one more thing:
 
-![Comparison](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-comparison-table.png?v=2)
+![Comparison](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-comparison-table.png?v=4)
 
 **The moment Engineer F exits, machuz's architecture becomes the structural backbone.**
 
@@ -303,7 +303,7 @@ Some practical uses for timelines:
 
 ### 1. Material for 1:1s
 
-![Timeline Author](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-bash-timeline-author.png?v=2)
+![Timeline Author](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-bash-timeline-author.png?v=4)
 
 Pull up a member's individual timeline at the start of a 1:1. "Your Design dropped this quarter. What happened?"
 
@@ -327,7 +327,7 @@ What matters is that it works even in atypical cases. For standard departure sig
 
 `eis timeline` also auto-generates team-level timelines:
 
-![Team Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-team-timeline.png?v=2)
+![Team Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-team-timeline.png?v=4)
 
 Guardian → Balanced → Elite. Declining → Mature. Design Vacuum → Healthy.
 
