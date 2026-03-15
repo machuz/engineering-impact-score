@@ -299,6 +299,8 @@ That's the question. And facing that question honestly is, I believe, the final 
 
 ---
 
+Does the code you're working with carry the scent of civilization?
+
 Point the telescope at your own code universe — and see what you find.
 
 ```bash
