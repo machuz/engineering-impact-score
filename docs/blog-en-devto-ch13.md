@@ -264,7 +264,7 @@ Meanwhile, FE lead R.M. evolved from Anchor to **Architect** in Q4 with 1241 com
 | 2025-Q4 | **83.4** | **100** | 73 | 100 | **100** | **+178k/-122k** | **1038** | **Architect** | Balanced | Active |
 | 2026-Q1 | 76.4 | 100 | 84 | 84 | 100 | +169k/-69k | **1417** | Anchor | **Builder** | Active |
 
-R.M. is the engineer who built the new project's FE repository from scratch — creating its entire structure.
+R.M. is the engineer who built the new project's FE repository from scratch — creating its entire structure. On top of that, R.M. personally took on a significant share of the UI design. Architecture, implementation, and UI — all driven through by a single person.
 
 Q4 — Design=100, Prod=100, commits=1038, Lines=+178k/-122k. **A single engineer triggering the Big Bang of a new universe.** This is exactly the "initial conditions determine structure" from Chapter 9. The architecture R.M. laid down in this period defined the gravitational field for the entire frontend that followed.
 
