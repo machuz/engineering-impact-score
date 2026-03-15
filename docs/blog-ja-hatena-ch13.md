@@ -240,8 +240,8 @@ Q1 2026——新プロダクトの佳境。Qualityが74.5から**41.4に急落**
 |---|---|---|---|---|---|---|
 | machuz | 2025-Q4 | 85 | +5k/-2k | — | Spread | Active |
 | machuz | 2026-Q1 | **313** | **+26k/-10k** | — | **Rescue** | Active |
-| R.M. | 2025-Q4 | **1241** | — | **Architect** | Builder | Active |
-| R.M. | 2026-Q1 | 592 | — | Architect | Builder | Active |
+| R.M. | 2025-Q4 | **1241** | **+178k/-122k** | **Architect** | Builder | Active |
+| R.M. | 2026-Q1 | 592 | +169k/-69k | Architect | Builder | Active |
 
 machuzがFE側でも313 commitを積み、StyleがSpreadから**Rescue**に変化している。BEエンジニアがFEに飛び込み、繋ぎ込みを支援している姿だ。
 

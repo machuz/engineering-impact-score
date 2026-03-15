@@ -248,8 +248,8 @@ Looking at the **frontend timeline** too:
 |---|---|---|---|---|---|---|
 | machuz | 2025-Q4 | 85 | +5k/-2k | — | Spread | Active |
 | machuz | 2026-Q1 | **313** | **+26k/-10k** | — | **Rescue** | Active |
-| R.M. | 2025-Q4 | **1241** | — | **Architect** | Builder | Active |
-| R.M. | 2026-Q1 | 592 | — | Architect | Builder | Active |
+| R.M. | 2025-Q4 | **1241** | **+178k/-122k** | **Architect** | Builder | Active |
+| R.M. | 2026-Q1 | 592 | +169k/-69k | Architect | Builder | Active |
 
 machuz accumulated 313 commits on the FE side too, Style shifting from Spread to **Rescue**. A backend engineer diving into frontend to support integration.
 
