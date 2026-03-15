@@ -166,9 +166,9 @@ Viewed through EIS's 7 axes, the value shifts look like this:
 
 So what exactly is an "engineer who survives in the AI era"? I want to articulate this clearly.
 
-### Code Writers Won't Survive
+### Implementation Speed Alone Won't Be Enough
 
-I'll say this without hedging. **Engineers whose primary value is "writing code" will not survive the AI era.**
+**Engineers whose primary differentiator is implementation speed will struggle to survive the AI era.**
 
 This isn't a denial of ability. It's a structural change in the market. When AI can write in one hour what a human writes in a day, there's no economic value in the human doing it. The ability to write code fast and accurately was a scarce resource before AI. After AI, it becomes a commodity.
 
