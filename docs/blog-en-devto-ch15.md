@@ -122,6 +122,8 @@ An Architect **defines** structure. Where to draw module boundaries. Which direc
 
 AI can answer "how to write this code." It cannot yet answer "how to structure this system."
 
+Think of it as pair programming. The human is the Navigator (making design decisions), the AI is the Driver (handling implementation). The most productive development setup in the AI era is the ultimate form of Architect/Producer division of labor.
+
 **Writing code and generating gravity are entirely different capabilities.**
 
 ---
@@ -333,6 +335,81 @@ A **succession of the soul to AI.**
 Just as civilizations persist across generations, a codebase's structure is inherited by AI as a new "generation." CLAUDE.md becomes the civilization's legal codex — rules that AI reads, understands, and follows. The design intent that human Architects encoded continues to be implemented through AI's hands.
 
 **Civilization is no longer woven by humans alone.** The era of humans and AI weaving it together has already begun.
+
+---
+
+## AI Makes Dark Matter Visible
+
+In Chapter 10, I wrote about "dark matter" — invisible forces that don't appear in commit logs. Design intent, team tacit knowledge, the context of "why we did it this way."
+
+Dark matter previously existed only in engineers' heads. It couldn't be visualized. It couldn't be measured. But it undeniably existed, supporting the structure of the code universe.
+
+Here's the ironic paradox of the AI era:
+
+**The need to teach AI about structure forced us to articulate dark matter.**
+
+Think about writing a CLAUDE.md file. "This module was built on this design philosophy." "Dependencies should flow in this direction." "The reason for following this pattern is this." Without documenting these, AI can't understand the structure.
+
+In other words, AI's arrival **forced humans to articulate their dark matter.**
+
+This is an unexpected side effect. Documentation written for AI serves humans too. It works for onboarding new team members. It becomes a code review standard. When "why we did it this way" is written down, dark matter stops being dark matter.
+
+**AI creates stars. But simultaneously, it makes dark matter visible.**
+
+Invisible forces become visible. This is another gift of the AI era.
+
+---
+
+## The Gravity Amplifier
+
+Before AI, an Architect could only build structure with their own hands and demonstrate implementation patterns themselves. There was a physical limit to how much code a single Architect could influence.
+
+In the AI era, that limit vanishes.
+
+**AI amplifies the Architect's gravity.**
+
+A design pattern the Architect demonstrated in one module gets horizontally deployed by AI across a hundred other modules. Naming conventions the Architect defined get faithfully reproduced by AI in every file. The structural intent the Architect encoded in CLAUDE.md gets embodied by AI in daily coding.
+
+A single Architect's gravity gets **amplified 10x, 100x** through AI.
+
+This is a fundamental change to EIS's Design axis. Before AI, an engineer with high Design "brought structure to the code they touched." After AI, an engineer with high Design "brings structure to the entire codebase through AI."
+
+The Architect's radius of influence expands dramatically.
+
+In Chapter 12, I wrote about the danger of Black Holes — when gravity concentrates too much in one place, structure collapses. But gravity amplification through AI is different from a Black Hole. It amplifies the Architect's gravity **distributively.** AI functions not as a center of gravity but as a transmission medium for gravity.
+
+**AI carries the gravity an Architect created to every corner of the universe.**
+
+This is the true power of the Architect/Builder in the AI era.
+
+---
+
+## Measuring AI Performance with EIS
+
+Here, a new use for git archaeology emerges.
+
+**The EIS telescope can measure AI's performance too.**
+
+If AI-generated commits can be identified (via `Co-Authored-By` tags or commit message conventions), the Survival of AI-written code can be compared against human code.
+
+If AI code Survival is systematically low — that's evidence the structural knowledge given to AI is insufficient. CLAUDE.md needs work. The Architect's design intent isn't reaching AI.
+
+Conversely, if AI code Survival matches or exceeds human code — the civilization's codex is functioning. AI understands the structure and generates code that fits.
+
+In other words, EIS becomes a **feedback loop for AI governance.**
+
+```
+Architect → CLAUDE.md → AI generates code → EIS measures Survival
+                                                    ↓
+                                          Low Survival → improve CLAUDE.md
+                                          High Survival → structure is working
+```
+
+The telescope is no longer just a tool for observing the universe. **It becomes an instrument for constructing it.** Continuously monitoring the quality of AI-generated code from the perspective of structural influence, and running improvement cycles.
+
+This is also an application of Chapter 8's Engineering Relativity — the same engineer gets different scores in different contexts. If AI is measured as an "engineer," its performance should vary by repository. High AI Survival in repositories with clear structure, low in repositories with ambiguous structure.
+
+**AI's Survival is a proxy for structural quality.**
 
 ---
 
