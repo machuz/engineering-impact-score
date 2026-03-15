@@ -133,6 +133,32 @@ software civilizations emerge.
 
 ---
 
+```
+                      ✦ AI Era
+                     / \
+              Culture   Stars (AI)
+                 |         |
+            Civilization    |
+             /    |    \    |
+       Architect Anchor Producer
+            \    |    /
+             Gravity
+            /       \
+      Dark Matter  Entropy → Collapse
+           \       /
+        Code Universe
+          /    |    \
+     Origin  Stars  Relativity
+               |
+            Timeline
+               |
+          Git Telescope
+               |
+            ═══╩═══
+```
+
+---
+
 Software is not a collection of code.
 It is a **universe of structure**, shaped through time.
 
