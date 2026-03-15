@@ -329,7 +329,7 @@ In Q4, Design drops to 0 and Production falls. This isn't decline — it's a shi
 | 2025-Q3 | 46.5 | 100 | **96** | 11 | **30** | 3 | 64 | +78k/-75k | Anchor | **Mass** | Active |
 | 2025-Q4 | 30.4 | 44 | **94** | 16 | **28** | 10 | 10 | +25k/-13k | Anchor | Balanced | Active |
 
-H. was the engineer responsible for legacy frontend knowledge transfer. As R.M. spun up a new repository for the new project, H. took on the role of carrying forward the institutional knowledge from the old codebase.
+H. is the engineer who dove into the entirely new FE repository that R.M. built from scratch for the new project, working to absorb its knowledge and patterns.
 
 In Q2, Design=100, Style=Builder — a star that creates structure. But from Q3 onward, Design drops from 64 to 10, and Style shifts from Builder → Mass → Balanced.
 
