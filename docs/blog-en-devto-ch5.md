@@ -26,7 +26,22 @@ Engineers change. They grow. They hesitate. When team dynamics shift, the way th
 
 I added a `timeline` command to EIS.
 
-![Timeline Commands](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-bash-timeline.png?v=4)
+```bash
+# Default: last 4 quarters in 3-month spans
+❯ eis timeline --recursive ~/workspace
+
+# From 2024, quarterly
+❯ eis timeline --span 3m --since 2024-01-01 --recursive ~/workspace
+
+# Half-year spans, full history
+❯ eis timeline --span 6m --periods 0 --recursive ~/workspace
+
+# Specific members only
+❯ eis timeline --author alice,bob --recursive ~/workspace
+
+# JSON output
+❯ eis timeline --format json --recursive ~/workspace
+```
 
 The mechanism is simple:
 
@@ -303,7 +318,9 @@ Some practical uses for timelines:
 
 ### 1. Material for 1:1s
 
-![Timeline Author](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-bash-timeline-author.png?v=4)
+```bash
+❯ eis timeline --author alice --recursive ~/workspace
+```
 
 Pull up a member's individual timeline at the start of a 1:1. "Your Design dropped this quarter. What happened?"
 

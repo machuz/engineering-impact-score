@@ -67,7 +67,9 @@
 - `docs/swagger*` — 自動生成
 - `mock_*`, `*.gen.*` — コード生成
 
-![git logコマンド](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch1-bash-gitlog.svg)
+```bash
+❯ git log --all --no-merges --format="COMMIT:%an||%s" --numstat
+```
 
 #### 初回品質 — 「修正」という言葉が語るもの
 
@@ -498,15 +500,40 @@ X.の品質18はかなり厳しい値。**コミットの82%がfixか修正**。
 
 **計算式が固まったので、CLIツールにした。**
 
-![インストール](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch1-bash-install.svg)
+```bash
+❯ brew tap machuz/tap
+❯ brew install eis
+```
 
 これだけ。AIトークンゼロ、API keyゼロ、クラウド依存ゼロ。
 
-![使い方](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch1-bash-usage.svg)
+```bash
+# Analyze current repo
+❯ eis analyze .
+
+# Auto-discover repos under a directory
+❯ eis analyze --recursive ~/projects
+
+# With config
+❯ eis analyze --config eis.yaml --recursive ~/projects
+```
 
 `eis.yaml` で著者名のエイリアス（同一人物の名寄せ）、除外著者、ドメイン定義、アーキテクチャパターン、軸の重みなど全てカスタマイズできる。
 
-![設定ファイル例](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch1-yaml-config.svg)
+```yaml
+aliases:
+  "John Smith": "john"
+  "J. Smith": "john"
+exclude_authors:
+  - "dependabot[bot]"
+domains:
+  backend: ["api-*", "worker"]
+  frontend: ["web-*", "app"]
+  firmware: ["raden"]
+exclude_repos: ["deprecated-service"]
+production_daily_ref: 1000
+tau: 180
+```
 
 実行すると、7軸スコア・総合点・3軸トポロジー（Role / Style / State）・Bus Factorリスクがターミナルに色分けで出力される。数秒〜数分で完了する。
 

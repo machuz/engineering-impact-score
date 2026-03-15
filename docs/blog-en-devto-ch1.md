@@ -473,9 +473,21 @@ Numbers don't lie.
 
 This started as a blog post and a Claude Code experiment. The formulas are now baked into a standalone CLI — **zero AI tokens, zero API keys, zero cloud dependency.**
 
-![Install](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch1-bash-install.png?v=4)
+```bash
+❯ brew tap machuz/tap
+❯ brew install eis
+```
 
-![Usage](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch1-bash-usage.png?v=4)
+```bash
+# Analyze current repo
+❯ eis analyze .
+
+# Auto-discover repos under a directory
+❯ eis analyze --recursive ~/projects
+
+# With config
+❯ eis analyze --config eis.yaml --recursive ~/projects
+```
 
 Runs in seconds to minutes. Color-coded output with 7-axis scores, 3-axis topology (Role / Style / State), and Bus Factor risks — right in your terminal.
 

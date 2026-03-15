@@ -115,13 +115,17 @@ The more Architects on a team, the harder it is to raise your Design axis. This 
 
 ### 3. Use `--per-repo` for Cross-Repo Analysis
 
-![Per-Repo Analysis](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-bash-per-repo.png?v=4)
+```bash
+❯ eis analyze --recursive --per-repo ~/workspace
+```
 
 The `--per-repo` flag scores each repository independently and produces a cross-repo comparison table. Producer in one repo, Architect in another — that pattern reveals adaptability and latent capability.
 
 ### 4. Watch "Gravitational Field Changes" in Timelines
 
-![Timeline Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch8-bash-timeline.png?v=4)
+```bash
+❯ eis timeline --span 6m --periods 0 --recursive ~/workspace
+```
 
 Codebase structure isn't static. Member departures, refactoring, new features — these shift the gravitational field. In timelines, you can distinguish "engineers whose scores rise when structure weakens" from "engineers who maintain stable scores regardless of structural strength."
 

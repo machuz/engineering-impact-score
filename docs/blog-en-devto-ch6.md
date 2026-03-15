@@ -333,7 +333,9 @@ But with `eis timeline`, **you can discover your own team's laws yourself.**
 
 ### 1. Organizational Review
 
-![Timeline Command](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch6-bash-timeline.png?v=4)
+```bash
+❯ eis timeline --span 6m --periods 0 --recursive ~/workspace
+```
 
 Generate half-year team timelines and track Phase / Risk trends. If Declining persists, something needs to change.
 

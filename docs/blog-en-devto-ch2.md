@@ -30,11 +30,29 @@ Conversely, a team averaging 50 points — but with one Architect, one Cleaner, 
 
 The new `eis team` command aggregates individual scores into team-level metrics.
 
-![Team Commands](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch2-bash-team.png?v=4)
+```bash
+# Simplest: domain = team
+❯ eis team --recursive ~/workspace
+
+# With explicit team definitions
+❯ eis team --config eis.yaml --recursive ~/workspace
+
+# JSON output
+❯ eis team --format json --recursive ~/workspace
+```
 
 If no `teams` section exists in config, each domain (Backend / Frontend / Infra) is treated as a single team. Zero config required.
 
-![Team Config](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch2-yaml-teams.png?v=4)
+```yaml
+# eis.yaml (optional)
+teams:
+  backend-core:
+    domain: Backend
+    members: [alice, bob, charlie]
+  frontend-app:
+    domain: Frontend
+    members: [dave, eve]
+```
 
 ## Seven Team Health Axes
 
@@ -331,9 +349,16 @@ In practice, though, we may not need to measure that directly. A strong team wil
 
 ## How to Use It
 
-![eis team terminal output](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-output.png?v=4)
+```bash
+# Install
+❯ brew tap machuz/tap && brew install eis
 
-![Install and Team Commands](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch2-bash-install-team.png?v=4)
+# Team analysis
+❯ eis team --recursive ~/workspace
+
+# JSON → paste into AI
+❯ eis team --format json --recursive ~/workspace | pbcopy
+```
 
 Deep insights are intentionally out of scope. The tool produces quantitative data; humans (or AI) interpret it. This separation is by design.
 
