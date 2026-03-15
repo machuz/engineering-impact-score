@@ -1,5 +1,5 @@
 ---
-title: "Git Archaeology #15 — The Age of AI: The Starburst That Code Universes Were Never Prepared For"
+title: "Git Archaeology #15 — AI Creates Stars, Not Gravity"
 published: true
 description: "AI creates stars. But it doesn't create gravity. What happens when code universes experience their first starburst?"
 tags: opensource, productivity, git, career
@@ -435,8 +435,6 @@ This is also an application of Chapter 8's Engineering Relativity — the same e
 
 ## How I Use AI
 
-I'll be honest.
-
 These 14 chapters of blog posts were written with AI. EIS itself was born from sparring with Claude Code. I routinely use AI as a pair programming partner.
 
 But **the structural decisions are made by a human.**
@@ -504,7 +502,7 @@ In the AI era especially, look through the telescope. Does your code universe ha
 - [Chapter 12: Collapse: Good Architects and Black Hole Engineers](https://dev.to/machuz/git-archaeology-12-collapse-good-architects-and-black-hole-engineers-3fed)
 - [Chapter 13: Cosmology of Code](https://dev.to/machuz/git-archaeology-13-cosmology-of-code-dci)
 - [Chapter 14: Civilization — Why Only Some Codebases Become Civilizations](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-3a9b)
-- **Chapter 15: The Age of AI — The Starburst That Code Universes Were Never Prepared For** (this post)
+- **Chapter 15: AI Creates Stars, Not Gravity** (this post)
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 

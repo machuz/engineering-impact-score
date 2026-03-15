@@ -1,4 +1,4 @@
-# git考古学 #15 —— The Age of AI：AIがもたらす星の爆発
+# git考古学 #15 —— AI Creates Stars, Not Gravity
 
 ![Cover](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/hatena/cover-ch15.png?v=1)
 
@@ -429,8 +429,6 @@ Architect → CLAUDE.md → AI generates code → EIS measures Survival
 
 ## 私はAIをどう使っているか
 
-正直に書く。
-
 この14章分のブログ記事は、AIと一緒に書いた。EIS自体も、Claude Codeとの壁打ちから生まれた。私は日常的にAIをPair Programmingの相手として使っている。
 
 しかし、**構造の判断は人間がしている。**
@@ -498,7 +496,7 @@ AI時代にこそ、望遠鏡を覗いてほしい。あなたのコード宇宙
 - [第12章：Collapse：良いArchitectとBlack Hole Engineer](https://ma2k8.hateblo.jp/entry/2026/03/15/062610)
 - [第13章：Cosmology of Code：コード宇宙論](https://ma2k8.hateblo.jp/entry/2026/03/15/062611)
 - [第14章：Civilization：なぜ一部のコードベースだけが文明になるのか](https://ma2k8.hateblo.jp/entry/2026/03/15/062612)
-- **第15章：The Age of AI：AIがもたらす星の爆発**（本記事）
+- **第15章：AI Creates Stars, Not Gravity**（本記事）
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
