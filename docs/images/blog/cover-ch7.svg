@@ -17,13 +17,61 @@
   <circle cx="60" cy="16" r="6" fill="#98971a"/>
   <text x="500" y="20" text-anchor="middle" fill="#928374" font-size="12">Engineering Impact Score — Chapter 7</text>
 
-  <text x="20" y="70" fill="#928374" font-size="12">Chapter 7</text>
-  <text x="20" y="106" fill="#fabd2f" font-size="24" font-weight="700">Observing the Universe of Code</text>
-  <text x="20" y="142" fill="#928374" font-size="14">Four Forces, Gravity, and Seasoned Design</text>
-  <text x="20" y="196" fill="#8ec07c" font-size="12" font-weight="700">  The Universe of Code</text>
-  <text y="232" font-size="12"><tspan x="20" fill="#d3869b">  ◉ </tspan><tspan x="48.8" fill="#ebdbb2">Gravity     </tspan><tspan x="135.2" fill="#928374">— Architects create gravitational centers</tspan></text>
-  <text y="250" font-size="12"><tspan x="20" fill="#b8bb26">  ◉ </tspan><tspan x="48.8" fill="#ebdbb2">Strong Force</tspan><tspan x="135.2" fill="#928374"> — Domain coupling holds modules together</tspan></text>
-  <text y="268" font-size="12"><tspan x="20" fill="#83a598">  ◉ </tspan><tspan x="48.8" fill="#ebdbb2">Weak Force  </tspan><tspan x="135.2" fill="#928374"> — Cross-domain interactions and decay</tspan></text>
-  <text y="286" font-size="12"><tspan x="20" fill="#fabd2f">  ◉ </tspan><tspan x="48.8" fill="#ebdbb2">EM Force    </tspan><tspan x="135.2" fill="#928374"> — Communication patterns between members</tspan></text>
-  <text x="20" y="322" fill="#928374" font-size="12">  Codebases are universes. Engineers are celestial bodies.</text>
+  <!-- Left side: Text content -->
+  <text x="30" y="75" fill="#928374" font-size="12">Chapter 7</text>
+  <text x="30" y="115" fill="#fabd2f" font-size="24" font-weight="700">Observing the Universe</text>
+  <text x="30" y="148" fill="#fabd2f" font-size="24" font-weight="700">of Code</text>
+  <text x="30" y="178" fill="#928374" font-size="14">Four Forces, Gravity, and Seasoned Design</text>
+
+  <!-- Left side: Four forces -->
+  <text x="30" y="215" fill="#8ec07c" font-size="11" font-weight="700">The Universe of Code</text>
+  <text y="240" font-size="11"><tspan x="30" fill="#d3869b">Gravity     </tspan><tspan fill="#928374">— Architects create gravitational centers</tspan></text>
+  <text y="260" font-size="11"><tspan x="30" fill="#b8bb26">Strong Force</tspan><tspan fill="#928374"> — Domain coupling holds modules</tspan></text>
+  <text y="280" font-size="11"><tspan x="30" fill="#83a598">Weak Force  </tspan><tspan fill="#928374"> — Cross-domain interactions</tspan></text>
+  <text y="300" font-size="11"><tspan x="30" fill="#fabd2f">EM Force    </tspan><tspan fill="#928374"> — Communication patterns</tspan></text>
+
+  <!-- Bottom -->
+  <text x="30" y="370" fill="#928374" font-size="11">Codebases are universes. Engineers are celestial bodies.</text>
+
+  <!-- Right side: Large chapter number -->
+  <text x="750" y="320" text-anchor="middle" fill="#3c3836" font-size="200" font-weight="700">07</text>
+
+  <!-- Right side: Four forces orbiting a nucleus -->
+  <g opacity="0.9">
+    <!-- Orbital rings -->
+    <circle cx="760" cy="200" r="100" fill="none" stroke="#665c54" stroke-width="1" stroke-dasharray="4" opacity="0.4"/>
+    <circle cx="760" cy="200" r="60" fill="none" stroke="#665c54" stroke-width="1" stroke-dasharray="3" opacity="0.3"/>
+
+    <!-- Central nucleus -->
+    <circle cx="760" cy="200" r="18" fill="#3c3836" stroke="#504945" stroke-width="1.5"/>
+    <circle cx="760" cy="200" r="6" fill="#ebdbb2" opacity="0.8"/>
+
+    <!-- Gravity (top) -->
+    <circle cx="760" cy="100" r="16" fill="#d3869b" opacity="0.8"/>
+    <text x="760" y="80" text-anchor="middle" fill="#d3869b" font-size="10" font-weight="700">Gravity</text>
+
+    <!-- Strong Force (right) -->
+    <circle cx="860" cy="200" r="16" fill="#b8bb26" opacity="0.8"/>
+    <text x="895" y="196" fill="#b8bb26" font-size="10" font-weight="700">Strong</text>
+
+    <!-- Weak Force (bottom) -->
+    <circle cx="760" cy="300" r="16" fill="#83a598" opacity="0.8"/>
+    <text x="760" y="330" text-anchor="middle" fill="#83a598" font-size="10" font-weight="700">Weak</text>
+
+    <!-- EM Force (left) -->
+    <circle cx="660" cy="200" r="16" fill="#fabd2f" opacity="0.8"/>
+    <text x="625" y="196" text-anchor="end" fill="#fabd2f" font-size="10" font-weight="700">EM</text>
+
+    <!-- Connecting lines (force interactions) -->
+    <line x1="760" y1="118" x2="844" y2="188" stroke="#665c54" stroke-width="1" opacity="0.3"/>
+    <line x1="844" y1="212" x2="772" y2="288" stroke="#665c54" stroke-width="1" opacity="0.3"/>
+    <line x1="748" y1="288" x2="676" y2="212" stroke="#665c54" stroke-width="1" opacity="0.3"/>
+    <line x1="676" y1="188" x2="760" y2="118" stroke="#665c54" stroke-width="1" opacity="0.3"/>
+
+    <!-- Energy particles on orbits -->
+    <circle cx="810" cy="130" r="3" fill="#d3869b" opacity="0.5"/>
+    <circle cx="830" cy="260" r="3" fill="#b8bb26" opacity="0.5"/>
+    <circle cx="690" cy="270" r="3" fill="#83a598" opacity="0.5"/>
+    <circle cx="690" cy="130" r="3" fill="#fabd2f" opacity="0.5"/>
+  </g>
 </svg>

@@ -17,14 +17,62 @@
   <circle cx="60" cy="16" r="6" fill="#98971a"/>
   <text x="500" y="20" text-anchor="middle" fill="#928374" font-size="12">Engineering Impact Score — Chapter 5</text>
 
-  <text x="20" y="70" fill="#928374" font-size="12">Chapter 5</text>
-  <text x="20" y="106" fill="#fabd2f" font-size="24" font-weight="700">Timeline: Scores Don&#x27;t Lie</text>
-  <text x="20" y="142" fill="#928374" font-size="14">And They Capture Hesitation Too</text>
-  <text x="20" y="196" fill="#8ec07c" font-size="12" font-weight="700">  Timeline — Scores Don&#x27;t Lie</text>
-  <text y="232" font-size="12"><tspan x="20" fill="#928374">  Q1  </tspan><tspan x="63.2" fill="#d3869b">████████████████████</tspan><tspan x="207.2" fill="#d3869b">  90.0  Architect</tspan></text>
-  <text y="250" font-size="12"><tspan x="20" fill="#928374">  Q2  </tspan><tspan x="63.2" fill="#b8bb26">██████████████████</tspan><tspan x="192.8" fill="#fabd2f">    72.5  Producer</tspan></text>
-  <text y="268" font-size="12"><tspan x="20" fill="#928374">  Q3  </tspan><tspan x="63.2" fill="#fabd2f">█████████████</tspan><tspan x="156.8" fill="#83a598">         49.1  Anchor</tspan></text>
-  <text y="286" font-size="12"><tspan x="20" fill="#928374">  Q4  </tspan><tspan x="63.2" fill="#fb4934">███████</tspan><tspan x="113.6" fill="#fb4934">               31.2  — Fragile</tspan></text>
-  <text y="304" font-size="12"><tspan x="20" fill="#928374">  Q1  </tspan><tspan x="63.2" fill="#928374">███</tspan><tspan x="84.80000000000001" fill="#928374">                   11.3  — Former</tspan></text>
-  <text x="20" y="340" fill="#928374" font-size="12">  Hesitation leaves traces in the data.</text>
+  <!-- Left side: Text content -->
+  <text x="30" y="75" fill="#928374" font-size="12">Chapter 5</text>
+  <text x="30" y="115" fill="#fabd2f" font-size="24" font-weight="700">Timeline: Scores</text>
+  <text x="30" y="148" fill="#fabd2f" font-size="24" font-weight="700">Don't Lie</text>
+  <text x="30" y="178" fill="#928374" font-size="14">And They Capture Hesitation Too</text>
+
+  <!-- Left side: Score timeline -->
+  <text x="30" y="215" fill="#8ec07c" font-size="11" font-weight="700">Timeline</text>
+  <text y="238" font-size="11"><tspan x="30" fill="#928374">Q1 </tspan><tspan fill="#d3869b">████████████████████</tspan><tspan fill="#d3869b"> 90 Architect</tspan></text>
+  <text y="256" font-size="11"><tspan x="30" fill="#928374">Q2 </tspan><tspan fill="#b8bb26">██████████████████</tspan><tspan fill="#fabd2f">   73 Producer</tspan></text>
+  <text y="274" font-size="11"><tspan x="30" fill="#928374">Q3 </tspan><tspan fill="#fabd2f">█████████████</tspan><tspan fill="#83a598">        49 Anchor</tspan></text>
+  <text y="292" font-size="11"><tspan x="30" fill="#928374">Q4 </tspan><tspan fill="#fb4934">███████</tspan><tspan fill="#fb4934">              31 Fragile</tspan></text>
+  <text y="310" font-size="11"><tspan x="30" fill="#928374">Q5 </tspan><tspan fill="#928374">███</tspan><tspan fill="#928374">                  11 Former</tspan></text>
+
+  <!-- Bottom -->
+  <text x="30" y="370" fill="#928374" font-size="11">Hesitation leaves traces in the data.</text>
+
+  <!-- Right side: Large chapter number -->
+  <text x="750" y="320" text-anchor="middle" fill="#3c3836" font-size="200" font-weight="700">05</text>
+
+  <!-- Right side: Timeline with role transition markers -->
+  <g opacity="0.9">
+    <!-- Main timeline horizontal line -->
+    <line x1="570" y1="210" x2="950" y2="210" stroke="#665c54" stroke-width="2"/>
+
+    <!-- Timeline markers -->
+    <circle cx="610" cy="210" r="8" fill="#b8bb26"/>
+    <line x1="610" y1="175" x2="610" y2="202" stroke="#b8bb26" stroke-width="1.5"/>
+    <text x="610" y="165" text-anchor="middle" fill="#b8bb26" font-size="10">Q1</text>
+
+    <circle cx="700" cy="210" r="10" fill="#fabd2f"/>
+    <line x1="700" y1="222" x2="700" y2="252" stroke="#fabd2f" stroke-width="1.5"/>
+    <text x="700" y="268" text-anchor="middle" fill="#fabd2f" font-size="10">Q3</text>
+
+    <circle cx="790" cy="210" r="7" fill="#d3869b"/>
+    <line x1="790" y1="175" x2="790" y2="203" stroke="#d3869b" stroke-width="1.5"/>
+    <text x="790" y="165" text-anchor="middle" fill="#d3869b" font-size="10">Q5</text>
+
+    <circle cx="870" cy="210" r="12" fill="#8ec07c"/>
+    <line x1="870" y1="222" x2="870" y2="252" stroke="#8ec07c" stroke-width="1.5"/>
+    <text x="870" y="268" text-anchor="middle" fill="#8ec07c" font-size="10">Q7</text>
+
+    <circle cx="935" cy="210" r="7" fill="#83a598"/>
+    <line x1="935" y1="175" x2="935" y2="203" stroke="#83a598" stroke-width="1.5"/>
+    <text x="935" y="165" text-anchor="middle" fill="#83a598" font-size="10">Q9</text>
+
+    <!-- Role transition labels -->
+    <text x="650" y="320" fill="#b8bb26" font-size="11" font-weight="700">Producer</text>
+    <text x="750" y="340" fill="#fabd2f" font-size="11" font-weight="700">Architect</text>
+    <text x="860" y="320" fill="#8ec07c" font-size="11" font-weight="700">Lead</text>
+
+    <!-- Transition arrows -->
+    <line x1="710" y1="318" x2="745" y2="333" stroke="#665c54" stroke-width="1"/>
+    <line x1="810" y1="333" x2="850" y2="318" stroke="#665c54" stroke-width="1"/>
+
+    <!-- Decline indicator (dashed) -->
+    <line x1="935" y1="210" x2="970" y2="210" stroke="#fb4934" stroke-width="1.5" stroke-dasharray="4" opacity="0.5"/>
+  </g>
 </svg>

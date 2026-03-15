@@ -6,7 +6,7 @@
 
 ### 前章までのあらすじ
 
-[第12章](https://ma2k8.hateblo.jp/entry/2026/03/15/000000)ではCollapse——良いArchitectとBlack Hole Engineer——について書いた。
+[第12章](https://ma2k8.hateblo.jp/entry/2026/03/15/062610)ではCollapse——良いArchitectとBlack Hole Engineer——について書いた。
 
 最終章は、このシリーズ全体を振り返る。
 
@@ -238,10 +238,10 @@ git考古学は、コード宇宙の天文学だ。
 - [第6章：チームは進化する——タイムラインが暴く組織の法則](https://ma2k8.hateblo.jp/entry/2026/03/14/184223)
 - [第7章：コードの宇宙を観測する](https://ma2k8.hateblo.jp/entry/2026/03/14/213413)
 - [第8章：Engineering Relativity：なぜ同じエンジニアでもスコアが変わるのか](https://ma2k8.hateblo.jp/entry/2026/03/14/233602)
-- [第9章：Origin：コード宇宙のビッグバン](https://ma2k8.hateblo.jp/entry/2026/03/15/000000)
-- [第10章：Dark Matter：見えない重力](https://ma2k8.hateblo.jp/entry/2026/03/15/000000)
-- [第11章：Entropy：宇宙は常に無秩序に向かう](https://ma2k8.hateblo.jp/entry/2026/03/15/000000)
-- [第12章：Collapse：良いArchitectとBlack Hole Engineer](https://ma2k8.hateblo.jp/entry/2026/03/15/000000)
+- [第9章：Origin：コード宇宙のビッグバン](https://ma2k8.hateblo.jp/entry/2026/03/15/054313)
+- [第10章：Dark Matter：見えない重力](https://ma2k8.hateblo.jp/entry/2026/03/15/062608)
+- [第11章：Entropy：宇宙は常に無秩序に向かう](https://ma2k8.hateblo.jp/entry/2026/03/15/062609)
+- [第12章：Collapse：良いArchitectとBlack Hole Engineer](https://ma2k8.hateblo.jp/entry/2026/03/15/062610)
 - **第13章：Cosmology of Code：コード宇宙論**（本記事）
 
 **GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
@@ -254,4 +254,4 @@ PayPay: `w_machu7`
 
 ---
 
-← [第12章：Collapse](https://ma2k8.hateblo.jp/entry/2026/03/15/000000) | **最終章**
+← [第12章：Collapse](https://ma2k8.hateblo.jp/entry/2026/03/15/062610) | **最終章**

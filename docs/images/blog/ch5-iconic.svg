@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300" viewBox="0 0 800 300">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+    </style>
+  </defs>
+
+  <rect width="800" height="300" rx="8" fill="#282828"/>
+  <rect width="800" height="28" rx="8" fill="#1d2021"/>
+  <rect y="20" width="800" height="8" fill="#1d2021"/>
+  <circle cx="18" cy="14" r="5" fill="#cc241d"/>
+  <circle cx="36" cy="14" r="5" fill="#d79921"/>
+  <circle cx="54" cy="14" r="5" fill="#98971a"/>
+
+  <!-- Timeline axis -->
+  <line x1="60" y1="150" x2="740" y2="150" stroke="#665c54" stroke-width="2"/>
+  <!-- Arrow -->
+  <polygon points="740,145 750,150 740,155" fill="#665c54"/>
+
+  <!-- Phase segments (colored bars under timeline) -->
+  <rect x="80" y="155" width="160" height="6" rx="3" fill="#b8bb26" opacity="0.6"/>
+  <rect x="240" y="155" width="120" height="6" rx="3" fill="#fabd2f" opacity="0.6"/>
+  <rect x="360" y="155" width="180" height="6" rx="3" fill="#8ec07c" opacity="0.6"/>
+  <rect x="540" y="155" width="140" height="6" rx="3" fill="#d3869b" opacity="0.6"/>
+
+  <!-- Timeline markers -->
+  <circle cx="80" cy="150" r="8" fill="#b8bb26"/>
+  <line x1="80" y1="120" x2="80" y2="142" stroke="#b8bb26" stroke-width="1.5"/>
+  <text x="80" y="112" text-anchor="middle" fill="#b8bb26" font-size="10">Q1</text>
+
+  <circle cx="240" cy="150" r="10" fill="#fabd2f"/>
+  <line x1="240" y1="170" x2="240" y2="195" stroke="#fabd2f" stroke-width="1.5"/>
+  <text x="240" y="210" text-anchor="middle" fill="#fabd2f" font-size="10">Q4</text>
+
+  <circle cx="360" cy="150" r="8" fill="#8ec07c"/>
+  <line x1="360" y1="120" x2="360" y2="142" stroke="#8ec07c" stroke-width="1.5"/>
+  <text x="360" y="112" text-anchor="middle" fill="#8ec07c" font-size="10">Q6</text>
+
+  <circle cx="540" cy="150" r="12" fill="#d3869b"/>
+  <line x1="540" y1="170" x2="540" y2="195" stroke="#d3869b" stroke-width="1.5"/>
+  <text x="540" y="210" text-anchor="middle" fill="#d3869b" font-size="10">Q9</text>
+
+  <circle cx="680" cy="150" r="8" fill="#83a598"/>
+  <line x1="680" y1="120" x2="680" y2="142" stroke="#83a598" stroke-width="1.5"/>
+  <text x="680" y="112" text-anchor="middle" fill="#83a598" font-size="10">Q12</text>
+
+  <!-- Role labels -->
+  <text x="160" y="245" text-anchor="middle" fill="#b8bb26" font-size="12" font-weight="700">Producer</text>
+  <text x="300" y="245" text-anchor="middle" fill="#fabd2f" font-size="12" font-weight="700">Architect</text>
+  <text x="450" y="245" text-anchor="middle" fill="#8ec07c" font-size="12" font-weight="700">Lead</text>
+  <text x="610" y="245" text-anchor="middle" fill="#d3869b" font-size="12" font-weight="700">Mentor</text>
+
+  <!-- Transition arrows -->
+  <path d="M 215,240 L 235,240" fill="none" stroke="#665c54" stroke-width="1"/>
+  <polygon points="235,238 240,240 235,242" fill="#665c54"/>
+  <path d="M 355,240 L 375,240" fill="none" stroke="#665c54" stroke-width="1"/>
+  <polygon points="375,238 380,240 375,242" fill="#665c54"/>
+  <path d="M 510,240 L 530,240" fill="none" stroke="#665c54" stroke-width="1"/>
+  <polygon points="530,238 535,240 530,242" fill="#665c54"/>
+
+  <!-- Score trend line -->
+  <polyline points="80,90 160,80 240,75 360,65 450,60 540,50 680,55" fill="none" stroke="#ebdbb2" stroke-width="1.5" stroke-dasharray="4" opacity="0.4"/>
+
+  <text x="30" y="282" fill="#8ec07c" font-size="11">$ eis timeline --author engineer-f</text>
+</svg>

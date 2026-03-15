@@ -149,10 +149,10 @@ EISはこの初期条件の影響も映し出す。
 - [第7章：コードの宇宙を観測する](https://ma2k8.hateblo.jp/entry/2026/03/14/213413)
 - [第8章：Engineering Relativity：なぜ同じエンジニアでもスコアが変わるのか](https://ma2k8.hateblo.jp/entry/2026/03/14/233602)
 - **第9章：Origin：コード宇宙のビッグバン**（本記事）
-- [第10章：Dark Matter：見えない重力](https://ma2k8.hateblo.jp/entry/2026/03/15/000000)
-- [第11章：Entropy：宇宙は常に無秩序に向かう](https://ma2k8.hateblo.jp/entry/2026/03/15/000000)
-- [第12章：Collapse：良いArchitectとBlack Hole Engineer](https://ma2k8.hateblo.jp/entry/2026/03/15/000000)
-- [第13章：Cosmology of Code：コード宇宙論](https://ma2k8.hateblo.jp/entry/2026/03/15/000000)
+- [第10章：Dark Matter：見えない重力](https://ma2k8.hateblo.jp/entry/2026/03/15/062608)
+- [第11章：Entropy：宇宙は常に無秩序に向かう](https://ma2k8.hateblo.jp/entry/2026/03/15/062609)
+- [第12章：Collapse：良いArchitectとBlack Hole Engineer](https://ma2k8.hateblo.jp/entry/2026/03/15/062610)
+- [第13章：Cosmology of Code：コード宇宙論](https://ma2k8.hateblo.jp/entry/2026/03/15/062611)
 
 **GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
 
@@ -164,4 +164,4 @@ PayPay: `w_machu7`
 
 ---
 
-← [第8章：Engineering Relativity](https://ma2k8.hateblo.jp/entry/2026/03/14/233602) | [第10章：Dark Matter →](https://ma2k8.hateblo.jp/entry/2026/03/15/000000)
+← [第8章：Engineering Relativity](https://ma2k8.hateblo.jp/entry/2026/03/14/233602) | [第10章：Dark Matter →](https://ma2k8.hateblo.jp/entry/2026/03/15/062608)
