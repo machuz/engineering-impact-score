@@ -14,7 +14,7 @@
     </radialGradient>
   </defs>
 
-  <rect width="480" height="200" rx="12" fill="#1d2021"/>
+  <!-- transparent background — blends with GitHub's own theme -->
 
   <!-- Double ring aperture -->
   <circle cx="100" cy="100" r="82" fill="none" stroke="#504945" stroke-width="2" opacity="0.6"/>
