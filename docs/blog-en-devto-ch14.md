@@ -299,44 +299,12 @@ That's the question. And facing that question honestly is, I believe, the final 
 
 ---
 
-## Closing — Setting Down the Telescope
-
-Across 14 chapters, I've written git archaeology.
-
-It started with a simple question: **"This team is strong. But I had no words to explain it."**
-
-Using nothing but git log and git blame, I tried to quantify an engineer's "combat power." Seven axes, three topologies, team health, timelines — before I knew it, I'd arrived at Software Cosmology, and now, Civilization.
-
-This telescope isn't perfect. Dark matter can't be measured. An Architect's true value takes years to reveal. Whether something is a civilization requires a generation to judge.
-
-But **starting with what you can measure** matters.
-
-> Quantify what you can. Qualitatively supplement what you can't. That order matters.
-
-EIS (pronounced *"ace"*) is the first step.
-
-Point the telescope at your own code universe — and see what you find.
-
 ```bash
 ❯ brew tap machuz/tap && brew install eis
 ❯ eis analyze --recursive ~/your-workspace
 ```
 
 Maybe you'll see the signs of civilization in your codebase too.
-
-```
-        *  .  *
-    .  *    *   .
-      *  ✦  *
-   .    (●)    .
-       /|  |\
-      / |  | \
-     /  |  |  \
-    /___|__|___\
-        ||
-    ════╩╩════
-   the Git Telescope
-```
 
 ---
 
