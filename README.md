@@ -16,7 +16,7 @@ It estimates who actually builds and sustains a system by combining production, 
 
 Point it at a codebase, and hidden patterns emerge:
 
-- **Stars** — who actually built the architecture, not just who committed the most
+- **Architects** — who actually shaped the system's structure
 - **Anchors** — the quiet forces holding the system together
 - **Dark matter** — silent contributions invisible to naive metrics
 - **Collapse risk** — bus-factor concentrations before they become emergencies
