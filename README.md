@@ -141,6 +141,8 @@ Time-decayed survival is also naturally resistant to gaming — you can't inflat
 
 > **Important: EIS measures impact on *this codebase*, not absolute engineering ability.** A high score means "on this codebase, this person's contributions are surviving, shaping architecture, and cleaning up debt." It does not mean they are a better engineer than someone with a lower score. If scores don't match your gut feeling, that's a signal worth investigating: it may reveal codebase design issues rather than people issues.
 
+EIS is not meant to replace human judgment. It reveals patterns that humans often sense but cannot quantify.
+
 ![Score Guide](docs/images/score-guide.svg?v=0.11.0)
 
 ## Engineer Topology (3-Axis Classification)
