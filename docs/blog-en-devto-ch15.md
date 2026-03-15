@@ -340,15 +340,13 @@ Just as civilizations persist across generations, a codebase's structure is inhe
 
 ## The Articulation of Structure and the Birth of New Culture
 
-In Chapter 10, I wrote about "dark matter" — invisible forces that don't appear directly in commit logs. Design intent, team tacit knowledge, the context of "why we did it this way."
+An Architect's design intent lives in the code. Naming conventions, module boundaries, dependency direction — if you can read structure, you can extract it from commit history. That's exactly what the EIS telescope shows.
 
-But dark matter isn't truly invisible. If you carefully read the commit history, you can extract the structural intent buried within. That's exactly what the EIS telescope shows. The problem was that **people without the skill to read structure from code couldn't see it.**
+But AI still lacks the ability to infer structural "intent" from code alone. So we need to maintain documents like CLAUDE.md, providing structural knowledge as explicit text.
 
-What changes in the AI era?
+This is an interesting byproduct of the AI era. The text written for AI also becomes a useful guide for human engineers who haven't yet developed the skill to read structure from code. **More codebases will have structural knowledge as text from the start** — an unexpected benefit of the AI era.
 
-As teams maintain documents like CLAUDE.md for AI, **the probability that structural knowledge exists as text from the start goes up.** Even without the skill to decode commit history, both humans and AI can access the Architect's design intent.
-
-This alone is an interesting byproduct of the AI era. But beyond it lies something far bigger.
+But beyond this lies something far bigger.
 
 ### When Architects' Souls Accumulate
 
