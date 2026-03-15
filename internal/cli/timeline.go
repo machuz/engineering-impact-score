@@ -18,7 +18,7 @@ import (
 func runTimeline(args []string) error {
 	fs := flag.NewFlagSet("timeline", flag.ExitOnError)
 	configPath := fs.String("config", "", "Config file path")
-	spanFlag := fs.String("span", "3m", "Period span: 1w, 1m, 3m, 6m, 1y")
+	spanFlag := fs.String("span", "3m", "Period span: 3m, 6m, 1y")
 	periodsFlag := fs.Int("periods", 4, "Number of periods to show (0=all)")
 	sinceFlag := fs.String("since", "", "Start date (e.g. 2024-01-01, overrides --periods)")
 	formatFlag := fs.String("format", "table", "Output format: table, csv, json, ascii, html, svg")
@@ -114,6 +114,14 @@ func runTimeline(args []string) error {
 			}
 		}
 		cfg.ExcludeAuthors = newExclude
+	}
+
+	// Validate span — CLI supports 3m, 6m, 1y only (1w, 1m are SaaS-only)
+	switch *spanFlag {
+	case "3m", "6m", "1y":
+		// OK
+	default:
+		return fmt.Errorf("invalid span %q (use 3m, 6m, or 1y)", *spanFlag)
 	}
 
 	// Print period info before running analysis
