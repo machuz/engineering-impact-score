@@ -102,5 +102,13 @@
   "blog-en-devto-ch13.md": {
     "devto_id": 3352941,
     "devto_url": "https://dev.to/machuz/git-archaeology-13-cosmology-of-code-dci"
+  },
+  "blog-en-devto-ch14.md": {
+    "devto_id": 3354886,
+    "devto_url": "https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-1fe3"
+  },
+  "blog-ja-hatena-ch14.md": {
+    "hatena_id": "17179246901365255905",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/15/215211"
   }
 }
