@@ -497,6 +497,7 @@ AI時代にこそ、望遠鏡を覗いてほしい。あなたのコード宇宙
 - [第13章：Cosmology of Code：コード宇宙論](https://ma2k8.hateblo.jp/entry/2026/03/15/062611)
 - [第14章：Civilization：なぜ一部のコードベースだけが文明になるのか](https://ma2k8.hateblo.jp/entry/2026/03/15/062612)
 - **第15章：AI Creates Stars, Not Gravity**（本記事）
+- [第16章：The Engineers Who Shape Gravity：重力を作るエンジニアたち](https://ma2k8.hateblo.jp/entry/2026/03/15/062614)
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
@@ -510,4 +511,4 @@ PayPay: `w_machu7`
 
 ---
 
-← [第14章：Civilization](https://ma2k8.hateblo.jp/entry/2026/03/15/062612) | 第16章：（最終章）→
+← [第14章：Civilization](https://ma2k8.hateblo.jp/entry/2026/03/15/062612) | [第16章：The Engineers Who Shape Gravity →](https://ma2k8.hateblo.jp/entry/2026/03/15/062614)

@@ -503,6 +503,7 @@ In the AI era especially, look through the telescope. Does your code universe ha
 - [Chapter 13: Cosmology of Code](https://dev.to/machuz/git-archaeology-13-cosmology-of-code-dci)
 - [Chapter 14: Civilization — Why Only Some Codebases Become Civilizations](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-2nl3)
 - **Chapter 15: AI Creates Stars, Not Gravity** (this post)
+- [Chapter 16: The Engineers Who Shape Gravity](https://dev.to/machuz/git-archaeology-16-the-engineers-who-shape-gravity)
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
@@ -513,4 +514,4 @@ If this was useful: [Sponsor on GitHub](https://github.com/sponsors/machuz)
 
 ---
 
-← [Chapter 14: Civilization](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-2nl3) | Chapter 16 (Final) →
+← [Chapter 14: Civilization](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-2nl3) | [Chapter 16: The Engineers Who Shape Gravity →](https://dev.to/machuz/git-archaeology-16-the-engineers-who-shape-gravity)
