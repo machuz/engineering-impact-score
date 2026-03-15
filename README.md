@@ -13,6 +13,11 @@
 
 **Engineering Impact Score** (EIS, pronounced *"ace"*)
 
+```bash
+brew tap machuz/tap && brew install eis
+eis analyze --recursive ~/your-workspace
+```
+
 Git records commits.
 EIS reveals the structure of the code universe.
 
