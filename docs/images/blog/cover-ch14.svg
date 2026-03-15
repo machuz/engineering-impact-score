@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+    </style>
+  </defs>
+
+  <!-- Terminal background -->
+  <rect width="1000" height="420" rx="10" fill="#282828"/>
+
+  <!-- Title bar -->
+  <rect width="1000" height="32" rx="10" fill="#1d2021"/>
+  <rect y="22" width="1000" height="10" fill="#1d2021"/>
+  <circle cx="20" cy="16" r="6" fill="#cc241d"/>
+  <circle cx="40" cy="16" r="6" fill="#d79921"/>
+  <circle cx="60" cy="16" r="6" fill="#98971a"/>
+  <text x="500" y="20" text-anchor="middle" fill="#928374" font-size="12">Engineering Impact Score — Chapter 14</text>
+
+  <!-- Left side: Text content -->
+  <text x="30" y="75" fill="#928374" font-size="12">Chapter 14</text>
+  <text x="30" y="115" fill="#fabd2f" font-size="24" font-weight="700">Civilization</text>
+  <text x="30" y="148" fill="#928374" font-size="14">Why Only Some Codebases Become Civilizations</text>
+
+  <!-- Left side: Civilization equation -->
+  <text x="30" y="195" fill="#8ec07c" font-size="11" font-weight="700">Civilization =</text>
+  <text y="220" font-size="11"><tspan x="50" fill="#fabd2f">Architect </tspan><tspan fill="#928374">→ creates gravity (structure)</tspan></text>
+  <text y="240" font-size="11"><tspan x="50" fill="#83a598">+ Anchor  </tspan><tspan fill="#928374">→ maintains order (stability)</tspan></text>
+  <text y="260" font-size="11"><tspan x="50" fill="#b8bb26">+ Producer</tspan><tspan fill="#928374"> → expands territory (growth)</tspan></text>
+
+  <!-- Left side: test -->
+  <text x="30" y="310" fill="#d3869b" font-size="11" font-weight="700">The Civilization Test:</text>
+  <text x="30" y="335" fill="#ebdbb2" font-size="11">Does the structure survive</text>
+  <text x="30" y="355" fill="#ebdbb2" font-size="11">after the Architect leaves?</text>
+
+  <!-- Bottom prompt -->
+  <text x="30" y="395" fill="#8ec07c" font-size="12">$ eis analyze --recursive</text>
+  <rect x="258" y="383" width="7" height="14" fill="#ebdbb2" opacity="0.7"/>
+
+  <!-- Right side: Civilization structure visualization -->
+  <g opacity="0.9">
+    <!-- Foundation layer (wide base) -->
+    <rect x="620" y="300" width="320" height="30" rx="3" fill="#504945" opacity="0.4"/>
+    <text x="780" y="320" text-anchor="middle" fill="#665c54" font-size="9">Foundation</text>
+
+    <!-- Anchor layer -->
+    <rect x="660" y="255" width="240" height="30" rx="3" fill="#458588" opacity="0.3"/>
+    <circle cx="730" cy="270" r="8" fill="#83a598" opacity="0.7"/>
+    <circle cx="830" cy="270" r="8" fill="#83a598" opacity="0.7"/>
+    <text x="780" y="274" text-anchor="middle" fill="#83a598" font-size="9">Anchor × 2</text>
+
+    <!-- Architect layer -->
+    <rect x="710" y="210" width="140" height="30" rx="3" fill="#b57614" opacity="0.3"/>
+    <circle cx="780" cy="225" r="10" fill="#fabd2f" opacity="0.8"/>
+    <text x="780" y="229" text-anchor="middle" fill="#282828" font-size="8" font-weight="700">A</text>
+
+    <!-- Producer stars orbiting -->
+    <circle cx="680" cy="170" r="5" fill="#b8bb26" opacity="0.7"/>
+    <circle cx="880" cy="170" r="5" fill="#b8bb26" opacity="0.7"/>
+    <circle cx="720" cy="140" r="4" fill="#b8bb26" opacity="0.5"/>
+    <circle cx="840" cy="140" r="4" fill="#b8bb26" opacity="0.5"/>
+    <circle cx="780" cy="120" r="4" fill="#b8bb26" opacity="0.6"/>
+
+    <!-- Gravity lines from Architect -->
+    <line x1="780" y1="225" x2="680" y2="170" stroke="#fabd2f" stroke-width="0.5" opacity="0.3"/>
+    <line x1="780" y1="225" x2="880" y2="170" stroke="#fabd2f" stroke-width="0.5" opacity="0.3"/>
+    <line x1="780" y1="225" x2="720" y2="140" stroke="#fabd2f" stroke-width="0.5" opacity="0.3"/>
+    <line x1="780" y1="225" x2="840" y2="140" stroke="#fabd2f" stroke-width="0.5" opacity="0.3"/>
+    <line x1="780" y1="225" x2="780" y2="120" stroke="#fabd2f" stroke-width="0.5" opacity="0.3"/>
+
+    <!-- Succession arrow -->
+    <text x="780" y="100" text-anchor="middle" fill="#665c54" font-size="8">Succession</text>
+    <line x1="780" y1="105" x2="780" y2="115" stroke="#665c54" stroke-width="1" opacity="0.4" marker-end="none"/>
+
+    <!-- Background sparkles -->
+    <circle cx="630" cy="110" r="1" fill="#ebdbb2" opacity="0.3"/>
+    <circle cx="930" cy="130" r="1" fill="#ebdbb2" opacity="0.3"/>
+    <circle cx="650" cy="350" r="1" fill="#ebdbb2" opacity="0.2"/>
+    <circle cx="920" cy="340" r="1" fill="#ebdbb2" opacity="0.2"/>
+    <circle cx="950" cy="100" r="1" fill="#ebdbb2" opacity="0.2"/>
+  </g>
+</svg>
