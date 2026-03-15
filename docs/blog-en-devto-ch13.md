@@ -277,7 +277,7 @@ R.M. is the engineer who built the new project's FE repository from scratch — 
 
 **Design=100, Survival=100, Role=Architect — both periods.** Style=Emergent — the creative type. Not inheriting existing design, but generating structure from zero.
 
-**For the sheer volume of design decisions made, Total 51.8/50.4 may look low.** This is by design in EIS. In a new repository where no one else has touched the code yet, relative metrics like Breadth and Indispensability don't fully activate. EIS measures "gravity within a team" — in a universe of one, relative gravity is hard to express.
+**For the sheer volume of design decisions made, Total 51.8/50.4 may look low.** This is exactly what Style=**Emergent** represents — creating a new universe alone, code that no one else has touched yet, relative metrics like Breadth and Indispensability that don't fully activate. EIS measures "gravity within a team" — in a universe of one, relative gravity is hard to express.
 
 But I know. **From another universe, I know this design carries refined, high-quality gravity.** R.M. and I built structure together in a different codebase, and I've experienced firsthand the soundness of this architectural thinking. How much structural intelligence lives behind these Total numbers — the telescope alone can't see it. Only an observer who has shared another universe can understand the true intensity of this light.
 
