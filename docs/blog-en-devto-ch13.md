@@ -367,6 +367,20 @@ This is the starlight the telescope revealed. Behind the numbers, you can see 3.
 
 ---
 
+### The Massive Dark Matter — PO & PdM
+
+The telescope observes commit light. But this project had massive gravitational sources that never appeared in a single commit.
+
+**PO D.H.** — came from sales and was suddenly assigned to this project. And yet, a deep respect for craftsmanship. Rather than throwing customer insights over the wall as requirements, D.H. sat with the development team and refined them together. Synthesizing perspectives from sales, customer success, and strategic business units, D.H. powered through a staggering volume of planning. Creating screen mockups by hand with cut-and-paste, coming at us with full force to synchronize minds.
+
+**PdM S.T.** — the soul of this development organization. Pouring passion for the business into the team, relentlessly. Together with D.H., S.T. plowed through massive planning, coordinated with other organizations, navigated scope adjustments on razor-thin margins, and prepared backup plans so we'd never hit a dead end. And when the very last moment came — when everything hung in the balance — S.T. said "Let's keep going!!" and floored the accelerator with us.
+
+R.M., ignited by S.T.'s passion, was building UI while saying "I want to make S.T. happy…!" I witnessed the moment when love for a product was converted into commits.
+
+**EIS can only observe commit light. But there was dark matter that provided the fuel generating that light — vision, planning, organizational coordination, and passion.** Massive dark matter that built a culture of quality. Knowing the telescope's limits is also the observer's duty.
+
+---
+
 ### The Telescope as Negotiation
 
 This is where EIS becomes meaningful.
