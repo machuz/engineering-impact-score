@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/logo-full.svg?v=2" alt="EIS — the Git Telescope" width="420">
+  <img src="docs/images/logo-full.svg?v=3" alt="EIS — the Git Telescope" width="420">
 </p>
 
 <p align="right">
