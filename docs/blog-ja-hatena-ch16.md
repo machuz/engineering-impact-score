@@ -1,4 +1,4 @@
-# git考古学 #16 —— The Engineers Who Shape Gravity：重力を作るエンジニアたち
+# git考古学 #16（最終章）—— The Engineers Who Shape Gravity：重力を作るエンジニアたち
 
 ![Cover](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/hatena/cover-ch16.png?v=1)
 
@@ -85,6 +85,10 @@ AIは未来を生成する。
 
 ## EISとは何か
 
+だから私は、その重力を観測するための望遠鏡を作った。
+
+それがEISだ。
+
 EISはコード量を測る指標ではない。
 
 それは
@@ -92,6 +96,8 @@ EISはコード量を測る指標ではない。
 > **誰が重力を生んだのか**
 
 を観測する望遠鏡である。
+
+そして、その重力は直感ではなく、履歴から観測できる。
 
 ---
 
@@ -170,7 +176,7 @@ software civilizations emerge.
 - [第13章：Cosmology of Code：コード宇宙論](https://ma2k8.hateblo.jp/entry/2026/03/15/062611)
 - [第14章：Civilization：なぜ一部のコードベースだけが文明になるのか](https://ma2k8.hateblo.jp/entry/2026/03/15/062612)
 - [第15章：AI Creates Stars, Not Gravity](https://ma2k8.hateblo.jp/entry/2026/03/15/062613)
-- **第16章：The Engineers Who Shape Gravity：重力を作るエンジニアたち**（本記事）
+- **第16章：The Engineers Who Shape Gravity：重力を作るエンジニアたち — 最終章**（本記事）
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 

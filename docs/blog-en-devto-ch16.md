@@ -1,5 +1,5 @@
 ---
-title: "Git Archaeology #16 — The Engineers Who Shape Gravity"
+title: "Git Archaeology #16 (Final) — The Engineers Who Shape Gravity"
 published: true
 description: "Git remembers the past. AI imagines the future. Between them, engineers shape gravity."
 tags: opensource, productivity, git, career
@@ -85,11 +85,17 @@ That is not just a repository.
 
 ## What EIS Is
 
+So I built a telescope — to observe that gravity.
+
+That is EIS.
+
 EIS is not a metric for measuring code volume.
 
 It is
 
 > **a telescope for observing who generated gravity.**
+
+And that gravity can be observed not through intuition, but through history.
 
 ---
 
@@ -168,7 +174,7 @@ Within that universe, the ones who create order and make civilization possible �
 - [Chapter 13: Cosmology of Code](https://dev.to/machuz/git-archaeology-13-cosmology-of-code-dci)
 - [Chapter 14: Civilization — Why Only Some Codebases Become Civilizations](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-2nl3)
 - [Chapter 15: AI Creates Stars, Not Gravity](https://dev.to/machuz/git-archaeology-15-ai-creates-stars-not-gravity-4i05)
-- **Chapter 16: The Engineers Who Shape Gravity** (this post)
+- **Chapter 16: The Engineers Who Shape Gravity — Final** (this post)
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
