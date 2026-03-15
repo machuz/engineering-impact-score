@@ -258,7 +258,7 @@ Meanwhile, FE lead R.M. evolved from Anchor to **Architect** in Q4 with 1241 com
 | R.S. | 36.4 | 46.1 | 40.4 | Anchor | Balanced |
 | P. | 34.2 | 51.4 | 40.0 | Anchor | **Mass** |
 
-R.S. — a steady Anchor holding the team's gravitational field. P. with Mass style — charging forward with high-volume commits, supporting the crunch.
+R.S. — a steady Anchor holding the team's gravitational field. P. with Mass style — charging forward with high-volume commits, supporting the crunch. And P. was simultaneously handling the handover and deadlines of an entirely separate domain while putting up these scores. The coordination and knowledge transfer that don't appear in commits — the ratio of dark matter work was enormous.
 
 **machuz's long-term timeline** tells another story:
 
