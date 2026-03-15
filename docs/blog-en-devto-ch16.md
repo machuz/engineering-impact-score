@@ -166,7 +166,7 @@ Physics             Software
 ─────────────────────────────
 Matter        →     Code
 Gravity       →     Reuse
-Dark Matter   →     Anchor, PO, QA...
+Dark Matter   →     Anchor, PO, PdM, QA...
 Entropy       →     Tech Debt
 Stars         →     Engineers
 Civilization  →     Team
