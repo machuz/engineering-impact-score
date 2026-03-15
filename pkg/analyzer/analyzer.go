@@ -168,6 +168,10 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		prod := metric.CalcProduction(commits, cfg.ExcludeFilePatterns)
 		mergeMap(acc.raw.Production, prod)
 
+		added, deleted := metric.CalcLines(commits, cfg.ExcludeFilePatterns)
+		mergeMapInt(acc.raw.LinesAdded, added)
+		mergeMapInt(acc.raw.LinesDeleted, deleted)
+
 		allCommits := make([]git.Commit, len(commits), len(commits)+len(mergeCommits))
 		copy(allCommits, commits)
 		allCommits = append(allCommits, mergeCommits...)
@@ -460,6 +464,12 @@ func filterBlameLines(lines []git.BlameLine, cfg *config.Config) []git.BlameLine
 }
 
 func mergeMap(dst, src map[string]float64) {
+	for k, v := range src {
+		dst[k] += v
+	}
+}
+
+func mergeMapInt(dst, src map[string]int) {
 	for k, v := range src {
 		dst[k] += v
 	}

@@ -17,7 +17,7 @@ func PrintTimelineCSV(domainName string, timelines []timeline.AuthorTimeline) {
 		"domain", "author", "period",
 		"total", "production", "quality", "survival", "robust_survival", "dormant_survival",
 		"design", "breadth", "debt_cleanup", "indispensability", "gravity",
-		"commits", "role", "role_conf", "style", "style_conf", "state", "state_conf",
+		"commits", "lines_added", "lines_deleted", "role", "role_conf", "style", "style_conf", "state", "state_conf",
 	})
 
 	for _, tl := range timelines {
@@ -38,6 +38,8 @@ func PrintTimelineCSV(domainName string, timelines []timeline.AuthorTimeline) {
 				fmt.Sprintf("%.1f", p.Indispensability),
 				fmt.Sprintf("%.1f", p.Gravity),
 				fmt.Sprintf("%d", p.TotalCommits),
+				fmt.Sprintf("%d", p.LinesAdded),
+				fmt.Sprintf("%d", p.LinesDeleted),
 				p.Role,
 				fmt.Sprintf("%.2f", p.RoleConf),
 				p.Style,

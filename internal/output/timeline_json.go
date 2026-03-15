@@ -41,6 +41,8 @@ type timelineJSONAuthorPeriod struct {
 	Indispensability float64 `json:"indispensability"`
 	Gravity          float64 `json:"gravity"`
 	Commits          int     `json:"commits"`
+	LinesAdded       int     `json:"lines_added"`
+	LinesDeleted     int     `json:"lines_deleted"`
 	Role             string  `json:"role"`
 	RoleConf         float64 `json:"role_confidence"`
 	Style            string  `json:"style"`
@@ -91,6 +93,8 @@ func PrintTimelineJSON(domainName, span string, periods []timeline.PeriodResult,
 				Indispensability: round1(p.Indispensability),
 				Gravity:          round1(p.Gravity),
 				Commits:          p.TotalCommits,
+				LinesAdded:       p.LinesAdded,
+				LinesDeleted:     p.LinesDeleted,
 				Role:             p.Role,
 				RoleConf:         round2(p.RoleConf),
 				Style:            p.Style,

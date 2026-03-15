@@ -28,13 +28,14 @@ func PrintTimelineTable(domainName, span string, timelines []timeline.AuthorTime
 		fmt.Printf("--- %s ---\n", nameFmt("%s", tl.Author))
 
 		// Header
-		fmt.Printf("%-18s %6s %5s %5s %5s %7s  %-12s %-12s %-12s\n",
+		fmt.Printf("%-18s %6s %5s %5s %5s %7s %7s  %-12s %-12s %-12s\n",
 			headerFmt("Period"),
 			headerFmt("Total"),
 			headerFmt("Prod"),
 			headerFmt("Qual"),
 			headerFmt("Surv"),
 			headerFmt("Design"),
+			headerFmt("Lines"),
 			headerFmt("Role"),
 			headerFmt("Style"),
 			headerFmt("State"),
@@ -42,9 +43,9 @@ func PrintTimelineTable(domainName, span string, timelines []timeline.AuthorTime
 
 		for _, p := range tl.Periods {
 			if p.Total == 0 && p.TotalCommits == 0 {
-				fmt.Printf("%-18s %6s %5s %5s %5s %7s  %-12s %-12s %-12s\n",
+				fmt.Printf("%-18s %6s %5s %5s %5s %7s %7s  %-12s %-12s %-12s\n",
 					p.Label, dimFmt("—"), dimFmt("—"), dimFmt("—"), dimFmt("—"), dimFmt("—"),
-					dimFmt("—"), dimFmt("—"), dimFmt("—"),
+					dimFmt("—"), dimFmt("—"), dimFmt("—"), dimFmt("—"),
 				)
 				continue
 			}
@@ -69,13 +70,16 @@ func PrintTimelineTable(domainName, span string, timelines []timeline.AuthorTime
 				stateStr = labelFmt("%s", p.State)
 			}
 
-			fmt.Printf("%-18s %6s %5.0f %5.0f %5s %7.0f  %-12s %-12s %-12s\n",
+			linesStr := formatLinesCompact(p.LinesAdded + p.LinesDeleted)
+
+			fmt.Printf("%-18s %6s %5.0f %5.0f %5s %7.0f %7s  %-12s %-12s %-12s\n",
 				p.Label,
 				totalStr,
 				p.Production,
 				p.Quality,
 				survStr,
 				p.Design,
+				linesStr,
 				roleStr,
 				styleStr,
 				stateStr,
@@ -111,4 +115,15 @@ func PrintTimelineTable(domainName, span string, timelines []timeline.AuthorTime
 		}
 		fmt.Println()
 	}
+}
+
+// formatLinesCompact formats line counts with k suffix for readability.
+func formatLinesCompact(lines int) string {
+	if lines == 0 {
+		return "0"
+	}
+	if lines >= 1000 {
+		return fmt.Sprintf("%.1fk", float64(lines)/1000)
+	}
+	return fmt.Sprintf("%d", lines)
 }

@@ -372,6 +372,11 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		prod := metric.CalcProduction(commits, cfg.ExcludeFilePatterns)
 		mergeMap(acc.raw.Production, prod)
 
+		// Lines added/deleted
+		added, deleted := metric.CalcLines(commits, cfg.ExcludeFilePatterns)
+		mergeMapInt(acc.raw.LinesAdded, added)
+		mergeMapInt(acc.raw.LinesDeleted, deleted)
+
 		// Quality: include merge commits so fix subjects in merge messages are counted
 		// Use make+copy+append to avoid slice backing array corruption
 		allCommits := make([]git.Commit, len(commits), len(commits)+len(mergeCommits))
@@ -822,6 +827,12 @@ func filterBlameLines(lines []git.BlameLine, cfg *config.Config) []git.BlameLine
 }
 
 func mergeMap(dst, src map[string]float64) {
+	for k, v := range src {
+		dst[k] += v
+	}
+}
+
+func mergeMapInt(dst, src map[string]int) {
 	for k, v := range src {
 		dst[k] += v
 	}

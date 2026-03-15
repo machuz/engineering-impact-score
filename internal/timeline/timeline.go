@@ -43,6 +43,8 @@ type AuthorPeriod struct {
 	State            string
 	StateConf        float64
 	TotalCommits     int
+	LinesAdded       int
+	LinesDeleted     int
 	Active           bool
 }
 
@@ -93,6 +95,8 @@ func BuildTimeline(periods []PeriodResult) []AuthorTimeline {
 						State:            m.State,
 						StateConf:        m.StateConf,
 						TotalCommits:     m.TotalCommits,
+						LinesAdded:       m.LinesAdded,
+						LinesDeleted:     m.LinesDeleted,
 						Active:           m.RecentlyActive,
 					}
 					found = true

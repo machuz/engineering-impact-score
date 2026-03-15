@@ -25,6 +25,8 @@ type Result struct {
 	Gravity          float64 // structural influence: f(Indispensability, Breadth, Design)
 	Total            float64
 	TotalCommits   int
+	LinesAdded     int
+	LinesDeleted   int
 	RecentlyActive bool    // true if author has commits within active_days (default 30)
 	Role           string  // Role axis: what they contribute (Architect, Anchor, Cleaner, Producer, Specialist, —)
 	RoleConf       float64 // Role confidence (0.0-1.0)
@@ -107,6 +109,8 @@ func scoreImpl(raw *metric.RawScores, cfg *config.Config, authorLastDate map[str
 			Indispensability: normIndisp[author],
 			RawSurvival:      normRawSurv[author],
 			TotalCommits:     raw.TotalCommits[author],
+			LinesAdded:       raw.LinesAdded[author],
+			LinesDeleted:     raw.LinesDeleted[author],
 			RecentlyActive:   recentlyActive,
 		}
 

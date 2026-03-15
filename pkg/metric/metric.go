@@ -11,6 +11,7 @@ type VerboseFunc = metric.VerboseFunc
 
 var (
 	CalcProduction           = metric.CalcProduction
+	CalcLines                = metric.CalcLines
 	CalcQuality              = metric.CalcQuality
 	CalcSurvival             = metric.CalcSurvival
 	CalcSurvivalWithPressure = metric.CalcSurvivalWithPressure

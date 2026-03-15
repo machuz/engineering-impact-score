@@ -32,6 +32,8 @@ type jsonMember struct {
 	Member           string  `json:"member"`
 	Active           bool    `json:"active"`
 	Commits          int     `json:"commits"`
+	LinesAdded       int     `json:"lines_added"`
+	LinesDeleted     int     `json:"lines_deleted"`
 	Production       float64 `json:"production"`
 	Quality          float64 `json:"quality"`
 	Survival         float64 `json:"survival"`
@@ -80,6 +82,8 @@ func (w *JSONWriter) AddDomain(domainName string, repoCount int, results []score
 			Member:           r.Author,
 			Active:           r.RecentlyActive,
 			Commits:          r.TotalCommits,
+			LinesAdded:       r.LinesAdded,
+			LinesDeleted:     r.LinesDeleted,
 			Production:       round1(r.Production),
 			Quality:          round1(r.Quality),
 			Survival:         round1(r.Survival),
@@ -125,6 +129,8 @@ func (w *JSONWriter) AddPerRepo(domainName, repoName string, results []scorer.Re
 					Member:           r.Author,
 					Active:           r.RecentlyActive,
 					Commits:          r.TotalCommits,
+					LinesAdded:       r.LinesAdded,
+					LinesDeleted:     r.LinesDeleted,
 					Production:       round1(r.Production),
 					Quality:          round1(r.Quality),
 					Survival:         round1(r.Survival),

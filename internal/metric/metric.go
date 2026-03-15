@@ -12,6 +12,8 @@ type RawScores struct {
 	DebtCleanup      map[string]float64
 	Indispensability map[string]float64
 	TotalCommits     map[string]int // total commit count per author (across all repos in domain)
+	LinesAdded       map[string]int // total lines added per author
+	LinesDeleted     map[string]int // total lines deleted per author
 }
 
 func NewRawScores() *RawScores {
@@ -27,6 +29,8 @@ func NewRawScores() *RawScores {
 		DebtCleanup:      make(map[string]float64),
 		Indispensability: make(map[string]float64),
 		TotalCommits:     make(map[string]int),
+		LinesAdded:       make(map[string]int),
+		LinesDeleted:     make(map[string]int),
 	}
 }
 

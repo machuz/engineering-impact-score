@@ -337,6 +337,11 @@ func runTimeline(args []string) error {
 				prod := metric.CalcProduction(periodCommits, cfg.ExcludeFilePatterns)
 				mergeMap(acc.raw.Production, prod)
 
+				// Lines added/deleted
+				added, deleted := metric.CalcLines(periodCommits, cfg.ExcludeFilePatterns)
+				mergeMapInt(acc.raw.LinesAdded, added)
+				mergeMapInt(acc.raw.LinesDeleted, deleted)
+
 				// Quality
 				allCommits := make([]git.Commit, len(periodCommits), len(periodCommits)+len(periodMerges))
 				copy(allCommits, periodCommits)
