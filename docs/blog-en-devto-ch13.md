@@ -269,11 +269,11 @@ R.S. — a steady Anchor holding the team's gravitational field. P. with Mass st
 | 2025-Q3 | 36.5 | 52 | 62 | 44 | 0 | Producer | Balanced |
 | 2025-Q4 | 52.8 | 45 | 60 | **100** | 1 | Producer | Balanced |
 
-In Q1, Architect/Builder with Design=100 — a star creating FE structure. Then a transition to Producer, Design dropping.
+In Q1, Architect/Builder with Design=100 — a star creating FE structure. But through discussions with R.M., some of O.'s structure was replaced by R.M.'s. Survival at 24 → 12 reflects this — two gravitational fields were colliding within the same repository.
 
-But look at Survival. 24 → 12 → 44 → **100.** In Q4, Survival=100 — not a single line of code was rewritten. The shift from building structure to **finishing the product** was complete, and the finish was flawless.
+From Q3 onward, R.M. shifted resources to the new repository, and the collision subsided. Survival jumped from 44 to **100.** While watching a new universe being built in parallel, carrying the anxiety that their own structure might be replaced — O. trusted the existing architecture and pushed through.
 
-The Role change isn't a "demotion." **After laying the architectural foundation, they switched to reliably delivering the product on top of that structure.** This is exactly the Role evolution pattern from Chapter 3.
+Q4 Survival=100 — not a single line of code was rewritten. **The existing structure worked.** Which architecture to choose is simply a team decision. But O. proved definitively that the existing structure had value too. That's what Survival=100 as starlight means.
 
 **FE K.M. — Guardian of the user experience:**
 
