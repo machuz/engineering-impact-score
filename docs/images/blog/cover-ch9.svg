@@ -35,7 +35,6 @@
   <rect x="385" y="378" width="7" height="14" fill="#ebdbb2" opacity="0.7"/>
 
   <!-- Right side: Large chapter number -->
-  <text x="750" y="320" text-anchor="middle" fill="#3c3836" font-size="200" font-weight="700">09</text>
 
   <!-- Right side: Big Bang concentric circles with particles -->
   <g opacity="0.9">

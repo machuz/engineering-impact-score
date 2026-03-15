@@ -34,7 +34,6 @@
   <text x="30" y="370" fill="#928374" font-size="11">The gravity depends on the space it exists in.</text>
 
   <!-- Right side: Large chapter number -->
-  <text x="750" y="320" text-anchor="middle" fill="#3c3836" font-size="200" font-weight="700">08</text>
 
   <!-- Right side: Same engineer branching into different repo scores -->
   <g opacity="0.9">

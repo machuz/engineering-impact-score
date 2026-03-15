@@ -34,7 +34,6 @@
   <text x="30" y="350" fill="#928374" font-size="11">The seat converges to one. Always.</text>
 
   <!-- Right side: Large chapter number -->
-  <text x="750" y="320" text-anchor="middle" fill="#3c3836" font-size="200" font-weight="700">04</text>
 
   <!-- Right side: Convergence lines -->
   <g opacity="0.9">

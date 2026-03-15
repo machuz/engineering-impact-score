@@ -35,7 +35,6 @@
   <text x="30" y="370" fill="#928374" font-size="11">Hesitation leaves traces in the data.</text>
 
   <!-- Right side: Large chapter number -->
-  <text x="750" y="320" text-anchor="middle" fill="#3c3836" font-size="200" font-weight="700">05</text>
 
   <!-- Right side: Timeline with role transition markers -->
   <g opacity="0.9">

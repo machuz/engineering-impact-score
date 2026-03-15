@@ -33,7 +33,6 @@
   <text x="30" y="370" fill="#928374" font-size="11">Anchors are the dark matter of code universes.</text>
 
   <!-- Right side: Large chapter number -->
-  <text x="750" y="320" text-anchor="middle" fill="#3c3836" font-size="200" font-weight="700">10</text>
 
   <!-- Right side: Visible vs invisible nodes -->
   <g opacity="0.9">

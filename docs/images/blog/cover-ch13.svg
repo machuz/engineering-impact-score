@@ -38,7 +38,6 @@
   <rect x="118" y="383" width="7" height="14" fill="#ebdbb2" opacity="0.7"/>
 
   <!-- Right side: Large chapter number -->
-  <text x="750" y="320" text-anchor="middle" fill="#3c3836" font-size="200" font-weight="700">13</text>
 
   <!-- Right side: Star map with constellation lines -->
   <g opacity="0.9">

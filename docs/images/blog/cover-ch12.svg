@@ -32,7 +32,6 @@
   <text x="30" y="370" fill="#928374" font-size="11">Stars are not forever. That's why structure matters.</text>
 
   <!-- Right side: Large chapter number -->
-  <text x="750" y="320" text-anchor="middle" fill="#3c3836" font-size="200" font-weight="700">12</text>
 
   <!-- Right side: Good Architect (green star) vs Black Hole (red collapse) -->
   <g opacity="0.9">
