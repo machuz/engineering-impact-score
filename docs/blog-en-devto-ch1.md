@@ -31,7 +31,7 @@ I wanted to say "this team is seriously good" — but I had no evidence. Not vol
 
 So one evening, drinking and pair-programming with Claude Code, I built a scoring model that uses **nothing but git history** — and the results matched my gut feeling with eerie accuracy.
 
-I jokingly call it an engineer's **"combat power."** But what it actually measures is something more precise:
+I jokingly call it an engineer's **"combat power."** The formal name is **Engineering Impact Score** — **EIS**, pronounced *"ace."* But what it actually measures is something more precise:
 
 > **observable technical impact recorded in the codebase itself**
 
