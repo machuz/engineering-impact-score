@@ -27,11 +27,39 @@ All from `git log` and `git blame`. Nothing else.
 
 ![Terminal Output](docs/images/terminal-output.svg?v=0.11.0)
 
-## Why This Matters
+## Why this exists
 
-Most engineering metrics measure activity: commits, pull requests, and lines of code.
+Most engineering metrics measure activity.
 
-This project tries to measure something harder: who actually builds durable systems, shapes architecture, and keeps a codebase healthy over time.
+PR counts. Commit counts. Lines of code.
+
+But activity is not impact.
+
+An engineer who writes 10,000 lines that get rewritten next month left no gravity. An engineer who writes 500 lines that become the foundation of the system shaped its universe.
+
+**EIS measures the gravity engineers leave in the codebase** — structure that survives, design that endures, and debt that gets cleaned up.
+
+---
+
+## How it works
+
+EIS reads `git log` and `git blame` to compute 7 axes:
+
+| Signal | What it captures |
+|---|---|
+| **Production** | Sustained output velocity |
+| **Quality** | First-pass correctness (low fix/revert ratio) |
+| **Survival** | Code that endures — exponential time-decay weighted |
+| **Design** | Commits to architecture-defining files |
+| **Breadth** | Cross-repository structural presence |
+| **Debt Cleanup** | Fixing others' bugs vs. generating new ones |
+| **Indispensability** | Modules where one engineer owns 80%+ of blame |
+
+From these signals, EIS derives **Roles** (Architect, Anchor, Producer...), **Styles** (Builder, Emergent, Rescue...), and **States** (Active, Growing, Fragile...) — a 3-axis topology for each engineer.
+
+**Survival is the core thesis.** Exponential time-decay ensures that "are you *still* writing durable code?" matters most. This is naturally resistant to gaming — busy work doesn't survive.
+
+---
 
 ## Quick Start
 
