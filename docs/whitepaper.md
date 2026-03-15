@@ -43,7 +43,15 @@ EIS exploits this insight through three mechanisms:
 
 ### 1.3 Design Principles
 
-EIS is built on four principles:
+#### Foundational Principles
+
+1. **Local Universes**: Every codebase is its own universe. Impact must be understood in its local context — normalization, archetypes, and team classifications are all computed relative to the repository under observation.
+2. **Observable Gravity**: Influence appears as gravity in code: survival, reuse, and structural pull. EIS measures this gravity, not activity.
+3. **Evolutionary Trajectories**: Software evolves over time. Engineering value appears in the trajectory of that evolution — not in any single snapshot.
+
+**The Principle of Observers.** EIS does not define value. It acts as an observational instrument, revealing structures that already exist in a codebase. Like a telescope, it does not change the universe. It only makes its gravity visible.
+
+#### Technical Principles
 
 1. **Git-only**: No integration with project management tools, CI systems, or code review platforms. The analysis requires only a Git repository.
 2. **Multi-axis**: No single score captures engineering contribution. EIS produces 7 individual axes and 5 team-level classification axes.
