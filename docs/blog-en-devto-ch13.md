@@ -251,14 +251,33 @@ machuz accumulated 313 commits on the FE side too, Style shifting from Spread to
 
 Meanwhile, FE lead R.M. evolved from Anchor to **Architect** in Q4 with 1241 commits. Building the entire frontend structure single-handedly.
 
-**Backend team members timeline:**
+**BE R.S. — The stable core holding the team's gravitational field:**
+
+| Period | Total | Prod | Quality | Design | Debt | Lines | Commits | Role | Style | State |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2025-Q3 | 42.5 | 69 | 62 | 9 | 54 | +49k/-12k | 262 | Producer | Balanced | Active |
+| 2025-Q4 | 37.9 | 53 | **85** | 16 | **58** | +42k/-6k | 216 | Anchor | Balanced | Active |
+| 2026-Q1 | 40.5 | 50 | **77** | **38** | 35 | +37k/-6k | **327** | Anchor | Balanced | Active |
+
+R.S. was a steady Anchor — but "steady" doesn't do justice to this story.
+
+Look at Quality — 62 → **85** → 77. Q4's Quality 85 is among the highest on the team. R.S. was actively taking on customer inquiry responses, ensuring the quality of APIs that users directly interact with — and hitting these numbers while doing it.
+
+Design climbs steadily: 9 → 16 → **38**. In Q1, commits peak at **327** — an Anchor who's also stepping into design territory. R.S. took on a significant share of user-facing APIs, collaborating with K.M. and O. across the FE/BE boundary to bring the experience to completion.
+
+And Debt Cleanup — 54 → 58 → 35. Quietly fixing other people's bugs. Resolving issues found through inquiry handling. The coordination that doesn't appear in commits — the dark matter work was substantial.
+
+R.S. also appears in the FE domain in Growing state. A backend engineer reaching into frontend territory.
+
+**When you see an engineer hovering around Total 40, do you see "mid-tier"? Or do you see "stabilizing the team's gravitational field while guarding the last line of user experience"?** As the name Anchor implies — without this person, the team's gravity would have wavered.
+
+**BE P. — The other gravity supporting the crunch:**
 
 | Author | Q3 | Q4 | Q1 | Lines(Q1) | Role | Style |
 |---|---|---|---|---|---|---|
-| R.S. | 36.4 | 46.1 | 40.4 | +37k/-6k | Anchor | Balanced |
 | P. | 34.2 | 51.4 | 40.0 | +42k/-12k | Anchor | **Mass** |
 
-R.S. — a steady Anchor holding the team's gravitational field. P. with Mass style — charging forward with high-volume commits, supporting the crunch. And P. was simultaneously handling the handover and deadlines of an entirely separate domain while putting up these scores. The coordination and knowledge transfer that don't appear in commits — the ratio of dark matter work was enormous.
+P. with Mass style — charging forward with high-volume commits, supporting the crunch. And P. was simultaneously handling the handover and deadlines of an entirely separate domain while putting up these scores. The coordination and knowledge transfer that don't appear in commits — the ratio of dark matter work was enormous.
 
 **FE O. — Laid the foundation, then committed to the finish:**
 
