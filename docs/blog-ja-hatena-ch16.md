@@ -137,26 +137,42 @@ software civilizations emerge.
 
 ```
                       ✦ AI Era
-                     / \
-              Culture   Stars (AI)
-                 |         |
-            Civilization    |
-             /    |    \    |
-       Architect Anchor Producer
-            \    |    /
-             Gravity
-            /       \
-      Dark Matter  Entropy → Collapse
-           \       /
-        Code Universe
-          /    |    \
-     Origin  Stars  Relativity
-               |
-            Timeline
-               |
-          Git Telescope
-               |
-            ═══╩═══
+                     /       \
+                Culture     Stars (AI)
+                    |          |
+                Civilization   |
+              /      |      \  |
+       Architect   Anchor  Producer
+              \      |      /
+                 Gravity
+                /       \
+          Dark Matter   Entropy
+               |           |
+               |        Collapse
+                \        /
+              Code Universe
+            /      |      \
+       Origin    Stars   Relativity
+                   |
+                Timeline
+                   |
+             Git Telescope
+                   |
+              Git History
+```
+
+16章にわたるシリーズは、実は宇宙論の完全な写像になっている。
+
+```
+Physics             Software
+─────────────────────────────
+Matter        →     Code
+Gravity       →     Reuse
+Dark Matter   →     Anchor
+Entropy       →     Tech Debt
+Stars         →     Engineers
+Civilization  →     Team
+Telescope     →     EIS
 ```
 
 ---

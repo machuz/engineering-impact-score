@@ -438,6 +438,46 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
    ✧     the Git Telescope     ✦
 ```
 
+### Software Cosmology
+
+```
+                      ✦ AI Era
+                     /       \
+                Culture     Stars (AI)
+                    |          |
+                Civilization   |
+              /      |      \  |
+       Architect   Anchor  Producer
+              \      |      /
+                 Gravity
+                /       \
+          Dark Matter   Entropy
+               |           |
+               |        Collapse
+                \        /
+              Code Universe
+            /      |      \
+       Origin    Stars   Relativity
+                   |
+                Timeline
+                   |
+             Git Telescope
+                   |
+              Git History
+```
+
+```
+Physics             Software
+─────────────────────────────
+Matter        →     Code
+Gravity       →     Reuse
+Dark Matter   →     Anchor
+Entropy       →     Tech Debt
+Stars         →     Engineers
+Civilization  →     Team
+Telescope     →     EIS
+```
+
 ## Roadmap
 
 - [x] Scoring methodology and formulas
