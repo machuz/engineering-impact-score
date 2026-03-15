@@ -12,6 +12,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/machuz/engineering-impact-score/internal/cache"
 	"github.com/machuz/engineering-impact-score/internal/config"
 	"github.com/machuz/engineering-impact-score/internal/domain"
 	"github.com/machuz/engineering-impact-score/internal/git"
@@ -32,6 +33,7 @@ type Options struct {
 	Tau          float64
 	SampleSize   int
 	ActiveDays   int
+	CacheEnabled bool // enable disk cache for blame/log results
 }
 
 // Callbacks for progress reporting during timeline analysis.
@@ -164,6 +166,9 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 	if cb == nil {
 		cb = &Callbacks{}
 	}
+
+	cacheStore := cache.New(opts.CacheEnabled)
+
 	if opts.Tau > 0 {
 		cfg.Tau = opts.Tau
 	}
@@ -258,14 +263,34 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 			cb.OnRepoStart(repoName, string(repoDomain))
 		}
 
-		commits, err := git.ParseLog(ctx, repoPath)
-		if err != nil {
-			return nil, fmt.Errorf("parse log %s: %w", repoName, err)
+		headHash, _ := git.HeadHash(ctx, repoPath)
+
+		var commits []git.Commit
+		logCacheKey := cache.LogKey(repoPath, headHash)
+		if headHash != "" && cacheStore.Get(logCacheKey, &commits) {
+			// cached
+		} else {
+			commits, err = git.ParseLog(ctx, repoPath)
+			if err != nil {
+				return nil, fmt.Errorf("parse log %s: %w", repoName, err)
+			}
+			if headHash != "" {
+				cacheStore.Set(logCacheKey, commits)
+			}
 		}
 		commits = filterCommits(commits, cfg)
 		commits = filterFileStats(commits, cfg.ExcludeFilePatterns)
 
-		mergeCommits, _ := git.ParseMergeCommits(ctx, repoPath)
+		var mergeCommits []git.Commit
+		mergeCacheKey := cache.MergeLogKey(repoPath, headHash)
+		if headHash != "" && cacheStore.Get(mergeCacheKey, &mergeCommits) {
+			// cached
+		} else {
+			mergeCommits, _ = git.ParseMergeCommits(ctx, repoPath)
+			if headHash != "" {
+				cacheStore.Set(mergeCacheKey, mergeCommits)
+			}
+		}
 		mergeCommits = filterCommits(mergeCommits, cfg)
 
 		repos = append(repos, repoInfo{
@@ -380,17 +405,26 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 					continue
 				}
 
-				var blameProg func(int, int)
-				if cb.OnBlameProgress != nil {
-					repoName := repo.name
-					blameProg = func(done, total int) {
-						cb.OnBlameProgress(repoName, done, total)
+				var blameLines []git.BlameLine
+				blameCacheKey := cache.BlameAtCommitKey(repo.path, boundaryCommit, files, cfg.SampleSize)
+				if cacheStore.Get(blameCacheKey, &blameLines) {
+					// cached
+				} else {
+					var blameProg func(int, int)
+					if cb.OnBlameProgress != nil {
+						repoName := repo.name
+						blameProg = func(done, total int) {
+							cb.OnBlameProgress(repoName, done, total)
+						}
 					}
-				}
 
-				blameLines, err := git.ConcurrentBlameFilesAtCommit(ctx, repo.path, boundaryCommit, files, cfg.SampleSize, workers, blameProg, blameVerbose)
-				if err != nil {
-					// Non-fatal: continue with whatever blame lines we got
+					blameLines, err = git.ConcurrentBlameFilesAtCommit(ctx, repo.path, boundaryCommit, files, cfg.SampleSize, workers, blameProg, blameVerbose)
+					if err != nil {
+						// Non-fatal: continue with whatever blame lines we got
+					}
+					if len(blameLines) > 0 {
+						cacheStore.Set(blameCacheKey, blameLines)
+					}
 				}
 
 				// Apply aliases
@@ -444,7 +478,20 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 				// Debt
 				fixCommits := metric.GetFixCommits(periodCommits)
 				if len(fixCommits) > 0 {
-					debt, _ := metric.CalcDebt(ctx, repo.path, fixCommits, 50, cfg.DebtThreshold, cfg.BlameTimeout, cfg.ResolveAuthor, nil, nil)
+					var debt map[string]float64
+					var fixHashes []string
+					for _, fc := range fixCommits {
+						fixHashes = append(fixHashes, fc.Hash)
+					}
+					debtCacheKey := cache.DebtKey(repo.path, fixHashes)
+					if cacheStore.Get(debtCacheKey, &debt) {
+						// cached
+					} else {
+						debt, _ = metric.CalcDebt(ctx, repo.path, fixCommits, 50, cfg.DebtThreshold, cfg.BlameTimeout, cfg.ResolveAuthor, nil, nil)
+						if len(debt) > 0 {
+							cacheStore.Set(debtCacheKey, debt)
+						}
+					}
 					mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
 				}
 			}
