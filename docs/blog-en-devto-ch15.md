@@ -513,4 +513,4 @@ If this was useful: [Sponsor on GitHub](https://github.com/sponsors/machuz)
 
 ---
 
-← [Chapter 14: Civilization](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-2nl3) | **Final Chapter**
+← [Chapter 14: Civilization](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-2nl3) | Chapter 16 (Final) →

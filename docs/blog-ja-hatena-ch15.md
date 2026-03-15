@@ -510,4 +510,4 @@ PayPay: `w_machu7`
 
 ---
 
-← [第14章：Civilization](https://ma2k8.hateblo.jp/entry/2026/03/15/062612) | **最終章**
+← [第14章：Civilization](https://ma2k8.hateblo.jp/entry/2026/03/15/062612) | 第16章：（最終章）→
