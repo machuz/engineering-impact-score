@@ -4,6 +4,12 @@
 
 *Git remembers the past. AI imagines the future. Between them, engineers shape gravity.*
 
+### 前章までのあらすじ
+
+[第15章](https://ma2k8.hateblo.jp/entry/2026/03/15/221250)ではAIとエンジニアの関係について書いた。AIは星を作る。しかし重力は作らない。
+
+16章にわたるgit考古学——戦闘力の定量化から始まり、チーム構造、タイムライン、宇宙論、文明、AIを経て、最後の問いに辿り着いた。
+
 ---
 
 ソフトウェアエンジニアリングは、二つの時間の間に存在している。
@@ -137,6 +143,10 @@ software civilizations emerge.
 **重力を作るエンジニアたち**なのだ。
 
 ---
+
+あなたのコード宇宙には、重力がありますか。
+
+望遠鏡を覗いてみてほしい。
 
 ```bash
 ❯ brew tap machuz/tap && brew install eis

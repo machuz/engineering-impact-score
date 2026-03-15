@@ -8,6 +8,12 @@ cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/m
 
 *Git remembers the past. AI imagines the future. Between them, engineers shape gravity.*
 
+### Previously
+
+In [Chapter 15](https://dev.to/machuz/git-archaeology-15-ai-creates-stars-not-gravity-4i05), I wrote about the relationship between AI and engineers. AI creates stars. But it does not create gravity.
+
+Across 16 chapters of git archaeology — from quantifying combat power, through team structure, timelines, cosmology, civilization, and AI — I've arrived at the final question.
+
 ---
 
 Software engineering exists between two kinds of time.
@@ -135,6 +141,10 @@ Within that universe, the ones who create order and make civilization possible �
 **they are the engineers who shape gravity.**
 
 ---
+
+Does your code universe have gravity?
+
+Point the telescope and see.
 
 ```bash
 ❯ brew tap machuz/tap && brew install eis
