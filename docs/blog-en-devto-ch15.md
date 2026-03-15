@@ -316,6 +316,24 @@ The Architect/Builder's work expands: not just communicating design intent to hu
 
 Good design is structure where both humans and AI, reading the same codebase, write code in the same direction.
 
+### Succession of the Soul to AI
+
+Here, we can see how the civilization equation from the previous chapter functions in the AI era.
+
+**The Architect builds the foundation.** Module boundaries, dependency direction, naming conventions — defining the gravitational field of the code universe.
+
+**The Anchor, on that foundation, teaches AI to understand the structure.** Maintaining CLAUDE.md files and architecture documents, giving AI the knowledge it needs to generate code that fits the structure. Verifying AI's output against the structural context, course-correcting to prevent entropy from growing.
+
+And as Architect and Anchor complement each other, **they weave massive amounts of functionality into the product with order, alongside AI as the ultimate Producer.**
+
+This is a new form of Succession — the structural knowledge transfer I wrote about in Chapter 14. Not human-to-human succession. **Human-to-AI succession.** The Anchor transmits the soul of the Architect's structure to AI. AI receives that soul and produces code that follows the structure.
+
+A **succession of the soul to AI.**
+
+Just as civilizations persist across generations, a codebase's structure is inherited by AI as a new "generation." CLAUDE.md becomes the civilization's legal codex — rules that AI reads, understands, and follows. The design intent that human Architects encoded continues to be implemented through AI's hands.
+
+**Civilization is no longer woven by humans alone.** The era of humans and AI weaving it together has already begun.
+
 ---
 
 ## How I Use AI
