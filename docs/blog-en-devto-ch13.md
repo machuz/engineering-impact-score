@@ -367,7 +367,7 @@ This is the starlight the telescope revealed. Behind the numbers, you can see 3.
 
 ---
 
-### The Massive Dark Matter — PO & PdM
+### The Massive Dark Matter — PO, PdM & QA
 
 The telescope observes commit light. But this project had massive gravitational sources that never appeared in a single commit.
 
