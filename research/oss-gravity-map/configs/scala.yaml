@@ -1,0 +1,73 @@
+# EIS config for scala (Scala 2 compiler)
+# Language: Scala
+# Repo: scala/scala
+#
+# Architecture patterns define which files represent structural decisions.
+# See: https://github.com/machuz/engineering-impact-score/tree/main/research/oss-gravity-map
+
+sample_size: 1500
+blame_timeout: 600
+
+exclude_file_patterns:
+  - "package-lock.json"
+  - "yarn.lock"
+  - "pnpm-lock.yaml"
+  - "*generated*"
+  - "*.gen.*"
+  - "**/test/**"
+  - "**/tests/**"
+  - "**/testdata/**"
+  - "**/fixtures/**"
+  - "vendor/**"
+  - "node_modules/**"
+  - "project/target/**"
+  - "target/**"
+  - "**/partest/**"
+
+architecture_patterns:
+  # Compiler core
+  - "src/compiler/scala/tools/nsc/*.scala"
+  - "src/compiler/scala/tools/nsc/typechecker/*.scala"
+  - "src/compiler/scala/tools/nsc/transform/*.scala"
+  - "src/compiler/scala/tools/nsc/backend/*.scala"
+  - "src/compiler/scala/tools/nsc/ast/*.scala"
+  - "src/compiler/scala/tools/nsc/symtab/*.scala"
+  # Reflect / core types
+  - "src/reflect/scala/reflect/*.scala"
+  - "src/reflect/scala/reflect/internal/*.scala"
+  - "src/reflect/scala/reflect/api/*.scala"
+  # Standard library core
+  - "src/library/scala/*.scala"
+  - "src/library/scala/collection/*.scala"
+  - "src/library/scala/collection/immutable/*.scala"
+  - "src/library/scala/collection/mutable/*.scala"
+  - "src/library/scala/concurrent/*.scala"
+  - "src/library/scala/util/*.scala"
+  # Generic
+  - "*/types/*"
+  - "*/core/*"
+  - "*/internal/*"
+
+blame_extensions:
+  - "*.scala"
+  - "*.java"
+
+aliases:
+  "odersky": "Martin Odersky"
+  "martinodersky": "Martin Odersky"
+  "paulp": "Paul Phillips"
+  "adriaanm": "Adriaan Moors"
+  "retronym": "Jason Zaugg"
+  "lrytz": "Lukas Rytz"
+  "SethTisue": "Seth Tisue"
+  "dwijnand": "Dale Wijnand"
+  "som-snytt": "Som Snytt"
+  "sjrd": "Sébastien Doeraene"
+
+exclude_authors:
+  - "github-actions[bot]"
+  - "renovate[bot]"
+  - "dependabot[bot]"
+  - "web-flow"
+  - "scala-steward[bot]"
+  - "scala-center-steward[bot]"

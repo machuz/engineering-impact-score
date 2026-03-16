@@ -1,0 +1,76 @@
+# EIS config for scala3 (Dotty)
+# Language: Scala
+# Repo: scala/scala3
+#
+# Architecture patterns define which files represent structural decisions.
+# Submit a PR to improve these patterns for fairer analysis.
+# See: https://github.com/machuz/engineering-impact-score/tree/main/research/oss-gravity-map
+
+sample_size: 1500
+blame_timeout: 600
+
+exclude_file_patterns:
+  - "package-lock.json"
+  - "yarn.lock"
+  - "pnpm-lock.yaml"
+  - "go.sum"
+  - "*generated*"
+  - "*.gen.*"
+  - "**/test/**"
+  - "**/tests/**"
+  - "**/testdata/**"
+  - "**/fixtures/**"
+  - "vendor/**"
+  - "node_modules/**"
+  - "project/target/**"
+  - "target/**"
+  - "**/sbt-test/**"
+  - "tests/**"
+
+architecture_patterns:
+  # Compiler core
+  - "compiler/src/dotty/tools/dotc/*.scala"
+  - "compiler/src/dotty/tools/dotc/core/*.scala"
+  - "compiler/src/dotty/tools/dotc/ast/*.scala"
+  - "compiler/src/dotty/tools/dotc/typer/*.scala"
+  - "compiler/src/dotty/tools/dotc/transform/*.scala"
+  - "compiler/src/dotty/tools/dotc/parsing/*.scala"
+  - "compiler/src/dotty/tools/dotc/reporting/*.scala"
+  - "compiler/src/dotty/tools/dotc/config/*.scala"
+  # Type system
+  - "compiler/src/dotty/tools/dotc/core/Types.scala"
+  - "compiler/src/dotty/tools/dotc/core/Symbols.scala"
+  - "compiler/src/dotty/tools/dotc/core/Contexts.scala"
+  - "compiler/src/dotty/tools/dotc/core/Denotations.scala"
+  # Standard library
+  - "library/src/**/*.scala"
+  - "scala2-library-cc/src/**/*.scala"
+  # TASTY format
+  - "compiler/src/dotty/tools/dotc/core/tasty/*.scala"
+  - "tasty/src/**/*.scala"
+  # Generic patterns
+  - "*/types/*"
+  - "*/core/*"
+  - "*/internal/*"
+
+blame_extensions:
+  - "*.scala"
+  - "*.java"
+
+aliases:
+  "odersky": "Martin Odersky"
+  "martinodersky": "Martin Odersky"
+  "smarter": "Guillaume Martres"
+  "nicolasstucki": "Nicolas Stucki"
+  "sjrd": "Sébastien Doeraene"
+  "bishabosha": "Jamie Thompson"
+  "dwijnand": "Dale Wijnand"
+  "Kordyjan": "Paweł Marks"
+
+exclude_authors:
+  - "github-actions[bot]"
+  - "renovate[bot]"
+  - "dependabot[bot]"
+  - "web-flow"
+  - "scala-steward[bot]"
+  - "scala-center-steward[bot]"
