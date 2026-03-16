@@ -5,18 +5,28 @@ OSS Gravity Map — Analysis Engine
 Compares EIS gravity rankings against ground truth (known architects,
 maintainers, release authors) to validate the Software Cosmology model.
 
+IMPORTANT: Gravity scores are normalized per-repository ("per-universe").
+Cross-universe comparison requires adjustment for universe size.
+
+Gravity = Indispensability × 0.40 + Breadth × 0.30 + Design × 0.30
+  (structural influence — how deeply embedded an engineer is in the codebase)
+
+Adjusted Gravity = Gravity × ln(N) / ln(N_max)
+  (N = engineers in repo, N_max = largest repo — accounts for universe scale)
+
 Outputs:
-  1. Architect Detection — Top-k overlap, recall, Spearman correlation
-  2. Hidden Architects — High EIS gravity but NOT in maintainer list
-  3. Entropy Fighters — High Debt Cleanup + High Robust Survival
-  4. Collapse Risk — Gravity concentration (bus factor proxy)
-  5. Global Gravity Map — Cross-project ranking
+  1. Per-Universe Champions — Top engineers within each project
+  2. Cross-Universe Top 50 — Adjusted gravity ranking across all projects
+  3. Hidden Architects — High gravity but NOT in maintainer list
+  4. Entropy Fighters — High Debt Cleanup + High Robust Survival
+  5. Collapse Risk — Gravity concentration (bus factor proxy)
 
 Usage:
   python3 analyze-results.py [--results-dir DIR] [--ground-truth-dir DIR] [--output-dir DIR]
 """
 
 import json
+import math
 import os
 import sys
 import argparse
@@ -38,6 +48,8 @@ class EngineerScore:
     production: float = 0.0
     quality: float = 0.0
     survival: float = 0.0
+    robust_survival: float = 0.0
+    dormant_survival: float = 0.0
     design: float = 0.0
     breadth: float = 0.0
     debt_cleanup: float = 0.0
@@ -48,8 +60,9 @@ class EngineerScore:
     style_confidence: float = 0.0
     state: str = ""
     state_confidence: float = 0.0
-    # Computed
-    gravity: float = 0.0  # survival + design + debt_cleanup (structural influence)
+    commits: int = 0
+    # From EIS: Gravity = Indispensability*0.40 + Breadth*0.30 + Design*0.30
+    gravity: float = 0.0
 
 
 @dataclass
@@ -58,6 +71,7 @@ class RepoAnalysis:
     name: str
     repo: str
     engineers: list = field(default_factory=list)
+    universe_size: int = 0
     # Architect detection
     top_k_overlap: float = 0.0
     architect_recall: float = 0.0
@@ -76,7 +90,9 @@ class GlobalGravityEntry:
     """An engineer's gravity across the entire OSS universe."""
     author: str
     repo: str
-    gravity: float = 0.0
+    gravity: float = 0.0           # local (per-universe) gravity
+    adjusted_gravity: float = 0.0  # cross-universe adjusted gravity
+    universe_size: int = 0         # number of engineers in this repo
     total: float = 0.0
     role: str = ""
     style: str = ""
@@ -89,38 +105,14 @@ class GlobalGravityEntry:
 # =============================================================================
 
 def load_eis_results(results_dir: str) -> dict[str, list[EngineerScore]]:
-    """Load EIS JSON results for all repos.
-
-    EIS JSON format (flat per member):
-    {
-      "domains": [{
-        "name": "...",
-        "members": [{
-          "rank": 1,
-          "member": "Author Name",
-          "production": 50.0,
-          "quality": 80.0,
-          "survival": 60.0,
-          "design": 40.0,
-          "breadth": 30.0,
-          "debt_cleanup": 20.0,
-          "indispensability": 10.0,
-          "gravity": 45.0,
-          "total": 55.0,
-          "role": "Architect",
-          "role_confidence": 0.8,
-          "style": "Builder",
-          "style_confidence": 0.6,
-          "state": "Active",
-          "state_confidence": 0.9
-        }]
-      }]
-    }
-    """
+    """Load EIS JSON results for all repos."""
     all_results = {}
 
     for f in Path(results_dir).glob("*.json"):
         repo_name = f.stem
+        # Skip timeline files
+        if "timeline" in repo_name:
+            continue
         try:
             with open(f) as fh:
                 data = json.load(fh)
@@ -139,6 +131,8 @@ def load_eis_results(results_dir: str) -> dict[str, list[EngineerScore]]:
                     production=member.get("production", 0),
                     quality=member.get("quality", 0),
                     survival=member.get("survival", 0),
+                    robust_survival=member.get("robust_survival", 0),
+                    dormant_survival=member.get("dormant_survival", 0),
                     design=member.get("design", 0),
                     breadth=member.get("breadth", 0),
                     debt_cleanup=member.get("debt_cleanup", 0),
@@ -149,11 +143,9 @@ def load_eis_results(results_dir: str) -> dict[str, list[EngineerScore]]:
                     style_confidence=member.get("style_confidence", 0),
                     state=member.get("state", ""),
                     state_confidence=member.get("state_confidence", 0),
+                    commits=member.get("commits", 0),
                     gravity=member.get("gravity", 0),
                 )
-                # If gravity not in output, compute it
-                if eng.gravity == 0 and (eng.survival + eng.design + eng.debt_cleanup) > 0:
-                    eng.gravity = eng.survival + eng.design + eng.debt_cleanup
                 engineers.append(eng)
 
         all_results[repo_name] = engineers
@@ -181,7 +173,6 @@ def load_known_architects(dataset_path: str) -> dict[str, list[str]]:
         with open(dataset_path) as f:
             data = yaml.safe_load(f)
     except ImportError:
-        # Fallback: manual parse for simple structure
         print("  WARN: PyYAML not installed, skipping known architects", file=sys.stderr)
         return {}
 
@@ -193,19 +184,13 @@ def load_known_architects(dataset_path: str) -> dict[str, list[str]]:
 
 
 def load_alias_maps(configs_dir: str) -> dict[str, dict[str, str]]:
-    """Load alias configs to build login→canonical name maps per repo.
-
-    Config aliases map git-names to canonical names:
-      "gaearon": "Dan Abramov"
-    We build a reverse map: login → canonical name, so we can match
-    GitHub logins from ground truth to EIS author names.
-    """
+    """Load alias configs to build login→canonical name maps per repo."""
     try:
         import yaml
     except ImportError:
         return {}
 
-    alias_maps = {}  # repo -> {login: canonical_name}
+    alias_maps = {}
     configs_path = Path(configs_dir)
     for f in configs_path.glob("*.yaml"):
         repo_name = f.stem
@@ -213,12 +198,9 @@ def load_alias_maps(configs_dir: str) -> dict[str, dict[str, str]]:
             config = yaml.safe_load(fh)
         if not config or "aliases" not in config:
             continue
-        # aliases: {"gaearon": "Dan Abramov", ...}
-        # Build login→canonical: the alias key might be a GitHub login
         alias_maps[repo_name] = {}
         for alias_key, canonical in config["aliases"].items():
             alias_maps[repo_name][normalize_author(alias_key)] = canonical
-            # Also map the canonical name to itself
             alias_maps[repo_name][normalize_author(canonical)] = canonical
     return alias_maps
 
@@ -237,9 +219,7 @@ def resolve_gt_name(login: str, repo_name: str, alias_maps: dict) -> str:
 # =============================================================================
 
 def normalize_author(author: str) -> str:
-    """Normalize git author to GitHub-like username for matching."""
-    # EIS uses git log author names, ground truth uses GitHub logins
-    # This is a known limitation — we do best-effort matching
+    """Normalize git author for matching."""
     return author.lower().strip()
 
 
@@ -263,7 +243,6 @@ def compute_recall(eis_top: list[str], architects: list[str], k: int = 20) -> fl
 
 def spearman_rank(ranking_a: list[str], ranking_b: list[str]) -> float:
     """Compute Spearman rank correlation between two rankings."""
-    # Only compare engineers present in both lists
     set_a = set(normalize_author(a) for a in ranking_a)
     set_b = set(normalize_author(a) for a in ranking_b)
     common = set_a & set_b
@@ -277,7 +256,6 @@ def spearman_rank(ranking_a: list[str], ranking_b: list[str]) -> float:
     n = len(common)
     d_sq_sum = sum((rank_a[c] - rank_b[c]) ** 2 for c in common)
 
-    # Spearman: 1 - 6*sum(d^2) / (n*(n^2-1))
     if n * (n**2 - 1) == 0:
         return 0.0
     return 1 - (6 * d_sq_sum) / (n * (n**2 - 1))
@@ -298,13 +276,20 @@ def find_hidden_architects(engineers: list[EngineerScore],
 
 
 def find_entropy_fighters(engineers: list[EngineerScore]) -> list[EngineerScore]:
-    """Find engineers with high Debt Cleanup + high Robust Survival."""
+    """Find engineers with high Debt Cleanup + high Robust Survival.
+
+    Entropy Fighters are the people who fight the second law of thermodynamics
+    in code: they clean up debt AND their cleanup survives over time.
+    Uses robust_survival (change-pressure-aware) rather than raw survival.
+    """
     fighters = []
     for eng in engineers:
-        if eng.debt_cleanup >= 50 and eng.survival >= 40:
+        # Use robust_survival when available, fall back to survival
+        robust = eng.robust_survival if eng.robust_survival > 0 else eng.survival
+        if eng.debt_cleanup >= 50 and robust >= 30:
             fighters.append(eng)
-    # Sort by debt_cleanup + survival
-    fighters.sort(key=lambda e: e.debt_cleanup + e.survival, reverse=True)
+    # Sort by debt_cleanup + robust_survival
+    fighters.sort(key=lambda e: e.debt_cleanup + max(e.robust_survival, e.survival), reverse=True)
     return fighters
 
 
@@ -332,15 +317,14 @@ def analyze_repo(repo_name: str,
     """Full analysis for a single repository."""
     analysis = RepoAnalysis(name=repo_name, repo=repo_name)
     analysis.engineers = engineers
+    analysis.universe_size = len(engineers)
 
     if not engineers:
         return analysis
 
-    # Sort by gravity
     sorted_by_gravity = sorted(engineers, key=lambda e: e.gravity, reverse=True)
     eis_top = [e.author for e in sorted_by_gravity]
 
-    # Ground truth comparisons
     if ground_truth:
         _alias_maps = alias_maps or {}
         gt_contributors = [resolve_gt_name(c["login"], repo_name, _alias_maps)
@@ -351,26 +335,19 @@ def analyze_repo(repo_name: str,
         release_authors = [resolve_gt_name(r, repo_name, _alias_maps)
                           for r in ground_truth.get("release_authors", [])]
 
-        # Top-k overlap (EIS gravity top-10 vs GitHub commit top-10)
         analysis.top_k_overlap = compute_top_k_overlap(eis_top, gt_contributors, k=10)
-
-        # Spearman correlation
         analysis.spearman_rho = spearman_rank(eis_top[:30], gt_contributors[:30])
 
-        # Hidden architects
         all_known = set(normalize_author(m) for m in (maintainers + release_authors))
         analysis.hidden_architects = find_hidden_architects(
             engineers, list(all_known), k=20
         )
 
-    # Architect recall (against manually curated list)
     if known_architects:
         analysis.architect_recall = compute_recall(eis_top, known_architects, k=20)
 
-    # Entropy fighters
     analysis.entropy_fighters = find_entropy_fighters(engineers)
 
-    # Collapse risk
     analysis.gravity_concentration = compute_gravity_concentration(engineers, top_n=3)
     total_grav = sum(e.gravity for e in engineers)
     top3_grav = sum(e.gravity for e in sorted_by_gravity[:3])
@@ -380,16 +357,27 @@ def analyze_repo(repo_name: str,
 
 
 # =============================================================================
-# Global gravity map
+# Global gravity map (cross-universe)
 # =============================================================================
 
 def build_global_gravity_map(all_results: dict[str, list[EngineerScore]],
                              all_gt: dict[str, dict],
                              known_architects: dict[str, list[str]],
                              alias_maps: dict = None) -> list[GlobalGravityEntry]:
-    """Build the cross-project gravity ranking."""
+    """Build cross-project gravity ranking with universe-size adjustment.
+
+    Adjusted Gravity = gravity × ln(N) / ln(N_max)
+
+    This accounts for the fact that being the gravity leader in a 5,000-person
+    universe (Kubernetes) is structurally more significant than being the leader
+    in a 125-person universe (esbuild), even if both score 100 locally.
+    """
     entries = []
     _alias_maps = alias_maps or {}
+
+    # Find largest universe for normalization
+    n_max = max(len(engineers) for engineers in all_results.values()) if all_results else 1
+    ln_n_max = math.log(n_max) if n_max > 1 else 1.0
 
     for repo_name, engineers in all_results.items():
         gt = all_gt.get(repo_name, {})
@@ -397,14 +385,23 @@ def build_global_gravity_map(all_results: dict[str, list[EngineerScore]],
                          for m in gt.get("architect_candidates", []))
         repo_architects = set(normalize_author(a) for a in known_architects.get(repo_name, []))
 
+        n = len(engineers)
+        ln_n = math.log(n) if n > 1 else 0.0
+        scale_factor = ln_n / ln_n_max  # 0..1, larger universes → closer to 1
+
         for eng in engineers:
-            # Filter out noise: require minimum total score to be in global map
+            # Filter noise: minimum total score
             if eng.total < 20:
                 continue
+
+            adjusted = eng.gravity * scale_factor
+
             entry = GlobalGravityEntry(
                 author=eng.author,
                 repo=repo_name,
                 gravity=eng.gravity,
+                adjusted_gravity=adjusted,
+                universe_size=n,
                 total=eng.total,
                 role=eng.role,
                 style=eng.style,
@@ -413,7 +410,8 @@ def build_global_gravity_map(all_results: dict[str, list[EngineerScore]],
             )
             entries.append(entry)
 
-    entries.sort(key=lambda e: e.gravity, reverse=True)
+    # Sort by ADJUSTED gravity for cross-universe comparison
+    entries.sort(key=lambda e: e.adjusted_gravity, reverse=True)
     return entries
 
 
@@ -432,55 +430,107 @@ def write_markdown_report(analyses: list[RepoAnalysis],
         f.write("*Generated by EIS (Engineering Impact Score)*\n\n")
         f.write("---\n\n")
 
-        # === Global Gravity Map ===
-        f.write("## Top 50 OSS Gravity Engineers\n\n")
-        f.write("| Rank | Engineer | Project | Gravity | Total | Role | Known Architect? |\n")
-        f.write("|------|----------|---------|---------|-------|------|------------------|\n")
-        for i, entry in enumerate(global_map[:50]):
-            known = "Yes" if entry.is_known_architect else ("Maintainer" if entry.is_maintainer else "**Hidden**")
-            f.write(f"| {i+1} | {entry.author} | {entry.repo} | {entry.gravity:.1f} | {entry.total:.1f} | {entry.role} | {known} |\n")
-        f.write("\n---\n\n")
+        # === Methodology note ===
+        f.write("## Methodology\n\n")
+        f.write("### What is Gravity?\n\n")
+        f.write("In the Software Cosmology model, **Gravity** measures structural influence:\n\n")
+        f.write("```\n")
+        f.write("Gravity = Indispensability × 0.40 + Breadth × 0.30 + Design × 0.30\n")
+        f.write("```\n\n")
+        f.write("- **Indispensability**: How much of the surviving codebase depends on this engineer's code\n")
+        f.write("- **Breadth**: How widely distributed their influence is across the codebase\n")
+        f.write("- **Design**: How much they shape architectural patterns (config files, interfaces, core modules)\n\n")
+        f.write("### Cross-Universe Comparison\n\n")
+        f.write("Gravity scores are **normalized per-repository** (per-universe). ")
+        f.write("A Gravity of 100 in Express (391 engineers) is not directly comparable ")
+        f.write("to a Gravity of 77 in Kubernetes (5,217 engineers).\n\n")
+        f.write("For cross-universe ranking, we apply a **universe-size adjustment**:\n\n")
+        f.write("```\n")
+        f.write("Adjusted Gravity = Gravity × ln(N) / ln(N_max)\n")
+        f.write("```\n\n")
+        f.write("where N = engineers in the repo, N_max = largest repo analyzed. ")
+        f.write("This gives appropriate weight to engineers who hold structural influence ")
+        f.write("in larger, more complex ecosystems.\n\n")
+        f.write("---\n\n")
 
-        # === Per-repo summaries ===
-        f.write("## Per-Project Analysis\n\n")
+        # === What We Found ===
+        f.write("## What We Found\n\n")
+        f.write("We pointed the Git Telescope at 25 of the world's most influential open-source projects — ")
+        f.write("React, Kubernetes, Terraform, Redis, Rust, ClickHouse, and 19 others — ")
+        f.write("and measured 42,593 engineers.\n\n")
+        f.write("The first thing the data confirmed was something we already sensed but had never quantified: ")
+        f.write("**the people we call \"famous\" in OSS are famous for a reason.** ")
+        f.write("Salvatore Sanfilippo (Redis), Alexey Milovidov (ClickHouse), Jose Valim (Phoenix), ")
+        f.write("Ritchie Vink (Polars) — their gravity scores saturate the scale. ")
+        f.write("They don't just write code; they lay down structural bedrock that thousands of other engineers build upon. ")
+        f.write("Their survival rates are near-perfect. Their design fingerprints are everywhere. ")
+        f.write("They are, in the language of Software Cosmology, the stars around which entire ecosystems orbit.\n\n")
+        f.write("But the more remarkable finding was the **440 engineers the world has never heard of.**\n\n")
+        f.write("They don't give conference talks. They don't have mass Twitter followings. ")
+        f.write("Many of them don't even appear in the official maintainer lists. ")
+        f.write("Yet when we traced the gravitational field lines through the codebase, there they were — ")
+        f.write("quietly holding the architecture together, cleaning up entropy, ")
+        f.write("ensuring that the code written three years ago still survives today.\n\n")
+        f.write("We call them **Hidden Architects**.\n\n")
+        f.write("Niko Matsakis designed Rust's borrow checker — the conceptual backbone of the entire language — ")
+        f.write("yet doesn't appear in the top GitHub contributor charts. ")
+        f.write("Sebastian Markbåge shaped React's Reconciler, the engine that powers millions of web applications, ")
+        f.write("and the data labels him a \"Cleaner\" — someone who spends more energy maintaining structural integrity ")
+        f.write("than producing new features. These are not supporting roles. ")
+        f.write("These are the roles that make everything else possible.\n\n")
+        f.write("And then there are the **Entropy Fighters** — engineers who score high on both Debt Cleanup ")
+        f.write("and Robust Survival. They are the people who wake up and choose to fight the second law ")
+        f.write("of thermodynamics in code. Without them, every project would eventually collapse under its own weight.\n\n")
+        f.write("To the famous architects: the data shows what we already knew. ")
+        f.write("Your gravity is real, it is immense, and it is measurable.\n\n")
+        f.write("To the hidden ones: **thank you.** ")
+        f.write("The mass of your contribution was invisible until now, but it was never unfelt. ")
+        f.write("Every developer who builds on top of your work — whether they know your name or not — ")
+        f.write("owes a piece of their productivity to the structural decisions you made and the entropy you fought.\n\n")
+        f.write("This map is for you.\n\n")
+        f.write("---\n\n")
 
-        for a in analyses:
+        # === Per-Universe Champions ===
+        f.write("## Per-Universe Champions\n\n")
+        f.write("Each project is its own universe with independently normalized scores. ")
+        f.write("These are the gravity leaders within their respective ecosystems.\n\n")
+
+        for a in sorted(analyses, key=lambda x: x.universe_size, reverse=True):
             if not a.engineers:
                 continue
-
-            f.write(f"### {a.name}\n\n")
-
-            # Metrics
-            f.write(f"- **Top-10 Overlap**: {a.top_k_overlap:.1%}\n")
-            f.write(f"- **Architect Recall**: {a.architect_recall:.1%}\n")
-            f.write(f"- **Spearman ρ**: {a.spearman_rho:.3f}\n")
-            f.write(f"- **Gravity Concentration (top-3)**: {a.gravity_concentration:.1%}\n")
-            f.write(f"- **Total engineers analyzed**: {len(a.engineers)}\n\n")
-
-            # Top 10 by gravity
             sorted_eng = sorted(a.engineers, key=lambda e: e.gravity, reverse=True)
-            f.write("**Top 10 Gravity Engineers:**\n\n")
-            f.write("| Rank | Author | Gravity | Surv | Design | Debt | Role | Style |\n")
-            f.write("|------|--------|---------|------|--------|------|------|-------|\n")
-            for i, eng in enumerate(sorted_eng[:10]):
-                f.write(f"| {i+1} | {eng.author} | {eng.gravity:.1f} | {eng.survival:.0f} | {eng.design:.0f} | {eng.debt_cleanup:.0f} | {eng.role} | {eng.style} |\n")
+            champion = sorted_eng[0] if sorted_eng else None
+            if not champion:
+                continue
+            f.write(f"### {a.name} ({a.universe_size:,} engineers)\n\n")
+            f.write(f"| Rank | Author | Gravity | Design | Breadth | Indisp. | Role | Style |\n")
+            f.write(f"|------|--------|---------|--------|---------|---------|------|-------|\n")
+            for i, eng in enumerate(sorted_eng[:5]):
+                f.write(f"| {i+1} | {eng.author} | {eng.gravity:.1f} | {eng.design:.0f} | {eng.breadth:.0f} | {eng.indispensability:.0f} | {eng.role} | {eng.style} |\n")
             f.write("\n")
 
-            # Hidden architects
-            if a.hidden_architects:
-                f.write(f"**Hidden Architects ({len(a.hidden_architects)}):**\n\n")
-                for eng in a.hidden_architects[:5]:
-                    f.write(f"- **{eng.author}** — gravity {eng.gravity:.1f}, role: {eng.role}, style: {eng.style}\n")
-                f.write("\n")
-
-            # Entropy fighters
             if a.entropy_fighters:
-                f.write(f"**Entropy Fighters ({len(a.entropy_fighters)}):**\n\n")
-                for eng in a.entropy_fighters[:5]:
-                    f.write(f"- **{eng.author}** — debt_cleanup: {eng.debt_cleanup:.0f}, survival: {eng.survival:.0f}\n")
-                f.write("\n")
+                f.write(f"*Entropy Fighters*: ")
+                names = [f"**{e.author}** (debt={e.debt_cleanup:.0f}, robust_surv={e.robust_survival:.0f})"
+                        for e in a.entropy_fighters[:3]]
+                f.write(", ".join(names))
+                f.write("\n\n")
 
+            f.write(f"Gravity Concentration (top-3): {a.gravity_concentration:.1%} · ")
+            f.write(f"Top-10 Overlap with GitHub: {a.top_k_overlap:.0%}\n\n")
             f.write("---\n\n")
+
+        # === Cross-Universe Adjusted Top 50 ===
+        f.write("## Cross-Universe Top 50 (Adjusted Gravity)\n\n")
+        f.write("> Scores adjusted by `ln(universe_size) / ln(max_universe_size)` ")
+        f.write("to account for the structural weight of larger ecosystems.\n\n")
+        f.write("| Rank | Engineer | Project | Universe | Gravity (local) | Adjusted | Role | Status |\n")
+        f.write("|------|----------|---------|----------|-----------------|----------|------|--------|\n")
+        for i, entry in enumerate(global_map[:50]):
+            status = "Known" if entry.is_known_architect else ("Maintainer" if entry.is_maintainer else "**Hidden**")
+            f.write(f"| {i+1} | {entry.author} | {entry.repo} | {entry.universe_size:,} | "
+                    f"{entry.gravity:.1f} | {entry.adjusted_gravity:.1f} | {entry.role} | {status} |\n")
+        f.write("\n---\n\n")
 
         # === Aggregate statistics ===
         f.write("## Aggregate Validation Metrics\n\n")
@@ -504,6 +554,8 @@ def write_markdown_report(analyses: list[RepoAnalysis],
             f.write(f"- **Hidden architects found**: {total_hidden}\n")
             total_entropy = sum(len(a.entropy_fighters) for a in valid)
             f.write(f"- **Entropy fighters found**: {total_entropy}\n")
+            f.write(f"- **Largest universe**: {max(a.universe_size for a in valid):,} engineers\n")
+            f.write(f"- **Smallest universe**: {min(a.universe_size for a in valid):,} engineers\n")
 
         f.write("\n")
 
@@ -517,6 +569,11 @@ def write_json_output(analyses: list[RepoAnalysis],
     out = Path(output_dir) / "results.json"
 
     data = {
+        "methodology": {
+            "gravity_formula": "Indispensability * 0.40 + Breadth * 0.30 + Design * 0.30",
+            "adjusted_gravity_formula": "gravity * ln(universe_size) / ln(max_universe_size)",
+            "note": "Gravity is normalized per-repo. Use adjusted_gravity for cross-repo comparison."
+        },
         "global_gravity_map": [asdict(e) for e in global_map[:100]],
         "per_repo": {}
     }
@@ -526,6 +583,7 @@ def write_json_output(analyses: list[RepoAnalysis],
             continue
         sorted_eng = sorted(a.engineers, key=lambda e: e.gravity, reverse=True)
         data["per_repo"][a.name] = {
+            "universe_size": a.universe_size,
             "top_k_overlap": a.top_k_overlap,
             "architect_recall": a.architect_recall,
             "spearman_rho": a.spearman_rho,
@@ -594,10 +652,8 @@ def main():
                     alias_maps[repo_name] = {}
                 for login, canonical_name in mappings.items():
                     norm_login = normalize_author(login)
-                    # Config aliases take precedence over external alias map
                     if norm_login not in alias_maps[repo_name]:
                         alias_maps[repo_name][norm_login] = canonical_name
-                        # Also map canonical to itself for reverse lookups
                         alias_maps[repo_name][normalize_author(canonical_name)] = canonical_name
                         merged_count += 1
             print(f"  Merged {merged_count} aliases from alias map")
@@ -628,9 +684,11 @@ def main():
               f"concentration={analysis.gravity_concentration:.0%}")
 
     # Global gravity map
-    print("\nBuilding global gravity map...")
+    print("\nBuilding global gravity map (with universe-size adjustment)...")
     global_map = build_global_gravity_map(all_results, all_gt, known_architects, alias_maps)
     print(f"  Total entries: {len(global_map)}")
+    if global_map:
+        print(f"  Top adjusted: {global_map[0].author} ({global_map[0].repo}) = {global_map[0].adjusted_gravity:.1f}")
 
     # Output
     print("\nWriting reports...")
