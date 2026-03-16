@@ -426,6 +426,18 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 - [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/062611) — git考古学 #13：Cosmology of Code——コード宇宙論
 - [English / dev.to](https://dev.to/machuz/git-archaeology-13-cosmology-of-code-dci) — Git Archaeology #13: Cosmology of Code
 
+**#14 — Civilization**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/215211) — git考古学 #14：Civilization——なぜ一部のコードベースだけが文明になるのか
+- [English / dev.to](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-2nl3) — Git Archaeology #14: Civilization — Why Only Some Codebases Become Civilizations
+
+**#15 — AI Creates Stars, Not Gravity**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/221250) — git考古学 #15：AI Creates Stars, Not Gravity
+- [English / dev.to](https://dev.to/machuz/git-archaeology-15-ai-creates-stars-not-gravity-4i05) — Git Archaeology #15: AI Creates Stars, Not Gravity
+
+**#16 (Final) — The Engineers Who Shape Gravity**
+- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/231040) — git考古学 #16（最終章）：The Engineers Who Shape Gravity——重力を作るエンジニアたち
+- [English / dev.to](https://dev.to/machuz/git-archaeology-16-the-engineers-who-shape-gravity-3fmi) — Git Archaeology #16 (Final): The Engineers Who Shape Gravity
+
 ```
       ✦       *        ✧
 
