@@ -429,7 +429,7 @@ The telescope observes commit light. But this project had massive gravitational 
 
 **PdM S.T.** — the soul of this development organization. Pouring passion for the business into the team, relentlessly. Together with D.H., S.T. plowed through massive planning, coordinated with other organizations, navigated scope adjustments on razor-thin margins, and prepared backup plans so we'd never hit a dead end. And when the very last moment came — when everything hung in the balance — S.T. said "Let's keep going!!" and floored the accelerator with us.
 
-R.M., ignited by S.T.'s passion, was building UI while saying "I want to make S.T. happy…!" I witnessed the moment when love for a product was converted into commits.
+R.M. said it half-jokingly over drinks one night: "I wanna make S.T. happy, man…!" It could have sounded like bar talk. But then you look at what followed — commits=1,398, Design=100, Survival=100 — and you realize it was dead serious. I witnessed the moment when love for a product was converted into commits.
 
 **QA T.Y.** — yet another massive dark matter. Together with S.T., T.Y. powered through an enormous volume of QA. In the final week before release, there was a phase of crushing hundreds of bugs — and T.Y. worked through them steadily, methodically, until we reached release day with zero obvious bugs in normal user flows.
 
