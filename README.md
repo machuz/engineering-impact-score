@@ -500,6 +500,7 @@ Telescope     →     EIS
 - [x] Timeline analysis (`eis timeline`) with per-period scoring
 - [x] Chart visualization (`--format ascii|html|svg`)
 - [ ] Multi-language commit message support for Quality detection
+- [ ] **[OSS Gravity Map](research/oss-gravity-map/)** — empirical validation against 25 major OSS projects (React, Kubernetes, Terraform, Redis, Rust, etc.). Architect detection, hidden architect discovery, entropy fighter detection, collapse risk analysis. ~50,000 engineers across 8 languages. [Configs open for PRs](research/oss-gravity-map/CONTRIBUTING.md)
 
 ## Special Thanks
 
