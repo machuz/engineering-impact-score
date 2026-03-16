@@ -6,7 +6,7 @@
 # See: https://github.com/machuz/engineering-impact-score/tree/main/research/oss-gravity-map
 
 sample_size: 1000
-blame_timeout: 120
+blame_timeout: 600
 
 exclude_file_patterns:
   - "package-lock.json"

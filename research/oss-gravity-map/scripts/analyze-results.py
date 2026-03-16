@@ -192,6 +192,46 @@ def load_known_architects(dataset_path: str) -> dict[str, list[str]]:
     return architects
 
 
+def load_alias_maps(configs_dir: str) -> dict[str, dict[str, str]]:
+    """Load alias configs to build login→canonical name maps per repo.
+
+    Config aliases map git-names to canonical names:
+      "gaearon": "Dan Abramov"
+    We build a reverse map: login → canonical name, so we can match
+    GitHub logins from ground truth to EIS author names.
+    """
+    try:
+        import yaml
+    except ImportError:
+        return {}
+
+    alias_maps = {}  # repo -> {login: canonical_name}
+    configs_path = Path(configs_dir)
+    for f in configs_path.glob("*.yaml"):
+        repo_name = f.stem
+        with open(f) as fh:
+            config = yaml.safe_load(fh)
+        if not config or "aliases" not in config:
+            continue
+        # aliases: {"gaearon": "Dan Abramov", ...}
+        # Build login→canonical: the alias key might be a GitHub login
+        alias_maps[repo_name] = {}
+        for alias_key, canonical in config["aliases"].items():
+            alias_maps[repo_name][normalize_author(alias_key)] = canonical
+            # Also map the canonical name to itself
+            alias_maps[repo_name][normalize_author(canonical)] = canonical
+    return alias_maps
+
+
+def resolve_gt_name(login: str, repo_name: str, alias_maps: dict) -> str:
+    """Resolve a GitHub login to the canonical EIS author name using alias maps."""
+    repo_aliases = alias_maps.get(repo_name, {})
+    canonical = repo_aliases.get(normalize_author(login))
+    if canonical:
+        return canonical
+    return login
+
+
 # =============================================================================
 # Analysis
 # =============================================================================
@@ -287,7 +327,8 @@ def compute_gravity_concentration(engineers: list[EngineerScore], top_n: int = 3
 def analyze_repo(repo_name: str,
                  engineers: list[EngineerScore],
                  ground_truth: Optional[dict],
-                 known_architects: list[str]) -> RepoAnalysis:
+                 known_architects: list[str],
+                 alias_maps: dict = None) -> RepoAnalysis:
     """Full analysis for a single repository."""
     analysis = RepoAnalysis(name=repo_name, repo=repo_name)
     analysis.engineers = engineers
@@ -301,10 +342,14 @@ def analyze_repo(repo_name: str,
 
     # Ground truth comparisons
     if ground_truth:
-        gt_contributors = [c["login"] for c in ground_truth.get("top_contributors", [])
+        _alias_maps = alias_maps or {}
+        gt_contributors = [resolve_gt_name(c["login"], repo_name, _alias_maps)
+                          for c in ground_truth.get("top_contributors", [])
                           if c.get("type") == "User"]
-        maintainers = ground_truth.get("architect_candidates", [])
-        release_authors = ground_truth.get("release_authors", [])
+        maintainers = [resolve_gt_name(m, repo_name, _alias_maps)
+                      for m in ground_truth.get("architect_candidates", [])]
+        release_authors = [resolve_gt_name(r, repo_name, _alias_maps)
+                          for r in ground_truth.get("release_authors", [])]
 
         # Top-k overlap (EIS gravity top-10 vs GitHub commit top-10)
         analysis.top_k_overlap = compute_top_k_overlap(eis_top, gt_contributors, k=10)
@@ -340,16 +385,22 @@ def analyze_repo(repo_name: str,
 
 def build_global_gravity_map(all_results: dict[str, list[EngineerScore]],
                              all_gt: dict[str, dict],
-                             known_architects: dict[str, list[str]]) -> list[GlobalGravityEntry]:
+                             known_architects: dict[str, list[str]],
+                             alias_maps: dict = None) -> list[GlobalGravityEntry]:
     """Build the cross-project gravity ranking."""
     entries = []
+    _alias_maps = alias_maps or {}
 
     for repo_name, engineers in all_results.items():
         gt = all_gt.get(repo_name, {})
-        maintainers = set(normalize_author(m) for m in gt.get("architect_candidates", []))
+        maintainers = set(normalize_author(resolve_gt_name(m, repo_name, _alias_maps))
+                         for m in gt.get("architect_candidates", []))
         repo_architects = set(normalize_author(a) for a in known_architects.get(repo_name, []))
 
         for eng in engineers:
+            # Filter out noise: require minimum total score to be in global map
+            if eng.total < 20:
+                continue
             entry = GlobalGravityEntry(
                 author=eng.author,
                 repo=repo_name,
@@ -505,6 +556,10 @@ def main():
                        help="Dataset YAML with known architects")
     parser.add_argument("--output-dir", default="analysis",
                        help="Output directory")
+    parser.add_argument("--configs-dir", default="configs",
+                       help="Directory with per-repo eis.yaml configs")
+    parser.add_argument("--alias-map", default="data/alias-map.json",
+                       help="Path to alias-map.json (from build-alias-map.py)")
     args = parser.parse_args()
 
     print("=== OSS Gravity Map Analysis ===")
@@ -523,6 +578,34 @@ def main():
     known_architects = load_known_architects(args.dataset)
     print(f"  Loaded architects for {len(known_architects)} Tier 1 repos")
 
+    print("Loading alias maps...")
+    alias_maps = load_alias_maps(args.configs_dir)
+    print(f"  Loaded aliases for {len(alias_maps)} repos")
+
+    # Merge alias-map.json (from build-alias-map.py) if it exists
+    if os.path.exists(args.alias_map):
+        print(f"Loading alias map from {args.alias_map}...")
+        try:
+            with open(args.alias_map) as f:
+                external_aliases = json.load(f)
+            merged_count = 0
+            for repo_name, mappings in external_aliases.items():
+                if repo_name not in alias_maps:
+                    alias_maps[repo_name] = {}
+                for login, canonical_name in mappings.items():
+                    norm_login = normalize_author(login)
+                    # Config aliases take precedence over external alias map
+                    if norm_login not in alias_maps[repo_name]:
+                        alias_maps[repo_name][norm_login] = canonical_name
+                        # Also map canonical to itself for reverse lookups
+                        alias_maps[repo_name][normalize_author(canonical_name)] = canonical_name
+                        merged_count += 1
+            print(f"  Merged {merged_count} aliases from alias map")
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"  WARN: could not load alias map: {e}", file=sys.stderr)
+    else:
+        print(f"  No alias map found at {args.alias_map} (run build-alias-map.py to generate)")
+
     if not all_results:
         print("\nERROR: No EIS results found. Run analyze-repos.sh first.")
         sys.exit(1)
@@ -533,7 +616,7 @@ def main():
     for repo_name, engineers in sorted(all_results.items()):
         gt = all_gt.get(repo_name)
         architects = known_architects.get(repo_name, [])
-        analysis = analyze_repo(repo_name, engineers, gt, architects)
+        analysis = analyze_repo(repo_name, engineers, gt, architects, alias_maps)
         analyses.append(analysis)
         n_eng = len(engineers)
         n_hidden = len(analysis.hidden_architects)
@@ -546,7 +629,7 @@ def main():
 
     # Global gravity map
     print("\nBuilding global gravity map...")
-    global_map = build_global_gravity_map(all_results, all_gt, known_architects)
+    global_map = build_global_gravity_map(all_results, all_gt, known_architects, alias_maps)
     print(f"  Total entries: {len(global_map)}")
 
     # Output
