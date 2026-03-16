@@ -4,6 +4,30 @@
 
 ---
 
+## What We Found
+
+We pointed the Git Telescope at 25 of the world's most influential open-source projects — React, Kubernetes, Terraform, Redis, Rust, ClickHouse, and 19 others — and measured 42,593 engineers.
+
+The first thing the data confirmed was something we already sensed but had never quantified: **the people we call "famous" in OSS are famous for a reason.** Salvatore Sanfilippo (Redis), Alexey Milovidov (ClickHouse), Jose Valim (Phoenix), Ritchie Vink (Polars) — their gravity scores saturate the scale. They don't just write code; they lay down structural bedrock that thousands of other engineers build upon. Their survival rates are near-perfect. Their design fingerprints are everywhere. They are, in the language of Software Cosmology, the stars around which entire ecosystems orbit.
+
+But the more remarkable finding was the **440 engineers the world has never heard of.**
+
+They don't give conference talks. They don't have mass Twitter followings. Many of them don't even appear in the official maintainer lists. Yet when we traced the gravitational field lines through the codebase, there they were — quietly holding the architecture together, cleaning up entropy, ensuring that the code written three years ago still survives today.
+
+We call them **Hidden Architects**.
+
+Niko Matsakis designed Rust's borrow checker — the conceptual backbone of the entire language — yet doesn't appear in the top GitHub contributor charts. Sebastian Markbåge shaped React's Reconciler, the engine that powers millions of web applications, and the data labels him a "Cleaner" — someone who spends more energy maintaining structural integrity than producing new features. These are not supporting roles. These are the roles that make everything else possible.
+
+And then there are the **Entropy Fighters** — 33 engineers across 25 projects who score high on both Debt Cleanup and Survival. They are the people who wake up and choose to fight the second law of thermodynamics in code. Without them, every project would eventually collapse under its own weight.
+
+To the famous architects: the data shows what we already knew. Your gravity is real, it is immense, and it is measurable.
+
+To the hidden ones: **thank you.** The mass of your contribution was invisible until now, but it was never unfelt. Every developer who builds on top of your work — whether they know your name or not — owes a piece of their productivity to the structural decisions you made and the entropy you fought.
+
+This map is for you.
+
+---
+
 ## Top 50 OSS Gravity Engineers
 
 | Rank | Engineer | Project | Gravity | Total | Role | Known Architect? |
