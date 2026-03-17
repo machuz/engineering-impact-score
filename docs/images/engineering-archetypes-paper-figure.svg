@@ -67,56 +67,56 @@
   <!-- Architect / Builder — prod:85, surv:88 -->
   <circle cx="784" cy="147" r="20" fill="#fabd2f" opacity="0.06"/>
   <circle cx="784" cy="147" r="11" fill="#fabd2f" opacity="0.7"/>
-  <text x="784" y="132" text-anchor="middle" fill="#fabd2f" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Architect / Builder</text>
+  <text x="768" y="143" text-anchor="end" fill="#fabd2f" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Architect / Builder</text>
 
   <!-- Anchor / Balanced — prod:55, surv:78 -->
   <circle cx="549" cy="203" r="10" fill="#8ec07c" opacity="0.7"/>
-  <text x="549" y="190" text-anchor="middle" fill="#8ec07c" font-size="11" font-weight="600" font-family="-apple-system,sans-serif">Anchor / Balanced</text>
+  <text x="564" y="207" fill="#8ec07c" font-size="11" font-weight="600" font-family="-apple-system,sans-serif">Anchor / Balanced</text>
 
   <!-- Specialist / Builder — prod:58, surv:84 -->
   <circle cx="572" cy="170" r="9" fill="#83a598" opacity="0.7"/>
-  <text x="590" y="158" fill="#83a598" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Specialist</text>
+  <text x="586" y="174" fill="#83a598" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Specialist</text>
 
   <!-- Cleaner — prod:42, surv:80 -->
   <circle cx="448" cy="192" r="9" fill="#fe8019" opacity="0.7"/>
-  <text x="448" y="178" text-anchor="middle" fill="#fe8019" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Cleaner</text>
+  <text x="462" y="196" fill="#fe8019" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Cleaner</text>
 
   <!-- Producer / Resilient — prod:68, surv:35 -->
   <circle cx="651" cy="444" r="8" fill="#b8bb26" opacity="0.6"/>
-  <text x="620" y="430" text-anchor="end" fill="#b8bb26" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Producer / Resilient</text>
-  <text x="620" y="444" text-anchor="end" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif" font-style="italic">high Robust Survival</text>
+  <text x="664" y="441" fill="#b8bb26" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Producer / Resilient</text>
+  <text x="664" y="453" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif" font-style="italic">high Robust Survival</text>
 
   <!-- Producer / Rescue — prod:72, surv:30 -->
   <circle cx="682" cy="472" r="9" fill="#d3869b" opacity="0.7"/>
-  <text x="700" y="468" fill="#d3869b" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Producer / Rescue</text>
-  <text x="700" y="482" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif" font-style="italic">high Debt Cleanup</text>
+  <text x="696" y="469" fill="#d3869b" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Producer / Rescue</text>
+  <text x="696" y="481" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif" font-style="italic">high Debt Cleanup</text>
 
   <!-- Producer / Churn — prod:88, surv:12 -->
   <circle cx="808" cy="573" r="10" fill="#fb4934" opacity="0.7"/>
-  <text x="808" y="558" text-anchor="middle" fill="#fb4934" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Producer / Churn</text>
+  <text x="793" y="569" text-anchor="end" fill="#fb4934" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Producer / Churn</text>
 
   <!-- Producer / Mass — prod:82, surv:22 -->
   <circle cx="760" cy="517" r="9" fill="#fb4934" opacity="0.5"/>
-  <text x="760" y="503" text-anchor="middle" fill="#fb4934" font-size="10" font-weight="600" font-family="-apple-system,sans-serif" opacity="0.8">Producer / Mass</text>
+  <text x="746" y="513" text-anchor="end" fill="#fb4934" font-size="10" font-weight="600" font-family="-apple-system,sans-serif" opacity="0.8">Producer / Mass</text>
 
   <!-- — / Spread — prod:30, surv:26 -->
   <circle cx="354" cy="495" r="8" fill="#d3869b" opacity="0.5"/>
-  <text x="354" y="481" text-anchor="middle" fill="#d3869b" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">— / Spread</text>
-  <text x="354" y="512" text-anchor="middle" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif" font-style="italic">wide but shallow</text>
+  <text x="367" y="492" fill="#d3869b" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">— / Spread</text>
+  <text x="367" y="504" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif" font-style="italic">wide but shallow</text>
 
   <!-- — / — / Growing — prod:25, surv:58 -->
   <circle cx="315" cy="316" r="8" fill="#b8bb26" opacity="0.5"/>
-  <text x="315" y="302" text-anchor="middle" fill="#b8bb26" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Growing</text>
-  <text x="315" y="334" text-anchor="middle" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif" font-style="italic">low volume, high quality</text>
+  <text x="328" y="313" fill="#b8bb26" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Growing</text>
+  <text x="328" y="325" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif" font-style="italic">low volume, high quality</text>
 
   <!-- — / — / Fragile — prod:20, surv:72 -->
   <circle cx="276" cy="237" r="8" fill="#fe8019" opacity="0.4"/>
-  <text x="276" y="223" text-anchor="middle" fill="#fe8019" font-size="10" font-weight="600" font-family="-apple-system,sans-serif" opacity="0.8">Fragile</text>
-  <text x="276" y="255" text-anchor="middle" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif" font-style="italic">dormant, not durable</text>
+  <text x="289" y="234" fill="#fe8019" font-size="10" font-weight="600" font-family="-apple-system,sans-serif" opacity="0.8">Fragile</text>
+  <text x="289" y="246" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif" font-style="italic">dormant, not durable</text>
 
   <!-- — / — / Silent — prod:15, surv:10 -->
   <circle cx="237" cy="584" r="7" fill="#665c54" opacity="0.5"/>
-  <text x="237" y="572" text-anchor="middle" fill="#665c54" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Silent</text>
+  <text x="249" y="588" fill="#665c54" font-size="10" font-weight="600" font-family="-apple-system,sans-serif">Silent</text>
 
   <!-- Legend annotation -->
   <text x="480" y="710" text-anchor="middle" fill="#665c54" font-size="9" font-family="-apple-system,sans-serif">Role / Style plotted in Production–Survival space. Dot size reflects typical Total Score. Colors indicate risk level.</text>
