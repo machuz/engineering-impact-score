@@ -361,12 +361,7 @@ Architectがいるのにチームが機能していない場合、Producer Vacuu
 
 ---
 
-![EIS — the Git Telescope](https://github.com/machuz/engineering-impact-score/blob/main/docs/images/logo-full.png?raw=true)
+![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=6)
 
 **GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
 
-この記事が参考になったら：
-
-[![Sponsor](https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github&style=for-the-badge)](https://github.com/sponsors/machuz)
-
-PayPay: `w_machu7`
