@@ -361,7 +361,7 @@ Architectがいるのにチームが機能していない場合、Producer Vacuu
 
 ---
 
-![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=5)
+![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/ff4528b/docs/images/logo-full.png)
 
 **GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
 
