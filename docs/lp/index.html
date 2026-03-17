@@ -293,16 +293,26 @@ body.ja [data-lang-inline="ja"]{display:inline}
 </section>
 
 <script>
-function setLang(lang) {
+function setLang(lang, updateURL) {
   document.body.className = lang === 'ja' ? 'ja' : '';
   document.getElementById('btn-en').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
   document.getElementById('btn-ja').className = 'lang-btn' + (lang === 'ja' ? ' active' : '');
   localStorage.setItem('ace-lp-lang', lang);
+  if (updateURL !== false) {
+    const url = new URL(window.location);
+    url.searchParams.set('lang', lang);
+    history.replaceState(null, '', url);
+  }
 }
-// Auto-detect
-const saved = localStorage.getItem('ace-lp-lang');
-if (saved) setLang(saved);
-else if (navigator.language.startsWith('ja')) setLang('ja');
+// Priority: query param > localStorage > browser language
+const params = new URLSearchParams(window.location.search);
+const paramLang = params.get('lang');
+if (paramLang === 'ja' || paramLang === 'en') setLang(paramLang, false);
+else {
+  const saved = localStorage.getItem('ace-lp-lang');
+  if (saved) setLang(saved, false);
+  else if (navigator.language.startsWith('ja')) setLang('ja', false);
+}
 </script>
 
 </body>
