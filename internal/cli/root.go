@@ -114,7 +114,7 @@ func printVersion() {
 		"           ___│___\n"+
 		"          /_______\\\n"+
 		"\n"+
-		"     %s     the Git Telescope  v%s     %s\n\n",
+		"     %s     the Git Telescope  %s     %s\n\n",
 		skyStr, lens, side, bot1, version, bot2)
 }
 
