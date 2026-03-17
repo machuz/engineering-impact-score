@@ -451,7 +451,7 @@ body.ja [data-lang-inline="ja"]{display:inline}
   function potential(x, y, positions) {
     let v = 0;
     // Scale gravity influence with screen size so lines fill the screen on any device
-    const scale = Math.max(W, H) / 1200;
+    const scale = Math.min(Math.max(W, H) / 1200, 1.0);
     const influence = 80000 * scale * scale;
     const softness = 80 * scale;
     for (const p of positions) {
