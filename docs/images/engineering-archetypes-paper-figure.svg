@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720">
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="720" viewBox="0 0 1060 720">
   <defs>
     <radialGradient id="dot-glow" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#fabd2f" stop-opacity="0.08"/>
@@ -7,7 +7,7 @@
   </defs>
 
   <!-- Background -->
-  <rect width="960" height="720" fill="#1d2021"/>
+  <rect width="1060" height="720" fill="#1d2021"/>
 
   <!-- Star field -->
   <circle cx="45" cy="25" r="1" fill="#ebdbb2" opacity="0.2"/>
@@ -67,7 +67,7 @@
   <!-- Architect / Builder — prod:85, surv:88 -->
   <circle cx="784" cy="147" r="20" fill="#fabd2f" opacity="0.06"/>
   <circle cx="784" cy="147" r="11" fill="#fabd2f" opacity="0.7"/>
-  <text x="768" y="143" text-anchor="end" fill="#fabd2f" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Architect / Builder</text>
+  <text x="800" y="151" fill="#fabd2f" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Architect / Builder</text>
 
   <!-- Anchor / Balanced — prod:55, surv:78 -->
   <circle cx="549" cy="203" r="10" fill="#8ec07c" opacity="0.7"/>
@@ -93,11 +93,11 @@
 
   <!-- Producer / Churn — prod:88, surv:12 -->
   <circle cx="808" cy="573" r="10" fill="#fb4934" opacity="0.7"/>
-  <text x="793" y="569" text-anchor="end" fill="#fb4934" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Producer / Churn</text>
+  <text x="823" y="577" fill="#fb4934" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Producer / Churn</text>
 
   <!-- Producer / Mass — prod:82, surv:22 -->
   <circle cx="760" cy="517" r="9" fill="#fb4934" opacity="0.5"/>
-  <text x="746" y="513" text-anchor="end" fill="#fb4934" font-size="10" font-weight="600" font-family="-apple-system,sans-serif" opacity="0.8">Producer / Mass</text>
+  <text x="774" y="521" fill="#fb4934" font-size="10" font-weight="600" font-family="-apple-system,sans-serif" opacity="0.8">Producer / Mass</text>
 
   <!-- — / Spread — prod:30, surv:26 -->
   <circle cx="354" cy="495" r="8" fill="#d3869b" opacity="0.5"/>
