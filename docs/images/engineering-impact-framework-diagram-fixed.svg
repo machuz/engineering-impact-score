@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720">
+  <defs>
+    <radialGradient id="glow-gold" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fabd2f" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#1d2021" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="720" fill="#1d2021"/>
+
+  <!-- Subtle star field -->
+  <circle cx="45" cy="25" r="1" fill="#ebdbb2" opacity="0.25"/>
+  <circle cx="180" cy="60" r="1.2" fill="#ebdbb2" opacity="0.2"/>
+  <circle cx="780" cy="35" r="1" fill="#ebdbb2" opacity="0.3"/>
+  <circle cx="900" cy="90" r="0.8" fill="#ebdbb2" opacity="0.2"/>
+  <circle cx="50" cy="680" r="1" fill="#ebdbb2" opacity="0.2"/>
+  <circle cx="910" cy="650" r="1.2" fill="#ebdbb2" opacity="0.25"/>
+  <circle cx="500" cy="15" r="0.8" fill="#ebdbb2" opacity="0.15"/>
+  <circle cx="350" cy="700" r="1" fill="#ebdbb2" opacity="0.2"/>
+  <circle cx="720" cy="710" r="0.8" fill="#ebdbb2" opacity="0.15"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" fill="#ebdbb2" font-size="20" font-weight="800" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" letter-spacing="1.5">EIS Framework Overview</text>
+  <text x="480" y="58" text-anchor="middle" fill="#a89984" font-size="11" font-family="-apple-system,sans-serif">git log + git blame → 7-axis Score + 3-axis Topology + Gravity</text>
+
+  <!-- ============================================ -->
+  <!-- LEFT: Data Source -->
+  <!-- ============================================ -->
+  <rect x="30" y="280" width="140" height="100" rx="12" fill="#282828" stroke="#504945" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="100" y="318" text-anchor="middle" fill="#ebdbb2" font-size="14" font-weight="700" font-family="-apple-system,sans-serif">Git History</text>
+  <line x1="60" y1="330" x2="140" y2="330" stroke="#504945" stroke-width="0.8"/>
+  <text x="100" y="350" text-anchor="middle" fill="#a89984" font-size="10" font-family="-apple-system,sans-serif">git log</text>
+  <text x="100" y="366" text-anchor="middle" fill="#a89984" font-size="10" font-family="-apple-system,sans-serif">git blame</text>
+
+  <!-- ============================================ -->
+  <!-- CENTER: 7 Axes -->
+  <!-- ============================================ -->
+
+  <!-- Section label -->
+  <text x="390" y="95" text-anchor="middle" fill="#a89984" font-size="10" font-weight="600" font-family="-apple-system,sans-serif" letter-spacing="2">7-AXIS SCORE</text>
+  <line x1="290" y1="102" x2="490" y2="102" stroke="#504945" stroke-width="0.5"/>
+
+  <!-- Production 15% -->
+  <rect x="270" y="118" width="240" height="36" rx="6" fill="#282828" stroke="#b8bb26" stroke-width="1.2"/>
+  <circle cx="290" cy="136" r="6" fill="#b8bb26" opacity="0.2"/>
+  <circle cx="290" cy="136" r="2.5" fill="#b8bb26" opacity="0.7"/>
+  <text x="306" y="140" fill="#b8bb26" font-size="12" font-weight="600" font-family="-apple-system,sans-serif">Production</text>
+  <text x="496" y="140" text-anchor="end" fill="#665c54" font-size="10" font-family="-apple-system,sans-serif">15%</text>
+
+  <!-- Quality 10% -->
+  <rect x="270" y="162" width="240" height="36" rx="6" fill="#282828" stroke="#8ec07c" stroke-width="1.2"/>
+  <circle cx="290" cy="180" r="6" fill="#8ec07c" opacity="0.2"/>
+  <circle cx="290" cy="180" r="2.5" fill="#8ec07c" opacity="0.7"/>
+  <text x="306" y="184" fill="#8ec07c" font-size="12" font-weight="600" font-family="-apple-system,sans-serif">Quality</text>
+  <text x="496" y="184" text-anchor="end" fill="#665c54" font-size="10" font-family="-apple-system,sans-serif">10%</text>
+
+  <!-- Survival 25% (heaviest) -->
+  <rect x="270" y="206" width="240" height="36" rx="6" fill="#282828" stroke="#fabd2f" stroke-width="2"/>
+  <circle cx="290" cy="224" r="6" fill="#fabd2f" opacity="0.25"/>
+  <circle cx="290" cy="224" r="2.5" fill="#fabd2f" opacity="0.8"/>
+  <text x="306" y="228" fill="#fabd2f" font-size="12" font-weight="700" font-family="-apple-system,sans-serif">Survival</text>
+  <text x="430" y="228" fill="#d79921" font-size="9" font-family="-apple-system,sans-serif">(time-decayed)</text>
+  <text x="496" y="228" text-anchor="end" fill="#d79921" font-size="10" font-weight="700" font-family="-apple-system,sans-serif">25%</text>
+
+  <!-- Design 20% -->
+  <rect x="270" y="250" width="240" height="36" rx="6" fill="#282828" stroke="#fb4934" stroke-width="1.2"/>
+  <circle cx="290" cy="268" r="6" fill="#fb4934" opacity="0.2"/>
+  <circle cx="290" cy="268" r="2.5" fill="#fb4934" opacity="0.7"/>
+  <text x="306" y="272" fill="#fb4934" font-size="12" font-weight="600" font-family="-apple-system,sans-serif">Design</text>
+  <text x="496" y="272" text-anchor="end" fill="#665c54" font-size="10" font-family="-apple-system,sans-serif">20%</text>
+
+  <!-- Breadth 10% -->
+  <rect x="270" y="294" width="240" height="36" rx="6" fill="#282828" stroke="#83a598" stroke-width="1.2"/>
+  <circle cx="290" cy="312" r="6" fill="#83a598" opacity="0.2"/>
+  <circle cx="290" cy="312" r="2.5" fill="#83a598" opacity="0.7"/>
+  <text x="306" y="316" fill="#83a598" font-size="12" font-weight="600" font-family="-apple-system,sans-serif">Breadth</text>
+  <text x="496" y="316" text-anchor="end" fill="#665c54" font-size="10" font-family="-apple-system,sans-serif">10%</text>
+
+  <!-- Debt Cleanup 15% -->
+  <rect x="270" y="338" width="240" height="36" rx="6" fill="#282828" stroke="#d3869b" stroke-width="1.2"/>
+  <circle cx="290" cy="356" r="6" fill="#d3869b" opacity="0.2"/>
+  <circle cx="290" cy="356" r="2.5" fill="#d3869b" opacity="0.7"/>
+  <text x="306" y="360" fill="#d3869b" font-size="12" font-weight="600" font-family="-apple-system,sans-serif">Debt Cleanup</text>
+  <text x="496" y="360" text-anchor="end" fill="#665c54" font-size="10" font-family="-apple-system,sans-serif">15%</text>
+
+  <!-- Indispensability 5% -->
+  <rect x="270" y="382" width="240" height="36" rx="6" fill="#282828" stroke="#fe8019" stroke-width="1.2"/>
+  <circle cx="290" cy="400" r="6" fill="#fe8019" opacity="0.2"/>
+  <circle cx="290" cy="400" r="2.5" fill="#fe8019" opacity="0.7"/>
+  <text x="306" y="404" fill="#fe8019" font-size="12" font-weight="600" font-family="-apple-system,sans-serif">Indispensability</text>
+  <text x="496" y="404" text-anchor="end" fill="#665c54" font-size="10" font-family="-apple-system,sans-serif">5%</text>
+
+  <!-- Arrows from Git History to axes -->
+  <line x1="170" y1="310" x2="268" y2="136" stroke="#504945" stroke-width="1" opacity="0.4"/>
+  <line x1="170" y1="315" x2="268" y2="180" stroke="#504945" stroke-width="1" opacity="0.4"/>
+  <line x1="170" y1="320" x2="268" y2="224" stroke="#504945" stroke-width="1" opacity="0.5"/>
+  <line x1="170" y1="330" x2="268" y2="268" stroke="#504945" stroke-width="1" opacity="0.4"/>
+  <line x1="170" y1="340" x2="268" y2="312" stroke="#504945" stroke-width="1" opacity="0.4"/>
+  <line x1="170" y1="350" x2="268" y2="356" stroke="#504945" stroke-width="1" opacity="0.4"/>
+  <line x1="170" y1="355" x2="268" y2="400" stroke="#504945" stroke-width="1" opacity="0.4"/>
+
+  <!-- ============================================ -->
+  <!-- RIGHT TOP: Total Score -->
+  <!-- ============================================ -->
+  <circle cx="660" y="250" r="60" fill="url(#glow-gold)"/>
+  <rect x="600" y="200" width="120" height="70" rx="14" fill="#282828" stroke="#d79921" stroke-width="2" filter="url(#shadow)"/>
+  <text x="660" y="230" text-anchor="middle" fill="#ebdbb2" font-size="13" font-weight="800" font-family="-apple-system,sans-serif">Total Score</text>
+  <text x="660" y="254" text-anchor="middle" fill="#d79921" font-size="11" font-family="-apple-system,sans-serif">0 — 100</text>
+
+  <!-- Arrows from axes to Total Score -->
+  <line x1="512" y1="136" x2="598" y2="222" stroke="#504945" stroke-width="1" opacity="0.3" marker-end="none"/>
+  <line x1="512" y1="180" x2="598" y2="225" stroke="#504945" stroke-width="1" opacity="0.3"/>
+  <line x1="512" y1="224" x2="598" y2="232" stroke="#d79921" stroke-width="1" opacity="0.5"/>
+  <line x1="512" y1="268" x2="598" y2="238" stroke="#504945" stroke-width="1" opacity="0.3"/>
+  <line x1="512" y1="312" x2="598" y2="244" stroke="#504945" stroke-width="1" opacity="0.3"/>
+  <line x1="512" y1="356" x2="598" y2="250" stroke="#504945" stroke-width="1" opacity="0.3"/>
+  <line x1="512" y1="400" x2="598" y2="256" stroke="#504945" stroke-width="1" opacity="0.3"/>
+
+  <!-- ============================================ -->
+  <!-- BOTTOM LEFT: 3-Axis Topology -->
+  <!-- ============================================ -->
+  <text x="300" y="470" text-anchor="middle" fill="#a89984" font-size="10" font-weight="600" font-family="-apple-system,sans-serif" letter-spacing="2">3-AXIS TOPOLOGY</text>
+  <line x1="180" y1="477" x2="420" y2="477" stroke="#504945" stroke-width="0.5"/>
+
+  <!-- Role -->
+  <rect x="120" y="492" width="160" height="80" rx="10" fill="#282828" stroke="#83a598" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="200" y="515" text-anchor="middle" fill="#83a598" font-size="13" font-weight="700" font-family="-apple-system,sans-serif">Role</text>
+  <text x="200" y="532" text-anchor="middle" fill="#a89984" font-size="9" font-family="-apple-system,sans-serif">何を貢献するか</text>
+  <text x="200" y="548" text-anchor="middle" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif">Architect / Anchor / Cleaner</text>
+  <text x="200" y="560" text-anchor="middle" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif">Producer / Specialist</text>
+
+  <!-- Style -->
+  <rect x="300" y="492" width="160" height="80" rx="10" fill="#282828" stroke="#d3869b" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="380" y="515" text-anchor="middle" fill="#d3869b" font-size="13" font-weight="700" font-family="-apple-system,sans-serif">Style</text>
+  <text x="380" y="532" text-anchor="middle" fill="#a89984" font-size="9" font-family="-apple-system,sans-serif">どう貢献するか</text>
+  <text x="380" y="548" text-anchor="middle" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif">Builder / Resilient / Rescue</text>
+  <text x="380" y="560" text-anchor="middle" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif">Churn / Mass / Balanced</text>
+
+  <!-- State -->
+  <rect x="480" y="492" width="160" height="80" rx="10" fill="#282828" stroke="#b8bb26" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="560" y="515" text-anchor="middle" fill="#b8bb26" font-size="13" font-weight="700" font-family="-apple-system,sans-serif">State</text>
+  <text x="560" y="532" text-anchor="middle" fill="#a89984" font-size="9" font-family="-apple-system,sans-serif">ライフサイクルフェーズ</text>
+  <text x="560" y="548" text-anchor="middle" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif">Active / Growing / Former</text>
+  <text x="560" y="560" text-anchor="middle" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif">Silent / Fragile</text>
+
+  <!-- Arrows from axes to topology -->
+  <path d="M390,420 L390,440 Q390,460 370,470 L300,490" stroke="#504945" stroke-width="1" fill="none" opacity="0.3"/>
+  <path d="M390,420 L390,490" stroke="#504945" stroke-width="1" fill="none" opacity="0.3"/>
+  <path d="M390,420 L390,440 Q390,460 420,470 L480,490" stroke="#504945" stroke-width="1" fill="none" opacity="0.3"/>
+  <text x="390" y="450" text-anchor="middle" fill="#665c54" font-size="8" font-family="-apple-system,sans-serif">分布パターンから分類</text>
+
+  <!-- ============================================ -->
+  <!-- BOTTOM RIGHT: Gravity -->
+  <!-- ============================================ -->
+  <text x="760" y="470" text-anchor="middle" fill="#a89984" font-size="10" font-weight="600" font-family="-apple-system,sans-serif" letter-spacing="2">GRAVITY</text>
+  <line x1="680" y1="477" x2="840" y2="477" stroke="#504945" stroke-width="0.5"/>
+
+  <!-- Gravity core -->
+  <circle cx="760" cy="545" r="55" fill="#fabd2f" opacity="0.04"/>
+  <circle cx="760" cy="545" r="38" fill="#fabd2f" opacity="0.08"/>
+  <circle cx="760" cy="545" r="22" fill="#fabd2f" opacity="0.12"/>
+
+  <rect x="690" y="500" width="140" height="90" rx="14" fill="#282828" stroke="#fabd2f" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="760" y="525" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="800" font-family="-apple-system,sans-serif">Gravity</text>
+  <text x="760" y="543" text-anchor="middle" fill="#a89984" font-size="9" font-family="-apple-system,sans-serif">構造的影響力</text>
+  <line x1="710" y1="552" x2="810" y2="552" stroke="#504945" stroke-width="0.5"/>
+  <text x="760" y="567" text-anchor="middle" fill="#bdae93" font-size="8" font-family="-apple-system,sans-serif">Indisp ×0.40 + Breadth ×0.30</text>
+  <text x="760" y="580" text-anchor="middle" fill="#bdae93" font-size="8" font-family="-apple-system,sans-serif">+ Design ×0.30</text>
+
+  <!-- Arrows from specific axes to Gravity -->
+  <!-- Indispensability -->
+  <path d="M512,400 Q560,420 560,460 Q560,510 688,530" stroke="#fe8019" stroke-width="1" fill="none" opacity="0.4" stroke-dasharray="4,3"/>
+  <!-- Breadth -->
+  <path d="M512,312 Q580,340 620,420 Q640,460 688,520" stroke="#83a598" stroke-width="1" fill="none" opacity="0.4" stroke-dasharray="4,3"/>
+  <!-- Design -->
+  <path d="M512,268 Q600,300 640,400 Q660,450 688,510" stroke="#fb4934" stroke-width="1" fill="none" opacity="0.4" stroke-dasharray="4,3"/>
+
+  <!-- Labels for Gravity inputs -->
+  <text x="575" y="440" fill="#fe8019" font-size="8" font-family="-apple-system,sans-serif" opacity="0.7">×0.40</text>
+  <text x="610" y="400" fill="#83a598" font-size="8" font-family="-apple-system,sans-serif" opacity="0.7">×0.30</text>
+  <text x="635" y="360" fill="#fb4934" font-size="8" font-family="-apple-system,sans-serif" opacity="0.7">×0.30</text>
+
+  <!-- ============================================ -->
+  <!-- Output summary row -->
+  <!-- ============================================ -->
+  <line x1="80" y1="630" x2="880" y2="630" stroke="#504945" stroke-width="0.5"/>
+
+  <!-- Output: Score -->
+  <rect x="100" y="648" width="200" height="44" rx="8" fill="#282828" stroke="#d79921" stroke-width="1"/>
+  <text x="200" y="674" text-anchor="middle" fill="#d79921" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Score: 42.3 / 100</text>
+
+  <!-- Output: Topology -->
+  <rect x="330" y="648" width="280" height="44" rx="8" fill="#282828" stroke="#83a598" stroke-width="1"/>
+  <text x="470" y="674" text-anchor="middle" fill="#83a598" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Architect / Builder / Active</text>
+
+  <!-- Output: Gravity -->
+  <rect x="640" y="648" width="200" height="44" rx="8" fill="#282828" stroke="#fabd2f" stroke-width="1"/>
+  <circle cx="668" cy="670" r="8" fill="#238636" opacity="0.6"/>
+  <text x="754" y="674" text-anchor="middle" fill="#fabd2f" font-size="11" font-weight="700" font-family="-apple-system,sans-serif">Gravity: 97</text>
+
+  <!-- Footer -->
+  <text x="480" y="712" text-anchor="middle" fill="#665c54" font-size="9" font-family="-apple-system,sans-serif">Data source: git log + git blame only. No surveys, no API keys, no cloud dependency.</text>
+</svg>

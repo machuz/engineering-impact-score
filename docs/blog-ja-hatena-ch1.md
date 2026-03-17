@@ -25,7 +25,7 @@
 
 ### 7つの軸で評価する
 
-![Engineering Impact Score フレームワーク概要：Git履歴から7つのシグナルを集約してスコアを算出](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/engineering-impact-framework-diagram-fixed.png)
+![EIS Framework Overview：Git履歴から7軸スコア・3軸トポロジー・Gravityを算出](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/engineering-impact-framework-diagram-fixed.png)
 
 いきなり結論から。エンジニアの戦闘力を以下の7軸で測る。
 
