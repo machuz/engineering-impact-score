@@ -63,7 +63,7 @@
   <circle cx="290" cy="224" r="6" fill="#fabd2f" opacity="0.25"/>
   <circle cx="290" cy="224" r="2.5" fill="#fabd2f" opacity="0.8"/>
   <text x="306" y="228" fill="#fabd2f" font-size="12" font-weight="700" font-family="-apple-system,sans-serif">Survival</text>
-  <text x="430" y="228" fill="#d79921" font-size="9" font-family="-apple-system,sans-serif">(time-decayed)</text>
+  <text x="390" y="228" fill="#d79921" font-size="9" font-family="-apple-system,sans-serif">(time-decayed)</text>
   <text x="496" y="228" text-anchor="end" fill="#d79921" font-size="10" font-weight="700" font-family="-apple-system,sans-serif">25%</text>
 
   <!-- Design 20% -->
