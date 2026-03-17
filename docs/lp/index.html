@@ -364,8 +364,8 @@ body.ja [data-lang-inline="ja"]{display:inline}
     for (const b of simBodies) { cx += b.x; cy += b.y; }
     cx /= simBodies.length; cy /= simBodies.length;
     for (const b of simBodies) {
-      const a = Math.atan2(b.y - cy, b.x - cx) + (Math.random()-0.5)*0.8;
-      const s = 6 + Math.random() * 8;
+      const a = Math.atan2(b.y - cy, b.x - cx) + (Math.random()-0.5)*1.2;
+      const s = 10 + Math.random() * 12;
       b.vx = Math.cos(a)*s; b.vy = Math.sin(a)*s;
     }
   }
@@ -375,8 +375,8 @@ body.ja [data-lang-inline="ja"]{display:inline}
     if (supernovaTime > 0) {
       supernovaTime -= 0.01;
       for (const b of simBodies) {
-        b.x += b.vx*DT; b.y += b.vy*DT;
-        b.vx *= 0.99; b.vy *= 0.99;
+        b.x += b.vx*DT*2; b.y += b.vy*DT*2;
+        b.vx *= 0.997; b.vy *= 0.997;
         if (b.x < 0) b.x += W; if (b.x > W) b.x -= W;
         if (b.y < 0) b.y += H; if (b.y > H) b.y -= H;
       }
