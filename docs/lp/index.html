@@ -316,8 +316,8 @@ body.ja [data-lang-inline="ja"]{display:inline}
 
   window.addEventListener('scroll', function() { scrollY = window.scrollY; }, { passive: true });
   // N-body simulation
-  const G = 150, SOFTENING = 80, DAMPING = 0.999, DT = 0.3;
-  const REPULSION_DIST = 120, REPULSION_FORCE = 5000, MAX_SPEED = 2.5;
+  const G = 80, SOFTENING = 100, DAMPING = 0.9985, DT = 0.25;
+  const REPULSION_DIST = 180, REPULSION_FORCE = 15000, MAX_SPEED = 2.0;
   const initBodies = [
     { cx: 0.15, cy: 0.25, mass: 1.2, angle: 0.5,  speed: 2.2 },
     { cx: 0.80, cy: 0.30, mass: 1.0, angle: 2.3,  speed: 2.0 },
@@ -343,15 +343,19 @@ body.ja [data-lang-inline="ja"]{display:inline}
   }
 
   function checkCollapse() {
-    let cx = 0, cy = 0;
-    for (const b of simBodies) { cx += b.x; cy += b.y; }
-    cx /= simBodies.length; cy /= simBodies.length;
-    let maxD = 0;
-    for (const b of simBodies) {
-      const d = Math.sqrt((b.x-cx)**2 + (b.y-cy)**2);
-      if (d > maxD) maxD = d;
+    for (let i = 0; i < simBodies.length; i++) {
+      let nearby = 0;
+      for (let j = 0; j < simBodies.length; j++) {
+        if (i === j) continue;
+        let dx = simBodies[j].x - simBodies[i].x;
+        let dy = simBodies[j].y - simBodies[i].y;
+        if (dx > W/2) dx -= W; else if (dx < -W/2) dx += W;
+        if (dy > H/2) dy -= H; else if (dy < -H/2) dy += H;
+        if (Math.sqrt(dx*dx + dy*dy) < 120) nearby++;
+      }
+      if (nearby >= 6) return true;
     }
-    return maxD < 100;
+    return false;
   }
 
   function triggerSupernova() {
@@ -393,7 +397,8 @@ body.ja [data-lang-inline="ja"]{display:inline}
         const fG = G * simBodies[i].mass * simBodies[j].mass / (d2 + SOFTENING*SOFTENING);
         fx += fG * dx / d; fy += fG * dy / d;
         if (d < REPULSION_DIST) {
-          const fR = REPULSION_FORCE * (REPULSION_DIST - d) / REPULSION_DIST;
+          const ratio = (REPULSION_DIST - d) / REPULSION_DIST;
+          const fR = REPULSION_FORCE * ratio * ratio;
           fx -= fR * dx / d; fy -= fR * dy / d;
         }
       }
@@ -490,15 +495,18 @@ body.ja [data-lang-inline="ja"]{display:inline}
 
   function draw() {
     stepSim();
-    // Smooth scroll with moving average (exponential smoothing)
+    // Smooth scroll parallax — shift body positions, not canvas
     smoothScrollY += (scrollY - smoothScrollY) * 0.08;
-    const parallaxOffset = smoothScrollY * 0.25;
+    const pOff = smoothScrollY * 0.15;
 
     ctx.clearRect(0, 0, W, H);
-    ctx.save();
-    ctx.translate(0, -parallaxOffset % H);
 
-    const positions = simBodies;
+    // Create shifted positions for potential field (parallax illusion)
+    const positions = simBodies.map(b => ({
+      x: b.x,
+      y: ((b.y - pOff) % H + H) % H, // shift and wrap
+      mass: b.mass, vx: b.vx, vy: b.vy
+    }));
 
     // Build potential field grid
     const cols = Math.ceil(W / CELL) + 1;
@@ -542,7 +550,6 @@ body.ja [data-lang-inline="ja"]{display:inline}
       ctx.fill();
     }
 
-    ctx.restore();
     requestAnimationFrame(draw);
   }
 
