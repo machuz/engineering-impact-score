@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ace — What's Your Engineering DNA?</title>
+<meta name="description" content="Engineer MBTI — but based on git history, not self-assessment. Find your type in 3 minutes.">
+<meta property="og:title" content="ace — What's Your Engineering DNA?">
+<meta property="og:description" content="Engineer MBTI with reproducibility. Architect? Producer? Find out from your git history.">
+<meta property="og:type" content="website">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.6}
+::selection{background:#b8bb2644;color:#fff}
+
+.lang-toggle{position:fixed;top:16px;right:16px;z-index:100;display:flex;gap:2px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:2px}
+.lang-btn{padding:4px 12px;border-radius:6px;border:none;background:transparent;color:#8b949e;cursor:pointer;font-size:12px;font-weight:600}
+.lang-btn.active{background:#21262d;color:#f0f6fc}
+
+.hero{text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#1a1e2e 0%,#0d1117 70%)}
+.hero>*{position:relative}
+.badge{display:inline-block;background:#b8bb2620;color:#b8bb26;border:1px solid #b8bb2640;border-radius:20px;padding:4px 16px;font-size:.75rem;font-weight:600;letter-spacing:.03em;margin-bottom:24px}
+.hero h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:800;line-height:1.1;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;color:#b8bb26}
+.hero .sub{font-size:clamp(1rem,2.5vw,1.3rem);color:#8b949e;margin-top:16px;max-width:500px;margin-left:auto;margin-right:auto}
+
+.cta-row{display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-size:.95rem;font-weight:700;text-decoration:none;transition:.15s}
+.btn-big{background:#b8bb26;color:#1d2021;font-size:1.1rem;padding:16px 40px}
+.btn-big:hover{filter:brightness(1.1)}
+.btn-ghost{border:1px solid #30363d;color:#c9d1d9}
+.btn-ghost:hover{border-color:#8b949e}
+
+section{max-width:720px;margin:0 auto;padding:80px 24px}
+h2{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:800;text-align:center;letter-spacing:-.02em}
+.section-sub{text-align:center;color:#8b949e;margin-top:8px;font-size:.95rem}
+
+/* Type cards */
+.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:32px}
+.type-card{background:#161b22;border:1px solid #21262d;border-radius:12px;padding:20px;text-align:center;transition:.2s}
+.type-card:hover{border-color:#30363d;transform:translateY(-2px)}
+.type-emoji{font-size:2rem}
+.type-name{font-size:1.1rem;font-weight:700;margin-top:8px}
+.type-desc{font-size:.8rem;color:#8b949e;margin-top:4px}
+
+/* VS section */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-top:40px}
+@media(max-width:640px){.vs{grid-template-columns:1fr;text-align:center}}
+.vs-card{background:#161b22;border:1px solid #21262d;border-radius:12px;padding:24px}
+.vs-label{font-size:.7rem;color:#484f58;text-transform:uppercase;letter-spacing:.1em}
+.vs-title{font-size:1.1rem;font-weight:700;margin-top:4px}
+.vs-list{list-style:none;margin-top:12px;font-size:.85rem;color:#8b949e}
+.vs-list li{padding:4px 0}
+.vs-list li::before{content:'✕ ';color:#f8514966}
+.vs-right .vs-list li::before{content:'✓ ';color:#b8bb26}
+.vs-divider{font-size:1.5rem;color:#30363d;text-align:center}
+
+/* How it works */
+.steps{margin-top:32px;counter-reset:step}
+.step{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid #161b22}
+.step-num{background:#b8bb2615;color:#b8bb26;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0}
+.step-title{font-weight:700;font-size:.95rem}
+.step-desc{font-size:.85rem;color:#8b949e;margin-top:2px}
+
+/* Share CTA */
+.share{text-align:center;padding:80px 24px;border-top:1px solid #21262d}
+.share h2{margin-bottom:16px}
+.share-types{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:24px 0}
+.share-tag{background:#161b22;border:1px solid #21262d;border-radius:8px;padding:6px 14px;font-size:.85rem;font-weight:600}
+
+.footer{text-align:center;padding:40px 24px;font-size:.75rem;color:#484f58}
+
+[data-lang="ja"]{display:none}
+body.ja [data-lang="en"]{display:none}
+body.ja [data-lang="ja"]{display:block}
+body.ja [data-lang-inline="en"]{display:none}
+body.ja [data-lang-inline="ja"]{display:inline}
+[data-lang-inline="ja"]{display:none}
+</style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+  <button class="lang-btn" onclick="setLang('ja')" id="btn-ja">JA</button>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge" data-lang="en">ENGINEER MBTI — WITH REPRODUCIBILITY</div>
+  <div class="badge" data-lang="ja">エンジニア版MBTI — 再現性あり</div>
+  <h1 data-lang="en">What's your<br>engineering <em>DNA</em>?</h1>
+  <h1 data-lang="ja">あなたのエンジニアリング<br><em>DNA</em>を知ってますか？</h1>
+  <p class="sub" data-lang="en">Your git history already knows. We just read it.</p>
+  <p class="sub" data-lang="ja">あなたのgit履歴はすでに知っている。私たちはそれを読むだけ。</p>
+  <div class="cta-row">
+    <a href="https://github.com/machuz/engineering-impact-score" class="btn btn-big">
+      <span data-lang-inline="en">Find My Type</span>
+      <span data-lang-inline="ja">自分のタイプを見る</span>
+    </a>
+  </div>
+</div>
+
+<!-- Types -->
+<section>
+  <h2 data-lang="en">15 Engineer Types</h2>
+  <h2 data-lang="ja">15のエンジニアタイプ</h2>
+  <p class="section-sub" data-lang="en">3 axes × independent classification. You're not one label — you're a combination.</p>
+  <p class="section-sub" data-lang="ja">3軸 × 独立分類。1つのラベルじゃない — あなたは組み合わせ。</p>
+
+  <div class="type-grid">
+    <div class="type-card"><div class="type-emoji">🏛️</div><div class="type-name">Architect</div><div class="type-desc" data-lang="en">Shapes the system's structure</div><div class="type-desc" data-lang="ja">システムの構造を形作る</div></div>
+    <div class="type-card"><div class="type-emoji">⚓</div><div class="type-name">Anchor</div><div class="type-desc" data-lang="en">Holds the system together</div><div class="type-desc" data-lang="ja">システムを支える力</div></div>
+    <div class="type-card"><div class="type-emoji">🧹</div><div class="type-name">Cleaner</div><div class="type-desc" data-lang="en">Fixes what others broke</div><div class="type-desc" data-lang="ja">他者の負債を清掃する</div></div>
+    <div class="type-card"><div class="type-emoji">🚀</div><div class="type-name">Producer</div><div class="type-desc" data-lang="en">Ships at high velocity</div><div class="type-desc" data-lang="ja">高速でアウトプットを出す</div></div>
+    <div class="type-card"><div class="type-emoji">🔬</div><div class="type-name">Specialist</div><div class="type-desc" data-lang="en">Deep expertise, narrow focus</div><div class="type-desc" data-lang="ja">深い専門性、狭いフォーカス</div></div>
+  </div>
+
+  <p style="text-align:center;margin-top:24px;font-size:.85rem;color:#484f58" data-lang="en">+ Style (Builder, Resilient, Rescue, Balanced...) × State (Active, Growing, Former...)</p>
+  <p style="text-align:center;margin-top:24px;font-size:.85rem;color:#484f58" data-lang="ja">+ Style（Builder, Resilient, Rescue, Balanced...）× State（Active, Growing, Former...）</p>
+</section>
+
+<!-- VS MBTI -->
+<section>
+  <h2 data-lang="en">Not your typical personality test</h2>
+  <h2 data-lang="ja">よくある性格診断とは違う</h2>
+  <div class="vs">
+    <div class="vs-card">
+      <div class="vs-label" data-lang="en">Typical MBTI</div>
+      <div class="vs-label" data-lang="ja">従来のMBTI</div>
+      <div class="vs-title" data-lang="en">Self-assessment</div>
+      <div class="vs-title" data-lang="ja">自己申告</div>
+      <ul class="vs-list" data-lang="en">
+        <li>Based on how you feel</li>
+        <li>Changes with your mood</li>
+        <li>Can be gamed</li>
+        <li>One fixed label</li>
+      </ul>
+      <ul class="vs-list" data-lang="ja">
+        <li>気分に基づく</li>
+        <li>その日の調子で変わる</li>
+        <li>ゲームできる</li>
+        <li>1つの固定ラベル</li>
+      </ul>
+    </div>
+    <div class="vs-divider">vs</div>
+    <div class="vs-card vs-right">
+      <div class="vs-label">ace</div>
+      <div class="vs-title" data-lang="en">Git observation</div>
+      <div class="vs-title" data-lang="ja">Git観測</div>
+      <ul class="vs-list" data-lang="en">
+        <li>Based on actual code history</li>
+        <li>Reproducible & verifiable</li>
+        <li>Durability can't be faked</li>
+        <li>3-axis independent topology</li>
+      </ul>
+      <ul class="vs-list" data-lang="ja">
+        <li>実際のコード履歴に基づく</li>
+        <li>再現可能・検証可能</li>
+        <li>耐久性は偽装できない</li>
+        <li>3軸独立トポロジー</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section>
+  <h2 data-lang="en">3 minutes to your type</h2>
+  <h2 data-lang="ja">3分であなたのタイプがわかる</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div><div class="step-title" data-lang="en">Install</div><div class="step-title" data-lang="ja">インストール</div>
+      <div class="step-desc"><code style="color:#b8bb26">brew install machuz/tap/eis</code></div></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div><div class="step-title" data-lang="en">Point at your repo</div><div class="step-title" data-lang="ja">リポを指定</div>
+      <div class="step-desc"><code style="color:#b8bb26">eis .</code></div></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div><div class="step-title" data-lang="en">See your DNA</div><div class="step-title" data-lang="ja">DNAを見る</div>
+      <div class="step-desc" data-lang="en">7-axis score + 3-axis topology. That's you.</div>
+      <div class="step-desc" data-lang="ja">7軸スコア + 3軸トポロジー。それがあなた。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Share CTA -->
+<div class="share">
+  <h2 data-lang="en">Share your type</h2>
+  <h2 data-lang="ja">タイプをシェアしよう</h2>
+  <p style="color:#8b949e" data-lang="en">What's your combination?</p>
+  <p style="color:#8b949e" data-lang="ja">あなたの組み合わせは？</p>
+  <div class="share-types">
+    <div class="share-tag" style="color:#79c0ff;border-color:#79c0ff30">Architect</div>
+    <div class="share-tag" style="color:#d2a8ff;border-color:#d2a8ff30">Builder</div>
+    <div class="share-tag" style="color:#8ec07c;border-color:#8ec07c30">Active</div>
+  </div>
+  <div class="cta-row">
+    <a href="https://github.com/machuz/engineering-impact-score" class="btn btn-big">
+      <span data-lang-inline="en">Find My Type</span>
+      <span data-lang-inline="ja">自分のタイプを見る</span>
+    </a>
+    <a href="./index.html" class="btn btn-ghost">
+      <span data-lang-inline="en">Read the Philosophy</span>
+      <span data-lang-inline="ja">思想を読む</span>
+    </a>
+  </div>
+  <p style="margin-top:40px;font-size:.75rem;color:#484f58">
+    Powered by EIS (pronounced "ace") — the open-source Git telescope.
+  </p>
+</div>
+
+<script>
+function setLang(lang, updateURL) {
+  document.body.className = lang === 'ja' ? 'ja' : '';
+  document.getElementById('btn-en').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
+  document.getElementById('btn-ja').className = 'lang-btn' + (lang === 'ja' ? ' active' : '');
+  localStorage.setItem('ace-lp-lang', lang);
+  if (updateURL !== false) {
+    const url = new URL(window.location);
+    url.searchParams.set('lang', lang);
+    history.replaceState(null, '', url);
+  }
+}
+const params = new URLSearchParams(window.location.search);
+const paramLang = params.get('lang');
+if (paramLang === 'ja' || paramLang === 'en') setLang(paramLang, false);
+else {
+  const saved = localStorage.getItem('ace-lp-lang');
+  if (saved) setLang(saved, false);
+  else if (navigator.language.startsWith('ja')) setLang('ja', false);
+}
+</script>
+
+</body>
+</html>
