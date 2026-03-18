@@ -261,6 +261,56 @@
     border: 1px solid rgba(250,189,47,0.25);
   }
 
+  /* Investment */
+  .invest-card {
+    background: linear-gradient(135deg, rgba(131,165,152,0.08), rgba(20,27,45,0.95));
+    border: 1px solid rgba(131,165,152,0.3); border-radius: 12px;
+    padding: 32px; position: relative; overflow: hidden;
+  }
+  .invest-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gravity-green), var(--accent), var(--gravity-green)); opacity: 0.7;
+  }
+  .invest-title {
+    font-size: 20px; font-weight: 700; color: var(--star-white);
+    margin-bottom: 16px; line-height: 1.4;
+  }
+  .invest-text { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+  .invest-text b { color: var(--star-white); }
+  .invest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+  .invest-point {
+    background: rgba(131,165,152,0.06); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px;
+  }
+  .invest-point-label {
+    font-size: 11px; color: var(--accent); text-transform: uppercase;
+    letter-spacing: 1.5px; font-weight: 600; margin-bottom: 6px;
+  }
+  .invest-point-value {
+    font-size: 14px; color: var(--text); line-height: 1.7;
+  }
+
+  /* FE Detail */
+  .fe-highlight {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px; margin-bottom: 16px;
+  }
+  .fe-highlight-title {
+    font-size: 15px; font-weight: 600; color: var(--star-white); margin-bottom: 8px;
+  }
+  .fe-highlight-desc {
+    font-size: 12px; color: var(--text-muted); line-height: 1.8;
+  }
+  .fe-stats-row {
+    display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap;
+  }
+  .fe-stat {
+    padding: 6px 12px; background: rgba(211,134,155,0.1);
+    border: 1px solid rgba(211,134,155,0.2); border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--production);
+  }
+
   /* Dark Matter */
   .dark-matter-card {
     background: linear-gradient(135deg, rgba(20,27,45,0.9), rgba(15,21,35,0.95));
@@ -308,12 +358,12 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-badge">Team Gravitational Record</div>
-    <h1 class="hero-name">Team Observation</h1>
+    <h1 class="hero-name">Engineering Team</h1>
     <div class="hero-classification">Elite / Architectural Engine / Mature / Healthy</div>
     <p class="hero-tagline">
-      Architect/Builder 2名 + Anchor 2名の四つの力が揃った構造。<br>
-      設計者が自ら手を動かし、品質の守護者がその構造を支える。<br>
-      3.5ヶ月の修羅場を乗り越え、美しいプロダクトを生み出した宇宙。
+      BE/FE 双方に Architect/Builder を擁し、Anchor 2名が安定核として支える。<br>
+      四つの力が揃い、3.5ヶ月の修羅場を乗り越え、美しいプロダクトを生み出した宇宙。<br>
+      この構造は、投資に値する。
     </p>
     <div class="hero-meta">
       <div class="hero-meta-item">
@@ -321,8 +371,8 @@
         <div class="hero-meta-label">Active Stars</div>
       </div>
       <div class="hero-meta-item">
-        <div class="hero-meta-value" style="color: var(--accent);">2</div>
-        <div class="hero-meta-label">Architects</div>
+        <div class="hero-meta-value" style="color: var(--accent);">BE + FE</div>
+        <div class="hero-meta-label">Dual Architect</div>
       </div>
       <div class="hero-meta-item">
         <div class="hero-meta-value" style="color: var(--quality);">2</div>
@@ -330,7 +380,7 @@
       </div>
       <div class="hero-meta-item">
         <div class="hero-meta-value" style="color: var(--gravity-green);">Healthy</div>
-        <div class="hero-meta-label">Risk Status</div>
+        <div class="hero-meta-label">All Risk</div>
       </div>
     </div>
   </section>
@@ -345,44 +395,50 @@
     <div class="forces-grid">
       <div class="force-card">
         <div class="force-label" style="color: var(--accent);">&#x2727; 守る力 &mdash; Structure</div>
-        <div class="force-name">machuz</div>
-        <div class="force-role" style="color: var(--accent);">Architect / Builder / Active</div>
+        <div class="force-name">machuz &mdash; BE Architect</div>
+        <div class="force-role" style="color: var(--accent);">Architect / Builder / Active &bull; Peak 93.2</div>
         <div class="force-desc">
           BE全体の構造設計者。クリーンアーキテクチャ + DDD でレイヤーを敷き、
           DelegateProcess層・PartProcess層を自ら設計・実装。
-          前任Architectとの世代交代を経て、Design 100 / Survival 100 を維持。
-          FEにもRescueで飛び込む領域横断力。Peak Total 93.2。
+          前任Architect（Yuki Yamasaki）との世代交代を経て、Design 100 / Survival 100 を維持。
+          修羅場ではBreadth=100（全リポ横断）、Indisp=100（全モジュール依存）を記録。
+          FEにも313 commits で Rescue として飛び込む領域横断力。
         </div>
       </div>
       <div class="force-card">
         <div class="force-label" style="color: var(--production);">&#x2604; 壊す力 &mdash; Creation</div>
-        <div class="force-name">R.M.</div>
-        <div class="force-role" style="color: var(--accent);">Architect / Emergent / Active</div>
+        <div class="force-name">Ryouta Mannari &mdash; FE Architect</div>
+        <div class="force-role" style="color: var(--accent);">Architect / Emergent / Active &bull; Peak 87.5</div>
         <div class="force-desc">
           FE側の創発型Architect。新プロダクトのFEを一人で設計・実装・UIデザインまで貫通。
-          半年で2,685 commits、+257k/-202k行。既存の延長線では到達できない
-          構造を2週間で提示。新しい宇宙のビッグバンを起こした恒星。Peak Total 87.5。
+          半年で2,685 commits、手書きTS/TSXだけで+257k/-202k行。
+          ダークテーマ、モバイル対応、サイドペイン基盤を2週間で構築し、
+          外部デザイナーが自分の役割を再定義するほどの完成度。
+          チームメンバーのcommit数が3倍に跳ね上がる重力場を生成。
         </div>
       </div>
       <div class="force-card">
         <div class="force-label" style="color: var(--quality);">&#x2693; 安定させる力 &mdash; Stability</div>
-        <div class="force-name">R.S. &amp; P.</div>
-        <div class="force-role" style="color: var(--quality);">Anchor / Balanced / Active</div>
+        <div class="force-name">Ryunosuke Suzuki &amp; Pony &mdash; Dual Anchor</div>
+        <div class="force-role" style="color: var(--quality);">Anchor / Balanced &amp; Mass / Active</div>
         <div class="force-desc">
-          Anchor 2人体制 &mdash; 非常に珍しい布陣。
-          R.S.は品質の守護者（Quality 85、Debt Cleanup 88）。
-          P.はMassスタイルながらQuality 98を記録する異常値。
-          Architect/Builderの高重力場の中で安定核として機能。この布陣が修羅場を支えた。
+          <b>Anchor 2人体制は非常に珍しい。</b>通常はArchitectの重力場に引きずられて
+          他のメンバーはProducerに留まることが多い中、この2人はAnchorとして安定核を維持。
+          Ryunosukeは品質の守護者（Quality 85、Debt Cleanup率88）。
+          PonyはMassスタイルながらQuality 98という異常値を記録。
+          この布陣が3.5ヶ月の修羅場を支えた。
         </div>
       </div>
       <div class="force-card">
-        <div class="force-label" style="color: var(--breadth);">&#x2B50; 作る力 &mdash; Production</div>
-        <div class="force-name">O. &amp; K.M. &amp; H.</div>
-        <div class="force-role" style="color: var(--production);">Producer &amp; Growing</div>
+        <div class="force-label" style="color: var(--breadth);">&#x2B50; 作る力 + 継承する力 &mdash; Production &amp; Succession</div>
+        <div class="force-name">O. &amp; Kazuma Maekawa &amp; Himanoa</div>
+        <div class="force-role" style="color: var(--production);">Producer / Balanced &amp; Growing</div>
         <div class="force-desc">
-          O.は構造を作り切った後Producerに移行（Survival 100 &mdash; 既存構造は正しく動いた）。
-          K.M.はユーザー体験の守護者（Survival 79&rarr;90）。
-          H.は創発型Architectとして新基盤の継承に挑む成長株。
+          O.は構造を作り切った後Producerに移行。Survival 100 &mdash; 書いたコードが
+          一行も書き直されていない。既存構造が正しく動いた証拠。
+          Kazumaはユーザー体験の守護者（Survival 79&rarr;90 &mdash; 最初から正しい設計で作っている）。
+          HimanoaはRyoutaの新基盤へ継承型Architectとして合流中。
+          Quality 94-97を維持しながら新しい構造の設計感を吸収している。
         </div>
       </div>
     </div>
@@ -412,7 +468,7 @@
       </div>
       <div class="star-card">
         <div>
-          <div class="star-name"><span class="star-gravity-dot" style="background: var(--gravity-green); box-shadow: 0 0 6px var(--gravity-green);"></span>R.M.</div>
+          <div class="star-name"><span class="star-gravity-dot" style="background: var(--gravity-green); box-shadow: 0 0 6px var(--gravity-green);"></span>Ryouta Mannari</div>
           <div class="star-domain">Frontend Lead</div>
           <div class="star-topology">Architect / Emergent</div>
         </div>
@@ -426,7 +482,7 @@
       </div>
       <div class="star-card">
         <div>
-          <div class="star-name"><span class="star-gravity-dot" style="background: var(--quality); box-shadow: 0 0 6px var(--quality);"></span>P.</div>
+          <div class="star-name"><span class="star-gravity-dot" style="background: var(--quality); box-shadow: 0 0 6px var(--quality);"></span>Pony</div>
           <div class="star-domain">Backend</div>
           <div class="star-topology">Anchor / Mass</div>
         </div>
@@ -440,7 +496,7 @@
       </div>
       <div class="star-card">
         <div>
-          <div class="star-name"><span class="star-gravity-dot" style="background: var(--quality); box-shadow: 0 0 6px var(--quality);"></span>R.S.</div>
+          <div class="star-name"><span class="star-gravity-dot" style="background: var(--quality); box-shadow: 0 0 6px var(--quality);"></span>Ryunosuke Suzuki</div>
           <div class="star-domain">Backend</div>
           <div class="star-topology">Anchor / Balanced</div>
         </div>
@@ -455,7 +511,7 @@
       <div class="star-card">
         <div>
           <div class="star-name"><span class="star-gravity-dot" style="background: var(--text-dim);"></span>O.</div>
-          <div class="star-domain">Frontend</div>
+          <div class="star-domain">Frontend &bull; ex-Architect</div>
           <div class="star-topology">Producer / Balanced</div>
         </div>
         <div class="star-scores">
@@ -467,8 +523,8 @@
       </div>
       <div class="star-card">
         <div>
-          <div class="star-name"><span class="star-gravity-dot" style="background: var(--text-dim);"></span>K.M.</div>
-          <div class="star-domain">Frontend</div>
+          <div class="star-name"><span class="star-gravity-dot" style="background: var(--text-dim);"></span>Kazuma Maekawa</div>
+          <div class="star-domain">Frontend &bull; UX Guardian</div>
           <div class="star-topology">Producer / Balanced</div>
         </div>
         <div class="star-scores">
@@ -480,8 +536,8 @@
       </div>
       <div class="star-card">
         <div>
-          <div class="star-name"><span class="star-gravity-dot" style="background: var(--gravity-yellow); box-shadow: 0 0 6px var(--gravity-yellow);"></span>H.</div>
-          <div class="star-domain">Frontend</div>
+          <div class="star-name"><span class="star-gravity-dot" style="background: var(--gravity-yellow); box-shadow: 0 0 6px var(--gravity-yellow);"></span>Himanoa</div>
+          <div class="star-domain">Frontend &bull; Successor</div>
           <div class="star-topology">Anchor / Balanced</div>
         </div>
         <div class="star-scores">
@@ -586,6 +642,152 @@
     </div>
   </section>
 
+  <!-- FE UNIVERSE DETAIL -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">&#x1F30C;</div>
+      <div class="section-title">Frontend Universe</div>
+      <div class="section-subtitle">The new universe and its creators</div>
+    </div>
+    <div class="fe-highlight">
+      <div class="fe-highlight-title">Ryouta Mannari &mdash; 新しい宇宙のビッグバン</div>
+      <div class="fe-highlight-desc">
+        新プロダクトのFEリポジトリを一人で立ち上げ。設計・実装・UIデザインまで貫通。
+        2週間で既存の延長線では到達できないプロトタイプを提示し、外部デザイナーが
+        自分の役割を再定義するほどの完成度。エンジニアのデザイン力とデザイナーの情報設計力が噛み合い、
+        新しいプロダクトは大成功を収めた。
+      </div>
+      <div class="fe-stats-row">
+        <span class="fe-stat">2,685 commits / 半年</span>
+        <span class="fe-stat">+257k / -202k lines (手書きTS/TSX)</span>
+        <span class="fe-stat">Design 100 &bull; Survival 100</span>
+      </div>
+    </div>
+    <div class="fe-highlight">
+      <div class="fe-highlight-title">O. &mdash; 既存構造の証明</div>
+      <div class="fe-highlight-desc">
+        かつてArchitect/Builderとして構造を作り切り、Producerに移行。
+        新しい宇宙が構築される横で、自分が作った構造が置き換えられるかもしれない苦悩を抱えながらも、
+        既存構造を信じて駆け抜けた。結果、<b style="color:var(--survival)">Survival 100</b> &mdash;
+        書いたコードが一行も書き直されていない。<b>既存の構造は正しく動いた。</b>
+      </div>
+    </div>
+    <div class="fe-highlight">
+      <div class="fe-highlight-title">Kazuma Maekawa &mdash; ユーザー体験の守護者</div>
+      <div class="fe-highlight-desc">
+        ユーザー体験に最も関わる領域を担い、仕上げた。
+        Survival 79&rarr;90 &mdash; 最初から正しい設計で作っている証拠。
+        高重力は出していないが、こういう動きができるエンジニアが、実はプロダクトの価値を決定している。
+        実際にユーザーからはとても良いフィードバックが届いている。
+      </div>
+    </div>
+    <div class="fe-highlight">
+      <div class="fe-highlight-title">Himanoa &mdash; 知識継承の挑戦</div>
+      <div class="fe-highlight-desc">
+        元々は創発型Architect（Q2: Design 100, Builder）。しかしRyoutaの新基盤によって自分の構造が
+        書き換えられていく現実と向き合っている。Robust Survival 71&rarr;30&rarr;28。
+        それでもQuality 80&rarr;96&rarr;94を維持しながら、新しい構造の設計感を吸収中。
+        Totalが70.4&rarr;30.4に下がったエンジニアを「パフォーマンスが落ちた」と見るのか。
+        それとも「チームの未来のために構造を伝承している」と見るのか。
+        <b>望遠鏡なしでは前者に見える。望遠鏡があれば、真実が見える。</b>
+      </div>
+    </div>
+    <div class="fe-highlight">
+      <div class="fe-highlight-title" style="color: var(--text-muted);">Yuki Yamasaki &mdash; Former Architect</div>
+      <div class="fe-highlight-desc">
+        2024年前半にTotal 90超え、Architect/Builder。コードベースの設計者そのものだった。
+        会社間の投資関係の解消によりチームから離脱。しかしコードは残っている &mdash;
+        退職後もSurvival 100を維持。このタイムラインは「成仏させるべき資産がどれほど大きいか」を示している。
+        <span style="color: var(--text-dim); font-style: italic;">State: Former</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTMENT VALUE -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">&#x1F4C8;</div>
+      <div class="section-title">Why This Team Is Worth Investing In</div>
+      <div class="section-subtitle">For leadership &amp; stakeholders</div>
+    </div>
+    <div class="invest-card">
+      <div class="invest-title">
+        このチームは、投資する価値が間違いなくある。
+      </div>
+      <p class="invest-text">
+        売上KPIだけでは技術組織の強さは見えない。
+        売上は「車の速度」であり、技術組織の状態は「エンジンの状態」。
+        エンジンが壊れかけていても下り坂なら速度は出る。
+        <b>このチームのエンジンは、壊れかけているどころか加速している。</b>
+        <br><br>
+        以下は、gitの履歴 &mdash; 偽装不可能なデータ &mdash; が証明する事実です。
+      </p>
+      <div class="invest-grid">
+        <div class="invest-point">
+          <div class="invest-point-label">&#x2714; 設計の一貫性</div>
+          <div class="invest-point-value">
+            <b>BE/FE双方にArchitect/Builder</b>が存在し、Design 100を複数四半期で維持。
+            設計判断が特定個人に依存しない分散構造（Architectural Engine）。
+            一人が抜けても構造が崩壊しない。
+          </div>
+        </div>
+        <div class="invest-point">
+          <div class="invest-point-label">&#x2714; コードの耐久性</div>
+          <div class="invest-point-value">
+            machuz: Survival 100。Mannari: Survival 100。O.: Survival 100。
+            <b>書いたコードが残り続けている</b> = 同じ機能を何度も書き直す無駄がない。
+            3ヶ月ごとに「前に作った機能を作り直す」組織はスケールしない。このチームはスケールする。
+          </div>
+        </div>
+        <div class="invest-point">
+          <div class="invest-point-label">&#x2714; 品質の安定性</div>
+          <div class="invest-point-value">
+            Anchor 2人体制（通常は1人以下）。
+            Pony: Quality 98（Massスタイルでありながらほぼバグなし）。
+            Suzuki: Debt Cleanup率88（他人のバグを黙々と修正）。
+            <b>品質が構造的に担保されている。</b>
+          </div>
+        </div>
+        <div class="invest-point">
+          <div class="invest-point-label">&#x2714; 実行力の証明</div>
+          <div class="invest-point-value">
+            <b>3.5ヶ月で新プロダクトを立ち上げ</b>、美しいUI・堅牢なBE・モバイル対応まで仕上げた。
+            machuz: 1,120 commits。Mannari: 1,398 commits。
+            この実行力は「やればできる」ではなく「やった。そして残った」という事実。
+          </div>
+        </div>
+        <div class="invest-point">
+          <div class="invest-point-label">&#x2714; 成長の軌跡</div>
+          <div class="invest-point-value">
+            チーム分類が <b>Guardian &rarr; Balanced &rarr; Architectural &rarr; Elite</b> に進化。
+            1年半で Declining / Design Vacuum から Mature / Healthy まで到達。
+            この進化速度自体が、チームの学習能力と適応力の証拠。
+          </div>
+        </div>
+        <div class="invest-point">
+          <div class="invest-point-label">&#x2714; リスクの低さ</div>
+          <div class="invest-point-value">
+            Bus Factor: Healthy（特定個人依存なし）。
+            Design Vacuum: None（設計の空白なし）。
+            Quality Drift: None（品質の漂流なし）。
+            <b>3つのリスク指標すべてが健全。</b>
+            これは偶然ではなく、構造的な結果。
+          </div>
+        </div>
+      </div>
+      <p class="invest-text" style="margin-top: 24px;">
+        <b>「うちのチームは強い。しかしそれを説明する言葉がなかった。」</b><br><br>
+        この資料は、その言葉の代わりです。gitの履歴という偽装不可能なデータが、
+        チームの強さを証明しています。このエンジニア組織に投資すれば、
+        そのリターンはコードベースに刻まれた構造的な強さによって担保されます。
+        <br><br>
+        <span style="color: var(--accent); font-weight: 600;">
+          売上が伸びているから強いのではない。エンジンが強いから、どんな坂でも登れる。
+        </span>
+      </p>
+    </div>
+  </section>
+
   <!-- DARK MATTER -->
   <section class="section">
     <div class="section-header">
@@ -598,14 +800,14 @@
         "望遠鏡はcommitの光しか観測できない。しかしこのチームには、<br>commitに一切現れない巨大な重力源がいた。"
       </p>
       <p class="dark-matter-text">
-        <span class="dm-name">PO D.H.</span> &mdash;
-        営業出身ながらモノづくりへの深いリスペクトを持ち、複数組織の視点を束ねて気の遠くなるような大量のプランニングをこなした。自分で画面イメージを切り貼りで作り、全力で脳みそを同期しにきてくれた。
+        <span class="dm-name">PO Daiki Hiyori</span> &mdash;
+        営業出身ながらモノづくりへの深いリスペクトを持ち、複数組織（営業・CS・戦略事業部）の視点を束ねて気の遠くなるような大量のプランニングをこなした。自分で画面イメージを切り貼りで作り、全力で脳みそを同期しにきてくれた。
         <br><br>
-        <span class="dm-name">PdM S.T.</span> &mdash;
-        この開発組織の魂。事業に対する熱をチームに注ぎ続け、ギリギリの中でスコープ調整とバックアッププランを用意し、最後の最後に「このままいきましょう！！」と共にアクセルを踏んでくれた。
+        <span class="dm-name">PdM Shunnosuke Teduka</span> &mdash;
+        この開発組織の魂。事業に対する熱をチームに注ぎ続け、ギリギリの中でスコープ調整とバックアッププランを用意し、最後の最後に「このままいきましょう！！」と共にアクセルを踏んでくれた。Ryoutaは飲みの席で「Tedukaさんを幸せにしたい」と言った。その後の1,398 commitsがそれを証明している。
         <br><br>
-        <span class="dm-name">QA T.Y.</span> &mdash;
-        リリース直前の1週間で数百のバグを潰すフェーズを淡々と、しかし着実にこなした。QAの検証を通過して初めて、commitは「動くコード」になる。望遠鏡に映らない、しかしプロダクトの品質を決定づけるダークマター。
+        <span class="dm-name">QA Taishi Yamasaki</span> &mdash;
+        リリース直前の1週間で数百のバグを潰すフェーズを淡々と、しかし着実にこなした。Tedukaと共に大量のQAを捌き、正常系のわかりやすいバグは0の状態でリリースを迎えた。QAの検証を通過して初めて、commitは「動くコード」になる。
         <br><br>
         良質で巨大な文化を構築するダークマターが、この宇宙の全てを支えている。
       </p>
@@ -652,7 +854,7 @@ new Chart(ctx, {
         fill: false,
       },
       {
-        label: 'R.M. (FE)',
+        label: 'Mannari (FE)',
         data: [75.7, 87.5, 73.2, 71.5, 73.6, 83.4, 76.4],
         borderColor: '#d3869b',
         borderWidth: 2.5,
@@ -662,7 +864,7 @@ new Chart(ctx, {
         fill: false,
       },
       {
-        label: 'P. (BE)',
+        label: 'Pony (BE)',
         data: [null, null, null, null, 35.5, 48.3, 37.6],
         borderColor: '#fabd2f',
         borderWidth: 1.5,
@@ -673,7 +875,7 @@ new Chart(ctx, {
         fill: false,
       },
       {
-        label: 'R.S. (BE)',
+        label: 'Suzuki (BE)',
         data: [null, null, null, 42.5, 37.9, 40.5, null],
         borderColor: '#8ec07c',
         borderWidth: 1.5,
