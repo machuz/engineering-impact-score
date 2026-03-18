@@ -9,6 +9,11 @@ type DebtData = metric.DebtData
 type ModuleRisk = metric.ModuleRisk
 type VerboseFunc = metric.VerboseFunc
 
+// Module Topology types
+type ModulePair = metric.ModulePair
+type CochangeResult = metric.CochangeResult
+type ModuleOwnership = metric.ModuleOwnership
+
 var (
 	CalcProduction           = metric.CalcProduction
 	CalcLines                = metric.CalcLines
@@ -23,4 +28,9 @@ var (
 	IsExcluded               = metric.IsExcluded
 	ModuleOf                 = metric.ModuleOf
 	NewRawScores             = metric.NewRawScores
+
+	// Module Topology
+	CalcCochange               = metric.CalcCochange
+	CalcModuleSurvival         = metric.CalcModuleSurvival
+	CalcOwnershipFragmentation = metric.CalcOwnershipFragmentation
 )
