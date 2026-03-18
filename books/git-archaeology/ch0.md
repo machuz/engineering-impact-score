@@ -2,7 +2,7 @@
 title: "git考古学の始め方 —— 3分でわかるEngineering Impact Score"
 ---
 
-![Cover](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/hatena/cover-ch0.png?v=1)
+![Cover](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/hatena/cover-ch0.png?v=2)
 
 *git log と git blame だけで、エンジニアの「戦闘力」が見える。*
 

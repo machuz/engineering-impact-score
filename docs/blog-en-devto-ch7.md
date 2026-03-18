@@ -42,7 +42,7 @@ Open the HTML in a browser, feed `eis timeline --format json` output to an AI, a
 
 The team Health Metrics view is particularly interesting. Complementarity, Growth Potential, Sustainability, Debt Balance — you can see at a glance how these evolve across periods.
 
-![Team Health Metrics](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-health-metrics-output.png?v=0.11.0)
+![Team Health Metrics](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-health-metrics-output.png?v=0.12.0)
 
 ---
 

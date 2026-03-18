@@ -30,7 +30,7 @@ HTMLをブラウザで開き、`eis timeline --format json` の出力をAIに渡
 
 特にチームのHealth Metricsが面白い。Complementarity（補完性）、Growth Potential（成長余地）、Sustainability（持続性）、Debt Balance（負債バランス）——これらが期間ごとにどう変化しているかが一目でわかる。
 
-![Team Health Metrics](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-health-metrics-output.png?v=0.11.0)
+![Team Health Metrics](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/team-health-metrics-output.png?v=0.12.0)
 
 ---
 

@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="920" viewBox="0 0 1400 920">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="920" fill="#282828"/>
+
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <rect width="220" height="920" fill="#1d2021"/>
+
+  <text x="20" y="30" fill="#8ec07c" font-size="14" font-weight="700">EIS TIMELINE</text>
+
+  <text x="20" y="65" fill="#83a598" font-size="12" font-weight="700">INDIVIDUAL</text>
+
+  <!-- Backend -->
+  <text x="20" y="95" fill="#fabd2f" font-size="12" font-weight="700">Backend</text>
+  <text x="28" y="115" fill="#ebdbb2" font-size="11">machuz</text>
+  <text x="28" y="133" fill="#ebdbb2" font-size="11">R.S.</text>
+  <text x="28" y="151" fill="#ebdbb2" font-size="11">P.</text>
+  <text x="28" y="169" fill="#ebdbb2" font-size="11">Y.T.</text>
+  <text x="28" y="187" fill="#ebdbb2" font-size="11">K.M.</text>
+  <text x="28" y="205" fill="#ebdbb2" font-size="11">H.A.</text>
+  <text x="28" y="223" fill="#ebdbb2" font-size="11">O.T.</text>
+  <text x="28" y="241" fill="#ebdbb2" font-size="11">Po.</text>
+  <text x="28" y="259" fill="#ebdbb2" font-size="11">R.M.</text>
+  <text x="28" y="277" fill="#ebdbb2" font-size="11">Ma.</text>
+  <text x="28" y="295" fill="#ebdbb2" font-size="11">Ko.</text>
+
+  <!-- Frontend -->
+  <text x="20" y="330" fill="#fabd2f" font-size="12" font-weight="700">Frontend</text>
+  <text x="28" y="350" fill="#ebdbb2" font-size="11">R.M.</text>
+  <text x="28" y="368" fill="#ebdbb2" font-size="11">O.T.</text>
+  <text x="28" y="386" fill="#ebdbb2" font-size="11">machuz</text>
+  <text x="28" y="404" fill="#ebdbb2" font-size="11">M.K.</text>
+  <text x="28" y="422" fill="#ebdbb2" font-size="11">H.A.</text>
+  <text x="28" y="440" fill="#ebdbb2" font-size="11">T.</text>
+  <text x="28" y="458" fill="#ebdbb2" font-size="11">P.</text>
+  <text x="28" y="476" fill="#ebdbb2" font-size="11">K.M.</text>
+  <text x="28" y="494" fill="#ebdbb2" font-size="11">R.S.</text>
+  <text x="28" y="512" fill="#ebdbb2" font-size="11">Ko.</text>
+  <text x="28" y="530" fill="#ebdbb2" font-size="11">Ma.</text>
+  <text x="28" y="548" fill="#ebdbb2" font-size="11">Po.</text>
+
+  <!-- Infra -->
+  <text x="20" y="583" fill="#fabd2f" font-size="12" font-weight="700">Infra</text>
+  <text x="28" y="603" fill="#ebdbb2" font-size="11">machuz</text>
+  <text x="28" y="621" fill="#ebdbb2" font-size="11">W.K.</text>
+  <text x="28" y="639" fill="#ebdbb2" font-size="11">Po.</text>
+  <text x="28" y="657" fill="#ebdbb2" font-size="11">H.A.</text>
+  <text x="28" y="675" fill="#ebdbb2" font-size="11">K.M.</text>
+  <text x="28" y="693" fill="#ebdbb2" font-size="11">Ma.</text>
+
+  <!-- ========== HEALTH METRICS CHART ========== -->
+  <text x="260" y="30" fill="#ebdbb2" font-size="16" font-weight="700">Health Metrics</text>
+
+  <!-- Legend -->
+  <circle cx="380" cy="52" r="5" fill="none" stroke="#83a598" stroke-width="2"/>
+  <text x="390" y="56" fill="#a89984" font-size="10">Complementarity</text>
+  <circle cx="530" cy="52" r="5" fill="none" stroke="#fe8019" stroke-width="2"/>
+  <text x="540" y="56" fill="#a89984" font-size="10">GrowthPotential</text>
+  <circle cx="670" cy="52" r="5" fill="none" stroke="#fb4934" stroke-width="2"/>
+  <text x="680" y="56" fill="#a89984" font-size="10">Sustainability</text>
+  <circle cx="800" cy="52" r="5" fill="none" stroke="#b8bb26" stroke-width="2"/>
+  <text x="810" y="56" fill="#a89984" font-size="10">DebtBalance</text>
+  <circle cx="920" cy="52" r="5" fill="none" stroke="#d79921" stroke-width="2"/>
+  <text x="930" y="56" fill="#a89984" font-size="10">ProductivityDensity</text>
+  <circle cx="1100" cy="52" r="5" fill="none" stroke="#cc241d" stroke-width="2"/>
+  <text x="1110" y="56" fill="#a89984" font-size="10">QualityConsistency</text>
+  <circle cx="1270" cy="52" r="5" fill="none" stroke="#d3869b" stroke-width="2"/>
+  <text x="1280" y="56" fill="#a89984" font-size="10">RiskRatio</text>
+
+  <!-- Chart area -->
+  <rect x="290" y="70" width="1060" height="280" rx="4" fill="#1d2021" opacity="0.5"/>
+
+  <!-- Y-axis labels -->
+  <text x="275" y="80" fill="#665c54" font-size="10" text-anchor="end">100</text>
+  <text x="275" y="122" fill="#665c54" font-size="10" text-anchor="end">80</text>
+  <text x="275" y="164" fill="#665c54" font-size="10" text-anchor="end">60</text>
+  <text x="275" y="206" fill="#665c54" font-size="10" text-anchor="end">40</text>
+  <text x="275" y="248" fill="#665c54" font-size="10" text-anchor="end">20</text>
+  <text x="275" y="290" fill="#665c54" font-size="10" text-anchor="end">0</text>
+
+  <!-- Grid lines -->
+  <line x1="290" y1="77" x2="1350" y2="77" stroke="#3c3836" stroke-width="1"/>
+  <line x1="290" y1="119" x2="1350" y2="119" stroke="#3c3836" stroke-width="1"/>
+  <line x1="290" y1="161" x2="1350" y2="161" stroke="#3c3836" stroke-width="1"/>
+  <line x1="290" y1="203" x2="1350" y2="203" stroke="#3c3836" stroke-width="1"/>
+  <line x1="290" y1="245" x2="1350" y2="245" stroke="#3c3836" stroke-width="1"/>
+  <line x1="290" y1="287" x2="1350" y2="287" stroke="#3c3836" stroke-width="1"/>
+
+  <!-- X-axis labels -->
+  <text x="420" y="310" fill="#928374" font-size="11" text-anchor="middle">2025-H1</text>
+  <text x="820" y="310" fill="#928374" font-size="11" text-anchor="middle">2025-H2</text>
+  <text x="1220" y="310" fill="#928374" font-size="11" text-anchor="middle">2026-H1</text>
+
+  <!-- Data lines -->
+  <!-- Complementarity (blue): 55→60→60 -->
+  <polyline points="420,168 820,161 1220,161" fill="none" stroke="#83a598" stroke-width="2"/>
+  <circle cx="420" cy="168" r="4" fill="none" stroke="#83a598" stroke-width="2"/>
+  <circle cx="820" cy="161" r="4" fill="none" stroke="#83a598" stroke-width="2"/>
+  <circle cx="1220" cy="161" r="4" fill="none" stroke="#83a598" stroke-width="2"/>
+
+  <!-- GrowthPotential (orange): 80→95→80 -->
+  <polyline points="420,119 820,85 1220,119" fill="none" stroke="#fe8019" stroke-width="2"/>
+  <circle cx="420" cy="119" r="4" fill="none" stroke="#fe8019" stroke-width="2"/>
+  <circle cx="820" cy="85" r="4" fill="none" stroke="#fe8019" stroke-width="2"/>
+  <circle cx="1220" cy="119" r="4" fill="none" stroke="#fe8019" stroke-width="2"/>
+
+  <!-- Sustainability (red): 80→80→70 -->
+  <polyline points="420,119 820,119 1220,140" fill="none" stroke="#fb4934" stroke-width="2"/>
+  <circle cx="420" cy="119" r="4" fill="none" stroke="#fb4934" stroke-width="2"/>
+  <circle cx="820" cy="119" r="4" fill="none" stroke="#fb4934" stroke-width="2"/>
+  <circle cx="1220" cy="140" r="4" fill="none" stroke="#fb4934" stroke-width="2"/>
+
+  <!-- DebtBalance (green): 40→55→45 -->
+  <polyline points="420,203 820,168 1220,189" fill="none" stroke="#b8bb26" stroke-width="2"/>
+  <circle cx="420" cy="203" r="4" fill="none" stroke="#b8bb26" stroke-width="2"/>
+  <circle cx="820" cy="168" r="4" fill="none" stroke="#b8bb26" stroke-width="2"/>
+  <circle cx="1220" cy="189" r="4" fill="none" stroke="#b8bb26" stroke-width="2"/>
+
+  <!-- ProductivityDensity (yellow): 30→40→55 -->
+  <polyline points="420,224 820,203 1220,168" fill="none" stroke="#d79921" stroke-width="2"/>
+  <circle cx="420" cy="224" r="4" fill="none" stroke="#d79921" stroke-width="2"/>
+  <circle cx="820" cy="203" r="4" fill="none" stroke="#d79921" stroke-width="2"/>
+  <circle cx="1220" cy="168" r="4" fill="none" stroke="#d79921" stroke-width="2"/>
+
+  <!-- QualityConsistency (dark red): 20→25→25 -->
+  <polyline points="420,245 820,238 1220,238" fill="none" stroke="#cc241d" stroke-width="2"/>
+  <circle cx="420" cy="245" r="4" fill="none" stroke="#cc241d" stroke-width="2"/>
+  <circle cx="820" cy="238" r="4" fill="none" stroke="#cc241d" stroke-width="2"/>
+  <circle cx="1220" cy="238" r="4" fill="none" stroke="#cc241d" stroke-width="2"/>
+
+  <!-- RiskRatio (pink): 45→0→5 -->
+  <polyline points="420,189 820,287 1220,280" fill="none" stroke="#d3869b" stroke-width="2"/>
+  <circle cx="420" cy="189" r="4" fill="none" stroke="#d3869b" stroke-width="2"/>
+  <circle cx="820" cy="287" r="4" fill="none" stroke="#d3869b" stroke-width="2"/>
+  <circle cx="1220" cy="280" r="4" fill="none" stroke="#d3869b" stroke-width="2"/>
+
+  <!-- ========== MEMBERSHIP CHART ========== -->
+  <text x="260" y="350" fill="#ebdbb2" font-size="16" font-weight="700">Membership</text>
+
+  <!-- Legend -->
+  <rect x="660" y="342" width="12" height="12" rx="2" fill="#83a598" opacity="0.7"/>
+  <text x="678" y="353" fill="#a89984" font-size="10">Core</text>
+  <rect x="720" y="342" width="12" height="12" rx="2" fill="#b8bb26" opacity="0.7"/>
+  <text x="738" y="353" fill="#a89984" font-size="10">Effective</text>
+  <rect x="810" y="342" width="12" height="12" rx="2" fill="#fabd2f" opacity="0.7"/>
+  <text x="828" y="353" fill="#a89984" font-size="10">Total</text>
+
+  <!-- Chart area -->
+  <rect x="290" y="365" width="1060" height="220" rx="4" fill="#1d2021" opacity="0.5"/>
+
+  <!-- Y-axis -->
+  <text x="275" y="380" fill="#665c54" font-size="10" text-anchor="end">10</text>
+  <text x="275" y="420" fill="#665c54" font-size="10" text-anchor="end">8</text>
+  <text x="275" y="460" fill="#665c54" font-size="10" text-anchor="end">6</text>
+  <text x="275" y="500" fill="#665c54" font-size="10" text-anchor="end">4</text>
+  <text x="275" y="540" fill="#665c54" font-size="10" text-anchor="end">2</text>
+  <text x="275" y="575" fill="#665c54" font-size="10" text-anchor="end">0</text>
+
+  <!-- Grid lines -->
+  <line x1="290" y1="377" x2="1350" y2="377" stroke="#3c3836" stroke-width="1"/>
+  <line x1="290" y1="417" x2="1350" y2="417" stroke="#3c3836" stroke-width="1"/>
+  <line x1="290" y1="457" x2="1350" y2="457" stroke="#3c3836" stroke-width="1"/>
+  <line x1="290" y1="497" x2="1350" y2="497" stroke="#3c3836" stroke-width="1"/>
+  <line x1="290" y1="537" x2="1350" y2="537" stroke="#3c3836" stroke-width="1"/>
+  <line x1="290" y1="575" x2="1350" y2="575" stroke="#3c3836" stroke-width="1"/>
+
+  <!-- X-axis labels -->
+  <text x="420" y="590" fill="#928374" font-size="11" text-anchor="middle">2025-H1</text>
+  <text x="820" y="590" fill="#928374" font-size="11" text-anchor="middle">2025-H2</text>
+  <text x="1220" y="590" fill="#928374" font-size="11" text-anchor="middle">2026-H1</text>
+
+  <!-- 2025-H1 bars: Core=5, Effective=6, Total=9 -->
+  <rect x="370" y="477" width="30" height="98" rx="3" fill="#83a598" opacity="0.7"/>
+  <rect x="405" y="457" width="30" height="118" rx="3" fill="#b8bb26" opacity="0.7"/>
+  <rect x="440" y="397" width="30" height="178" rx="3" fill="#fabd2f" opacity="0.7"/>
+
+  <!-- 2025-H2 bars: Core=5, Effective=6, Total=9 -->
+  <rect x="770" y="477" width="30" height="98" rx="3" fill="#83a598" opacity="0.7"/>
+  <rect x="805" y="457" width="30" height="118" rx="3" fill="#b8bb26" opacity="0.7"/>
+  <rect x="840" y="397" width="30" height="178" rx="3" fill="#fabd2f" opacity="0.7"/>
+
+  <!-- 2026-H1 bars: Core=4, Effective=5, Total=11 -->
+  <rect x="1170" y="497" width="30" height="78" rx="3" fill="#83a598" opacity="0.7"/>
+  <rect x="1205" y="477" width="30" height="98" rx="3" fill="#b8bb26" opacity="0.7"/>
+  <rect x="1240" y="377" width="30" height="198" rx="3" fill="#fabd2f" opacity="0.7"/>
+
+  <!-- ========== CLASSIFICATION ========== -->
+  <text x="260" y="630" fill="#ebdbb2" font-size="16" font-weight="700">Classification</text>
+
+  <!-- 2025-H1 -->
+  <text x="280" y="665" fill="#928374" font-size="12" font-weight="700">2025-H1</text>
+  <rect x="380" y="650" width="140" height="24" rx="12" fill="#d79921" opacity="0.25"/>
+  <text x="450" y="667" text-anchor="middle" fill="#fabd2f" font-size="10">Character: Balanced</text>
+  <rect x="530" y="650" width="185" height="24" rx="12" fill="#83a598" opacity="0.25"/>
+  <text x="622" y="667" text-anchor="middle" fill="#83a598" font-size="10">Structure: Unstructured</text>
+  <rect x="725" y="650" width="140" height="24" rx="12" fill="#b8bb26" opacity="0.25"/>
+  <text x="795" y="667" text-anchor="middle" fill="#b8bb26" font-size="10">Culture: Stability</text>
+  <rect x="875" y="650" width="120" height="24" rx="12" fill="#928374" opacity="0.25"/>
+  <text x="935" y="667" text-anchor="middle" fill="#ebdbb2" font-size="10">Phase: Stable</text>
+  <rect x="1005" y="650" width="160" height="24" rx="12" fill="#cc241d" opacity="0.25"/>
+  <text x="1085" y="667" text-anchor="middle" fill="#fb4934" font-size="10">Risk: Design Vacuum</text>
+
+  <!-- 2025-H2 -->
+  <text x="280" y="710" fill="#928374" font-size="12" font-weight="700">2025-H2</text>
+  <rect x="380" y="695" width="120" height="24" rx="12" fill="#b8bb26" opacity="0.25"/>
+  <text x="440" y="712" text-anchor="middle" fill="#b8bb26" font-size="10">Character: Elite</text>
+  <rect x="510" y="695" width="210" height="24" rx="12" fill="#83a598" opacity="0.25"/>
+  <text x="615" y="712" text-anchor="middle" fill="#83a598" font-size="10">Structure: Architectural Engine</text>
+  <rect x="730" y="695" width="130" height="24" rx="12" fill="#fe8019" opacity="0.25"/>
+  <text x="795" y="712" text-anchor="middle" fill="#fe8019" font-size="10">Culture: Builder</text>
+  <rect x="870" y="695" width="120" height="24" rx="12" fill="#928374" opacity="0.25"/>
+  <text x="930" y="712" text-anchor="middle" fill="#ebdbb2" font-size="10">Phase: Mature</text>
+  <rect x="1000" y="695" width="140" height="24" rx="12" fill="#cc241d" opacity="0.25"/>
+  <text x="1070" y="712" text-anchor="middle" fill="#fb4934" font-size="10">Risk: Bus Factor</text>
+
+  <!-- 2026-H1 -->
+  <text x="280" y="755" fill="#928374" font-size="12" font-weight="700">2026-H1</text>
+  <rect x="380" y="740" width="120" height="24" rx="12" fill="#b8bb26" opacity="0.25"/>
+  <text x="440" y="757" text-anchor="middle" fill="#b8bb26" font-size="10">Character: Elite</text>
+  <rect x="510" y="740" width="210" height="24" rx="12" fill="#83a598" opacity="0.25"/>
+  <text x="615" y="757" text-anchor="middle" fill="#83a598" font-size="10">Structure: Architectural Engine</text>
+  <rect x="730" y="740" width="130" height="24" rx="12" fill="#fe8019" opacity="0.25"/>
+  <text x="795" y="757" text-anchor="middle" fill="#fe8019" font-size="10">Culture: Builder</text>
+  <rect x="870" y="740" width="120" height="24" rx="12" fill="#928374" opacity="0.25"/>
+  <text x="930" y="757" text-anchor="middle" fill="#ebdbb2" font-size="10">Phase: Mature</text>
+  <rect x="1000" y="740" width="130" height="24" rx="12" fill="#8ec07c" opacity="0.25"/>
+  <text x="1065" y="757" text-anchor="middle" fill="#8ec07c" font-size="10">Risk: Healthy</text>
+</svg>
