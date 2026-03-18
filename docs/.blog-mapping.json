@@ -130,5 +130,13 @@
   "blog-en-devto-complete.md": {
     "devto_id": 3355436,
     "devto_url": "https://dev.to/machuz/git-archaeology-a-complete-theory-of-software-universes-1057"
+  },
+  "blog-en-devto-ch0.md": {
+    "devto_id": 3366022,
+    "devto_url": "https://dev.to/machuz/git-archaeology-0-what-if-git-history-could-tell-you-who-your-strongest-engineers-are-5397"
+  },
+  "blog-ja-hatena-ch0.md": {
+    "hatena_id": "17179246901366293853",
+    "hatena_url": "https://ma2k8.hateblo.jp/entry/2026/03/18/150222"
   }
 }
