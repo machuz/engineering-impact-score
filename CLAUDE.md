@@ -154,6 +154,13 @@ go test ./...
 - **ハイブリッドスコアリング**: 絶対値（組織横断比較可能）+ 相対値（ドメイン内順位）
 - **40点 = シニア**: 7軸で40+を出すのは意図的に厳しい基準
 
+## EIS と ace-orbit の責務分担
+
+- **EIS（CLI）** = 観測データの生成器。git log / git blame から7軸スコア・3軸エンジニアトポロジー・3軸モジュールトポロジーを算出し、JSON で出力する
+- **ace-orbit（SaaS）** = 観測データの解釈・推薦・予測を担う。Structural Summary、人×モジュール突合（Conway's Law検証）、時間系列リスク予測、アラートはすべて SaaS 側の機能
+
+CLI に推薦ロジックや予測機能は入れない。CLI は望遠鏡、SaaS は天文台。
+
 ## 今後の方向性
 
 impact metric → **engineering risk detector** への進化:
