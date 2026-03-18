@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="2868" viewBox="0 0 1320 2868">
+  <defs>
+    <radialGradient id="glow-ace-w" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fabd2f" stop-opacity="0.25"/>
+      <stop offset="40%" stop-color="#d79921" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#111213" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-true-w" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#83a598" stop-opacity="0.25"/>
+      <stop offset="40%" stop-color="#458588" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#111213" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-ideal-w" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#d3869b" stop-opacity="0.25"/>
+      <stop offset="40%" stop-color="#b16286" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#111213" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1320" height="2868" fill="#111213"/>
+
+  <!-- ★★ BIG Unicode stars ★★ -->
+  <text x="160" y="200" font-size="36" fill="#fabd2f" opacity="0.35" font-family="serif">✦</text>
+  <text x="1050" y="140" font-size="32" fill="#d3869b" opacity="0.28" font-family="serif">✧</text>
+  <text x="60" y="550" font-size="38" fill="#83a598" opacity="0.25" font-family="serif">✦</text>
+  <text x="1200" y="480" font-size="34" fill="#fabd2f" opacity="0.3" font-family="serif">⋆</text>
+  <text x="200" y="850" font-size="42" fill="#d3869b" opacity="0.22" font-family="serif">✧</text>
+  <text x="1100" y="1100" font-size="36" fill="#83a598" opacity="0.25" font-family="serif">✦</text>
+  <text x="100" y="1350" font-size="32" fill="#fabd2f" opacity="0.28" font-family="serif">⋆</text>
+  <text x="1150" y="1700" font-size="38" fill="#d3869b" opacity="0.22" font-family="serif">✧</text>
+  <text x="150" y="2050" font-size="34" fill="#83a598" opacity="0.28" font-family="serif">✦</text>
+  <text x="1080" y="2450" font-size="42" fill="#fabd2f" opacity="0.22" font-family="serif">⋆</text>
+  <text x="250" y="2700" font-size="36" fill="#d3869b" opacity="0.25" font-family="serif">✧</text>
+
+  <!-- ★ Medium Unicode stars ★ -->
+  <text x="95" y="95" font-size="22" fill="#fabd2f" opacity="0.4" font-family="serif">✦</text>
+  <text x="780" y="55" font-size="18" fill="#83a598" opacity="0.35" font-family="serif">⋆</text>
+  <text x="1180" y="250" font-size="24" fill="#d3869b" opacity="0.3" font-family="serif">✧</text>
+  <text x="320" y="340" font-size="20" fill="#fabd2f" opacity="0.35" font-family="serif">∗</text>
+  <text x="550" y="180" font-size="16" fill="#83a598" opacity="0.3" font-family="serif">✦</text>
+  <text x="870" y="380" font-size="20" fill="#83a598" opacity="0.35" font-family="serif">✧</text>
+  <text x="1230" y="650" font-size="18" fill="#fabd2f" opacity="0.35" font-family="serif">∗</text>
+  <text x="450" y="620" font-size="22" fill="#d3869b" opacity="0.3" font-family="serif">✦</text>
+  <text x="700" y="720" font-size="16" fill="#83a598" opacity="0.35" font-family="serif">⋆</text>
+  <text x="1000" y="950" font-size="18" fill="#83a598" opacity="0.3" font-family="serif">∗</text>
+  <text x="920" y="1250" font-size="20" fill="#d3869b" opacity="0.3" font-family="serif">✧</text>
+  <text x="80" y="1200" font-size="18" fill="#fabd2f" opacity="0.3" font-family="serif">∗</text>
+  <text x="220" y="1500" font-size="18" fill="#83a598" opacity="0.35" font-family="serif">✦</text>
+  <text x="1050" y="1530" font-size="16" fill="#83a598" opacity="0.35" font-family="serif">∗</text>
+  <text x="1200" y="1860" font-size="22" fill="#d3869b" opacity="0.3" font-family="serif">✧</text>
+  <text x="100" y="1750" font-size="18" fill="#83a598" opacity="0.35" font-family="serif">⋆</text>
+  <text x="960" y="1900" font-size="24" fill="#fabd2f" opacity="0.3" font-family="serif">✦</text>
+  <text x="1120" y="2150" font-size="16" fill="#83a598" opacity="0.35" font-family="serif">✧</text>
+  <text x="80" y="2250" font-size="24" fill="#fabd2f" opacity="0.3" font-family="serif">⋆</text>
+  <text x="1000" y="2200" font-size="22" fill="#d3869b" opacity="0.3" font-family="serif">✦</text>
+  <text x="280" y="2400" font-size="16" fill="#fabd2f" opacity="0.35" font-family="serif">✧</text>
+  <text x="900" y="2580" font-size="22" fill="#d3869b" opacity="0.28" font-family="serif">✦</text>
+  <text x="180" y="2660" font-size="24" fill="#83a598" opacity="0.3" font-family="serif">∗</text>
+  <text x="1150" y="2720" font-size="18" fill="#fabd2f" opacity="0.35" font-family="serif">⋆</text>
+  <text x="550" y="2750" font-size="16" fill="#d3869b" opacity="0.3" font-family="serif">✦</text>
+  <text x="660" y="130" font-size="20" fill="#fabd2f" opacity="0.25" font-family="serif">✧</text>
+  <text x="350" y="780" font-size="18" fill="#83a598" opacity="0.28" font-family="serif">✦</text>
+  <text x="1050" y="680" font-size="22" fill="#d3869b" opacity="0.25" font-family="serif">⋆</text>
+  <text x="800" y="1200" font-size="16" fill="#fabd2f" opacity="0.3" font-family="serif">∗</text>
+  <text x="450" y="1450" font-size="24" fill="#83a598" opacity="0.25" font-family="serif">✧</text>
+  <text x="350" y="2050" font-size="18" fill="#fabd2f" opacity="0.3" font-family="serif">⋆</text>
+  <text x="850" y="2450" font-size="22" fill="#83a598" opacity="0.25" font-family="serif">✧</text>
+
+  <!-- Dot stars -->
+  <circle cx="45" cy="35" r="1.2" fill="#ebdbb2" opacity="0.35"/>
+  <circle cx="480" cy="45" r="1.5" fill="#ebdbb2" opacity="0.3"/>
+  <circle cx="950" cy="55" r="1" fill="#ebdbb2" opacity="0.28"/>
+  <circle cx="120" cy="160" r="1.5" fill="#ebdbb2" opacity="0.35"/>
+  <circle cx="620" cy="275" r="1.2" fill="#ebdbb2" opacity="0.3"/>
+  <circle cx="1090" cy="330" r="1" fill="#ebdbb2" opacity="0.25"/>
+  <circle cx="290" cy="450" r="1.5" fill="#ebdbb2" opacity="0.3"/>
+  <circle cx="770" cy="560" r="1.2" fill="#ebdbb2" opacity="0.25"/>
+  <circle cx="170" cy="680" r="1.2" fill="#ebdbb2" opacity="0.35"/>
+  <circle cx="830" cy="780" r="1.5" fill="#ebdbb2" opacity="0.3"/>
+  <circle cx="1270" cy="890" r="1" fill="#ebdbb2" opacity="0.25"/>
+  <circle cx="140" cy="1100" r="1.2" fill="#ebdbb2" opacity="0.3"/>
+  <circle cx="840" cy="1260" r="1.5" fill="#ebdbb2" opacity="0.3"/>
+  <circle cx="100" cy="1500" r="1.5" fill="#ebdbb2" opacity="0.35"/>
+  <circle cx="780" cy="1640" r="1.2" fill="#ebdbb2" opacity="0.28"/>
+  <circle cx="1270" cy="1790" r="1" fill="#ebdbb2" opacity="0.25"/>
+  <circle cx="340" cy="1930" r="1.2" fill="#ebdbb2" opacity="0.3"/>
+  <circle cx="850" cy="2040" r="1.5" fill="#ebdbb2" opacity="0.35"/>
+  <circle cx="300" cy="2320" r="1.2" fill="#ebdbb2" opacity="0.3"/>
+  <circle cx="970" cy="2440" r="1" fill="#ebdbb2" opacity="0.28"/>
+  <circle cx="610" cy="2570" r="1.5" fill="#ebdbb2" opacity="0.35"/>
+  <circle cx="1120" cy="2610" r="1.2" fill="#ebdbb2" opacity="0.3"/>
+  <circle cx="240" cy="2720" r="1" fill="#ebdbb2" opacity="0.25"/>
+  <circle cx="780" cy="2810" r="1.5" fill="#ebdbb2" opacity="0.3"/>
+
+  <!-- Gravity spine -->
+  <line x1="660" y1="400" x2="660" y2="2700" stroke="#504945" stroke-width="0.5" opacity="0.15"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- ACE — original logo at (660, 1080), no clip -->
+  <!-- ═══════════════════════════════════════════ -->
+  <g transform="translate(404, 824)">
+    <!-- Scope frame -->
+    <circle cx="256" cy="256" r="220" fill="none" stroke="#504945" stroke-width="3" opacity="0.6"/>
+    <circle cx="256" cy="256" r="200" fill="none" stroke="#504945" stroke-width="5"/>
+    <circle cx="256" cy="256" r="195" fill="none" stroke="#3c3836" stroke-width="1.5"/>
+    <line x1="256" y1="56" x2="256" y2="-30" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="256" y1="456" x2="256" y2="542" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="56" y1="256" x2="-30" y2="256" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="456" y1="256" x2="542" y2="256" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="115" y1="115" x2="54" y2="54" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <line x1="397" y1="397" x2="458" y2="458" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <line x1="397" y1="115" x2="458" y2="54" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <line x1="115" y1="397" x2="54" y2="458" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <!-- Interior (no clip — lines bleed out) -->
+    <circle cx="256" cy="256" r="140" fill="none" stroke="#d79921" stroke-width="0.6" opacity="0.1"/>
+    <circle cx="256" cy="256" r="105" fill="none" stroke="#d79921" stroke-width="0.7" opacity="0.15"/>
+    <circle cx="256" cy="256" r="70" fill="none" stroke="#fabd2f" stroke-width="0.8" opacity="0.2"/>
+    <circle cx="256" cy="256" r="38" fill="none" stroke="#fabd2f" stroke-width="1" opacity="0.35"/>
+    <circle cx="256" cy="256" r="5" fill="#ebdbb2" opacity="0.95"/>
+    <circle cx="230" cy="225" r="4" fill="#fabd2f" opacity="0.9"/>
+    <circle cx="285" cy="235" r="3.5" fill="#b8bb26" opacity="0.85"/>
+    <circle cx="270" cy="285" r="4" fill="#d3869b" opacity="0.9"/>
+    <circle cx="238" cy="280" r="3.5" fill="#83a598" opacity="0.85"/>
+    <circle cx="195" cy="185" r="4.5" fill="#8ec07c" opacity="0.75"/>
+    <circle cx="325" cy="200" r="4" fill="#fabd2f" opacity="0.7"/>
+    <circle cx="330" cy="300" r="4.5" fill="#b8bb26" opacity="0.75"/>
+    <circle cx="180" cy="310" r="4" fill="#fb4934" opacity="0.55"/>
+    <circle cx="300" cy="340" r="4" fill="#83a598" opacity="0.6"/>
+    <circle cx="210" cy="340" r="3.5" fill="#d3869b" opacity="0.6"/>
+    <circle cx="310" cy="185" r="3.5" fill="#fabd2f" opacity="0.6"/>
+    <circle cx="195" cy="200" r="3" fill="#ebdbb2" opacity="0.5"/>
+    <circle cx="145" cy="140" r="3.5" fill="#83a598" opacity="0.45"/>
+    <circle cx="370" cy="145" r="4" fill="#d3869b" opacity="0.45"/>
+    <circle cx="385" cy="260" r="3.5" fill="#b8bb26" opacity="0.4"/>
+    <circle cx="130" cy="270" r="3.5" fill="#8ec07c" opacity="0.4"/>
+    <circle cx="375" cy="370" r="3.5" fill="#fb4934" opacity="0.35"/>
+    <circle cx="140" cy="375" r="4" fill="#fabd2f" opacity="0.4"/>
+    <circle cx="370" cy="180" r="3" fill="#b8bb26" opacity="0.35"/>
+    <circle cx="145" cy="185" r="3" fill="#d3869b" opacity="0.35"/>
+    <line x1="260" y1="252" x2="325" y2="200" stroke="#fabd2f" stroke-width="0.5" opacity="0.12"/>
+    <line x1="252" y1="252" x2="195" y2="185" stroke="#fabd2f" stroke-width="0.5" opacity="0.12"/>
+    <line x1="260" y1="260" x2="330" y2="300" stroke="#fabd2f" stroke-width="0.5" opacity="0.12"/>
+    <line x1="252" y1="260" x2="180" y2="310" stroke="#fabd2f" stroke-width="0.5" opacity="0.12"/>
+    <line x1="256" y1="250" x2="256" y2="145" stroke="#fabd2f" stroke-width="0.5" opacity="0.1"/>
+    <line x1="256" y1="262" x2="256" y2="370" stroke="#fabd2f" stroke-width="0.5" opacity="0.1"/>
+    <line x1="230" y1="225" x2="285" y2="235" stroke="#665c54" stroke-width="0.7" opacity="0.25"/>
+    <line x1="285" y1="235" x2="270" y2="285" stroke="#665c54" stroke-width="0.7" opacity="0.25"/>
+    <line x1="270" y1="285" x2="238" y2="280" stroke="#665c54" stroke-width="0.7" opacity="0.25"/>
+    <line x1="238" y1="280" x2="230" y2="225" stroke="#665c54" stroke-width="0.7" opacity="0.25"/>
+    <line x1="195" y1="185" x2="230" y2="225" stroke="#665c54" stroke-width="0.5" opacity="0.18"/>
+    <line x1="325" y1="200" x2="285" y2="235" stroke="#665c54" stroke-width="0.5" opacity="0.18"/>
+  </g>
+  <text x="660" y="1370" font-family="JetBrains Mono, monospace" font-size="34" fill="#fabd2f" opacity="0.55" text-anchor="middle" letter-spacing="10">observe</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- TRUE — original logo at (660, 1700), no clip -->
+  <!-- ═══════════════════════════════════════════ -->
+  <g transform="translate(404, 1444)">
+    <!-- Scope frame -->
+    <circle cx="256" cy="256" r="220" fill="none" stroke="#504945" stroke-width="3" opacity="0.6"/>
+    <circle cx="256" cy="256" r="200" fill="none" stroke="#504945" stroke-width="5"/>
+    <circle cx="256" cy="256" r="195" fill="none" stroke="#3c3836" stroke-width="1.5"/>
+    <line x1="256" y1="56" x2="256" y2="-30" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="256" y1="456" x2="256" y2="542" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="56" y1="256" x2="-30" y2="256" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="456" y1="256" x2="542" y2="256" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="115" y1="115" x2="54" y2="54" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <line x1="397" y1="397" x2="458" y2="458" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <line x1="397" y1="115" x2="458" y2="54" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <line x1="115" y1="397" x2="54" y2="458" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <!-- Interior -->
+    <circle cx="256" cy="256" r="140" fill="none" stroke="#458588" stroke-width="0.5" opacity="0.08"/>
+    <path d="M 110 410 Q 140 350 170 310 Q 200 270 230 256 Q 245 250 256 256" fill="none" stroke="#83a598" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+    <path d="M 110 410 Q 140 350 170 310 Q 200 270 230 256 Q 245 250 256 256" fill="none" stroke="#83a598" stroke-width="6" opacity="0.1" stroke-linecap="round"/>
+    <circle cx="125" cy="390" r="2" fill="#83a598" opacity="0.2"/>
+    <circle cx="140" cy="365" r="2" fill="#83a598" opacity="0.25"/>
+    <circle cx="155" cy="340" r="2.5" fill="#83a598" opacity="0.3"/>
+    <circle cx="170" cy="315" r="2.5" fill="#83a598" opacity="0.35"/>
+    <circle cx="188" cy="292" r="2.5" fill="#83a598" opacity="0.4"/>
+    <circle cx="205" cy="273" r="3" fill="#83a598" opacity="0.5"/>
+    <circle cx="222" cy="261" r="3" fill="#83a598" opacity="0.6"/>
+    <circle cx="240" cy="255" r="3" fill="#83a598" opacity="0.7"/>
+    <path d="M 390 130 Q 350 170 320 210 Q 300 240 280 256" fill="none" stroke="#83a598" stroke-width="1" opacity="0.15" stroke-dasharray="4 6" stroke-linecap="round"/>
+    <circle cx="256" cy="256" r="6" fill="#83a598" opacity="0.8"/>
+    <circle cx="256" cy="256" r="3.5" fill="#ebdbb2" opacity="0.95"/>
+    <circle cx="160" cy="325" r="3" fill="#83a598" opacity="0.5"/>
+    <circle cx="200" cy="280" r="3.5" fill="#ebdbb2" opacity="0.6"/>
+    <circle cx="320" cy="170" r="3.5" fill="#d3869b" opacity="0.4"/>
+    <circle cx="350" cy="320" r="3" fill="#b8bb26" opacity="0.35"/>
+    <circle cx="180" cy="170" r="3" fill="#fabd2f" opacity="0.35"/>
+    <circle cx="340" cy="230" r="2.5" fill="#83a598" opacity="0.3"/>
+    <circle cx="150" cy="220" r="3" fill="#ebdbb2" opacity="0.3"/>
+    <circle cx="300" cy="380" r="2.5" fill="#d3869b" opacity="0.25"/>
+    <circle cx="370" cy="280" r="2.5" fill="#b8bb26" opacity="0.25"/>
+    <circle cx="200" cy="390" r="2" fill="#fabd2f" opacity="0.2"/>
+    <circle cx="310" cy="150" r="2" fill="#8ec07c" opacity="0.25"/>
+    <circle cx="380" cy="180" r="2.5" fill="#83a598" opacity="0.2"/>
+    <line x1="160" y1="325" x2="200" y2="280" stroke="#665c54" stroke-width="0.7" opacity="0.2"/>
+    <line x1="200" y1="280" x2="256" y2="256" stroke="#665c54" stroke-width="0.7" opacity="0.2"/>
+    <circle cx="115" cy="400" r="1" fill="#83a598" opacity="0.15"/>
+    <circle cx="130" cy="380" r="1.5" fill="#83a598" opacity="0.15"/>
+    <circle cx="148" cy="348" r="1" fill="#83a598" opacity="0.2"/>
+    <circle cx="162" cy="328" r="1.5" fill="#458588" opacity="0.2"/>
+    <circle cx="178" cy="302" r="1" fill="#458588" opacity="0.25"/>
+    <circle cx="195" cy="280" r="1.5" fill="#83a598" opacity="0.3"/>
+    <circle cx="215" cy="265" r="1" fill="#83a598" opacity="0.35"/>
+  </g>
+  <text x="660" y="1990" font-family="JetBrains Mono, monospace" font-size="34" fill="#83a598" opacity="0.55" text-anchor="middle" letter-spacing="10">navigate</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- IDEAL — original logo at (660, 2320), no clip -->
+  <!-- ═══════════════════════════════════════════ -->
+  <g transform="translate(404, 2064)">
+    <!-- Scope frame -->
+    <circle cx="256" cy="256" r="220" fill="none" stroke="#504945" stroke-width="3" opacity="0.6"/>
+    <circle cx="256" cy="256" r="200" fill="none" stroke="#504945" stroke-width="5"/>
+    <circle cx="256" cy="256" r="195" fill="none" stroke="#3c3836" stroke-width="1.5"/>
+    <line x1="256" y1="56" x2="256" y2="-30" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="256" y1="456" x2="256" y2="542" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="56" y1="256" x2="-30" y2="256" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="456" y1="256" x2="542" y2="256" stroke="#665c54" stroke-width="1.5" opacity="0.3"/>
+    <line x1="115" y1="115" x2="54" y2="54" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <line x1="397" y1="397" x2="458" y2="458" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <line x1="397" y1="115" x2="458" y2="54" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <line x1="115" y1="397" x2="54" y2="458" stroke="#665c54" stroke-width="1.5" opacity="0.25"/>
+    <!-- Interior -->
+    <line x1="256" y1="80" x2="256" y2="432" stroke="#d3869b" stroke-width="1" opacity="0.2"/>
+    <line x1="80" y1="256" x2="432" y2="256" stroke="#d3869b" stroke-width="1" opacity="0.2"/>
+    <line x1="132" y1="132" x2="380" y2="380" stroke="#d3869b" stroke-width="0.8" opacity="0.12"/>
+    <line x1="380" y1="132" x2="132" y2="380" stroke="#d3869b" stroke-width="0.8" opacity="0.12"/>
+    <circle cx="256" cy="256" r="130" fill="none" stroke="#d3869b" stroke-width="1" opacity="0.15" stroke-dasharray="6,8"/>
+    <circle cx="256" cy="256" r="80" fill="none" stroke="#d3869b" stroke-width="1.2" opacity="0.2" stroke-dasharray="4,6"/>
+    <circle cx="256" cy="256" r="40" fill="none" stroke="#d3869b" stroke-width="1.5" opacity="0.3"/>
+    <path d="M256 170 L248 200 L256 190 L264 200 Z" fill="#d3869b" opacity="0.6"/>
+    <circle cx="256" cy="150" r="4" fill="#d3869b" opacity="0.7"/>
+    <circle cx="310" cy="195" r="3" fill="#d3869b" opacity="0.5"/>
+    <circle cx="340" cy="245" r="3" fill="#d3869b" opacity="0.4"/>
+    <circle cx="325" cy="310" r="3" fill="#d3869b" opacity="0.3"/>
+    <path d="M256 150 Q310 160 310 195 Q325 220 340 245 Q345 280 325 310" fill="none" stroke="#d3869b" stroke-width="1.5" opacity="0.35" stroke-dasharray="4,4"/>
+    <circle cx="256" cy="256" r="5" fill="#ebdbb2" opacity="0.95"/>
+    <circle cx="170" cy="160" r="3" fill="#d3869b" opacity="0.5"/>
+    <circle cx="360" cy="175" r="2.5" fill="#b16286" opacity="0.4"/>
+    <circle cx="145" cy="340" r="3.5" fill="#d3869b" opacity="0.35"/>
+    <circle cx="355" cy="355" r="2.5" fill="#b16286" opacity="0.3"/>
+    <circle cx="190" cy="260" r="2.5" fill="#ebdbb2" opacity="0.3"/>
+    <circle cx="120" cy="200" r="2.5" fill="#d3869b" opacity="0.25"/>
+    <circle cx="380" cy="290" r="2.5" fill="#b16286" opacity="0.25"/>
+  </g>
+  <text x="660" y="2610" font-family="JetBrains Mono, monospace" font-size="34" fill="#d3869b" opacity="0.55" text-anchor="middle" letter-spacing="10">stabilize</text>
+
+  <!-- ORBIT branding -->
+  <text x="660" y="2790" font-family="JetBrains Mono, monospace" font-size="16" fill="#504945" opacity="0.2" text-anchor="middle" letter-spacing="12">orbit</text>
+  <text x="660" y="2818" font-family="Inter, sans-serif" font-size="10" fill="#504945" opacity="0.12" text-anchor="middle" letter-spacing="4">observe · navigate · stabilize</text>
+</svg>

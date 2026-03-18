@@ -40,7 +40,7 @@ The numbers were eerily accurate. Silent heroes surfaced. Hidden risks became vi
 
 > Quantify what you can. Qualitatively supplement what you can't. That order matters.
 
-*Deep dive: [Chapter 0 — Introduction](ch0-link-tbd), [Chapter 1](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c), [Chapter 2](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f)*
+*Deep dive: [Chapter 0 — Introduction](https://dev.to/machuz/git-archaeology-0-what-if-git-history-could-tell-you-who-your-strongest-engineers-are-5397), [Chapter 1](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c), [Chapter 2](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f)*
 
 ---
 
@@ -196,7 +196,7 @@ Point the telescope and see.
 
 ### Full Series
 
-- **[Chapter 0: What If Git History Could Tell You Who Your Strongest Engineers Are?](ch0-link-tbd)** — Introduction
+- **[Chapter 0: What If Git History Could Tell You Who Your Strongest Engineers Are?](https://dev.to/machuz/git-archaeology-0-what-if-git-history-could-tell-you-who-your-strongest-engineers-are-5397)** — Introduction
 - [Chapter 1: Measuring Engineering Impact from Git History Alone](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c)
 - [Chapter 2: Beyond Individual Scores: Measuring Team Health from Git History](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f)
 - [Chapter 3: Two Paths to Architect: How Engineers Evolve Differently](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga)

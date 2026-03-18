@@ -417,6 +417,9 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 
 ## Blog Posts — git考古学 / Git Archaeology
 
+**#0 — Introduction**
+- [English / dev.to](https://dev.to/machuz/git-archaeology-0-what-if-git-history-could-tell-you-who-your-strongest-engineers-are-5397) — Git Archaeology #0: What If Git History Could Tell You Who Your Strongest Engineers Are?
+
 **#1 — Individual Scoring**
 - [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/11/153212) — git考古学 #1：履歴だけでエンジニアの「戦闘力」を定量化する
 - [English / dev.to](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c) — Git Archaeology #1: Measuring Engineering Impact from Git History Alone

@@ -36,6 +36,11 @@ type DomainResults struct {
 	Risks     []metric.ModuleRisk
 	RepoCount int
 	PerRepo   []RepoResult
+
+	// Module Topology (3-axis)
+	Cochange       metric.CochangeResult
+	Ownership      []metric.ModuleOwnership
+	ModuleSurvival map[string]float64 // module → survival rate (0-1)
 }
 
 // RepoResult holds scored results for a single repository.
@@ -89,6 +94,9 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		repoCount         int
 		risks             []metric.ModuleRisk
 		changePressure    metric.ChangePressure
+		// Module Topology accumulators
+		allCommits  []git.Commit
+		allBlameLines []git.BlameLine
 	}
 	newAcc := func() *accumulator {
 		return &accumulator{
@@ -219,6 +227,10 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		}
 		blameLines = filterBlameLines(blameLines, cfg)
 
+		// Accumulate for Module Topology
+		acc.allCommits = append(acc.allCommits, commits...)
+		acc.allBlameLines = append(acc.allBlameLines, blameLines...)
+
 		var repoSurvDecayed, repoSurvRaw, repoSurvRobust, repoSurvDormant map[string]float64
 		if opts.PressureMode != "ignore" {
 			repoPressure := metric.CalcChangePressure(commits, blameLines)
@@ -342,7 +354,15 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		if len(filtered) == 0 {
 			continue
 		}
-		dr := DomainResults{Domain: d, Results: filtered, Risks: acc.risks, RepoCount: acc.repoCount}
+		// Module Topology — compute from accumulated commits/blameLines
+		cochange := metric.CalcCochange(acc.allCommits)
+		ownership := metric.CalcOwnershipFragmentation(acc.allBlameLines)
+		moduleSurvival := metric.CalcModuleSurvival(acc.allBlameLines, cfg.Tau, start)
+
+		dr := DomainResults{
+			Domain: d, Results: filtered, Risks: acc.risks, RepoCount: acc.repoCount,
+			Cochange: cochange, Ownership: ownership, ModuleSurvival: moduleSurvival,
+		}
 
 		if opts.PerRepo {
 			for _, ra := range repoAccumulators {
