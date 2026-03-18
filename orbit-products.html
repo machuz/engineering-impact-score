@@ -152,8 +152,8 @@
   .product-card.ace:hover { box-shadow: 0 8px 40px rgba(250,189,47,0.08), 0 0 80px rgba(250,189,47,0.03); }
   .product-card.true::before { background: linear-gradient(90deg, transparent, var(--teal), transparent); }
   .product-card.true:hover { box-shadow: 0 8px 40px rgba(131,165,152,0.08), 0 0 80px rgba(131,165,152,0.03); }
-  .product-card.ideal::before { background: linear-gradient(90deg, transparent, var(--green), transparent); }
-  .product-card.ideal:hover { box-shadow: 0 8px 40px rgba(142,192,124,0.08), 0 0 80px rgba(142,192,124,0.03); }
+  .product-card.ideal::before { background: linear-gradient(90deg, transparent, var(--purple), transparent); }
+  .product-card.ideal:hover { box-shadow: 0 8px 40px rgba(211,134,155,0.08), 0 0 80px rgba(211,134,155,0.03); }
 
   .product-logo {
     width: 160px; height: 160px;
@@ -171,7 +171,7 @@
   }
   .product-card.ace .product-name { color: var(--gold); }
   .product-card.true .product-name { color: var(--teal); }
-  .product-card.ideal .product-name { color: var(--green); }
+  .product-card.ideal .product-name { color: var(--purple); }
 
   .product-jp {
     font-size: 14px; text-align: center;
@@ -188,7 +188,7 @@
   }
   .product-card.ace .product-divider { background: var(--gold-dim); opacity: 0.4; }
   .product-card.true .product-divider { background: var(--teal-dim); opacity: 0.4; }
-  .product-card.ideal .product-divider { background: var(--green-dim); opacity: 0.4; }
+  .product-card.ideal .product-divider { background: var(--purple); opacity: 0.3; }
 
   .product-features {
     list-style: none; padding: 0;
@@ -208,7 +208,7 @@
   }
   .product-card.ace .product-features li::before { background: var(--gold); opacity: 0.6; }
   .product-card.true .product-features li::before { background: var(--teal); opacity: 0.6; }
-  .product-card.ideal .product-features li::before { background: var(--green); opacity: 0.6; }
+  .product-card.ideal .product-features li::before { background: var(--purple); opacity: 0.6; }
 
   .product-suffix {
     font-family: 'JetBrains Mono', monospace;
@@ -218,7 +218,7 @@
   }
   .product-card.ace .product-suffix { color: var(--gold-dim); }
   .product-card.true .product-suffix { color: var(--teal-dim); }
-  .product-card.ideal .product-suffix { color: var(--green-dim); }
+  .product-card.ideal .product-suffix { color: var(--purple); opacity: 0.7; }
 
   .product-motto {
     font-size: 12px; text-align: center;
@@ -227,7 +227,7 @@
   }
   .product-card.ace .product-motto { color: var(--gold-dim); }
   .product-card.true .product-motto { color: var(--teal-dim); }
-  .product-card.ideal .product-motto { color: var(--green-dim); }
+  .product-card.ideal .product-motto { color: var(--purple); opacity: 0.5; }
 
   /* Flow Section */
   .flow-section {
@@ -267,8 +267,8 @@
   .flow-node.ace { border-color: rgba(250,189,47,0.15); }
   .flow-node.true .flow-node-name { color: var(--teal); }
   .flow-node.true { border-color: rgba(131,165,152,0.15); }
-  .flow-node.ideal .flow-node-name { color: var(--green); }
-  .flow-node.ideal { border-color: rgba(142,192,124,0.15); }
+  .flow-node.ideal .flow-node-name { color: var(--purple); }
+  .flow-node.ideal { border-color: rgba(211,134,155,0.15); }
 
   .flow-arrow {
     font-family: 'JetBrains Mono', monospace;
@@ -551,8 +551,8 @@
   <defs>
     <clipPath id="lens-ideal-i"><circle cx="256" cy="256" r="200"/></clipPath>
     <radialGradient id="glow-ideal-i" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#8ec07c" stop-opacity="0.25"/>
-      <stop offset="40%" stop-color="#689d6a" stop-opacity="0.05"/>
+      <stop offset="0%" stop-color="#d3869b" stop-opacity="0.25"/>
+      <stop offset="40%" stop-color="#b16286" stop-opacity="0.05"/>
       <stop offset="100%" stop-color="#282828" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -571,34 +571,29 @@
   <g clip-path="url(#lens-ideal-i)">
     <circle cx="256" cy="256" r="200" fill="#282828"/>
     <circle cx="256" cy="256" r="160" fill="url(#glow-ideal-i)"/>
-    <ellipse cx="256" cy="256" rx="140" ry="55" fill="none" stroke="#8ec07c" stroke-width="1.2" opacity="0.3" transform="rotate(-15,256,256)"/>
-    <ellipse cx="256" cy="256" rx="140" ry="55" fill="none" stroke="#8ec07c" stroke-width="4" opacity="0.06" transform="rotate(-15,256,256)"/>
-    <ellipse cx="256" cy="256" rx="100" ry="40" fill="none" stroke="#8ec07c" stroke-width="1.4" opacity="0.4" transform="rotate(25,256,256)"/>
-    <ellipse cx="256" cy="256" rx="100" ry="40" fill="none" stroke="#8ec07c" stroke-width="4" opacity="0.08" transform="rotate(25,256,256)"/>
-    <ellipse cx="256" cy="256" rx="60" ry="28" fill="none" stroke="#b8bb26" stroke-width="1.5" opacity="0.45" transform="rotate(-50,256,256)"/>
-    <ellipse cx="256" cy="256" rx="60" ry="28" fill="none" stroke="#b8bb26" stroke-width="4" opacity="0.08" transform="rotate(-50,256,256)"/>
-    <circle cx="370" cy="225" r="5" fill="#8ec07c" opacity="0.9"/>
-    <circle cx="370" cy="225" r="8" fill="#8ec07c" opacity="0.15"/>
-    <circle cx="185" cy="230" r="4" fill="#b8bb26" opacity="0.8"/>
-    <circle cx="185" cy="230" r="7" fill="#b8bb26" opacity="0.12"/>
-    <path d="M 310 195 l 6 4 l -6 4" fill="none" stroke="#8ec07c" stroke-width="1.2" opacity="0.4" transform="rotate(-15,310,199)"/>
-    <path d="M 200 310 l 6 4 l -6 4" fill="none" stroke="#8ec07c" stroke-width="1.2" opacity="0.35" transform="rotate(-15,200,314)"/>
-    <path d="M 330 270 l 6 4 l -6 4" fill="none" stroke="#8ec07c" stroke-width="1.2" opacity="0.35" transform="rotate(25,330,274)"/>
-    <path d="M 175 248 l 6 4 l -6 4" fill="none" stroke="#8ec07c" stroke-width="1.2" opacity="0.3" transform="rotate(25,175,252)"/>
-    <path d="M 280 225 l 5 3.5 l -5 3.5" fill="none" stroke="#b8bb26" stroke-width="1.2" opacity="0.4" transform="rotate(-50,280,228)"/>
-    <circle cx="256" cy="256" r="18" fill="#8ec07c" opacity="0.06"/>
-    <circle cx="256" cy="256" r="10" fill="#8ec07c" opacity="0.12"/>
-    <circle cx="256" cy="256" r="5" fill="#8ec07c" opacity="0.8"/>
-    <circle cx="256" cy="256" r="3" fill="#ebdbb2" opacity="0.95"/>
-    <circle cx="150" cy="150" r="2.5" fill="#ebdbb2" opacity="0.3"/>
-    <circle cx="360" cy="360" r="2.5" fill="#ebdbb2" opacity="0.25"/>
-    <circle cx="350" cy="150" r="2" fill="#d3869b" opacity="0.25"/>
-    <circle cx="155" cy="370" r="2" fill="#fabd2f" opacity="0.2"/>
-    <circle cx="300" cy="130" r="2" fill="#83a598" opacity="0.2"/>
-    <circle cx="130" cy="280" r="2" fill="#8ec07c" opacity="0.2"/>
-    <circle cx="380" cy="300" r="2" fill="#b8bb26" opacity="0.2"/>
-    <line x1="256" y1="100" x2="256" y2="412" stroke="#504945" stroke-width="0.3" opacity="0.1"/>
-    <line x1="100" y1="256" x2="412" y2="256" stroke="#504945" stroke-width="0.3" opacity="0.1"/>
+    <line x1="256" y1="80" x2="256" y2="432" stroke="#d3869b" stroke-width="1" opacity="0.2"/>
+    <line x1="80" y1="256" x2="432" y2="256" stroke="#d3869b" stroke-width="1" opacity="0.2"/>
+    <line x1="132" y1="132" x2="380" y2="380" stroke="#d3869b" stroke-width="0.8" opacity="0.12"/>
+    <line x1="380" y1="132" x2="132" y2="380" stroke="#d3869b" stroke-width="0.8" opacity="0.12"/>
+    <circle cx="256" cy="256" r="130" fill="none" stroke="#d3869b" stroke-width="1" opacity="0.15" stroke-dasharray="6,8"/>
+    <circle cx="256" cy="256" r="80" fill="none" stroke="#d3869b" stroke-width="1.2" opacity="0.2" stroke-dasharray="4,6"/>
+    <circle cx="256" cy="256" r="40" fill="none" stroke="#d3869b" stroke-width="1.5" opacity="0.3"/>
+    <path d="M256 170 L248 200 L256 190 L264 200 Z" fill="#d3869b" opacity="0.6"/>
+    <circle cx="256" cy="150" r="4" fill="#d3869b" opacity="0.7"/>
+    <circle cx="310" cy="195" r="3" fill="#d3869b" opacity="0.5"/>
+    <circle cx="340" cy="245" r="3" fill="#d3869b" opacity="0.4"/>
+    <circle cx="325" cy="310" r="3" fill="#d3869b" opacity="0.3"/>
+    <path d="M256 150 Q310 160 310 195 Q325 220 340 245 Q345 280 325 310" fill="none" stroke="#d3869b" stroke-width="1.5" opacity="0.35" stroke-dasharray="4,4"/>
+    <circle cx="256" cy="256" r="20" fill="#d3869b" opacity="0.06"/>
+    <circle cx="256" cy="256" r="12" fill="#d3869b" opacity="0.1"/>
+    <circle cx="256" cy="256" r="5" fill="#ebdbb2" opacity="0.95"/>
+    <circle cx="170" cy="160" r="3" fill="#d3869b" opacity="0.5"/>
+    <circle cx="360" cy="175" r="2.5" fill="#b16286" opacity="0.4"/>
+    <circle cx="145" cy="340" r="3.5" fill="#d3869b" opacity="0.35"/>
+    <circle cx="355" cy="355" r="2.5" fill="#b16286" opacity="0.3"/>
+    <circle cx="190" cy="260" r="2.5" fill="#ebdbb2" opacity="0.3"/>
+    <circle cx="120" cy="200" r="2.5" fill="#d3869b" opacity="0.25"/>
+    <circle cx="380" cy="290" r="2.5" fill="#b16286" opacity="0.25"/>
   </g>
 </svg>
         </div>
