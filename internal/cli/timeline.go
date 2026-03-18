@@ -143,12 +143,19 @@ func runTimeline(args []string) error {
 	// Build callbacks for progress UI
 	cb := &pkgtimeline.Callbacks{}
 	if !quiet {
+		repoCount := 0
+		totalRepos := len(repoPaths)
 		cb.OnRepoStart = func(repoName string, d string) {
+			repoCount++
 			domainLabel := color.New(color.FgCyan).Sprintf("[%s]", d)
-			color.New(color.Bold).Printf("Loading: %s %s\n", repoName, domainLabel)
+			counter := color.New(color.FgHiBlack).Sprintf("(%d/%d)", repoCount, totalRepos)
+			color.New(color.Bold).Fprintf(os.Stderr, "  Loading: %s %s %s\n", repoName, domainLabel, counter)
 		}
 		cb.OnPeriodStart = func(label string, index, total int) {
-			fmt.Fprintf(os.Stderr, "\n[Period %d/%d] %s\n", index+1, total, label)
+			repoCount = 0 // reset for each period
+			cyan := color.New(color.FgCyan, color.Bold)
+			green := color.New(color.FgGreen)
+			fmt.Fprintf(os.Stderr, "\n%s [Period %d/%d] %s\n", green.Sprint("●"), index+1, total, cyan.Sprint(label))
 		}
 	}
 	if *verbose {
