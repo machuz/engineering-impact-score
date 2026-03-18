@@ -152,6 +152,28 @@ Cold git history tells **team stories** you didn't know you had. And module topo
 
 ---
 
+## What This Is NOT
+
+This series uses the word "combat power" (戦闘力) to describe scores. It's a catchy metaphor borrowed from Dragon Ball — but it carries a dangerous implication: that engineers can be ranked on a single axis of strength.
+
+**They can't. And EIS doesn't try to.**
+
+A few things to keep in mind:
+
+**EIS measures codebase impact, not engineering ability.** A score of 40 means "on this codebase, this person's code is surviving, shaping architecture, and cleaning up debt." It does *not* mean they are objectively a better engineer than someone scoring 30. Move them to a different codebase, and the scores might invert. (We call this [Engineering Relativity](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl).)
+
+**Scores without context are dangerous.** A low Survival score might mean poor design — or it might mean the engineer is actively rewriting legacy code (Rescue style). A high score in a poorly designed codebase might mean "nobody can refactor your code away." Always interpret with context.
+
+**Non-code contributions are invisible to git.** Code review quality, mentoring, documentation, psychological safety, domain expertise — these matter enormously but leave no trace in `git log`. EIS captures what git records, nothing more. Using it as a complete evaluation of an engineer would be harmful and wrong.
+
+**It's not a surveillance tool.** EIS is a telescope — it reveals structures that already exist. It doesn't create hierarchies. If it's used to rank and punish rather than to understand and improve, it has failed its purpose.
+
+**Time-decayed survival resists gaming.** You can't inflate your score with busy work. Only code that remains in the codebase months later counts. The debt cleanup axis makes it structurally impossible to score high by generating work for others.
+
+The telescope measures the brightness of stars. It doesn't decide which stars deserve to exist.
+
+---
+
 ## The Series
 
 This blog series — **Git Archaeology** — applies EIS to real teams and explores what the numbers reveal.
