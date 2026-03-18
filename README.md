@@ -274,6 +274,49 @@ total = (
 )
 ```
 
+## Module Topology (3-Axis)
+
+EIS doesn't just score engineers — it classifies **modules** too. Each module in the codebase is scored on 4 structural indicators and classified along 3 independent axes:
+
+### 3 Axes
+
+| Axis | What it measures | Classifications |
+|---|---|---|
+| **Coupling** | Boundary quality — implicit co-change dependencies | Isolated / Independent / Linked / Hub |
+| **Vitality** | Change pressure × code survival | Stable / Warming / Turbulent / Critical / Dead |
+| **Ownership** | Knowledge distribution across engineers | Distributed / Concentrated / Orphaned |
+
+### 4 Structural Indicators (0-100)
+
+| Indicator | What it measures | Calculation |
+|---|---|---|
+| **Boundary Integrity** | How clean the module boundary is | `(1 - avgCoupling) × 100` |
+| **Change Absorption** | How well changes survive | Per-module time-decayed survival rate |
+| **Knowledge Distribution** | How well ownership is spread | Based on ownership level + Shannon entropy |
+| **Stability** | How infrequently the module changes | `(1 - percentileRank(pressure)) × 100` |
+
+### Combination Examples
+
+| Coupling | Vitality | Ownership | Interpretation |
+|---|---|---|---|
+| Independent | Stable | Distributed | Ideal. Maintain as-is |
+| Hub | Critical | Concentrated | Worst case. Leaky boundary + high churn + single owner |
+| Independent | Dead | Orphaned | Clean boundary but abandoned — safe to remove? |
+| Hub | Stable | Distributed | Dependency center but healthy — possibly intentional design |
+| Independent | Turbulent | Orphaned | Actively changing but owner has left — handoff needed |
+
+The CLI shows only **anomalous modules** (Hub, Turbulent, Critical, Dead, Orphaned) with a summary line counting all modules. This focuses attention on structural risks rather than listing hundreds of healthy modules.
+
+```
+─── Module Topology (3-axis) ───
+  587 modules — Coupling: 9 Hub, 64 Linked, 502 Independent, 12 Isolated | ...
+Module                            Boundary  Absorption  Knowledge  Stability  Coupling  Vitality  Ownership
+app/core/apperror                 94        11          6          1          Independent  Critical  Orphaned
+app/domain/payment                97        26          80         7          Independent  Turbulent Distributed
+```
+
+Module topology requires `--pressure-mode include` (the default).
+
 ## Design Principles
 
 - **Domains are scored separately** (Backend/Frontend/Infra/Firmware by default, plus custom domains) — mixing them contaminates rankings; auto-detected from file extensions or configured explicitly
@@ -508,6 +551,7 @@ Telescope     →     EIS
 - [x] Configurable domain mapping, repo exclusion
 - [x] JSON / CSV output format (`--format json|csv`)
 - [x] Team-level analysis (`eis team`) with 7 health axes
+- [x] **Module Topology** — 3-axis module classification (Coupling / Vitality / Ownership) with 4 structural indicators
 - [ ] GitHub Action for automated quarterly tracking
 - [x] Timeline analysis (`eis timeline`) with per-period scoring
 - [x] Chart visualization (`--format ascii|html|svg`)

@@ -1,6 +1,6 @@
 # Engineering Impact Score: Quantifying Software Engineering Contributions from Git History
 
-**Version 0.11.0** — March 2026
+**Version 0.12.0** — March 2026
 
 **Author:** machuz ([@machuz](https://github.com/machuz))
 
@@ -532,7 +532,90 @@ A common pattern observed: **Architectural Team → Maintenance Team → Archite
 
 ---
 
-## 7. Limitations
+## 7. Module-Level Analysis: The 3-Axis Module Topology
+
+### 7.1 Motivation
+
+The individual scoring model answers "who is strong?" but not "where is the system breaking?" Module-level analysis completes the picture: by classifying every module on 3 independent axes, EIS can identify structural risks invisible from engineer scores alone.
+
+This mirrors the engineer topology design: just as one axis cannot distinguish an "Architect who is a Builder" from an "Architect who is Spread", a single module label cannot distinguish "Hub that is Stable" from "Hub that is Turbulent".
+
+### 7.2 Structural Indicators
+
+Four indicators score each module on [0, 100]:
+
+| Indicator | What it measures | Calculation |
+|-----------|-----------------|-------------|
+| **Boundary Integrity** | Absence of implicit co-change coupling | $(1 - \text{avgCoupling}_m) \times 100$ |
+| **Change Absorption** | How well code survives in the module | Per-module time-decayed survival: $\frac{\sum_{l \in m} e^{-d_l/\tau}}{|l \in m|}$ |
+| **Knowledge Distribution** | Ownership health | Base score from ownership level (HEALTHY→80, FRAGMENTED→50, CONCENTRATED→25, SOLE_OWNER→10) ± entropy adjustment |
+| **Stability** | Infrequency of changes | $(1 - \text{percentileRank}(\text{pressure}_m)) \times 100$ |
+
+**Co-change coupling** is measured using the Jaccard coefficient between module pairs: for modules $A$ and $B$ that appear in the same commit, $\text{coupling}(A,B) = \frac{|A \cap B|}{|A \cup B|}$. A module's average coupling is the mean Jaccard across all pairs involving that module.
+
+**Module survival** reuses the same exponential decay formula as individual survival (Section 3.4), but aggregates by module rather than by author.
+
+### 7.3 The Three Axes
+
+#### Coupling — Boundary Quality
+
+| Classification | Meaning | Detection |
+|---------------|---------|-----------|
+| **Isolated** | No co-change pairs | Hard gate: CouplingPairCount = 0 |
+| **Independent** | Low average coupling | highness(BoundaryIntegrity) |
+| **Linked** | Moderate coupling (15-60%) | Mid-range avgCoupling |
+| **Hub** | High average coupling | highness(avgCoupling × 100) |
+
+Hub modules are implicit dependency centers — they change whenever other modules change, indicating leaky boundaries or shared concerns that should be made explicit.
+
+#### Vitality — Life Force
+
+| Classification | Meaning | Detection |
+|---------------|---------|-----------|
+| **Dead** | No commits, no active owner | Hard gate: commits=0 AND !ownerActive |
+| **Critical** | Extreme pressure + very low survival | pressureLevel ≥ 80 AND absorption < 20 |
+| **Turbulent** | High pressure + low survival | highness(pressure) ∧ lowness(absorption) |
+| **Warming** | Moderate pressure + declining survival | 30 ≤ pressure < 70 AND absorption < 50 |
+| **Stable** | Low pressure (healthy equilibrium) | highness(stability) |
+
+Vitality classification **requires blame data**. Modules without blame lines (docs, configs, CI) can only be Dead or Stable — they cannot be Turbulent or Critical, because "no blame data" means "unknown survival", not "low survival".
+
+#### Ownership — Knowledge Distribution
+
+| Classification | Meaning | Detection |
+|---------------|---------|-----------|
+| **Orphaned** | Top author inactive + high ownership share | daysSince(topAuthor) > activeDays AND topShare ≥ 0.50 |
+| **Concentrated** | Knowledge in one person's hands | SOLE_OWNER or CONCENTRATED level |
+| **Distributed** | Healthy knowledge spread | HEALTHY or FRAGMENTED level |
+
+### 7.4 Classification Engine
+
+Module classification reuses the same `pickBest()` and `highness()`/`lowness()`/`notLow()` soft-match functions from the engineer topology (Section 4.1). Each axis is classified independently with confidence scores in [0, 1].
+
+### 7.5 Anomaly-Focused Display
+
+The CLI shows only **anomalous modules** — those classified as Hub, Turbulent, Critical, Dead, or Orphaned on any axis. A summary line counts all modules across all classifications. This design focuses attention on structural risks rather than listing hundreds of healthy modules.
+
+### 7.6 Combination Semantics
+
+The power of 3-axis classification lies in combinations:
+
+| Coupling | Vitality | Ownership | Risk Level | Action |
+|----------|----------|-----------|------------|--------|
+| Independent | Stable | Distributed | **None** | Maintain |
+| Hub | Critical | Concentrated | **Maximum** | Immediate refactoring + knowledge transfer |
+| Independent | Dead | Orphaned | **High** | Evaluate: remove or revive |
+| Hub | Stable | Distributed | **Low** | Possibly intentional (shared library) |
+| Independent | Turbulent | Orphaned | **High** | Owner handoff needed |
+| Linked | Warming | Concentrated | **Medium** | Monitor; succession plan |
+
+### 7.7 Relationship to Individual Scoring
+
+Module topology complements, not replaces, individual scoring. Phase 3 of the module science roadmap will cross-reference the two: "This Critical × Orphaned module needs an Architect-type engineer assigned to it."
+
+---
+
+## 8. Limitations
 
 ### 7.1 Normalization Sensitivity
 
@@ -556,7 +639,7 @@ EIS is designed as an *observability* tool, not an evaluation tool. Using it for
 
 ---
 
-## 8. Use Cases
+## 9. Use Cases
 
 ### 8.1 Team Health Diagnostics
 
@@ -585,7 +668,7 @@ The JSON and HTML output formats are designed for AI consumption. Feeding `eis t
 
 ---
 
-## 9. Implementation
+## 10. Implementation
 
 EIS is implemented in Go and distributed as a single binary.
 
@@ -611,7 +694,7 @@ eis analyze --recursive ~/workspace
 
 ---
 
-## 10. Conclusion
+## 11. Conclusion
 
 EIS demonstrates that Git history contains far more information about engineering contributions than commonly extracted. By combining commit-based metrics with blame-based survival analysis and change-pressure decomposition, it is possible to construct a multi-dimensional view of individual and team-level engineering patterns.
 
@@ -620,7 +703,8 @@ The key contributions of this work are:
 1. **Change-pressure decomposition** — distinguishing code that survives under active development from code that persists in dormant modules
 2. **3-axis individual classification** — capturing what, how, and lifecycle state simultaneously
 3. **5-axis team classification** — providing organizational diagnostics from code-level data
-4. **Soft matching functions** — avoiding hard thresholds that create classification artifacts
+4. **3-axis module topology** — classifying structural health of modules (Coupling / Vitality / Ownership) using the same soft-match engine as engineer classification
+5. **Soft matching functions** — avoiding hard thresholds that create classification artifacts
 
 The framework is intentionally limited to Git data, making it universally applicable to any team using version control. Its limitations — normalization sensitivity, commit hygiene dependency, architecture pattern configuration — are acknowledged and manageable through configuration.
 
@@ -707,6 +791,10 @@ blame_extensions:
 | **Robust Survival** | Blame lines in high-pressure modules, time-decayed. Code proven under collaboration. |
 | **Dormant Survival** | Blame lines in low-pressure modules, time-decayed. Code untested by collaboration. |
 | **Tau (τ)** | Exponential decay constant for Survival calculation. Default 180 days. |
+| **Module Topology** | 3-axis classification of modules: Coupling, Vitality, Ownership. |
+| **Co-change Coupling** | Jaccard coefficient measuring how often two modules change together. |
+| **Boundary Integrity** | Module indicator: `(1 - avgCoupling) × 100`. Higher = cleaner boundary. |
+| **Change Absorption** | Module indicator: per-module time-decayed survival rate. |
 
 ---
 

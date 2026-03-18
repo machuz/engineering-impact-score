@@ -519,6 +519,51 @@ X.の品質18はかなり厳しい値。**コミットの82%がfixか修正**。
 
 数字は嘘をつかない。
 
+### モジュール構造の観測——人だけでなく「宇宙」も見る
+
+ここまではエンジニア個人の戦闘力を測ってきた。しかしコードベースには「人」だけでなく「場所」もある。**モジュールそのものの健康状態**を観測できなければ、構造的リスクは見えない。
+
+v0.12.0で追加した**Module Topology（モジュール3軸分類）**がそれだ。エンジニアを3軸（Role / Style / State）で分類したのと同じ発想で、モジュールも3つの独立した軸で分類する。
+
+#### 3つの軸
+
+| 軸 | 問い | 分類 |
+|---|---|---|
+| **Coupling（結合度）** | 他モジュールとの暗黙結合は？ | Isolated / Independent / Linked / Hub |
+| **Vitality（生命力）** | 変更圧に対してコードは生存するか？ | Stable / Warming / Turbulent / Critical / Dead |
+| **Ownership（知識分布）** | 誰がこのモジュールを知っているか？ | Distributed / Concentrated / Orphaned |
+
+#### 4つの構造指標（0-100）
+
+| 指標 | 何を測るか |
+|---|---|
+| **Boundary Integrity** | co-change couplingの少なさ。境界がきれいか |
+| **Change Absorption** | モジュール単位の時間減衰survival。変更を吸収して生存する力 |
+| **Knowledge Distribution** | 所有の分散度。Shannon entropy + 所有レベルから算出 |
+| **Stability** | 変更頻度の低さ。percentile rankの逆数 |
+
+#### なぜモジュールを分類するのか
+
+エンジニアスコアだけでは「**誰が**強いか」はわかるが「**どこが**壊れるか」がわからない。
+
+たとえば：
+
+- `app/core/apperror` が **Critical × Orphaned** — コアのエラーハンドリングが高変更圧で壊れかけており、かつオーナーが不在。誰かがすぐに引き継ぐべき
+- `app/domain/payment` が **Turbulent × Distributed** — 決済ドメインは変更が激しいが知識は分散している。チームで回せている
+- Firmware の `app/ios/Runner` が **Hub** — Flutter scaffoldingが暗黙結合の中心点。意図的な設計なら問題ないが、知らずに放置すると変更が波及する
+
+CLIの出力は**異常モジュールのみ**を表示する。数百のモジュールを全部見せても意味がない——Hub、Turbulent、Critical、Dead、Orphanedだけをハイライトし、サマリ行で全体像を伝える。
+
+```
+─── Module Topology (3-axis) ───
+  587 modules — Coupling: 9 Hub, 64 Linked, 502 Independent, 12 Isolated | ...
+Module                            Coupling     Vitality     Ownership
+app/core/apperror                 Independent  Critical     Orphaned
+app/domain/payment                Independent  Turbulent    Distributed
+```
+
+これにより、EISは **engineer scoring → system observatory** へ進化する。人のスコアとモジュールの状態、両方を同時に観測できる。Phase 3ではこの2つを突合し、「このDead×Orphanedモジュールには誰をアサインすべきか」まで言えるようになる予定だ。
+
 ### CLIツール化した
 
 この指標、最初はClaude Codeに計算させていた。14リポ・10名規模でトークン消費50万〜150万。定額プランじゃないと気軽に回せない。
