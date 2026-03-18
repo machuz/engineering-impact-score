@@ -294,6 +294,12 @@ A three-layer structure forms.
 
 This is the most stable form for Backend teams.
 
+In practice, my own team runs with Architect-Builder × 1 and Anchor × 2. We don't fill the Producer role with a human. AI handles that part.
+
+Understanding structure, designing it, guarding quality — humans own that. Producing volume on top of that structure — AI takes care of it.
+
+We complement the bottom layer of the three-layer structure with AI.
+
 ---
 
 ## Architect Bus Factor = 1
