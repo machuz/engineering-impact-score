@@ -11,10 +11,10 @@ import (
 type Domain string
 
 const (
-	Backend  Domain = "Backend"
-	Frontend Domain = "Frontend"
+	Backend  Domain = "BE"
+	Frontend Domain = "FE"
 	Infra    Domain = "Infra"
-	Firmware Domain = "Firmware"
+	Firmware Domain = "FW"
 	Unknown  Domain = "Unknown"
 )
 
@@ -69,14 +69,25 @@ var defaultExtDomain = map[string]Domain{
 	".ld":  Firmware,
 }
 
-// NormalizeName converts a domain name to Title Case (e.g. "backend" → "Backend", "mobile" → "Mobile").
+// NormalizeName maps well-known domain aliases to their canonical short form
+// (e.g. "backend" → "BE", "frontend" → "FE") and Title-Cases custom names.
 func NormalizeName(name string) Domain {
-	if len(name) == 0 {
+	switch strings.ToLower(name) {
+	case "":
 		return Unknown
+	case "backend", "be":
+		return Backend
+	case "frontend", "fe":
+		return Frontend
+	case "infra", "infrastructure":
+		return Infra
+	case "firmware", "fw":
+		return Firmware
+	default:
+		r := []rune(name)
+		r[0] = unicode.ToUpper(r[0])
+		return Domain(string(r))
 	}
-	r := []rune(name)
-	r[0] = unicode.ToUpper(r[0])
-	return Domain(string(r))
 }
 
 // BuildExtMap creates an extension-to-domain map by merging defaults with custom config.

@@ -329,8 +329,11 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		repoDomain := resolveRepoDomain(ctx, repoPath, repoName, cfg, extMap)
 
 		// Skip repos outside the requested domain
-		if opts.DomainFilter != "" && !strings.EqualFold(string(repoDomain), opts.DomainFilter) {
-			continue
+		if opts.DomainFilter != "" {
+			filterDomain := domain.NormalizeName(opts.DomainFilter)
+			if repoDomain != filterDomain {
+				continue
+			}
 		}
 
 		bold := color.New(color.Bold)

@@ -5,7 +5,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"strings"
 	"testing"
 
 	"github.com/machuz/engineering-impact-score/internal/config"
@@ -251,14 +250,16 @@ func TestDomainFilter_BuiltIn(t *testing.T) {
 		repoDomain domain.Domain
 		shouldSkip bool
 	}{
-		{"Backend", domain.Backend, false},
-		{"backend", domain.Backend, false}, // case-insensitive
-		{"BACKEND", domain.Backend, false}, // all caps
+		{"Backend", domain.Backend, false}, // alias → BE
+		{"backend", domain.Backend, false}, // case-insensitive alias
+		{"BACKEND", domain.Backend, false}, // all caps alias
+		{"BE", domain.Backend, false},      // short form
+		{"be", domain.Backend, false},      // short form lowercase
 		{"Frontend", domain.Backend, true}, // different domain
 		{"", domain.Backend, false},        // no filter = include all
 	}
 	for _, tt := range tests {
-		skipped := tt.filter != "" && !strings.EqualFold(string(tt.repoDomain), tt.filter)
+		skipped := tt.filter != "" && domain.NormalizeName(tt.filter) != tt.repoDomain
 		if skipped != tt.shouldSkip {
 			t.Errorf("filter=%q domain=%v: skipped=%v, want %v", tt.filter, tt.repoDomain, skipped, tt.shouldSkip)
 		}
@@ -273,11 +274,11 @@ func TestDomainFilter_CustomDomain(t *testing.T) {
 	}{
 		{"Mobile", domain.Domain("Mobile"), false},
 		{"mobile", domain.Domain("Mobile"), false}, // case-insensitive
-		{"Backend", domain.Domain("Mobile"), true}, // different domain
+		{"Backend", domain.Domain("Mobile"), true},  // different domain
 		{"Data", domain.Domain("Data"), false},
 	}
 	for _, tt := range tests {
-		skipped := tt.filter != "" && !strings.EqualFold(string(tt.repoDomain), tt.filter)
+		skipped := tt.filter != "" && domain.NormalizeName(tt.filter) != tt.repoDomain
 		if skipped != tt.shouldSkip {
 			t.Errorf("filter=%q domain=%v: skipped=%v, want %v", tt.filter, tt.repoDomain, skipped, tt.shouldSkip)
 		}
