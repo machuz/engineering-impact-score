@@ -417,71 +417,76 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 
 ## Blog Posts — git考古学 / Git Archaeology
 
+**Complete Summary (全17章の要約)**
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology) — git考古学——ソフトウェア宇宙の完全理論
+- [English / dev.to](https://dev.to/machuz/git-archaeology-a-complete-theory-of-software-universes-4i9g) — Git Archaeology — A Complete Theory of Software Universes
+
 **#0 — Introduction**
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch0) — git考古学 #0：git履歴が最強のエンジニアを教えてくれるとしたら？
 - [English / dev.to](https://dev.to/machuz/git-archaeology-0-what-if-git-history-could-tell-you-who-your-strongest-engineers-are-5397) — Git Archaeology #0: What If Git History Could Tell You Who Your Strongest Engineers Are?
 
 **#1 — Individual Scoring**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/11/153212) — git考古学 #1：履歴だけでエンジニアの「戦闘力」を定量化する
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch1) — git考古学 #1：履歴だけでエンジニアの「戦闘力」を定量化する
 - [English / dev.to](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c) — Git Archaeology #1: Measuring Engineering Impact from Git History Alone
 
 **#2 — Team Analysis**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/13/060851) — git考古学 #2：エンジニアの「戦闘力」から、チームの「構造力」へ
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch2) — git考古学 #2：エンジニアの「戦闘力」から、チームの「構造力」へ
 - [English / dev.to](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f) — Git Archaeology #2: Beyond Individual Scores — Measuring Team Health
 
 **#3 — Architect Evolution**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/135648) — git考古学 #3：Architectには流派がある——Git履歴が暴く進化の分岐モデル
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch3) — git考古学 #3：Architectには流派がある——Git履歴が暴く進化の分岐モデル
 - [English / dev.to](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga) — Git Archaeology #3: Two Paths to Architect — How Engineers Evolve Differently
 
 **#4 — Backend Architect Concentration**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/155124) — git考古学 #4：Backend Architectは収束する——成仏という聖なる仕事
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch4) — git考古学 #4：Backend Architectは収束する——成仏という聖なる仕事
 - [English / dev.to](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d) — Git Archaeology #4: Backend Architects Converge — The Sacred Work of Laying Souls to Rest
 
 **#5 — Timeline**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/180329) — git考古学 #5：タイムライン——スコアは嘘をつかないし、遠慮も映る
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch5) — git考古学 #5：タイムライン——スコアは嘘をつかないし、遠慮も映る
 - [English / dev.to](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5) — Git Archaeology #5: Timeline — Scores Don't Lie, and They Capture Hesitation Too
 
 **#6 — Team Timeline & Evolution Models**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/184223) — git考古学 #6：チームは進化する——タイムラインが暴く組織の法則
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch6) — git考古学 #6：チームは進化する——タイムラインが暴く組織の法則
 - [English / dev.to](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei) — Git Archaeology #6: Teams Evolve — The Laws of Organization Revealed by Timelines
 
 **#7 — Observing the Universe of Code**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/213413) — git考古学 #7：コードの宇宙を観測する
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch7) — git考古学 #7：コードの宇宙を観測する
 - [English / dev.to](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0) — Git Archaeology #7: Observing the Universe of Code
 
 **#8 — Engineering Relativity**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/14/233602) — git考古学 #8：エンジニアリング相対性理論——同じエンジニアが異なるスコアを得る理由
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch8) — git考古学 #8：エンジニアリング相対性理論——同じエンジニアが異なるスコアを得る理由
 - [English / dev.to](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl) — Git Archaeology #8: Engineering Relativity — Why the Same Engineer Gets Different Scores
 
 **#9 — Origin: The Big Bang of Code Universes**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/054313) — git考古学 #9：Origin——コード宇宙のビッグバン
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch9) — git考古学 #9：Origin——コード宇宙のビッグバン
 - [English / dev.to](https://dev.to/machuz/git-archaeology-9-collapse-good-architects-and-black-hole-engineers-1dcn) — Git Archaeology #9: Origin — The Big Bang of Code Universes
 
 **#10 — Dark Matter: The Invisible Gravity**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/062608) — git考古学 #10：Dark Matter——見えない重力
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch10) — git考古学 #10：Dark Matter——見えない重力
 - [English / dev.to](https://dev.to/machuz/git-archaeology-10-dark-matter-the-invisible-gravity-45ne) — Git Archaeology #10: Dark Matter — The Invisible Gravity
 
 **#11 — Entropy: The Universe Always Tends Toward Disorder**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/062609) — git考古学 #11：Entropy——宇宙は常に無秩序に向かう
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch11) — git考古学 #11：Entropy——宇宙は常に無秩序に向かう
 - [English / dev.to](https://dev.to/machuz/git-archaeology-11-entropy-the-universe-always-tends-toward-disorder-ak9) — Git Archaeology #11: Entropy — The Universe Always Tends Toward Disorder
 
 **#12 — Collapse: Good Architects and Black Hole Engineers**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/062610) — git考古学 #12：Collapse——良いArchitectとBlack Hole Engineer
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch12) — git考古学 #12：Collapse——良いArchitectとBlack Hole Engineer
 - [English / dev.to](https://dev.to/machuz/git-archaeology-12-collapse-good-architects-and-black-hole-engineers-3fed) — Git Archaeology #12: Collapse — Good Architects and Black Hole Engineers
 
 **#13 — Cosmology of Code**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/062611) — git考古学 #13：Cosmology of Code——コード宇宙論
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch13) — git考古学 #13：Cosmology of Code——コード宇宙論
 - [English / dev.to](https://dev.to/machuz/git-archaeology-13-cosmology-of-code-dci) — Git Archaeology #13: Cosmology of Code
 
 **#14 — Civilization**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/215211) — git考古学 #14：Civilization——なぜ一部のコードベースだけが文明になるのか
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch14) — git考古学 #14：Civilization——なぜ一部のコードベースだけが文明になるのか
 - [English / dev.to](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-2nl3) — Git Archaeology #14: Civilization — Why Only Some Codebases Become Civilizations
 
 **#15 — AI Creates Stars, Not Gravity**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/221250) — git考古学 #15：AI Creates Stars, Not Gravity
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch15) — git考古学 #15：AI Creates Stars, Not Gravity
 - [English / dev.to](https://dev.to/machuz/git-archaeology-15-ai-creates-stars-not-gravity-4i05) — Git Archaeology #15: AI Creates Stars, Not Gravity
 
 **#16 (Final) — The Engineers Who Shape Gravity**
-- [Japanese / はてなブログ](https://ma2k8.hateblo.jp/entry/2026/03/15/231040) — git考古学 #16（最終章）：The Engineers Who Shape Gravity——重力を作るエンジニアたち
+- [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch16) — git考古学 #16（最終章）：The Engineers Who Shape Gravity——重力を作るエンジニアたち
 - [English / dev.to](https://dev.to/machuz/git-archaeology-16-the-engineers-who-shape-gravity-3fmi) — Git Archaeology #16 (Final): The Engineers Who Shape Gravity
 
 ```
