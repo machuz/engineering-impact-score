@@ -59,7 +59,7 @@
   <path d="M 510,240 L 530,240" fill="none" stroke="#665c54" stroke-width="1"/>
   <polygon points="530,238 535,240 530,242" fill="#665c54"/>
 
-  <!-- Score trend line -->
+  <!-- Signal trend line -->
   <polyline points="80,90 160,80 240,75 360,65 450,60 540,50 680,55" fill="none" stroke="#ebdbb2" stroke-width="1.5" stroke-dasharray="4" opacity="0.4"/>
 
   <text x="30" y="282" fill="#8ec07c" font-size="11">$ eis timeline --author engineer-f</text>

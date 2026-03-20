@@ -21,7 +21,7 @@
   <text x="400" y="378" text-anchor="middle" fill="#928374" font-size="16">なぜ同じエンジニアでも</text>
   <text x="400" y="402" text-anchor="middle" fill="#928374" font-size="16">スコアが変わるのか</text>
 
-  <!-- Decorative: same person, different scores in different repos -->
+  <!-- Decorative: same person, different signals in different repos -->
   <text x="200" y="490" text-anchor="middle" fill="#8ec07c" font-size="12" font-weight="700">Repo A</text>
   <rect x="130" y="505" width="140" height="30" rx="4" fill="#3c3836"/>
   <rect x="130" y="505" width="110" height="30" rx="4" fill="#b8bb26" opacity="0.6"/>

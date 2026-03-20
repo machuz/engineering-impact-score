@@ -83,7 +83,7 @@
     Q4'25: Total=87.7, Prod=100,Qual=68, Surv=100, Design=100
     Q1'26: Total=92.4, Prod=100,Qual=41, Surv=100, Design=100
 
-    Y mapping: score S -> y = 370 - S * 3.2
+    Y mapping: signal S -> y = 370 - S * 3.2
   -->
 
   <!-- Total line (blue) -->

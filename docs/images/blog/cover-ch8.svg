@@ -35,7 +35,7 @@
 
   <!-- Right side: Large chapter number -->
 
-  <!-- Right side: Same engineer branching into different repo scores -->
+  <!-- Right side: Same engineer branching into different repo signals -->
   <g opacity="0.9">
     <!-- Central engineer node -->
     <circle cx="750" cy="100" r="14" fill="#ebdbb2" opacity="0.9"/>

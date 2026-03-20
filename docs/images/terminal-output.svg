@@ -6,7 +6,7 @@
       .header { fill: #8ec07c; font-weight: 700; }
       .rank { fill: #ebdbb2; }
       .name { fill: #fabd2f; }
-      .score { fill: #ebdbb2; }
+      .signal { fill: #ebdbb2; }
       .total-high { fill: #d3869b; font-weight: 700; }
       .total-mid { fill: #b8bb26; font-weight: 700; }
       .total-senior { fill: #fabd2f; }
@@ -71,14 +71,14 @@
   <text x="20" y="162" class="rank">1</text>
   <text x="40" y="162" class="name">machuz</text>
   <text x="186" y="162" class="active-yes">✓</text>
-  <text x="224" y="162" class="score">100</text>
-  <text x="268" y="162" class="score">64</text>
-  <text x="312" y="162" class="score">100</text>
-  <text x="368" y="162" class="score">100</text>
-  <text x="432" y="162" class="score">100</text>
-  <text x="490" y="162" class="score">91</text>
-  <text x="550" y="162" class="score">79</text>
-  <text x="594" y="162" class="score">100</text>
+  <text x="224" y="162" class="signal">100</text>
+  <text x="268" y="162" class="signal">64</text>
+  <text x="312" y="162" class="signal">100</text>
+  <text x="368" y="162" class="signal">100</text>
+  <text x="432" y="162" class="signal">100</text>
+  <text x="490" y="162" class="signal">91</text>
+  <text x="550" y="162" class="signal">79</text>
+  <text x="594" y="162" class="signal">100</text>
   <text x="648" y="162" class="grav-healthy">97</text>
   <text x="698" y="162" class="total-high">92.4</text>
   <text x="758" y="162" class="type">Architect</text>
@@ -92,14 +92,14 @@
   <text x="20" y="182" class="rank">2</text>
   <text x="40" y="182" class="name">bob</text>
   <text x="186" y="182" class="active-no">—</text>
-  <text x="224" y="182" class="score">93</text>
-  <text x="268" y="182" class="score">74</text>
-  <text x="312" y="182" class="score">22</text>
-  <text x="368" y="182" class="score">24</text>
-  <text x="432" y="182" class="score">47</text>
-  <text x="490" y="182" class="score">91</text>
-  <text x="550" y="182" class="score">20</text>
-  <text x="594" y="182" class="score">76</text>
+  <text x="224" y="182" class="signal">93</text>
+  <text x="268" y="182" class="signal">74</text>
+  <text x="312" y="182" class="signal">22</text>
+  <text x="368" y="182" class="signal">24</text>
+  <text x="432" y="182" class="signal">47</text>
+  <text x="490" y="182" class="signal">91</text>
+  <text x="550" y="182" class="signal">20</text>
+  <text x="594" y="182" class="signal">76</text>
   <text x="648" y="182" class="grav-moderate">72</text>
   <text x="698" y="182" class="total-senior">51.7</text>
   <text x="758" y="182" class="type">Producer</text>
@@ -113,14 +113,14 @@
   <text x="20" y="202" class="rank">3</text>
   <text x="40" y="202" class="name">charlie</text>
   <text x="186" y="202" class="active-yes">✓</text>
-  <text x="224" y="202" class="score">52</text>
-  <text x="268" y="202" class="score">76</text>
-  <text x="312" y="202" class="score">33</text>
-  <text x="368" y="202" class="score">35</text>
-  <text x="432" y="202" class="score">12</text>
-  <text x="490" y="202" class="score">64</text>
-  <text x="550" y="202" class="score">50</text>
-  <text x="594" y="202" class="score">9</text>
+  <text x="224" y="202" class="signal">52</text>
+  <text x="268" y="202" class="signal">76</text>
+  <text x="312" y="202" class="signal">33</text>
+  <text x="368" y="202" class="signal">35</text>
+  <text x="432" y="202" class="signal">12</text>
+  <text x="490" y="202" class="signal">64</text>
+  <text x="550" y="202" class="signal">50</text>
+  <text x="594" y="202" class="signal">9</text>
   <text x="648" y="202" class="grav-moderate">26</text>
   <text x="698" y="202" class="total-senior">39.5</text>
   <text x="758" y="202" class="type">Anchor</text>
@@ -134,14 +134,14 @@
   <text x="20" y="222" class="rank">4</text>
   <text x="40" y="222" class="name">diana</text>
   <text x="186" y="222" class="active-no">—</text>
-  <text x="224" y="222" class="score">100</text>
-  <text x="268" y="222" class="score">95</text>
-  <text x="312" y="222" class="score">1</text>
-  <text x="368" y="222" class="score">2</text>
-  <text x="432" y="222" class="score">2</text>
-  <text x="490" y="222" class="score">36</text>
-  <text x="550" y="222" class="score">0</text>
-  <text x="594" y="222" class="score">0</text>
+  <text x="224" y="222" class="signal">100</text>
+  <text x="268" y="222" class="signal">95</text>
+  <text x="312" y="222" class="signal">1</text>
+  <text x="368" y="222" class="signal">2</text>
+  <text x="432" y="222" class="signal">2</text>
+  <text x="490" y="222" class="signal">36</text>
+  <text x="550" y="222" class="signal">0</text>
+  <text x="594" y="222" class="signal">0</text>
   <text x="648" y="222" class="grav-dim">11</text>
   <text x="698" y="222" class="total-low">28.9</text>
   <text x="758" y="222" class="type">Anchor</text>
@@ -154,14 +154,14 @@
   <text x="20" y="242" class="rank">5</text>
   <text x="40" y="242" class="name">eve</text>
   <text x="186" y="242" class="active-no">—</text>
-  <text x="224" y="242" class="score">10</text>
-  <text x="268" y="242" class="score">97</text>
-  <text x="312" y="242" class="score">4</text>
-  <text x="368" y="242" class="score">3</text>
-  <text x="432" y="242" class="score">9</text>
-  <text x="490" y="242" class="score">100</text>
-  <text x="550" y="242" class="score">8</text>
-  <text x="594" y="242" class="score">31</text>
+  <text x="224" y="242" class="signal">10</text>
+  <text x="268" y="242" class="signal">97</text>
+  <text x="312" y="242" class="signal">4</text>
+  <text x="368" y="242" class="signal">3</text>
+  <text x="432" y="242" class="signal">9</text>
+  <text x="490" y="242" class="signal">100</text>
+  <text x="550" y="242" class="signal">8</text>
+  <text x="594" y="242" class="signal">31</text>
   <text x="648" y="242" class="grav-moderate">45</text>
   <text x="698" y="242" class="total-low">25.4</text>
   <text x="758" y="242" class="conf">—</text>
@@ -174,14 +174,14 @@
   <text x="20" y="262" class="rank">6</text>
   <text x="40" y="262" class="name">frank</text>
   <text x="186" y="262" class="active-yes">✓</text>
-  <text x="224" y="262" class="score">17</text>
-  <text x="268" y="262" class="score">70</text>
-  <text x="312" y="262" class="score">1</text>
-  <text x="368" y="262" class="score">1</text>
-  <text x="432" y="262" class="score">0</text>
-  <text x="490" y="262" class="score">64</text>
-  <text x="550" y="262" class="score">42</text>
-  <text x="594" y="262" class="score">0</text>
+  <text x="224" y="262" class="signal">17</text>
+  <text x="268" y="262" class="signal">70</text>
+  <text x="312" y="262" class="signal">1</text>
+  <text x="368" y="262" class="signal">1</text>
+  <text x="432" y="262" class="signal">0</text>
+  <text x="490" y="262" class="signal">64</text>
+  <text x="550" y="262" class="signal">42</text>
+  <text x="594" y="262" class="signal">0</text>
   <text x="648" y="262" class="grav-dim">19</text>
   <text x="698" y="262" class="total-low">22.3</text>
   <text x="758" y="262" class="conf">—</text>
@@ -194,14 +194,14 @@
   <text x="20" y="282" class="rank">7</text>
   <text x="40" y="282" class="name">grace</text>
   <text x="186" y="282" class="active-yes">✓</text>
-  <text x="224" y="282" class="score">5</text>
-  <text x="268" y="282" class="score">64</text>
-  <text x="312" y="282" class="score">0</text>
-  <text x="368" y="282" class="score">1</text>
-  <text x="432" y="282" class="score">0</text>
-  <text x="490" y="282" class="score">27</text>
-  <text x="550" y="282" class="score">36</text>
-  <text x="594" y="282" class="score">0</text>
+  <text x="224" y="282" class="signal">5</text>
+  <text x="268" y="282" class="signal">64</text>
+  <text x="312" y="282" class="signal">0</text>
+  <text x="368" y="282" class="signal">1</text>
+  <text x="432" y="282" class="signal">0</text>
+  <text x="490" y="282" class="signal">27</text>
+  <text x="550" y="282" class="signal">36</text>
+  <text x="594" y="282" class="signal">0</text>
   <text x="648" y="282" class="grav-dim">8</text>
   <text x="698" y="282" class="total-junior">15.3</text>
   <text x="758" y="282" class="conf">—</text>
@@ -213,14 +213,14 @@
   <text x="20" y="302" class="rank">8</text>
   <text x="40" y="302" class="name">henry</text>
   <text x="186" y="302" class="active-no">—</text>
-  <text x="224" y="302" class="score">0</text>
-  <text x="268" y="302" class="score">61</text>
-  <text x="312" y="302" class="score">0</text>
-  <text x="368" y="302" class="score">0</text>
-  <text x="432" y="302" class="score">0</text>
-  <text x="490" y="302" class="score">9</text>
-  <text x="550" y="302" class="score">0</text>
-  <text x="594" y="302" class="score">0</text>
+  <text x="224" y="302" class="signal">0</text>
+  <text x="268" y="302" class="signal">61</text>
+  <text x="312" y="302" class="signal">0</text>
+  <text x="368" y="302" class="signal">0</text>
+  <text x="432" y="302" class="signal">0</text>
+  <text x="490" y="302" class="signal">9</text>
+  <text x="550" y="302" class="signal">0</text>
+  <text x="594" y="302" class="signal">0</text>
   <text x="648" y="302" class="grav-dim">3</text>
   <text x="698" y="302" class="total-junior">5.6</text>
   <text x="758" y="302" class="conf">—</text>
@@ -238,24 +238,24 @@
   <line x1="20" y1="372" x2="600" y2="372" stroke="#504945" stroke-width="1"/>
 
   <text x="20" y="392" style="fill: #fb4934; font-weight: 700;">CRITICAL</text>
-  <text x="120" y="392" class="score">app/di</text>
+  <text x="120" y="392" class="signal">app/di</text>
   <text x="380" y="392" class="name">machuz</text>
-  <text x="520" y="392" class="score">93%</text>
+  <text x="520" y="392" class="signal">93%</text>
 
   <text x="20" y="412" style="fill: #fb4934; font-weight: 700;">CRITICAL</text>
-  <text x="120" y="412" class="score">tests/testhelper</text>
+  <text x="120" y="412" class="signal">tests/testhelper</text>
   <text x="380" y="412" class="name">machuz</text>
-  <text x="520" y="412" class="score">96%</text>
+  <text x="520" y="412" class="signal">96%</text>
 
   <text x="20" y="432" style="fill: #fabd2f;">HIGH</text>
-  <text x="120" y="432" class="score">app/common</text>
+  <text x="120" y="432" class="signal">app/common</text>
   <text x="380" y="432" class="name">bob</text>
-  <text x="520" y="432" class="score">68%</text>
+  <text x="520" y="432" class="signal">68%</text>
 
   <!-- Footer -->
   <text x="20" y="472" class="summary">Completed in 2m37s (12 repos total)</text>
 
-  <!-- Score legend -->
+  <!-- Signal legend -->
   <text x="20" y="498" class="summary">  80-100  Irreplaceable core member: 1    40-59  Senior-level: 1    20-29  Junior-Mid: 3    0-19  Junior: 3</text>
 
   <!-- Version -->

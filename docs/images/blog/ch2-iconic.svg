@@ -71,7 +71,7 @@
   <text x="520" y="218" fill="#928374" font-size="9" text-anchor="end">Risk</text>
   <text x="510" y="138" fill="#928374" font-size="9" text-anchor="end">Balance</text>
 
-  <!-- Health score -->
+  <!-- Health signal -->
   <text x="590" y="255" text-anchor="middle" fill="#b8bb26" font-size="14" font-weight="700">Health: 82</text>
 
   <text x="30" y="282" fill="#8ec07c" font-size="11">$ eis team --config teams.yaml</text>

@@ -39,7 +39,7 @@
 
   <!-- Right side: Large chapter number -->
 
-  <!-- Right side: 7-axis score bars (decorative) -->
+  <!-- Right side: 7-axis signal bars (decorative) -->
   <g opacity="0.9">
     <!-- Vertical bars representing 7 axes -->
     <rect x="580" y="160" width="28" height="180" rx="3" fill="#3c3836"/>

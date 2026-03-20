@@ -6,10 +6,10 @@
       .header { fill: #8ec07c; font-weight: 700; }
       .name { fill: #fabd2f; font-weight: 700; font-size: 13px; }
       .label { fill: #ebdbb2; }
-      .score-high { fill: #d3869b; font-weight: 700; }
-      .score-mid { fill: #b8bb26; font-weight: 700; }
-      .score-low { fill: #fabd2f; }
-      .score-dim { fill: #928374; }
+      .signal-high { fill: #d3869b; font-weight: 700; }
+      .signal-mid { fill: #b8bb26; font-weight: 700; }
+      .signal-low { fill: #fabd2f; }
+      .signal-dim { fill: #928374; }
       .role { fill: #83a598; }
       .style { fill: #fb4934; }
       .state-active { fill: #b8bb26; }
@@ -59,10 +59,10 @@
 
   <!-- 2024-Q2 -->
   <text x="20" y="160" class="label">2024-Q2 (Apr)</text>
-  <text x="200" y="160" class="score-low">31.5</text>
+  <text x="200" y="160" class="signal-low">31.5</text>
   <text x="270" y="160" class="label">25</text>
-  <text x="340" y="160" class="score-mid">92</text>
-  <text x="410" y="160" class="score-dim">0</text>
+  <text x="340" y="160" class="signal-mid">92</text>
+  <text x="410" y="160" class="signal-dim">0</text>
   <text x="480" y="160" class="label">46</text>
   <text x="570" y="160" class="role">Anchor</text>
   <text x="700" y="160" class="dim">—</text>
@@ -70,33 +70,33 @@
 
   <!-- 2024-Q3 -->
   <text x="20" y="180" class="label">2024-Q3 (Jul)</text>
-  <text x="200" y="180" class="score-mid">73.8</text>
+  <text x="200" y="180" class="signal-mid">73.8</text>
   <text x="270" y="180" class="label">72</text>
-  <text x="340" y="180" class="score-mid">83</text>
-  <text x="410" y="180" class="score-mid">98</text>
-  <text x="480" y="180" class="score-high">100</text>
+  <text x="340" y="180" class="signal-mid">83</text>
+  <text x="410" y="180" class="signal-mid">98</text>
+  <text x="480" y="180" class="signal-high">100</text>
   <text x="570" y="180" class="role">Anchor</text>
   <text x="700" y="180" class="style">Builder</text>
   <text x="830" y="180" class="dim">—</text>
 
   <!-- 2024-Q4 -->
   <text x="20" y="200" class="label">2024-Q4 (Oct)</text>
-  <text x="200" y="200" class="score-mid">64.1</text>
+  <text x="200" y="200" class="signal-mid">64.1</text>
   <text x="270" y="200" class="label">53</text>
   <text x="340" y="200" class="label">72</text>
   <text x="410" y="200" class="label">40</text>
-  <text x="480" y="200" class="score-high">100</text>
+  <text x="480" y="200" class="signal-high">100</text>
   <text x="570" y="200" class="role">Anchor</text>
   <text x="700" y="200" class="style">Builder</text>
   <text x="830" y="200" class="dim">—</text>
 
   <!-- 2025-Q1 -->
   <text x="20" y="220" class="label">2025-Q1 (Jan)</text>
-  <text x="200" y="220" class="score-mid">61.7</text>
+  <text x="200" y="220" class="signal-mid">61.7</text>
   <text x="270" y="220" class="label">53</text>
   <text x="340" y="220" class="label">72</text>
   <text x="410" y="220" class="label">40</text>
-  <text x="480" y="220" class="score-high">100</text>
+  <text x="480" y="220" class="signal-high">100</text>
   <text x="570" y="220" class="role">Anchor</text>
   <text x="700" y="220" class="style">Builder</text>
   <text x="830" y="220" class="dim">—</text>
@@ -114,33 +114,33 @@
 
   <!-- 2025-Q3 -->
   <text x="20" y="260" class="label">2025-Q3 (Jul)</text>
-  <text x="200" y="260" class="score-high">93.2</text>
-  <text x="270" y="260" class="score-high">100</text>
+  <text x="200" y="260" class="signal-high">93.2</text>
+  <text x="270" y="260" class="signal-high">100</text>
   <text x="340" y="260" class="label">68</text>
-  <text x="410" y="260" class="score-high">100</text>
-  <text x="480" y="260" class="score-high">100</text>
+  <text x="410" y="260" class="signal-high">100</text>
+  <text x="480" y="260" class="signal-high">100</text>
   <text x="570" y="260" class="role">Architect</text>
   <text x="700" y="260" class="style">Builder</text>
   <text x="830" y="260" class="dim">—</text>
 
   <!-- 2025-Q4 -->
   <text x="20" y="280" class="label">2025-Q4 (Oct)</text>
-  <text x="200" y="280" class="score-high">87.7</text>
-  <text x="270" y="280" class="score-high">100</text>
+  <text x="200" y="280" class="signal-high">87.7</text>
+  <text x="270" y="280" class="signal-high">100</text>
   <text x="340" y="280" class="label">68</text>
-  <text x="410" y="280" class="score-high">100</text>
-  <text x="480" y="280" class="score-high">100</text>
+  <text x="410" y="280" class="signal-high">100</text>
+  <text x="480" y="280" class="signal-high">100</text>
   <text x="570" y="280" class="role">Architect</text>
   <text x="700" y="280" class="style">Builder</text>
   <text x="830" y="280" class="dim">—</text>
 
   <!-- 2026-Q1 -->
   <text x="20" y="300" class="label">2026-Q1 (Jan)</text>
-  <text x="200" y="300" class="score-high">92.4</text>
-  <text x="270" y="300" class="score-high">100</text>
+  <text x="200" y="300" class="signal-high">92.4</text>
+  <text x="270" y="300" class="signal-high">100</text>
   <text x="340" y="300" class="label">41</text>
-  <text x="410" y="300" class="score-high">100</text>
-  <text x="480" y="300" class="score-high">100</text>
+  <text x="410" y="300" class="signal-high">100</text>
+  <text x="480" y="300" class="signal-high">100</text>
   <text x="570" y="300" class="role">Architect</text>
   <text x="700" y="300" class="style">Builder</text>
   <text x="830" y="300" class="state-active">Active</text>
@@ -181,12 +181,12 @@
   <text x="30" y="518" class="label">Character</text>
   <text x="250" y="518" class="role">Guardian</text>
   <text x="450" y="518" class="role">Balanced</text>
-  <text x="650" y="518" class="score-high">Elite</text>
+  <text x="650" y="518" class="signal-high">Elite</text>
 
   <text x="30" y="538" class="label">Structure</text>
   <text x="250" y="538" class="dim">Maintenance</text>
   <text x="450" y="538" class="dim">Unstructured</text>
-  <text x="650" y="538" class="score-high">Architectural Engine</text>
+  <text x="650" y="538" class="signal-high">Architectural Engine</text>
 
   <text x="30" y="558" class="label">Phase</text>
   <text x="250" y="558" class="state-former">Declining</text>

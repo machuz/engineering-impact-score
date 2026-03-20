@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="240" viewBox="0 0 960 240">
   <defs>
-    <linearGradient id="scoreBar" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="signalBar" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#504945"/>
       <stop offset="20%" stop-color="#665c54"/>
       <stop offset="30%" stop-color="#a89984"/>
@@ -25,7 +25,7 @@
   <text x="480" y="32" text-anchor="middle" fill="#ebdbb2" font-size="16" font-weight="800" font-family="-apple-system,sans-serif" letter-spacing="0.5">Engineering Impact Signal Guide</text>
 
   <!-- Main bar: x=80..880, width=800 -->
-  <rect x="80" y="55" width="800" height="40" rx="6" fill="url(#scoreBar)" opacity="0.85"/>
+  <rect x="80" y="55" width="800" height="40" rx="6" fill="url(#signalBar)" opacity="0.85"/>
 
   <!-- Divider lines -->
   <line x1="240" y1="55" x2="240" y2="95" stroke="#1d2021" stroke-width="2"/>
@@ -34,7 +34,7 @@
   <line x1="560" y1="55" x2="560" y2="95" stroke="#1d2021" stroke-width="2"/>
   <line x1="720" y1="55" x2="720" y2="95" stroke="#1d2021" stroke-width="2"/>
 
-  <!-- Score ticks -->
+  <!-- Signal ticks -->
   <text x="80" y="115" text-anchor="middle" fill="#665c54" font-size="10" font-family="-apple-system,sans-serif">0</text>
   <text x="240" y="115" text-anchor="middle" fill="#665c54" font-size="10" font-family="-apple-system,sans-serif">20</text>
   <text x="320" y="115" text-anchor="middle" fill="#665c54" font-size="10" font-family="-apple-system,sans-serif">30</text>

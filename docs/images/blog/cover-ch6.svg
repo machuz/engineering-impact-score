@@ -92,7 +92,7 @@
     <circle cx="912" cy="158" r="3" fill="#8ec07c" opacity="0.3"/>
     <circle cx="924" cy="158" r="3" fill="#8ec07c" opacity="0.3"/>
 
-    <!-- Health score bar -->
+    <!-- Health signal bar -->
     <text x="760" y="380" text-anchor="middle" fill="#8ec07c" font-size="10" font-weight="700">Team Health Signal</text>
     <rect x="640" y="388" width="240" height="6" rx="3" fill="#3c3836"/>
     <rect x="640" y="388" width="180" height="6" rx="3" fill="#b8bb26"/>

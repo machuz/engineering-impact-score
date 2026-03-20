@@ -23,7 +23,7 @@
   <text x="30" y="148" fill="#fabd2f" font-size="24" font-weight="700">Don't Lie</text>
   <text x="30" y="178" fill="#928374" font-size="14">And They Capture Hesitation Too</text>
 
-  <!-- Left side: Score timeline -->
+  <!-- Left side: Signal timeline -->
   <text x="30" y="215" fill="#8ec07c" font-size="11" font-weight="700">Timeline</text>
   <text y="238" font-size="11"><tspan x="30" fill="#928374">Q1 </tspan><tspan fill="#d3869b">████████████████████</tspan><tspan fill="#d3869b"> 90 Architect</tspan></text>
   <text y="256" font-size="11"><tspan x="30" fill="#928374">Q2 </tspan><tspan fill="#b8bb26">██████████████████</tspan><tspan fill="#fabd2f">   73 Producer</tspan></text>
