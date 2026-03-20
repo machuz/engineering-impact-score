@@ -151,6 +151,12 @@ go install github.com/machuz/eis/cmd/eis@latest
 go test ./...
 ```
 
+## ポータル同期ルール
+
+- eisリポの `research/` や `docs/` に公開HTMLページを追加・変更した場合、orbitリポの `pages/index.html`（ポータル）にもリンクを追加・更新すること
+- ポータルの場所: `/Users/machu/Mydev/myGithub/orbit/pages/index.html`
+- Cloudflare Pages（orbit-d8x.pages.dev）で自動デプロイされる
+
 ## 自律的に進めてよい作業
 
 - archetype.goの修正 → ドキュメント4箇所の更新 → コミット → リリースまで一気通貫でOK
