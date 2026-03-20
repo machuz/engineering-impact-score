@@ -8,7 +8,7 @@
   <a href="https://github.com/sponsors/machuz"><img src="https://img.shields.io/badge/Sponsor-❤-ea4aaa?logo=github" alt="Sponsor"></a>
   <br>
   <a href="https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c"><img src="https://img.shields.io/badge/dev.to-Read%20Article-0A0A0A?logo=devdotto&logoColor=white" alt="dev.to"></a>
-  <a href="https://ma2k8.hateblo.jp/entry/2026/03/11/153212"><img src="https://img.shields.io/badge/はてなブログ-記事を読む-00A4DE" alt="はてなブログ"></a>
+  <a href="https://zenn.dev/machuz/books/git-archaeology"><img src="https://img.shields.io/badge/Zenn-記事を読む-3EA8FF?logo=zenn&logoColor=white" alt="Zenn"></a>
 </p>
 
 **Engineering Impact Signal** (EIS, pronounced *"ace"*)
