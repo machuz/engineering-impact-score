@@ -77,7 +77,16 @@ And now AI writes enormous amounts of code.
 
 If EIS can become a **tool for making architecture a science**, I'd be glad.
 
-And now it observes more than just people. EIS classifies **every module** in the codebase along 3 axes — Coupling (boundary quality), Vitality (change pressure × survival), and Ownership (knowledge distribution). This turns invisible structural risks into observable data:
+And now it observes more than just people. To observe **modules themselves**, we designed 4 new metrics:
+
+| Metric | What it measures |
+|---|---|
+| **Change Pressure** | Change frequency ÷ code volume per module. Higher pressure = more structural stress |
+| **Co-change Coupling** | Module pairs that change together. Detects implicit coupling invisible in import graphs |
+| **Module Survival** | Time-decayed survival rate of code within a module |
+| **Ownership Fragmentation** | How knowledge is distributed across a module. Measured via Shannon entropy |
+
+These metrics combine to classify every module along 3 independent axes — Coupling (boundary quality), Vitality (change pressure × survival), and Ownership (knowledge distribution). Invisible structural risks become observable data:
 
 - `Hub × Critical × Orphaned` — a module at the center of implicit dependencies, under extreme change pressure, with no active owner. Maximum risk.
 - `Independent × Stable × Distributed` — a well-bounded module with healthy ownership. The ideal state.
@@ -217,22 +226,22 @@ The telescope measures the brightness of stars. It doesn't decide which stars de
 
 This blog series — **Git Archaeology** — applies EIS to real teams and explores what the numbers reveal.
 
-1. **[Measuring Engineering Impact from Git History Alone](https://dev.to/machuz/git-archaeology-1-measuring-engineering-impact-from-git-history-alone-55fh)** — Full 7-axis scoring design
-2. **Team Topology** — How scores reveal team structure
-3. **FE Architects Diverge** — Frontend evolution model
-4. **BE Architects Converge** — Backend evolution model
-5. **Infra Goes Silent** — The visibility problem of infrastructure engineers
-6. **Gravity Map** — Visualizing code gravity fields
-7. **Risk Detection** — Quantifying technical risk
-8. **Normalization Design** — Why hybrid scoring
-9. **Domain Separation** — Why mixing BE/FE/Infra pollutes scores
-10. **Time Decay Design** — The math behind Survival
-11. **Archetype Design** — Full classification logic
-12. **Team Metrics** — Team health diagnostics
-13. **Robust Survival** — Tested code survival
-14. **Change Pressure** — Quantifying change pressure
-15. **Multi-Repo Analysis** — Cross-organization scoring
-16. **The Future** — What's next for EIS
+1. **[Measuring Engineering Impact from Git History Alone](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c)** — Full 7-axis scoring design
+2. **[Beyond Individual Scores: Measuring Team Health from Git History](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f)**
+3. **[Two Paths to Architect: How Engineers Evolve Differently](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga)**
+4. **[Backend Architects Converge: The Sacred Work of Laying Souls to Rest](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d)**
+5. **[Timeline: Scores Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)**
+6. **[Teams Evolve: The Laws of Organization Revealed by Timelines](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei)**
+7. **[Observing the Universe of Code](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0)**
+8. **[Engineering Relativity: Why the Same Engineer Gets Different Scores](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)**
+9. **[Origin: The Big Bang of Code Universes](https://dev.to/machuz/git-archaeology-9-collapse-good-architects-and-black-hole-engineers-1dcn)**
+10. **[Dark Matter: The Invisible Gravity](https://dev.to/machuz/git-archaeology-10-dark-matter-the-invisible-gravity-45ne)**
+11. **[Entropy: The Universe Always Tends Toward Disorder](https://dev.to/machuz/git-archaeology-11-entropy-the-universe-always-tends-toward-disorder-ak9)**
+12. **[Collapse: Good Architects and Black Hole Engineers](https://dev.to/machuz/git-archaeology-12-collapse-good-architects-and-black-hole-engineers-3fed)**
+13. **[Cosmology of Code](https://dev.to/machuz/git-archaeology-13-cosmology-of-code-dci)**
+14. **[Civilization: Why Only Some Codebases Become Civilizations](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-1fe3)**
+15. **[AI Creates Stars, Not Gravity](https://dev.to/machuz/git-archaeology-15-the-age-of-ai-the-starburst-that-code-universes-were-never-prepared-for-o7k)**
+16. **[The Engineers Who Shape Gravity](https://dev.to/machuz/git-archaeology-16-the-engineers-who-shape-gravity-3fmi)**
 
 ### Series
 
