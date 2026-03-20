@@ -7,8 +7,8 @@ import (
 	"unicode/utf8"
 
 	"github.com/fatih/color"
-	"github.com/machuz/engineering-impact-score/internal/metric"
-	"github.com/machuz/engineering-impact-score/internal/scorer"
+	"github.com/machuz/eis/internal/metric"
+	"github.com/machuz/eis/internal/scorer"
 	"github.com/rodaine/table"
 )
 
@@ -33,9 +33,9 @@ func PrintRankings(results []scorer.Result) {
 
 	var tbl table.Table
 	if hasPressure {
-		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Robust", "Dormant", "Design", "Breadth", "Debt", "Indisp", "Grav", "Total", "Role", "Style", "State")
+		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Robust", "Dormant", "Design", "Breadth", "Debt", "Indisp", "Grav", "Impact", "Role", "Style", "State")
 	} else {
-		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Surv", "Design", "Breadth", "Debt", "Indisp", "Grav", "Total", "Role", "Style", "State")
+		tbl = table.New("#", "Member", "Active", "Prod", "Qual", "Surv", "Design", "Breadth", "Debt", "Indisp", "Grav", "Impact", "Role", "Style", "State")
 	}
 	tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt).WithWidthFunc(stripAnsiWidth).WithWriter(os.Stdout)
 
@@ -46,7 +46,7 @@ func PrintRankings(results []scorer.Result) {
 	confFmt := color.New(color.FgHiBlack).SprintfFunc()
 
 	for i, r := range results {
-		totalStr := formatTotal(r.Total)
+		totalStr := formatImpact(r.Impact)
 
 		roleStr := formatAxis(r.Role, r.RoleConf, labelFmt, confFmt)
 		styleStr := formatAxis(r.Style, r.StyleConf, labelFmt, confFmt)
@@ -163,18 +163,18 @@ func formatGravity(r scorer.Result) string {
 	}
 }
 
-func formatTotal(total float64) string {
+func formatImpact(v float64) string {
 	switch {
-	case total >= 80:
-		return color.New(color.FgHiMagenta, color.Bold).Sprintf("%.1f", total)
-	case total >= 60:
-		return color.New(color.FgHiGreen, color.Bold).Sprintf("%.1f", total)
-	case total >= 40:
-		return color.New(color.FgHiYellow).Sprintf("%.1f", total)
-	case total >= 20:
-		return color.New(color.FgWhite).Sprintf("%.1f", total)
+	case v >= 80:
+		return color.New(color.FgHiMagenta, color.Bold).Sprintf("%.1f", v)
+	case v >= 60:
+		return color.New(color.FgHiGreen, color.Bold).Sprintf("%.1f", v)
+	case v >= 40:
+		return color.New(color.FgHiYellow).Sprintf("%.1f", v)
+	case v >= 20:
+		return color.New(color.FgWhite).Sprintf("%.1f", v)
 	default:
-		return color.New(color.FgHiBlack).Sprintf("%.1f", total)
+		return color.New(color.FgHiBlack).Sprintf("%.1f", v)
 	}
 }
 
@@ -185,7 +185,7 @@ type PerRepoData struct {
 }
 
 // PrintPerRepoComparison prints a cross-repo comparison table showing each author's
-// Role, Style, State and Total score per repository, with a Pattern column.
+// Role, Style, State and Impact score per repository, with a Pattern column.
 func PrintPerRepoComparison(domainName string, perRepo []PerRepoData, aggregated []scorer.Result) {
 	if len(perRepo) == 0 {
 		return
@@ -245,9 +245,9 @@ func PrintPerRepoComparison(domainName string, perRepo []PerRepoData, aggregated
 			} else {
 				var cell string
 				if r.Role != "" && r.Role != "—" {
-					cell = fmt.Sprintf("%s %.0f", r.Role, r.Total)
+					cell = fmt.Sprintf("%s %.0f", r.Role, r.Impact)
 				} else {
-					cell = dimFmt("%.0f", r.Total)
+					cell = dimFmt("%.0f", r.Impact)
 				}
 				row = append(row, cell)
 				roles = append(roles, r.Role)
@@ -545,7 +545,7 @@ func PrintSummary(results []scorer.Result, repoCount int) {
 	for _, l := range legend {
 		count := 0
 		for _, r := range results {
-			if r.Total >= l.min && r.Total <= l.max {
+			if r.Impact >= l.min && r.Impact <= l.max {
 				count++
 			}
 		}

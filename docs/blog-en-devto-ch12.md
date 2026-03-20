@@ -1,7 +1,7 @@
 ---
 title: "Git Archaeology #12 — Collapse: Good Architects and Black Hole Engineers"
 published: true
-description: "Chapter 12 of Engineering Impact Score. Not all strong gravity is good gravity. Some engineers create structure that survives their departure. Others create gravity that collapses without them."
+description: "Chapter 12 of Engineering Impact Signal. Not all strong gravity is good gravity. Some engineers create structure that survives their departure. Others create gravity that collapses without them."
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch12.png?v=4
 ---
@@ -142,7 +142,7 @@ Bus Factor = 1 means "if one person leaves, it collapses." This is the clearest 
 
 ### 2. Detect Indispensability Concentration
 
-Use `--per-repo` to examine individual score distributions.
+Use `--per-repo` to examine individual signal distributions.
 
 ```bash
 ❯ eis analyze --recursive --per-repo ~/workspace
@@ -160,19 +160,19 @@ A good Architect's timeline shows an Architect → Producer transition (like O. 
 
 A Black Hole Engineer's timeline shows **permanent Architect**. They never release the structure. They keep concentrating gravity.
 
-### 4. Judge Gravity Quality Through Surrounding Scores
+### 4. Judge Gravity Quality Through Surrounding Signals
 
 Use the gravitational lensing effect from Chapter 8.
 
 Around a good Architect:
-- Teammates' Design scores gradually rise (they learn the structure and start contributing)
+- Teammates' Design signals gradually rise (they learn the structure and start contributing)
 - New joiners ramp up quickly (the structure is clear and understandable)
 
 Around a Black Hole Engineer:
-- Teammates' Design scores stay low (they can't touch — or don't dare touch — the structure)
+- Teammates' Design signals stay low (they can't touch — or don't dare touch — the structure)
 - New joiners ramp up slowly (you have to ask one person to understand anything)
 
-**The quality of gravity is reflected in the surrounding scores.**
+**The quality of gravity is reflected in the surrounding signals.**
 
 ---
 
@@ -209,7 +209,7 @@ In timelines, the pattern looks like this:
 When such an engineer joins a post-collapse team:
 - Team classification recovers from Unstructured → Guardian → Balanced
 - Bus Factor rises from 1 to 2, then 3
-- Multiple members' Design scores start rising simultaneously
+- Multiple members' Design signals start rising simultaneously
 
 **Only an Architect who distributes structure can turn collapse into regeneration.**
 
@@ -239,7 +239,7 @@ What a Black Hole Engineer leaves behind is — void.
 - [Chapter 5: Timeline: Scores Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
 - [Chapter 6: Teams Evolve: The Laws of Organization Revealed by Timelines](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei)
 - [Chapter 7: Observing the Universe of Code](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0)
-- [Chapter 8: Engineering Relativity: Why the Same Engineer Gets Different Scores](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)
+- [Chapter 8: Engineering Relativity: Why the Same Engineer Gets Different Signals](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)
 - [Chapter 9: Origin: The Big Bang of Code Universes](https://dev.to/machuz/git-archaeology-9-collapse-good-architects-and-black-hole-engineers-1dcn)
 - [Chapter 10: Dark Matter: The Invisible Gravity](https://dev.to/machuz/git-archaeology-10-dark-matter-the-invisible-gravity-45ne)
 - [Chapter 11: Entropy: The Universe Always Tends Toward Disorder](https://dev.to/machuz/git-archaeology-11-entropy-the-universe-always-tends-toward-disorder-ak9)
@@ -251,7 +251,7 @@ What a Black Hole Engineer leaves behind is — void.
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)

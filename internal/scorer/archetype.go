@@ -103,7 +103,7 @@ func classifyStyle(r Result) AxisMatch {
 		}},
 		// Balanced: steady contributor, no dominant pattern.
 		{"Balanced", func() float64 {
-			if r.Total < 30 {
+			if r.Impact < 30 {
 				return 0
 			}
 			return 0.30

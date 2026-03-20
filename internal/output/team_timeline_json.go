@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/timeline"
 )
 
 type teamTimelineJSONOutput struct {
@@ -60,7 +60,7 @@ func PrintTeamTimelineJSON(timelines []timeline.TeamTimeline) error {
 					Survival:    round1(p.AvgSurvival),
 					Design:      round1(p.AvgDesign),
 					DebtCleanup: round1(p.AvgDebtCleanup),
-					Total:       round1(p.AvgTotal),
+					Impact:      round1(p.AvgImpact),
 				},
 				Health: teamHealthJSON{
 					Complementarity:     round1(p.Complementarity),

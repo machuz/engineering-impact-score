@@ -61,7 +61,7 @@ Score Averagesを見ると：
 
 ![Backend Scores](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-backend-scores.svg)
 
-Design 36.4はまだ低い。Architectがmachuz一人に集中しているためだ。他のメンバーのDesignスコアはほとんど0〜30台。
+Design 36.4はまだ低い。Architectがmachuz一人に集中しているためだ。他のメンバーのDesignシグナルはほとんど0〜30台。
 
 **Eliteチームの次の課題は、Design力の分散だ。**
 
@@ -90,7 +90,7 @@ Frontendの面白い点はもう一つある。
 
 **2025-H1にFactory / Delivery Teamに変わり、2025-H2に戻っている。**
 
-この一時的な変化は何か。2025-H1はR.M.が Architect としてスコア83.8を記録した時期だ。設計だけでなく生産量も高く、一人で設計と実装の両方を高回転で回していた。同時期にO.も Anchor（54.3）として安定した配信を続けていた。つまり**設計者が高回転で生産も兼ね、Anchorが着実に配信する**構成。結果、チームは一時的にFactory（大量生産型）/ Delivery Team（配信チーム）の特性を見せた。
+この一時的な変化は何か。2025-H1はR.M.が Architect としてImpact 83.8を記録した時期だ。設計だけでなく生産量も高く、一人で設計と実装の両方を高回転で回していた。同時期にO.も Anchor（54.3）として安定した配信を続けていた。つまり**設計者が高回転で生産も兼ね、Anchorが着実に配信する**構成。結果、チームは一時的にFactory（大量生産型）/ Delivery Team（配信チーム）の特性を見せた。
 
 しかしその「最大出力」は一時的だった。翌半期にはGuardian / Maintenanceに戻る。
 
@@ -106,7 +106,7 @@ Frontendの面白い点はもう一つある。
 
 InfraはExplorer / Exploration / Emerging。**まだ形を成していないチーム**だ。
 
-メンバーのスコアを見ると、全員がGrowingまたはSpread。Architectが一人もいない。Design Vacuum は必然だ。
+メンバーのシグナルを見ると、全員がGrowingまたはSpread。Architectが一人もいない。Design Vacuum は必然だ。
 
 しかしPhaseがEmergingであることは、**成長過程にある**ことを意味する。Decliningではない。
 
@@ -144,7 +144,7 @@ machuzのBackendタイムライン：
 
 自分がやったのは、**先代の構造を尊重しながら、改善しつつ大量に機能を追加すること**だった。Anchor期は既存構造の理解、Producer期は既存構造の上での大量生産。その過程で、自分のアーキテクチャが徐々にコードベースに浸透していった。
 
-Y.Y.のスコアが落ち始めた2025-H2、machuzのアーキテクチャが構造の主軸になった。EISはそれをArchitect Builderとして捉えている。
+Y.Y.のImpactが落ち始めた2025-H2、machuzのアーキテクチャが構造の主軸になった。EISはそれをArchitect Builderとして捉えている。
 
 これは「成長してArchitectになった」のではなく、**「既に持っていたArchitectとしての設計思想が、コードベースに浸透した結果が数字に現れた」**パターンだ。
 
@@ -207,7 +207,7 @@ O.の遷移を改めて見る：
 
 これは退化ではない。**代謝だ。**
 
-Architectが構造を作る。構造ができあがる。するとArchitectの仕事は減る。設計ファイルへの変更は不要になり、Designスコアが下がり、Roleが自然とProducerに落ちる。
+Architectが構造を作る。構造ができあがる。するとArchitectの仕事は減る。設計ファイルへの変更は不要になり、Designシグナルが下がり、Roleが自然とProducerに落ちる。
 
 そしてProducerとして「構造の上で生産する」フェーズに入る。
 
@@ -237,13 +237,13 @@ X.は、FEの初期構造を作った人物。2024-H1の時点ではコードベ
 
 しかしチームが成長し、他のエンジニア（R.M.、O.）が参画して構造を書き換え始めると、X.のSurvivalは急速に下がる。blameが他のメンバーに置き換わっていく。
 
-**創業Architectは、チームが成長すればするほどスコアが下がる。**
+**創業Architectは、チームが成長すればするほどImpactが下がる。**
 
-これは失敗ではない。むしろ**成功の証**だ。自分一人で作った構造の上に、他のエンジニアが乗り、発展させていく。それが起きているからスコアが下がる。
+これは失敗ではない。むしろ**成功の証**だ。自分一人で作った構造の上に、他のエンジニアが乗り、発展させていく。それが起きているからImpactが下がる。
 
 ![Gravity Transfer](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/ch6-gravity-transfer.svg)
 
-**X.のスコアがR.M.とJに移転している。** スコアの合計が保存されているわけではないが、構造的な影響力が世代交代していることは明確だ。
+**X.のImpactがR.M.とJに移転している。** Impactの合計が保存されているわけではないが、構造的な影響力が世代交代していることは明確だ。
 
 Y.Y.の退場（第5章）とは異なる種類の「退場」だ。Y.Y.は**チーム離脱**による退場。X.は**チーム成長**による退場。
 
@@ -307,7 +307,7 @@ machuzのProducer期は「成長期間」ではない。**先代Architect（Y.Y.
 
 既存の構造を使い倒すことで、構造の限界と可能性の両方を体得する。そして改善の中に自分のアーキテクチャを織り込んでいく。
 
-Architect Builderとして92.5を叩き出した2025-H2は、その浸透が閾値を超えた瞬間だ。Y.Y.のスコア低下（構造の主軸が移動）と、machuzのDesign 100（設計変更が構造ファイルに及ぶ）が同時に起きている。
+Architect Builderとして92.5を叩き出した2025-H2は、その浸透が閾値を超えた瞬間だ。Y.Y.のImpact低下（構造の主軸が移動）と、machuzのDesign 100（設計変更が構造ファイルに及ぶ）が同時に起きている。
 
 **Producer期は、自分のアーキテクチャをコードベースに浸透させるための仕込み期間になりうる。** 表面上はProducerだが、水面下では設計思想の移植が進行している。
 
@@ -353,7 +353,7 @@ Architectがいるのにチームが機能していない場合、Producer Vacuu
 
 ### 4. 創業Architectの正しい評価
 
-スコアが下がっている創業メンバーを見つけたら、**それが失敗なのか成功なのかを判断する**。チームの成長に伴うスコア低下なら、むしろ評価すべきだ。
+Impactが下がっている創業メンバーを見つけたら、**それが失敗なのか成功なのかを判断する**。チームの成長に伴うImpact低下なら、むしろ評価すべきだ。
 
 ---
 
@@ -377,10 +377,10 @@ Architectがいるのにチームが機能していない場合、Producer Vacuu
 - [第2章：エンジニアの「戦闘力」から、チームの「構造力」へ](https://ma2k8.hateblo.jp/entry/2026/03/13/060851)
 - [第3章：Architectには流派がある：Git履歴が暴く進化の分岐モデル](https://ma2k8.hateblo.jp/entry/2026/03/14/135648)
 - [第4章：Backend Architectは収束する：成仏という聖なる仕事](https://ma2k8.hateblo.jp/entry/2026/03/14/155124)
-- [第5章：タイムライン：スコアは嘘をつかないし、遠慮も映る](https://ma2k8.hateblo.jp/entry/2026/03/14/180329)
+- [第5章：タイムライン：シグナルは嘘をつかないし、遠慮も映る](https://ma2k8.hateblo.jp/entry/2026/03/14/180329)
 - **第6章：チームは進化する——タイムラインが暴く組織の法則**（本記事）
 - [第7章：コードの宇宙を観測する](https://ma2k8.hateblo.jp/entry/2026/03/14/213413)
-- [第8章：Engineering Relativity：なぜ同じエンジニアでもスコアが変わるのか](https://ma2k8.hateblo.jp/entry/2026/03/14/233602)
+- [第8章：Engineering Relativity：なぜ同じエンジニアでもImpactが変わるのか](https://ma2k8.hateblo.jp/entry/2026/03/14/233602)
 - [第9章：Origin：コード宇宙のビッグバン](https://ma2k8.hateblo.jp/entry/2026/03/15/054313)
 - [第10章：Dark Matter：見えない重力](https://ma2k8.hateblo.jp/entry/2026/03/15/062608)
 - [第11章：Entropy：宇宙は常に無秩序に向かう](https://ma2k8.hateblo.jp/entry/2026/03/15/062609)
@@ -392,7 +392,7 @@ Architectがいるのにチームが機能していない場合、Producer Vacuu
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
+**GitHub**: [eis](https://github.com/machuz/eis) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
 
 この記事が参考になったら：
 

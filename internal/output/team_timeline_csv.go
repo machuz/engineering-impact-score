@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/timeline"
 )
 
 // PrintTeamTimelineCSV outputs team timeline data as CSV.
@@ -16,7 +16,7 @@ func PrintTeamTimelineCSV(timelines []timeline.TeamTimeline) {
 		"team", "domain", "period",
 		"core_members", "effective_members", "total_members",
 		"character", "structure", "culture", "phase", "risk",
-		"avg_production", "avg_quality", "avg_survival", "avg_design", "avg_debt_cleanup", "avg_total",
+		"avg_production", "avg_quality", "avg_survival", "avg_design", "avg_debt_cleanup", "avg_impact",
 		"complementarity", "growth_potential", "sustainability", "debt_balance",
 		"productivity_density", "quality_consistency", "risk_ratio",
 	})
@@ -40,7 +40,7 @@ func PrintTeamTimelineCSV(timelines []timeline.TeamTimeline) {
 				fmt.Sprintf("%.1f", p.AvgSurvival),
 				fmt.Sprintf("%.1f", p.AvgDesign),
 				fmt.Sprintf("%.1f", p.AvgDebtCleanup),
-				fmt.Sprintf("%.1f", p.AvgTotal),
+				fmt.Sprintf("%.1f", p.AvgImpact),
 				fmt.Sprintf("%.1f", p.Complementarity),
 				fmt.Sprintf("%.1f", p.GrowthPotential),
 				fmt.Sprintf("%.1f", p.Sustainability),

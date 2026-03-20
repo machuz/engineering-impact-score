@@ -3,7 +3,7 @@ package timeline
 import (
 	"testing"
 
-	"github.com/machuz/engineering-impact-score/internal/scorer"
+	"github.com/machuz/eis/internal/scorer"
 )
 
 func TestBuildTimeline_BasicFlow(t *testing.T) {
@@ -11,15 +11,15 @@ func TestBuildTimeline_BasicFlow(t *testing.T) {
 		{
 			Label: "2025-Q2",
 			Members: []scorer.Result{
-				{Author: "alice", Total: 42.3, Production: 35, Quality: 78, Role: "Producer", Style: "Mass", State: "Active"},
-				{Author: "bob", Total: 30.0, Production: 20, Quality: 60, Role: "Producer", Style: "Balanced", State: "Active"},
+				{Author: "alice", Impact: 42.3, Production: 35, Quality: 78, Role: "Producer", Style: "Mass", State: "Active"},
+				{Author: "bob", Impact: 30.0, Production: 20, Quality: 60, Role: "Producer", Style: "Balanced", State: "Active"},
 			},
 		},
 		{
 			Label: "2025-Q3",
 			Members: []scorer.Result{
-				{Author: "alice", Total: 55.7, Production: 52, Quality: 80, Role: "Anchor", Style: "Builder", State: "Active"},
-				{Author: "bob", Total: 25.0, Production: 15, Quality: 55, Role: "Producer", Style: "Balanced", State: "Growing"},
+				{Author: "alice", Impact: 55.7, Production: 52, Quality: 80, Role: "Anchor", Style: "Builder", State: "Active"},
+				{Author: "bob", Impact: 25.0, Production: 15, Quality: 55, Role: "Producer", Style: "Balanced", State: "Growing"},
 			},
 		},
 	}
@@ -30,9 +30,9 @@ func TestBuildTimeline_BasicFlow(t *testing.T) {
 		t.Fatalf("expected 2 timelines, got %d", len(timelines))
 	}
 
-	// Should be sorted by latest total descending
+	// Should be sorted by latest impact descending
 	if timelines[0].Author != "alice" {
-		t.Errorf("expected alice first (higher total), got %s", timelines[0].Author)
+		t.Errorf("expected alice first (higher impact), got %s", timelines[0].Author)
 	}
 
 	if len(timelines[0].Periods) != 2 {
@@ -40,11 +40,11 @@ func TestBuildTimeline_BasicFlow(t *testing.T) {
 	}
 
 	// Check alice's periods
-	if timelines[0].Periods[0].Total != 42.3 {
-		t.Errorf("expected alice Q2 total 42.3, got %.1f", timelines[0].Periods[0].Total)
+	if timelines[0].Periods[0].Impact != 42.3 {
+		t.Errorf("expected alice Q2 impact 42.3, got %.1f", timelines[0].Periods[0].Impact)
 	}
-	if timelines[0].Periods[1].Total != 55.7 {
-		t.Errorf("expected alice Q3 total 55.7, got %.1f", timelines[0].Periods[1].Total)
+	if timelines[0].Periods[1].Impact != 55.7 {
+		t.Errorf("expected alice Q3 impact 55.7, got %.1f", timelines[0].Periods[1].Impact)
 	}
 }
 
@@ -115,11 +115,11 @@ func TestBuildTimeline_AuthorMissingFromPeriod(t *testing.T) {
 	periods := []PeriodResult{
 		{
 			Label:   "Q1",
-			Members: []scorer.Result{{Author: "alice", Total: 40}},
+			Members: []scorer.Result{{Author: "alice", Impact: 40}},
 		},
 		{
 			Label:   "Q2",
-			Members: []scorer.Result{{Author: "alice", Total: 50}, {Author: "bob", Total: 30}},
+			Members: []scorer.Result{{Author: "alice", Impact: 50}, {Author: "bob", Impact: 30}},
 		},
 	}
 
@@ -135,10 +135,10 @@ func TestBuildTimeline_AuthorMissingFromPeriod(t *testing.T) {
 	if bob == nil {
 		t.Fatal("expected bob in timelines")
 	}
-	if bob.Periods[0].Total != 0 {
-		t.Errorf("expected bob Q1 total 0, got %.1f", bob.Periods[0].Total)
+	if bob.Periods[0].Impact != 0 {
+		t.Errorf("expected bob Q1 impact 0, got %.1f", bob.Periods[0].Impact)
 	}
-	if bob.Periods[1].Total != 30 {
-		t.Errorf("expected bob Q2 total 30, got %.1f", bob.Periods[1].Total)
+	if bob.Periods[1].Impact != 30 {
+		t.Errorf("expected bob Q2 impact 30, got %.1f", bob.Periods[1].Impact)
 	}
 }

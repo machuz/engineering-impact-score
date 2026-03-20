@@ -12,7 +12,7 @@ published: true
 
 ### 前章までのあらすじ
 
-[第8章](https://ma2k8.hateblo.jp/entry/2026/03/14/233602)ではEngineering Relativity——同じエンジニアでも宇宙が変わればスコアが変わる——について書いた。
+[第8章](https://ma2k8.hateblo.jp/entry/2026/03/14/233602)ではEngineering Relativity——同じエンジニアでも宇宙が変わればシグナルが変わる——について書いた。
 
 ここから先は、git考古学の思想をさらに深く掘り下げる。
 
@@ -165,7 +165,7 @@ EISはこの初期条件の影響も映し出す。
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
+**GitHub**: [eis](https://github.com/machuz/eis) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
 
 この記事が参考になったら：
 

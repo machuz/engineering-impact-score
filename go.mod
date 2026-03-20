@@ -1,4 +1,4 @@
-module github.com/machuz/engineering-impact-score
+module github.com/machuz/eis
 
 go 1.25.0
 

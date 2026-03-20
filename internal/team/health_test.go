@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/machuz/engineering-impact-score/internal/scorer"
+	"github.com/machuz/eis/internal/scorer"
 )
 
 func TestCalcHealth_FullTeam(t *testing.T) {

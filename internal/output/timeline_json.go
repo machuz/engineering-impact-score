@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/timeline"
 )
 
 type timelineJSONOutput struct {
@@ -29,7 +29,7 @@ type timelineJSONAuthor struct {
 
 type timelineJSONAuthorPeriod struct {
 	Label            string  `json:"label"`
-	Total            float64 `json:"total"`
+	Impact           float64 `json:"impact"`
 	Production       float64 `json:"production"`
 	Quality          float64 `json:"quality"`
 	Survival         float64 `json:"survival"`
@@ -81,7 +81,7 @@ func PrintTimelineJSON(domainName, span string, periods []timeline.PeriodResult,
 		for _, p := range tl.Periods {
 			author.Periods = append(author.Periods, timelineJSONAuthorPeriod{
 				Label:            p.Label,
-				Total:            round1(p.Total),
+				Impact:           round1(p.Impact),
 				Production:       round1(p.Production),
 				Quality:          round1(p.Quality),
 				Survival:         round1(p.Survival),

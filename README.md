@@ -11,7 +11,7 @@
   <a href="https://ma2k8.hateblo.jp/entry/2026/03/11/153212"><img src="https://img.shields.io/badge/はてなブログ-記事を読む-00A4DE" alt="はてなブログ"></a>
 </p>
 
-**Engineering Impact Score** (EIS, pronounced *"ace"*)
+**Engineering Impact Signal** (EIS, pronounced *"ace"*)
 
 ```bash
 brew tap machuz/tap && brew install eis
@@ -81,7 +81,7 @@ From these signals, EIS derives **Roles** (Architect, Anchor, Producer...), **St
 
 ```bash
 # Install
-go install github.com/machuz/engineering-impact-score/cmd/eis@latest
+go install github.com/machuz/eis/cmd/eis@latest
 # or
 brew tap machuz/tap && brew install eis
 
@@ -101,7 +101,7 @@ eis analyze --config eis.yaml --recursive ~/projects
 # Export as JSON or CSV
 eis analyze --format json --recursive ~/workspace > result.json
 
-# Team-level analysis (aggregates individual scores)
+# Team-level analysis (aggregates individual signals)
 eis team --recursive ~/workspace
 
 # Team analysis with JSON output (paste into AI for deeper insights)
@@ -119,11 +119,11 @@ eis team --format json --recursive ~/workspace
 | **Code Churn** | % of recent code rewritten | Git | No (team) | Arbitrary time window, context-blind |
 | **Bus Factor** | Knowledge concentration risk | Git blame | No (team) | Only identifies risk, not impact |
 | **Git analytics tools** (Pluralsight Flow, LinearB, etc.) | Activity & cycle time | Git + integrations | Both | Still activity-focused — measures *when*, not *whether it lasted* |
-| **Engineering Impact Score** | **Code that survives over time** | **Git log + blame** | **Yes** | Accuracy depends on codebase design quality |
+| **Engineering Impact Signal** | **Code that survives over time** | **Git log + blame** | **Yes** | Accuracy depends on codebase design quality |
 
 The core gap this model fills: **existing frameworks measure activity or velocity, not whether individual contributions actually lasted.** DORA tells you how fast code reaches production. This model tells you whether it was worth deploying.
 
-Time-decayed survival is also naturally resistant to gaming — you can't inflate your score with busy work, because only code that remains in the codebase months later counts.
+Time-decayed survival is also naturally resistant to gaming — you can't inflate your signal with busy work, because only code that remains in the codebase months later counts.
 
 ## The 7 Axes
 
@@ -139,17 +139,17 @@ Time-decayed survival is also naturally resistant to gaming — you can't inflat
 
 **Code Survival is the core thesis** — exponential time decay ensures "are you *still* writing durable designs?" matters most.
 
-**Gravity** (v0.10.0) is shown alongside scores but excluded from the total. It measures structural influence (`Indisp×0.4 + Breadth×0.3 + Design×0.3`) and is color-coded by health: green = durable influence, yellow = moderate, red = fragile dependency.
+**Gravity** (v0.10.0) is shown alongside signals but excluded from Impact. It measures structural influence (`Indisp×0.4 + Breadth×0.3 + Design×0.3`) and is color-coded by health: green = durable influence, yellow = moderate, red = fragile dependency.
 
-## Score Guide
+## Signal Guide
 
-**40 = Senior.** This metric is deliberately harsh. Scoring 40+ across 7 relative axes requires serious, well-rounded ability.
+**40 = Senior.** This metric is deliberately harsh. Reaching 40+ across 7 relative axes requires serious, well-rounded ability.
 
-> **Important: EIS measures impact on *this codebase*, not absolute engineering ability.** A high score means "on this codebase, this person's contributions are surviving, shaping architecture, and cleaning up debt." It does not mean they are a better engineer than someone with a lower score. If scores don't match your gut feeling, that's a signal worth investigating: it may reveal codebase design issues rather than people issues.
+> **Important: EIS measures impact on *this codebase*, not absolute engineering ability.** A strong signal means "on this codebase, this person's contributions are surviving, shaping architecture, and cleaning up debt." It does not mean they are a better engineer than someone with a weak signal. If signals don't match your gut feeling, that's worth investigating: it may reveal codebase design issues rather than people issues.
 
 EIS is not meant to replace human judgment. It reveals patterns that humans often sense but cannot quantify.
 
-![Score Guide](docs/images/score-guide.svg?v=0.12.0)
+![Signal Guide](docs/images/score-guide.svg?v=0.12.0)
 
 ## Engineer Topology (3-Axis Classification)
 
@@ -175,7 +175,7 @@ Instead of a single archetype label, EIS v0.9+ classifies each engineer along 3 
 | **Rescue** | Prod↑ Surv↓ Debt↑ | Takes over and rewrites inherited legacy code |
 | **Churn** | Prod↑ Qual↓ Surv↓ gap≥30 | Constant rework — most commits are fixes or reverts |
 | **Mass** | Prod↑ Surv↓ | High output but code doesn't survive |
-| **Balanced** | Total≥30 | Steady contributor, no dominant pattern |
+| **Balanced** | Impact≥30 | Steady contributor, no dominant pattern |
 | **Spread** | Breadth↑ Prod↓ Surv↓ Design↓ | Wide presence, shallow depth everywhere |
 | **—** | | No dominant style signal |
 
@@ -202,7 +202,7 @@ Each engineer gets a 3-label profile. Examples:
 | Anchor / Balanced / Growing | Reliable quality, steady pace, improving |
 | — / — / Fragile | Code survives only due to low change pressure |
 
-**Churn, Mass, and Spread styles look productive on individual metrics** but score low overall. Only multi-axis evaluation exposes them.
+**Churn, Mass, and Spread styles look productive on individual metrics** but show low impact overall. Only multi-axis observation exposes them.
 
 ![Archetypes Radar](docs/images/archetypes-radar.svg?v=0.12.0)
 
@@ -251,7 +251,7 @@ for module in all_modules:
 indispensability = critical_count * 1.0 + high_count * 0.5
 ```
 
-### Normalization & Total Score
+### Normalization & Impact
 
 ```python
 # Absolute axes (cross-org comparable):
@@ -262,7 +262,7 @@ indispensability = critical_count * 1.0 + high_count * 0.5
 # Relative axes (normalized within domain):
 #   Survival, Design, Breadth, Indispensability
 
-# Scored per domain (Backend/Frontend/Infra/Firmware + custom domains, separately)
+# Observed per domain (Backend/Frontend/Infra/Firmware + custom domains, separately)
 total = (
     norm_production * 0.15
     + norm_quality * 0.10
@@ -276,7 +276,7 @@ total = (
 
 ## Module Topology (3-Axis)
 
-EIS doesn't just score engineers — it classifies **modules** too. Each module in the codebase is scored on 4 structural indicators and classified along 3 independent axes:
+EIS doesn't just profile engineers — it classifies **modules** too. Each module in the codebase is observed on 4 structural indicators and classified along 3 independent axes:
 
 ### 3 Axes
 
@@ -319,10 +319,10 @@ Module topology requires `--pressure-mode include` (the default).
 
 ## Design Principles
 
-- **Domains are scored separately** (Backend/Frontend/Infra/Firmware by default, plus custom domains) — mixing them contaminates rankings; auto-detected from file extensions or configured explicitly
-- **Hybrid scoring** — Production, Quality, and Debt use absolute scales (cross-org comparable); Survival, Design, Breadth, and Indispensability use relative normalization within domain
-- **Debt threshold** — members with fewer than 10 debt events get a neutral score (50) to avoid extreme ratios
-- **Accuracy scales with codebase design quality** — well-structured codebases (Clean Architecture, DDD) yield more meaningful scores. If the score doesn't match gut feeling, it may signal poor codebase structure rather than a metric problem
+- **Domains are observed separately** (Backend/Frontend/Infra/Firmware by default, plus custom domains) — mixing them contaminates rankings; auto-detected from file extensions or configured explicitly
+- **Hybrid observation** — Production, Quality, and Debt use absolute scales (cross-org comparable); Survival, Design, Breadth, and Indispensability use relative normalization within domain
+- **Debt threshold** — members with fewer than 10 debt events get a neutral signal (50) to avoid extreme ratios
+- **Accuracy scales with codebase design quality** — well-structured codebases (Clean Architecture, DDD) yield more meaningful signals. If the signal doesn't match gut feeling, it may indicate poor codebase structure rather than a metric problem
 
 ## CLI Options
 
@@ -345,7 +345,7 @@ Shared flags:
 
 ### Team Analysis (`eis team`)
 
-Aggregates individual scores into team-level health metrics and **5-axis team classification** (Structure / Culture / Phase / Risk / Character). Classification is influence-weighted — high-scoring members shape the team's identity more.
+Aggregates individual signals into team-level health metrics and **5-axis team classification** (Structure / Culture / Phase / Risk / Character). Classification is influence-weighted — high-impact members shape the team's identity more.
 
 ![Team Output](docs/images/team-output.svg?v=0.12.0)
 
@@ -363,7 +363,7 @@ Structural metrics (AAR, Anchor Density, Architecture Coverage) and full classif
 
 ### `eis timeline` — Time-Series Analysis
 
-Tracks how individual scores, roles, and team health evolve over time. Supports 3-month, 6-month, or yearly spans.
+Tracks how individual signals, roles, and team health evolve over time. Supports 3-month, 6-month, or yearly spans.
 
 ![Timeline Output](docs/images/timeline-html-output.png?v=0.12.0)
 
@@ -381,7 +381,7 @@ See [`config.example.yaml`](config.example.yaml) for all options:
 
 - **Domains**: explicit repo-to-domain mapping. Defaults are Backend/Frontend/Infra/Firmware; custom domains (e.g. Mobile, Data) can be added with `repos:` patterns and/or `extensions:` for auto-detection. Repos not listed use auto-detection from file extensions
 - **Exclude repos**: skip specific repos from analysis
-- **Production daily ref**: baseline for absolute Production scoring (default: 1000 changes/day = score 100)
+- **Production daily ref**: baseline for absolute Production observation (default: 1000 changes/day = signal 100)
 - **Aliases**: merge variant git author names into canonical names
 - **Exclude authors**: filter out bots and non-human contributors
 - **Architecture patterns**: define which files count as "design files" for the Design axis. Defaults:
@@ -392,13 +392,13 @@ See [`config.example.yaml`](config.example.yaml) for all options:
 - **Weights**: customize axis weights (default: Survival 25%, Design 20%, Production 15%, Debt 15%, Quality 10%, Breadth 10%, Indispensability 5%)
 - **Survival tau**: decay half-life in days (default: 180)
 - **Active days**: how recently an author must have committed to be marked active (default: 30)
-- **Debt threshold**: minimum events for debt score (default: 10)
+- **Debt threshold**: minimum events for debt signal (default: 10)
 - **Teams**: named team definitions for `eis team` (optional — if omitted, each domain = one team)
 
 ### What You Get
 
-- **Rankings table** with all 7 axis scores, total, and **Active** indicator (✓ = committed within last 30 days)
-- **3-axis topology** (Role / Style / State) with confidence scores (0.0-1.0) — e.g., `Architect (1.00) / Builder (0.86) / Active (0.80)`
+- **Rankings table** with all 7 axis signals, Impact, and **Active** indicator (✓ = committed within last 30 days)
+- **3-axis topology** (Role / Style / State) with confidence values (0.0-1.0) — e.g., `Architect (1.00) / Builder (0.86) / Active (0.80)`
 - **Bus Factor risk map** showing modules with dangerous ownership concentration
 - Color-coded output for quick visual scanning
 - **JSON / CSV export** (`--format json|csv`) for dashboards and programmatic use
@@ -412,7 +412,7 @@ Works out of the box with: Go, TypeScript/JavaScript, Python, Rust, Java, Ruby, 
 For deeper qualitative analysis (actionable insights, team recommendations), you can also use Claude Code:
 
 ```bash
-claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Scores for my team. Use config.yaml for configuration."
+claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Signals for my team. Use config.yaml for configuration."
 ```
 
 ## Blog Posts — git考古学 / Git Archaeology
@@ -425,7 +425,7 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 - [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch0) — git考古学 #0：git履歴が最強のエンジニアを教えてくれるとしたら？
 - [English / dev.to](https://dev.to/machuz/git-archaeology-0-what-if-git-history-could-tell-you-who-your-strongest-engineers-are-5397) — Git Archaeology #0: What If Git History Could Tell You Who Your Strongest Engineers Are?
 
-**#1 — Individual Scoring**
+**#1 — Individual Profiling**
 - [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch1) — git考古学 #1：履歴だけでエンジニアの「戦闘力」を定量化する
 - [English / dev.to](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c) — Git Archaeology #1: Measuring Engineering Impact from Git History Alone
 
@@ -545,7 +545,7 @@ Telescope     →     EIS
 
 ## Roadmap
 
-- [x] Scoring methodology and formulas
+- [x] Observation methodology and formulas
 - [x] Claude Code analysis prompt
 - [x] Data collection script
 - [x] Configuration template
@@ -555,13 +555,13 @@ Telescope     →     EIS
 - [x] Author alias mapping via config
 - [x] Concurrent blame analysis (worker pool)
 - [x] Domain separation (BE/FE/Infra/Firmware + custom) with auto-detection
-- [x] Absolute scoring for Production (per-day rate) and Quality (fix ratio)
+- [x] Absolute observation for Production (per-day rate) and Quality (fix ratio)
 - [x] Configurable domain mapping, repo exclusion
 - [x] JSON / CSV output format (`--format json|csv`)
 - [x] Team-level analysis (`eis team`) with 7 health axes
 - [x] **Module Topology** — 3-axis module classification (Coupling / Vitality / Ownership) with 4 structural indicators
 - [ ] GitHub Action for automated quarterly tracking
-- [x] Timeline analysis (`eis timeline`) with per-period scoring
+- [x] Timeline analysis (`eis timeline`) with per-period profiling
 - [x] Chart visualization (`--format ascii|html|svg`)
 - [ ] Multi-language commit message support for Quality detection
 - [ ] **[OSS Gravity Map](research/oss-gravity-map/)** — empirical validation against 25 major OSS projects (React, Kubernetes, Terraform, Redis, Rust, etc.). Architect detection, hidden architect discovery, entropy fighter detection, collapse risk analysis. ~50,000 engineers across 8 languages. [Configs open for PRs](research/oss-gravity-map/CONTRIBUTING.md)
@@ -570,7 +570,7 @@ Telescope     →     EIS
 
 - [@reizist](https://github.com/reizist) — identified that `exclude_file_patterns` was not applied to git log and blame targets
 - [@ponsaaan](https://github.com/ponsaaan) — pointed out that `config.example.yaml` was outdated and mismatched with the current config structure. Debugged the submodule hang issue in debt analysis. Also the former architect whose well-designed code continues to serve as the foundation of our product. Living proof that good design creates common sense
-- [@exoego](https://github.com/exoego) — implemented fully customizable domains ([#1](https://github.com/machuz/engineering-impact-score/pull/1)): custom domain definitions with extension mapping, `default_domains: false` for complete domain redefinition, and backward-compatible YAML parsing. Shipped with 900+ lines of comprehensive tests. Also improved config UX ([#2](https://github.com/machuz/engineering-impact-score/pull/2)): `--config` now raises an early error when the specified file doesn't exist, preventing silent fallback to defaults during long analyses
+- [@exoego](https://github.com/exoego) — implemented fully customizable domains ([#1](https://github.com/machuz/eis/pull/1)): custom domain definitions with extension mapping, `default_domains: false` for complete domain redefinition, and backward-compatible YAML parsing. Shipped with 900+ lines of comprehensive tests. Also improved config UX ([#2](https://github.com/machuz/eis/pull/2)): `--config` now raises an early error when the specified file doesn't exist, preventing silent fallback to defaults during long analyses
 
 ## Support
 

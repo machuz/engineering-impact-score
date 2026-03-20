@@ -1,6 +1,6 @@
 package team
 
-import "github.com/machuz/engineering-impact-score/internal/team"
+import "github.com/machuz/eis/internal/team"
 
 type TeamResult = team.TeamResult
 type TeamHealth = team.TeamHealth

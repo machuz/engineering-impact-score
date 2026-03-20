@@ -1,6 +1,6 @@
 package domain
 
-import "github.com/machuz/engineering-impact-score/internal/domain"
+import "github.com/machuz/eis/internal/domain"
 
 type Domain = domain.Domain
 

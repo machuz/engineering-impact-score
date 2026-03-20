@@ -1,7 +1,7 @@
 ---
 title: "Git Archaeology #10 — Dark Matter: The Invisible Gravity"
 published: true
-description: "Chapter 10 of Engineering Impact Score. Most of the universe's mass is invisible. The same is true in code universes."
+description: "Chapter 10 of Engineering Impact Signal. Most of the universe's mass is invisible. The same is true in code universes."
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch10.png?v=4
 ---
@@ -52,7 +52,7 @@ Yet they support the stability of the universe.
 
 Remember the Anchor role defined in Chapter 3.
 
-Anchors don't stand out. Neither their Production nor Design scores are exceptional.
+Anchors don't stand out. Neither their Production nor Design signals are exceptional.
 
 But without them, the universe would quickly crumble.
 
@@ -112,7 +112,7 @@ What EIS shows us is only the "visible part" of the universe — stars and galax
 
 But knowing that dark matter exists lets you interpret EIS numbers correctly.
 
-**An Anchor's score looks low because most of their work is dark matter.**
+**An Anchor's impact looks low because most of their work is dark matter.**
 
 Judging "this engineer has low productivity" by looking only at numbers is the same mistake as calculating a galaxy's mass from visible matter alone.
 
@@ -126,9 +126,9 @@ Dark matter doesn't only exist within engineers. **It exists in every layer of t
 
 ### Engineer Dark Matter
 
-- An engineer with a low score might actually be supporting the team's stability
+- An engineer with a low impact might actually be supporting the team's stability
 - Design decisions that don't appear in commits might be the core of the structure
-- The quality of reviews might be lifting the entire team's Quality scores
+- The quality of reviews might be lifting the entire team's Quality signals
 
 ### Planning Dark Matter
 
@@ -136,7 +136,7 @@ A planner pouring their soul into the business, producing precise specifications
 
 But without that precision, code gets rewritten over and over. Survival drops. Quality crumbles.
 
-**A team's high Robust score isn't just engineering skill. It's because the specs are stable.** And the one creating that stability is a planner — dark matter fighting invisible battles with the business.
+**A team's high Robust signal isn't just engineering skill. It's because the specs are stable.** And the one creating that stability is a planner — dark matter fighting invisible battles with the business.
 
 ### Cultural Dark Matter
 
@@ -176,7 +176,7 @@ When you look at EIS numbers, never forget that layers upon layers of dark matte
 - [Chapter 5: Timeline: Scores Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
 - [Chapter 6: Teams Evolve: The Laws of Organization Revealed by Timelines](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei)
 - [Chapter 7: Observing the Universe of Code](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0)
-- [Chapter 8: Engineering Relativity: Why the Same Engineer Gets Different Scores](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)
+- [Chapter 8: Engineering Relativity: Why the Same Engineer Gets Different Signals](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)
 - [Chapter 9: Origin: The Big Bang of Code Universes](https://dev.to/machuz/git-archaeology-9-collapse-good-architects-and-black-hole-engineers-1dcn)
 - **Chapter 10: Dark Matter: The Invisible Gravity**
 - [Chapter 11: Entropy: The Universe Always Tends Toward Disorder](https://dev.to/machuz/git-archaeology-11-entropy-the-universe-always-tends-toward-disorder-ak9)
@@ -188,7 +188,7 @@ When you look at EIS numbers, never forget that layers upon layers of dark matte
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)

@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/machuz/engineering-impact-score/internal/git"
+	"github.com/machuz/eis/internal/git"
 )
 
 // CalcDesign scores architecture contributions weighted by lines changed.

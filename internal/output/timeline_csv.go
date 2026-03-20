@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/timeline"
 )
 
 // PrintTimelineCSV outputs timeline data as CSV.
@@ -15,7 +15,7 @@ func PrintTimelineCSV(domainName string, timelines []timeline.AuthorTimeline) {
 	// Header
 	w.Write([]string{
 		"domain", "author", "period",
-		"total", "production", "quality", "survival", "robust_survival", "dormant_survival",
+		"impact", "production", "quality", "survival", "robust_survival", "dormant_survival",
 		"design", "breadth", "debt_cleanup", "indispensability", "gravity",
 		"commits", "lines_added", "lines_deleted", "role", "role_conf", "style", "style_conf", "state", "state_conf",
 	})
@@ -26,7 +26,7 @@ func PrintTimelineCSV(domainName string, timelines []timeline.AuthorTimeline) {
 				domainName,
 				tl.Author,
 				p.Label,
-				fmt.Sprintf("%.1f", p.Total),
+				fmt.Sprintf("%.1f", p.Impact),
 				fmt.Sprintf("%.1f", p.Production),
 				fmt.Sprintf("%.1f", p.Quality),
 				fmt.Sprintf("%.1f", p.Survival),

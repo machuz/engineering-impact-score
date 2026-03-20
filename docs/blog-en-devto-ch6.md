@@ -1,7 +1,7 @@
 ---
 title: "Git Archaeology #6 — Teams Evolve: The Laws of Organization Revealed by Timelines"
 published: true
-description: "Chapter 6 of Engineering Impact Score. When individual changes ripple into team-level shifts, patterns emerge — and those patterns have laws."
+description: "Chapter 6 of Engineering Impact Signal. When individual changes ripple into team-level shifts, patterns emerge — and those patterns have laws."
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch6.png?v=4
 ---
@@ -30,7 +30,7 @@ The team timeline classifies the entire team for each period:
 - **Phase** — Phase (Mature, Emerging, Declining)
 - **Risk** — Risk (Healthy, Design Vacuum, Quality Drift)
 
-Plus Health metrics (Complementarity, Growth Potential, Sustainability, etc.) and Score Averages per period.
+Plus Health metrics (Complementarity, Growth Potential, Sustainability, etc.) and Signal Averages per period.
 
 **Individual Role/Style changes surface as team Character/Structure changes.** That's the insight.
 
@@ -57,11 +57,11 @@ Why? As Chapter 5 showed:
 
 Y.Y.'s departure temporarily created a Design Vacuum. But machuz inherited the Architect role, new members joined, and the team reached a healthier state than before.
 
-Looking at Score Averages:
+Looking at Signal Averages:
 
-![Backend Scores](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch6-backend-scores.png?v=4)
+![Backend Signals](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch6-backend-scores.png?v=4)
 
-Design at 36.4 is still low. Because Architect responsibility is concentrated in machuz alone. Other members' Design scores are mostly 0–30.
+Design at 36.4 is still low. Because Architect responsibility is concentrated in machuz alone. Other members' Design signals are mostly 0–30.
 
 **The Elite team's next challenge: distributing design capability.**
 
@@ -90,7 +90,7 @@ One more interesting pattern in Frontend:
 
 **In 2025-H1, the team briefly became Factory / Delivery Team, then reverted.**
 
-What happened? 2025-H1 was when R.M. scored 83.8 as Architect — not only designing but also shipping at high volume, single-handedly driving both design and implementation. O. was simultaneously Anchor (54.3), delivering steadily. **The designer was producing at high throughput while the Anchor sustained delivery.** The team temporarily exhibited Factory (high-throughput) / Delivery Team characteristics.
+What happened? 2025-H1 was when R.M. reached 83.8 as Architect — not only designing but also shipping at high volume, single-handedly driving both design and implementation. O. was simultaneously Anchor (54.3), delivering steadily. **The designer was producing at high throughput while the Anchor sustained delivery.** The team temporarily exhibited Factory (high-throughput) / Delivery Team characteristics.
 
 But that "maximum output" was temporary. The next half, it reverted to Guardian / Maintenance.
 
@@ -106,7 +106,7 @@ But that "maximum output" was temporary. The next half, it reverted to Guardian 
 
 Explorer / Exploration / Emerging. **A team still taking shape.**
 
-Every member scores as Growing or Spread. Zero Architects. Design Vacuum is inevitable.
+Every member profiles as Growing or Spread. Zero Architects. Design Vacuum is inevitable.
 
 But Phase: Emerging means **growth is happening**. Not Declining.
 
@@ -144,7 +144,7 @@ This looks like a "growth staircase," but the reality is different. machuz alrea
 
 What machuz did was **respect the predecessor's structure while improving it and shipping features at high volume**. The Anchor phase was about understanding the existing structure. The Producer phase was about producing extensively on top of it. Throughout this process, machuz's own architectural vision gradually permeated the codebase.
 
-When Y.Y.'s scores began declining in 2025-H2, machuz's architecture became the structural backbone. EIS captured this as Architect Builder.
+When Y.Y.'s signals began declining in 2025-H2, machuz's architecture became the structural backbone. EIS captured this as Architect Builder.
 
 This isn't "growing into an Architect." It's **"an existing architectural vision permeating the codebase until the numbers reflect it."**
 
@@ -207,7 +207,7 @@ Look at O.'s transitions again:
 
 This isn't regression. **It's metabolism.**
 
-An Architect builds structure. The structure is complete. Then the Architect's work diminishes. Changes to design files become unnecessary, Design score drops, and Role naturally shifts to Producer.
+An Architect builds structure. The structure is complete. Then the Architect's work diminishes. Changes to design files become unnecessary, Design signal drops, and Role naturally shifts to Producer.
 
 Then they enter a phase of "producing on top of the structure."
 
@@ -227,9 +227,9 @@ In the Frontend 6-month timeline, one engineer has a uniquely dramatic trajector
 
 ![X.](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch6-engineer-k.png?v=4)
 
-**Total 87.8 in 2024-H1. Architect Builder.** Production 81, Survival 100, Design 100.
+**Impact 87.8 in 2024-H1. Architect Builder.** Production 81, Survival 100, Design 100.
 
-The next half: Total 14.6. After that, effectively zero.
+The next half: Impact 14.6. After that, effectively zero.
 
 This is the **founding Architect lifecycle**.
 
@@ -237,13 +237,13 @@ X. built Frontend's initial structure. In 2024-H1, the codebase's blame was domi
 
 But as the team grew and other engineers (R.M., O.) joined and began rewriting the structure, X.'s Survival dropped rapidly. Blame lines were replaced by other members.
 
-**A founding Architect's score drops as the team grows.**
+**A founding Architect's impact drops as the team grows.**
 
-This isn't failure. It's **proof of success.** Other engineers are building on top of the structure you created alone. That's why the score drops.
+This isn't failure. It's **proof of success.** Other engineers are building on top of the structure you created alone. That's why the impact drops.
 
 ![Gravity Transfer](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch6-gravity-transfer.png?v=4)
 
-**X.'s score transferred to Engineers I and J.** The total isn't conserved, but the generational transfer of structural influence is clear.
+**X.'s impact transferred to Engineers I and J.** The total isn't conserved, but the generational transfer of structural influence is clear.
 
 This is a different kind of "exit" from Y.Y.'s departure (Chapter 5). Y.Y. exited due to **team departure**. X. exited due to **team growth**.
 
@@ -307,7 +307,7 @@ machuz's Producer phase wasn't a "learning period." It was **a period of shippin
 
 By using the existing structure extensively, you internalize both its limitations and its possibilities. And within those improvements, you embed your own architecture.
 
-When 92.5 as Architect Builder appeared in 2025-H2, that was the moment the permeation crossed a threshold. Y.Y.'s score decline (the structural backbone shifting) and machuz's Design 100 (design changes reaching architecture files) happened simultaneously.
+When 92.5 as Architect Builder appeared in 2025-H2, that was the moment the permeation crossed a threshold. Y.Y.'s signal decline (the structural backbone shifting) and machuz's Design 100 (design changes reaching architecture files) happened simultaneously.
 
 **The Producer phase can serve as groundwork for permeating your architecture into the codebase.** On the surface it looks like Producer work, but beneath the surface, a design philosophy transplant is underway.
 
@@ -353,7 +353,7 @@ If a team has an Architect but isn't functioning, suspect Producer Vacuum. Struc
 
 ### 4. Evaluating Founding Architects Correctly
 
-If you find a founding member whose scores are declining, **determine whether it's failure or success.** Score decline due to team growth should be recognized as an achievement, not a problem.
+If you find a founding member whose signals are declining, **determine whether it's failure or success.** Signal decline due to team growth should be recognized as an achievement, not a problem.
 
 ---
 
@@ -373,7 +373,7 @@ Snapshots show "now." Timelines show "change." Laws predict "what happens next."
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)
@@ -387,7 +387,7 @@ If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machu
 - [Chapter 2: Beyond Individual Scores: Measuring Team Health from Git History](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f)
 - [Chapter 3: Two Paths to Architect: How Engineers Evolve Differently](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga)
 - [Chapter 4: Backend Architects Converge: The Sacred Work of Laying Souls to Rest](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d)
-- [Chapter 5: Timeline: Scores Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
+- [Chapter 5: Timeline: Signals Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
 - **Chapter 6: Teams Evolve: The Laws of Organization Revealed by Timelines**
 - [Chapter 7: Observing the Universe of Code](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0)
 - [Chapter 8: Engineering Relativity: Why the Same Engineer Gets Different Scores](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)

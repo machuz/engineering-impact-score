@@ -1,4 +1,4 @@
-# Engineering Impact Score — Claude Analysis Prompt
+# Engineering Impact Signal — Claude Analysis Prompt
 
 Copy and paste this prompt into Claude Code (or any Claude interface) to analyze your team.
 
@@ -8,13 +8,13 @@ Copy and paste this prompt into Claude Code (or any Claude interface) to analyze
 
 ```bash
 # 1. Clone and configure
-git clone https://github.com/machuz/engineering-impact-score.git
-cd engineering-impact-score
+git clone https://github.com/machuz/eis.git
+cd eis
 cp config.example.yaml config.yaml
 # Edit config.yaml with your repo paths, aliases, etc.
 
 # 2. Run Claude Code with the analysis prompt
-claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Scores for my team. Use config.yaml for configuration."
+claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Signals for my team. Use config.yaml for configuration."
 ```
 
 ## Alternative: Manual Data Collection + Claude
@@ -24,20 +24,20 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sco
 ./scripts/collect-git-data.sh /path/to/repo1 /path/to/repo2
 
 # 2. Feed to Claude
-claude "Analyze the git data in ./output/<timestamp>/ using the Engineering Impact Score methodology described in PROMPT.md"
+claude "Analyze the git data in ./output/<timestamp>/ using the Engineering Impact Signal methodology described in PROMPT.md"
 ```
 
 ---
 
 ## Full Analysis Prompt
 
-Use the following prompt with Claude Code. It will read your config, run git commands, and output scores.
+Use the following prompt with Claude Code. It will read your config, run git commands, and output signals.
 
 ---
 
 ### PROMPT START
 
-You are calculating Engineering Impact Scores for a software team. This is a 7-axis model that quantifies engineer impact using git history data.
+You are calculating Engineering Impact Signals for a software team. This is a 7-axis observation model that profiles engineer impact using git history data.
 
 **Read `config.yaml` first** to understand the repo paths, domains, aliases, and settings.
 
@@ -113,9 +113,9 @@ git blame <hash>^ -- <file> --line-porcelain 2>/dev/null | grep "^author "
    - `debt_generated[original_author] += 1` when someone else fixes their code
    - `debt_cleaned[fixer] += 1` when they fix someone else's code
 
-4. Calculate score on 0-100 scale:
-   - If `debt_generated + debt_cleaned < debt_threshold` (from config): use neutral score 50
-   - Otherwise: `score = 50 + 50 × (cleaned - generated) / (cleaned + generated)`
+4. Calculate signal on 0-100 scale:
+   - If `debt_generated + debt_cleaned < debt_threshold` (from config): use neutral signal 50
+   - Otherwise: `signal = 50 + 50 × (cleaned - generated) / (cleaned + generated)`
    - Range: 0 (pure debt creator) → 50 (balanced) → 100 (pure cleaner)
    - Clamp to [0, 100]
 
@@ -133,7 +133,7 @@ For each module:
 - If top author owns >= 60% of lines: HIGH
 - `indispensability = critical_count × 1.0 + high_count × 0.5`
 
-#### Step 8: Normalize and Score
+#### Step 8: Normalize and Calculate Impact
 
 Apply aliases from config. Exclude authors in `exclude_authors`.
 
@@ -144,7 +144,7 @@ norm(value, max_in_domain) = min(value / max_in_domain × 100, 100)
 
 **Exception:** Debt Cleanup is already on a 0-100 scale, so it is used directly without normalization.
 
-Calculate total score using weights from config:
+Calculate Impact using weights from config:
 ```
 total = production × w_prod + quality × w_qual + survival × w_surv
       + design × w_design + breadth × w_breadth
@@ -157,7 +157,7 @@ Produce:
 
 1. **Rankings table** per domain:
 ```
-| # | Member | Prod | Qual | Robust | Dormant | Design | Breadth | Debt | Indisp | Total | Role | Style | State |
+| # | Member | Prod | Qual | Robust | Dormant | Design | Breadth | Debt | Indisp | Impact | Role | Style | State |
 ```
 
 2. **3-axis topology** for each member (Role / Style / State):
@@ -175,7 +175,7 @@ Produce:
    - **Rescue**: Prod↑ Surv↓ Debt↑
    - **Churn**: Prod↑ Qual↓ Surv↓ gap≥30
    - **Mass**: Prod↑ Surv↓
-   - **Balanced**: Total≥30
+   - **Balanced**: Impact≥30
    - **Spread**: Breadth↑ Prod↓ Surv↓ Design↓
 
    **State** (lifecycle phase):
@@ -197,5 +197,5 @@ Produce:
 
 - **Large repos**: Blame analysis is the slowest part. The prompt instructs sampling up to 500 files per repo. For very large repos, you may want to reduce this.
 - **Token usage**: Expect 500K–1.5M tokens for a 10-repo, 10-person team. Use a flat-rate plan (Claude Max) if available.
-- **Quarterly tracking**: Run every 3 months and compare scores. Rising Survival = growing design skills. Rising Debt Cleanup = increasing team contribution.
-- **Privacy**: Scores contain real names from git history. Handle results with appropriate confidentiality.
+- **Quarterly tracking**: Run every 3 months and compare signals. Rising Survival = growing design skills. Rising Debt Cleanup = increasing team contribution.
+- **Privacy**: Signals contain real names from git history. Handle results with appropriate confidentiality.

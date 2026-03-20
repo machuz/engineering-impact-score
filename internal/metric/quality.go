@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/machuz/engineering-impact-score/internal/git"
+	"github.com/machuz/eis/internal/git"
 )
 
 var fixPattern = regexp.MustCompile(`(?i)^[^\w]*(?:\[?\s*(?:fix|revert|hotfix)\s*\]?[:/\s])`)

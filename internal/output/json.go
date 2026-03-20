@@ -6,8 +6,8 @@ import (
 	"math"
 	"os"
 
-	"github.com/machuz/engineering-impact-score/internal/metric"
-	"github.com/machuz/engineering-impact-score/internal/scorer"
+	"github.com/machuz/eis/internal/metric"
+	"github.com/machuz/eis/internal/scorer"
 )
 
 type jsonOutput struct {
@@ -51,7 +51,7 @@ type jsonMember struct {
 	DebtCleanup      float64 `json:"debt_cleanup"`
 	Indispensability float64 `json:"indispensability"`
 	Gravity          float64 `json:"gravity"`
-	Total            float64 `json:"total"`
+	Impact           float64 `json:"impact"`
 	Role             string  `json:"role"`
 	RoleConf         float64 `json:"role_confidence"`
 	Style            string  `json:"style"`
@@ -146,7 +146,7 @@ func (w *JSONWriter) AddDomain(domainName string, repoCount int, results []score
 			DebtCleanup:      round1(r.DebtCleanup),
 			Indispensability: round1(r.Indispensability),
 			Gravity:          round1(r.Gravity),
-			Total:            round1(r.Total),
+			Impact:           round1(r.Impact),
 			Role:             r.Role,
 			RoleConf:         r.RoleConf,
 			Style:            r.Style,
@@ -266,7 +266,7 @@ func (w *JSONWriter) AddPerRepo(domainName, repoName string, results []scorer.Re
 					DebtCleanup:      round1(r.DebtCleanup),
 					Indispensability: round1(r.Indispensability),
 					Gravity:          round1(r.Gravity),
-					Total:            round1(r.Total),
+					Impact:           round1(r.Impact),
 					Role:             r.Role,
 					RoleConf:         r.RoleConf,
 					Style:            r.Style,

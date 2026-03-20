@@ -4,9 +4,9 @@ title: "Architectには流派がある：Git履歴が暴く進化の分岐モデ
 
 ![Cover](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/hatena/cover-ch3.png)
 
-### スコアの肌感
+### Impactの肌感
 
-まずスコアの体感値を共有しておく。
+まずImpactの体感値を共有しておく。
 
 EISを様々なエンジニアに適用して見えてきたこと：
 
@@ -312,9 +312,9 @@ H.は
 
 ここから設計が置き換わり、どう変わっていくかは生態系によって変わる。
 
-しかしこの重力、このスコアが出せる人は、どんなところでも、一旦スコアが低くなって苦しい時間があっても、**最終的には適正な知性ポテンシャルのもと、適正なスコアに落ち着く**。
+しかしこの重力、このImpactが出せる人は、どんなところでも、一旦Impactが低くなって苦しい時間があっても、**最終的には適正な知性ポテンシャルのもと、適正なImpactに落ち着く**。
 
-このチームでドメイン知識、ものづくりの姿勢において、**60〜80のスコアを叩き出して、R.M.を脅かす存在になる人がいるとしたら——それはO.しかいない。**
+このチームでドメイン知識、ものづくりの姿勢において、**60〜80のImpactを叩き出して、R.M.を脅かす存在になる人がいるとしたら——それはO.しかいない。**
 
 ### キャリアモデルは一本線じゃない
 
@@ -363,7 +363,7 @@ H.は
 
 Architect不在。Anchor不在。Cleaner不在。
 
-**Complementarity（補完性）スコアが壊滅的に低い。**
+**Complementarity（補完性）シグナルが壊滅的に低い。**
 
 生産量は出ているのに、Survivalが全員低い。Qualityもバラバラ。半年後には技術負債の山が残る。
 
@@ -398,5 +398,5 @@ Architect不在。Anchor不在。Cleaner不在。
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full-zenn.png)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
+**GitHub**: [eis](https://github.com/machuz/eis) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
 

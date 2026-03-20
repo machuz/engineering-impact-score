@@ -1,6 +1,6 @@
 package team
 
-import "github.com/machuz/engineering-impact-score/internal/scorer"
+import "github.com/machuz/eis/internal/scorer"
 
 // TeamClassification holds the 5-axis team-level topology.
 type TeamClassification struct {
@@ -35,7 +35,7 @@ func Classify(tr TeamResult) TeamClassification {
 }
 
 // weightedRatio computes the influence-weighted ratio for members matching pred.
-// High-output members carry more weight: weight = max(Total/100, 0.1).
+// High-output members carry more weight: weight = max(Impact/100, 0.1).
 // This reflects the sociological observation that strong contributors
 // shape team culture and structure more than low-output members.
 func weightedRatio(members []scorer.Result, pred func(scorer.Result) bool) float64 {
@@ -44,7 +44,7 @@ func weightedRatio(members []scorer.Result, pred func(scorer.Result) bool) float
 	}
 	var matched, total float64
 	for _, m := range members {
-		w := m.Total / 100.0
+		w := m.Impact / 100.0
 		if w < 0.1 {
 			w = 0.1
 		}
@@ -288,16 +288,16 @@ func classifyPhase(tr TeamResult) TeamLabel {
 			return 0.50 + wActive*0.3
 		}()},
 
-		// Legacy-Heavy: risk states high but core team is strong (AvgTotal >= 40, has Architect)
+		// Legacy-Heavy: risk states high but core team is strong (AvgImpact >= 40, has Architect)
 		// "Strong but carrying historical weight" — not truly declining
 		{"Legacy-Heavy", func() float64 {
-			if riskRatio < 0.3 || tr.AvgTotal < 40 {
+			if riskRatio < 0.3 || tr.AvgImpact < 40 {
 				return 0
 			}
 			if tr.RoleDist["Architect"] == 0 {
 				return 0
 			}
-			return minf(presence(riskRatio), axisHigh(tr.AvgTotal))
+			return minf(presence(riskRatio), axisHigh(tr.AvgImpact))
 		}()},
 
 		// Mature with Attrition: moderate risk (20-40%) but active core still dominant
@@ -317,7 +317,7 @@ func classifyPhase(tr TeamResult) TeamLabel {
 				return 0
 			}
 			// If core team is strong with an Architect, Legacy-Heavy should win
-			if tr.AvgTotal >= 40 && tr.RoleDist["Architect"] > 0 {
+			if tr.AvgImpact >= 40 && tr.RoleDist["Architect"] > 0 {
 				return presence(riskRatio) * 0.5 // reduced confidence
 			}
 			return presence(riskRatio)

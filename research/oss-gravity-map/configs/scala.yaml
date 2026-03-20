@@ -3,7 +3,7 @@
 # Repo: scala/scala
 #
 # Architecture patterns define which files represent structural decisions.
-# See: https://github.com/machuz/engineering-impact-score/tree/main/research/oss-gravity-map
+# See: https://github.com/machuz/eis/tree/main/research/oss-gravity-map
 
 sample_size: 1500
 blame_timeout: 600

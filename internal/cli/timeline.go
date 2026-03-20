@@ -9,10 +9,10 @@ import (
 	"time"
 
 	"github.com/fatih/color"
-	"github.com/machuz/engineering-impact-score/internal/config"
-	"github.com/machuz/engineering-impact-score/internal/output"
-	"github.com/machuz/engineering-impact-score/internal/timeline"
-	pkgtimeline "github.com/machuz/engineering-impact-score/pkg/timeline"
+	"github.com/machuz/eis/internal/config"
+	"github.com/machuz/eis/internal/output"
+	"github.com/machuz/eis/internal/timeline"
+	pkgtimeline "github.com/machuz/eis/pkg/timeline"
 )
 
 func runTimeline(args []string) error {

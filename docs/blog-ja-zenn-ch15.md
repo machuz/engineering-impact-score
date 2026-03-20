@@ -427,7 +427,7 @@ Architect → CLAUDE.md → AI generates code → EIS measures Survival
 
 望遠鏡は、宇宙を観測するだけの道具ではなくなる。**宇宙を建設するための計器にもなる。** AIが生成するコードの品質を、構造的影響力という観点から継続的にモニタリングし、改善サイクルを回す。
 
-これは第8章のEngineering Relativity——同じエンジニアでもスコアが変わる——の応用でもある。AIも「エンジニア」として計測すれば、リポジトリごとにAIのパフォーマンスが異なることが見えてくるはずだ。構造が明確なリポジトリではAIのSurvivalが高く、構造が曖昧なリポジトリでは低い。
+これは第8章のEngineering Relativity——同じエンジニアでもシグナルが変わる——の応用でもある。AIも「エンジニア」として計測すれば、リポジトリごとにAIのパフォーマンスが異なることが見えてくるはずだ。構造が明確なリポジトリではAIのSurvivalが高く、構造が曖昧なリポジトリでは低い。
 
 **AIのSurvivalは、構造の品質のプロキシだ。**
 
@@ -507,7 +507,7 @@ AI時代にこそ、望遠鏡を覗いてほしい。あなたのコード宇宙
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
+**GitHub**: [eis](https://github.com/machuz/eis) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
 
 この記事が参考になったら：
 

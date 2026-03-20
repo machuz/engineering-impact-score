@@ -136,7 +136,7 @@ This answers how engineering value changes in the AI era.
 
 Engineering value = **the ability to write code**
 
-Engineers who write code fast are strong. Engineers who write code in volume are strong. High Production scores get recognized.
+Engineers who write code fast are strong. Engineers who write code in volume are strong. High Production signals get recognized.
 
 ### After AI
 
@@ -427,7 +427,7 @@ Architect → CLAUDE.md → AI generates code → EIS measures Survival
 
 The telescope is no longer just a tool for observing the universe. **It becomes an instrument for constructing it.** Continuously monitoring the quality of AI-generated code from the perspective of structural influence, and running improvement cycles.
 
-This is also an application of Chapter 8's Engineering Relativity — the same engineer gets different scores in different contexts. If AI is measured as an "engineer," its performance should vary by repository. High AI Survival in repositories with clear structure, low in repositories with ambiguous structure.
+This is also an application of Chapter 8's Engineering Relativity — the same engineer gets different signals in different contexts. If AI is measured as an "engineer," its performance should vary by repository. High AI Survival in repositories with clear structure, low in repositories with ambiguous structure.
 
 **AI's Survival is a proxy for structural quality.**
 
@@ -508,7 +508,7 @@ In the AI era especially, look through the telescope. Does your code universe ha
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [Sponsor on GitHub](https://github.com/sponsors/machuz)

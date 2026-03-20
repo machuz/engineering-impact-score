@@ -421,7 +421,7 @@ Architect → CLAUDE.md → AI generates code → EIS measures Survival
 
 望遠鏡は、宇宙を観測するだけの道具ではなくなる。**宇宙を建設するための計器にもなる。** AIが生成するコードの品質を、構造的影響力という観点から継続的にモニタリングし、改善サイクルを回す。
 
-これは第8章のEngineering Relativity——同じエンジニアでもスコアが変わる——の応用でもある。AIも「エンジニア」として計測すれば、リポジトリごとにAIのパフォーマンスが異なることが見えてくるはずだ。構造が明確なリポジトリではAIのSurvivalが高く、構造が曖昧なリポジトリでは低い。
+これは第8章のEngineering Relativity——同じエンジニアでもシグナルが変わる——の応用でもある。AIも「エンジニア」として計測すれば、リポジトリごとにAIのパフォーマンスが異なることが見えてくるはずだ。構造が明確なリポジトリではAIのSurvivalが高く、構造が曖昧なリポジトリでは低い。
 
 **AIのSurvivalは、構造の品質のプロキシだ。**
 
@@ -486,10 +486,10 @@ AI時代にこそ、望遠鏡を覗いてほしい。あなたのコード宇宙
 - [第2章：エンジニアの「戦闘力」から、チームの「構造力」へ](https://ma2k8.hateblo.jp/entry/2026/03/13/060851)
 - [第3章：Architectには流派がある：Git履歴が暴く進化の分岐モデル](https://ma2k8.hateblo.jp/entry/2026/03/14/135648)
 - [第4章：Backend Architectは収束する：成仏という聖なる仕事](https://ma2k8.hateblo.jp/entry/2026/03/14/155124)
-- [第5章：タイムライン：スコアは嘘をつかないし、遠慮も映る](https://ma2k8.hateblo.jp/entry/2026/03/14/180329)
+- [第5章：タイムライン：シグナルは嘘をつかないし、遠慮も映る](https://ma2k8.hateblo.jp/entry/2026/03/14/180329)
 - [第6章：チームは進化する——タイムラインが暴く組織の法則](https://ma2k8.hateblo.jp/entry/2026/03/14/184223)
 - [第7章：コードの宇宙を観測する](https://ma2k8.hateblo.jp/entry/2026/03/14/213413)
-- [第8章：Engineering Relativity：なぜ同じエンジニアでもスコアが変わるのか](https://ma2k8.hateblo.jp/entry/2026/03/14/233602)
+- [第8章：Engineering Relativity：なぜ同じエンジニアでもシグナルが変わるのか](https://ma2k8.hateblo.jp/entry/2026/03/14/233602)
 - [第9章：Origin：コード宇宙のビッグバン](https://ma2k8.hateblo.jp/entry/2026/03/15/054313)
 - [第10章：Dark Matter：見えない重力](https://ma2k8.hateblo.jp/entry/2026/03/15/062608)
 - [第11章：Entropy：宇宙は常に無秩序に向かう](https://ma2k8.hateblo.jp/entry/2026/03/15/062609)
@@ -501,7 +501,7 @@ AI時代にこそ、望遠鏡を覗いてほしい。あなたのコード宇宙
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
+**GitHub**: [eis](https://github.com/machuz/eis) — CLIツール、計算式、方法論すべてオープンソース。`brew tap machuz/tap && brew install eis` でインストール。
 
 この記事が参考になったら：
 

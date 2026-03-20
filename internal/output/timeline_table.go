@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/timeline"
 )
 
 // PrintTimelineTable outputs timeline data as a colored terminal table.
@@ -30,7 +30,7 @@ func PrintTimelineTable(domainName, span string, timelines []timeline.AuthorTime
 		// Header
 		fmt.Printf("%-18s %6s %5s %5s %5s %7s %7s  %-12s %-12s %-12s\n",
 			headerFmt("Period"),
-			headerFmt("Total"),
+			headerFmt("Impact"),
 			headerFmt("Prod"),
 			headerFmt("Qual"),
 			headerFmt("Surv"),
@@ -42,7 +42,7 @@ func PrintTimelineTable(domainName, span string, timelines []timeline.AuthorTime
 		)
 
 		for _, p := range tl.Periods {
-			if p.Total == 0 && p.TotalCommits == 0 {
+			if p.Impact == 0 && p.TotalCommits == 0 {
 				fmt.Printf("%-18s %6s %5s %5s %5s %7s %7s  %-12s %-12s %-12s\n",
 					p.Label, dimFmt("—"), dimFmt("—"), dimFmt("—"), dimFmt("—"), dimFmt("—"),
 					dimFmt("—"), dimFmt("—"), dimFmt("—"), dimFmt("—"),
@@ -50,7 +50,7 @@ func PrintTimelineTable(domainName, span string, timelines []timeline.AuthorTime
 				continue
 			}
 
-			totalStr := formatTotal(p.Total)
+			totalStr := formatImpact(p.Impact)
 
 			survStr := fmt.Sprintf("%.0f", p.Survival)
 			if p.RobustSurvival > 0 || p.DormantSurvival > 0 {

@@ -1,7 +1,7 @@
 ---
 title: "Git Archaeology #1 — Measuring Engineering Impact from Git History Alone"
 published: true
-description: A 7-axis scoring model that quantifies engineer impact using nothing but git log and git blame. Code survival, debt cleanup, bus factor — all from data you already have.
+description: A 7-axis observation model that quantifies engineer impact using nothing but git log and git blame. Code survival, debt cleanup, bus factor — all from data you already have.
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch1.png?v=4
 ---
@@ -29,9 +29,9 @@ The trigger was simple: **I knew this team was strong. But I had no words to exp
 
 I wanted to say "this team is seriously good" — but I had no evidence. Not volume of voice, not politics, but **facts recorded in code**. That's what I wanted to speak with.
 
-So one evening, drinking and pair-programming with Claude Code, I built a scoring model that uses **nothing but git history** — and the results matched my gut feeling with eerie accuracy.
+So one evening, drinking and pair-programming with Claude Code, I built an observation model that uses **nothing but git history** — and the results matched my gut feeling with eerie accuracy.
 
-I jokingly call it an engineer's **"combat power."** The formal name is **Engineering Impact Score** — **EIS**, pronounced *"ace."* But what it actually measures is something more precise:
+I jokingly call it an engineer's **"combat power."** The formal name is **Engineering Impact Signal** — **EIS**, pronounced *"ace."* But what it actually measures is something more precise:
 
 > **observable technical impact recorded in the codebase itself**
 
@@ -61,7 +61,7 @@ To fix this, the model applies **time-decayed survival**. Recent code counts far
 ![Time-decayed Survival Weight curve showing exponential decay over 730 days](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/survival-decay-curve.png?v=5)
 *Time-decayed survival gives much more weight to recently written code than legacy code that simply remains untouched.*
 
-This means departed team members' scores naturally decay over time — solving the problem of someone who wrote a ton of code during the founding era dominating the leaderboard forever.
+This means departed team members' signals naturally decay over time — solving the problem of someone who wrote a ton of code during the founding era dominating the leaderboard forever.
 
 It approximates **who is currently writing durable code**, not who wrote the most code historically.
 
@@ -70,7 +70,7 @@ It approximates **who is currently writing durable code**, not who wrote the mos
 ## The 7 Axes of Engineering Impact
 
 ![EIS Framework Overview: Git history flows into 7-axis scores, 3-axis topology (Role/Style/State), and Gravity](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/engineering-impact-framework-diagram-fixed.png?v=5)
-*The Engineering Impact Score aggregates seven observable signals derived from git history into scores, topology, and structural gravity.*
+*The Engineering Impact Signal aggregates seven observable signals derived from git history into impact, topology, and structural gravity.*
 
 | Axis | Weight | What it captures |
 |---|---|---|
@@ -94,9 +94,9 @@ Quality is weighted low (10%) because commit-message-based detection is a rough 
 
 ## Production: Changes Per Day, Absolute Scale
 
-Commit counts are unreliable. Some engineers make large commits. Others split work into many small ones. An engineer who changes 100 lines in one commit and one who makes 100 single-line commits shouldn't score the same.
+Commit counts are unreliable. Some engineers make large commits. Others split work into many small ones. An engineer who changes 100 lines in one commit and one who makes 100 single-line commits shouldn't be profiled the same.
 
-We measure `insertions + deletions` per day, using **absolute scoring**:
+We measure `insertions + deletions` per day, using **absolute profiling**:
 
 ```
 production_score = min(changes_per_day / production_daily_ref × 100, 100)
@@ -104,7 +104,7 @@ production_score = min(changes_per_day / production_daily_ref × 100, 100)
 
 The daily rate is computed from total changes divided by the span between the author's first and last commit. The reference (`production_daily_ref`, default 1000) is configurable.
 
-Why absolute instead of relative? With relative scoring, **a single-person domain always gives that person a score of 100**, even if they're slow. Absolute scoring makes production comparable across organizations and domains.
+Why absolute instead of relative? With relative profiling, **a single-person domain always gives that person a signal of 100**, even if they're slow. Absolute profiling makes production comparable across organizations and domains.
 
 Auto-generated files are excluded:
 
@@ -133,13 +133,13 @@ But large refactors and proactive improvements also trigger "fix" patterns, whic
 
 This is the heart of the model.
 
-Naive git blame gives high scores to "someone who wrote a lot of code three years ago and hasn't done anything since." That's wrong. What we want to know is: **are you actively writing good designs right now?**
+Naive git blame gives high signals to "someone who wrote a lot of code three years ago and hasn't done anything since." That's wrong. What we want to know is: **are you actively writing good designs right now?**
 
 ![Survival Calculation](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch1-code-survival.png?v=4)
 
-Each surviving line contributes a decayed weight to its author. Engineers whose code remains stable accumulate high survival scores. Engineers whose code is constantly rewritten do not.
+Each surviving line contributes a decayed weight to its author. Engineers whose code remains stable accumulate high survival signals. Engineers whose code is constantly rewritten do not.
 
-Raw blame (without decay) is still useful separately — it shows "who built the foundation of this codebase." But for the combat power score, only time-decayed survival is used.
+Raw blame (without decay) is still useful separately — it shows "who built the foundation of this codebase." But for the combat power impact, only time-decayed survival is used.
 
 ### Dormant vs Robust — Separating What "Survived" Actually Means
 
@@ -184,7 +184,7 @@ One of the most revealing metrics. When a fix commit modifies code, we check **w
 
 The moment I added this metric, the "silent hero" on my team became visible — someone who quietly fixed everyone else's bugs, all the time. Conversely, the "high-output engineer who generates fix work for everyone around them" also became impossible to ignore.
 
-**Note:** Members with fewer than 10 total debt events (generated + cleaned) get a neutral score of 50, because small samples produce extreme ratios.
+**Note:** Members with fewer than 10 total debt events (generated + cleaned) get a neutral signal of 50, because small samples produce extreme ratios.
 
 ---
 
@@ -196,7 +196,7 @@ If one engineer owns more than 80% of the lines in a module, that module becomes
 
 ---
 
-## Scoring
+## Observation Model
 
 Metrics use a **hybrid approach**:
 
@@ -210,7 +210,7 @@ Metrics use a **hybrid approach**:
 
 - Survival, Design, Breadth, Indispensability: top person gets 100
 
-Scored per domain (Backend / Frontend / Infra / Firmware separately). Domain is auto-detected from file extensions or configured explicitly.
+Profiled per domain (Backend / Frontend / Infra / Firmware separately). Domain is auto-detected from file extensions or configured explicitly.
 
 ```
 score =
@@ -225,7 +225,7 @@ score =
 
 The scale is intentionally strict.
 
-| Score | Assessment | Approx. Total Comp (USD) |
+| Impact | Assessment | Approx. Total Comp (USD) |
 |---|---|---|
 | 80+ | Irreplaceable core member. 1–2 per team at most | $250K–400K+ |
 | 60–79 | Near-core. Strong | $180K–300K |
@@ -236,17 +236,17 @@ The scale is intentionally strict.
 
 Comp figures are rough estimates and vary significantly by market (SF vs. Midwest, US vs. Europe, etc.).
 
-**40 = Senior.** If that seems low, consider what it takes: with relative scoring across 7 axes, just putting up decent numbers across the board requires serious, well-rounded ability. Production, quality, survival, design, breadth, debt cleanup — doing well in all of them simultaneously is structurally difficult. If your senior scores 40, that's *normal*. An engineer in the 40s can compete in any market.
+**40 = Senior.** If that seems low, consider what it takes: with relative observation across 7 axes, just putting up decent numbers across the board requires serious, well-rounded ability. Production, quality, survival, design, breadth, debt cleanup — doing well in all of them simultaneously is structurally difficult. If your senior hits 40, that's *normal*. An engineer in the 40s can compete in any market.
 
-**One critical caveat.** EIS measures **impact on *this* codebase**, not absolute engineering ability. A high score means "on this codebase, this person's code is surviving, shaping architecture, and cleaning up debt." It does *not* mean they are a better engineer than someone with a lower score. High Survival might even mean the code can't be refactored away because the design is poor — not that the code itself is good. If scores don't match your gut feeling, that's a signal worth investigating: it may reveal codebase design issues rather than people issues. The real question is whether someone can maintain their score under *good* design — that's where true ability shows.
+**One critical caveat.** EIS measures **impact on *this* codebase**, not absolute engineering ability. High impact means "on this codebase, this person's code is surviving, shaping architecture, and cleaning up debt." It does *not* mean they are a better engineer than someone with lower impact. High Survival might even mean the code can't be refactored away because the design is poor — not that the code itself is good. If the observations don't match your gut feeling, that's a signal worth investigating: it may reveal codebase design issues rather than people issues. The real question is whether someone can maintain their impact under *good* design — that's where true ability shows.
 
-![Score Guide](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/score-guide.png?v=5)
+![Impact Guide](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/score-guide.png?v=5)
 
 ---
 
 ## Patterns That Emerge: The 3-Axis Topology
 
-Once scores are calculated, recognizable patterns appear in the 7-axis distribution. In earlier versions of this model, we assigned a single "archetype" label — Architect-Builder, Mass Producer, Silent Killer, etc. It was intuitive, but it had a fundamental problem: **real engineers don't fit neatly into one box.**
+Once signals are calculated, recognizable patterns appear in the 7-axis distribution. In earlier versions of this model, we assigned a single "archetype" label — Architect-Builder, Mass Producer, Silent Killer, etc. It was intuitive, but it had a fundamental problem: **real engineers don't fit neatly into one box.**
 
 An engineer can be an Architect in *role*, a Builder in *style*, and Active in *state* — all at the same time. Cramming that into "Architect-Builder (0.85)" loses information. Worse, a single label creates false equivalences: two "Producers" might have completely different styles and lifecycle phases.
 
@@ -257,7 +257,7 @@ Starting in v0.9.0, the model decomposes engineer topology into **three independ
 
 ### Axis 1: Role — *What* they contribute
 
-Role captures the engineer's **primary contribution type** based on their 7-axis score distribution.
+Role captures the engineer's **primary contribution type** based on their 7-axis signal distribution.
 
 | Role | Signal | Description |
 |---|---|---|
@@ -298,7 +298,7 @@ State captures **where the engineer is in their trajectory** relative to the cod
 
 ### Why This Matters
 
-**Churn, Mass, Spread, and Silent patterns score low overall but can look impressive on individual metrics (or fly under the radar entirely).** Organizations that evaluate on production alone or breadth alone will reward exactly the wrong people. Only multi-axis evaluation exposes them. Rescue style is a notable exception — low survival looks alarming, but high debt cleanup reveals active legacy rescue rather than new debt generation. Resilient style is another positive exception — low total survival resembles Mass, but decent robust survival reveals iteration toward durable code. Fragile state is a subtle case — high survival looks reassuring, but combined with low production and mediocre quality, it signals dormant code that will break under change pressure.
+**Churn, Mass, Spread, and Silent patterns show low impact overall but can look impressive on individual signals (or fly under the radar entirely).** Organizations that evaluate on production alone or breadth alone will reward exactly the wrong people. Only multi-axis evaluation exposes them. Rescue style is a notable exception — low survival looks alarming, but high debt cleanup reveals active legacy rescue rather than new debt generation. Resilient style is another positive exception — low total survival resembles Mass, but decent robust survival reveals iteration toward durable code. Fragile state is a subtle case — high survival looks reassuring, but combined with low production and mediocre quality, it signals dormant code that will break under change pressure.
 
 ![Topology Radar Chart — 9 of 288 theoretical combinations (Role×Style×State = 6×8×6)](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/archetypes-radar.png?v=1.0.0)
 
@@ -306,7 +306,7 @@ State captures **where the engineer is in their trajectory** relative to the cod
 
 ## Engineer Gravity — Structural Influence (v0.10.0)
 
-The 7-axis score tells you *how strong* an engineer is. The 3-axis topology tells you *what kind* of engineer they are. But there's another dimension: **how much structural influence does this person exert on the codebase?**
+The 7-axis impact tells you *how strong* an engineer is. The 3-axis topology tells you *what kind* of engineer they are. But there's another dimension: **how much structural influence does this person exert on the codebase?**
 
 That's what **Gravity** measures.
 
@@ -333,7 +333,7 @@ health < 40   → red       (fragile gravity)
 
 In practice, this reveals striking patterns. On my backend team, my own Gravity is 97 (green) — Design 100, Survival 100, and Indispensability 43 indicate well-distributed structural influence backed by durable code. On another domain, one member has Gravity 100 (red) — extremely high Indispensability means they own the vast majority of modules, but quality is lacking. **"If this person leaves, everything collapses" AND "the code itself is fragile"** — the most dangerous combination, instantly visible as red gravity.
 
-Gravity is intentionally excluded from the total score. The total score answers "how strong is this engineer?" Gravity answers a different question: "how much structural influence do they have, and is it healthy?" They're orthogonal dimensions. In terminal output, Gravity appears as a color-coded column next to each member's scores.
+Gravity is intentionally excluded from Impact. Impact answers "how strong is this engineer?" Gravity answers a different question: "how much structural influence do they have, and is it healthy?" They're orthogonal dimensions. In terminal output, Gravity appears as a color-coded column next to each member's signals.
 
 We're **reverse-engineering structure from code, through individual engineers** — Gravity is the first step in reading team architecture from git history.
 
@@ -343,15 +343,15 @@ We're **reverse-engineering structure from code, through individual engineers** 
 
 I ran this on my own team (14 repos, 10+ engineers including departed members). Here are anonymized excerpts.
 
-Yes, I score highest. I'm the tech lead and I designed the metric — if the person making architectural decisions *didn't* top the leaderboard, that would be a red flag, not a feature. It also helps that I log the most hours on this codebase by a wide margin, so take the top spot with a grain of salt. The real validation is elsewhere: the rankings for everyone else matched the team's gut feeling almost perfectly.
+Yes, I rank highest. I'm the tech lead and I designed the metric — if the person making architectural decisions *didn't* top the leaderboard, that would be a red flag, not a feature. It also helps that I log the most hours on this codebase by a wide margin, so take the top spot with a grain of salt. The real validation is elsewhere: the rankings for everyone else matched the team's gut feeling almost perfectly.
 
 ### Backend Rankings (Excerpt)
 
 ![Backend Scores](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch1-backend-table.png?v=4)
 
-† Insufficient sample (fewer than 10 fix-commit involvements). Neutral value 50 used in total score calculation.
+† Insufficient sample (fewer than 10 fix-commit involvements). Neutral value 50 used in Impact calculation.
 
-**Z.** was a high-rate contractor. Total score: 24.9. Breadth was the only high number — Production 6, Design 4, Survival nearly zero. **Spread style in its purest form.** If this model had existed earlier, we could have detected it before the contract even started.
+**Z.** was a high-rate contractor. Impact: 24.9. Breadth was the only high number — Production 6, Design 4, Survival nearly zero. **Spread style in its purest form.** If this model had existed earlier, we could have detected it before the contract even started.
 
 **Y.Y.** built the original architecture during the early days — Design 67, Breadth 81. But Indispensability 100 is the highest on the team, meaning **the most modules are still owned by someone who already left**. Time decay dropped their Survival to 12, but the codebase is still shaped by their decisions. The 3-axis topology — `Architect / — / Former` — clearly shows they were an Architect in role, now in Former state.
 
@@ -407,25 +407,25 @@ If you're familiar with engineering productivity frameworks, you might wonder: h
 
 DORA tells you how fast code reaches production. This model tells you whether it was worth deploying.
 
-Time-decayed survival is also naturally resistant to gaming. You can't inflate your score with busy work — only code that remains in the codebase months later counts. And the debt cleanup axis makes it structurally impossible to score high by generating work for others.
+Time-decayed survival is also naturally resistant to gaming. You can't inflate your impact with busy work — only code that remains in the codebase months later counts. And the debt cleanup axis makes it structurally impossible to achieve high impact by generating work for others.
 
 ---
 
 ## Accuracy Scales with Design Quality
 
-This model has an interesting property: **higher codebase design quality yields higher scoring accuracy**.
+This model has an interesting property: **higher codebase design quality yields higher observation accuracy**.
 
 In well-structured codebases (Clean Architecture, DDD), the assumptions hold: "touching design files = making design decisions" is true, and high Survival means "the design withstood change pressure."
 
-In chaotic codebases, high Survival might just mean "dead code nobody touches." And low Design score might just mean "architecture files don't exist as a clear category."
+In chaotic codebases, high Survival might just mean "dead code nobody touches." And low Design signal might just mean "architecture files don't exist as a clear category."
 
-**The metric's low accuracy is itself a signal of poor design.** If the scores don't match your gut feeling, the problem may not be the model — it may be that your codebase structure can't withstand measurement. Investing in design is itself infrastructure for improving evaluation accuracy.
+**The metric's low accuracy is itself a signal of poor design.** If the observations don't match your gut feeling, the problem may not be the model — it may be that your codebase structure can't withstand measurement. Investing in design is itself infrastructure for improving observation accuracy.
 
 ---
 
-## Scores Reflect the Organization, Not Just the Individual
+## Observations Reflect the Organization, Not Just the Individual
 
-One critical nuance: **a low score doesn't necessarily mean a weak engineer.**
+One critical nuance: **low impact doesn't necessarily mean a weak engineer.**
 
 Consider:
 
@@ -433,11 +433,11 @@ Consider:
 - **Slow design reviews or decision bottlenecks** — engineers can't start their next task. Low Production isn't slowness — it's organizational friction
 - **Misalignment between product requirements and engineering** — features get built, then rebuilt because "that's not what we meant." Survival drops not from bad design, but from bad communication
 
-In other words, this metric captures **the environment an engineer operates in** — spec quality, planning precision, decision-making speed — not just their individual ability. If the *entire team* scores low, that's a signal to examine organizational processes before blaming individual engineers.
+In other words, this metric captures **the environment an engineer operates in** — spec quality, planning precision, decision-making speed — not just their individual ability. If the *entire team* shows low impact, that's a signal to examine organizational processes before blaming individual engineers.
 
-The flip side is equally true: **improve planning and spec quality, and engineer scores will naturally rise.** The score is simultaneously an engineer's report card and an organizational health barometer.
+The flip side is equally true: **improve planning and spec quality, and engineer impact will naturally rise.** The observation is simultaneously an engineer's report card and an organizational health barometer.
 
-From the engineer's perspective, raising your score requires more than just writing what you're told. You need to evaluate whether the spec makes sense, push back when it doesn't, engage in design discussions, and deeply understand the product before writing code. Durable code only emerges from correct understanding and correct design decisions. This metric naturally rewards **engineers who care about the product and engage from the spec level, not just the code level.** Do that, and your score will grow. Maybe that's what real "combat power" actually is.
+From the engineer's perspective, raising your impact requires more than just writing what you're told. You need to evaluate whether the spec makes sense, push back when it doesn't, engage in design discussions, and deeply understand the product before writing code. Durable code only emerges from correct understanding and correct design decisions. This metric naturally rewards **engineers who care about the product and engage from the spec level, not just the code level.** Do that, and your impact will grow. Maybe that's what real "combat power" actually is.
 
 ---
 
@@ -447,11 +447,11 @@ If you're reading this and thinking "I should try this on my team," here's a que
 
 **What is the combat power ranking of the person making engineering decisions at your company?**
 
-If you want to build a genuinely strong engineering organization, the person making architectural decisions **must** be among the top scorers on the team. Why? Because the quality of design decisions shows up in code. The architect should be someone who writes code personally, and whose code survives. That's the only reliable way to ensure design quality.
+If you want to build a genuinely strong engineering organization, the person making architectural decisions **must** be among the highest impact members on the team. Why? Because the quality of design decisions shows up in code. The architect should be someone who writes code personally, and whose code survives. That's the only reliable way to ensure design quality.
 
-When a low-scoring person sits in the decision-making seat, what happens? **High-scoring engineers on the ground have their design decisions overruled by someone whose code doesn't even survive in the codebase.** That's structurally toxic.
+When a low-impact person sits in the decision-making seat, what happens? **High-impact engineers on the ground have their design decisions overruled by someone whose code doesn't even survive in the codebase.** That's structurally toxic.
 
-If you run this model and discover your engineering lead scores in the bottom half — that's not a metric problem. That's an organizational problem.
+If you run this model and discover your engineering lead lands in the bottom half — that's not a metric problem. That's an organizational problem.
 
 ---
 
@@ -461,7 +461,7 @@ This model is not perfect.
 
 - Commit messages affect fix detection accuracy → Quality is weighted at only 10%
 - Blame analysis can be expensive on large repos → sample up to 500 files
-- Frontend refactors reduce survival scores → separate BE/FE scoring
+- Frontend refactors reduce survival signals → separate BE/FE profiling
 - Copy-paste inflates production → offset by survival and design
 - Debt cleanup depends on sample size → threshold: <10 events = neutral value 50
 - Indispensability conflates "strong" with "nobody took over" → weight is only 5%
@@ -476,7 +476,7 @@ This model does **not** measure a person's value.
 
 It estimates **technical influence observable in a codebase**.
 
-Engineers contribute in ways git cannot capture: mentoring, domain expertise, documentation, psychological safety, team culture. Those contributions matter enormously. This score only quantifies what git records — nothing more. It's not universal. But zero measurement is infinitely worse.
+Engineers contribute in ways git cannot capture: mentoring, domain expertise, documentation, psychological safety, team culture. Those contributions matter enormously. This observation only quantifies what git records — nothing more. It's not universal. But zero measurement is infinitely worse.
 
 ---
 
@@ -512,7 +512,7 @@ This started as a blog post and a Claude Code experiment. The formulas are now b
 ❯ eis analyze --config eis.yaml --recursive ~/projects
 ```
 
-Runs in seconds to minutes. Color-coded output with 7-axis scores, 3-axis topology (Role / Style / State), and Bus Factor risks — right in your terminal.
+Runs in seconds to minutes. Color-coded output with 7-axis signals, 3-axis topology (Role / Style / State), and Bus Factor risks — right in your terminal.
 
 ![Terminal Output](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/terminal-output.png?v=0.11.0)
 
@@ -530,7 +530,7 @@ If you run this model on your own codebase, the results may surprise you. The nu
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)

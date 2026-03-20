@@ -3,8 +3,8 @@ package timeline
 import (
 	"sort"
 
-	"github.com/machuz/engineering-impact-score/internal/scorer"
-	"github.com/machuz/engineering-impact-score/internal/team"
+	"github.com/machuz/eis/internal/scorer"
+	"github.com/machuz/eis/internal/team"
 )
 
 // PeriodResult holds scored results for a single time period within a domain.
@@ -25,7 +25,7 @@ type AuthorTimeline struct {
 // AuthorPeriod holds an author's scores for one period.
 type AuthorPeriod struct {
 	Label            string
-	Total            float64
+	Impact           float64
 	Production       float64
 	Quality          float64
 	Survival         float64
@@ -77,7 +77,7 @@ func BuildTimeline(periods []PeriodResult) []AuthorTimeline {
 				if m.Author == author {
 					ap = AuthorPeriod{
 						Label:            p.Label,
-						Total:            m.Total,
+						Impact:           m.Impact,
 						Production:       m.Production,
 						Quality:          m.Quality,
 						Survival:         m.Survival,
@@ -113,20 +113,20 @@ func BuildTimeline(periods []PeriodResult) []AuthorTimeline {
 		timelines = append(timelines, tl)
 	}
 
-	// Sort by latest period's total descending
+	// Sort by latest period's impact descending
 	sort.Slice(timelines, func(i, j int) bool {
-		iTotal := latestNonZeroTotal(timelines[i].Periods)
-		jTotal := latestNonZeroTotal(timelines[j].Periods)
+		iTotal := latestNonZeroImpact(timelines[i].Periods)
+		jTotal := latestNonZeroImpact(timelines[j].Periods)
 		return iTotal > jTotal
 	})
 
 	return timelines
 }
 
-func latestNonZeroTotal(periods []AuthorPeriod) float64 {
+func latestNonZeroImpact(periods []AuthorPeriod) float64 {
 	for i := len(periods) - 1; i >= 0; i-- {
-		if periods[i].Total > 0 {
-			return periods[i].Total
+		if periods[i].Impact > 0 {
+			return periods[i].Impact
 		}
 	}
 	return 0
@@ -196,7 +196,7 @@ type TeamPeriodSnapshot struct {
 	TotalMembers    int
 
 	// Averages
-	AvgTotal       float64
+	AvgImpact      float64
 	AvgProduction  float64
 	AvgQuality     float64
 	AvgSurvival    float64
@@ -240,7 +240,7 @@ func BuildTeamTimeline(teamName, domain string, periods []TeamPeriodResult) Team
 			EffectiveMembers: tr.MemberCount,
 			TotalMembers:     tr.TotalMemberCount,
 
-			AvgTotal:       tr.AvgTotal,
+			AvgImpact:      tr.AvgImpact,
 			AvgProduction:  tr.AvgProduction,
 			AvgQuality:     tr.AvgQuality,
 			AvgSurvival:    tr.AvgSurvival,

@@ -1,7 +1,7 @@
 ---
 title: "Git Archaeology #13 — Cosmology of Code"
 published: true
-description: "Final chapter of Engineering Impact Score. Git archaeology is the astronomy of code universes."
+description: "Final chapter of Engineering Impact Signal. Git archaeology is the astronomy of code universes."
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch13.png?v=4
 ---
@@ -44,7 +44,7 @@ Let me organize the cosmic metaphors used throughout this series.
 | Black Holes | Engineers who concentrate dependency (Ch. 12) |
 | Collapse | Key person departure (Ch. 12) |
 | Nucleosynthesis | Structure that code leaves behind (Ch. 12) |
-| Relativity | Same engineer, different scores (Ch. 8) |
+| Relativity | Same engineer, different signals (Ch. 8) |
 | Observation | The act of reading git log (Ch. 7) |
 | Telescope | Git |
 | Starlight | Commits |
@@ -90,9 +90,9 @@ Without understanding, there can be no improvement.
 
 Just like the Observer Effect in quantum mechanics, **observation changes what is observed.**
 
-Engineers who see their EIS scores start to become conscious of their commit patterns.
+Engineers who see their EIS signals start to become conscious of their commit patterns.
 
-Leaders who see team scores recognize structural distortions.
+Leaders who see team signals recognize structural distortions.
 
 Organizations that see timelines correct the direction of evolution.
 
@@ -186,9 +186,9 @@ Finally, let me clarify EIS's position.
 
 **EIS is not an evaluation tool. It's an observation instrument — the Git Telescope.**
 
-Astronomy doesn't score stars. A telescope doesn't judge a star as "good" or "bad." It simply observes.
+Astronomy doesn't grade stars. A telescope doesn't judge a star as "good" or "bad." It simply observes.
 
-EIS is the same. It may look like it's scoring engineers. But what EIS does is observe the structure of a code universe and describe the properties of each star.
+EIS is the same. It may look like it's profiling engineers. But what EIS does is observe the structure of a code universe and describe the properties of each star.
 
 How to interpret the observed data — that's a human job.
 
@@ -230,7 +230,7 @@ Let's point the telescope at this period.
 
 **Backend — machuz (the author) timeline:**
 
-| Period | Total | Quality | Commits | Lines | Breadth | Indisp | Role | Style |
+| Period | Impact | Quality | Commits | Lines | Breadth | Indisp | Role | Style |
 |---|---|---|---|---|---|---|---|---|
 | 2025-Q3 | 93.2 | 67.4 | 1004 | +113k/-48k | — | — | Architect | Builder |
 | 2025-Q4 | 87.7 | 74.5 | 656 | +153k/-208k | — | — | Architect | Builder |
@@ -238,9 +238,9 @@ Let's point the telescope at this period.
 
 Q1 2026 — the height of the new product crunch. Quality plummets from 74.5 to **41.4**.
 
-This isn't quality degradation. **It's the trace of debugging and finishing during the frontend integration phase.** The ratio of fix commits rose, pushing Quality scores down. But Commits hit their peak at 1120, Breadth=100 (commits across every repository), Indisp=100 (every module depends on this engineer).
+This isn't quality degradation. **It's the trace of debugging and finishing during the frontend integration phase.** The ratio of fix commits rose, pushing Quality signals down. But Commits hit their peak at 1120, Breadth=100 (commits across every repository), Indisp=100 (every module depends on this engineer).
 
-**One engineer crossing all domains, building structure, and simultaneously debugging to the finish line.** That's what the scores show.
+**One engineer crossing all domains, building structure, and simultaneously debugging to the finish line.** That's what the signals show.
 
 Looking at the **frontend timeline** too:
 
@@ -257,18 +257,18 @@ Meanwhile, FE lead R.M. evolved from Anchor to **Architect** in Q4 with 1241 com
 
 **FE R.M. — The star that created a new universe alone:**
 
-First, scores across all FE repositories:
+First, signals across all FE repositories:
 
-| Period | Total | Prod | Quality | Survival | Design | Lines | Commits | Role | Style | State |
+| Period | Impact | Prod | Quality | Survival | Design | Lines | Commits | Role | Style | State |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 2025-Q2 | 71.5 | 60 | **92** | 100 | 86 | +30k/-15k | 290 | Architect | Balanced | Active |
 | 2025-Q3 | 73.6 | 92 | **97** | 100 | 65 | +47k/-34k | 414 | Anchor | Balanced | Active |
 | 2025-Q4 | **83.4** | **100** | 73 | 100 | **100** | **+178k/-122k** | **1038** | **Architect** | Balanced | Active |
 | 2026-Q1 | 76.4 | 100 | 84 | 84 | 100 | +169k/-69k | **1417** | Anchor | **Builder** | Active |
 
-Total 83.4, commits=1038 across all FE. Already high. But to see R.M.'s true gravitational field, we need to observe the new project's repository alone:
+Impact 83.4, commits=1038 across all FE. Already high. But to see R.M.'s true gravitational field, we need to observe the new project's repository alone:
 
-| Period | Total | Prod | Quality | Survival | Design | Lines | Commits | Role | Style | State |
+| Period | Impact | Prod | Quality | Survival | Design | Lines | Commits | Role | Style | State |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 2025-Q4 | 51.8 | **100** | 85 | **100** | **100** | **+174k/-119k** | **993** | **Architect** | **Emergent** | Active |
 | 2026-Q1 | 50.4 | **100** | 80 | **100** | **100** | +168k/-68k | **1398** | **Architect** | **Emergent** | Active |
@@ -277,9 +277,9 @@ R.M. is the engineer who built the new project's FE repository from scratch — 
 
 **Design=100, Survival=100, Role=Architect — both periods.** Style=Emergent — the creative type. Not inheriting existing design, but generating structure from zero.
 
-**For the sheer volume of design decisions made, Total 51.8/50.4 may look low.** This is exactly what Style=**Emergent** represents — creating a new universe alone, code that no one else has touched yet, relative metrics like Breadth and Indispensability that don't fully activate. EIS measures "gravity within a team" — in a universe of one, relative gravity is hard to express.
+**For the sheer volume of design decisions made, Impact 51.8/50.4 may look low.** This is exactly what Style=**Emergent** represents — creating a new universe alone, code that no one else has touched yet, relative metrics like Breadth and Indispensability that don't fully activate. EIS measures "gravity within a team" — in a universe of one, relative gravity is hard to express.
 
-But I know. **From another universe, I know this design carries refined, high-quality gravity.** R.M. and I built structure together in a different codebase, and I've experienced firsthand the soundness of this architectural thinking. How much structural intelligence lives behind these Total numbers — the telescope alone can't see it. Only an observer who has shared another universe can understand the true intensity of this light.
+But I know. **From another universe, I know this design carries refined, high-quality gravity.** R.M. and I built structure together in a different codebase, and I've experienced firsthand the soundness of this architectural thinking. How much structural intelligence lives behind these Impact numbers — the telescope alone can't see it. Only an observer who has shared another universe can understand the true intensity of this light.
 
 Q4 — Prod=100, commits=993, Lines=+174k/-119k. **A single engineer triggering the Big Bang of a new universe.** This is exactly the "initial conditions determine structure" from Chapter 9. The architecture R.M. laid down in this period defined the gravitational field for the entire frontend that followed.
 
@@ -287,7 +287,7 @@ In Q1, commits reached **1398**. Lines shift to +168k/-68k with deletions droppi
 
 **BE R.S. — The stable core holding the team's gravitational field:**
 
-| Period | Total | Prod | Quality | Design | Debt | Lines | Commits | Role | Style | State |
+| Period | Impact | Prod | Quality | Design | Debt | Lines | Commits | Role | Style | State |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 2025-Q3 | 42.5 | 69 | 62 | 9 | 54 | +49k/-12k | 262 | Producer | Balanced | Active |
 | 2025-Q4 | 37.9 | 53 | **85** | 16 | **58** | +42k/-6k | 216 | Anchor | Balanced | Active |
@@ -307,7 +307,7 @@ R.S. also appears in the FE domain in Growing state. A backend engineer reaching
 
 **BE P. — The other gravity supporting the crunch:**
 
-| Period | Total | Prod | Quality | Design | Debt | Lines | Commits | Role | Style | State |
+| Period | Impact | Prod | Quality | Design | Debt | Lines | Commits | Role | Style | State |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 2025-Q3 | 35.5 | 42 | **94** | 12 | 26 | +28k/-10k | 296 | Anchor | Balanced | Active |
 | 2025-Q4 | **48.3** | **100** | **98** | 13 | **55** | +52k/-92k | 438 | Anchor | **Mass** | Active |
@@ -319,13 +319,13 @@ The standout metric is Quality — **94→98→80**. Maintaining this quality wh
 
 The Mass period in Q4-Q1 was when P. took on the most complex and operation-heavy domain in the entire project head-on — with zero prior domain knowledge. The original design we'd agreed on turned out to be unworkable once implementation began. I deferred to P.'s judgment — and P. rebuilt that domain with a design of their own, and delivered it.
 
-And P. was simultaneously handling the handover and deadlines of an entirely separate domain while putting up these scores. The coordination and knowledge transfer that don't appear in commits — the ratio of dark matter work was enormous.
+And P. was simultaneously handling the handover and deadlines of an entirely separate domain while putting up these numbers. The coordination and knowledge transfer that don't appear in commits — the ratio of dark matter work was enormous.
 
-P. has also inherited my architecture in the past. In another universe, P. served as an Architect who carried structure on their shoulders. That means knowledge embedded in architecture transfers smoothly between us, and I know that if needed, P. can take over design wholesale. **Having an engineer you can trust at your back.** In this crucible, that mattered more than any score can show.
+P. has also inherited my architecture in the past. In another universe, P. served as an Architect who carried structure on their shoulders. That means knowledge embedded in architecture transfers smoothly between us, and I know that if needed, P. can take over design wholesale. **Having an engineer you can trust at your back.** In this crucible, that mattered more than any signal can show.
 
 **FE O. — Laid the foundation, then committed to the finish:**
 
-| Period | Total | Prod | Quality | **Survival** | Design | Lines | Role | Style |
+| Period | Impact | Prod | Quality | **Survival** | Design | Lines | Role | Style |
 |---|---|---|---|---|---|---|---|---|
 | 2025-Q1 | 60.1 | 64 | 76 | 24 | **100** | — | **Architect** | Builder |
 | 2025-Q2 | 48.5 | 61 | 69 | 12 | 24 | +31k/-23k | Producer | Emergent |
@@ -340,7 +340,7 @@ Q4 Survival=100 — not a single line of code was rewritten. **The existing stru
 
 **FE K.M. — Guardian of the user experience:**
 
-| Period | Total | Prod | Quality | **Survival** | Design | Lines | Role | Style |
+| Period | Impact | Prod | Quality | **Survival** | Design | Lines | Role | Style |
 |---|---|---|---|---|---|---|---|---|
 | 2025-Q3 | 47.8 | 78 | 30 | **79** | 13 | +49k/-21k | Producer | Balanced |
 | 2025-Q4 | 35.9 | 31 | 58 | **90** | 0 | +19k/-8k | Producer | Balanced |
@@ -355,7 +355,7 @@ In Q4, Design drops to 0 and Production falls. This isn't decline — it's a shi
 
 **FE H. — The struggle of knowledge transfer:**
 
-| Period | Total | Prod | Quality | Surv | Robust | Dormant | Design | Lines | Role | Style | State |
+| Period | Impact | Prod | Quality | Surv | Robust | Dormant | Design | Lines | Role | Style | State |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 2025-Q2 | 70.4 | 100 | 80 | 44 | **71** | 31 | **100** | +75k/-133k | Anchor | **Builder** | Active |
 | 2025-Q3 | 46.5 | 100 | **96** | 11 | **30** | 3 | 64 | +78k/-75k | Anchor | **Mass** | Active |
@@ -377,7 +377,7 @@ Q2 Lines = +75k/-133k — deletions far exceed additions. Evidence of restructur
 
 At the same time, H. appears in the BE domain in Growing state (Quality 94-97). Handing off FE knowledge while stepping into backend territory themselves.
 
-**When Total drops from 70.4 to 30.4, do you see "declining performance"? Or do you see "transmitting structure for the team's future"?** Without the telescope, it looks like the former. With the telescope — the high Quality, the Robust Survival crash, and the Style transitions tell the truth.
+**When Impact drops from 70.4 to 30.4, do you see "declining performance"? Or do you see "transmitting structure for the team's future"?** Without the telescope, it looks like the former. With the telescope — the high Quality, the Robust Survival crash, and the Style transitions tell the truth.
 
 ---
 
@@ -385,7 +385,7 @@ At the same time, H. appears in the BE domain in Growing state (Quality 94-97). 
 
 A brief aside about myself.
 
-My scores consistently show **Architect / Builder**. Why do I refuse to let go of Builder?
+My signals consistently show **Architect / Builder**. Why do I refuse to let go of Builder?
 
 Backend design — Clean Architecture, DDD layering — has established patterns. But the real art is in modeling. The subtle nuances of a domain, the gradations, where to draw boundaries. This is impossible without being a Builder. Classical Architects who define structure without writing code are valuable. Distributing well-designed starting points across the codebase is real, important work.
 
@@ -403,7 +403,7 @@ And I look forward to watching O. — an emergent Architect — trace the trajec
 
 **machuz's long-term timeline** tells another story:
 
-| Period | Total | Lines | Role | Style |
+| Period | Impact | Lines | Role | Style |
 |---|---|---|---|---|
 | 2024-Q3 | 59.9 | +43k/-13k | Anchor | Builder |
 | 2024-Q4 | 68.3 | +42k/-19k | Anchor | Builder |
@@ -464,7 +464,7 @@ When EIS functions as negotiation material for building better things — that's
 Over 13 chapters, git archaeology demonstrated the following:
 
 1. **Engineering impact can be quantified from commits alone** (Ch. 1)
-2. **Team structural health can be derived from individual scores** (Ch. 2)
+2. **Team structural health can be derived from individual signals** (Ch. 2)
 3. **Engineers have Role, Style, and State, and they evolve** (Ch. 3-6)
 4. **Codebases are universes that follow physical laws** (Ch. 7-12)
 5. **Measurement changes the universe** (this chapter)
@@ -497,7 +497,7 @@ Just by looking through the telescope, the laws of the universe become visible.
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)

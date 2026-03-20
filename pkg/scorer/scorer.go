@@ -1,6 +1,6 @@
 package scorer
 
-import "github.com/machuz/engineering-impact-score/internal/scorer"
+import "github.com/machuz/eis/internal/scorer"
 
 type Result = scorer.Result
 type AxisMatch = scorer.AxisMatch

@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/machuz/engineering-impact-score/internal/git"
+	"github.com/machuz/eis/internal/git"
 )
 
 func init() {

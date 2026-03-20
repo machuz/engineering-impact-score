@@ -1,7 +1,7 @@
 ---
 title: "Git Archaeology #3 — Two Paths to Architect: How Engineers Evolve Differently"
 published: true
-description: "Chapter 3 of Engineering Impact Score. Architects don't come from one mold — inheritance vs. emergence, and why cold numbers tell the most human stories."
+description: "Chapter 3 of Engineering Impact Signal. Architects don't come from one mold — inheritance vs. emergence, and why cold numbers tell the most human stories."
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch3.png?v=4
 ---
@@ -12,7 +12,7 @@ cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/m
 
 ## Previously
 
-In [Chapter 1](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c), I introduced a 7-axis scoring model for individual engineers. In [Chapter 2](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f), I aggregated those scores into team-level health metrics.
+In [Chapter 1](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c), I introduced a 7-axis observation model for individual engineers. In [Chapter 2](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f), I aggregated those signals into team-level health metrics.
 
 But staring at the data long enough, I noticed something else.
 
@@ -22,7 +22,7 @@ There are two distinct evolution paths. And understanding them changes how you r
 
 ---
 
-## Score Intuition
+## Impact Intuition
 
 Before diving in, let me share the gut-feel calibration I've developed after running EIS across many engineers:
 
@@ -31,7 +31,7 @@ Before diving in, let me share the gut-feel calibration I've developed after run
 - **30+**: People I actively wanted to work with
 - **40+**: Senior-level
 
-The scores consistently matched my intuition.
+The observations consistently matched my intuition.
 
 **40 is senior.** That's how strict this model is. Hitting 40+ across seven axes requires sustained, high-quality contribution. Real senior engineering is hard.
 
@@ -344,7 +344,7 @@ These metrics reflect effort and impact on the current codebase.
 
 How things evolve from here depends on the ecosystem.
 
-But engineers who can produce this kind of gravity — even if their score temporarily drops, even if they go through painful stretches — **will eventually settle into a score commensurate with their intellectual potential**.
+But engineers who can produce this kind of gravity — even if their impact temporarily drops, even if they go through painful stretches — **will eventually settle into an impact commensurate with their intellectual potential**.
 
 If anyone on this team will hit 60–80 and challenge R.M.'s dominance through domain knowledge and craft — **it's O. and no one else**.
 
@@ -399,7 +399,7 @@ EIS makes this instantly visible:
 
 No Architect. No Anchor. No Cleaner.
 
-**Complementarity score tanks.**
+**Complementarity signal tanks.**
 
 Production is high, but Survival is low across the board. Quality is scattered. In six months, you're left with a mountain of tech debt.
 
@@ -436,7 +436,7 @@ And that's also a theory of team design.
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)

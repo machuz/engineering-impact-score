@@ -1,7 +1,7 @@
 ---
 title: "Git Archaeology #9 — Origin: The Big Bang of Code Universes"
 published: true
-description: "Chapter 9 of Engineering Impact Score. Every universe has an origin. In code universes, it's the first commit."
+description: "Chapter 9 of Engineering Impact Signal. Every universe has an origin. In code universes, it's the first commit."
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch9.png?v=4
 ---
@@ -12,7 +12,7 @@ cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/m
 
 ## Previously
 
-In [Chapter 8](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl), I explored Engineering Relativity — how the same engineer gets different scores in different codebases.
+In [Chapter 8](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl), I explored Engineering Relativity — how the same engineer gets different signals in different codebases.
 
 From here, we go deeper into the philosophy of git archaeology.
 
@@ -154,7 +154,7 @@ Gravity is born, structure forms, constellations are drawn, Architects appear, t
 - [Chapter 5: Timeline: Scores Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
 - [Chapter 6: Teams Evolve: The Laws of Organization Revealed by Timelines](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei)
 - [Chapter 7: Observing the Universe of Code](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0)
-- [Chapter 8: Engineering Relativity: Why the Same Engineer Gets Different Scores](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)
+- [Chapter 8: Engineering Relativity: Why the Same Engineer Gets Different Signals](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)
 - **Chapter 9: Origin: The Big Bang of Code Universes**
 - [Chapter 10: Dark Matter: The Invisible Gravity](https://dev.to/machuz/git-archaeology-10-dark-matter-the-invisible-gravity-45ne)
 - [Chapter 11: Entropy: The Universe Always Tends Toward Disorder](https://dev.to/machuz/git-archaeology-11-entropy-the-universe-always-tends-toward-disorder-ak9)
@@ -166,7 +166,7 @@ Gravity is born, structure forms, constellations are drawn, Architects appear, t
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)

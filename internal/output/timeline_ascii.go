@@ -6,7 +6,7 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/guptarohit/asciigraph"
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/timeline"
 )
 
 // PrintTimelineASCII renders author timelines as ASCII line charts.
@@ -23,7 +23,7 @@ func PrintTimelineASCII(domainName, span string, timelines []timeline.AuthorTime
 		color.New(color.FgHiYellow, color.Bold).Printf("--- %s ---\n", tl.Author)
 
 		// Build series data
-		totalData := make([]float64, 0, len(tl.Periods))
+		impactData := make([]float64, 0, len(tl.Periods))
 		prodData := make([]float64, 0, len(tl.Periods))
 		qualData := make([]float64, 0, len(tl.Periods))
 		survData := make([]float64, 0, len(tl.Periods))
@@ -31,7 +31,7 @@ func PrintTimelineASCII(domainName, span string, timelines []timeline.AuthorTime
 		var labels []string
 
 		for _, p := range tl.Periods {
-			totalData = append(totalData, p.Total)
+			impactData = append(impactData, p.Impact)
 			prodData = append(prodData, p.Production)
 			qualData = append(qualData, p.Quality)
 			survData = append(survData, p.Survival)
@@ -39,7 +39,7 @@ func PrintTimelineASCII(domainName, span string, timelines []timeline.AuthorTime
 			labels = append(labels, p.Label)
 		}
 
-		data := [][]float64{totalData, prodData, qualData, survData, designData}
+		data := [][]float64{impactData, prodData, qualData, survData, designData}
 
 		// Calculate chart width to match label axis spacing
 		chartWidth := 60
@@ -67,7 +67,7 @@ func PrintTimelineASCII(domainName, span string, timelines []timeline.AuthorTime
 
 		// Legend
 		fmt.Printf("  %s  %s  %s  %s  %s\n",
-			color.BlueString("Total"),
+			color.BlueString("Impact"),
 			color.GreenString("Production"),
 			color.YellowString("Quality"),
 			color.RedString("Survival"),

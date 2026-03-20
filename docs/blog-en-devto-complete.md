@@ -46,9 +46,9 @@ The numbers were eerily accurate. Silent heroes surfaced. Hidden risks became vi
 
 ## II. Evolution
 
-When I added timelines — quarterly snapshots of scores — stories emerged.
+When I added timelines — quarterly snapshots of signals — stories emerged.
 
-An engineer's Role shifts from Producer to Anchor to Architect. Another's scores plateau — not from stagnation, but from **strategic patience**. A departure trajectory becomes visible three quarters before anyone notices.
+An engineer's Role shifts from Producer to Anchor to Architect. Another's signals plateau — not from stagnation, but from **strategic patience**. A departure trajectory becomes visible three quarters before anyone notices.
 
 Cold numbers tell the most human stories.
 
@@ -216,6 +216,6 @@ Point the telescope and see.
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 If this was useful: [Sponsor on GitHub](https://github.com/sponsors/machuz)

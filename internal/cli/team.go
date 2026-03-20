@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/machuz/engineering-impact-score/internal/config"
-	"github.com/machuz/engineering-impact-score/internal/output"
-	"github.com/machuz/engineering-impact-score/internal/team"
+	"github.com/machuz/eis/internal/config"
+	"github.com/machuz/eis/internal/output"
+	"github.com/machuz/eis/internal/team"
 )
 
 func runTeam(args []string) error {

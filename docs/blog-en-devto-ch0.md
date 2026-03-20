@@ -1,7 +1,7 @@
 ---
 title: "Git Archaeology #0 — What If Git History Could Tell You Who Your Strongest Engineers Are?"
 published: true
-description: "A 3-minute intro to Engineering Impact Score — an OSS CLI that quantifies engineering impact from git log and git blame alone. No API keys, no AI tokens."
+description: "A 3-minute intro to Engineering Impact Signal — an OSS CLI that quantifies engineering impact from git log and git blame alone. No API keys, no AI tokens."
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch0.png?v=1
 ---
@@ -12,7 +12,7 @@ cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/m
 
 ## What Is This?
 
-**Engineering Impact Score (EIS, pronounced "ace")** is an open-source CLI tool that quantifies engineering impact from Git history alone.
+**Engineering Impact Signal (EIS, pronounced "ace")** is an open-source CLI tool that quantifies engineering impact from Git history alone.
 
 No external APIs. No AI tokens. Just `git log` and `git blame`.
 
@@ -117,7 +117,7 @@ The telescope now observes **both the stars (engineers) and the space they inhab
 
 ## 7 Axes of Impact
 
-EIS scores engineers across 7 axes:
+EIS observes engineers across 7 axes:
 
 | Axis | Weight | What it measures |
 |---|---|---|
@@ -137,7 +137,7 @@ Writing a lot means nothing if it gets rewritten next month. **Engineers who wri
 
 ## 3-Axis Archetypes
 
-Beyond scores, EIS classifies engineers along three independent axes:
+Beyond signals, EIS classifies engineers along three independent axes:
 
 **Role** — What you contribute
 - Architect: designs the structure
@@ -189,7 +189,7 @@ We ran EIS against **29 open-source repositories spanning 55,343 engineers.** Re
 
 The results matched community intuition:
 
-- **esbuild**: Evan Wallace scores 100 on every axis. Gravity concentration: 92.5% — exactly the "Evan built it alone" consensus
+- **esbuild**: Evan Wallace hits 100 on every axis. Gravity concentration: 92.5% — exactly the "Evan built it alone" consensus
 - **Rails**: 6 engineers with Design above 35. A civilization that distributed design authority over 20 years — DHH, Jeremy Kemper, Rafael Franca, and others
 - **Laravel**: Taylor Otwell at 100, every other top-10 contributor below Design 4 — the "Taylor's creation" consensus, quantified
 - **React**: 5 generations of architect transitions over 10 years — Paul O'Shannessy → Dan Abramov → Brian Vaughn → Sebastian Markbåge → Jorge Cabiedes
@@ -218,25 +218,25 @@ What EIS observes is **the physics of structure**, not a judgment of quality. A 
 
 > *We don't measure engineers. We reveal how software actually works.*
 
-This series uses the word "combat power" (戦闘力) to describe scores. It's a catchy metaphor borrowed from Dragon Ball — but it carries a dangerous implication: that engineers can be ranked on a single axis of strength.
+This series uses the word "combat power" (戦闘力) to describe impact. It's a catchy metaphor borrowed from Dragon Ball — but it carries a dangerous implication: that engineers can be ranked on a single axis of strength.
 
 **They can't. And EIS doesn't try to.**
 
 So what *does* it measure? Simple: **in this codebase, how much did you build, how much influence did you leave, and how much of what you wrote is still standing?** That's it. Not "how good an engineer are you" — but "what trace did you leave in this particular universe of code."
 
-True engineering excellence can only be quantified by traces left across *multiple* universes. A high score in one codebase is a local observation. Consistent high scores across different codebases, different teams, different domains — that's reproducible gravity. That's the difference between a bright star in one galaxy and a force of nature.
+True engineering excellence can only be quantified by traces left across *multiple* universes. High impact in one codebase is a local observation. Consistent high impact across different codebases, different teams, different domains — that's reproducible gravity. That's the difference between a bright star in one galaxy and a force of nature.
 
 A few things to keep in mind:
 
-**EIS measures codebase impact, not engineering ability.** A score of 40 means "on this codebase, this person's code is surviving, shaping architecture, and cleaning up debt." It does *not* mean they are objectively a better engineer than someone scoring 30. Move them to a different codebase, and the scores might invert. (We call this [Engineering Relativity](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl).)
+**EIS measures codebase impact, not engineering ability.** An impact of 40 means "on this codebase, this person's code is surviving, shaping architecture, and cleaning up debt." It does *not* mean they are objectively a better engineer than someone at 30. Move them to a different codebase, and the observations might invert. (We call this [Engineering Relativity](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl).)
 
-**Scores without context are dangerous.** A low Survival score might mean poor design — or it might mean the engineer is actively rewriting legacy code (Rescue style). A high score in a poorly designed codebase might mean "nobody can refactor your code away." Always interpret with context.
+**Signals without context are dangerous.** A low Survival signal might mean poor design — or it might mean the engineer is actively rewriting legacy code (Rescue style). A strong signal in a poorly designed codebase might mean "nobody can refactor your code away." Always interpret with context.
 
 **Non-code contributions are invisible to git.** Code review quality, mentoring, documentation, psychological safety, domain expertise — these matter enormously but leave no trace in `git log`. EIS captures what git records, nothing more. Using it as a complete evaluation of an engineer would be harmful and wrong.
 
 **It's not a surveillance tool.** EIS is a telescope — it reveals structures that already exist. It doesn't create hierarchies. If it's used to rank and punish rather than to understand and improve, it has failed its purpose.
 
-**Time-decayed survival resists gaming.** You can't inflate your score with busy work. Only code that remains in the codebase months later counts. The debt cleanup axis makes it structurally impossible to score high by generating work for others.
+**Time-decayed survival resists gaming.** You can't inflate your impact with busy work. Only code that remains in the codebase months later counts. The debt cleanup axis makes it structurally impossible to achieve high impact by generating work for others.
 
 The telescope measures the brightness of stars. It doesn't decide which stars deserve to exist.
 
@@ -246,7 +246,7 @@ The telescope measures the brightness of stars. It doesn't decide which stars de
 
 This blog series — **Git Archaeology** — applies EIS to real teams and explores what the numbers reveal.
 
-1. **[Measuring Engineering Impact from Git History Alone](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c)** — Full 7-axis scoring design
+1. **[Measuring Engineering Impact from Git History Alone](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c)** — Full 7-axis observation design
 2. **[Beyond Individual Scores: Measuring Team Health from Git History](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f)**
 3. **[Two Paths to Architect: How Engineers Evolve Differently](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga)**
 4. **[Backend Architects Converge: The Sacred Work of Laying Souls to Rest](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d)**
@@ -285,7 +285,7 @@ This blog series — **Git Archaeology** — applies EIS to real teams and explo
 
 ---
 
-[Chapter 1: Individual Scoring →](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c)
+[Chapter 1: Individual Observation →](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c)
 
 ---
 
@@ -296,10 +296,10 @@ This blog series — **Git Archaeology** — applies EIS to real teams and explo
 brew tap machuz/tap && brew install eis
 
 # Go
-go install github.com/machuz/engineering-impact-score/cmd/eis@latest
+go install github.com/machuz/eis/cmd/eis@latest
 ```
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score)
+**GitHub**: [eis](https://github.com/machuz/eis)
 
 ---
 

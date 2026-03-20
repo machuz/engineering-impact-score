@@ -3,7 +3,7 @@ package team
 import (
 	"testing"
 
-	"github.com/machuz/engineering-impact-score/internal/scorer"
+	"github.com/machuz/eis/internal/scorer"
 )
 
 func TestClassify_Structure_ArchitecturalEngine(t *testing.T) {
@@ -11,11 +11,11 @@ func TestClassify_Structure_ArchitecturalEngine(t *testing.T) {
 		MemberCount:      5,
 		TotalMemberCount: 5,
 		Members: []scorer.Result{
-			{Author: "a1", Role: "Architect", Total: 80},
-			{Author: "a2", Role: "Anchor", Total: 70},
-			{Author: "a3", Role: "Anchor", Total: 65},
-			{Author: "a4", Role: "Producer", Total: 50},
-			{Author: "a5", Role: "Producer", Total: 45},
+			{Author: "a1", Role: "Architect", Impact: 80},
+			{Author: "a2", Role: "Anchor", Impact: 70},
+			{Author: "a3", Role: "Anchor", Impact: 65},
+			{Author: "a4", Role: "Producer", Impact: 50},
+			{Author: "a5", Role: "Producer", Impact: 45},
 		},
 		Health: TeamHealth{
 			Sustainability:  90,
@@ -40,13 +40,13 @@ func TestClassify_Structure_EmergingArchitecture(t *testing.T) {
 		MemberCount:      7,
 		TotalMemberCount: 7,
 		Members: []scorer.Result{
-			{Author: "a1", Role: "Architect", Total: 75},
-			{Author: "a2", Role: "Anchor", Total: 60},
-			{Author: "a3", Role: "Anchor", Total: 55},
-			{Author: "a4", Role: "—", Total: 25},
-			{Author: "a5", Role: "—", Total: 20},
-			{Author: "a6", Role: "—", Total: 15},
-			{Author: "a7", Role: "—", Total: 10},
+			{Author: "a1", Role: "Architect", Impact: 75},
+			{Author: "a2", Role: "Anchor", Impact: 60},
+			{Author: "a3", Role: "Anchor", Impact: 55},
+			{Author: "a4", Role: "—", Impact: 25},
+			{Author: "a5", Role: "—", Impact: 20},
+			{Author: "a6", Role: "—", Impact: 15},
+			{Author: "a7", Role: "—", Impact: 10},
 		},
 		Health: TeamHealth{
 			AAR: 0.5,
@@ -68,12 +68,12 @@ func TestClassify_Structure_DeliveryTeam(t *testing.T) {
 		MemberCount:      6,
 		TotalMemberCount: 6,
 		Members: []scorer.Result{
-			{Author: "p1", Role: "Producer", Total: 70},
-			{Author: "p2", Role: "Producer", Total: 65},
-			{Author: "p3", Role: "Producer", Total: 60},
-			{Author: "p4", Role: "Producer", Total: 55},
-			{Author: "a1", Role: "—", Total: 20},
-			{Author: "a2", Role: "—", Total: 15},
+			{Author: "p1", Role: "Producer", Impact: 70},
+			{Author: "p2", Role: "Producer", Impact: 65},
+			{Author: "p3", Role: "Producer", Impact: 60},
+			{Author: "p4", Role: "Producer", Impact: 55},
+			{Author: "a1", Role: "—", Impact: 20},
+			{Author: "a2", Role: "—", Impact: 15},
 		},
 		Health:    TeamHealth{},
 		RoleDist:  map[string]int{"Producer": 4, "—": 2},
@@ -93,11 +93,11 @@ func TestClassify_Culture_Builder(t *testing.T) {
 		MemberCount:      5,
 		TotalMemberCount: 5,
 		Members: []scorer.Result{
-			{Author: "b1", Style: "Builder", Total: 80},
-			{Author: "b2", Style: "Builder", Total: 70},
-			{Author: "b3", Style: "Balanced", Total: 50},
-			{Author: "b4", Style: "Balanced", Total: 40},
-			{Author: "b5", Style: "Builder", Total: 60},
+			{Author: "b1", Style: "Builder", Impact: 80},
+			{Author: "b2", Style: "Builder", Impact: 70},
+			{Author: "b3", Style: "Balanced", Impact: 50},
+			{Author: "b4", Style: "Balanced", Impact: 40},
+			{Author: "b5", Style: "Builder", Impact: 60},
 		},
 		Health:    TeamHealth{},
 		RoleDist:  map[string]int{"Architect": 1, "Anchor": 2, "Producer": 2},
@@ -117,11 +117,11 @@ func TestClassify_Culture_Stability(t *testing.T) {
 		MemberCount:      5,
 		TotalMemberCount: 5,
 		Members: []scorer.Result{
-			{Author: "b1", Style: "Balanced", Total: 60},
-			{Author: "b2", Style: "Balanced", Total: 55},
-			{Author: "b3", Style: "Resilient", Total: 50},
-			{Author: "b4", Style: "Balanced", Total: 45},
-			{Author: "b5", Style: "Balanced", Total: 40},
+			{Author: "b1", Style: "Balanced", Impact: 60},
+			{Author: "b2", Style: "Balanced", Impact: 55},
+			{Author: "b3", Style: "Resilient", Impact: 50},
+			{Author: "b4", Style: "Balanced", Impact: 45},
+			{Author: "b5", Style: "Balanced", Impact: 40},
 		},
 		Health:    TeamHealth{},
 		RoleDist:  map[string]int{"Anchor": 3, "Producer": 2},
@@ -141,11 +141,11 @@ func TestClassify_Phase_Mature(t *testing.T) {
 		MemberCount:      5,
 		TotalMemberCount: 5,
 		Members: []scorer.Result{
-			{Author: "a1", State: "Active", Total: 70},
-			{Author: "a2", State: "Active", Total: 65},
-			{Author: "a3", State: "Active", Total: 60},
-			{Author: "a4", State: "Active", Total: 55},
-			{Author: "a5", State: "Active", Total: 50},
+			{Author: "a1", State: "Active", Impact: 70},
+			{Author: "a2", State: "Active", Impact: 65},
+			{Author: "a3", State: "Active", Impact: 60},
+			{Author: "a4", State: "Active", Impact: 55},
+			{Author: "a5", State: "Active", Impact: 50},
 		},
 		Health: TeamHealth{
 			Sustainability: 90,
@@ -167,11 +167,11 @@ func TestClassify_Risk_DesignVacuum(t *testing.T) {
 		MemberCount:      5,
 		TotalMemberCount: 5,
 		Members: []scorer.Result{
-			{Author: "p1", Role: "Producer", Total: 30},
-			{Author: "p2", Role: "Producer", Total: 25},
-			{Author: "p3", Role: "Producer", Total: 20},
-			{Author: "p4", Role: "—", Total: 15},
-			{Author: "p5", Role: "—", Total: 10},
+			{Author: "p1", Role: "Producer", Impact: 30},
+			{Author: "p2", Role: "Producer", Impact: 25},
+			{Author: "p3", Role: "Producer", Impact: 20},
+			{Author: "p4", Role: "—", Impact: 15},
+			{Author: "p5", Role: "—", Impact: 10},
 		},
 		Health: TeamHealth{
 			Complementarity:    20,
@@ -195,11 +195,11 @@ func TestClassify_Risk_Healthy(t *testing.T) {
 		MemberCount:      5,
 		TotalMemberCount: 5,
 		Members: []scorer.Result{
-			{Author: "a1", Role: "Architect", Total: 70},
-			{Author: "a2", Role: "Anchor", Total: 60},
-			{Author: "a3", Role: "Anchor", Total: 55},
-			{Author: "a4", Role: "Producer", Total: 50},
-			{Author: "a5", Role: "Producer", Total: 45},
+			{Author: "a1", Role: "Architect", Impact: 70},
+			{Author: "a2", Role: "Anchor", Impact: 60},
+			{Author: "a3", Role: "Anchor", Impact: 55},
+			{Author: "a4", Role: "Producer", Impact: 50},
+			{Author: "a5", Role: "Producer", Impact: 45},
 		},
 		Health: TeamHealth{
 			Complementarity:    80,
@@ -223,10 +223,10 @@ func TestClassify_Risk_TalentDrain(t *testing.T) {
 		MemberCount:      4,
 		TotalMemberCount: 4,
 		Members: []scorer.Result{
-			{Author: "a1", Role: "Architect", State: "Active", Total: 50},
-			{Author: "a2", Role: "—", State: "Silent", Total: 15},
-			{Author: "a3", Role: "—", State: "Silent", Total: 10},
-			{Author: "a4", Role: "—", State: "Former", Total: 5},
+			{Author: "a1", Role: "Architect", State: "Active", Impact: 50},
+			{Author: "a2", Role: "—", State: "Silent", Impact: 15},
+			{Author: "a3", Role: "—", State: "Silent", Impact: 10},
+			{Author: "a4", Role: "—", State: "Former", Impact: 5},
 		},
 		Health: TeamHealth{
 			Complementarity:    50,
@@ -251,11 +251,11 @@ func TestClassify_Character_Fortress(t *testing.T) {
 		MemberCount:      5,
 		TotalMemberCount: 5,
 		Members: []scorer.Result{
-			{Author: "a1", Role: "Architect", Style: "Balanced", State: "Active", Total: 80},
-			{Author: "a2", Role: "Anchor", Style: "Resilient", State: "Active", Total: 70},
-			{Author: "a3", Role: "Anchor", Style: "Balanced", State: "Active", Total: 65},
-			{Author: "a4", Role: "Producer", Style: "Balanced", State: "Active", Total: 55},
-			{Author: "a5", Role: "Producer", Style: "Balanced", State: "Active", Total: 50},
+			{Author: "a1", Role: "Architect", Style: "Balanced", State: "Active", Impact: 80},
+			{Author: "a2", Role: "Anchor", Style: "Resilient", State: "Active", Impact: 70},
+			{Author: "a3", Role: "Anchor", Style: "Balanced", State: "Active", Impact: 65},
+			{Author: "a4", Role: "Producer", Style: "Balanced", State: "Active", Impact: 55},
+			{Author: "a5", Role: "Producer", Style: "Balanced", State: "Active", Impact: 50},
 		},
 		Health: TeamHealth{
 			Sustainability:  90,
@@ -279,11 +279,11 @@ func TestClassify_Character_Pioneer(t *testing.T) {
 		MemberCount:      5,
 		TotalMemberCount: 5,
 		Members: []scorer.Result{
-			{Author: "a1", Role: "Architect", Style: "Builder", State: "Active", Total: 85},
-			{Author: "a2", Role: "Anchor", Style: "Builder", State: "Active", Total: 70},
-			{Author: "a3", Role: "Producer", Style: "Builder", State: "Active", Total: 65},
-			{Author: "a4", Role: "Producer", Style: "Balanced", State: "Active", Total: 50},
-			{Author: "a5", Role: "—", Style: "Balanced", State: "Growing", Total: 30},
+			{Author: "a1", Role: "Architect", Style: "Builder", State: "Active", Impact: 85},
+			{Author: "a2", Role: "Anchor", Style: "Builder", State: "Active", Impact: 70},
+			{Author: "a3", Role: "Producer", Style: "Builder", State: "Active", Impact: 65},
+			{Author: "a4", Role: "Producer", Style: "Balanced", State: "Active", Impact: 50},
+			{Author: "a5", Role: "—", Style: "Balanced", State: "Growing", Impact: 30},
 		},
 		Health: TeamHealth{
 			Sustainability:  80,
@@ -319,11 +319,11 @@ func TestClassify_WeightedInfluence(t *testing.T) {
 		MemberCount:      5,
 		TotalMemberCount: 5,
 		Members: []scorer.Result{
-			{Author: "star", Style: "Builder", Total: 90},
-			{Author: "b1", Style: "Balanced", Total: 15},
-			{Author: "b2", Style: "Balanced", Total: 15},
-			{Author: "b3", Style: "Balanced", Total: 15},
-			{Author: "b4", Style: "Balanced", Total: 15},
+			{Author: "star", Style: "Builder", Impact: 90},
+			{Author: "b1", Style: "Balanced", Impact: 15},
+			{Author: "b2", Style: "Balanced", Impact: 15},
+			{Author: "b3", Style: "Balanced", Impact: 15},
+			{Author: "b4", Style: "Balanced", Impact: 15},
 		},
 		Health:    TeamHealth{},
 		RoleDist:  map[string]int{"Producer": 5},
@@ -334,8 +334,8 @@ func TestClassify_WeightedInfluence(t *testing.T) {
 	c := Classify(tr)
 
 	// Without weighting, Balanced (4) would dominate.
-	// With weighting, the star Builder (Total=90, weight=0.9) outweighs
-	// 4 × Balanced (Total=15, weight=0.15 each = 0.6 total).
+	// With weighting, the star Builder (Impact=90, weight=0.9) outweighs
+	// 4 × Balanced (Impact=15, weight=0.15 each = 0.6 total).
 	if c.Culture.Name != "Builder" {
 		t.Errorf("Culture = %s, want Builder (star player should dominate)", c.Culture.Name)
 	}

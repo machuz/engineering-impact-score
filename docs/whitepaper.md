@@ -1,4 +1,4 @@
-# Engineering Impact Score: Quantifying Software Engineering Contributions from Git History
+# Engineering Impact Signal: Quantifying Software Engineering Contributions from Git History
 
 **Version 0.12.0** — March 2026
 
@@ -8,13 +8,13 @@
 
 ## Abstract
 
-Engineering Impact Score (EIS) is an open-source framework that quantifies individual and team-level software engineering contributions using only Git history data. Unlike existing approaches that rely on proxy metrics (commit counts, lines of code, PR throughput), EIS constructs a multi-axis scoring model that captures *what kind* of contribution an engineer makes, *how* they contribute, and *where they are* in their professional lifecycle. The framework combines commit-based production metrics with `git blame`-based survival analysis and a novel change-pressure decomposition to distinguish code that endures under active development from code that merely persists in dormant modules.
+Engineering Impact Signal (EIS) is an open-source framework that quantifies individual and team-level software engineering contributions using only Git history data. Unlike existing approaches that rely on proxy metrics (commit counts, lines of code, PR throughput), EIS constructs a multi-axis observation model that captures *what kind* of contribution an engineer makes, *how* they contribute, and *where they are* in their professional lifecycle. The framework combines commit-based production metrics with `git blame`-based survival analysis and a novel change-pressure decomposition to distinguish code that endures under active development from code that merely persists in dormant modules.
 
-At the team level, EIS aggregates individual scores into a 5-axis classification system that characterizes team structure, culture, lifecycle phase, risk profile, and overall character. A timeline analysis mode tracks these metrics across configurable time periods, enabling longitudinal observation of engineering organizations.
+At the team level, EIS aggregates individual signals into a 5-axis classification system that characterizes team structure, culture, lifecycle phase, risk profile, and overall character. A timeline analysis mode tracks these metrics across configurable time periods, enabling longitudinal observation of engineering organizations.
 
 This paper presents the mathematical foundations, classification algorithms, and design rationale of EIS, along with its limitations and intended use cases.
 
-**Keywords:** software engineering metrics, git analysis, code survival, team health, engineering evaluation, developer productivity
+**Keywords:** software engineering metrics, git analysis, code survival, team health, engineering observation, developer productivity
 
 ---
 
@@ -54,7 +54,7 @@ EIS exploits this insight through three mechanisms:
 #### Technical Principles
 
 1. **Git-only**: No integration with project management tools, CI systems, or code review platforms. The analysis requires only a Git repository.
-2. **Multi-axis**: No single score captures engineering contribution. EIS produces 7 individual axes and 5 team-level classification axes.
+2. **Multi-axis**: No single signal captures engineering contribution. EIS produces 7 individual axes and 5 team-level classification axes.
 3. **Relative + Absolute**: Some metrics (Production) use absolute references for cross-team comparability; others (Design, Survival) use within-team normalization.
 4. **Observable, not prescriptive**: EIS describes what happened in the codebase. It does not define what *should* happen.
 
@@ -68,11 +68,11 @@ The DevOps Research and Assessment (DORA) framework measures four key metrics: d
 
 ### 2.2 CodeScene
 
-CodeScene performs behavioral code analysis, identifying hotspots, code health, and organizational patterns. It uses a proprietary scoring model and focuses on code-level health rather than engineer-level classification. EIS differs in its explicit multi-axis classification system and its open-source, reproducible methodology.
+CodeScene performs behavioral code analysis, identifying hotspots, code health, and organizational patterns. It uses a proprietary observation model and focuses on code-level health rather than engineer-level classification. EIS differs in its explicit multi-axis classification system and its open-source, reproducible observation methodology.
 
 ### 2.3 git-fame and git-quick-stats
 
-These tools provide basic attribution statistics (lines of code per author, commit counts). EIS builds on the same raw data but adds survival analysis, architectural pattern detection, and multi-axis classification that these tools lack.
+These tools provide basic attribution statistics (lines of code per author, commit counts). EIS builds on the same raw data but adds survival analysis, architectural pattern detection, and multi-axis profiling that these tools lack.
 
 ### 2.4 Academic Research
 
@@ -80,7 +80,7 @@ Nagappan et al. (2008) demonstrated that organizational metrics derived from ver
 
 ---
 
-## 3. Individual Scoring Model
+## 3. Individual Profiling Model
 
 ### 3.1 Overview
 
@@ -96,7 +96,7 @@ EIS computes 7 axes for each contributor in a repository:
 | Debt Cleanup | Ratio of fixing others' code vs. creating debt | Absolute | `git blame` + commits |
 | Indispensability | Bus factor — sole ownership of modules | Relative | `git blame` |
 
-Each axis produces a score in [0, 100].
+Each axis produces a signal in [0, 100].
 
 ### 3.2 Production
 
@@ -130,7 +130,7 @@ $$\text{Quality}_a = 100 - \text{FixRatio}_a \times 100$$
 (?i)^[^\w]*(?:\[?\s*(?:fix|revert|hotfix)\s*\]?[:/\s])
 ```
 
-or contains the Japanese word "修正" (fix/correction). Merge commits contribute to fix count but not to total count, preventing merge-heavy workflows from inflating quality scores.
+or contains the Japanese word "修正" (fix/correction). Merge commits contribute to fix count but not to total count, preventing merge-heavy workflows from inflating quality signals.
 
 **Rationale:** An engineer whose commits are predominantly fixes is spending time correcting mistakes (their own or others'). Quality is an absolute scale — it does not depend on team composition.
 
@@ -163,7 +163,7 @@ Using the median pressure as threshold:
 
 Both use the same exponential decay formula but are computed independently.
 
-**Rationale:** This decomposition prevents the "forgotten code" problem — where an engineer scores highly on survival simply because they wrote code in a module that nobody modifies. Robust Survival specifically measures code that *endures under active development*.
+**Rationale:** This decomposition prevents the "forgotten code" problem — where an engineer signals highly on survival simply because they wrote code in a module that nobody modifies. Robust Survival specifically measures code that *endures under active development*.
 
 ### 3.5 Design
 
@@ -187,7 +187,7 @@ di/*.go                     # Dependency injection
 */types/                    # Type definitions
 ```
 
-**Normalization:** Relative (max-based), so the highest Design contributor in the team scores 100.
+**Normalization:** Relative (max-based), so the highest Design contributor in the team signals 100.
 
 **Rationale:** Not all code changes are equal. Changes to interfaces, dependency injection, and routing configurations have outsized structural impact compared to changes within a single module.
 
@@ -214,15 +214,15 @@ Debt Cleanup measures whether an engineer cleans up others' technical debt or cr
    - $\text{cleaned}_a$ = fix commits where author $a$ fixed code written by others
    - $\text{generated}_a$ = fix commits where others fixed code written by author $a$
 
-**Scoring:**
+**Signal:**
 
 $$\text{DebtCleanup}_a = 50 + 50 \times \frac{\text{cleaned}_a - \text{generated}_a}{\text{cleaned}_a + \text{generated}_a}$$
 
-- Score = 0: Pure debt creator
-- Score = 50: Neutral (balanced or insufficient data)
-- Score = 100: Pure cleaner
+- Signal = 0: Pure debt creator
+- Signal = 50: Neutral (balanced or insufficient data)
+- Signal = 100: Pure cleaner
 
-Authors with fewer than `DebtThreshold` (default: 10) total interactions receive a neutral score of 50.
+Authors with fewer than `DebtThreshold` (default: 10) total interactions receive a neutral signal of 50.
 
 **Rationale:** This metric captures a dimension invisible to other tools: whether an engineer's code tends to require fixes by others, or whether they tend to fix others' code. The formula is symmetric and ranges from pure creator to pure cleaner.
 
@@ -235,7 +235,7 @@ Indispensability measures bus factor risk at the individual level.
 1. Group `git blame` lines by module (first 2 path components, e.g., `app/domain`)
 2. For each module, identify the top author by line count
 3. Calculate ownership share: $\text{share} = \text{topCount} / \text{totalLines}$
-4. Score:
+4. Signal:
    - Critical ownership ($\text{share} \geq 0.80$): +1.0 per module
    - High ownership ($\text{share} \geq 0.60$): +0.5 per module
 
@@ -253,15 +253,15 @@ EIS uses two normalization strategies:
 
 $$\text{Score}_a = \min\left(\frac{\text{raw}_a}{\max_b(\text{raw}_b)} \times 100,\; 100\right)$$
 
-The highest contributor always scores 100. This is appropriate for metrics where the absolute value is meaningless outside the team context.
+The highest contributor always signals 100. This is appropriate for metrics where the absolute value is meaningless outside the team context.
 
 **Absolute Normalization** (for Production, Quality, Debt Cleanup):
 
 Fixed reference points that allow cross-team comparison. Production uses a daily reference rate; Quality and Debt Cleanup are inherently bounded.
 
-### 3.10 Total Score
+### 3.10 Impact
 
-The total score is a weighted sum:
+The impact is a weighted sum:
 
 $$\text{Total} = \sum_{i} w_i \times \text{Score}_i$$
 
@@ -287,11 +287,11 @@ $$\text{designDamping} = \max\left(\frac{\text{RobustSurvival}}{100} \times 0.8 
 
 $$\text{effectiveDesign} = \text{Design} \times \text{designDamping}$$
 
-This prevents inflated design scores from engineers who own architectural files but neither produce actively nor have code that survives under pressure.
+This prevents inflated design signals from engineers who own architectural files but neither produce actively nor have code that survives under pressure.
 
-A penalty of 0.80× is applied to the total if an engineer has zero Robust Survival, indicating their code has never been tested by collaboration.
+A penalty of 0.80× is applied to the impact if an engineer has zero Robust Survival, indicating their code has never been tested by collaboration.
 
-#### Gravity Score
+#### Gravity Signal
 
 A separate composite measures structural influence:
 
@@ -301,7 +301,7 @@ $$\text{Gravity} = 0.40 \times \text{Indispensability} + 0.30 \times \text{Bread
 
 ## 4. Individual Classification: The 3-Axis Topology
 
-Raw scores are classified into three orthogonal axes describing the *nature* of an engineer's contribution.
+Raw signals are classified into three orthogonal axes describing the *nature* of an engineer's contribution.
 
 ### 4.1 Soft Matching Functions
 
@@ -379,7 +379,7 @@ Team members are categorized into three tiers:
 
 | Tier | Criteria | Used for |
 |------|----------|----------|
-| **Core** | `RecentlyActive` AND `Total ≥ 20` | Computing averages and distributions |
+| **Core** | `RecentlyActive` AND `Impact ≥ 20` | Computing averages and distributions |
 | **Risk** | State ∈ {Former, Silent, Fragile} | Risk detection (always included) |
 | **Peripheral** | All others | Excluded from metrics |
 
@@ -389,7 +389,7 @@ $$w_a = \max\left(\frac{\text{Total}_a}{100},\; 0.1\right)$$
 
 $$\text{weightedRatio}(\text{predicate}) = \frac{\sum_{a : \text{pred}(a)} w_a}{\sum_a w_a}$$
 
-Higher-output members carry proportionally more weight in team-level calculations.
+Higher-impact members carry proportionally more weight in team-level calculations.
 
 ### 5.2 Health Metrics
 
@@ -403,7 +403,7 @@ $$\text{Bonus} = 10 \cdot \mathbb{1}[\text{Architect}] + 5 \cdot \mathbb{1}[\tex
 
 $$\text{Complementarity} = \text{clamp}(\text{Coverage} + \text{Bonus},\; 0,\; 100)$$
 
-Measures role diversity. A team with all five roles and the key trio (Architect, Anchor, Cleaner) scores 100.
+Measures role diversity. A team with all five roles and the key trio (Architect, Anchor, Cleaner) reaches 100.
 
 #### Growth Potential
 
@@ -421,7 +421,7 @@ Where RiskRatio = proportion of Former/Silent/Fragile members. Teams with low at
 
 $$\text{DebtBalance} = \text{clamp}(\text{AvgDebtCleanup},\; 0,\; 100)$$
 
-Direct average of individual Debt Cleanup scores. A team averaging 50 is neutral; above 50 is net cleaning, below is net creating.
+Direct average of individual Debt Cleanup signals. A team averaging 50 is neutral; above 50 is net cleaning, below is net creating.
 
 #### Productivity Density
 
@@ -433,7 +433,7 @@ With small-team bonus: ×1.2 for teams ≤3, ×1.1 for teams ≤5 (when AvgProdu
 
 $$\text{QualityConsistency} = 0.6 \times \text{AvgQuality} + 0.4 \times \text{clamp}(100 - 2\sigma_{\text{Quality}},\; 0,\; 100)$$
 
-Balances high average quality with low variance. A team where everyone has 80% quality scores higher than one with 95%/65% split.
+Balances high average quality with low variance. A team where everyone has 80% quality signals higher than one with 95%/65% split.
 
 ### 5.3 Team Classification: 5-Axis System
 
@@ -471,8 +471,8 @@ Balances high average quality with low variance. A team where everyone has 80% q
 | **Scaling** | 20-40% Growing, high Growth Potential |
 | **Mature** | ≥80% Active, high Sustainability |
 | **Stable** | ≥60% Active |
-| **Legacy-Heavy** | ≥30% Risk members, high average scores, Architect present |
-| **Declining** | ≥30% Risk members, low scores or no Architect |
+| **Legacy-Heavy** | ≥30% Risk members, high average signals, Architect present |
+| **Declining** | ≥30% Risk members, low signals or no Architect |
 | **Rebuilding** | Both Growing and Risk members present |
 
 #### Risk (Primary Concern)
@@ -490,7 +490,7 @@ Balances high average quality with low variance. A team where everyone has 80% q
 
 ## 6. Timeline Analysis
 
-### 6.1 Period-Based Scoring
+### 6.1 Period-Based Observation
 
 EIS supports longitudinal analysis by dividing repository history into configurable time periods (default: 3-month spans).
 
@@ -517,7 +517,7 @@ If Style[t] ≠ Style[t-1] AND neither is "—" → Transition(Style, from, to, 
 If State[t] ≠ State[t-1] AND neither is "—" → Transition(State, from, to, period)
 ```
 
-These transitions reveal career trajectories: "Producer → Anchor" (quality focus developing), "Mass → Builder" (learning to build durably), "Active → Former" (departure).
+These transitions reveal career trajectories: "Producer -> Anchor" (quality focus developing), "Mass -> Builder" (learning to build durably), "Active -> Former" (departure).
 
 ### 6.3 Team Timeline
 
@@ -536,19 +536,19 @@ A common pattern observed: **Architectural Team → Maintenance Team → Archite
 
 ### 7.1 Motivation
 
-The individual scoring model answers "who is strong?" but not "where is the system breaking?" Module-level analysis completes the picture: by classifying every module on 3 independent axes, EIS can identify structural risks invisible from engineer scores alone.
+The individual profiling model answers "who is strong?" but not "where is the system breaking?" Module-level analysis completes the picture: by classifying every module on 3 independent axes, EIS can identify structural risks invisible from engineer signals alone.
 
 This mirrors the engineer topology design: just as one axis cannot distinguish an "Architect who is a Builder" from an "Architect who is Spread", a single module label cannot distinguish "Hub that is Stable" from "Hub that is Turbulent".
 
 ### 7.2 Structural Indicators
 
-Four indicators score each module on [0, 100]:
+Four indicators measure each module on [0, 100]:
 
 | Indicator | What it measures | Calculation |
 |-----------|-----------------|-------------|
 | **Boundary Integrity** | Absence of implicit co-change coupling | $(1 - \text{avgCoupling}_m) \times 100$ |
 | **Change Absorption** | How well code survives in the module | Per-module time-decayed survival: $\frac{\sum_{l \in m} e^{-d_l/\tau}}{|l \in m|}$ |
-| **Knowledge Distribution** | Ownership health | Base score from ownership level (HEALTHY→80, FRAGMENTED→50, CONCENTRATED→25, SOLE_OWNER→10) ± entropy adjustment |
+| **Knowledge Distribution** | Ownership health | Base signal from ownership level (HEALTHY→80, FRAGMENTED→50, CONCENTRATED→25, SOLE_OWNER→10) ± entropy adjustment |
 | **Stability** | Infrequency of changes | $(1 - \text{percentileRank}(\text{pressure}_m)) \times 100$ |
 
 **Co-change coupling** is measured using the Jaccard coefficient between module pairs: for modules $A$ and $B$ that appear in the same commit, $\text{coupling}(A,B) = \frac{|A \cap B|}{|A \cup B|}$. A module's average coupling is the mean Jaccard across all pairs involving that module.
@@ -590,7 +590,7 @@ Vitality classification **requires blame data**. Modules without blame lines (do
 
 ### 7.4 Classification Engine
 
-Module classification reuses the same `pickBest()` and `highness()`/`lowness()`/`notLow()` soft-match functions from the engineer topology (Section 4.1). Each axis is classified independently with confidence scores in [0, 1].
+Module classification reuses the same `pickBest()` and `highness()`/`lowness()`/`notLow()` soft-match functions from the engineer topology (Section 4.1). Each axis is classified independently with confidence values in [0, 1].
 
 ### 7.5 Anomaly-Focused Display
 
@@ -609,9 +609,9 @@ The power of 3-axis classification lies in combinations:
 | Independent | Turbulent | Orphaned | **High** | Owner handoff needed |
 | Linked | Warming | Concentrated | **Medium** | Monitor; succession plan |
 
-### 7.7 Relationship to Individual Scoring
+### 7.7 Relationship to Individual Profiling
 
-Module topology complements, not replaces, individual scoring. Phase 3 of the module science roadmap will cross-reference the two: "This Critical × Orphaned module needs an Architect-type engineer assigned to it."
+Module topology complements, not replaces, individual profiling. Phase 3 of the module science roadmap will cross-reference the two: "This Critical × Orphaned module needs an Architect-type engineer assigned to it."
 
 ---
 
@@ -619,15 +619,15 @@ Module topology complements, not replaces, individual scoring. Phase 3 of the mo
 
 ### 7.1 Normalization Sensitivity
 
-Relative normalization means that adding or removing a team member can change everyone's scores. The highest contributor always scores 100 on relative axes, making cross-team comparison impossible for those dimensions.
+Relative normalization means that adding or removing a team member can change everyone's signals. The highest contributor always signals 100 on relative axes, making cross-team comparison impossible for those dimensions.
 
 ### 7.2 Commit Hygiene Dependency
 
-Quality detection relies on commit message conventions (`fix:`, `revert:`, etc.). Teams with poor commit hygiene will have unreliable Quality scores. Squash-merge workflows may obscure individual contribution patterns.
+Quality detection relies on commit message conventions (`fix:`, `revert:`, etc.). Teams with poor commit hygiene will have unreliable Quality signals. Squash-merge workflows may obscure individual contribution patterns.
 
 ### 7.3 Architecture Pattern Configuration
 
-The default architecture patterns (`*/repository/*interface*`, `*/router.go`, etc.) reflect Clean Architecture conventions. Teams using different patterns must customize configuration for meaningful Design scores.
+The default architecture patterns (`*/repository/*interface*`, `*/router.go`, etc.) reflect Clean Architecture conventions. Teams using different patterns must customize configuration for meaningful Design signals.
 
 ### 7.4 Monorepo Assumptions
 
@@ -635,7 +635,7 @@ Blame-based analysis assumes a single repository or uses `--recursive` mode to a
 
 ### 7.5 Not a Performance Evaluation Tool
 
-EIS is designed as an *observability* tool, not an evaluation tool. Using it for performance reviews without understanding its limitations would be harmful. Scores reflect what happened in the codebase, not the value of an engineer's contributions to the organization.
+EIS is designed as an *observability* tool, not an evaluation tool. Using it for performance reviews without understanding its limitations would be harmful. Signals reflect what happened in the codebase, not the value of an engineer's contributions to the organization.
 
 ---
 
@@ -653,18 +653,18 @@ A team lead can run `eis analyze --team` to understand:
 `eis timeline` reveals patterns invisible in point-in-time snapshots:
 - An engineer transitioning from Producer to Architect over 6 months
 - A team's structure degrading after a key member's departure
-- The "hesitation" pattern — an engineer whose scores dip when joining a new team, then recover
+- The "hesitation" pattern — an engineer whose signals dip when joining a new team, then recover
 
 ### 8.3 Hiring and Team Composition
 
 Team-level metrics provide evidence-based answers to hiring questions:
 - "Do we need another Architect or another Anchor?"
-- "Is our Complementarity score improving or declining?"
+- "Is our Complementarity signal improving or declining?"
 - "What would happen to our Structure classification if Engineer X left?"
 
 ### 8.4 AI-Assisted Analysis
 
-The JSON and HTML output formats are designed for AI consumption. Feeding `eis timeline --format json` output to an LLM enables natural-language queries: "What happened to the backend team in 2024-H2?" The AI can correlate score changes, role transitions, and health metric movements to formulate hypotheses.
+The JSON and HTML output formats are designed for AI consumption. Feeding `eis timeline --format json` output to an LLM enables natural-language queries: "What happened to the backend team in 2024-H2?" The AI can correlate signal changes, role transitions, and health metric movements to formulate hypotheses.
 
 ---
 
@@ -690,7 +690,7 @@ eis analyze --recursive ~/workspace
 
 **Performance:** For a repository with 500 tracked files and 4 time periods, analysis takes approximately 25 seconds (dominated by `git blame` operations). Blame is parallelized across configurable worker count.
 
-**Source code:** [github.com/machuz/engineering-impact-score](https://github.com/machuz/engineering-impact-score)
+**Source code:** [github.com/machuz/eis](https://github.com/machuz/eis)
 
 ---
 
@@ -726,11 +726,11 @@ The ultimate insight is simple: **codebases have gravitational structures**. Som
 ```yaml
 tau: 180                    # Survival decay constant (days)
 sample_size: 500            # Max fix commits sampled for Debt analysis
-debt_threshold: 10          # Min interactions for Debt scoring
+debt_threshold: 10          # Min interactions for Debt observation
 breadth_max: 5              # Cap for Breadth axis
 active_days: 30             # Window for "recently active"
 blame_timeout: 120          # Seconds per file blame
-production_daily_ref: 1000  # Baseline for Production scoring
+production_daily_ref: 1000  # Baseline for Production observation
 
 weights:
   production: 0.15
@@ -785,7 +785,7 @@ blame_extensions:
 | **Architecture Coverage** | (Architects + Anchors) / MemberCount. Proportion of structurally-contributing members. |
 | **Anchor Density** | Anchors / MemberCount. Proportion of quality-stabilizing members. |
 | **Change Pressure** | Commits / Blame lines per module. Indicates how actively a module is developed. |
-| **Core Member** | Recently active with Total ≥ 20. Included in team averages. |
+| **Core Member** | Recently active with Impact ≥ 20. Included in team averages. |
 | **Gravity** | Composite of Indispensability, Breadth, and Design. Measures structural influence. |
 | **Risk Member** | State ∈ {Former, Silent, Fragile}. Included in risk calculations. |
 | **Robust Survival** | Blame lines in high-pressure modules, time-decayed. Code proven under collaboration. |
@@ -803,9 +803,9 @@ blame_extensions:
 **Citation:**
 ```
 @software{eis2026,
-  title = {Engineering Impact Score},
+  title = {Engineering Impact Signal},
   author = {machuz},
-  url = {https://github.com/machuz/engineering-impact-score},
+  url = {https://github.com/machuz/eis},
   year = {2026}
 }
 ```

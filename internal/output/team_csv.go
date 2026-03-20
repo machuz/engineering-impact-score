@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/machuz/engineering-impact-score/internal/team"
+	"github.com/machuz/eis/internal/team"
 )
 
 // PrintTeamCSV outputs team results as CSV (one row per team).
@@ -16,7 +16,7 @@ func PrintTeamCSV(teams []team.TeamResult) {
 		"team", "domain", "core_members", "effective_members", "total_members", "repos",
 		"character", "structure", "culture", "phase", "risk",
 		"avg_production", "avg_quality", "avg_survival", "avg_robust_survival", "avg_dormant_survival",
-		"avg_design", "avg_breadth", "avg_debt_cleanup", "avg_indispensability", "avg_total",
+		"avg_design", "avg_breadth", "avg_debt_cleanup", "avg_indispensability", "avg_impact",
 		"complementarity", "growth_potential", "sustainability", "debt_balance",
 		"productivity_density", "quality_consistency", "risk_ratio",
 		"aar", "anchor_density", "architecture_coverage",
@@ -46,7 +46,7 @@ func PrintTeamCSV(teams []team.TeamResult) {
 			fmt.Sprintf("%.1f", tr.AvgBreadth),
 			fmt.Sprintf("%.1f", tr.AvgDebtCleanup),
 			fmt.Sprintf("%.1f", tr.AvgIndispensability),
-			fmt.Sprintf("%.1f", tr.AvgTotal),
+			fmt.Sprintf("%.1f", tr.AvgImpact),
 			fmt.Sprintf("%.1f", h.Complementarity),
 			fmt.Sprintf("%.1f", h.GrowthPotential),
 			fmt.Sprintf("%.1f", h.Sustainability),

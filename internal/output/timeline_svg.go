@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/timeline"
 	chart "github.com/wcharczuk/go-chart/v2"
 	"github.com/wcharczuk/go-chart/v2/drawing"
 )
@@ -40,7 +40,7 @@ var (
 )
 
 var scoreSeries = []seriesConfig{
-	{"Total", drawing.Color{R: 69, G: 133, B: 136, A: 255}},       // #458588 gruvbox blue
+	{"Impact", drawing.Color{R: 69, G: 133, B: 136, A: 255}},      // #458588 gruvbox blue
 	{"Production", drawing.Color{R: 152, G: 151, B: 26, A: 255}},  // #98971a gruvbox green
 	{"Quality", drawing.Color{R: 250, G: 189, B: 47, A: 255}},     // #fabd2f gruvbox yellow
 	{"Survival", drawing.Color{R: 211, G: 134, B: 155, A: 255}},   // #d3869b gruvbox purple
@@ -102,7 +102,7 @@ func writeAuthorSVG(path, title string, periods []timeline.AuthorPeriod) error {
 
 	for i, p := range periods {
 		labels[i] = p.Label
-		values[0][i] = p.Total
+		values[0][i] = p.Impact
 		values[1][i] = p.Production
 		values[2][i] = p.Quality
 		values[3][i] = p.Survival
@@ -121,7 +121,7 @@ func writeTeamSVG(path, title string, periods []timeline.TeamPeriodSnapshot) err
 
 	for i, p := range periods {
 		labels[i] = p.Label
-		values[0][i] = p.AvgTotal
+		values[0][i] = p.AvgImpact
 		values[1][i] = p.AvgProduction
 		values[2][i] = p.AvgQuality
 		values[3][i] = p.AvgSurvival

@@ -232,7 +232,7 @@ In a civilization, order continues after the Architect departs. Design intent is
 
 ## Can EIS Measure Civilization?
 
-EIS measures individual scores and team health. It doesn't directly measure civilization — not yet.
+EIS measures individual signals and team health. It doesn't directly measure civilization — not yet.
 
 But the **precursors** of civilization appear in EIS data.
 
@@ -240,7 +240,7 @@ But the **precursors** of civilization appear in EIS data.
 
 In teams heading toward civilization, there isn't just one Architect. Like the dual-Anchor formation from Chapter 13, **multiple Architects generate gravity in different domains.**
 
-In EIS timelines, if multiple members show high Design scores and each has healthy (green) Gravity — that codebase is approaching civilization.
+In EIS timelines, if multiple members show high Design signals and each has healthy (green) Gravity — that codebase is approaching civilization.
 
 ### 2. Succession Traces
 
@@ -354,7 +354,7 @@ Maybe you'll see the signs of civilization in your codebase too.
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [Sponsor on GitHub](https://github.com/sponsors/machuz)

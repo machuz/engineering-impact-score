@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/machuz/engineering-impact-score/internal/git"
+	"github.com/machuz/eis/internal/git"
 )
 
 type ModuleRisk struct {

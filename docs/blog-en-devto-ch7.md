@@ -1,7 +1,7 @@
 ---
 title: "Git Archaeology #7 — Observing the Universe of Code"
 published: true
-description: "Chapter 7 of Engineering Impact Score. Codebases have gravitational structures. Great engineers don't just write code — they bend the gravity of codebases."
+description: "Chapter 7 of Engineering Impact Signal. Codebases have gravitational structures. Great engineers don't just write code — they bend the gravity of codebases."
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch7.png?v=4
 ---
@@ -30,7 +30,7 @@ First, the practical part. `eis timeline --format html` now outputs an interacti
 ❯ eis timeline --format html --output timeline.html --recursive ~/workspace
 ```
 
-Chart.js-based line charts show individual and team score trajectories, health metrics, membership composition, and classification changes at a glance. Tooltips display Role/Style/State with confidence scores. Transition markers highlight exactly when changes happened.
+Chart.js-based line charts show individual and team impact trajectories, health metrics, membership composition, and classification changes at a glance. Tooltips display Role/Style/State with confidence values. Transition markers highlight exactly when changes happened.
 
 For a quick terminal check, there's also `--format ascii`:
 
@@ -38,7 +38,7 @@ For a quick terminal check, there's also `--format ascii`:
 
 What makes this powerful is that **you can look at this screen alongside an AI**.
 
-Open the HTML in a browser, feed `eis timeline --format json` output to an AI, and ask "What happened to this team in 2024-H2?" The AI reads the score changes, role transitions, and health metric movements — formulates hypotheses and offers interpretations. This kind of experience was difficult with terminal output alone.
+Open the HTML in a browser, feed `eis timeline --format json` output to an AI, and ask "What happened to this team in 2024-H2?" The AI reads the signal changes, role transitions, and health metric movements — formulates hypotheses and offers interpretations. This kind of experience was difficult with terminal output alone.
 
 The team Health Metrics view is particularly interesting. Complementarity, Growth Potential, Sustainability, Debt Balance — you can see at a glance how these evolve across periods.
 
@@ -171,7 +171,7 @@ With EIS team timelines, you can:
 - **Risk: Healthy** — "No Bus Factor, Design Vacuum, or Quality Drift risks."
 - **Phase: Sustained Mature** — "Stable without stagnating."
 
-Instead of telling candidates "this is a technically interesting team," you **show them the graphs**. Show score trajectories. Show how the team has evolved over time, backed by data.
+Instead of telling candidates "this is a technically interesting team," you **show them the graphs**. Show impact trajectories. Show how the team has evolved over time, backed by data.
 
 This works in reverse too. Candidates can use it to evaluate teams. "Is this team actually growing?" "Does it have a design culture?" — the EIS dashboard can answer that.
 
@@ -210,7 +210,7 @@ They might be **someone who bends the gravity of codebases**.
 - [Chapter 2: Beyond Individual Scores: Measuring Team Health from Git History](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f)
 - [Chapter 3: Two Paths to Architect: How Engineers Evolve Differently](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga)
 - [Chapter 4: Backend Architects Converge: The Sacred Work of Laying Souls to Rest](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d)
-- [Chapter 5: Timeline: Scores Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
+- [Chapter 5: Timeline: Signals Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
 - [Chapter 6: Teams Evolve: The Laws of Organization Revealed by Timelines](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei)
 - **Chapter 7: Observing the Universe of Code**
 - [Chapter 8: Engineering Relativity: Why the Same Engineer Gets Different Scores](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)
@@ -225,7 +225,7 @@ They might be **someone who bends the gravity of codebases**.
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)

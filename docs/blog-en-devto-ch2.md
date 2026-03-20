@@ -1,34 +1,34 @@
 ---
 title: "Git Archaeology #2 — Beyond Individual Scores: Measuring Team Health from Git History"
 published: true
-description: "Chapter 2 of Engineering Impact Score. Team-level analysis — complementarity, risk ratio, productivity density — all from git data you already have."
+description: "Chapter 2 of Engineering Impact Signal. Team-level analysis — complementarity, risk ratio, productivity density — all from git data you already have."
 tags: opensource, productivity, git, teams
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch2.png?v=4
 ---
 
-*Individual scores tell you who is strong. Team health tells you whether the team will still be strong next quarter.*
+*Individual signals tell you who is strong. Team health tells you whether the team will still be strong next quarter.*
 
 ![Team structure and health radar](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch2-iconic.png?v=4)
 
 ## Previously
 
-In [Chapter 1](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c), I introduced a 7-axis scoring model for individual engineers, powered entirely by git history. The 3-axis topology (Role / Style / State) gave us a vocabulary for describing engineers: an *Architect* who writes durable design code, a *Cleaner* who quietly pays down debt, a *Producer* who ships volume.
+In [Chapter 1](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c), I introduced a 7-axis observation model for individual engineers, powered entirely by git history. The 3-axis topology (Role / Style / State) gave us a vocabulary for describing engineers: an *Architect* who writes durable design code, a *Cleaner* who quietly pays down debt, a *Producer* who ships volume.
 
-But individual scores have a blind spot.
+But individual signals have a blind spot.
 
 **Teams.**
 
-## Why Individual Scores Aren't Enough
+## Why Individual Signals Aren't Enough
 
-A team where every member scores 80+ isn't necessarily strong. If everyone is a Producer, nobody is shaping architecture. Nobody is paying down debt. The codebase ships fast and rots faster.
+A team where every member hits 80+ isn't necessarily strong. If everyone is a Producer, nobody is shaping architecture. Nobody is paying down debt. The codebase ships fast and rots faster.
 
 Conversely, a team averaging 50 points — but with one Architect, one Cleaner, and two Growing juniors — may be in a much healthier position. In six months, those juniors will level up, and the foundation is solid.
 
-**A strong team is not the sum of individual scores. It's about composition and complementarity.**
+**A strong team is not the sum of individual signals. It's about composition and complementarity.**
 
 ## `eis team` — Team-Level Analysis
 
-The new `eis team` command aggregates individual scores into team-level metrics.
+The new `eis team` command aggregates individual signals into team-level metrics.
 
 ```bash
 # Simplest: domain = team
@@ -66,7 +66,7 @@ bonus    = Architect(+10) + Anchor(+5) + Cleaner(+5)
 score    = coverage × 80 + bonus  (clamped 0-100)
 ```
 
-A team with only Producers and no Architect scores 16. A fully diverse team hits 100.
+A team with only Producers and no Architect gets 16. A fully diverse team hits 100.
 
 ### 2. Growth Potential — Can Juniors Level Up Here?
 
@@ -76,7 +76,7 @@ Growing members + mentoring capacity.
 score = growingRatio × 60 + Builder(+20) + Cleaner(+20)
 ```
 
-Having Growing juniors is necessary but not sufficient. Without a Builder or Cleaner as a role model, growth stalls. Both must be present for the score to climb.
+Having Growing juniors is necessary but not sufficient. Without a Builder or Cleaner as a role model, growth stalls. Both must be present for the signal to climb.
 
 ### 3. Sustainability — Inverse of Risk
 
@@ -91,11 +91,11 @@ Former members whose code still dominates blame. Silent members who haven't mean
 
 ### 4. Debt Balance — Self-Cleaning Tendency
 
-Average Debt Cleanup score across members. 50 is neutral; above 50 means the team cleans more debt than it creates.
+Average Debt Cleanup signal across members. 50 is neutral; above 50 means the team cleans more debt than it creates.
 
 ### 5. Productivity Density — Output Per Head
 
-Average production score with a small-team bonus. Three people running a large-scale API server will show an abnormally high density — impressive, but also risky.
+Average production signal with a small-team bonus. Three people running a large-scale API server will show an abnormally high density — impressive, but also risky.
 
 ```
 base = avg(members.Production)
@@ -140,15 +140,15 @@ Character is a meta-classification synthesized from the other four — the team'
 
 ### Weighted Classification — Strong Members Paint the Team's Color
 
-Classification uses **member Total score as influence weight**:
+Classification uses **member Impact as influence weight**:
 
 ```
 weight = member.Total / 100  (minimum 0.1)
 ```
 
-An Architect scoring 90 and an Architect scoring 15 on the same team don't contribute equally to the team's character. The high-scorer shapes the team far more. Ethnographically, **strong performers with high output propagate more culture to the team**. The formula encodes this directly.
+An Architect at 90 impact and an Architect at 15 impact on the same team don't contribute equally to the team's character. The higher-impact member shapes the team far more. Ethnographically, **strong performers with high output propagate more culture to the team**. The formula encodes this directly.
 
-The minimum weight of 0.1 ensures that presence still matters — three Growing members at score 15 each still influence the team's Phase.
+The minimum weight of 0.1 ensures that presence still matters — three Growing members at impact 15 each still influence the team's Phase.
 
 ### Structure — From Role Distribution
 
@@ -258,7 +258,7 @@ EIS's Role classification maps to three layers of engineering growth.
 
 **Design Layer**: You touch architecture files and shape the structure. Architects live here.
 
-Growth means climbing these layers. EIS score trajectories make this observable:
+Growth means climbing these layers. EIS impact trajectories make this observable:
 
 - Survival rising → moving from Implementation to Stabilization
 - Design rising → moving from Stabilization to Design
@@ -270,7 +270,7 @@ And there's a downward direction too.
 
 ![Decline Model](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch2-diagram-decline.png?v=4)
 
-Helping members climb the layers, and catching early when someone is falling into a Risk state. **That's the management job EIS makes visible.** Track score trajectories quarter over quarter, and you can see who's climbing, who's plateaued, and who's slipping — in numbers.
+Helping members climb the layers, and catching early when someone is falling into a Risk state. **That's the management job EIS makes visible.** Track impact trajectories quarter over quarter, and you can see who's climbing, who's plateaued, and who's slipping — in numbers.
 
 ## A Sociological Observation
 
@@ -278,7 +278,7 @@ Helping members climb the layers, and catching early when someone is falling int
 
 **Teams without an Architect degrade over time.** Low Complementarity correlates with declining Quality Consistency over 6-month windows. Without a design compass, everyone codes in their own direction.
 
-**Small-team anomalies are two-sided.** High Productivity Density is both a strength and a risk. If one person leaves a 3-person team scoring 80+ density, the impact is catastrophic.
+**Small-team anomalies are two-sided.** High Productivity Density is both a strength and a risk. If one person leaves a 3-person team showing 80+ density, the impact is catastrophic.
 
 ## Member Tiers & Warnings (v0.10.3)
 
@@ -320,7 +320,7 @@ The Phase axis now distinguishes between truly declining teams and strong teams 
 | **Mature with Attrition** | Moderate risk (20-40%), active core still strong | Natural attrition from mature team |
 | **Declining** | Risk high, weak core | Genuine talent drain |
 
-A Backend team with an Architect scoring 90+ and two Silent former members isn't "Declining" — it's **Legacy-Heavy**. The distinction matters for planning.
+A Backend team with an Architect at 90+ impact and two Silent former members isn't "Declining" — it's **Legacy-Heavy**. The distinction matters for planning.
 
 ## Real-World Results — Our Team
 
@@ -389,7 +389,7 @@ Together, they enable:
 
 - **Hiring**: see which Role is missing → define the position
 - **Team formation**: maximize complementarity
-- **1-on-1s**: discuss growth direction based on score trajectories
+- **1-on-1s**: discuss growth direction based on impact trajectories
 - **Risk management**: catch Risk Ratio deterioration early
 
 All from git history. No surveys. No additional tooling.
@@ -402,7 +402,7 @@ Let's turn team strength from a prayer into a metric.
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)

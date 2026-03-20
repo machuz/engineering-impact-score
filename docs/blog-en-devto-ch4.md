@@ -1,7 +1,7 @@
 ---
 title: "Git Archaeology #4 — Backend Architects Converge: The Sacred Work of Laying Souls to Rest"
 published: true
-description: "Chapter 4 of Engineering Impact Score. Backend teams evolve differently — and departed Architects leave souls that must be laid to rest."
+description: "Chapter 4 of Engineering Impact Signal. Backend teams evolve differently — and departed Architects leave souls that must be laid to rest."
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch4.png?v=4
 ---
@@ -361,13 +361,13 @@ EIS visualizes these differences and can suggest appropriate prescriptions for e
 
 ## Being Honest
 
-My score of 92.4 at #1 feels good — like my ability as an Architect is being validated.
+My impact of 92.4 at #1 feels good — like my ability as an Architect is being validated.
 
 But honestly, **I also work an absurd number of hours**.
 
 And there's another thing that makes me happy.
 
-**I could only achieve this Architect score because I inherited solid design from Y.Y. and made it even better.**
+**I could only achieve this Architect impact because I inherited solid design from Y.Y. and made it even better.**
 
 Backend has time-tested good design passed down through generations — structures refined by those who came before. I learned them and built on them. Y.Y. also learned them and built on them. When we met, we already shared the same understanding. That's why common sense emerged and inheritance became possible.
 
@@ -377,7 +377,7 @@ That accumulation is what these numbers represent.
 
 ---
 
-I worked with P. before, at another company. We merged our design knowledge back then. So we share common understanding of each other's design approach. Whatever their current score shows, I know they have horsepower. **I know they have the ability to hit 80+ on our team.**
+I worked with P. before, at another company. We merged our design knowledge back then. So we share common understanding of each other's design approach. Whatever their current impact shows, I know they have horsepower. **I know they have the ability to hit 80+ on our team.**
 
 R.S. is doing really good work. When I invited them to join this team, they said "I lack confidence because I don't have much experience." But from my experience, I was absolutely certain they could do good work. So I invited them. **And now, they've become an Anchor.** An Anchor on an Elite team. That's something to brag about anywhere. Deeply moving.
 
@@ -421,41 +421,41 @@ And those numbers matched my intuition. The team really was strong.
 
 A team member asked:
 
-> Do spec changes that overwrite code get reflected in Robust scores?
+> Do spec changes that overwrite code get reflected in Robust signals?
 
 **Yes, they do.**
 
-When spec changes cause code rewrites, the original author's Robust score drops.
+When spec changes cause code rewrites, the original author's Robust signal drops.
 
-This means **planner precision also affects these scores**.
+This means **planner precision also affects these signals**.
 
 If specs are unstable, code gets rewritten. If planning is sloppy, no matter how good the code an engineer writes, it disappears.
 
-That this team achieves strong Robust scores isn't just an engineering achievement. **It's the achievement of the entire development organization, including planners.**
+That this team achieves strong Robust signals isn't just an engineering achievement. **It's the achievement of the entire development organization, including planners.**
 
 ---
 
-### Renovations and Scores
+### Renovations and Signals
 
 Another question came up:
 
-> If we do a major renovation, will the people who wrote pre-renovation code see their scores drop?
+> If we do a major renovation, will the people who wrote pre-renovation code see their signals drop?
 
 **Yes.**
 
-If renovation replaces previous code, the previous authors' scores drop.
+If renovation replaces previous code, the previous authors' signals drop.
 
 But here's the key point.
 
 **Can you adapt?**
 
 - Can you weave your opinions into the post-renovation design?
-- Can you produce scores even on top of the new good design?
-- More broadly, **can you produce scores across multiple codebases**, whether they're good or bad?
+- Can you produce impact even on top of the new good design?
+- More broadly, **can you produce impact across multiple codebases**, whether they're good or bad?
 
 That's what real engineering strength is.
 
-Scoring high on one codebase is possible if you're lucky with your environment.
+Achieving high impact on one codebase is possible if you're lucky with your environment.
 
 But **being able to adapt and generate gravity on any codebase, any team** — that's what a real engineer looks like.
 
@@ -485,7 +485,7 @@ That might be the essence of EIS.
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)
@@ -499,7 +499,7 @@ If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machu
 - [Chapter 2: Beyond Individual Scores: Measuring Team Health from Git History](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f)
 - [Chapter 3: Two Paths to Architect: How Engineers Evolve Differently](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga)
 - **Chapter 4: Backend Architects Converge: The Sacred Work of Laying Souls to Rest**
-- [Chapter 5: Timeline: Scores Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
+- [Chapter 5: Timeline: Signals Don't Lie, and They Capture Hesitation Too](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5)
 - [Chapter 6: Teams Evolve: The Laws of Organization Revealed by Timelines](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei)
 - [Chapter 7: Observing the Universe of Code](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0)
 - [Chapter 8: Engineering Relativity: Why the Same P.ets Different Scores](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)

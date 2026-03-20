@@ -1,10 +1,10 @@
 package team
 
 import (
-	"github.com/machuz/engineering-impact-score/internal/scorer"
+	"github.com/machuz/eis/internal/scorer"
 )
 
-// MinContributionThreshold is the minimum Total score for a member to be
+// MinContributionThreshold is the minimum Impact score for a member to be
 // counted as a "core" team member. Members below this threshold who are not
 // in a risk state (Former/Silent/Fragile) are treated as peripheral
 // (cross-functional helpers) and excluded from team metrics.
@@ -13,7 +13,7 @@ const MinContributionThreshold = 20.0
 // TeamResult holds aggregated team-level metrics.
 //
 // Members are categorized into three tiers:
-//   - Core: RecentlyActive && Total >= MinContributionThreshold → averages denominator
+//   - Core: RecentlyActive && Impact >= MinContributionThreshold → averages denominator
 //   - Risk: State in {Former, Silent, Fragile} → distributions & risk metrics
 //   - Peripheral: everyone else → TotalMemberCount only
 //
@@ -38,7 +38,7 @@ type TeamResult struct {
 	AvgBreadth          float64
 	AvgDebtCleanup      float64
 	AvgIndispensability float64
-	AvgTotal            float64
+	AvgImpact           float64
 
 	// Role/Style/State distribution counts (from effective members)
 	RoleDist  map[string]int
@@ -74,7 +74,7 @@ type TeamHealth struct {
 // Aggregate computes team-level metrics from individual results.
 //
 // Members are split into three tiers:
-//   - Core: RecentlyActive && Total >= MinContributionThreshold
+//   - Core: RecentlyActive && Impact >= MinContributionThreshold
 //   - Risk: State in {Former, Silent, Fragile} (always included for detection)
 //   - Peripheral: everyone else (cross-functional helpers, excluded from metrics)
 //
@@ -93,7 +93,7 @@ func Aggregate(name, domain string, repoCount int, results []scorer.Result, memb
 	for _, m := range allMembers {
 		if isRiskState(m.State) {
 			riskMembers = append(riskMembers, m)
-		} else if m.RecentlyActive && m.Total >= MinContributionThreshold {
+		} else if m.RecentlyActive && m.Impact >= MinContributionThreshold {
 			coreMembers = append(coreMembers, m)
 		}
 		// else: peripheral — only counted in TotalMemberCount
@@ -130,7 +130,7 @@ func Aggregate(name, domain string, repoCount int, results []scorer.Result, memb
 	// Averages from core members only
 	if len(coreMembers) > 0 {
 		var sumProd, sumQual, sumSurv, sumRobust, sumDormant float64
-		var sumDesign, sumBreadth, sumDebt, sumIndisp, sumTotal float64
+		var sumDesign, sumBreadth, sumDebt, sumIndisp, sumImpact float64
 		for _, m := range coreMembers {
 			sumProd += m.Production
 			sumQual += m.Quality
@@ -141,7 +141,7 @@ func Aggregate(name, domain string, repoCount int, results []scorer.Result, memb
 			sumBreadth += m.Breadth
 			sumDebt += m.DebtCleanup
 			sumIndisp += m.Indispensability
-			sumTotal += m.Total
+			sumImpact += m.Impact
 		}
 		n := float64(len(coreMembers))
 		tr.AvgProduction = sumProd / n
@@ -153,7 +153,7 @@ func Aggregate(name, domain string, repoCount int, results []scorer.Result, memb
 		tr.AvgBreadth = sumBreadth / n
 		tr.AvgDebtCleanup = sumDebt / n
 		tr.AvgIndispensability = sumIndisp / n
-		tr.AvgTotal = sumTotal / n
+		tr.AvgImpact = sumImpact / n
 	}
 
 	// Distributions from effective members (core + risk)

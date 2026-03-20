@@ -4,8 +4,8 @@ import (
 	"sort"
 	"time"
 
-	"github.com/machuz/engineering-impact-score/internal/config"
-	"github.com/machuz/engineering-impact-score/internal/metric"
+	"github.com/machuz/eis/internal/config"
+	"github.com/machuz/eis/internal/metric"
 )
 
 type Result struct {
@@ -23,7 +23,7 @@ type Result struct {
 	DebtCleanup      float64
 	Indispensability float64
 	Gravity          float64 // structural influence: f(Indispensability, Breadth, Design)
-	Total            float64
+	Impact           float64
 	TotalCommits   int
 	LinesAdded     int
 	LinesDeleted   int
@@ -129,7 +129,7 @@ func scoreImpl(raw *metric.RawScores, cfg *config.Config, authorLastDate map[str
 			designDamping := maxf(robustFactor, productionFactor)
 			effectiveDesign := r.Design * designDamping
 
-			r.Total = r.Production*w.Production +
+			r.Impact = r.Production*w.Production +
 				r.Quality*w.Quality +
 				r.RobustSurvival*robustWeight +
 				r.DormantSurvival*dormantWeight +
@@ -139,12 +139,12 @@ func scoreImpl(raw *metric.RawScores, cfg *config.Config, authorLastDate map[str
 				r.Indispensability*w.Indispensability
 
 			// Penalty: code that has never survived under change pressure
-			// is fundamentally unproven. Apply 0.8x multiplier to Total.
+			// is fundamentally unproven. Apply 0.8x multiplier to Impact.
 			if r.RobustSurvival == 0 {
-				r.Total *= 0.80
+				r.Impact *= 0.80
 			}
 		} else {
-			r.Total = r.Production*w.Production +
+			r.Impact = r.Production*w.Production +
 				r.Quality*w.Quality +
 				r.Survival*w.Survival +
 				r.Design*w.Design +
@@ -169,9 +169,9 @@ func scoreImpl(raw *metric.RawScores, cfg *config.Config, authorLastDate map[str
 		results = append(results, r)
 	}
 
-	// Sort by total descending
+	// Sort by impact descending
 	sort.Slice(results, func(i, j int) bool {
-		return results[i].Total > results[j].Total
+		return results[i].Impact > results[j].Impact
 	})
 
 	return results

@@ -4,7 +4,7 @@
 
 > *Who actually shaped the structure of open-source software?*
 
-This research project applies [EIS (Engineering Impact Score)](https://github.com/machuz/engineering-impact-score) to 25 major open-source projects, validating the **Software Cosmology** model against real-world ground truth.
+This research project applies [EIS (Engineering Impact Score)](https://github.com/machuz/eis) to 25 major open-source projects, validating the **Software Cosmology** model against real-world ground truth.
 
 ## What This Does
 
@@ -137,4 +137,4 @@ Results from this validation will be incorporated into:
 
 ---
 
-Part of [Engineering Impact Score](https://github.com/machuz/engineering-impact-score) — the Git Telescope.
+Part of [Engineering Impact Score](https://github.com/machuz/eis) — the Git Telescope.

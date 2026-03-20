@@ -6,7 +6,7 @@ import (
 	"io"
 	"text/template"
 
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/timeline"
 )
 
 // DomainTimelineData groups author timelines under a domain for HTML output.
@@ -19,7 +19,7 @@ type DomainTimelineData struct {
 // htmlAuthorPeriod is a JSON-serializable version of AuthorPeriod.
 type htmlAuthorPeriod struct {
 	Label      string  `json:"label"`
-	Total      float64 `json:"total"`
+	Impact     float64 `json:"impact"`
 	Production float64 `json:"production"`
 	Quality    float64 `json:"quality"`
 	Survival   float64 `json:"survival"`
@@ -58,7 +58,7 @@ type htmlTeamPeriod struct {
 	CoreMembers      int     `json:"coreMembers"`
 	EffectiveMembers int     `json:"effectiveMembers"`
 	TotalMembers     int     `json:"totalMembers"`
-	AvgTotal         float64 `json:"avgTotal"`
+	AvgImpact        float64 `json:"avgImpact"`
 	AvgProduction    float64 `json:"avgProduction"`
 	AvgQuality       float64 `json:"avgQuality"`
 	AvgSurvival      float64 `json:"avgSurvival"`
@@ -111,7 +111,7 @@ func WriteTimelineHTML(w io.Writer, domainTimelines []DomainTimelineData, teamTi
 			for _, p := range tl.Periods {
 				hat.Periods = append(hat.Periods, htmlAuthorPeriod{
 					Label:      p.Label,
-					Total:      p.Total,
+					Impact:     p.Impact,
 					Production: p.Production,
 					Quality:    p.Quality,
 					Survival:   p.Survival,
@@ -150,7 +150,7 @@ func WriteTimelineHTML(w io.Writer, domainTimelines []DomainTimelineData, teamTi
 				CoreMembers:         p.CoreMembers,
 				EffectiveMembers:    p.EffectiveMembers,
 				TotalMembers:        p.TotalMembers,
-				AvgTotal:            p.AvgTotal,
+				AvgImpact:           p.AvgImpact,
 				AvgProduction:       p.AvgProduction,
 				AvgQuality:          p.AvgQuality,
 				AvgSurvival:         p.AvgSurvival,
@@ -415,7 +415,7 @@ function createScoreChart(canvasId, labels, periods, transitions) {
   const ctx = document.getElementById(canvasId).getContext('2d');
 
   const datasets = [
-    { label: 'Total',      data: periods.map(p => p.total),      borderColor: COLORS.total,      backgroundColor: COLORS.total + '20' },
+    { label: 'Impact',     data: periods.map(p => p.impact),     borderColor: COLORS.total,      backgroundColor: COLORS.total + '20' },
     { label: 'Production', data: periods.map(p => p.production), borderColor: COLORS.production, backgroundColor: COLORS.production + '20' },
     { label: 'Quality',    data: periods.map(p => p.quality),    borderColor: COLORS.quality,    backgroundColor: COLORS.quality + '20' },
     { label: 'Survival',   data: periods.map(p => p.survival),   borderColor: COLORS.survival,   backgroundColor: COLORS.survival + '20' },
@@ -506,7 +506,7 @@ function createScoreChart(canvasId, labels, periods, transitions) {
 function createTeamScoreChart(canvasId, labels, periods) {
   const ctx = document.getElementById(canvasId).getContext('2d');
   const datasets = [
-    { label: 'AvgTotal',      data: periods.map(p => p.avgTotal),      borderColor: COLORS.total },
+    { label: 'AvgImpact',     data: periods.map(p => p.avgImpact),     borderColor: COLORS.total },
     { label: 'AvgProduction', data: periods.map(p => p.avgProduction), borderColor: COLORS.production },
     { label: 'AvgQuality',    data: periods.map(p => p.avgQuality),    borderColor: COLORS.quality },
     { label: 'AvgSurvival',   data: periods.map(p => p.avgSurvival),   borderColor: COLORS.survival },

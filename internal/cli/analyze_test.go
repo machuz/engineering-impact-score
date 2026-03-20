@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/machuz/engineering-impact-score/internal/config"
-	"github.com/machuz/engineering-impact-score/internal/domain"
+	"github.com/machuz/eis/internal/config"
+	"github.com/machuz/eis/internal/domain"
 )
 
 // --- resolveRepoDomain tests (config repo-pattern path, no git needed) ---

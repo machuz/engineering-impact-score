@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/machuz/engineering-impact-score/internal/cli"
+	"github.com/machuz/eis/internal/cli"
 )
 
 func main() {

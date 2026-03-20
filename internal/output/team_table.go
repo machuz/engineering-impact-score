@@ -8,7 +8,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/fatih/color"
-	"github.com/machuz/engineering-impact-score/internal/team"
+	"github.com/machuz/eis/internal/team"
 )
 
 const (
@@ -224,9 +224,9 @@ func buildAverageLines(tr team.TeamResult) []string {
 		lines = append(lines, fmt.Sprintf("  %-14s %s", a.name, c.Sprintf("%.1f", a.val)))
 	}
 
-	// Total as highlight
-	totalColor := scoreColor(tr.AvgTotal)
-	lines = append(lines, fmt.Sprintf("  %-14s %s", "Total", totalColor.Sprintf("%.1f", tr.AvgTotal)))
+	// Impact as highlight
+	impactColor := scoreColor(tr.AvgImpact)
+	lines = append(lines, fmt.Sprintf("  %-14s %s", "Impact", impactColor.Sprintf("%.1f", tr.AvgImpact)))
 
 	return lines
 }

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/machuz/engineering-impact-score/internal/team"
+	"github.com/machuz/eis/internal/team"
 )
 
 type teamJSONOutput struct {
@@ -52,7 +52,7 @@ type teamAverages struct {
 	Breadth          float64 `json:"breadth"`
 	DebtCleanup      float64 `json:"debt_cleanup"`
 	Indispensability float64 `json:"indispensability"`
-	Total            float64 `json:"total"`
+	Impact           float64 `json:"impact"`
 }
 
 type teamHealthJSON struct {
@@ -105,7 +105,7 @@ func PrintTeamJSON(teams []team.TeamResult) error {
 				Breadth:          round1(tr.AvgBreadth),
 				DebtCleanup:      round1(tr.AvgDebtCleanup),
 				Indispensability: round1(tr.AvgIndispensability),
-				Total:            round1(tr.AvgTotal),
+				Impact:           round1(tr.AvgImpact),
 			},
 			Health: teamHealthJSON{
 				Complementarity:     round1(tr.Health.Complementarity),
@@ -143,7 +143,7 @@ func PrintTeamJSON(teams []team.TeamResult) error {
 				DebtCleanup:      round1(m.DebtCleanup),
 				Indispensability: round1(m.Indispensability),
 				Gravity:          round1(m.Gravity),
-				Total:            round1(m.Total),
+				Impact:           round1(m.Impact),
 				Role:             m.Role,
 				RoleConf:         m.RoleConf,
 				Style:            m.Style,

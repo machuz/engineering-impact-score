@@ -4,7 +4,7 @@ import (
 	"math"
 	"time"
 
-	"github.com/machuz/engineering-impact-score/internal/git"
+	"github.com/machuz/eis/internal/git"
 )
 
 // SurvivalResult holds both time-decayed and raw (non-decayed) blame counts,

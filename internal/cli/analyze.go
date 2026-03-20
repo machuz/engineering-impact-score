@@ -13,13 +13,13 @@ import (
 	"time"
 
 	"github.com/fatih/color"
-	"github.com/machuz/engineering-impact-score/internal/cache"
-	"github.com/machuz/engineering-impact-score/internal/config"
-	"github.com/machuz/engineering-impact-score/internal/domain"
-	"github.com/machuz/engineering-impact-score/internal/git"
-	"github.com/machuz/engineering-impact-score/internal/metric"
-	"github.com/machuz/engineering-impact-score/internal/output"
-	"github.com/machuz/engineering-impact-score/internal/scorer"
+	"github.com/machuz/eis/internal/cache"
+	"github.com/machuz/eis/internal/config"
+	"github.com/machuz/eis/internal/domain"
+	"github.com/machuz/eis/internal/git"
+	"github.com/machuz/eis/internal/metric"
+	"github.com/machuz/eis/internal/output"
+	"github.com/machuz/eis/internal/scorer"
 )
 
 // AnalyzeOptions holds CLI flags for the analysis pipeline.
@@ -706,7 +706,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 			if cfg.IsExcludedAuthor(r.Author) {
 				continue
 			}
-			if r.TotalCommits == 0 && r.Total == 0 {
+			if r.TotalCommits == 0 && r.Impact == 0 {
 				continue
 			}
 			filtered = append(filtered, r)

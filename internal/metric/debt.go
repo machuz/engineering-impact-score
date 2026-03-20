@@ -6,7 +6,7 @@ import (
 	"math"
 	"time"
 
-	"github.com/machuz/engineering-impact-score/internal/git"
+	"github.com/machuz/eis/internal/git"
 )
 
 type DebtData struct {

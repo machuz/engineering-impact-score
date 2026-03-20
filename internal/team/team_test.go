@@ -3,18 +3,18 @@ package team
 import (
 	"testing"
 
-	"github.com/machuz/engineering-impact-score/internal/scorer"
+	"github.com/machuz/eis/internal/scorer"
 )
 
 func TestAggregate_Basic(t *testing.T) {
 	results := []scorer.Result{
-		{Author: "alice", RecentlyActive: true, Production: 80, Quality: 90, Survival: 70, Design: 60, Breadth: 50, DebtCleanup: 55, Total: 65, Role: "Architect", Style: "Builder", State: "Active"},
-		{Author: "bob", RecentlyActive: true, Production: 40, Quality: 85, Survival: 50, Design: 30, Breadth: 40, DebtCleanup: 60, Total: 45, Role: "Anchor", Style: "Balanced", State: "Growing"},
+		{Author: "alice", RecentlyActive: true, Production: 80, Quality: 90, Survival: 70, Design: 60, Breadth: 50, DebtCleanup: 55, Impact: 65, Role: "Architect", Style: "Builder", State: "Active"},
+		{Author: "bob", RecentlyActive: true, Production: 40, Quality: 85, Survival: 50, Design: 30, Breadth: 40, DebtCleanup: 60, Impact: 45, Role: "Anchor", Style: "Balanced", State: "Growing"},
 	}
 
 	tr := Aggregate("backend-team", "Backend", 3, results, nil)
 
-	// Both members are core (Active + Total >= 20)
+	// Both members are core (Active + Impact >= 20)
 	if tr.CoreMemberCount != 2 {
 		t.Errorf("CoreMemberCount = %d, want 2", tr.CoreMemberCount)
 	}
@@ -34,9 +34,9 @@ func TestAggregate_Basic(t *testing.T) {
 
 func TestAggregate_WithFilter(t *testing.T) {
 	results := []scorer.Result{
-		{Author: "alice", RecentlyActive: true, Production: 80, Quality: 90, Total: 65, Role: "Architect", Style: "Builder", State: "Active"},
-		{Author: "bob", RecentlyActive: true, Production: 40, Quality: 85, Total: 45, Role: "Anchor", Style: "Balanced", State: "Growing"},
-		{Author: "charlie", RecentlyActive: true, Production: 60, Quality: 70, Total: 55, Role: "Producer", Style: "Mass", State: "Active"},
+		{Author: "alice", RecentlyActive: true, Production: 80, Quality: 90, Impact: 65, Role: "Architect", Style: "Builder", State: "Active"},
+		{Author: "bob", RecentlyActive: true, Production: 40, Quality: 85, Impact: 45, Role: "Anchor", Style: "Balanced", State: "Growing"},
+		{Author: "charlie", RecentlyActive: true, Production: 60, Quality: 70, Impact: 55, Role: "Producer", Style: "Mass", State: "Active"},
 	}
 
 	tr := Aggregate("team", "Backend", 3, results, []string{"alice", "bob"})
@@ -51,9 +51,9 @@ func TestAggregate_WithFilter(t *testing.T) {
 
 func TestAggregate_CoreAndRiskSplit(t *testing.T) {
 	results := []scorer.Result{
-		{Author: "alice", RecentlyActive: true, Production: 80, Quality: 90, DebtCleanup: 70, Total: 65, Role: "Architect", Style: "Builder", State: "Active"},
-		{Author: "bob", RecentlyActive: false, Production: 10, Quality: 50, DebtCleanup: 30, Total: 20, Role: "—", Style: "—", State: "Former"},
-		{Author: "charlie", RecentlyActive: true, Production: 60, Quality: 80, DebtCleanup: 60, Total: 55, Role: "Producer", Style: "Mass", State: "Active"},
+		{Author: "alice", RecentlyActive: true, Production: 80, Quality: 90, DebtCleanup: 70, Impact: 65, Role: "Architect", Style: "Builder", State: "Active"},
+		{Author: "bob", RecentlyActive: false, Production: 10, Quality: 50, DebtCleanup: 30, Impact: 20, Role: "—", Style: "—", State: "Former"},
+		{Author: "charlie", RecentlyActive: true, Production: 60, Quality: 80, DebtCleanup: 60, Impact: 55, Role: "Producer", Style: "Mass", State: "Active"},
 	}
 
 	tr := Aggregate("team", "Backend", 3, results, nil)
@@ -84,13 +84,13 @@ func TestAggregate_CoreAndRiskSplit(t *testing.T) {
 
 func TestAggregate_PeripheralExcluded(t *testing.T) {
 	results := []scorer.Result{
-		{Author: "alice", RecentlyActive: true, Production: 80, Quality: 90, Total: 65, Role: "Architect", Style: "Builder", State: "Active"},
-		{Author: "helper", RecentlyActive: true, Production: 5, Quality: 60, Total: 12, Role: "—", Style: "—", State: "Active"},
+		{Author: "alice", RecentlyActive: true, Production: 80, Quality: 90, Impact: 65, Role: "Architect", Style: "Builder", State: "Active"},
+		{Author: "helper", RecentlyActive: true, Production: 5, Quality: 60, Impact: 12, Role: "—", Style: "—", State: "Active"},
 	}
 
 	tr := Aggregate("team", "Backend", 2, results, nil)
 
-	// alice = core, helper = peripheral (Active but Total < 20)
+	// alice = core, helper = peripheral (Active but Impact < 20)
 	if tr.CoreMemberCount != 1 {
 		t.Errorf("CoreMemberCount = %d, want 1", tr.CoreMemberCount)
 	}
@@ -109,9 +109,9 @@ func TestAggregate_PeripheralExcluded(t *testing.T) {
 func TestAggregate_SilentDetection(t *testing.T) {
 	// The "busy team covering for silent" scenario
 	results := []scorer.Result{
-		{Author: "alice", RecentlyActive: true, Production: 100, Quality: 70, Total: 85, Role: "Architect", Style: "Builder", State: "Active"},
-		{Author: "bob", RecentlyActive: true, Production: 50, Quality: 80, Total: 40, Role: "Anchor", Style: "Balanced", State: "Active"},
-		{Author: "ghost", RecentlyActive: false, Production: 10, Quality: 95, Total: 25, Role: "—", Style: "Spread", State: "Silent"},
+		{Author: "alice", RecentlyActive: true, Production: 100, Quality: 70, Impact: 85, Role: "Architect", Style: "Builder", State: "Active"},
+		{Author: "bob", RecentlyActive: true, Production: 50, Quality: 80, Impact: 40, Role: "Anchor", Style: "Balanced", State: "Active"},
+		{Author: "ghost", RecentlyActive: false, Production: 10, Quality: 95, Impact: 25, Role: "—", Style: "Spread", State: "Silent"},
 	}
 
 	tr := Aggregate("team", "Backend", 3, results, nil)
@@ -139,7 +139,7 @@ func TestAggregate_SilentDetection(t *testing.T) {
 
 func TestAggregate_AllInactive_WithRisk(t *testing.T) {
 	results := []scorer.Result{
-		{Author: "alice", RecentlyActive: false, Production: 80, Role: "Architect", Style: "Builder", State: "Former", Total: 60},
+		{Author: "alice", RecentlyActive: false, Production: 80, Role: "Architect", Style: "Builder", State: "Former", Impact: 60},
 	}
 
 	tr := Aggregate("team", "Backend", 1, results, nil)
@@ -174,7 +174,7 @@ func TestAggregate_Empty(t *testing.T) {
 
 func TestAggregate_AllFilteredOut(t *testing.T) {
 	results := []scorer.Result{
-		{Author: "alice", RecentlyActive: true, Production: 80, Role: "Architect", Style: "Builder", State: "Active", Total: 65},
+		{Author: "alice", RecentlyActive: true, Production: 80, Role: "Architect", Style: "Builder", State: "Active", Impact: 65},
 	}
 
 	tr := Aggregate("team", "Backend", 1, results, []string{"nobody"})
@@ -187,8 +187,8 @@ func TestAggregate_AllFilteredOut(t *testing.T) {
 func TestAggregate_AllPeripheral(t *testing.T) {
 	// All members are active but below threshold — no core, no risk
 	results := []scorer.Result{
-		{Author: "helper1", RecentlyActive: true, Production: 5, Total: 10, State: "Active"},
-		{Author: "helper2", RecentlyActive: true, Production: 3, Total: 8, State: "Active"},
+		{Author: "helper1", RecentlyActive: true, Production: 5, Impact: 10, State: "Active"},
+		{Author: "helper2", RecentlyActive: true, Production: 3, Impact: 8, State: "Active"},
 	}
 
 	tr := Aggregate("team", "Backend", 2, results, nil)

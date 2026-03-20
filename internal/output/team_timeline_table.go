@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/timeline"
 )
 
 // PrintTeamTimelineTable renders team timeline data as a colored terminal table.
@@ -73,7 +73,7 @@ func PrintTeamTimelineTable(tl timeline.TeamTimeline) {
 	printTeamTimelineFloatRow("Survival", tl.Periods, func(p timeline.TeamPeriodSnapshot) float64 { return p.AvgSurvival })
 	printTeamTimelineFloatRow("Design", tl.Periods, func(p timeline.TeamPeriodSnapshot) float64 { return p.AvgDesign })
 	printTeamTimelineFloatRow("DebtCleanup", tl.Periods, func(p timeline.TeamPeriodSnapshot) float64 { return p.AvgDebtCleanup })
-	printTeamTimelineFloatRow("Total", tl.Periods, func(p timeline.TeamPeriodSnapshot) float64 { return p.AvgTotal })
+	printTeamTimelineFloatRow("Impact", tl.Periods, func(p timeline.TeamPeriodSnapshot) float64 { return p.AvgImpact })
 	fmt.Println()
 
 	// Transitions

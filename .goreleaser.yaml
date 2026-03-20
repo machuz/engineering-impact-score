@@ -14,7 +14,7 @@ builds:
       - amd64
       - arm64
     ldflags:
-      - -s -w -X github.com/machuz/engineering-impact-score/internal/cli.version={{.Version}}
+      - -s -w -X github.com/machuz/eis/internal/cli.version={{.Version}}
 
 archives:
   - format: tar.gz
@@ -25,8 +25,8 @@ brews:
       owner: machuz
       name: homebrew-tap
     skip_upload: true
-    homepage: https://github.com/machuz/engineering-impact-score
-    description: "Quantify engineer impact from git history alone — 7-axis scoring CLI"
+    homepage: https://github.com/machuz/eis
+    description: "Quantify engineer impact from git history alone — 7-axis observation CLI"
     license: MIT
     install: |
       bin.install "eis"

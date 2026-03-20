@@ -1,7 +1,7 @@
 ---
-title: "Git Archaeology #5 — Timeline: Scores Don't Lie, and They Capture Hesitation Too"
+title: "Git Archaeology #5 — Timeline: Signals Don't Lie, and They Capture Hesitation Too"
 published: true
-description: "Chapter 5 of Engineering Impact Score. When you line up quarterly snapshots, numbers start telling stories — including the ones people don't talk about."
+description: "Chapter 5 of Engineering Impact Signal. When you line up quarterly snapshots, numbers start telling stories — including the ones people don't talk about."
 tags: opensource, productivity, git, career
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch5.png?v=4
 ---
@@ -48,11 +48,11 @@ The mechanism is simple:
 1. Collect all commits once
 2. Slice commits by period boundaries (every 3 months)
 3. For each period, run `git blame <boundary-commit> -- <file>` to reconstruct blame state at that point in time
-4. Run the scoring pipeline for each period
+4. Run the observation pipeline for each period
 
 **"Collect once, slice many" strategy.** Commit collection happens once. Only blame runs per period.
 
-This gives you each member's Score, Role, Style, and State lined up quarter by quarter. Change becomes visible.
+This gives you each member's Impact, Role, Style, and State lined up quarter by quarter. Change becomes visible.
 
 ---
 
@@ -70,13 +70,13 @@ I'll focus on three key members.
 
 **In the first half of 2024, Y.Y. was putting up numbers on par with machuz.**
 
-Total above 90. Architect Builder. Production 100, Design 100, Survival 100.
+Impact above 90. Architect Builder. Production 100, Design 100, Survival 100.
 
 This isn't just "strong." **This person was the codebase's architect, full stop.**
 
 They dipped to Producer in 2024-Q3, but snapped right back to Architect Builder in Q4. That wobble just means "one quarter without design involvement" — and the instant recovery proves the depth of structural understanding underneath.
 
-Starting in 2025, scores begin a steady decline. Architect → Anchor → Fragile → Former.
+Starting in 2025, signals begin a steady decline. Architect → Anchor → Fragile → Former.
 
 **This is the trajectory of a departure.**
 
@@ -90,7 +90,7 @@ The subject of Chapter 4's "laying souls to rest" is exactly this person. And th
 
 ![O. Timeline](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch5-engineer-j-timeline.png?v=4)
 
-**2024-Q4: O., Total 91.7. Architect Builder.**
+**2024-Q4: O., Impact 91.7. Architect Builder.**
 
 This number is extraordinary. When you consider that machuz (Backend) was at 64.1 in the same quarter, **O. had the highest structural influence across all teams that quarter**.
 
@@ -120,7 +120,7 @@ They joined in 2024-Q3, starting as Anchor. By the next quarter, they'd ascended
 
 This is what "they've been doing Architect work since day one" looks like in data.
 
-Total: 75.7 → 87.5 → 73.2 → 72.4 → 81.7 → 78.1. **Consistently above 70.**
+Impact: 75.7 → 87.5 → 73.2 → 72.4 → 81.7 → 78.1. **Consistently above 70.**
 
 Design 100 in multiple quarters. This means architectural file changes were happening continuously.
 
@@ -134,7 +134,7 @@ And here's where it gets interesting — **a curious wobble**.
 
 In 2025-Q3, they dropped from Architect to Anchor. Style shifted from Builder to Balanced.
 
-Total barely changed (73.2 → 72.4). Production went up (67 → 73). Quality went up (91 → 97).
+Impact barely changed (73.2 → 72.4). Production went up (67 → 73). Quality went up (91 → 97).
 
 **Their ability didn't decline. Only their design involvement did.**
 
@@ -284,7 +284,7 @@ Lining up the timelines reveals one more thing:
 
 This isn't coincidence.
 
-The structure described in Chapter 4 — "Backend Architects concentrate" — is visible right here. **There was never a period where two Backend Architects existed simultaneously.** While Y.Y. held the Architect Builder position, machuz was still an Anchor. machuz reached Architect only after Y.Y.'s scores declined.
+The structure described in Chapter 4 — "Backend Architects concentrate" — is visible right here. **There was never a period where two Backend Architects existed simultaneously.** While Y.Y. held the Architect Builder position, machuz was still an Anchor. machuz reached Architect only after Y.Y.'s signals declined.
 
 Whether this is a structural consequence of Backend's single design axis (DB schema, API conventions) or simply a matter of growth timing is hard to determine from this sample alone. But at minimum, **it happened as a generational transition** in this team.
 
@@ -370,7 +370,7 @@ Cold numbers tell the most compelling stories. That's the essence of the timelin
 
 ![EIS — the Git Telescope](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/logo-full.png?v=2)
 
-**GitHub**: [engineering-impact-score](https://github.com/machuz/engineering-impact-score) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
+**GitHub**: [eis](https://github.com/machuz/eis) — CLI tool, formulas, and methodology all open source. `brew tap machuz/tap && brew install eis` to install.
 
 
 If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machuz)
@@ -384,7 +384,7 @@ If this was useful: [❤️ Sponsor on GitHub](https://github.com/sponsors/machu
 - [Chapter 2: Beyond Individual Scores: Measuring Team Health from Git History](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f)
 - [Chapter 3: Two Paths to Architect: How Engineers Evolve Differently](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga)
 - [Chapter 4: Backend Architects Converge: The Sacred Work of Laying Souls to Rest](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d)
-- **Chapter 5: Timeline: Scores Don't Lie, and They Capture Hesitation Too**
+- **Chapter 5: Timeline: Signals Don't Lie, and They Capture Hesitation Too**
 - [Chapter 6: Teams Evolve: The Laws of Organization Revealed by Timelines](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei)
 - [Chapter 7: Observing the Universe of Code](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0)
 - [Chapter 8: Engineering Relativity: Why the Same Engineer Gets Different Scores](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl)

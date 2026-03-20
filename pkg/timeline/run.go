@@ -12,14 +12,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/machuz/engineering-impact-score/internal/cache"
-	"github.com/machuz/engineering-impact-score/internal/config"
-	"github.com/machuz/engineering-impact-score/internal/domain"
-	"github.com/machuz/engineering-impact-score/internal/git"
-	"github.com/machuz/engineering-impact-score/internal/metric"
-	"github.com/machuz/engineering-impact-score/internal/scorer"
-	"github.com/machuz/engineering-impact-score/internal/team"
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/cache"
+	"github.com/machuz/eis/internal/config"
+	"github.com/machuz/eis/internal/domain"
+	"github.com/machuz/eis/internal/git"
+	"github.com/machuz/eis/internal/metric"
+	"github.com/machuz/eis/internal/scorer"
+	"github.com/machuz/eis/internal/team"
+	"github.com/machuz/eis/internal/timeline"
 )
 
 // Options controls timeline analysis behavior.

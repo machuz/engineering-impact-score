@@ -6,7 +6,7 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/guptarohit/asciigraph"
-	"github.com/machuz/engineering-impact-score/internal/timeline"
+	"github.com/machuz/eis/internal/timeline"
 )
 
 // PrintTeamTimelineASCII renders team timeline data as ASCII line charts.
@@ -15,7 +15,7 @@ func PrintTeamTimelineASCII(tl timeline.TeamTimeline) {
 	color.New(color.FgHiCyan, color.Bold).Printf("=== %s / %s -- Team Timeline ===\n", tl.TeamName, tl.Domain)
 
 	// Build score average series
-	avgTotalData := make([]float64, 0, len(tl.Periods))
+	avgImpactData := make([]float64, 0, len(tl.Periods))
 	avgProdData := make([]float64, 0, len(tl.Periods))
 	avgQualData := make([]float64, 0, len(tl.Periods))
 	avgSurvData := make([]float64, 0, len(tl.Periods))
@@ -23,7 +23,7 @@ func PrintTeamTimelineASCII(tl timeline.TeamTimeline) {
 	var labels []string
 
 	for _, p := range tl.Periods {
-		avgTotalData = append(avgTotalData, p.AvgTotal)
+		avgImpactData = append(avgImpactData, p.AvgImpact)
 		avgProdData = append(avgProdData, p.AvgProduction)
 		avgQualData = append(avgQualData, p.AvgQuality)
 		avgSurvData = append(avgSurvData, p.AvgSurvival)
@@ -34,7 +34,7 @@ func PrintTeamTimelineASCII(tl timeline.TeamTimeline) {
 	// Score averages chart
 	color.New(color.FgWhite, color.Bold).Println("\nScore Averages:")
 
-	data := [][]float64{avgTotalData, avgProdData, avgQualData, avgSurvData, avgDesignData}
+	data := [][]float64{avgImpactData, avgProdData, avgQualData, avgSurvData, avgDesignData}
 
 	// Calculate chart width to match label axis spacing
 	chartWidth := 60
@@ -62,7 +62,7 @@ func PrintTeamTimelineASCII(tl timeline.TeamTimeline) {
 
 	// Legend
 	fmt.Printf("  %s  %s  %s  %s  %s\n",
-		color.BlueString("AvgTotal"),
+		color.BlueString("AvgImpact"),
 		color.GreenString("AvgProduction"),
 		color.YellowString("AvgQuality"),
 		color.RedString("AvgSurvival"),
