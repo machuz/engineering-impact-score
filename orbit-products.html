@@ -76,10 +76,36 @@
 
   .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 32px; }
 
+  /* Language Toggle */
+  .lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--gray1);
+    background: rgba(20, 27, 45, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .lang-toggle:hover {
+    color: var(--gruvbox-fg);
+    border-color: var(--border-glow);
+    background: rgba(26, 35, 64, 0.8);
+  }
+
   /* Hero */
   .hero {
     text-align: center;
-    padding: 100px 0 80px;
+    padding: 100px 0 40px;
     position: relative;
   }
   .hero::before {
@@ -121,6 +147,20 @@
   .hero-subtitle {
     font-size: 15px; color: var(--text-muted); max-width: 600px;
     margin: 0 auto; line-height: 1.8;
+  }
+
+  /* Brand Statement */
+  .brand-statement {
+    text-align: center;
+    padding: 40px 0 60px;
+  }
+  .brand-statement-text {
+    font-size: 22px;
+    color: var(--gruvbox-fg);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.6;
   }
 
   /* Product Cards */
@@ -353,11 +393,15 @@
   @media (max-width: 600px) {
     .hero-brand { font-size: 40px; letter-spacing: 8px; }
     .container { padding: 0 16px; }
+    .brand-statement-text { font-size: 18px; }
   }
 </style>
 </head>
 <body>
 <div class="starfield"></div>
+
+<!-- Language Toggle -->
+<button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
 
 <div class="container">
 
@@ -365,16 +409,22 @@
   <section class="hero">
     <div class="hero-badge">Engineering Impact Score</div>
     <div class="hero-brand">orbit</div>
-    <div class="hero-tagline">
-      <span class="gold">測る</span>
+    <div class="hero-tagline" id="heroTagline">
+      <span class="gold" data-ja="測る" data-en="Observe">測る</span>
       <span class="dim"> &mdash; </span>
-      <span class="teal">選ぶ</span>
+      <span class="teal" data-ja="選ぶ" data-en="Navigate">選ぶ</span>
       <span class="dim"> &mdash; </span>
-      <span class="green">進む</span>
+      <span class="green" data-ja="進む" data-en="Stabilize">進む</span>
     </div>
-    <p class="hero-subtitle">
-      エンジニアの評価・配置・成長を、<br>
-      重力という一つの基準で扱うシステム
+    <p class="hero-subtitle" data-ja="見えない仕事を、見える重力に変えるシステム" data-en="A system that turns invisible work into visible gravity">
+      見えない仕事を、見える重力に変えるシステム
+    </p>
+  </section>
+
+  <!-- Brand Statement -->
+  <section class="brand-statement">
+    <p class="brand-statement-text" data-ja="「誠実な仕事が、正しい軌道に乗る世界を。」" data-en="&quot;Where sincere work finds its orbit.&quot;">
+      「誠実な仕事が、正しい軌道に乗る世界を。」
     </p>
   </section>
 
@@ -452,13 +502,13 @@
 </svg>
         </div>
         <div class="product-name">ace</div>
-        <div class="product-jp">観 測</div>
-        <div class="product-tagline">何が起きているかを捉える</div>
+        <div class="product-jp" data-ja="観 測" data-en="Observe">観 測</div>
+        <div class="product-tagline" data-ja="何が起きているかを捉える" data-en="Capture what's really happening">何が起きているかを捉える</div>
         <div class="product-divider"></div>
         <ul class="product-features">
-          <li>7軸スコアリング + 3軸トポロジー</li>
-          <li>タイムライン分析</li>
-          <li>チーム構造診断 (Elite / Architectural Engine)</li>
+          <li data-ja="7軸スコアリング + 3軸トポロジー" data-en="7-axis scoring + 3-axis topology">7軸スコアリング + 3軸トポロジー</li>
+          <li data-ja="タイムライン分析" data-en="Timeline analysis">タイムライン分析</li>
+          <li data-ja="チーム構造診断 (Elite / Architectural Engine)" data-en="Team structure diagnosis (Elite / Architectural Engine)">チーム構造診断 (Elite / Architectural Engine)</li>
         </ul>
         <div class="product-suffix">observe</div>
         <div class="product-motto">It doesn't measure activity. It measures gravity.</div>
@@ -532,13 +582,13 @@
 </svg>
         </div>
         <div class="product-name">true</div>
-        <div class="product-jp">市 場</div>
-        <div class="product-tagline">どこに行くべきかを決める</div>
+        <div class="product-jp" data-ja="市 場" data-en="Navigate">市 場</div>
+        <div class="product-tagline" data-ja="どこに行くべきかを決める" data-en="Decide where you belong">どこに行くべきかを決める</div>
         <div class="product-divider"></div>
         <ul class="product-features">
-          <li>Gravitational Record (本当の履歴書)</li>
-          <li>EIS Gravity Certificate (偽装不可能な認定)</li>
-          <li>Architect Reproducibility (再現性の証明)</li>
+          <li data-ja="Gravitational Record (本当の履歴書)" data-en="Gravitational Record (the real r&eacute;sum&eacute;)">Gravitational Record (本当の履歴書)</li>
+          <li data-ja="EIS Gravity Certificate (偽装不可能な認定)" data-en="EIS Gravity Certificate (unforgeable proof)">EIS Gravity Certificate (偽装不可能な認定)</li>
+          <li data-ja="Architect Reproducibility (再現性の証明)" data-en="Architect Reproducibility (proven consistency)">Architect Reproducibility (再現性の証明)</li>
         </ul>
         <div class="product-suffix">navigate</div>
         <div class="product-motto">Your journey, observed. Your gravity, proven.</div>
@@ -598,13 +648,13 @@
 </svg>
         </div>
         <div class="product-name">ideal</div>
-        <div class="product-jp">行 動</div>
-        <div class="product-tagline">この宇宙で安定する軌道を提示する</div>
+        <div class="product-jp" data-ja="行 動" data-en="Stabilize">行 動</div>
+        <div class="product-tagline" data-ja="この宇宙で安定する軌道を提示する" data-en="Present stable orbits in your universe">この宇宙で安定する軌道を提示する</div>
         <div class="product-divider"></div>
         <ul class="product-features">
-          <li>OrbitPlan (安定軌道の提示)</li>
-          <li>GrowthPath (再現性のある成長経路)</li>
-          <li>TeamFormation (崩壊しにくい配置)</li>
+          <li data-ja="OrbitPlan (安定軌道の提示)" data-en="OrbitPlan (stable orbit proposal)">OrbitPlan (安定軌道の提示)</li>
+          <li data-ja="GrowthPath (再現性のある成長経路)" data-en="GrowthPath (reproducible growth trajectory)">GrowthPath (再現性のある成長経路)</li>
+          <li data-ja="TeamFormation (崩壊しにくい配置)" data-en="TeamFormation (collapse-resistant composition)">TeamFormation (崩壊しにくい配置)</li>
         </ul>
         <div class="product-suffix">stabilize</div>
         <div class="product-motto">Navigate by gravity, not by noise.</div>
@@ -619,17 +669,17 @@
     <div class="flow-diagram">
       <div class="flow-node ace">
         <div class="flow-node-name">ace</div>
-        <div class="flow-node-desc">現実を捉える</div>
+        <div class="flow-node-desc" data-ja="現実を捉える" data-en="Capture reality">現実を捉える</div>
       </div>
       <div class="flow-arrow">&rarr;</div>
       <div class="flow-node true">
         <div class="flow-node-name">true</div>
-        <div class="flow-node-desc">適切な場所を選ぶ</div>
+        <div class="flow-node-desc" data-ja="適切な場所を選ぶ" data-en="Choose the right place">適切な場所を選ぶ</div>
       </div>
       <div class="flow-arrow">&rarr;</div>
       <div class="flow-node ideal">
         <div class="flow-node-name">ideal</div>
-        <div class="flow-node-desc">最適な進み方を取る</div>
+        <div class="flow-node-desc" data-ja="最適な進み方を取る" data-en="Take the optimal path">最適な進み方を取る</div>
       </div>
     </div>
     <div class="flow-return">
@@ -640,14 +690,12 @@
   <!-- Philosophy -->
   <section class="philosophy">
     <div class="section-label">Philosophy</div>
-    <p class="philosophy-quote">
-      これは単なるツール群じゃなくて、<br>
-      エンジニアの「評価・配置・成長」を<br>
-      一つの基準で扱うシステムになる。
+    <p class="philosophy-quote" data-ja="見えない仕事を、見える重力に変える。<br>観測し、解釈し、安定軌道に乗る。" data-en="Turn invisible work into visible gravity.<br>Observe, interpret, and find your stable orbit.">
+      見えない仕事を、見える重力に変える。<br>
+      観測し、解釈し、安定軌道に乗る。
     </p>
-    <p class="philosophy-sub">
-      重力に従って進むためのナビゲーション。<br>
-      観測し、選択し、安定軌道に乗る。
+    <p class="philosophy-sub" data-ja="望遠鏡は構造を観た。天文台は軌道を示す。" data-en="The telescope observed structure. The observatory shows orbits.">
+      望遠鏡は構造を観た。天文台は軌道を示す。
     </p>
   </section>
 
@@ -676,5 +724,41 @@
   </section>
 
 </div>
+
+<script>
+(function() {
+  var lang = localStorage.getItem('orbit-lang') || 'ja';
+
+  function applyLang(l) {
+    lang = l;
+    localStorage.setItem('orbit-lang', l);
+    document.documentElement.lang = l;
+
+    // Update title
+    document.title = l === 'ja'
+      ? 'orbit \u2014 \u6E2C\u308B\u30FB\u9078\u3076\u30FB\u9032\u3080'
+      : 'orbit \u2014 Observe \u00B7 Navigate \u00B7 Stabilize';
+
+    // Update toggle button text (show the OTHER language)
+    document.getElementById('langToggle').textContent = l === 'ja' ? 'EN' : 'JA';
+
+    // Update all elements with data-ja / data-en
+    var els = document.querySelectorAll('[data-ja][data-en]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      var val = l === 'ja' ? el.getAttribute('data-ja') : el.getAttribute('data-en');
+      el.innerHTML = val;
+    }
+  }
+
+  // Expose toggle
+  window.toggleLang = function() {
+    applyLang(lang === 'ja' ? 'en' : 'ja');
+  };
+
+  // Apply on load
+  applyLang(lang);
+})();
+</script>
 </body>
 </html>
