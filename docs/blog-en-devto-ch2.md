@@ -203,15 +203,15 @@ There's one exception: **Architect/Builders** — engineers who both design and 
 
 Synthesized from Structure × Culture × Phase × Risk plus structural metrics (AAR, Anchor Density, Productivity Density).
 
-| Character | Key Conditions | Meaning |
-|---|---|---|
-| **Spiral** | High SC, healthy AAR, high PD | Design strength meets production velocity |
-| **Elliptical** | Good Structure, stable Culture | Robust defensive team |
-| **Starburst** | Growth Phase, Builder Culture | Trailblazing into new territory |
-| **Nebula** | Growing members + Builder present | Active talent development |
-| **Irregular** | Producer-dominant, no Architect | Ships features but design is adrift |
-| **Dwarf** | Anchor/Cleaner-dominant | Quality and maintenance guardians |
-| **Collision** | Churn/Rescue culture | Perpetually fighting fires |
+| Character | Galaxy Analogy | Key Conditions | Meaning |
+|---|---|---|---|
+| **Spiral** | Spiral galaxy — strong core, active star formation | High SC, healthy AAR, high PD | Architecture and production both firing. The gravitational core drives new star formation |
+| **Elliptical** | Elliptical galaxy — mature, stable, few new stars | Good Structure, stable Culture | Mature and change-resistant. Structure is solid, entropy is low |
+| **Starburst** | Starburst galaxy — explosive star formation | Growth Phase, Builder Culture | Rapid expansion into new territory. High energy, structure still forming |
+| **Nebula** | Nebula — stellar nursery where new stars are born | Growing members + Builder present | Next-generation engineers are developing. The conditions for star formation exist |
+| **Irregular** | Irregular galaxy — no gravitational center | Producer-dominant, no Architect | Stars form everywhere with no cohesion. High output, no structural direction |
+| **Dwarf** | Dwarf galaxy — small but long-lived | Anchor/Cleaner-dominant | Compact and stable. Maintains quality and order with minimal resources |
+| **Collision** | Colliding galaxies — structural disruption | Churn/Rescue culture | Two forces are colliding. Structure is disrupted, energy is scattered |
 
 **SC (Structure-Culture complementarity)** measures how well Structure and Culture mesh. Architectural Engine + Builder Culture is the best combination. Delivery Team + Firefighting Culture is the worst.
 

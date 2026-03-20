@@ -439,17 +439,17 @@ $$\text{QualityConsistency} = 0.6 \times \text{AvgQuality} + 0.4 \times \text{cl
 
 #### Character（性格・総合的なアイデンティティ）
 
-| Character | 主要基準 | 解釈 |
-|-----------|----------|------|
-| **Spiral** | アーキテクチャカバレッジ>0.4、生産性>35、均衡したAAR | 設計＋デリバリーの卓越性 |
-| **Elliptical** | アーキテクチャ構造 ＋ Stability文化 | 強固だが潜在的に硬直 |
-| **Starburst** | アーキテクチャ構造 ＋ Builder文化 | 構造を維持しながらイノベーション |
-| **Nebula** | Builder文化 ＋ Scaling/Emergingフェーズ | 次世代エンジニアを育成 |
-| **Irregular** | 高い生産性、低いアーキテクチャカバレッジ | 速く出荷するがアーキテクチャを侵食 |
-| **Cluster** | Deliveryチーム ＋ Mass Production文化 | 純粋な出力、設計なし |
-| **Collision** | Firefighting文化 | 受動的、常に修正 |
-| **Dwarf** | Maintenance構造 ＋ Stability文化 | 既存システムを保全 |
-| **Filament** | Exploration文化 | 広いが浅い |
+| Character | 銀河アナロジー | 主要基準 | 解釈 |
+|-----------|---------------|----------|------|
+| **Spiral** | 渦巻銀河 — 強い中心核と活発な星形成 | アーキテクチャカバレッジ>0.4、生産性>35、均衡したAAR | 設計の重力核が生産を駆動。構造と星形成が両立 |
+| **Elliptical** | 楕円銀河 — 成熟、安定、新しい星は少ない | アーキテクチャ構造 ＋ Stability文化 | 成熟し変化に強い。構造は堅固、エントロピーは低い |
+| **Starburst** | スターバースト銀河 — 爆発的な星形成 | アーキテクチャ構造 ＋ Builder文化 | 急速に新領域へ拡張中。エネルギーが高く構造はまだ形成途中 |
+| **Nebula** | 星雲 — 次世代の星が生まれる場所 | Builder文化 ＋ Scaling/Emergingフェーズ | 次世代エンジニアが育っている。星形成の条件が整っている |
+| **Irregular** | 不規則銀河 — 重力中心がない | 高い生産性、低いアーキテクチャカバレッジ | 星がばらばらに形成。高出力だが構造的方向性がない |
+| **Cluster** | 星団 — 密集だが弱い結合 | Deliveryチーム ＋ Mass Production文化 | 生産的だが構造がそれを束ねていない |
+| **Collision** | 衝突銀河 — 構造的混乱 | Firefighting文化 | 力が衝突している。構造が乱れエネルギーが散逸 |
+| **Dwarf** | 矮小銀河 — 小さいが長寿 | Maintenance構造 ＋ Stability文化 | コンパクトで安定。最小限のリソースで秩序を維持 |
+| **Filament** | 宇宙フィラメント — 広く薄い構造 | Exploration文化 | 広い到達範囲、薄い深度。大規模構造を探索中 |
 
 #### Structure（構造・ロール構成）
 

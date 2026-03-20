@@ -439,17 +439,17 @@ Balances high average quality with low variance. A team where everyone has 80% q
 
 #### Character (Composite Identity)
 
-| Character | Key Criteria | Interpretation |
-|-----------|-------------|----------------|
-| **Spiral** | Arch. coverage >0.4, productivity >35, balanced AAR | Design + delivery excellence |
-| **Elliptical** | Arch. structure + Stability culture | Strong but potentially rigid |
-| **Starburst** | Arch. structure + Builder culture | Innovating while maintaining structure |
-| **Nebula** | Builder culture + Scaling/Emerging phase | Developing next-generation engineers |
-| **Irregular** | High productivity, low architecture coverage | Ships fast, erodes architecture |
-| **Cluster** | Delivery team + Mass production culture | Pure output, no design |
-| **Collision** | Firefighting culture | Reactive, constantly fixing |
-| **Dwarf** | Maintenance structure + Stability culture | Preserving existing systems |
-| **Filament** | Exploration culture | Wide but shallow |
+| Character | Galaxy Analogy | Key Criteria | Interpretation |
+|-----------|---------------|-------------|----------------|
+| **Spiral** | Spiral galaxy — strong core, active star formation | Arch. coverage >0.4, productivity >35, balanced AAR | Architecture drives production. Gravitational core and star formation coexist |
+| **Elliptical** | Elliptical galaxy — mature, stable, few new stars | Arch. structure + Stability culture | Mature and change-resistant. Solid structure, low entropy |
+| **Starburst** | Starburst galaxy — explosive star formation | Arch. structure + Builder culture | Rapid expansion. High energy, structure still forming |
+| **Nebula** | Nebula — stellar nursery | Builder culture + Scaling/Emerging phase | Next-generation engineers developing. Conditions for star formation exist |
+| **Irregular** | Irregular galaxy — no gravitational center | High productivity, low architecture coverage | Stars form everywhere with no cohesion. High output, no structural direction |
+| **Cluster** | Star cluster — dense but weakly bound | Delivery team + Mass production culture | Productive but no gravitational structure to hold it together |
+| **Collision** | Colliding galaxies — structural disruption | Firefighting culture | Forces collide. Structure disrupted, energy scattered |
+| **Dwarf** | Dwarf galaxy — small but long-lived | Maintenance structure + Stability culture | Compact and stable. Maintains order with minimal resources |
+| **Filament** | Cosmic filament — wide, thin structure | Exploration culture | Broad reach, thin depth. Probing the large-scale structure |
 
 #### Structure (Role Composition)
 

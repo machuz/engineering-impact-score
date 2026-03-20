@@ -213,15 +213,15 @@ Impact 90点のArchitectと、15点のArchitectが同じチームにいても、
 
 Structure × Culture × Phase × Risk + 構造指標（AAR、Anchor Density、Productivity Density）から合成される、チームの総合的なキャラクター。
 
-| キャラクター | 条件の概要 | 意味 |
-|---|---|---|
-| **Spiral** | SC高い、AAR適正、PD高い | 設計力と生産性を兼ね備えた精鋭チーム |
-| **Elliptical** | Structure良好、Culture安定 | 堅牢で安定した守りのチーム |
-| **Starburst** | Phase成長期、Culture Builder | 新領域を切り拓く開拓チーム |
-| **Nebula** | Growing多い、Builder在籍 | 人材育成が活発なチーム |
-| **Irregular** | Producer主体、Architect不在 | 機能を量産するが設計が弱い |
-| **Dwarf** | Anchor/Cleaner主体 | 保守と品質を守るチーム |
-| **Collision** | Churn/Rescue文化 | 常に火消しに追われるチーム |
+| キャラクター | 銀河アナロジー | 条件の概要 | 意味 |
+|---|---|---|---|
+| **Spiral** | 渦巻銀河 — 強い中心核と活発な星形成 | SC高い、AAR適正、PD高い | 設計の重力核が生産を駆動している。構造と星形成が両立 |
+| **Elliptical** | 楕円銀河 — 成熟、安定、新しい星は少ない | Structure良好、Culture安定 | 成熟し、変化に強い。構造は堅固、エントロピーは低い |
+| **Starburst** | スターバースト銀河 — 爆発的な星形成 | Phase成長期、Culture Builder | 急速に新領域へ拡張中。エネルギーが高く、構造はまだ形成途中 |
+| **Nebula** | 星雲 — 次世代の星が生まれる場所 | Growing多い、Builder在籍 | 次世代のエンジニアが育っている。星形成の条件が整っている |
+| **Irregular** | 不規則銀河 — 重力中心がない | Producer主体、Architect不在 | 星がばらばらに形成されている。高出力だが、構造的方向性がない |
+| **Dwarf** | 矮小銀河 — 小さいが長寿 | Anchor/Cleaner主体 | コンパクトで安定。最小限のリソースで品質と秩序を維持 |
+| **Collision** | 衝突銀河 — 構造的混乱 | Churn/Rescue文化 | 2つの力が衝突している。構造が乱れ、エネルギーが散逸 |
 
 **SC（Structure-Culture complementarity）** はStructureとCultureがどれだけ噛み合っているかの指標。Architectural EngineのStructure + Builder Cultureは最高の組み合わせ。Delivery Team + Firefighting Cultureは最悪。
 
