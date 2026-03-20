@@ -5,10 +5,12 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/machuz/eis/internal/config"
 	"github.com/machuz/eis/internal/domain"
+	"github.com/machuz/eis/internal/git"
 )
 
 // --- resolveRepoDomain tests (config repo-pattern path, no git needed) ---
@@ -384,6 +386,127 @@ func TestTimeline_NoDefaultDomains_Grouping(t *testing.T) {
 	}
 	if _, ok := domainRepos[domain.Frontend]; ok {
 		t.Error("Frontend should not exist when defaults are off")
+	}
+}
+
+// --- revert filtering tests ---
+
+func TestFilterRevertedCommits(t *testing.T) {
+	commits := []git.Commit{
+		{Hash: "aaa", Author: "alice", Subject: "feat: add feature"},
+		{Hash: "bbb", Author: "bob", Subject: "fix: bug"},
+		{Hash: "ccc", Author: "alice", Subject: "Revert \"feat: add feature\""},
+	}
+
+	reverted := map[string]bool{"aaa": true, "ccc": true}
+	filtered := filterRevertedCommits(commits, reverted)
+
+	if len(filtered) != 1 {
+		t.Fatalf("expected 1 commit after filtering, got %d", len(filtered))
+	}
+	if filtered[0].Hash != "bbb" {
+		t.Errorf("expected remaining commit bbb, got %s", filtered[0].Hash)
+	}
+}
+
+func TestFilterRevertedCommits_NilMap(t *testing.T) {
+	commits := []git.Commit{
+		{Hash: "aaa", Author: "alice"},
+	}
+	filtered := filterRevertedCommits(commits, nil)
+	if len(filtered) != 1 {
+		t.Fatalf("nil map should return all commits, got %d", len(filtered))
+	}
+}
+
+func TestFindRevertedCommits_NonMergeRevert(t *testing.T) {
+	dir := t.TempDir()
+	run := func(args ...string) string {
+		t.Helper()
+		cmd := exec.Command(args[0], args[1:]...)
+		cmd.Dir = dir
+		cmd.Env = append(os.Environ(),
+			"GIT_AUTHOR_NAME=test",
+			"GIT_AUTHOR_EMAIL=test@test.com",
+			"GIT_COMMITTER_NAME=test",
+			"GIT_COMMITTER_EMAIL=test@test.com",
+		)
+		out, err := cmd.CombinedOutput()
+		if err != nil {
+			t.Fatalf("%v failed: %v\n%s", args, err, out)
+		}
+		return strings.TrimSpace(string(out))
+	}
+
+	// Create a repo with a commit, then revert it
+	run("git", "init")
+	run("git", "config", "user.email", "test@test.com")
+	run("git", "config", "user.name", "test")
+
+	os.WriteFile(filepath.Join(dir, "file.go"), []byte("package main\nfunc hello() {}"), 0644)
+	run("git", "add", "-A")
+	run("git", "commit", "-m", "feat: add hello")
+	originalHash := run("git", "rev-parse", "HEAD")
+
+	// Revert the commit
+	run("git", "revert", "HEAD", "--no-edit")
+
+	ctx := context.Background()
+	excluded, err := git.FindRevertedCommits(ctx, dir)
+	if err != nil {
+		t.Fatalf("FindRevertedCommits failed: %v", err)
+	}
+	if len(excluded) == 0 {
+		t.Fatal("expected excluded commits, got none")
+	}
+	if !excluded[originalHash] {
+		t.Errorf("original commit %s should be excluded", originalHash)
+	}
+}
+
+func TestFindRevertedCommits_RevertOfRevert(t *testing.T) {
+	dir := t.TempDir()
+	run := func(args ...string) string {
+		t.Helper()
+		cmd := exec.Command(args[0], args[1:]...)
+		cmd.Dir = dir
+		cmd.Env = append(os.Environ(),
+			"GIT_AUTHOR_NAME=test",
+			"GIT_AUTHOR_EMAIL=test@test.com",
+			"GIT_COMMITTER_NAME=test",
+			"GIT_COMMITTER_EMAIL=test@test.com",
+		)
+		out, err := cmd.CombinedOutput()
+		if err != nil {
+			t.Fatalf("%v failed: %v\n%s", args, err, out)
+		}
+		return strings.TrimSpace(string(out))
+	}
+
+	run("git", "init")
+	run("git", "config", "user.email", "test@test.com")
+	run("git", "config", "user.name", "test")
+
+	os.WriteFile(filepath.Join(dir, "file.go"), []byte("package main"), 0644)
+	run("git", "add", "-A")
+	run("git", "commit", "-m", "feat: initial")
+	originalHash := run("git", "rev-parse", "HEAD")
+
+	// Revert the commit
+	run("git", "revert", "HEAD", "--no-edit")
+
+	// Revert the revert (reinstate)
+	run("git", "revert", "HEAD", "--no-edit")
+
+	ctx := context.Background()
+	excluded, err := git.FindRevertedCommits(ctx, dir)
+	if err != nil {
+		t.Fatalf("FindRevertedCommits failed: %v", err)
+	}
+
+	// Original should NOT be excluded (revert-of-revert cancels out)
+	if excluded[originalHash] {
+		t.Errorf("original commit %s should NOT be excluded after revert-of-revert", originalHash)
 	}
 }
 

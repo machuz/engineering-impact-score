@@ -210,7 +210,21 @@ esbuild's 92.5% concentration isn't "bad design" — at a scale where one person
 
 What EIS observes is **the physics of structure**, not a judgment of quality. A telescope describes the shape of galaxies. It doesn't claim spiral galaxies are "better" than elliptical ones.
 
-> Full analysis: [OSS Gravity Map](https://machuz.github.io/engineering-impact-score/research/oss-gravity-map/analysis/oss-gravity-map-en.html)
+### Top 50: The Brightest Stars in the OSS Universe
+
+We also ranked the **top 50 engineers by Gravity** — structural influence — across all 29 projects.
+
+> [OSS Gravity Map — Top 50 Engineers](https://machuz.github.io/eis/research/oss-gravity-map/analysis/top50.html)
+
+Salvatore Sanfilippo (Redis), Alexey Milovidov (ClickHouse), Ritchie Vink (Polars) — their gravity saturates the scale. But the more remarkable finding was the **440 engineers the world has never heard of.** They don't give conference talks. They don't have mass Twitter followings. Yet when we traced the gravitational field lines through the codebase, there they were — quietly holding the architecture together. We call them **Hidden Architects.**
+
+**A note on cross-universe comparison.** Gravity is a *relative signal within each repository*, not an absolute value across repositories. Josh Goldberg's Gravity 100 in eslint and Jordan Liggitt's Gravity 77.3 in Kubernetes are observations from **different universes** — they cannot be directly compared. This is Engineering Relativity (Ch. 8) in action.
+
+However, the distortion is partially mitigated by Gravity's composition. Its three axes — module ownership ratio, design involvement ratio, and cross-cutting reach — are **proportion-based signals**, not absolute volume. Owning 80% of modules in a 50-module project and owning 80% in a 500-module project both register the same Indispensability signal. The ranking captures *who shaped the gravitational field of their universe*, not who works in the "biggest" universe.
+
+Think of it as mapping the brightest star in each galaxy. Some galaxies are larger than others, but in every galaxy, the star that shapes the gravitational field is observable.
+
+> Full analysis: [OSS Gravity Map](https://machuz.github.io/eis/research/oss-gravity-map/analysis/oss-gravity-map-en.html)
 
 ---
 

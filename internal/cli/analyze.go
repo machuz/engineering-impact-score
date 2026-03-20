@@ -383,6 +383,18 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		commits = filterCommits(commits, cfg)
 		commits = filterFileStats(commits, cfg.ExcludeFilePatterns)
 
+		// Detect and exclude reverted commits (both originals and revert commits).
+		// This ensures that code merged then reverted doesn't inflate metrics.
+		revertedHashes, _ := git.FindRevertedCommits(ctx, repoPath)
+		if len(revertedHashes) > 0 {
+			before := len(commits)
+			commits = filterRevertedCommits(commits, revertedHashes)
+			excluded := before - len(commits)
+			if excluded > 0 && !quiet {
+				fmt.Fprintf(os.Stderr, "  Excluded %d reverted commits\n", excluded)
+			}
+		}
+
 		// Also fetch merge commits for fix detection in Quality
 		var mergeCommits []git.Commit
 		mergeCacheKey := cache.MergeLogKey(repoPath, headHash)
@@ -395,6 +407,10 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 			}
 		}
 		mergeCommits = filterCommits(mergeCommits, cfg)
+		// Also exclude reverted merge commits from Quality calculation
+		if len(revertedHashes) > 0 {
+			mergeCommits = filterRevertedCommits(mergeCommits, revertedHashes)
+		}
 
 		// Production (non-merge only)
 		prod := metric.CalcProduction(commits, cfg.ExcludeFilePatterns)
@@ -888,6 +904,20 @@ func filterFiles(files []string, excludePatterns []string) []string {
 	for _, f := range files {
 		if !metric.IsExcluded(f, excludePatterns) {
 			result = append(result, f)
+		}
+	}
+	return result
+}
+
+// filterRevertedCommits removes commits whose hashes are in the reverted set.
+func filterRevertedCommits(commits []git.Commit, reverted map[string]bool) []git.Commit {
+	if len(reverted) == 0 {
+		return commits
+	}
+	var result []git.Commit
+	for _, c := range commits {
+		if !reverted[c.Hash] {
+			result = append(result, c)
 		}
 	}
 	return result
