@@ -67,7 +67,7 @@ Engineers in Japan are paid less than their peers in other countries.
 
 It's not because they lack skill. I believe it comes from a cultural tendency to let the work speak for itself — rather than asserting their own value. They write code in silence, fix architecture in silence, clean up debt in silence — and that work stays **invisible**. Invisible means unheard. And when it's unheard, the credit — the soul of their work — gets absorbed by whoever speaks the loudest.
 
-Whenever I've sensed that happening, I've fought it fiercely.
+Whenever I've sensed that happening, I've resisted hard enough to warp the team's magnetic field.
 
 I want to build a world where the work of people who sincerely face their craft **becomes visible**.
 
