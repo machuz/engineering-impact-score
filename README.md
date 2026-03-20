@@ -419,7 +419,7 @@ claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Sig
 
 **Complete Summary (全17章の要約)**
 - [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology) — git考古学——ソフトウェア宇宙の完全理論
-- [English / dev.to](https://dev.to/machuz/git-archaeology-a-complete-theory-of-software-universes-4i9g) — Git Archaeology — A Complete Theory of Software Universes
+- [English / dev.to](https://dev.to/machuz/git-archaeology-a-complete-theory-of-software-universes-1057) — Git Archaeology — A Complete Theory of Software Universes
 
 **#0 — Introduction**
 - [Japanese / Zenn](https://zenn.dev/machuz/books/git-archaeology/viewer/ch0) — git考古学 #0：git履歴が最強のエンジニアを教えてくれるとしたら？
