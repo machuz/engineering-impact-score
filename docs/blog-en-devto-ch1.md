@@ -365,7 +365,7 @@ My own Quality of 57 is low, reflecting aggressive architectural changes (introd
 
 **R.M.** owns essentially all of the new product's FE repository core library (200K+ lines). Indispensability 100 — same structural risk as Y.Y. on the backend. **If this person leaves, there is nobody who can make frontend design decisions.** Debt Cleanup 39 is mid-range within FE, but with 129 self-fixes, it shows a self-contained work style: write it, fix it yourself.
 
-**X.**: Quality 18 — meaning **82% of their commits were fixes or corrections**. Survival ≈ 0, Debt Cleanup 0. Wrote a lot, fixed a lot, and none of it survived. Never cleaned up anyone else's debt either. `Producer / Mass / Former` — the topology tells the whole story in three words.
+**X.**: Quality 18 — 82% of their commits were fixes or corrections. Survival ≈ 0, Debt Cleanup 0. High volume of production, high volume of fixes, but the code did not survive. `Producer / Churn / Former` — the topology describes a pattern where production exists but survival does not. This signal may indicate that pair programming, design review support, or a structured mentoring environment could help convert that production energy into durable code.
 
 ---
 
