@@ -5,6 +5,8 @@ import (
 	"context"
 	"fmt"
 	"math/rand"
+	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -36,16 +38,153 @@ func ListAllFiles(ctx context.Context, repoPath string) ([]string, error) {
 	return lines, nil
 }
 
+// SampleFiles performs stratified sampling by module to ensure every module
+// is represented. Each module (first 3 directory components) gets at least
+// minPerModule files, with remaining budget allocated proportionally.
 func SampleFiles(files []string, maxFiles int) []string {
 	if len(files) <= maxFiles {
 		return files
 	}
 
 	rng := rand.New(rand.NewSource(42)) // deterministic sampling
-	rng.Shuffle(len(files), func(i, j int) {
-		files[i], files[j] = files[j], files[i]
-	})
-	return files[:maxFiles]
+
+	// Group files by module
+	type group struct {
+		module string
+		files  []string
+	}
+	groupMap := make(map[string]*group)
+	var moduleOrder []string
+	for _, f := range files {
+		mod := moduleOfPath(f)
+		g, ok := groupMap[mod]
+		if !ok {
+			g = &group{module: mod}
+			groupMap[mod] = g
+			moduleOrder = append(moduleOrder, mod)
+		}
+		g.files = append(g.files, f)
+	}
+
+	// Sort modules for deterministic order
+	sort.Strings(moduleOrder)
+
+	// Shuffle files within each module
+	for _, mod := range moduleOrder {
+		g := groupMap[mod]
+		rng.Shuffle(len(g.files), func(i, j int) {
+			g.files[i], g.files[j] = g.files[j], g.files[i]
+		})
+	}
+
+	const minPerModule = 2
+	nModules := len(moduleOrder)
+
+	// Phase 1: guaranteed minimum per module
+	guaranteed := nModules * minPerModule
+	if guaranteed > maxFiles {
+		// More modules than budget allows at minPerModule; give 1 each then fill
+		guaranteed = min(nModules, maxFiles)
+	}
+
+	result := make([]string, 0, maxFiles)
+	taken := make(map[string]int, nModules)
+
+	actualMin := minPerModule
+	if nModules*minPerModule > maxFiles {
+		actualMin = 1
+	}
+
+	for _, mod := range moduleOrder {
+		g := groupMap[mod]
+		n := min(actualMin, len(g.files))
+		if len(result)+n > maxFiles {
+			break
+		}
+		result = append(result, g.files[:n]...)
+		taken[mod] = n
+	}
+
+	// Phase 2: proportional allocation of remaining budget
+	remaining := maxFiles - len(result)
+	if remaining > 0 {
+		// Count files not yet taken
+		totalUntaken := 0
+		for _, mod := range moduleOrder {
+			g := groupMap[mod]
+			totalUntaken += len(g.files) - taken[mod]
+		}
+
+		// Allocate proportionally
+		type allocation struct {
+			mod   string
+			alloc int
+			frac  float64
+		}
+		allocs := make([]allocation, 0, nModules)
+		allocated := 0
+		for _, mod := range moduleOrder {
+			g := groupMap[mod]
+			untaken := len(g.files) - taken[mod]
+			if untaken <= 0 {
+				continue
+			}
+			proportion := float64(untaken) / float64(totalUntaken)
+			share := proportion * float64(remaining)
+			floor := int(share)
+			if floor > untaken {
+				floor = untaken
+			}
+			allocs = append(allocs, allocation{mod, floor, share - float64(floor)})
+			allocated += floor
+		}
+
+		// Distribute leftover slots by largest fractional remainder
+		leftover := remaining - allocated
+		if leftover > 0 {
+			sort.Slice(allocs, func(i, j int) bool {
+				return allocs[i].frac > allocs[j].frac
+			})
+			for i := range allocs {
+				if leftover <= 0 {
+					break
+				}
+				g := groupMap[allocs[i].mod]
+				untaken := len(g.files) - taken[allocs[i].mod]
+				if allocs[i].alloc < untaken {
+					allocs[i].alloc++
+					leftover--
+				}
+			}
+		}
+
+		// Take allocated files from each module
+		for _, a := range allocs {
+			if a.alloc <= 0 {
+				continue
+			}
+			g := groupMap[a.mod]
+			start := taken[a.mod]
+			end := start + a.alloc
+			if end > len(g.files) {
+				end = len(g.files)
+			}
+			result = append(result, g.files[start:end]...)
+		}
+	}
+
+	return result
+}
+
+// moduleOfPath extracts a module identifier from a file path.
+// Uses the first 3 directory components (mirrors metric.ModuleOf).
+func moduleOfPath(path string) string {
+	dir := filepath.Dir(path)
+	parts := strings.Split(filepath.ToSlash(dir), "/")
+	if len(parts) > 3 {
+		parts = parts[:3]
+	}
+	return strings.Join(parts, "/")
 }
 
 func BlameFile(ctx context.Context, repoPath, filepath string) ([]BlameLine, error) {
