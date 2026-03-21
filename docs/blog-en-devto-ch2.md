@@ -86,7 +86,7 @@ Character uses **galaxy morphology** — because a telescope describes the shape
 
 > Full galaxy guide with astronomical explanations: [Galaxy Morphology Guide](https://orbit-d8x.pages.dev/galaxy-guide.html)
 
-Classification is **weighted by Impact** — an Architect at 90 shapes the team's character far more than an Architect at 15. Strong performers propagate more culture.
+Classification is **weighted by Impact** — an Architect at 90 shapes the team's character far more than an Architect at 15. Strong signal carriers propagate more culture.
 
 ---
 
