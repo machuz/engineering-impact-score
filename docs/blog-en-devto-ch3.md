@@ -109,11 +109,11 @@ Emergent means "not yet fully formed, but coming into being."
 
 **X.** — Producer / Churn / —
 
-The more they write, the more debt they create.
+Production is high, but debt is being generated in proportion.
 
-Their code is systematically replaced.
+Their code has been largely replaced by other members.
 
-**Style: Churn says it all.** Producing, but not surviving. This is another reality the metrics surface.
+**Style: Churn describes this pattern.** Production exists, but survival does not. Pair programming or design review support could help redirect this production energy.
 
 ---
 
