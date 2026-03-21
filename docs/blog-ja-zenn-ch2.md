@@ -6,7 +6,7 @@ topics: ["git", "engineering", "productivity"]
 published: true
 ---
 
-*個人のシグナルは「誰が強いか」を教えてくれる。チームの健全性は「来四半期もこのチームが強いかどうか」を教えてくれる。*
+*個人のシグナルは「誰のシグナルが強いか」を教えてくれる。チームの健全性は「来四半期もこのチームが強いかどうか」を教えてくれる。*
 
 ![チーム構造とヘルスレーダー](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch2-iconic.png?v=4)
 
@@ -144,7 +144,7 @@ EISは**自動警告**も出力する。バス係数リスク、Silent蓄積、G
 - Architect + Anchor在籍、Risk 0%
 - Gravity警告が1件残るが、構造的には健全
 
-**数字が物語を持ち始めた。** 「誰が強いか」だけでなく「チームがどんな状態で、次に何が起きるか」が見えるようになった。
+**数字が物語を持ち始めた。** 「誰のシグナルが強いか」だけでなく「チームがどんな状態で、次に何が起きるか」が見えるようになった。
 
 ---
 

@@ -6,7 +6,7 @@ tags: opensource, productivity, git, teams
 cover_image: https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/cover-ch2.png?v=4
 ---
 
-*Individual signals tell you who is strong. Team health tells you whether the team will still be strong next quarter.*
+*Individual signals tell you whose signal is strong. Team health tells you whether the team will still be strong next quarter.*
 
 ![Team structure and health radar](https://raw.githubusercontent.com/machuz/engineering-impact-score/main/docs/images/blog/png/ch2-iconic.png?v=4)
 
@@ -144,7 +144,7 @@ Running `eis team` on our product (12 Backend repos + 9 Frontend repos):
 - Architect + Anchor present, Risk 0%
 - One Gravity warning remains, but structurally healthy
 
-**The numbers tell a story.** Not just "who is strong" but "what state is the team in, and what happens next."
+**The numbers tell a story.** Not just "whose signal is strong" but "what state is the team in, and what happens next."
 
 ---
 

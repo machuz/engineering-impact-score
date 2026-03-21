@@ -34,7 +34,7 @@ Commit counts. PR counts. Lines of code. Easy to measure — and all meaningless
 
 A typo fix and a system-wide architecture change both count as "one PR." A generated lockfile adds thousands of lines. Commit frequency varies wildly between engineers.
 
-Yet inside every team, people know who the strongest engineers are.
+Yet inside every team, people sense whose structural signal is strongest.
 
 > "That person writes code that lasts."
 > "That person touches everything but nothing improves."
