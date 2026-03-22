@@ -11,7 +11,7 @@
   <text x="200" y="177" text-anchor="middle" fill="#1d2021" font-size="14">M</text>
 
   <rect x="80" y="220" width="260" height="30" rx="8" fill="#504945"/>
-  <text x="95" y="240" fill="#a89984" font-size="12">（自分の実力をどう伝えればいいんだろう…）</text>
+  <text x="95" y="240" fill="#a89984" font-size="12">（自分の貢献をどう伝えればいいんだろう…）</text>
 
   <!-- Traditional resume -->
   <rect x="70" y="270" width="280" height="140" rx="8" fill="#1d2021" stroke="#504945"/>

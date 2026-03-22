@@ -19,10 +19,10 @@
   <!-- The problem -->
   <rect x="70" y="320" width="290" height="120" rx="8" fill="#1d2021" stroke="#504945"/>
   <text x="90" y="345" fill="#928374" font-size="12">日本のエンジニアが直面する構造的不利:</text>
-  <text x="90" y="372" fill="#ebdbb2" font-size="11">・自己アピール文化がない → 実力が伝わらない</text>
+  <text x="90" y="372" fill="#ebdbb2" font-size="11">・自己アピール文化がない → 貢献が伝わらない</text>
   <text x="90" y="392" fill="#ebdbb2" font-size="11">・英語が壁 → グローバル市場で見えない</text>
-  <text x="90" y="412" fill="#ebdbb2" font-size="11">・年功序列の慣性 → 実力と報酬が乖離</text>
-  <text x="90" y="432" fill="#fb4934" font-size="11">結果: 世界水準の実力に、半分の報酬</text>
+  <text x="90" y="412" fill="#ebdbb2" font-size="11">・年功序列の慣性 → 貢献と報酬が乖離</text>
+  <text x="90" y="432" fill="#fb4934" font-size="11">結果: 世界水準の貢献に、半分の報酬</text>
 
   <!-- Panel 2 -->
   <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
