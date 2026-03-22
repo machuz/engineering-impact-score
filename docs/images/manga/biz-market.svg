@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">orbitlens 2コマ — 「$35B の海に望遠鏡を」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① エンジニア人材市場</text>
+
+  <rect x="70" y="100" width="290" height="170" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="90" y="125" fill="#fabd2f" font-size="14" font-weight="600">市場規模</text>
+  <text x="90" y="155" fill="#ebdbb2" font-size="13">世界のSWE:      2,870万人</text>
+  <text x="90" y="180" fill="#ebdbb2" font-size="13">IT人材紹介市場:  $35B+</text>
+  <text x="90" y="205" fill="#ebdbb2" font-size="13">日本のSWE:      130万人</text>
+  <text x="90" y="230" fill="#ebdbb2" font-size="13">日本の人材市場:  ¥5,000億</text>
+  <text x="90" y="258" fill="#928374" font-size="11">全員がgitを使っている。データは既にある。</text>
+
+  <rect x="70" y="290" width="290" height="100" rx="8" fill="#3c3836"/>
+  <text x="90" y="315" fill="#928374" font-size="12">現在の人材紹介の問題:</text>
+  <text x="90" y="340" fill="#ebdbb2" font-size="11">・根拠が「言葉」（履歴書、面接、推薦）</text>
+  <text x="90" y="358" fill="#ebdbb2" font-size="11">・紹介料 30-35%（エージェントの人件費）</text>
+  <text x="90" y="376" fill="#ebdbb2" font-size="11">・ミスマッチ率 30%（高コスト）</text>
+
+  <text x="210" y="430" text-anchor="middle" fill="#fabd2f" font-size="14">$35B の市場が</text>
+  <text x="210" y="455" text-anchor="middle" fill="#fabd2f" font-size="14">「言葉」で回っている。</text>
+  <text x="210" y="480" text-anchor="middle" fill="#928374" font-size="12">ここに望遠鏡を持ち込む。</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② 0.03% で $10M</text>
+
+  <rect x="440" y="100" width="310" height="130" rx="8" fill="#1d2021" stroke="#fabd2f"/>
+  <text x="455" y="125" fill="#fabd2f" font-size="13" font-weight="600">orbitlens の武器</text>
+  <text x="455" y="155" fill="#8ec07c" font-size="12">1. 偽装不可能なデータ（git blame）</text>
+  <text x="455" y="178" fill="#8ec07c" font-size="12">2. 人件費ゼロ（自動マッチング）</text>
+  <text x="455" y="201" fill="#8ec07c" font-size="12">3. OSS で信頼構築済み（55,343人実証）</text>
+  <text x="455" y="222" fill="#8ec07c" font-size="12">4. 三重ネットワーク効果（Grav. Loop）</text>
+
+  <rect x="440" y="245" width="310" height="120" rx="8" fill="#3c3836"/>
+  <text x="455" y="268" fill="#fabd2f" font-size="13">収益予測（Year 3）:</text>
+  <text x="455" y="295" fill="#ebdbb2" font-size="12">ace SaaS:           $7.1M</text>
+  <text x="455" y="315" fill="#ebdbb2" font-size="12">true Placement:     $10M</text>
+  <text x="455" y="335" fill="#ebdbb2" font-size="12">true + ideal 他:    $9.5M</text>
+  <text x="455" y="358" fill="#fabd2f" font-size="14" font-weight="600">合計: $26.6M ARR</text>
+
+  <rect x="440" y="380" width="310" height="80" rx="8" fill="#1d2021" stroke="#fabd2f"/>
+  <text x="455" y="405" fill="#fabd2f" font-size="14">$35B 市場の 0.03%。</text>
+  <text x="455" y="428" fill="#ebdbb2" font-size="12">望遠鏡1本で、この市場に風穴を開ける。</text>
+  <text x="455" y="448" fill="#928374" font-size="11">しかも望遠鏡の設計図は公開済み（OSS）。</text>
+
+  <text x="590" y="500" text-anchor="middle" fill="#928374" font-size="12">透明性が信頼を生み、信頼がデータを集める。</text>
+  <text x="590" y="520" text-anchor="middle" fill="#fabd2f" font-size="12">データが精度を上げ、精度がスケールを生む。</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">$35B の海。望遠鏡1本。0.03% で $10M。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">orbitlens — Where sincere work finds its orbit.</text>
+</svg>

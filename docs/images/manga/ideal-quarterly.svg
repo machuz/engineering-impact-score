@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#d3869b" font-size="18" font-weight="700">ideal 2コマ — 「四半期レビューが変わる」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 従来の四半期レビュー</text>
+
+  <circle cx="200" cy="150" r="25" fill="#458588"/>
+  <text x="200" y="157" text-anchor="middle" fill="#1d2021" font-size="10">EM</text>
+
+  <rect x="70" y="190" width="290" height="160" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="90" y="215" fill="#928374" font-size="12">レビューの根拠:</text>
+  <text x="90" y="240" fill="#ebdbb2" font-size="12">・「なんとなく頑張ってた気がする」</text>
+  <text x="90" y="260" fill="#ebdbb2" font-size="12">・「PRはたくさん出してたよね」</text>
+  <text x="90" y="280" fill="#ebdbb2" font-size="12">・「大きな障害はなかった」</text>
+  <text x="90" y="300" fill="#ebdbb2" font-size="12">・「チームの雰囲気は良かった」</text>
+  <text x="90" y="328" fill="#fb4934" font-size="11">↑ 全部「印象」。構造的根拠ゼロ。</text>
+  <text x="90" y="345" fill="#928374" font-size="10">メンバーは「なぜこの評価？」と思っている</text>
+
+  <rect x="70" y="370" width="290" height="70" rx="8" fill="#504945"/>
+  <text x="85" y="395" fill="#a89984" font-size="12">EMの本音:</text>
+  <text x="85" y="418" fill="#a89984" font-size="12">（正直、誰が何をしたか覚えてない…）</text>
+  <text x="85" y="435" fill="#a89984" font-size="10">（3ヶ月前のことなんて忘れた）</text>
+
+  <text x="210" y="485" text-anchor="middle" fill="#928374" font-size="12">印象で評価されると、誠実な人が損をする。</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② ideal でレビューすると</text>
+
+  <rect x="440" y="100" width="310" height="220" rx="8" fill="#1d2021" stroke="#d3869b"/>
+  <text x="455" y="122" fill="#d3869b" font-size="12" font-weight="600">Q3 Observation Report — Member N</text>
+
+  <text x="455" y="150" fill="#d3869b" font-size="11" font-family="monospace">Impact:   Q2: 35 → Q3: 42 (+7)</text>
+  <text x="455" y="170" fill="#d3869b" font-size="11" font-family="monospace">Role:     Producer → Anchor に遷移</text>
+  <text x="455" y="190" fill="#d3869b" font-size="11" font-family="monospace">Survival: 38 → 52 (+14)</text>
+  <text x="455" y="210" fill="#d3869b" font-size="11" font-family="monospace">Debt:     22 → 55 (+33)</text>
+  <text x="455" y="230" fill="#d3869b" font-size="11" font-family="monospace">Quality:  65 → 78 (+13)</text>
+
+  <text x="455" y="260" fill="#8ec07c" font-size="12">GrowthPath 達成: Anchor 化完了</text>
+  <text x="455" y="280" fill="#8ec07c" font-size="12">Debt Cleanup +33 — チームで最大の改善</text>
+  <text x="455" y="300" fill="#fabd2f" font-size="12">「頑張った」ではなく「何が変わったか」が見える</text>
+
+  <rect x="440" y="335" width="310" height="80" rx="8" fill="#3c3836"/>
+  <text x="455" y="358" fill="#d3869b" font-size="13">データがあるレビュー:</text>
+  <text x="455" y="380" fill="#ebdbb2" font-size="12">・評価者の記憶力に依存しない</text>
+  <text x="455" y="398" fill="#ebdbb2" font-size="12">・「なぜこの評価か」に根拠がある</text>
+  <text x="455" y="415" fill="#fabd2f" font-size="11">→ 誠実に働いた人が、正しく評価される</text>
+
+  <circle cx="500" cy="480" r="20" fill="#689d6a"/>
+  <text x="500" y="487" text-anchor="middle" fill="#1d2021" font-size="12">N</text>
+  <rect x="530" y="462" width="210" height="35" rx="8" fill="#3c3836"/>
+  <text x="545" y="484" fill="#d3869b" font-size="12">「やっと正しく見てもらえた」</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#d3869b" font-size="14" font-weight="600">印象ではなくデータで評価する。それが公正。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">orbitlens ideal — Navigate by gravity, not by noise.</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">ace 2コマ — 「なぜ良い人から辞めるのか」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 退職の連鎖</text>
+
+  <circle cx="120" cy="150" r="22" fill="#83a598"/>
+  <text x="120" y="157" text-anchor="middle" fill="#1d2021" font-size="10">Archi</text>
+  <text x="155" y="150" fill="#fb4934" font-size="12">退職</text>
+
+  <circle cx="120" cy="210" r="22" fill="#689d6a"/>
+  <text x="120" y="217" text-anchor="middle" fill="#1d2021" font-size="10">Anchor</text>
+  <text x="155" y="210" fill="#fb4934" font-size="12">退職</text>
+
+  <circle cx="120" cy="270" r="22" fill="#b16286"/>
+  <text x="120" y="277" text-anchor="middle" fill="#1d2021" font-size="10">Builder</text>
+  <text x="155" y="270" fill="#fb4934" font-size="12">退職検討中</text>
+
+  <rect x="70" y="310" width="290" height="90" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="90" y="335" fill="#928374" font-size="12">マネジメントの認識:</text>
+  <text x="90" y="358" fill="#ebdbb2" font-size="12">「給与が不満だったのかな」</text>
+  <text x="90" y="378" fill="#ebdbb2" font-size="12">「他に良いオファーがあったんだろう」</text>
+  <text x="90" y="395" fill="#928374" font-size="10">↑ 本当の理由はそこじゃない</text>
+
+  <rect x="70" y="420" width="290" height="60" rx="8" fill="#504945"/>
+  <text x="85" y="445" fill="#a89984" font-size="12">Architectの退職理由（本音）:</text>
+  <text x="85" y="468" fill="#a89984" font-size="12">「自分の仕事が正しく見えていなかった」</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② 見えていれば、辞めなかった</text>
+
+  <rect x="440" y="100" width="310" height="140" rx="8" fill="#1d2021" stroke="#fabd2f"/>
+  <text x="455" y="122" fill="#fabd2f" font-size="12" font-weight="600">もし ace があったら</text>
+
+  <text x="455" y="150" fill="#8ec07c" font-size="12">Architect の Gravity: 85 (green)</text>
+  <text x="455" y="172" fill="#8ec07c" font-size="12">12モジュールのオーナー</text>
+  <text x="455" y="194" fill="#8ec07c" font-size="12">チームの Design 貢献の 65%</text>
+  <text x="455" y="216" fill="#fabd2f" font-size="12">→ この人の貢献は可視化されていた</text>
+  <text x="455" y="233" fill="#928374" font-size="10">→ マネジメントも本人も、重力が見えていた</text>
+
+  <rect x="440" y="255" width="310" height="100" rx="8" fill="#3c3836"/>
+  <text x="455" y="278" fill="#fabd2f" font-size="13">エンジニアが辞める本当の理由:</text>
+  <text x="455" y="305" fill="#ebdbb2" font-size="12">給与でも環境でもない。</text>
+  <text x="455" y="325" fill="#ebdbb2" font-size="12">「自分の仕事が見えていない」こと。</text>
+  <text x="455" y="348" fill="#fabd2f" font-size="12">見えていれば、残る理由になる。</text>
+
+  <rect x="440" y="370" width="310" height="80" rx="8" fill="#1d2021" stroke="#fabd2f"/>
+  <text x="455" y="395" fill="#ebdbb2" font-size="12">望遠鏡はリテンションツールでもある。</text>
+  <text x="455" y="418" fill="#ebdbb2" font-size="12">「あなたの仕事は見えている」——</text>
+  <text x="455" y="440" fill="#fabd2f" font-size="12">これが最も安い離職防止策。</text>
+
+  <text x="590" y="500" text-anchor="middle" fill="#928374" font-size="12">Architect 1人の退職コスト: ¥2,000万+</text>
+  <text x="590" y="520" text-anchor="middle" fill="#fabd2f" font-size="12">望遠鏡の年間コスト: ¥20万</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">見えていれば、辞めなかった。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">ace — the Git Telescope</text>
+</svg>

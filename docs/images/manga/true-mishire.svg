@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#83a598" font-size="18" font-weight="700">true 2コマ — 「採用ミスのコスト」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 従来の採用フロー</text>
+
+  <rect x="70" y="100" width="290" height="200" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="90" y="125" fill="#928374" font-size="12">採用コスト（1名あたり）:</text>
+  <text x="90" y="155" fill="#ebdbb2" font-size="12">紹介料:     ¥280万（年収の35%）</text>
+  <text x="90" y="178" fill="#ebdbb2" font-size="12">面接工数:   ¥50万（5名×3時間）</text>
+  <text x="90" y="201" fill="#ebdbb2" font-size="12">オンボ工数: ¥100万（3ヶ月）</text>
+  <text x="90" y="230" fill="#fb4934" font-size="14" font-weight="600">合計: ¥430万</text>
+  <text x="90" y="258" fill="#928374" font-size="11">ミスマッチで6ヶ月で退職した場合:</text>
+  <text x="90" y="278" fill="#fb4934" font-size="12">+ 給与6ヶ月分 ¥400万 = 合計 ¥830万 損失</text>
+
+  <rect x="70" y="320" width="290" height="70" rx="8" fill="#3c3836"/>
+  <text x="90" y="345" fill="#fb4934" font-size="13">ミスマッチ率: 約30%（業界平均）</text>
+  <text x="90" y="368" fill="#928374" font-size="11">3人採用すれば1人はミスマッチ</text>
+  <text x="90" y="383" fill="#928374" font-size="11">年間3人採用の中小企業で毎年 ¥830万 消失</text>
+
+  <text x="210" y="440" text-anchor="middle" fill="#928374" font-size="12">根拠: 履歴書 + 面接 + 勘</text>
+  <text x="210" y="465" text-anchor="middle" fill="#fb4934" font-size="12">コードを書ける人かどうかは、</text>
+  <text x="210" y="485" text-anchor="middle" fill="#fb4934" font-size="12">コードを見ないとわからない。</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② orbitlens true で採用すると</text>
+
+  <rect x="440" y="100" width="310" height="170" rx="8" fill="#1d2021" stroke="#83a598"/>
+  <text x="455" y="122" fill="#83a598" font-size="12" font-weight="600">true マッチング vs 従来</text>
+
+  <text x="455" y="150" fill="#928374" font-size="11">従来:</text>
+  <text x="455" y="168" fill="#ebdbb2" font-size="11">  根拠: 言葉（履歴書・面接・推薦）</text>
+  <text x="455" y="186" fill="#fb4934" font-size="11">  ミスマッチ率: 30%</text>
+  <text x="455" y="204" fill="#fb4934" font-size="11">  損失: 年間¥830万（3人中1人失敗）</text>
+
+  <text x="455" y="228" fill="#928374" font-size="11">orbitlens true:</text>
+  <text x="455" y="246" fill="#8ec07c" font-size="11">  根拠: git blame（偽装不可能）</text>
+  <text x="455" y="264" fill="#8ec07c" font-size="11">  チーム補完性マッチング + Reproducibility</text>
+
+  <rect x="440" y="285" width="310" height="110" rx="8" fill="#3c3836"/>
+  <text x="455" y="308" fill="#83a598" font-size="13">コスト比較（年間3人採用）:</text>
+  <text x="455" y="335" fill="#ebdbb2" font-size="12">従来: ¥1,290万（紹介料）+ ¥830万（ミス）</text>
+  <text x="455" y="353" fill="#fb4934" font-size="14">= ¥2,120万</text>
+  <text x="455" y="378" fill="#ebdbb2" font-size="12">true: ¥960万（紹介料20%）+ ミス大幅減</text>
+  <text x="455" y="396" fill="#8ec07c" font-size="14">= ¥960万 + 構造的マッチ</text>
+
+  <rect x="440" y="410" width="310" height="60" rx="8" fill="#1d2021" stroke="#83a598"/>
+  <text x="455" y="435" fill="#fabd2f" font-size="13">年間 ¥1,160万 の差。</text>
+  <text x="455" y="458" fill="#ebdbb2" font-size="12">しかも「合う人」が来る確率が上がる。</text>
+
+  <text x="590" y="510" text-anchor="middle" fill="#8ec07c" font-size="12">安いだけじゃない。精度が違う。</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#83a598" font-size="14" font-weight="600">採用ミスは高い。望遠鏡は安い。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">orbitlens true — Your gravity, proven.</text>
+</svg>
