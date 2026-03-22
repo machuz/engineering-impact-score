@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">ace 2コマ — 「AIが書いたコード、残ってる？」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① AI導入3ヶ月後</text>
+
+  <!-- Happy team -->
+  <circle cx="130" cy="160" r="22" fill="#458588"/>
+  <text x="130" y="167" text-anchor="middle" fill="#1d2021" font-size="10">EM</text>
+
+  <rect x="60" y="190" width="300" height="35" rx="8" fill="#3c3836"/>
+  <text x="75" y="213" fill="#ebdbb2" font-size="13">「AI導入してからPR数3倍になった！」</text>
+
+  <!-- Dashboard showing up -->
+  <rect x="80" y="250" width="250" height="80" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="95" y="272" fill="#8ec07c" font-size="12">📈 Production</text>
+  <rect x="95" y="280" width="200" height="15" rx="3" fill="#282828"/>
+  <rect x="95" y="280" width="180" height="15" rx="3" fill="#8ec07c"/>
+  <text x="95" y="315" fill="#928374" font-size="11">+300% 🚀🚀🚀</text>
+
+  <rect x="60" y="360" width="300" height="35" rx="8" fill="#3c3836"/>
+  <text x="75" y="383" fill="#ebdbb2" font-size="13">「生産性革命だ！」</text>
+
+  <text x="200" y="460" text-anchor="middle" fill="#665c54" font-size="40">🎉</text>
+  <text x="200" y="500" text-anchor="middle" fill="#928374" font-size="11">（でも3ヶ月後…）</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② 6ヶ月後、望遠鏡で見ると</text>
+
+  <rect x="440" y="100" width="310" height="170" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="455" y="122" fill="#8ec07c" font-size="11" font-family="monospace">$ eis timeline --span 3m</text>
+
+  <text x="455" y="150" fill="#928374" font-size="10" font-family="monospace">Period    Prod   Surv   Debt   Impact</text>
+  <text x="455" y="172" fill="#8ec07c" font-size="11" font-family="monospace">Before AI   45     72     55    52.3</text>
+  <text x="455" y="194" fill="#fabd2f" font-size="11" font-family="monospace">+3 months  100     68     48    50.1</text>
+  <text x="455" y="216" fill="#fb4934" font-size="11" font-family="monospace">+6 months  100     35     32    38.7</text>
+
+  <text x="455" y="250" fill="#fb4934" font-size="12">Survival 72 → 35 📉</text>
+  <text x="455" y="268" fill="#fb4934" font-size="12">Debt 55 → 32 📉 （負債が増えている）</text>
+
+  <!-- Insight -->
+  <rect x="440" y="290" width="310" height="100" rx="8" fill="#3c3836"/>
+  <text x="455" y="315" fill="#fabd2f" font-size="14" font-weight="600">AIは星を作った。</text>
+  <text x="455" y="340" fill="#fabd2f" font-size="14" font-weight="600">でも重力を作らなかった。</text>
+  <text x="455" y="368" fill="#928374" font-size="12">Production↑ だがSurvival↓ = 構造に合わないコード</text>
+  <text x="455" y="385" fill="#928374" font-size="12">Debt↓ = AIが生成した負債を人が清掃している</text>
+
+  <!-- Solution hint -->
+  <rect x="440" y="410" width="310" height="70" rx="8" fill="#1d2021" stroke="#8ec07c"/>
+  <text x="455" y="432" fill="#8ec07c" font-size="12">💡 AIのSurvivalシグナルを追跡すれば</text>
+  <text x="455" y="452" fill="#8ec07c" font-size="12">「AIに渡すべき仕事」と</text>
+  <text x="455" y="472" fill="#8ec07c" font-size="12">「人間がやるべき仕事」が見える</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">AIは星を作る。でも重力を作るのは人間。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">ace — the Git Telescope</text>
+</svg>

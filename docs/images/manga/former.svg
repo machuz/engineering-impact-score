@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">ace 2コマ — 「辞めた人の魂」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 3年前に辞めたエンジニア</text>
+
+  <!-- Ghost of former engineer -->
+  <circle cx="200" cy="180" r="35" fill="none" stroke="#665c54" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="200" y="187" text-anchor="middle" fill="#665c54" font-size="14">Y.Y.</text>
+  <text x="200" y="230" text-anchor="middle" fill="#504945" font-size="11">（3年前に退職済み）</text>
+
+  <!-- git blame showing Y.Y. everywhere -->
+  <rect x="70" y="260" width="280" height="160" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="85" y="282" fill="#8ec07c" font-size="11" font-family="monospace">$ git blame domain/service/</text>
+  <text x="85" y="305" fill="#665c54" font-size="10" font-family="monospace">Y.Y. | 2023-04-12 | func Process()</text>
+  <text x="85" y="322" fill="#665c54" font-size="10" font-family="monospace">Y.Y. | 2023-04-15 | func Validate()</text>
+  <text x="85" y="339" fill="#665c54" font-size="10" font-family="monospace">Y.Y. | 2023-05-01 | func Transform()</text>
+  <text x="85" y="356" fill="#665c54" font-size="10" font-family="monospace">Y.Y. | 2023-05-08 | type Repository</text>
+  <text x="85" y="373" fill="#665c54" font-size="10" font-family="monospace">Y.Y. | 2023-06-20 | func NewService()</text>
+  <text x="85" y="395" fill="#928374" font-size="10" font-family="monospace">...blameの70%がY.Y.</text>
+
+  <text x="200" y="470" text-anchor="middle" fill="#928374" font-size="12">「誰もあのコードの意味わからないんだよね…」</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② 望遠鏡が教えてくれること</text>
+
+  <rect x="440" y="100" width="310" height="120" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="455" y="122" fill="#8ec07c" font-size="11" font-family="monospace">Y.Y. — Architect / — / Former</text>
+  <text x="455" y="148" fill="#928374" font-size="11" font-family="monospace">Design 67  Indisp 100  Surv 12</text>
+  <text x="455" y="172" fill="#928374" font-size="11" font-family="monospace">Raw Survival 85 (decay前)</text>
+  <text x="455" y="198" fill="#d3869b" font-size="12">⚠ Former — 弔うべき魂</text>
+
+  <!-- What it means -->
+  <rect x="440" y="240" width="310" height="110" rx="8" fill="#3c3836"/>
+  <text x="455" y="265" fill="#ebdbb2" font-size="13">望遠鏡は3つのことを教えている：</text>
+  <text x="455" y="290" fill="#fabd2f" font-size="12">1. この人は構造を作った人だった</text>
+  <text x="455" y="310" fill="#83a598" font-size="12">2. そのコードはまだ生きている</text>
+  <text x="455" y="330" fill="#fb4934" font-size="12">3. 引き継ぎが必要（批判ではなく優先度）</text>
+
+  <!-- Team taking action -->
+  <circle cx="490" cy="420" r="20" fill="#458588"/>
+  <text x="490" y="427" text-anchor="middle" fill="#1d2021" font-size="10">EM</text>
+
+  <circle cx="550" cy="420" r="20" fill="#8ec07c"/>
+  <text x="550" y="427" text-anchor="middle" fill="#1d2021" font-size="10">P.</text>
+
+  <circle cx="610" cy="420" r="20" fill="#83a598"/>
+  <text x="610" y="427" text-anchor="middle" fill="#1d2021" font-size="10">R.S.</text>
+
+  <rect x="440" y="455" width="310" height="60" rx="8" fill="#3c3836"/>
+  <text x="455" y="478" fill="#ebdbb2" font-size="13">「Y.Y.のコードを引き継ごう。」</text>
+  <text x="455" y="498" fill="#8ec07c" font-size="12">→ Debt Cleanup ↑  Legacy-Heavy → Mature</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">辞めた人の魂を弔う。それも大事な仕事。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">ace — the Git Telescope</text>
+</svg>

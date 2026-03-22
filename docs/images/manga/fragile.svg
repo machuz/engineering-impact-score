@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">ace 2コマ — 「残ってるだけ」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 安心しているEM</text>
+
+  <circle cx="200" cy="160" r="28" fill="#458588"/>
+  <text x="200" y="167" text-anchor="middle" fill="#1d2021" font-size="12">EM</text>
+
+  <rect x="80" y="200" width="260" height="50" rx="8" fill="#3c3836"/>
+  <polygon points="190,200 200,180 210,200" fill="#3c3836"/>
+  <text x="95" y="222" fill="#ebdbb2" font-size="13">「このモジュール安定してるな」</text>
+  <text x="95" y="240" fill="#ebdbb2" font-size="13">「バグも出ないし、触らなくていいか」</text>
+
+  <!-- Dusty module -->
+  <rect x="100" y="290" width="220" height="120" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="120" y="315" fill="#665c54" font-size="12" font-family="monospace">payment/</text>
+  <text x="120" y="340" fill="#504945" font-size="10" font-family="monospace">最終更新: 14ヶ月前</text>
+  <text x="120" y="360" fill="#504945" font-size="10" font-family="monospace">触った人: 1人（退職済み）</text>
+  <text x="120" y="380" fill="#504945" font-size="10" font-family="monospace">テスト: 0</text>
+
+  <!-- Cobweb -->
+  <text x="280" y="310" fill="#504945" font-size="24">🕸️</text>
+
+  <text x="200" y="460" text-anchor="middle" fill="#928374" font-size="12">（安定 = 良いこと、だと思っていた）</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② 新機能で触った瞬間</text>
+
+  <!-- Explosion -->
+  <text x="590" y="140" text-anchor="middle" fill="#fb4934" font-size="50">💥</text>
+
+  <rect x="440" y="170" width="310" height="80" rx="8" fill="#1d2021" stroke="#fb4934"/>
+  <text x="455" y="192" fill="#fb4934" font-size="12" font-family="monospace">CI: 47 tests FAILED</text>
+  <text x="455" y="212" fill="#fb4934" font-size="12" font-family="monospace">TypeError: undefined is not a function</text>
+  <text x="455" y="232" fill="#fb4934" font-size="12" font-family="monospace">FATAL: payment module corrupted</text>
+
+  <!-- EIS had warned -->
+  <rect x="440" y="270" width="310" height="110" rx="8" fill="#1d2021" stroke="#fabd2f"/>
+  <text x="455" y="292" fill="#fabd2f" font-size="11">🔭 望遠鏡のシグナル（3ヶ月前）:</text>
+  <text x="455" y="318" fill="#928374" font-size="11" font-family="monospace">payment/ — State: Fragile</text>
+  <text x="455" y="340" fill="#928374" font-size="11" font-family="monospace">Dormant: 100%  Robust: 0%</text>
+  <text x="455" y="362" fill="#d3869b" font-size="11">「残っているだけ。変更圧で崩壊する」</text>
+
+  <!-- Lesson -->
+  <rect x="440" y="400" width="310" height="80" rx="8" fill="#3c3836"/>
+  <text x="455" y="425" fill="#ebdbb2" font-size="14">高Survival ≠ 高品質</text>
+  <text x="455" y="450" fill="#83a598" font-size="13">Dormant（休眠）とRobust（耐久）は</text>
+  <text x="455" y="470" fill="#83a598" font-size="13">まったく違うシグナル。</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">「安定」と「放置」は違う。望遠鏡はそれを区別する。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">ace — the Git Telescope</text>
+</svg>

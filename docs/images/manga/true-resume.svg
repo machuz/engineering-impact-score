@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#83a598" font-size="18" font-weight="700">true 2コマ — 「本当の履歴書」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 優秀なのに伝わらない</text>
+
+  <!-- Engineer M -->
+  <circle cx="200" cy="170" r="30" fill="#83a598"/>
+  <text x="200" y="177" text-anchor="middle" fill="#1d2021" font-size="14">M</text>
+
+  <rect x="80" y="220" width="260" height="30" rx="8" fill="#504945"/>
+  <text x="95" y="240" fill="#a89984" font-size="12">（自分の実力をどう伝えればいいんだろう…）</text>
+
+  <!-- Traditional resume -->
+  <rect x="70" y="270" width="280" height="140" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="90" y="295" fill="#ebdbb2" font-size="13" font-weight="600">M さんの履歴書</text>
+  <text x="90" y="322" fill="#ebdbb2" font-size="12">「バックエンド開発 5年」</text>
+  <text x="90" y="345" fill="#ebdbb2" font-size="12">「Go, TypeScript」</text>
+  <text x="90" y="368" fill="#ebdbb2" font-size="12">「チーム開発経験あり」</text>
+  <text x="90" y="395" fill="#928374" font-size="11">↑ 他の候補者100人と同じことしか書けない</text>
+
+  <!-- Thought -->
+  <text x="210" y="450" text-anchor="middle" fill="#928374" font-size="12">仕事で語りたい。でも言語化が苦手。</text>
+  <text x="210" y="472" text-anchor="middle" fill="#928374" font-size="12">日本のエンジニアの多くが抱える問題。</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② Gravitational Record</text>
+
+  <rect x="440" y="100" width="310" height="300" rx="8" fill="#1d2021" stroke="#83a598"/>
+  <text x="455" y="125" fill="#83a598" font-size="13" font-weight="600">Gravitational Record — M</text>
+  <text x="455" y="145" fill="#928374" font-size="10">orbitlens true — git history speaks for you</text>
+
+  <text x="455" y="175" fill="#83a598" font-size="12" font-family="monospace">Impact:    52.3 (Senior)</text>
+  <text x="455" y="197" fill="#83a598" font-size="12" font-family="monospace">Role:      Architect</text>
+  <text x="455" y="219" fill="#83a598" font-size="12" font-family="monospace">Style:     Builder</text>
+  <text x="455" y="241" fill="#83a598" font-size="12" font-family="monospace">Survival:  71 (Robust: 58)</text>
+  <text x="455" y="263" fill="#83a598" font-size="12" font-family="monospace">Design:    67</text>
+  <text x="455" y="285" fill="#83a598" font-size="12" font-family="monospace">Debt:      73</text>
+  <text x="455" y="307" fill="#83a598" font-size="12" font-family="monospace">Gravity:   65 (green)</text>
+
+  <text x="455" y="340" fill="#8ec07c" font-size="11">3つのリポジトリで Architect 再現</text>
+  <text x="455" y="358" fill="#8ec07c" font-size="11">書いたコードの71%が今も動いている</text>
+  <text x="455" y="376" fill="#8ec07c" font-size="11">他者の負債を73%の頻度で清掃</text>
+  <text x="455" y="394" fill="#fabd2f" font-size="11">自分の言葉は要らない。コードが語っている。</text>
+
+  <!-- M relieved -->
+  <circle cx="500" cy="470" r="25" fill="#83a598"/>
+  <text x="500" y="477" text-anchor="middle" fill="#1d2021" font-size="14">M</text>
+
+  <rect x="540" y="445" width="210" height="50" rx="8" fill="#3c3836"/>
+  <text x="555" y="465" fill="#ebdbb2" font-size="12">「やっと、仕事が</text>
+  <text x="555" y="483" fill="#83a598" font-size="12">　そのまま履歴書になった」</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#83a598" font-size="14" font-weight="600">誠実な仕事が、そのまま証明になる世界。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">orbitlens true — Your journey, observed. Your gravity, proven.</text>
+</svg>

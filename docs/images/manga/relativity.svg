@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">ace 2コマ — 「同じ人なのに」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① リポAでは</text>
+
+  <circle cx="200" cy="160" r="30" fill="#83a598"/>
+  <text x="200" y="167" text-anchor="middle" fill="#1d2021" font-size="13">K</text>
+
+  <rect x="80" y="210" width="260" height="100" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="95" y="232" fill="#8ec07c" font-size="11" font-family="monospace">Repo A (成熟したAPI)</text>
+  <text x="95" y="258" fill="#928374" font-size="11" font-family="monospace">Impact: 28</text>
+  <text x="95" y="278" fill="#928374" font-size="11" font-family="monospace">Role: —  Style: Balanced</text>
+  <text x="95" y="298" fill="#665c54" font-size="11">既存Architectの重力場が強すぎる</text>
+
+  <rect x="80" y="340" width="260" height="35" rx="8" fill="#3c3836"/>
+  <text x="95" y="362" fill="#a89984" font-size="13">「Kさん、普通だよね…」</text>
+
+  <text x="200" y="450" text-anchor="middle" fill="#928374" font-size="12">（本当にそうか？）</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② リポBでは</text>
+
+  <circle cx="590" cy="160" r="30" fill="#83a598"/>
+  <text x="590" y="167" text-anchor="middle" fill="#1d2021" font-size="13">K</text>
+  <text x="635" y="155" fill="#fabd2f" font-size="20">⭐</text>
+
+  <rect x="440" y="210" width="310" height="100" rx="8" fill="#1d2021" stroke="#fabd2f"/>
+  <text x="455" y="232" fill="#8ec07c" font-size="11" font-family="monospace">Repo B (新規マイクロサービス)</text>
+  <text x="455" y="258" fill="#fabd2f" font-size="12" font-family="monospace">Impact: 72</text>
+  <text x="455" y="278" fill="#fabd2f" font-size="12" font-family="monospace">Role: Architect  Style: Builder</text>
+  <text x="455" y="298" fill="#8ec07c" font-size="11">新しい宇宙で重力を生んでいる</text>
+
+  <!-- per-repo -->
+  <rect x="440" y="330" width="310" height="70" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="455" y="352" fill="#8ec07c" font-size="11" font-family="monospace">$ eis analyze --per-repo</text>
+  <text x="455" y="375" fill="#928374" font-size="11" font-family="monospace">K: Repo A → 28 (—)  Repo B → 72 (Architect)</text>
+  <text x="455" y="392" fill="#d3869b" font-size="11" font-family="monospace">Pattern: Context-dependent</text>
+
+  <!-- Insight -->
+  <rect x="440" y="420" width="310" height="80" rx="8" fill="#3c3836"/>
+  <text x="455" y="445" fill="#fabd2f" font-size="14" font-weight="600">同じ人。違う宇宙。違う重力。</text>
+  <text x="455" y="470" fill="#ebdbb2" font-size="12">能力が変わったんじゃない。</text>
+  <text x="455" y="490" fill="#83a598" font-size="12">宇宙が変わった。それだけ。</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">Engineering Relativity — 宇宙が違えば重力も違う。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">ace — the Git Telescope</text>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">ace 2コマ — 「あの人が辞めたら」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 平和な日常</text>
+
+  <!-- Team chatting -->
+  <circle cx="120" cy="160" r="24" fill="#d79921"/>
+  <text x="120" y="167" text-anchor="middle" fill="#1d2021" font-size="11">PM</text>
+
+  <circle cx="200" cy="160" r="24" fill="#458588"/>
+  <text x="200" y="167" text-anchor="middle" fill="#1d2021" font-size="11">EM</text>
+
+  <rect x="70" y="100" width="250" height="35" rx="8" fill="#3c3836"/>
+  <text x="85" y="123" fill="#ebdbb2" font-size="13">「うちのチーム安定してるよね〜」</text>
+
+  <!-- The hero engineer working alone -->
+  <circle cx="200" cy="320" r="30" fill="#fb4934"/>
+  <text x="200" y="327" text-anchor="middle" fill="#1d2021" font-size="13">神</text>
+
+  <!-- Code flying around the hero -->
+  <text x="100" y="280" fill="#504945" font-size="10" font-family="monospace">domain/</text>
+  <text x="250" y="270" fill="#504945" font-size="10" font-family="monospace">infra/</text>
+  <text x="130" y="380" fill="#504945" font-size="10" font-family="monospace">api/</text>
+  <text x="240" y="390" fill="#504945" font-size="10" font-family="monospace">batch/</text>
+  <text x="90" y="350" fill="#504945" font-size="10" font-family="monospace">core/</text>
+  <text x="270" y="330" fill="#504945" font-size="10" font-family="monospace">auth/</text>
+
+  <!-- Lines connecting to hero -->
+  <line x1="130" y1="283" x2="185" y2="305" stroke="#fb4934" stroke-width="0.8" opacity="0.3"/>
+  <line x1="260" y1="275" x2="215" y2="305" stroke="#fb4934" stroke-width="0.8" opacity="0.3"/>
+  <line x1="145" y1="375" x2="185" y2="340" stroke="#fb4934" stroke-width="0.8" opacity="0.3"/>
+  <line x1="255" y1="385" x2="215" y2="340" stroke="#fb4934" stroke-width="0.8" opacity="0.3"/>
+  <line x1="110" y1="348" x2="175" y2="325" stroke="#fb4934" stroke-width="0.8" opacity="0.3"/>
+  <line x1="280" y1="328" x2="225" y2="318" stroke="#fb4934" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Small text -->
+  <text x="200" y="450" text-anchor="middle" fill="#a89984" font-size="12">（全モジュールの80%を一人で所有）</text>
+
+  <!-- Gravity indicator -->
+  <text x="200" y="490" text-anchor="middle" fill="#fb4934" font-size="16" font-weight="700">Gravity 100 🔴</text>
+  <text x="200" y="510" text-anchor="middle" fill="#928374" font-size="11">Indispensability 100 — Bus Factor = 1</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② 翌月</text>
+
+  <!-- Slack message -->
+  <rect x="440" y="100" width="300" height="55" rx="8" fill="#3c3836"/>
+  <text x="455" y="122" fill="#ebdbb2" font-size="13">🔔 #general</text>
+  <text x="455" y="142" fill="#fb4934" font-size="13">「神さんが退職します」</text>
+
+  <!-- Chaos -->
+  <text x="590" y="210" text-anchor="middle" fill="#fb4934" font-size="40">💥</text>
+
+  <!-- Floating disconnected modules -->
+  <text x="460" y="280" fill="#665c54" font-size="11" font-family="monospace">domain/ ???</text>
+  <text x="620" y="270" fill="#665c54" font-size="11" font-family="monospace">infra/ ???</text>
+  <text x="480" y="340" fill="#665c54" font-size="11" font-family="monospace">api/ ???</text>
+  <text x="640" y="350" fill="#665c54" font-size="11" font-family="monospace">batch/ ???</text>
+  <text x="450" y="310" fill="#665c54" font-size="11" font-family="monospace">core/ ???</text>
+  <text x="650" y="310" fill="#665c54" font-size="11" font-family="monospace">auth/ ???</text>
+
+  <!-- EM panicking -->
+  <circle cx="590" cy="430" r="24" fill="#458588"/>
+  <text x="590" y="437" text-anchor="middle" fill="#1d2021" font-size="11">EM</text>
+
+  <rect x="440" y="390" width="300" height="30" rx="8" fill="#3c3836"/>
+  <text x="455" y="410" fill="#fb4934" font-size="13">「誰もあのコード触れない…」</text>
+
+  <!-- Telescope message -->
+  <rect x="440" y="460" width="300" height="60" rx="8" fill="#1d2021" stroke="#fabd2f" stroke-width="1"/>
+  <text x="455" y="482" fill="#fabd2f" font-size="12">🔭 望遠鏡は3ヶ月前に警告していた：</text>
+  <text x="455" y="502" fill="#8ec07c" font-size="12">「Gravity 100 🔴 — 崩壊リスク」</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">望遠鏡は見ていた。あなたが見ていなかっただけ。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">ace — the Git Telescope</text>
+</svg>

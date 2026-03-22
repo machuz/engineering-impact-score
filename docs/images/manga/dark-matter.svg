@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">ace 2コマ — 「見えない重力」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 1on1にて</text>
+
+  <!-- Manager -->
+  <circle cx="120" cy="180" r="28" fill="#458588"/>
+  <text x="120" y="187" text-anchor="middle" fill="#1d2021" font-size="14">EM</text>
+
+  <rect x="165" y="130" width="200" height="55" rx="10" fill="#3c3836"/>
+  <polygon points="165,160 145,180 175,170" fill="#3c3836"/>
+  <text x="180" y="152" fill="#ebdbb2" font-size="13">「Fさん、今期の</text>
+  <text x="180" y="172" fill="#ebdbb2" font-size="13">　成果を教えて」</text>
+
+  <!-- F thinking -->
+  <circle cx="280" cy="300" r="28" fill="#83a598"/>
+  <text x="280" y="307" text-anchor="middle" fill="#1d2021" font-size="14">F</text>
+
+  <rect x="100" y="240" width="260" height="40" rx="10" fill="#504945"/>
+  <text x="115" y="265" fill="#a89984" font-size="12">（障害対応3回、設計レビュー5件、</text>
+
+  <rect x="100" y="290" width="260" height="40" rx="10" fill="#504945"/>
+  <text x="115" y="315" fill="#a89984" font-size="12">　メンタリング週3回…全部 git に残らない）</text>
+
+  <!-- Sad truth -->
+  <rect x="80" y="380" width="280" height="80" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="100" y="405" fill="#928374" font-size="12" font-family="monospace">$ eis analyze</text>
+  <text x="100" y="430" fill="#928374" font-size="12" font-family="monospace">F   Prod:12  Surv:35  Impact:22</text>
+  <text x="100" y="450" fill="#fb4934" font-size="11">↑ git に残る貢献だけだとこう見える</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② Dark Matter memo を覗くと</text>
+
+  <rect x="440" y="100" width="310" height="280" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="455" y="122" fill="#8ec07c" font-size="11" font-family="monospace">$ orbitlens ace — Dark Matter memo</text>
+
+  <text x="455" y="155" fill="#d3869b" font-size="12">03/01 障害対応 — 本番DB復旧 (2h)</text>
+  <text x="455" y="178" fill="#d3869b" font-size="12">03/05 設計レビュー — 認証基盤リアーキ</text>
+  <text x="455" y="201" fill="#d3869b" font-size="12">03/08 メンタリング — Jrのコードレビュー指導</text>
+  <text x="455" y="224" fill="#d3869b" font-size="12">03/12 障害対応 — API レートリミット設計</text>
+  <text x="455" y="247" fill="#d3869b" font-size="12">03/15 設計レビュー — モジュール分割方針</text>
+  <text x="455" y="270" fill="#d3869b" font-size="12">03/18 メンタリング — Growingメンバー支援</text>
+
+  <text x="455" y="305" fill="#928374" font-size="11">git に残らない貢献 = Dark Matter</text>
+  <text x="455" y="325" fill="#928374" font-size="11">見えないけど、チームの重力を支えている</text>
+  <text x="455" y="355" fill="#fabd2f" font-size="12">Fさんの本当の貢献が、ここに記録されている</text>
+
+  <!-- EM realization -->
+  <circle cx="500" cy="440" r="25" fill="#458588"/>
+  <text x="500" y="447" text-anchor="middle" fill="#1d2021" font-size="12">EM</text>
+
+  <rect x="540" y="415" width="200" height="50" rx="8" fill="#3c3836"/>
+  <text x="555" y="435" fill="#ebdbb2" font-size="12">「Fさん、ずっとチームの</text>
+  <text x="555" y="453" fill="#fabd2f" font-size="12">　ダークマターだったんだ」</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">git に残らない重力を、記録する場所がある。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">ace — the Git Telescope + Dark Matter memo</text>
+</svg>

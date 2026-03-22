@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#d3869b" font-size="18" font-weight="700">ideal 2コマ — 「軌道を見つける」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① VPoE の悩み</text>
+
+  <!-- VPoE -->
+  <circle cx="200" cy="160" r="30" fill="#458588"/>
+  <text x="200" y="167" text-anchor="middle" fill="#1d2021" font-size="11">VPoE</text>
+
+  <rect x="80" y="210" width="270" height="70" rx="10" fill="#504945"/>
+  <text x="95" y="232" fill="#a89984" font-size="12">「N を育てたいけど、何を伸ばせば？」</text>
+  <text x="95" y="252" fill="#a89984" font-size="12">「チーム編成これでいいのか？」</text>
+  <text x="95" y="270" fill="#a89984" font-size="11">「来期の採用、何が足りない？」</text>
+
+  <!-- Current team -->
+  <rect x="70" y="300" width="290" height="130" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="90" y="325" fill="#928374" font-size="12">現在のチーム:</text>
+  <circle cx="120" cy="380" r="20" fill="#83a598"/>
+  <text x="120" y="387" text-anchor="middle" fill="#1d2021" font-size="9">Archi</text>
+  <circle cx="180" cy="380" r="20" fill="#d79921"/>
+  <text x="180" y="387" text-anchor="middle" fill="#1d2021" font-size="9">Prod</text>
+  <circle cx="240" cy="380" r="20" fill="#d79921"/>
+  <text x="240" y="387" text-anchor="middle" fill="#1d2021" font-size="9">Prod</text>
+  <circle cx="300" cy="380" r="20" fill="#689d6a"/>
+  <text x="300" y="387" text-anchor="middle" fill="#1d2021" font-size="9">Grow</text>
+  <text x="210" y="420" text-anchor="middle" fill="#fb4934" font-size="11">Anchor 不在。誰が品質を守る？</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② orbitlens ideal が提示する軌道</text>
+
+  <!-- GrowthPath -->
+  <rect x="440" y="100" width="310" height="120" rx="8" fill="#1d2021" stroke="#d3869b"/>
+  <text x="455" y="122" fill="#d3869b" font-size="12" font-weight="600">GrowthPath — N</text>
+  <text x="455" y="148" fill="#ebdbb2" font-size="11">現在: Producer / Balanced / Growing</text>
+  <text x="455" y="168" fill="#d3869b" font-size="11">推奨軌道: Producer → Anchor（隣接上位）</text>
+  <text x="455" y="188" fill="#928374" font-size="11">Gap: Quality +15, Debt Cleanup +25</text>
+  <text x="455" y="208" fill="#8ec07c" font-size="11">コーチ推薦: チーム内 Architect の R.M.</text>
+
+  <!-- TeamFormation -->
+  <rect x="440" y="235" width="310" height="110" rx="8" fill="#1d2021" stroke="#d3869b"/>
+  <text x="455" y="257" fill="#d3869b" font-size="12" font-weight="600">TeamFormation</text>
+  <text x="455" y="280" fill="#fb4934" font-size="11">WARNING: Anchor 不在 → 品質劣化リスク</text>
+  <text x="455" y="300" fill="#ebdbb2" font-size="11">推奨: N の Anchor 育成 or Anchor 採用</text>
+  <text x="455" y="320" fill="#8ec07c" font-size="11">Anchor 配置後の予測: Complementarity 82→</text>
+  <text x="455" y="338" fill="#8ec07c" font-size="11">Character: Irregular → Spiral へ遷移</text>
+
+  <!-- OrbitPlan -->
+  <rect x="440" y="360" width="310" height="80" rx="8" fill="#1d2021" stroke="#d3869b"/>
+  <text x="455" y="382" fill="#d3869b" font-size="12" font-weight="600">OrbitPlan — 安定軌道の提示</text>
+  <text x="455" y="405" fill="#ebdbb2" font-size="11">3ヶ月後予測: N が Anchor 化で Risk 0%</text>
+  <text x="455" y="425" fill="#ebdbb2" font-size="11">6ヶ月後予測: Spiral 安定軌道に到達</text>
+
+  <!-- VPoE satisfied -->
+  <circle cx="500" cy="500" r="25" fill="#458588"/>
+  <text x="500" y="507" text-anchor="middle" fill="#1d2021" font-size="11">VPoE</text>
+  <rect x="540" y="475" width="210" height="50" rx="8" fill="#3c3836"/>
+  <text x="555" y="495" fill="#ebdbb2" font-size="12">「やるべきことが</text>
+  <text x="555" y="513" fill="#d3869b" font-size="12">　データで見えた」</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#d3869b" font-size="14" font-weight="600">重力で導く。ノイズではなく。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">orbitlens ideal — Navigate by gravity, not by noise.</text>
+</svg>

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">ace 2コマ — 「うちのチームは何銀河？」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 飲み会</text>
+
+  <!-- People drinking -->
+  <circle cx="120" cy="160" r="22" fill="#d79921"/>
+  <text x="120" y="167" text-anchor="middle" fill="#1d2021" font-size="10">EM</text>
+  <circle cx="190" cy="160" r="22" fill="#8ec07c"/>
+  <text x="190" y="167" text-anchor="middle" fill="#1d2021" font-size="10">A</text>
+  <circle cx="260" cy="160" r="22" fill="#83a598"/>
+  <text x="260" y="167" text-anchor="middle" fill="#1d2021" font-size="10">B</text>
+
+  <text x="190" y="130" text-anchor="middle" fill="#928374" font-size="18">🍺🍺🍺</text>
+
+  <rect x="60" y="200" width="300" height="35" rx="8" fill="#3c3836"/>
+  <text x="75" y="222" fill="#ebdbb2" font-size="13">「うちのチーム強いよね、たぶん」</text>
+
+  <rect x="60" y="250" width="300" height="35" rx="8" fill="#504945"/>
+  <text x="75" y="272" fill="#a89984" font-size="13">「たぶん…？」「根拠は…？」</text>
+
+  <rect x="60" y="300" width="300" height="35" rx="8" fill="#3c3836"/>
+  <text x="75" y="322" fill="#ebdbb2" font-size="13">「なんとなく…雰囲気…？」</text>
+
+  <text x="200" y="420" text-anchor="middle" fill="#665c54" font-size="60">🤔</text>
+  <text x="200" y="480" text-anchor="middle" fill="#928374" font-size="11">（「強い」の定義がない）</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② 翌日、望遠鏡を向けた</text>
+
+  <rect x="440" y="100" width="310" height="160" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="455" y="122" fill="#8ec07c" font-size="11" font-family="monospace">$ eis team --recursive ~/workspace</text>
+
+  <text x="455" y="155" fill="#fabd2f" font-size="22" font-weight="700">🌀 Spiral</text>
+  <text x="455" y="178" fill="#928374" font-size="11">渦巻銀河 — 強い中心核と活発な星形成</text>
+
+  <text x="455" y="205" fill="#ebdbb2" font-size="11" font-family="monospace">Structure:  Architectural Engine</text>
+  <text x="455" y="222" fill="#ebdbb2" font-size="11" font-family="monospace">Culture:    Builder</text>
+  <text x="455" y="239" fill="#ebdbb2" font-size="11" font-family="monospace">Phase:      Mature</text>
+  <text x="455" y="256" fill="#8ec07c" font-size="11" font-family="monospace">Risk:       Healthy ✓</text>
+
+  <!-- Team reaction -->
+  <rect x="440" y="280" width="310" height="90" rx="8" fill="#3c3836"/>
+  <text x="455" y="305" fill="#ebdbb2" font-size="13">「うちはSpiralだった！」</text>
+  <text x="455" y="328" fill="#fabd2f" font-size="13">「設計の核があって、生産も回ってる」</text>
+  <text x="455" y="350" fill="#83a598" font-size="12">「雰囲気じゃない。構造で証明できた」</text>
+
+  <!-- Galaxy illustration -->
+  <circle cx="590" cy="440" r="50" fill="none" stroke="#fabd2f" stroke-width="1" opacity="0.3"/>
+  <circle cx="590" cy="440" r="30" fill="none" stroke="#fabd2f" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="590" cy="440" r="10" fill="#fabd2f" opacity="0.2"/>
+  <circle cx="590" cy="440" r="4" fill="#fabd2f" opacity="0.8"/>
+  <!-- Stars in spiral -->
+  <circle cx="570" cy="415" r="2.5" fill="#8ec07c" opacity="0.8"/>
+  <circle cx="615" cy="425" r="2" fill="#83a598" opacity="0.7"/>
+  <circle cx="580" cy="460" r="2.5" fill="#d3869b" opacity="0.7"/>
+  <circle cx="610" cy="455" r="2" fill="#b8bb26" opacity="0.6"/>
+  <circle cx="555" cy="440" r="2" fill="#fabd2f" opacity="0.6"/>
+  <circle cx="625" cy="435" r="2" fill="#8ec07c" opacity="0.5"/>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">「強い」を証明できる。雰囲気ではなく、構造で。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">ace — the Git Telescope</text>
+</svg>

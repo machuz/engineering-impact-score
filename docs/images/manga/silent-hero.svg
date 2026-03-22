@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="1200" fill="#1d2021"/>
+
+  <!-- Title -->
+  <text x="400" y="45" text-anchor="middle" fill="#fabd2f" font-size="20" font-weight="700">ace 4コマ — 「静かなヒーロー」</text>
+
+  <!-- Panel 1 -->
+  <rect x="40" y="70" width="720" height="250" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="60" y="100" fill="#928374" font-size="14">① ある日のスタンドアップ</text>
+
+  <!-- Manager -->
+  <circle cx="200" cy="200" r="30" fill="#458588"/>
+  <text x="200" y="207" text-anchor="middle" fill="#1d2021" font-size="16">EM</text>
+  <!-- Speech bubble -->
+  <rect x="250" y="140" width="400" height="50" rx="10" fill="#3c3836"/>
+  <polygon points="250,170 230,200 260,180" fill="#3c3836"/>
+  <text x="270" y="170" fill="#ebdbb2" font-size="15">「今期一番貢献したのは誰だと思う？」</text>
+
+  <!-- Team -->
+  <circle cx="500" cy="240" r="22" fill="#d79921"/>
+  <text x="500" y="247" text-anchor="middle" fill="#1d2021" font-size="12">A</text>
+  <circle cx="560" cy="240" r="22" fill="#689d6a"/>
+  <text x="560" y="247" text-anchor="middle" fill="#1d2021" font-size="12">B</text>
+  <circle cx="630" cy="240" r="22" fill="#b16286"/>
+  <text x="630" y="247" text-anchor="middle" fill="#1d2021" font-size="12">C</text>
+
+  <!-- Speech -->
+  <rect x="460" y="270" width="250" height="35" rx="8" fill="#3c3836"/>
+  <text x="475" y="293" fill="#ebdbb2" font-size="13">「Aさんでしょ、PR多いし」</text>
+
+  <!-- Panel 2 -->
+  <rect x="40" y="340" width="720" height="250" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="60" y="370" fill="#928374" font-size="14">② でも実は…</text>
+
+  <!-- R.S. in corner quietly -->
+  <circle cx="150" cy="470" r="25" fill="#83a598"/>
+  <text x="150" y="477" text-anchor="middle" fill="#1d2021" font-size="12">R.S.</text>
+
+  <!-- Thought bubble -->
+  <circle cx="200" cy="420" r="5" fill="#504945"/>
+  <circle cx="215" cy="405" r="8" fill="#504945"/>
+  <rect x="230" y="380" width="300" height="45" rx="10" fill="#504945"/>
+  <text x="250" y="400" fill="#a89984" font-size="13">（今日もAさんのバグ3つ直した…）</text>
+  <text x="250" y="418" fill="#a89984" font-size="13">（誰にも言ってないけど）</text>
+
+  <!-- A producing bugs -->
+  <circle cx="600" cy="470" r="25" fill="#d79921"/>
+  <text x="600" y="477" text-anchor="middle" fill="#1d2021" font-size="12">A</text>
+  <rect x="500" y="430" width="200" height="30" rx="8" fill="#3c3836"/>
+  <text x="515" y="450" fill="#ebdbb2" font-size="12">「よっしゃ新機能PR出した！」</text>
+
+  <!-- Panel 3 -->
+  <rect x="40" y="610" width="720" height="250" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="60" y="640" fill="#928374" font-size="14">③ 望遠鏡を覗いてみる</text>
+
+  <!-- Terminal -->
+  <rect x="100" y="660" width="600" height="170" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="120" y="685" fill="#8ec07c" font-size="13" font-family="monospace">$ eis analyze --recursive ~/workspace</text>
+
+  <text x="120" y="715" fill="#928374" font-size="12" font-family="monospace">Member    Prod  Qual  Surv  Debt   Impact  Role</text>
+  <text x="120" y="738" fill="#fabd2f" font-size="12" font-family="monospace">A          93    42    12     8    32.1   Producer/Churn</text>
+  <text x="120" y="761" fill="#8ec07c" font-size="12" font-family="monospace">R.S.       17    89    50    88    42.5   Anchor</text>
+
+  <text x="120" y="800" fill="#d3869b" font-size="12">← Debt Cleanup 88... 全員のバグを静かに直していた</text>
+
+  <!-- Panel 4 -->
+  <rect x="40" y="880" width="720" height="250" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="60" y="910" fill="#928374" font-size="14">④</text>
+
+  <!-- EM realization -->
+  <circle cx="200" cy="1000" r="30" fill="#458588"/>
+  <text x="200" y="1007" text-anchor="middle" fill="#1d2021" font-size="16">EM</text>
+
+  <rect x="250" y="940" width="450" height="70" rx="10" fill="#3c3836"/>
+  <polygon points="250,980 230,1000 260,990" fill="#3c3836"/>
+  <text x="270" y="965" fill="#ebdbb2" font-size="15">「R.S.、ずっとチームを支えてたのか…」</text>
+  <text x="270" y="990" fill="#fabd2f" font-size="14">「見えない仕事を、見える重力に変える。」</text>
+
+  <!-- R.S. smiling -->
+  <circle cx="600" cy="1040" r="28" fill="#83a598"/>
+  <text x="600" y="1047" text-anchor="middle" fill="#1d2021" font-size="14">:)</text>
+
+  <!-- Footer -->
+  <text x="400" y="1170" text-anchor="middle" fill="#665c54" font-size="12">ace — the Git Telescope</text>
+  <text x="400" y="1190" text-anchor="middle" fill="#504945" font-size="11">Signals of struggle. Signals of effort. The telescope catches both.</text>
+</svg>

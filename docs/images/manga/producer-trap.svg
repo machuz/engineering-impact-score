@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">ace 2コマ — 「速いチームの落とし穴」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 四半期レビュー</text>
+
+  <!-- CTO -->
+  <circle cx="120" cy="160" r="28" fill="#d79921"/>
+  <text x="120" y="167" text-anchor="middle" fill="#1d2021" font-size="12">CTO</text>
+
+  <rect x="165" y="120" width="210" height="40" rx="10" fill="#3c3836"/>
+  <polygon points="165,145 145,160 175,150" fill="#3c3836"/>
+  <text x="180" y="145" fill="#ebdbb2" font-size="13">「うちのチーム最高じゃん！」</text>
+
+  <!-- Metrics board -->
+  <rect x="70" y="210" width="280" height="130" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="90" y="235" fill="#8ec07c" font-size="13">今月の実績</text>
+  <text x="90" y="265" fill="#ebdbb2" font-size="14">PR マージ数: 186</text>
+  <text x="90" y="290" fill="#ebdbb2" font-size="14">デプロイ回数: 42</text>
+  <text x="90" y="315" fill="#ebdbb2" font-size="14">リリース機能: 12</text>
+
+  <!-- Team all producers -->
+  <circle cx="100" cy="420" r="20" fill="#d79921"/>
+  <text x="100" y="427" text-anchor="middle" fill="#1d2021" font-size="10">Prod</text>
+  <circle cx="160" cy="420" r="20" fill="#d79921"/>
+  <text x="160" y="427" text-anchor="middle" fill="#1d2021" font-size="10">Prod</text>
+  <circle cx="220" cy="420" r="20" fill="#d79921"/>
+  <text x="220" y="427" text-anchor="middle" fill="#1d2021" font-size="10">Prod</text>
+  <circle cx="280" cy="420" r="20" fill="#d79921"/>
+  <text x="280" y="427" text-anchor="middle" fill="#1d2021" font-size="10">Prod</text>
+  <circle cx="340" cy="420" r="20" fill="#d79921"/>
+  <text x="340" y="427" text-anchor="middle" fill="#1d2021" font-size="10">Prod</text>
+
+  <text x="210" y="480" text-anchor="middle" fill="#928374" font-size="11">（全員 Producer。活気があるように見える）</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② 6ヶ月後、望遠鏡で見ると</text>
+
+  <rect x="440" y="100" width="310" height="200" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="455" y="122" fill="#8ec07c" font-size="11" font-family="monospace">$ eis team</text>
+
+  <text x="455" y="150" fill="#fb4934" font-size="12" font-family="monospace">Complementarity:  16 / 100</text>
+  <text x="455" y="172" fill="#fb4934" font-size="12" font-family="monospace">Avg Survival:     12</text>
+  <text x="455" y="194" fill="#fb4934" font-size="12" font-family="monospace">Debt Balance:      8</text>
+  <text x="455" y="216" fill="#ebdbb2" font-size="12" font-family="monospace">Character:  Irregular</text>
+
+  <text x="455" y="250" fill="#fb4934" font-size="11">WARNING: No Architect detected</text>
+  <text x="455" y="268" fill="#fb4934" font-size="11">WARNING: No Anchor detected</text>
+  <text x="455" y="286" fill="#fb4934" font-size="11">WARNING: Survival declining 3 quarters</text>
+
+  <!-- CTO shocked -->
+  <circle cx="500" cy="380" r="25" fill="#d79921"/>
+  <text x="500" y="387" text-anchor="middle" fill="#1d2021" font-size="12">CTO</text>
+
+  <rect x="540" y="340" width="210" height="70" rx="8" fill="#3c3836"/>
+  <text x="555" y="362" fill="#ebdbb2" font-size="12">「186 PR出して、</text>
+  <text x="555" y="380" fill="#fb4934" font-size="12">　12%しか残ってない…？」</text>
+  <text x="555" y="398" fill="#928374" font-size="11">全員が書いて、誰も守らない</text>
+
+  <!-- Crumbling code -->
+  <text x="590" y="450" text-anchor="middle" fill="#928374" font-size="12">Architect: 0</text>
+  <text x="590" y="470" text-anchor="middle" fill="#928374" font-size="12">Anchor: 0</text>
+  <text x="590" y="490" text-anchor="middle" fill="#928374" font-size="12">Cleaner: 0</text>
+  <text x="590" y="510" text-anchor="middle" fill="#fb4934" font-size="12">構造の守り手がいない</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">速いチームと強いチームは違う。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">ace — the Git Telescope</text>
+</svg>

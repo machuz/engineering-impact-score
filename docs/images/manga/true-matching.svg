@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#83a598" font-size="18" font-weight="700">true 2コマ — 「望遠鏡が選ぶ転職」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 従来の転職</text>
+
+  <!-- Recruiter -->
+  <circle cx="120" cy="160" r="28" fill="#d79921"/>
+  <text x="120" y="167" text-anchor="middle" fill="#1d2021" font-size="10">Agent</text>
+
+  <rect x="165" y="120" width="210" height="55" rx="10" fill="#3c3836"/>
+  <polygon points="165,150 145,160 175,155" fill="#3c3836"/>
+  <text x="180" y="142" fill="#ebdbb2" font-size="12">「この方、前職で大規模</text>
+  <text x="180" y="160" fill="#ebdbb2" font-size="12">　リアーキを経験されてます」</text>
+
+  <!-- Company -->
+  <circle cx="300" cy="160" r="28" fill="#458588"/>
+  <text x="300" y="167" text-anchor="middle" fill="#1d2021" font-size="10">企業</text>
+
+  <!-- What company gets -->
+  <rect x="70" y="210" width="290" height="120" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="90" y="235" fill="#928374" font-size="12">判断材料:</text>
+  <text x="90" y="258" fill="#ebdbb2" font-size="12">  履歴書（自己申告）</text>
+  <text x="90" y="278" fill="#ebdbb2" font-size="12">  面接（1時間の印象）</text>
+  <text x="90" y="298" fill="#ebdbb2" font-size="12">  エージェントの推薦（営業トーク）</text>
+  <text x="90" y="318" fill="#fb4934" font-size="11">↑ 全部「言葉」。検証不可能。</text>
+
+  <!-- Fee -->
+  <rect x="80" y="360" width="270" height="70" rx="8" fill="#3c3836"/>
+  <text x="100" y="385" fill="#ebdbb2" font-size="13">紹介料: 年収の 30–35%</text>
+  <text x="100" y="410" fill="#928374" font-size="11">年収800万なら ¥240–280万</text>
+  <text x="100" y="425" fill="#fb4934" font-size="10">ミスマッチでも返金されないことが多い</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② orbitlens true の転職</text>
+
+  <rect x="440" y="100" width="310" height="200" rx="8" fill="#1d2021" stroke="#83a598"/>
+  <text x="455" y="122" fill="#83a598" font-size="11" font-family="monospace">orbitlens true — Talent Search</text>
+
+  <text x="455" y="152" fill="#ebdbb2" font-size="12">候補者: K（Gravity Certificate 認証済）</text>
+  <text x="455" y="178" fill="#83a598" font-size="11" font-family="monospace">Role:      Architect</text>
+  <text x="455" y="198" fill="#83a598" font-size="11" font-family="monospace">Style:     Builder</text>
+  <text x="455" y="218" fill="#83a598" font-size="11" font-family="monospace">Survival:  68 (Robust: 55)</text>
+  <text x="455" y="238" fill="#83a598" font-size="11" font-family="monospace">Design:    72</text>
+  <text x="455" y="258" fill="#83a598" font-size="11" font-family="monospace">Reproduced: 3 repos (Architect x3)</text>
+  <text x="455" y="280" fill="#8ec07c" font-size="11">↑ 3つの宇宙で Architect 再現。本物。</text>
+
+  <!-- Team complement -->
+  <rect x="440" y="310" width="310" height="80" rx="8" fill="#3c3836"/>
+  <text x="455" y="332" fill="#83a598" font-size="12">チーム補完性マッチング:</text>
+  <text x="455" y="355" fill="#ebdbb2" font-size="12">御社は Architect 不在 → K は最適候補</text>
+  <text x="455" y="375" fill="#8ec07c" font-size="11">予測 Gravity: 72（御社の宇宙で高確率で活躍）</text>
+
+  <!-- Fee comparison -->
+  <rect x="440" y="410" width="310" height="80" rx="8" fill="#1d2021" stroke="#83a598"/>
+  <text x="455" y="435" fill="#83a598" font-size="13">紹介料: 年収の 20–25%</text>
+  <text x="455" y="455" fill="#928374" font-size="11">年収800万なら ¥160–200万</text>
+  <text x="455" y="475" fill="#8ec07c" font-size="11">根拠: git blame。盛れないデータで判断。</text>
+  <text x="455" y="490" fill="#8ec07c" font-size="10">人を介さない分、精度に全振り。</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#83a598" font-size="14" font-weight="600">言葉ではなく重力で選ぶ。それが true。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">orbitlens true — Your gravity, proven.</text>
+</svg>

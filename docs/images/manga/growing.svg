@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'Hiragino Kaku Gothic ProN', sans-serif">
+  <rect width="800" height="600" fill="#1d2021"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fabd2f" font-size="18" font-weight="700">ace 2コマ — 「成長は見える」</text>
+
+  <!-- Panel 1 -->
+  <rect x="30" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="50" y="82" fill="#928374" font-size="13">① 1on1</text>
+
+  <circle cx="130" cy="170" r="28" fill="#458588"/>
+  <text x="130" y="177" text-anchor="middle" fill="#1d2021" font-size="12">EM</text>
+
+  <circle cx="280" cy="170" r="28" fill="#b8bb26"/>
+  <text x="280" y="177" text-anchor="middle" fill="#1d2021" font-size="12">Jr.</text>
+
+  <rect x="60" y="220" width="300" height="40" rx="8" fill="#3c3836"/>
+  <polygon points="145,220 130,200 160,220" fill="#3c3836"/>
+  <text x="75" y="245" fill="#ebdbb2" font-size="14">「最近どう？成長してる？」</text>
+
+  <rect x="60" y="280" width="300" height="40" rx="8" fill="#504945"/>
+  <polygon points="265,280 280,260 250,280" fill="#504945"/>
+  <text x="75" y="305" fill="#a89984" font-size="14">「う〜ん…自分ではよくわからない」</text>
+
+  <text x="200" y="400" text-anchor="middle" fill="#665c54" font-size="48">😐</text>
+  <text x="200" y="460" text-anchor="middle" fill="#928374" font-size="12">（毎回同じ会話）</text>
+
+  <!-- Panel 2 -->
+  <rect x="410" y="55" width="360" height="480" rx="12" fill="#282828" stroke="#504945" stroke-width="2"/>
+  <text x="430" y="82" fill="#928374" font-size="13">② 望遠鏡を開く</text>
+
+  <!-- Timeline chart -->
+  <rect x="440" y="100" width="310" height="180" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="455" y="120" fill="#8ec07c" font-size="11" font-family="monospace">Jr. — Signal Timeline</text>
+
+  <!-- Axis -->
+  <line x1="470" y1="260" x2="730" y2="260" stroke="#504945" stroke-width="1"/>
+  <text x="500" y="275" fill="#665c54" font-size="9">Q1</text>
+  <text x="565" y="275" fill="#665c54" font-size="9">Q2</text>
+  <text x="630" y="275" fill="#665c54" font-size="9">Q3</text>
+  <text x="695" y="275" fill="#665c54" font-size="9">Q4</text>
+
+  <!-- Survival line going UP -->
+  <polyline points="500,250 565,235 630,210 695,170" fill="none" stroke="#8ec07c" stroke-width="2.5"/>
+  <text x="710" y="168" fill="#8ec07c" font-size="10">Survival↑</text>
+
+  <!-- Quality line going UP -->
+  <polyline points="500,245 565,230 630,215 695,190" fill="none" stroke="#83a598" stroke-width="2"/>
+  <text x="710" y="188" fill="#83a598" font-size="10">Quality↑</text>
+
+  <!-- Design starting to appear -->
+  <polyline points="630,255 695,230" fill="none" stroke="#d3869b" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="710" y="228" fill="#d3869b" font-size="10">Design↑</text>
+
+  <!-- Role transition -->
+  <rect x="440" y="295" width="310" height="70" rx="8" fill="#1d2021" stroke="#504945"/>
+  <text x="455" y="315" fill="#928374" font-size="11" font-family="monospace">Role transition:</text>
+  <text x="455" y="340" fill="#b8bb26" font-size="13" font-family="monospace">Growing → Growing → Active → Active</text>
+  <text x="455" y="355" fill="#665c54" font-size="10">State: 安定層に入りつつある</text>
+
+  <!-- EM and Jr. reaction -->
+  <circle cx="500" cy="430" r="22" fill="#458588"/>
+  <text x="500" y="437" text-anchor="middle" fill="#1d2021" font-size="11">EM</text>
+
+  <circle cx="660" cy="430" r="22" fill="#b8bb26"/>
+  <text x="660" y="437" text-anchor="middle" fill="#1d2021" font-size="11">Jr.</text>
+
+  <rect x="435" y="460" width="330" height="55" rx="8" fill="#3c3836"/>
+  <text x="450" y="482" fill="#fabd2f" font-size="13">「Survivalが毎四半期上がってる。」</text>
+  <text x="450" y="502" fill="#8ec07c" font-size="13">「君のコードは残り始めてるよ。」</text>
+
+  <!-- Footer -->
+  <text x="400" y="565" text-anchor="middle" fill="#fabd2f" font-size="14" font-weight="600">成長は感覚じゃない。シグナルで見える。</text>
+  <text x="400" y="585" text-anchor="middle" fill="#504945" font-size="11">ace — the Git Telescope</text>
+</svg>
