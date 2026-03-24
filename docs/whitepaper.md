@@ -740,6 +740,11 @@ The ultimate insight is simple: **codebases have gravitational structures**. Som
 2. Bird, C., Nagappan, N., Murphy, B., Gall, H., & Devanbu, P. (2011). Don't touch my code! Examining the effects of ownership on software quality. *ESEC/FSE '11*.
 3. Forsgren, N., Humble, J., & Kim, G. (2018). *Accelerate: The Science of Lean Software and DevOps*. IT Revolution Press.
 4. Tornhill, A. (2022). *Software Design X-Rays*. Pragmatic Bookshelf.
+5. Cunningham, W. (1992). The WyCash Portfolio Management System. *OOPSLA '92 Experience Report*.
+6. Kruchten, P., Nord, R. L., & Ozkaya, I. (2012). Technical Debt: From Metaphor to Theory and Practice. *IEEE Software*, 29(6), 18–21.
+7. Conway, M. E. (1968). How Do Committees Invent? *Datamation*, 14(4), 28–31.
+8. Lehman, M. M. (1980). Programs, Life Cycles, and Laws of Software Evolution. *Proc. IEEE*, 68(9), 1060–1076.
+9. Zimmermann, T. & Nagappan, N. (2008). Predicting Defects using Network Analysis on Dependency Graphs. *ICSE '08*.
 
 ---
 
