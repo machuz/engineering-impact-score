@@ -745,6 +745,12 @@ The ultimate insight is simple: **codebases have gravitational structures**. Som
 7. Conway, M. E. (1968). How Do Committees Invent? *Datamation*, 14(4), 28–31.
 8. Lehman, M. M. (1980). Programs, Life Cycles, and Laws of Software Evolution. *Proc. IEEE*, 68(9), 1060–1076.
 9. Zimmermann, T. & Nagappan, N. (2008). Predicting Defects using Network Analysis on Dependency Graphs. *ICSE '08*.
+10. Mockus, A. & Votta, L. G. (2000). Identifying Reasons for Software Changes using Historic Databases. *ICSM '00*, 120–130.
+11. Hassan, A. E. (2009). Predicting Faults Using the Complexity of Code Changes. *ICSE '09*, 78–88.
+12. Avelino, G., Passos, L. T., Hora, A. C., & Valente, M. T. (2016). A Novel Approach for Estimating Truck Factors. *ICPC '16*, 1–10.
+13. MacCormack, A., Rusnak, J., & Baldwin, C. Y. (2006). Exploring the Structure of Complex Software Designs: An Empirical Study of Open Source and Proprietary Code. *Management Science*, 52(7), 1015–1030.
+14. Herbsleb, J. D. & Grinter, R. E. (1999). Splitting the Organization and Integrating the Code: Conway's Law Revisited. *ICSE '99*, 85–95.
+15. Sadowski, C. & Zimmermann, T., Eds. (2019). *Rethinking Productivity in Software Engineering*. Apress (open access).
 
 ---
 
