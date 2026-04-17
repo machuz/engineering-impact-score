@@ -121,6 +121,8 @@ Product consistency needs to be read on **two axes — horizontal and vertical.*
 
 What matters most: does the Principle-layer thought get **properly transformed into the language of each layer below — and stay consistent across them.**
 
+![Vertical consistency — thought translated at each layer](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch5-vertical-consistency-en.svg)
+
 If the Principle layer carries "simplicity":
 
 - **Via the Principle ↔ Structure transformation**, it becomes "an IA you don't have to search through" / "minimum screen transitions"
