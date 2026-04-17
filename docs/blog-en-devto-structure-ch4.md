@@ -242,8 +242,22 @@ As Will Larson's *Staff Engineer* lays out, Staff Engineer splits into several a
 - **Architect variant** — Intermediate + Principle (within a domain). Owns long-term technical direction.
 - **Solver variant** — Implementation + Intermediate. Drops into the organization's hardest technical problem, solves it, and moves on.
 - **Right Hand variant** — Intermediate + Principle. Embedded partner / thinking sounding board for an executive (CTO / VPoE).
+- **Full-spectrum variant** (not in Larson's taxonomy; added by this book) — Crosses Implementation, Intermediate, and Principle. **The same person who drew the design also drops into the code, and then carries the reality of implementation back up to Principle.** Most powerful in early-stage startups, or when seeding new culture into an existing organization.
 
-The Right Hand and Architect variants **dig deep into Principle.** The Tech Lead and Solver variants live mostly in Intermediate / Implementation. **When evaluating or placing a Staff Engineer, the first move is to name which variant they are** — so that two people doing different work under the same title aren't measured by the same yardstick.
+The Right Hand and Architect variants **dig deep into Principle.** The Tech Lead and Solver variants live mostly in Intermediate / Implementation.
+
+#### The full-spectrum variant is exceptionally character-dependent
+
+The full-spectrum variant **doesn't put equal weight on every layer**. They shift the center of gravity by situation, with a soft gradient — "this week I sit deep in Implementation," "next week I sharpen Principle." The definition is "they can show up in every layer," not "they camp in every layer."
+
+But this variant is **more character-dependent than any of the others**.
+
+- Done by **someone every layer wants to work with**, they **ignite fire across the whole stack.** Drop into Implementation and they raise the floor's morale while writing code; rise to Principle and they translate strategy and steady the Intermediate. Translation and fire-keeping across all three layers, executed by one person.
+- Done by **someone authoritative or imposing**, they **degrade performance everywhere**. They cycle through layers applying pressure: drop into Implementation and they take ownership away from the floor; rise to Principle and they monopolize the discussion. They become a device that drains all three layers at once.
+
+This variant should be placed by reading **trust as a person** at least as carefully as technical skill. It commonly arises in early-stage startups, naturally surrounding the founding engineer / CTO. When an organization tries to recreate this pattern after scaling, the placement decision must be made on **trust evaluation**, not technical evaluation alone.
+
+**When evaluating or placing a Staff Engineer, the first move is to name which variant they are** — so that two people doing different work under the same title aren't measured by the same yardstick.
 
 What does "a strong CTO" actually mean? The tree-org-chart answer would be "can make business decisions" / "can drive technical investment." On the layer axis: **someone who moves freely between Principle and Intermediate.** They don't lock themselves into Principle, they don't sink into Implementation, and they guarantee translation between the two.
 
