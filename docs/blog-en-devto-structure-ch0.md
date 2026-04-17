@@ -176,7 +176,7 @@ The path forward:
 | 1 | The Concept of Observation | Splitting evaluation from observation; introducing EIS |
 | 2 | Output as Structure | Treating code as structure, not artifact |
 | 3 | A Structural Model of People | Anchor / Producer / Mass and related archetypes |
-| 4 | Organizational Layers | Arsenal / Outer Heaven / Patriots and translators |
+| 4 | Organizational Layers | Implementation / Intermediate / Principle layers, and translators |
 | 5 | Product-Organization Isomorphism | Discover / Detail / AIA, List is Hero |
 | 6 | Designing Interventions (1-on-1 / pair programming) | Speaking across the three layers |
 | 7 | Making Culture | Language makes culture. Evaluating translation itself. |
@@ -209,7 +209,7 @@ So new vocabulary is introduced deliberately:
 - **EIS (Engineering Impact Signal)** — an observation index reading structure from Git history
 - **Git Archaeology** — the method of excavating the strata of code to read structure
 - **Anchor / Producer / Mass** — structural archetypes of people
-- **Arsenal / Outer Heaven / Patriots** — organizational layer names
+- **Implementation / Intermediate / Principle** — organizational layer names
 - **Translators** — the role that bridges layers
 - **List is Hero, Discover / Detail / AIA** — structural names from the product side
 

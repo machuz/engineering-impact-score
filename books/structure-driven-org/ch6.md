@@ -24,7 +24,7 @@ title: "第6章 —— 介入設計（1on1 / ペアプロ）"
 ```
 冒頭：構造の共有
   ・直近3ヶ月のEISシグナル
-  ・配置されているレイヤー（Arsenal / Outer Heaven / Patriots）
+  ・配置されているレイヤー（実装層 / 中間層 / 原理層）
   ・チームにおける役割（Anchor / Producer / Cleaner …）
 
 中盤：出力層
@@ -41,7 +41,7 @@ title: "第6章 —— 介入設計（1on1 / ペアプロ）"
 
 - 目的の明示：「Anchor 候補の育成」 / 「Cleaner の継承」 / 「Producer の速度維持」
 - ペアの組み合わせは、**個人の能力**ではなく**レイヤー移動**を意図して組む
-- 例：Arsenal の強い Producer × Outer Heaven の Anchor で、Producer を Outer Heaven に引き上げる
+- 例：実装層の強い Producer × 中間層の Anchor で、Producer を中間層に引き上げる
 
 ## 4. コードレビューを再設計する
 
