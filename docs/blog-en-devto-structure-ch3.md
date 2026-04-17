@@ -32,7 +32,7 @@ Pressing a person into a single archetype flattens information. EIS describes pe
 | Axis | The question | Categories |
 |---|---|---|
 | **Role** | *What* do they contribute? | Architect / Anchor / Cleaner / Producer / Specialist |
-| **Style** | *How* do they contribute? | Builder / Resilient / Rescue / Churn / Mass / Balanced / Spread |
+| **Style** | *How* do they contribute? | Builder / Resilient / Rescue / Churn / Mass / Emergent / Balanced / Spread |
 | **State** | *Where* are they in their lifecycle? | Former / Silent / Fragile / Growing / Active |
 
 A single engineer is described by the **triple (Role, Style, State)**.
@@ -100,7 +100,7 @@ Same title "Architect," but backends want Inheritance, frontends want Emergent. 
 
 **Places long-lived, high-quality code; constructs a skeleton others don't casually rewrite.**
 
-- Signal: Quality ↑, notLow(Production)
+- Signal: Quality ↑, Prod ○
 - Field picture:
   - "Who wrote this part?" "X" "Yeah, figures…"
   - In code review, gives feedback that passes the design backbone through
@@ -125,7 +125,7 @@ Cleaners are **the device that lowers organizational entropy**. Hard to see in a
 
 **Drives volume and speed forward. Carries short-term momentum.**
 
-- Signal: notLow(Production)
+- Signal: Prod ○
 - Field picture:
   - High sprint commit count
   - Most relied upon immediately before launch
