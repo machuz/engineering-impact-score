@@ -137,7 +137,7 @@ Just as the organization's layer mismatch shows up as "we hired more seniors but
 
 **Corresponding organizational symptom**: no one lives on the Principle layer, or Principle-layer discussions don't reach the Intermediate layer. Design principles aren't written down.
 
-**Intervention**: building a design system alone won't solve it. **Spin up Principle-layer language work in the organization** — assign someone to write themes / principles, someone to keep using them, someone to revise them.
+**Intervention**: shipping **a component library or design tokens (Implementation-layer artifacts)** alone won't fill the Principle-layer hollow — parts lined up without a unifying thought behind them leaves every designer running on their own principles. **Spin up Principle-layer language work in the organization** — assign someone to write themes / principles, someone to keep using them, someone to revise them. A design system works **only when the Principle-layer language (themes, principles) and the Implementation-layer artifacts (components) are both in place** — either half alone is not enough.
 
 ### "We want to refactor, but can't agree on what's needed"
 
@@ -147,6 +147,14 @@ Just as the organization's layer mismatch shows up as "we hired more seniors but
 
 **Intervention**: before pinning it down with technical discussion, **organize the product's Principle layer** — articulating themes and priorities makes the technical-debt priority fall out automatically.
 
+### "The same action behaves differently depending on the screen or API"
+
+**Product symptom**: the same "delete" sometimes shows a confirmation dialog, sometimes doesn't. The same concept is returned under different key names or error shapes across APIs. Components duplicate. Edge-case handling drifts. **Detail-level patterns don't line up.**
+
+**Corresponding organizational symptom**: no review culture on the Implementation layer, no habit of aligning Style. No one owns shared components or conventions — each engineer writes locally optimally. **Scattered Implementation.**
+
+**Intervention**: shipping a component library or design tokens is a starting point — but the real intervention is **installing an "alignment habit" in the organization.** Review criteria, shared conventions, pairing opportunities: without a daily Implementation-layer alignment culture, the tools sit unused.
+
 ## Symmetry of intervention design
 
 The interventions that fill layer-hollows can also be designed symmetrically.
@@ -155,7 +163,7 @@ The interventions that fill layer-hollows can also be designed symmetrically.
 |---|---|---|
 | Hollow Intermediate | Stand up one IA owner | Stand up one Intermediate translator |
 | Absent Principle | Document themes / principles / prohibitions | Document strategy / priorities / what-we-won't-build |
-| Scattered Implementation | Design system / component library | Codebase conventions / test infrastructure / doc standards |
+| Scattered Implementation | Component library / design tokens | Codebase conventions / test infrastructure / doc standards |
 
 The principle: **intervene on both sides simultaneously.** Fixing only the product side leaves the structural problem in the organization to recreate the same break six months later. Fixing only the organization side, with no path to reflect the change in the product, means users see no change.
 
