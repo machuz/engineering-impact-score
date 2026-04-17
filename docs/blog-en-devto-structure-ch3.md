@@ -119,7 +119,7 @@ Caution: **Specialists are easily undervalued on low Breadth**. Don't short-circ
   - Anchor = "**the code they wrote remains**"
   - Architect (Inheritance-type) = "**their design direction propagates into code they didn't write**"
 
-An Anchor's own lines still carry their blame. An Architect's design permeates lines they never wrote. This is the state where **design has become a shared language across the organization**. When an Anchor matures, what lies ahead is the Architect.
+An Anchor's own lines still remain attributed to them in the blame. An Architect's design permeates lines they never wrote. This is the state where **design has become a shared language across the organization**. When an Anchor matures, what lies ahead is the Architect.
 
 Architect is deeply tied to chapter 4's layer structure and chapter 7's culture discussion. Treating it as a standalone archetype has less precision than placing it inside the layer + culture context. In this chapter, it's positioned as "the phase beyond Anchor" only — the full treatment is deferred to the later chapters.
 
