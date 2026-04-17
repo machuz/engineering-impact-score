@@ -160,6 +160,63 @@ In chapter 3 we listed three patterns of "talented but spinning." Most of them c
 
 **Don't change the person — change the placement.** This is why layer design is the operative lever in org theory.
 
+## Reading "Strong" Executive Roles Through the Layers
+
+The titles drawn on org charts — CEO, CTO, VPoE, Engineering Director, Engineering Manager, Tech Lead, Staff Engineer — describe positions on the tree. Read them on the layer axis instead, and **what "strong" means for each title becomes nameable** in terms of which layers they actually inhabit and translate between.
+
+| Title | Layers they mostly inhabit | Main translation direction |
+|---|---|---|
+| **CEO** | Principle | External (market / investors / customers) ⇄ Principle, Principle → Intermediate |
+| **CTO** | Principle ⇄ Intermediate | Principle ⇄ Intermediate, translates the principles of the technical domain into the organization |
+| **VPoE** | Intermediate | Intermediate ⇄ Implementation, sometimes Principle |
+| **Eng Director** | Intermediate | Intermediate ⇄ Implementation, cross-organizational intermediate design |
+| **EM** | Implementation ⇄ Intermediate | Implementation → Intermediate, "state of people" → org-decision input |
+| **Tech Lead** | Implementation + Intermediate | Implementation ⇄ Intermediate, sometimes up into Principle |
+| **Staff Engineer** | Intermediate (within a domain) | Intermediate ⇄ Implementation, deep translation in a specific area |
+
+What does "a strong CTO" actually mean? The tree-org-chart answer would be "can make business decisions" / "can drive technical investment." On the layer axis: **someone who moves freely between Principle and Intermediate.** They don't lock themselves into Principle, they don't sink into Implementation, and they guarantee translation between the two.
+
+The same applies to "strong VPoE": **deep in Intermediate, with active translation paths to both Implementation and Principle.** Not consumed by daily management work, keeping the technical judgment battlefield within Intermediate.
+
+### Patterns of Misaligned Title Holders
+
+When title and layer are misaligned, the same title produces wildly different organizational impact.
+
+**CTO locked into Principle**
+- Keeps speaking strategy and vision; doesn't come down to Intermediate
+- If Intermediate has no translator, the strategy doesn't reach the floor
+- Result: "strategy gets spoken, nothing moves." VPoE / EM tries to translate in their stead and burns out.
+
+**CTO sinking into Implementation**
+- Keeps writing code themselves; doesn't rise to Intermediate or Principle
+- Intermediate goes hollow; technical decisions stay point-wise
+- Result: individual features ship fast, but the organization has no overall technical strategy.
+
+**VPoE bypassing Intermediate**
+- Closes into management work (HR, evaluation, 1-on-1s)
+- Loses contact with Implementation; loses technical decision authority
+- Result: leader of the technical organization, but stops being invited to technical decision rooms.
+
+**VPoE stuck on Implementation**
+- A formerly strong engineer keeps moving inside Implementation
+- Intermediate organizing falls out; the org doesn't scale
+- Result: they're personally satisfied to be hands-on, but the org only advances within their reach.
+
+**EM detached from Implementation**
+- Promoted into management, drifts away from the codebase
+- Translation capability decays over time
+- Result: can no longer make sound technical calls in technical discussions.
+
+These are typically **not personal capability problems**. The day-to-day workload tied to each title often **structurally prevents the layer-to-layer movement** the title demands. The person ends up "can't come down" / "can't go up" / "can't stay in the middle." Placement-design intervention starts not by blaming the person, but by **changing the combination of work attached to the role.**
+
+> **Title promotion ≠ career advancement**
+>
+> One observable case: an engineer who has been continuously declining CTO offers for years. Their reason is straightforward — they value being a tech lead who **roams across Implementation, Intermediate, and Principle.** Becoming CTO would lock them into Principle and rob them of the freedom to walk all three layers.
+>
+> On the org chart, CTO sits "above" Tech Lead. But on the layer axis, **measured by how many layers the role covers**, Tech Lead can be the wider one. Title height and layer breadth are different axes.
+>
+> Identifying **the combination of layers in which you actually function** matters more for a career than chasing title height — one of the consequences that fall out of this book's frame.
+
 ## How AI Reshapes the Layers
 
 A prediction worth writing down: AI will reshape the layers, but unevenly.
