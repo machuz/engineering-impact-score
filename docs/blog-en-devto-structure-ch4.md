@@ -232,6 +232,8 @@ A lot of "we're somehow not making progress" symptoms in organizations can be re
 
 The three-axis topology from chapter 3 (Role × Style × State) only functions when **combined with a layer placement**. Same Role, different layer → completely different result:
 
+![Role × Layer placement fit](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch4-role-layer-heatmap-en.svg)
+
 | Role | Implementation | Structure | Principle |
 |---|---|---|---|
 | **Architect** (Inheritance) | Leaves design directly in code | **Most powerful here** — design propagates into others' code | Bridges to strategy. Few but critical |

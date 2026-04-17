@@ -229,6 +229,8 @@ CEO が原理層にいるとは限らない。CTO が構造層にいるとも限
 
 第 3 章で導入した 3 軸トポロジー（Role × Style × State）は、**配置されるレイヤー**と組み合わせて初めて機能する。同じ Role でも、配置するレイヤーで結果がまったく違う：
 
+![Role × Layer 配置の相性](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch4-role-layer-heatmap.svg)
+
 | Role | 実装層 | 構造層 | 原理層 |
 |---|---|---|---|
 | **Architect**（継承型） | コードに直接設計を残す | **最も力を発揮する**。設計が他者のコードに継承されていく | 戦略との接続を担う。少数精鋭 |
