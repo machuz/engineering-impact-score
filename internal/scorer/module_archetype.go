@@ -30,10 +30,16 @@ type ModuleScore struct {
 	// 3-axis classification
 	Coupling      string  // "Isolated" / "Independent" / "Linked" / "Hub"
 	CouplingConf  float64
-	Vitality      string  // "Stable" / "Warming" / "Turbulent" / "Critical" / "Dead"
+	Vitality      string  // "Stable" / "Fragile" / "Warming" / "Turbulent" / "Critical" / "Dead"
 	VitalityConf  float64
 	Ownership     string  // "Distributed" / "Concentrated" / "Orphaned"
 	OwnershipConf float64
+
+	// Per-module test coverage ratio ([0.0, 1.0]) computed from the file
+	// manifest. HasTestRatio is false when the manifest didn't include this
+	// module — classifications that rely on coverage must early-return.
+	TestFileRatio float64
+	HasTestRatio  bool
 }
 
 // IsAnomaly returns true if this module has at least one axis flagged as a risk.
@@ -43,7 +49,7 @@ func (ms ModuleScore) IsAnomaly() bool {
 		return true
 	}
 	switch ms.Vitality {
-	case "Turbulent", "Critical", "Dead":
+	case "Fragile", "Turbulent", "Critical", "Dead":
 		return true
 	}
 	switch ms.Ownership {
@@ -54,6 +60,9 @@ func (ms ModuleScore) IsAnomaly() bool {
 }
 
 // ScoreModules computes 4 module indicators and classifies each module on 3 axes.
+//
+// moduleTestRatio may be nil when no coverage data is available; modules will
+// have HasTestRatio=false and the Vitality=Fragile classification won't fire.
 func ScoreModules(
 	pressure metric.ChangePressure,
 	cochangeResults []metric.CochangeResult,
@@ -61,6 +70,7 @@ func ScoreModules(
 	moduleSurvival map[string]float64,
 	authorLastDate map[string]time.Time,
 	activeDays int,
+	moduleTestRatio map[string]float64,
 ) []ModuleScore {
 	// Collect all modules from all data sources
 	allModules := make(map[string]bool)
@@ -159,6 +169,14 @@ func ScoreModules(
 			if lastDate, ok := authorLastDate[o.TopAuthor]; ok {
 				daysSince := time.Since(lastDate).Hours() / 24
 				ms.OwnerActive = daysSince <= float64(activeDays)
+			}
+		}
+
+		// Per-module test coverage ratio (populated only when manifest data was passed in).
+		if moduleTestRatio != nil {
+			if ratio, ok := moduleTestRatio[mod]; ok {
+				ms.TestFileRatio = ratio
+				ms.HasTestRatio = true
 			}
 		}
 
@@ -279,12 +297,14 @@ func classifyCoupling(ms ModuleScore) (string, float64) {
 }
 
 // classifyVitality classifies a module's life force.
-// 5 levels: Stable (healthy low-change), Warming (increasing pressure),
-// Turbulent (high pressure + low survival), Critical (extreme), Dead.
+// 6 levels: Stable / Fragile / Warming / Turbulent / Critical / Dead.
+// Fragile distinguishes "surviving because untested AND untouched" from
+// a healthy Stable module that simply doesn't see many changes.
 // Requires blame data for survival-based classifications.
 func classifyVitality(ms ModuleScore) (string, float64) {
 	hasBlameData := ms.BlameLines > 0
 	pressureLevel := 100 - ms.Stability // invert stability → pressure level (0-100)
+	fragileScore := moduleFragileScore(ms, hasBlameData, pressureLevel)
 
 	rules := []classifyRule{
 		// Dead: hard gate — no commits AND no active owner
@@ -327,13 +347,52 @@ func classifyVitality(ms ModuleScore) (string, float64) {
 			}
 			return 0
 		}},
-		// Stable: low pressure (healthy equilibrium)
+		// Fragile: code survives in a low-pressure module with almost no tests —
+		// "fossil in waiting". Distinguishes truly Stable from merely-ignored.
+		{"Fragile", func() float64 {
+			return fragileScore
+		}},
+		// Stable: low pressure (healthy equilibrium). Cedes to Fragile when the
+		// low pressure is accompanied by near-zero test coverage.
 		{"Stable", func() float64 {
+			if fragileScore > 0.10 {
+				return 0
+			}
 			return highness(ms.Stability)
 		}},
 	}
 	best := pickBest(rules, 0.10)
 	return best.Name, best.Confidence
+}
+
+// moduleFragileScore returns the Fragile-Vitality confidence for a module,
+// or 0 when the module doesn't satisfy the gating conditions (commits exist,
+// code actually survives, coverage data is present, low pressure, low coverage).
+// Confidence rises as the module is more under-tested and more dormant.
+func moduleFragileScore(ms ModuleScore, hasBlameData bool, pressureLevel float64) float64 {
+	if !hasBlameData || !ms.HasTestRatio {
+		return 0
+	}
+	if ms.ModuleCommits == 0 {
+		return 0 // Dead, not Fragile
+	}
+	if ms.ChangeAbsorption < 30 {
+		return 0 // not enough surviving code to be a fossil
+	}
+	if pressureLevel >= 30 {
+		return 0 // still being touched — not fragile
+	}
+	const coverageThreshold = 0.10
+	if ms.TestFileRatio >= coverageThreshold {
+		return 0
+	}
+	lowCoverage := (coverageThreshold - ms.TestFileRatio) / coverageThreshold // 0-1
+	lowPressure := (30 - pressureLevel) / 30                                  // 0-1
+	conf := 0.70 + 0.15*lowCoverage + 0.10*lowPressure
+	if conf > 0.95 {
+		conf = 0.95
+	}
+	return conf
 }
 
 // classifyOwnershipAxis classifies a module's knowledge distribution.

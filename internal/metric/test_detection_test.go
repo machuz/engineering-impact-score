@@ -128,3 +128,37 @@ func TestTestedSet_EmptyRepo(t *testing.T) {
 		t.Error("empty repo: everything is untested")
 	}
 }
+
+func TestTestedSet_ModuleTestRatio(t *testing.T) {
+	files := []string{
+		// api/: 2 prod + 1 test (ratio ≈ 0.33)
+		"api/handler.go",
+		"api/router.go",
+		"api/router_test.go",
+		// legacy/: 3 prod, no tests (ratio = 0)
+		"legacy/a.go",
+		"legacy/b.go",
+		"legacy/c.go",
+	}
+	ts := BuildTestedSet(files)
+
+	apiRatio, ok := ts.ModuleTestRatio("api")
+	if !ok {
+		t.Fatal("api module missing from ratio map")
+	}
+	if apiRatio < 0.33 || apiRatio > 0.34 {
+		t.Errorf("api ratio = %v, want ≈0.333", apiRatio)
+	}
+
+	legacyRatio, ok := ts.ModuleTestRatio("legacy")
+	if !ok {
+		t.Fatal("legacy module missing from ratio map")
+	}
+	if legacyRatio != 0 {
+		t.Errorf("legacy ratio = %v, want 0", legacyRatio)
+	}
+
+	if _, ok := ts.ModuleTestRatio("nonexistent"); ok {
+		t.Error("nonexistent module should return (0, false)")
+	}
+}

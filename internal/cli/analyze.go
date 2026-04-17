@@ -92,6 +92,11 @@ type domainAccumulator struct {
 	// Test coverage observability (populated from each repo's TestedSet)
 	totalFiles     int // sum of code files across all repos in this domain
 	totalTestFiles int // sum of test files across all repos in this domain
+
+	// Per-module file counts across all repos in this domain — used by
+	// ScoreModules to compute Vitality=Fragile. Keyed on ModuleOf(path).
+	moduleAllFiles  map[string]int
+	moduleTestFiles map[string]int
 }
 
 func newDomainAccumulator() *domainAccumulator {
@@ -106,6 +111,8 @@ func newDomainAccumulator() *domainAccumulator {
 		moduleSurvival:       make(map[string]float64),
 		modulePressure:       make(metric.ChangePressure),
 		modulePressureCounts: make(map[string]int),
+		moduleAllFiles:       make(map[string]int),
+		moduleTestFiles:      make(map[string]int),
 	}
 }
 
@@ -524,6 +531,10 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		testedSet := metric.BuildTestedSet(files)
 		acc.totalFiles += testedSet.TotalFiles
 		acc.totalTestFiles += testedSet.TotalTestFiles
+		testedSet.ForEachModule(func(mod string, total, test int) {
+			acc.moduleAllFiles[mod] += total
+			acc.moduleTestFiles[mod] += test
+		})
 
 		// Survival: split by change pressure or use classic mode
 		// Keep per-repo survival maps for --per-repo reuse
@@ -766,6 +777,15 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		}
 
 		// Module Science Phase 2: Score and classify modules
+		// Aggregate per-module test ratio across repos (weighted by module size).
+		moduleTestRatio := make(map[string]float64)
+		for mod, total := range acc.moduleAllFiles {
+			if total == 0 {
+				continue
+			}
+			moduleTestRatio[mod] = float64(acc.moduleTestFiles[mod]) / float64(total)
+		}
+
 		moduleScores := scorer.ScoreModules(
 			acc.modulePressure,
 			acc.cochangeResults,
@@ -773,6 +793,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 			acc.moduleSurvival,
 			acc.authorLastDate,
 			cfg.ActiveDays,
+			moduleTestRatio,
 		)
 
 		dr := DomainResults{
