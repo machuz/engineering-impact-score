@@ -1,5 +1,5 @@
 ---
-title: "Structure-Driven Organization Theory #1 — The Concept of Observation"
+title: "Structure-Driven Engineering Organization Theory #1 — The Concept of Observation"
 published: true
 description: "Evaluation assigns values. Observation reads structure. Get the entry point wrong and every destination collapses back into evaluation."
 tags: management, leadership, engineering, observability
