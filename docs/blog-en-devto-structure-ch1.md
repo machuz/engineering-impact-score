@@ -9,6 +9,8 @@ tags: management, leadership, engineering, observability
 
 ---
 
+> **Scope of this chapter**: thinking layer (defining what "observation" means) + design layer (showing why EIS qualifies as observation).
+
 ## Why Start With Observation
 
 As the intro laid out, everything in this book begins with observation. Observation first, language next, structure last, culture as the consequence.

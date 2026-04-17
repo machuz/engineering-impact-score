@@ -9,6 +9,8 @@ tags: management, leadership, engineering, architecture
 
 ---
 
+> **Scope of this chapter**: design layer (describing organizations in three layers) + field layer (how to read symptoms that show up on the floor).
+
 ## An Organization Isn't a Single Plane
 
 Draw an org chart. Almost always, it ends up as a **tree**. CEO over directors, directors over managers, managers over members. Hierarchy.
