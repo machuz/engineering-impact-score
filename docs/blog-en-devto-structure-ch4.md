@@ -47,7 +47,7 @@ The layer that **converses with both abstract and concrete**.
 
 The intermediate layer translates the "why" descending from Principle into "how" the Implementation layer can act on, and translates "doesn't work" / "breaks" rising from Implementation into "constraints" the Principle layer can judge against. **Translation's main battlefield is here.**
 
-There's a second function the Intermediate layer carries: **keeping the fire alive** — translating between layers so that decisions made in one layer don't extinguish the morale of another. Covered in the "The Intermediate Layer Keeps the Fire Alive" section below.
+There's a third function the Intermediate layer carries: **keeping the fire alive** — translating between layers so that decisions made in one layer don't extinguish the morale of another. Covered in the "The Intermediate Layer Keeps the Fire Alive" section below.
 
 ### Principle
 
@@ -111,8 +111,8 @@ Each layer's isolated decision is correct from inside that layer. **What's wrong
 
 People in the Intermediate layer can **predict in advance** how Principle's decision will land in Implementation. So instead of pushing it down as-is, they deliver it in a form that doesn't extinguish fire:
 
-- Instead of "six months of work is being thrown away," they deliver: "What you built (X) remains as the foundation for the new direction (Y). Y stands on top of X."
-- Instead of "more negative noise," they elevate: "The Implementation-side concern can be reconstructed as decision input Z for Principle."
+- Instead of "six months of my work is being thrown away," they deliver: "What you built (X) remains as the foundation for the new direction (Y). Y stands on top of X."
+- Instead of "more negativity," they elevate: "The Implementation-side concern can be reconstructed as decision input Z for Principle."
 
 This isn't "messaging" or "softer communication." It's **redesigning the decision itself so meaning isn't lost between layers.**
 
