@@ -19,9 +19,9 @@ Hiring, evaluations, 1-on-1s, feedback, career paths, culture fit — the object
 
 This book steps off that subject, once.
 
-What we handle is not "people" but **the structures people produce**, **the layers those structures run on**, and **the connections between layers**. People stand on top of these — but the object of observation and design is structure, not the person.
+What we handle is not "people" but **the structures people produce**, **the layers those structures run on**, and **the transformations that cut through those layers**. People stand on top of these — but the object of observation and design is structure, not the person.
 
-The title — *Structure-Driven Engineering Organization Theory* — is a direct statement of that.
+The title — *Structure-Driven Engineering Organization Theory* — is a direct statement of that. The core of **Structure-Driven** is to describe the organization as "**Principle ── transformation ── Structure ── transformation ── Implementation**," and to design with awareness of **3 layers and the 2 transformations that run through them**. Structure is what appears as the *result* of transformation between principle and implementation — the state where thought has taken form as architecture, org chart, or information design. Designing an organization in a structure-driven way means building one where these transformations keep running. Chapter 4 develops this in full.
 
 ### What "structure" refers to in this book
 
@@ -29,8 +29,8 @@ This book uses the word "structure" frequently. To avoid conflation, four distin
 
 1. **The structure of code** — chapter 2. Read along three axes: Design / Survival / Change Pressure.
 2. **The structural model of people** — chapter 3. The Role × Style × State three-axis topology.
-3. **The layer structure of organizations** — chapter 4. Implementation / Intermediate / Principle.
-4. **The structure of products** — chapter 5. Carries the same three layers as the organization, **isomorphically** (screens / information architecture / worldview).
+3. **The layer structure of organizations and their transformations** — chapter 4. Implementation / Structure / Principle — 3 layers + 2 transformations.
+4. **The structure of products** — chapter 5. Carries the same 3 layers + 2 transformations as the organization, **isomorphically** (screens & APIs / information architecture / worldview).
 
 The four are different objects, but the book's central claim is that **all four can be handled with the same "observation → language → design" practice.** Items 3 and 4 in particular (organization and product) are **isomorphic structures** — they break and heal symmetrically; chapter 5 develops this. When "structure" appears in the text, infer from context which of the four it points to.
 
@@ -189,10 +189,10 @@ The path forward:
 | 1 | The Concept of Observation | Splitting evaluation from observation; introducing EIS |
 | 2 | Output as Structure | Treating code as structure, not artifact |
 | 3 | A Structural Model of People | Anchor / Producer / Mass and related archetypes |
-| 4 | Organizational Layers | Implementation / Intermediate / Principle layers, and translators |
+| 4 | Organizational Layers | Implementation / Structure / Principle — 3 layers + 2 transformations, transformers and transformation coaches |
 | 5 | Product-Organization Isomorphism | Product's three layers, symptoms of the isomorphism, symmetric intervention design |
 | 6 | Designing Interventions (1-on-1 / pair programming) | Speaking across the three layers |
-| 7 | Making Culture | Language makes culture. Evaluating translation itself. |
+| 7 | Making Culture | Language makes culture. Evaluating transformation itself. |
 | 8 | Conditions for a Structure-Driven Engineering Organization | Reproducibility, observability, self-correction |
 | 9 | Connecting to OrbitLens | The moment observation becomes SaaS |
 | 10 | Conclusion — Building an OS, Not an Organization | Design over management |
@@ -222,8 +222,9 @@ So new vocabulary is introduced deliberately:
 - **EIS (Engineering Impact Signal)** — an observation index reading structure from Git history
 - **Git Archaeology** — the method of excavating the strata of code to read structure
 - **Anchor / Producer / Mass** — structural archetypes of people
-- **Implementation / Intermediate / Principle** — organizational layer names
-- **Translators** — the role that bridges layers
+- **Implementation / Structure / Principle** — organizational layer names (the 3-layer model)
+- **Transformation** (Principle ↔ Structure / Structure ↔ Implementation) — the movement that cuts through the layers
+- **Transformer / transformation coach** — the person who carries out transformation (former), and the person who grows others' transformation capability (latter)
 - **Isomorphism** — the design principle that the layer structure of an organization and the layer structure of its product break and heal symmetrically
 
 **All of these will be defined in subsequent chapters. It's fine not to understand them yet.**
@@ -241,9 +242,10 @@ Reading it first deepens the EIS context later, but **it's not required**. All t
 This book doesn't reject existing org theory. Instead, it tries to **place much of that theory back on top of observation**.
 
 - **Conway's Law (organizational structure mirrors architecture)** — this book provides a means to **see Conway's Law-described correlations weekly through Git history × EIS**. Its contribution sits on the side of making the theory observable.
-- **Team Topologies (designing organizations through flow efficiency and cognitive load)** — the layer structure here (Implementation / Intermediate / Principle) is a different cut from Team Topologies' team types and is meant to be used together. Layer is the **abstraction-level** axis; Team Topologies is the **responsibility-type** axis.
+- **Team Topologies (designing organizations through flow efficiency and cognitive load)** — the layer structure here (Implementation / Structure / Principle) is a different cut from Team Topologies' team types and is meant to be used together. Layer is the **abstraction-level** axis; Team Topologies is the **responsibility-type** axis.
 - **Staff Engineer literature (Will Larson and others)** — this book's Role × Layer takes Staff Engineer's archetype discussion and generalizes it. Tech Lead / Architect / Solver / Right Hand variants are adopted as-is.
 - **Wardley Mapping (strategy via the evolution stage of components)** — pairs naturally with this book's AI-era reshaping prediction. This book's scope is narrower: it stays on people and organizational placement.
+- **Systems theory and process philosophy lineage** — this book's core intuition, "**the middle is not a layer but a movement**" (what lives between Principle ↔ Structure ↔ Implementation is not a place but transformation), shares heritage with Luhmann's social systems theory (society as a chain of communications), Deleuze's philosophy of difference (relation and movement over substance), and general systems theory / cybernetics (feedback loops, not states, are the real object). The originality here is **operationalizing** that intuition into concrete engineering-organization design principles and observation methods — not claiming it as metaphysical invention.
 
 The difference from these is that this book **assumes observation as a routine operation**. Many org theories are correct as theories but never required **data you could check weekly** on the floor. This book fills that gap with EIS. Put another way: it tries to **turn org theory into a science you can measure every week.**
 
