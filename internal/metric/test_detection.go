@@ -83,29 +83,77 @@ func IsTestFile(path string) bool {
 // Files failing all three checks are considered untested. The TestFileRatio
 // (test files / total files) is exposed for downstream observability.
 type TestedSet struct {
-	tested          map[string]bool
-	TestFileRatio   float64
-	TotalFiles      int
-	TotalTestFiles  int
+	tested         map[string]bool
+	TestFileRatio  float64
+	TotalFiles     int
+	TotalTestFiles int
+
+	// Per-module file tallies — used by ScoreModules to compute Vitality=Fragile
+	// (a module where survival exists only because nothing touches it and
+	// nothing guards it).
+	moduleTotalFiles map[string]int
+	moduleTestFiles  map[string]int
+}
+
+// ModuleTestRatio returns the test-file ratio for the given module
+// (test files / total files within that module). Returns (0, false) when
+// the module has no tracked files.
+func (ts *TestedSet) ModuleTestRatio(module string) (float64, bool) {
+	if ts == nil {
+		return 0, false
+	}
+	total := ts.moduleTotalFiles[module]
+	if total == 0 {
+		return 0, false
+	}
+	return float64(ts.moduleTestFiles[module]) / float64(total), true
+}
+
+// ModuleTestFileCounts returns (total, test) file counts for a module.
+// Enables downstream callers to weight averages by module size when
+// aggregating across repos.
+func (ts *TestedSet) ModuleTestFileCounts(module string) (total, test int) {
+	if ts == nil {
+		return 0, 0
+	}
+	return ts.moduleTotalFiles[module], ts.moduleTestFiles[module]
+}
+
+// ForEachModule invokes fn for every module tracked by this TestedSet.
+// Used by the analyzer to merge per-repo counts into a domain-level tally.
+func (ts *TestedSet) ForEachModule(fn func(module string, total, test int)) {
+	if ts == nil || fn == nil {
+		return
+	}
+	for mod, total := range ts.moduleTotalFiles {
+		fn(mod, total, ts.moduleTestFiles[mod])
+	}
 }
 
 // BuildTestedSet inspects the full file manifest once and returns a lookup
 // that callers can query per blame line.
 func BuildTestedSet(allFiles []string) *TestedSet {
 	ts := &TestedSet{
-		tested:     make(map[string]bool, len(allFiles)),
-		TotalFiles: len(allFiles),
+		tested:           make(map[string]bool, len(allFiles)),
+		moduleTotalFiles: make(map[string]int),
+		moduleTestFiles:  make(map[string]int),
+		TotalFiles:       len(allFiles),
 	}
 	if len(allFiles) == 0 {
 		return ts
 	}
 
 	// Pass 1: identify test files and the set of dirs that contain at least one.
+	// Also tally per-module totals so downstream callers can compute
+	// per-module test ratio without re-walking the manifest.
 	testFiles := make(map[string]struct{}, len(allFiles)/4)
 	dirHasTest := make(map[string]bool)
 	for _, f := range allFiles {
+		mod := ModuleOf(f)
+		ts.moduleTotalFiles[mod]++
 		if IsTestFile(f) {
 			testFiles[f] = struct{}{}
+			ts.moduleTestFiles[mod]++
 			dir := filepath.Dir(filepath.ToSlash(f))
 			dirHasTest[dir] = true
 		}

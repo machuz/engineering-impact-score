@@ -283,7 +283,7 @@ EIS doesn't just profile engineers — it classifies **modules** too. Each modul
 | Axis | What it measures | Classifications |
 |---|---|---|
 | **Coupling** | Boundary quality — implicit co-change dependencies | Isolated / Independent / Linked / Hub |
-| **Vitality** | Change pressure × code survival | Stable / Warming / Turbulent / Critical / Dead |
+| **Vitality** | Change pressure × code survival × test coverage | Stable / Fragile / Warming / Turbulent / Critical / Dead |
 | **Ownership** | Knowledge distribution across engineers | Distributed / Concentrated / Orphaned |
 
 ### 4 Structural Indicators (0-100)
@@ -302,6 +302,7 @@ EIS doesn't just profile engineers — it classifies **modules** too. Each modul
 | Independent | Stable | Distributed | Ideal. Maintain as-is |
 | Hub | Critical | Concentrated | Worst case. Leaky boundary + high churn + single owner |
 | Independent | Dead | Orphaned | Clean boundary but abandoned — safe to remove? |
+| Independent | **Fragile** | Concentrated | Fossil fortress. Low churn + no tests + solo owner — invisible risk until the owner leaves |
 | Hub | Stable | Distributed | Dependency center but healthy — possibly intentional design |
 | Independent | Turbulent | Orphaned | Actively changing but owner has left — handoff needed |
 

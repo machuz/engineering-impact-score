@@ -185,8 +185,18 @@ CLI に推薦ロジックや予測機能は入れない。CLI は望遠鏡、Saa
 
 ## 今後の方向性
 
-impact metric → **engineering risk detector** への進化:
-- ~~`change_pressure = commits_touching_module / module_LOC` で変更圧を定量化~~ 実装済（v1.2.0〜）
-- ~~`tested_survival` vs `untested_survival` でrobust code vs dormant codeを分離~~ 実装済（v2.0.0）
-- ~~Fragile アーキタイプ判定に `untested_survival` を組み込む~~ 実装済（v2.1.0）
-- **次**: Module Topology に `Vitality=Fragile` 新設（untested 率 × dormant 率でモジュール単位の Fragile Fortress 検出）
+impact metric → **engineering risk detector** への進化は v1.2.0 〜 v2.2.0 で段階完成:
+- ~~`change_pressure = commits_touching_module / module_LOC` で変更圧を定量化~~ v1.2.0
+- ~~`tested_survival` vs `untested_survival` でrobust code vs dormant codeを分離~~ v2.0.0
+- ~~Fragile アーキタイプ判定に `untested_survival` を組み込む~~ v2.1.0
+- ~~Module Topology に `Vitality=Fragile` 新設~~ v2.2.0
+
+**Module Topology Vitality (6 levels)** (`internal/scorer/module_archetype.go`):
+- **Stable** — 低変更圧 + テスト有り or coverage データ無し。健康な平衡
+- **Fragile** (v2.2.0) — 低変更圧 + テスト率 < 10% + 生存コード有り。ただ触られてないだけの化石フォートレス
+- **Warming** — 変更圧上昇中
+- **Turbulent** — 高変更圧 + 低生存率
+- **Critical** — 極端な Turbulent
+- **Dead** — コミット無し + 所有者不在
+
+次の方向性は未定。engineering risk detector は一旦完成した。

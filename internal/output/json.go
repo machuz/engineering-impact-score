@@ -108,6 +108,7 @@ type jsonModuleScore struct {
 	VitalityConf          float64 `json:"vitality_confidence"`
 	Ownership             string  `json:"ownership"`
 	OwnershipConf         float64 `json:"ownership_confidence"`
+	TestFileRatio         float64 `json:"test_file_ratio,omitempty"`
 }
 
 type jsonModuleOwnership struct {
@@ -257,6 +258,7 @@ func (w *JSONWriter) AddModuleScores(domainName string, modules []scorer.ModuleS
 					VitalityConf:          round2(ms.VitalityConf),
 					Ownership:             ms.Ownership,
 					OwnershipConf:         round2(ms.OwnershipConf),
+					TestFileRatio:         round2(ms.TestFileRatio),
 				})
 			}
 			return
