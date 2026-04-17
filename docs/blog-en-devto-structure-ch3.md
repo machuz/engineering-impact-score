@@ -300,6 +300,6 @@ Capturing people in three axes changes organizational conversations.
 
 The vocabulary for seeing people as a three-axis topology is now in place. But the axes alone don't drive organizations. **Topology × Layer** is what functions.
 
-An Architect placed on the implementation layer and one placed on the intermediate layer have different organizational impact. A Producer placed on the principle layer spins out.
+An Architect placed on the Implementation layer and one placed on the Structure layer have different organizational impact. A Producer placed on the Principle layer spins out.
 
-Next chapter: defining the layer structure of organizations — Implementation / Intermediate / Principle, and the **translator** role that connects them. From here, this chapter's topology connects to real-world practice as **placement design**.
+Next chapter: defining the layer structure of organizations — Implementation / Structure / Principle as three layers, the **two transformations** (Principle ↔ Structure, Structure ↔ Implementation) that run between them, the **transformers** who carry those transformations, and the **transformation coaches** who grow others' transformation capability. From here, this chapter's topology connects to real-world practice as **placement design × transformation**.

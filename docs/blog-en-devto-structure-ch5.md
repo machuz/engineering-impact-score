@@ -25,19 +25,24 @@ Where the UX is broken, the organization is hollow in the same place. **The thin
 
 In the introduction, "structure" was named as referring to three objects: code, people, and the layer structure of organizations. This chapter adds **a fourth: the structure of products**.
 
-| | Organizational layer | Product layer |
-|---|---|---|
-| **Implementation** | Code, features, operations | Screens, operations, micro-interactions, APIs |
-| **Intermediate** | Architecture, design, translation | Information architecture, transitions, state models, feature organization |
-| **Principle** | Strategy, worldview, thinking | Themes, design principles, UX principles, what we won't build |
+The **3 layers + 2 transformations** model introduced in chapter 4 (Principle ── transformation ── Structure ── transformation ── Implementation) maps directly onto the product side:
 
-The chapter's central claim: **the fourth (product structure) is isomorphic to the third (organizational layer structure).**
+| | Organization | Product |
+|---|---|---|
+| **Principle** | Strategy, worldview, thinking | Themes, design principles, UX principles, what we won't build |
+| ↕ **Principle ↔ Structure transformation** | Translate thought into org design / architecture; walk org reality back for re-evaluating thought | Translate thought into IA; walk screen-level reality back for re-evaluating principles |
+| **Structure** | Architecture, org design, operational design | Information architecture, screen transitions, state models, feature organization |
+| ↕ **Structure ↔ Implementation transformation** | Translate org design into daily operations and code conventions; walk implementation texture back into structural correction | Translate IA into concrete screens / APIs; walk screen behavior back into IA correction |
+| **Implementation** | Code, features, operations | Screens, operations, micro-interactions, APIs |
+
+The chapter's central claim: **the fourth (product structure) is isomorphic to the third (organizational layer structure), at the level of 3 layers + 2 transformations.**
 
 Not metaphorically. As a **design principle**.
 
-- An organization with a hollow Intermediate layer also has broken information architecture in its product.
+- An organization with a thin Structure layer and stalled transformation also has broken information architecture in its product.
 - An organization where product Principle (themes / principles) isn't settled also has an unsettled organizational Principle.
 - An organization with a scattered product Implementation also has engineers with mixed Styles in *their* implementation layer.
+- An organization where the Principle ↔ Structure transformation has stalled is also a place where themes don't descend into screen-level design on the product side.
 
 **The two break symmetrically and heal symmetrically.**
 
@@ -45,7 +50,7 @@ Not metaphorically. As a **design principle**.
 
 The reason is simple: **the product is what the organization makes**.
 
-Conway's Law said "organizational structure mirrors architecture." On the layer axis this book uses, a stronger statement is available: **the organization's layer structure maps directly onto the product's layer structure**. If the organization has no language for its Principle layer, the product's Principle layer goes undocumented. If the organization has no Intermediate-layer translators, the product's information architecture has no one to organize it.
+Conway's Law said "organizational structure mirrors architecture." On the layer axis this book uses, a stronger statement is available: **the organization's 3 layers + 2 transformations map directly onto the product's 3 layers + 2 transformations**. If the organization has no language for its Principle layer, the product's Principle layer goes undocumented. If the organization has no Structure ↔ Implementation transformer, no one keeps the product's information architecture aligned with its screens.
 
 The reverse holds too. Aggressively redesigning the product's Principle layer forces the organization to begin Principle-layer conversations. **Move the product, the organization moves; move the organization, the product moves.**
 
@@ -66,18 +71,18 @@ Observation targets:
 
 Working axis: **does it work, can it be used, are the details consistent.** Same question as the organization's Implementation layer.
 
-### Product Intermediate
+### Product Structure
 
-**Information architecture, screen transitions, state models, feature organization.** Coherence as a whole product is at stake.
+**Information architecture, screen transitions, state models, feature organization.** The layer where thought has taken form, and where coherence as a whole product is at stake.
 
 Observation targets:
 - Screen-transition graph (any unnecessary detours)
 - Whether the same concept is named differently in different locations
 - "One feature gets in the way of another" relationships
 - Whether users can locate themselves (breadcrumbs, navigation consistency)
-- When adding a feature, does the team **discuss where in the existing information structure it belongs?** (If features are added without that discussion, the Intermediate layer is hollow.)
+- When adding a feature, does the team **discuss where in the existing information structure it belongs?** (If features are added without that discussion, the Principle ↔ Structure transformation isn't running.)
 
-Working axis: **does the structure hang together.** As with the organization's Intermediate layer, **translation lives here** — aligning intent (Principle) with screens (Implementation).
+Working axis: **does the structure hang together.** As with the organization's Structure layer, this is **where transformation lands** — Principle-layer thought takes form here, and from there it flows through the Structure ↔ Implementation transformation into screens. A thin Structure layer means neither transformation lands.
 
 ### Product Principle
 
@@ -107,25 +112,25 @@ Product consistency needs to be read on **two axes — horizontal and vertical.*
 **Horizontal consistency (within each layer)**
 
 - **Implementation** → detail-level pattern consistency (same action → same icon, same API pattern)
-- **Intermediate** → structural consistency (same concept → same name; IA hangs together)
+- **Structure** → structural consistency (same concept → same name; IA hangs together)
 - **Principle** → thought consistency (themes / principles don't internally contradict)
 
-**Vertical consistency (through the layers)**
+**Vertical consistency (transformation through the layers)**
 
-What matters most: does the Principle-layer thought get **properly translated into the language of each layer below — and stay consistent across them.**
+What matters most: does the Principle-layer thought get **properly transformed into the language of each layer below — and stay consistent across them.**
 
 If the Principle layer carries "simplicity":
 
-- **At Intermediate**, it's translated as "an IA you don't have to search through" / "minimum screen transitions"
-- **At Implementation**, it's translated as "fewer buttons" / "minimal operations to complete" / "no extra API arguments"
+- **Via the Principle ↔ Structure transformation**, it becomes "an IA you don't have to search through" / "minimum screen transitions"
+- **Via the Structure ↔ Implementation transformation**, it becomes "fewer buttons" / "minimal operations to complete" / "no extra API arguments"
 
-Each layer has its own vocabulary. Pushing Principle-layer words down unchanged doesn't carry meaning — a sticky note saying "simplicity" doesn't tell an implementer what to do. **If translation isn't happening at each layer, the thought disappears the moment it crosses a layer boundary.**
+Each layer has its own vocabulary. Pushing Principle-layer words down unchanged doesn't carry meaning — a sticky note saying "simplicity" doesn't tell an implementer what to do. **If each transformation isn't actually running, the thought disappears the moment it crosses a layer boundary.**
 
-The reverse direction matters too. Decisions made at Intermediate or Implementation must be able to **walk back up** to Principle. If a screen transition can't be explained as "this is how Principle 'simplicity' translates here," that decision has been severed from Principle.
+The reverse direction matters too. Decisions made at Structure or Implementation must be able to **walk back up** to Principle. If a screen transition can't be explained as "this is how Principle 'simplicity' transforms here," that decision has been severed from Principle.
 
-The **Intermediate-layer translator** introduced in chapter 4 is exactly the person who guarantees this vertical consistency — translating Principle into the Intermediate and Implementation languages, and feeding implementation reality back up to Principle for re-evaluation. This is the core of the translator's work.
+The **transformer** introduced in chapter 4 is exactly the person who guarantees this vertical consistency — carrying Principle into Structure and Implementation languages, and feeding implementation reality back up through Structure to Principle for re-evaluation. This is the core of the transformer's work.
 
-When vertical consistency breaks, the **Principle layer has gone formal** — it's written down, but it isn't translated into each layer's language and it isn't being referenced. This is also a symptom on the organizational side: strategy is announced but never reaches the floor's decisions. **Vertical consistency is an axis to observe in both the product and the organization.**
+When vertical consistency breaks, the **Principle layer has gone formal** — it's written down, but it isn't being transformed into each layer's language and isn't being referenced. This is also a symptom on the organizational side: strategy is announced but never reaches the floor's decisions. **Vertical consistency — that is, whether the two transformations are actually running — is an axis to observe in both the product and the organization.**
 
 ## Symptoms of the isomorphism
 
@@ -135,15 +140,15 @@ Just as the organization's layer mismatch shows up as "we hired more seniors but
 
 **Product symptom**: each feature works correctly in isolation. As a whole, users can't tell what's possible or where they are.
 
-**Corresponding organizational symptom**: product owners are spread out, with no cross-cutting translator. A hollow Intermediate layer.
+**Corresponding organizational symptom**: product owners are spread out, with no cross-cutting transformer. **The Structure layer is thin and the Principle ↔ Structure transformation has stalled.**
 
-**Intervention**: redesigning information architecture on the product side alone won't solve it. **Place a translator on the Intermediate layer of the organization** so the product's Intermediate layer can be organized continuously.
+**Intervention**: redesigning information architecture on the product side alone won't solve it. **Place a Principle ↔ Structure transformer in the organization** — someone who can land thought into the product's information architecture and walk structural distortions back into the principles. That's what makes it possible to keep organizing the product's Structure layer continuously.
 
 ### "Each screen has different design"
 
 **Product symptom**: each feature has its own designer, principles aren't reconciled, the product speaks different languages internally.
 
-**Corresponding organizational symptom**: no one lives on the Principle layer, or Principle-layer discussions don't reach the Intermediate layer. Design principles aren't written down.
+**Corresponding organizational symptom**: no one lives on the Principle layer, or **the Principle ↔ Structure transformation has stalled**, so thought doesn't descend into the Structure layer. Design principles aren't written down.
 
 **Intervention**: shipping **a component library or design tokens (Implementation-layer artifacts)** alone won't fill the Principle-layer hollow — parts lined up without a unifying thought behind them leaves every designer running on their own principles. **Spin up Principle-layer language work in the organization** — assign someone to write themes / principles, someone to keep using them, someone to revise them. A design system works **only when the Principle-layer language (themes, principles) and the Implementation-layer artifacts (components) are both in place** — either half alone is not enough.
 
@@ -169,7 +174,8 @@ The interventions that fill layer-hollows can also be designed symmetrically.
 
 | Symptom | Product-side intervention | Organization-side intervention |
 |---|---|---|
-| Hollow Intermediate | Stand up one IA owner | Stand up one Intermediate translator |
+| Principle ↔ Structure transformation stalled | Stand up one IA owner | Stand up one Principle ↔ Structure transformer |
+| Structure ↔ Implementation transformation stalled | Assign a design-system operator | Assign a Structure ↔ Implementation transformer (Tech Lead, etc.) |
 | Absent Principle | Document themes / principles / prohibitions | Document strategy / priorities / what-we-won't-build |
 | Scattered Implementation | Component library / design tokens | Codebase conventions / test infrastructure / doc standards |
 
@@ -184,12 +190,12 @@ Treating product and organization as isomorphic layer structures changes:
 1. **Organization-side leaders join product-improvement discussions.** Fixing "users get lost" requires not just UX designers but organization-side management at the table — to fix both sides together.
 2. **Product layer-diagnosis comes before organizational change.** Before "reorganizing the org," observe "where is the product distorted." Many reorgs proceed without reading product symptoms and produce no effect on the product.
 3. **Design principles and strategy principles get managed in the same document.** Product Principle and organizational Principle are essentially the same decision-history record. There's no good reason to manage them on separate pages.
-4. **UX designers get a voice in organizational design.** Organizing the product's Intermediate layer is isomorphic to organizing the organization's Intermediate. UX designers are, structurally, **organizational designers**.
-5. **"Adding a feature" discussions automatically become "which part of the org takes responsibility" discussions.** Adding a feature to the product's Intermediate layer without an owning unit defined on the organization side should not be allowed.
+4. **UX designers get a voice in organizational design.** Organizing the product's Structure layer is isomorphic to organizing the organization's Structure layer. UX designers are, structurally, **organizational designers**.
+5. **"Adding a feature" discussions automatically become "which part of the org takes responsibility" discussions.** Adding a feature to the product's Structure layer without an owning unit defined on the organization side should not be allowed.
 
 ## What's next
 
-Organization described as a 3-axis topology × 3-layer structure, plus the same three layers reflected in the product. The observation targets — code, people, organization, product — are now all in place.
+Organization described as a 3-axis topology × 3 layers + 2 transformations, plus the same 3 layers + 2 transformations reflected in the product. The observation targets — code, people, organization, product — are now all in place.
 
 But knowing what to observe is different from knowing **what to do** about it. 1-on-1s, pair programming, code review, organizational change — how do these interventions sit on top of the book's three-layer frame?
 
