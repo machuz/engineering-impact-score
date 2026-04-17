@@ -27,9 +27,9 @@ In the introduction, "structure" was named as referring to three objects: code, 
 
 | | Organizational layer | Product layer |
 |---|---|---|
-| **Implementation** | Code, features, operations | Screens, operations, micro-interactions |
+| **Implementation** | Code, features, operations | Screens, operations, micro-interactions, APIs |
 | **Intermediate** | Architecture, design, translation | Information architecture, transitions, state models, feature organization |
-| **Principle** | Strategy, worldview, what we won't build | Themes, design principles, UX principles, what we won't build |
+| **Principle** | Strategy, worldview, thinking | Themes, design principles, UX principles, what we won't build |
 
 The chapter's central claim: **the fourth (product structure) is isomorphic to the third (organizational layer structure).**
 
@@ -91,6 +91,14 @@ Observation targets:
 - **Internal thought consistency**: do multiple principles contradict each other; are different feature sets designed under the same principles
 
 Working axis: **can someone explain what this decision is for, and is the thought internally consistent.** Because AI can't make Principle-layer calls, the human decision history needs to be visible — same as the organization's Principle layer.
+
+> **If not a single theme, UI principle, or UX principle has been written down — that state is more urgent than the next feature meeting.** This is not "an observation target that's pending"; it is **the absence of any reference point for decisions.** A product stacked without a Principle layer becomes motion without direction. **It's fair to say outright: you are probably drifting.**
+>
+> And Principle-layer artifacts are not write-once. **Document them, hold them up as a team, and the moment a contradiction surfaces in discussion, replace or reorganize on the spot** — this cycle is the Principle layer itself. A document written once and never cited produces the same symptom as its absence. Only living principles function as Principle-layer artifacts.
+>
+> That said, **bloat doesn't function either.** If the volume and granularity exceed what a team can actually hold up day to day, it won't reach the floor's decisions no matter how precisely it's written. **Short, quotable, easy to rewrite** — that's the practical spec for the Principle layer. A single page of principles actually shaping this month's decisions is stronger as a Principle layer than a grand thought system sitting in a drawer.
+>
+> A practical rule of thumb: **cap each principle set at no more than ten items.** Past that is a **signal to split** — usually multiple granularities or target domains have been mixed in. For example, consumer-facing (toC) and business-facing (toB) products carry different user assumptions and decision speeds, so they **usually function better as separate principle sets.** Forcing them into one tends to produce abstractions that cut for neither.
 
 ### Consistency lives on two axes
 
