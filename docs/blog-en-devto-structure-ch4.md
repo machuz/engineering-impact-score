@@ -170,6 +170,8 @@ Many technical leaders eventually become fluent at the **Structure ↔ Implement
 
 A transformation coach stands in front of **people who already have the lower transformation** and hands them the upper one they need to cross next. The coach doesn't execute transformation themselves. They produce people who can. **Installing the capability to carry transformation into other human beings** — that's the transformation coach's job.
 
+![Bill Campbell — the strongest transformation coach](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch4-bill-campbell-coach-en.svg)
+
 > **The strongest transformation coach — Bill Campbell (*Trillion Dollar Coach*)**
 >
 > Bill Campbell, who coached the leaders of Apple, Google, and Intuit for decades, **wrote no code, set no strategy, and didn't execute transformation himself. He was a coach.** The people he was working with already had technical backgrounds and could carry the Structure ↔ Implementation transformation, but as CEOs they were getting stuck on the Principle ↔ Structure transformation. Bill's single function was to dissolve that blockage and **set them up so they themselves could carry the transformation.** From that one function, the resulting value was reasonably called "a trillion dollars."
