@@ -4,7 +4,7 @@ title: "第9章 —— OrbitLens への接続"
 
 > **この章のスコープ（骨子）**
 >
-> 観測を人力で回す限界、そこで SaaS（ace-orbit）が立ち上がる。観測が SaaS になる瞬間を論理化する。orbitlens（全小文字、法人は Orbitlens, Inc.）の位置付け。
+> 観測を人力で回す限界、そこで SaaS（ace-orbit）が立ち上がる。観測が SaaS になる瞬間を論理化する。OrbitLens（外部表記。法人は Orbitlens, Inc.）の位置付け。
 
 ---
 
@@ -27,9 +27,11 @@ title: "第9章 —— OrbitLens への接続"
 - **時間系列リスク予測** — Fragile Fortress の早期検知
 - **アラート** — 観測の変化率に対する通知
 
-## 4. ブランドとしての orbitlens
+## 4. ブランドとしての OrbitLens
 
-- 表記ルール：**全小文字 "orbitlens"**。法人は "Orbitlens, Inc."
+- 外部表記：**OrbitLens**（本書・LP・外部ドキュメント）
+- 内部表記：**orbitlens**（リポジトリ・コード・社内ドキュメント）
+- 法人登記：**Orbitlens, Inc.**
 - ace（EIS）／true（登録導線）／ideal（将来） の三層構成
 
 ## 5. 組織論が SaaS になる瞬間
