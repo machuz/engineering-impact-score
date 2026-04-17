@@ -39,6 +39,8 @@ The tree org chart can't display this kind of misalignment. Because it can't dis
 
 ## Principle ── transformation ── Structure ── transformation ── Implementation
 
+![3 Layers + 2 Transformations](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch4-three-layers-two-transformations-en.svg)
+
 An organization runs on three layers of differing abstraction. And **the layers don't connect by themselves**.
 
 **Principle ── transformation ── Structure ── transformation ── Implementation**
