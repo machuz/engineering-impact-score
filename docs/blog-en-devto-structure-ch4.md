@@ -269,7 +269,14 @@ Working backwards from this prediction, organizations should prepare:
 
 1. **Design Implementation to be AI-amplified**: structure the codebase, test infrastructure, doc standards so human Implementation members can leverage AI
 2. **Thicken Intermediate**: the mechanical translation load gets lighter with AI, but the need to deliberately grow **translators as accountable subjects** doesn't change — if anything, the differential between organizations now shows up in *the quality of the people bearing responsibility*, since the mechanical part is offloaded. The Producer → Emergent Architect evolution path connects here.
-3. **Document Principle**: write down "what we won't build." Precisely because AI can't make these calls, human judgment history needs to be visible
+3. **Document Principle**: preserve the product's decision axes as a **set of articulated principles**:
+   - **Themes** (what the product is for / where the bet is)
+   - **Design principles** (the product's aesthetic / philosophy)
+   - **UX principles** (priorities and prohibitions in user experience)
+   - **Non-functional requirements** (performance, reliability, security targets)
+   - **A "what we won't build" list**
+
+   Don't leave these as fire-and-forget docs. Continuously surface **where the current product / codebase / roadmap is violating the principles**, sharpen the principles themselves through discussion, and swap them out when needed. Principle is the layer AI can't make calls in — which is precisely why **both the content of the principles and the decision history around them** need to be visible.
 
 ## What Changes in the Field
 
