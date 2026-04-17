@@ -58,7 +58,7 @@ Artifact view captures only the fact that a rewrite happened. Structural view ex
 
 ## Three Axes for Reading Code as Structure
 
-This book uses three axes to read code as structure.
+This book uses three axes to read code as structure — **Design**, **Survival**, and **Change Pressure**. Survival itself breaks into two sub-measures.
 
 ### Design
 
@@ -70,33 +70,66 @@ The Design axis weights contributions by the centrality of the files touched. Ed
 
 EIS takes an architecture-file list from config and weights contributions accordingly.
 
-### Robust
-
-**Time-decayed survival volume.**
-
-Code survival isn't linear. 100% right after writing, 95% a month later, 60% a year later — it doesn't decay that smoothly. Sometimes there are short bursts of heavy rewriting, sometimes long plateaus of stability.
-
-Robust is defined as **survival volume multiplied by a time-decay function**. In EIS, the form is `exp(-days / τ)`, decaying with days elapsed since the write. Code that survives longer weighs more.
-
-This isn't "old code worship." It's not about being old — **the fact of having survived time** is itself information.
-
 ### Survival
+
+**How much of what the person wrote is still there.** Two sub-measures, with different meanings.
+
+#### Raw Survival
 
 **The fraction still attributed to the writer right now, after others' rewrites.**
 
-Survival is the simplest. `git blame` gives current attribution; aggregate by original author. Of 100 lines written six months ago, 30 still blame to me — Survival is 30%.
+Raw Survival is the simplest. `git blame` gives current attribution; aggregate by original author. Of 100 lines written six months ago, 30 still blame to me — Raw Survival is 30%.
 
-Survival carries the most information when combined with Design contribution. **Survival on peripheral files** and **survival on central files** mean different things.
+#### Robust Survival
+
+**Survival volume with time-decay weighting.**
+
+Raw Survival naively counts "lines still there." By itself, a line written five years ago and a line written last week each count as one line. That means **time-in-tenure inflates the number** — you can game it by sticking around long enough.
+
+Robust Survival fixes this by weighting every surviving line by **how long ago it was written**. In EIS, the weight takes the form `exp(-days / τ)` (`days` = elapsed days, `τ` = decay constant). **Older lines weigh less.**
+
+Two design intentions:
+
+1. **Game-resistance**: tenure alone can't pile up the score. Contribution from old lines fades over time.
+2. **Weight on the present**: codebases evolve. Weighting **recently-written lines that are still alive** higher lets contribution to the *current* structure show through.
+
+#### Why Split Raw and Robust
+
+Raw Survival alone can't distinguish "**code that's been there a long time**" from "**code written recently that's still in use**." Putting Robust next to Raw reveals the **temporal breakdown** of survival for the first time.
+
+But "been there a long time" doesn't automatically mean "contributed to structure." It may simply be **surviving because no one touches it**. Raw and Robust side by side can't fully answer that. What settles it is the next axis — change pressure.
+
+### Change Pressure
+
+**How much change is concentrated in a given area.**
+
+The definition is simple:
+
+```
+change_pressure = commits_touching_module / module_LOC
+```
+
+Divide the commits that touched the module over a period by the module's size (LOC). A large module with many commits may still have ordinary pressure; a small module with the same commit count has high pressure.
+
+Change pressure matters because it can **flip the interpretation of Survival**:
+
+- High Survival in a **high-pressure** region → the code is **enduring under active change pressure**. Real skeleton.
+- High Survival in a **low-pressure** region → the code is **not enduring; it's just untouched**. Possibly frozen debt.
+
+Evaluate Survival alone, and the second kind of writer gets treated as skeleton-builder by mistake. Layering change pressure on top lets you tell **robust skeleton** from **frozen-and-avoided territory**.
 
 ### How the Three Axes Relate
 
 The three aren't independent. They fill each other in.
 
-- High Design, low Survival → Touched the center but couldn't anchor it
-- Low Design, high Survival → Wrote long-lived code in peripheral areas
-- High Design and high Survival → Carried the organization's skeleton — an Anchor
+- Design ↑ + Survival ↓ → Touched the center but couldn't anchor it
+- Design ↓ + Survival ↑ → Wrote long-lived code in peripheral areas
+- Design ↑ + Robust Survival ↑ + **Change Pressure ↑** → **a real Anchor** (skeleton enduring under pressure)
+- Design ↑ + Raw Survival ↑ + **Change Pressure ↓** → **Fragile skeleton** (surviving only because nothing touches it)
 
 Evaluating on one axis alone always distorts. **Seeing the three simultaneously is what makes the structure speakable**.
+
+> Change pressure is the axis that turns EIS from a mere "impact metric" into an **engineering risk detector**. In this book it's one of three axes; in the risk-detection context it plays a lead role on its own.
 
 ## Why Code Gets Rewritten
 
@@ -132,28 +165,36 @@ Don't collapse rewriting into one number. **Read the gradient** — these four b
 
 ## Git Archaeology: A Concrete Sketch
 
-How do you actually compute Design / Robust / Survival from a Git repo? The procedure at a conceptual level:
+How do you actually compute Design / Survival / Change Pressure from a Git repo? The procedure at a conceptual level:
 
 ```
 1. git log --numstat --all           # All commit change volumes
    → (author, file, +/-) per commit
 
 2. git blame <file> at HEAD          # Current attribution per file
-   → For surviving lines, who wrote them
+   → Raw Survival
+     (surviving lines, by original author)
 
 3. Apply exp(-days/τ) per line       # Time-decay factor
    → Robust Survival
+     (Raw Survival weighted by time decay)
 
 4. Design weight: weight each commit
    by architecture-central file list
    → Design contribution
 
-5. Cleanup detection:
+5. Change Pressure:
+   per module, compute
+   commits_touching_module / module_LOC
+   → Change Pressure
+     (separates "endured" from "frozen" Survival)
+
+6. Cleanup detection:
    Detect commits rewriting the
    previous (other) commit
    → Debt Cleanup
 
-6. Ownership map:
+7. Ownership map:
    Aggregate blame ratios per module
    → Indispensability (bus factor)
 ```
@@ -178,7 +219,7 @@ This is what "**reading structurally, the same person wears a different face dep
 
 When code becomes readable as structure, these change:
 
-1. **Code review vocabulary shifts.** "This code is clean" becomes "This code contributes to the Design layer / seems likely to be Robust."
+1. **Code review vocabulary shifts.** "This code is clean" becomes "This code contributes to the Design layer / seems likely to survive robustly / is written in a high-pressure region."
 2. **Flashy pre-launch contribution separates from contribution that survives six months later.** Short-term and long-term output become visible on different indicators.
 3. **Refactoring becomes evaluable for the first time.** With a Debt Cleanup axis, "this quarter we reduced debt by 30% through cleanup" becomes sayable.
 4. **Staffing a new project changes.** Whether you need an Anchor, a Cleaner, or a Producer becomes an axis-level decision.
