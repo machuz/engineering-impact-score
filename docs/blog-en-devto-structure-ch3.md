@@ -107,7 +107,7 @@ Postures split into two:
 - **Refinement posture** — constraint sense toward existing complexity. Strengthens structure through refinement. Assumes coexistence with what's already there.
 - **Exploration posture** — always probes alternative directions. Doesn't get pulled back by the existing structure, and keeps asking *which structure will actually endure*.
 
-> **Origin and posture are different things, but they're conceptually linked**: an Inheritance Architect (origin) tends to take the refinement posture, an Emergent Architect (origin) tends to take the exploration posture — these are tendencies. But **anyone can take either posture, and they mix.** Origin is fixed at one's lineage; **the posture taken in this very moment is chosen.**
+> **Lineage and posture are different things, but they're conceptually linked**: an Inheritance Architect (lineage) **typically tends to take** the refinement posture, an Emergent Architect (lineage) **typically tends to take** the exploration posture — these are tendencies. But **anyone can take either posture, and they mix.** Lineage is fixed as one's origin; **the posture taken in this very moment is chosen.**
 
 **An Architect's origin is fixed, but postures mix inside the same person.** The more senior an Architect is, the more fluidly they switch postures by situation:
 
