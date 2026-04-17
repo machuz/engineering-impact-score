@@ -210,7 +210,7 @@ The most dangerous state is measuring only activity. Teams that optimize for dep
 ```bash
 brew tap machuz/tap && brew install eis
 cd your-repo
-eis
+eis analyze .
 ```
 
 No API keys. No AI tokens. No SaaS integration. Just `git log` and `git blame`.
