@@ -119,7 +119,7 @@ Let's state this up front: **a thought doesn't emerge from customer voices or pr
 2. Against that problem, **aesthetics and philosophy** (how we want to be, what we find beautiful, what we prioritize) form the **prototype of the thought**.
 3. That prototype is then **honed through customer voices and problem research**.
 
-This is the only order in which a thought stands up. The reverse — a thought emerging from averaging voices or the greatest common denominator of problems — doesn't happen. A Principle layer is **a prototype someone stood up with ("this is how it should be"), and then had sharpened through contact with reality.**
+This is the only order in which a thought stands up. The reverse — a thought emerging from averaging voices or the greatest common denominator of problems — is impossible. A Principle layer is **a prototype someone established ("this is how it should be") that was then sharpened through contact with reality.**
 
 The distinction that matters: **a thought that won't bend and a thought that just wavers are different problems.**
 
@@ -128,7 +128,7 @@ The distinction that matters: **a thought that won't bend and a thought that jus
 
 Both break the organization. The difference is **strength**. A thought held with conviction is **verified through obsession** — it answers many doubts, absorbs contradictions, and only what survives that is worth holding. If it bends *after* that obsession, that's **adaptation**. If it bends at every discussion, every customer voice, that's **lack of spine**. The strength of verification separates the two.
 
-**A Principle layer's health reads as "the history of how it changed."** If the record says "six months ago this principle met counter-evidence X and was reshaped into form Y," that's adaptation. If it says "somehow we were saying something different, without noticing," that's wavering. The same applies to an organization's Principle layer — if strategy dissolves outward into customer and investor expectations, the organization's Principle layer is hollow too. A strategy without the trace of obsession isn't a strategy; it's **a reflection of external voices.**
+**A Principle layer's health reads as "the history of how it changed."** If the record says "six months ago this principle met counter-evidence X and was reshaped into form Y," that's adaptation. If you find that "somehow we were saying something different, without noticing," that's wavering. The same applies to an organization's Principle layer — if strategy dissolves outward into customer and investor expectations, the organization's Principle layer is hollow too. A strategy without the trace of obsession isn't a strategy; it's **a reflection of external voices.**
 
 ### Consistency lives on two axes
 
