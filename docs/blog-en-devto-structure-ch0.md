@@ -9,6 +9,8 @@ tags: management, leadership, engineering, culture
 
 ---
 
+> **Scope of this chapter**: thinking layer (shifting how we look at organizations from evaluation to observation).
+
 ## What This Book Is About
 
 Engineering org theory has, for a long time, taken **people** as its subject.
@@ -20,6 +22,16 @@ This book steps off that subject, once.
 What we handle is not "people" but **the structures people produce**, **the layers those structures run on**, and **the connections between layers**. People stand on top of these — but the object of observation and design is structure, not the person.
 
 The title — *Structure-Driven Engineering Organization Theory* — is a direct statement of that.
+
+### What "structure" refers to in this book
+
+This book uses the word "structure" frequently. To avoid conflation, three distinct objects are named upfront:
+
+1. **The structure of code** — chapter 2. Read along three axes: Design / Survival / Change Pressure.
+2. **The structural model of people** — chapter 3. The Role × Style × State three-axis topology.
+3. **The layer structure of organizations** — chapter 4. Implementation / Intermediate / Principle.
+
+The three are different objects, but the book's central claim is that **all three can be handled with the same "observe → name → design" practice.** When "structure" appears in the text, infer from context which of these three it points to.
 
 ## Where Existing Org Theory Breaks
 
@@ -222,6 +234,17 @@ So new vocabulary is introduced deliberately:
 - [**git-archaeology — Observing Gravity, Civilization, and the Future of AI from the Strata of Code**](https://zenn.dev/machuz/books/git-archaeology) (Zenn Book, Japanese) — English dev.to series also available.
 
 Reading it first deepens the EIS context later, but **it's not required**. All terms this book needs will be redefined in Chapter 1 and Chapter 2. Consult it only when you're curious.
+
+### Relationship to Existing Org Theory
+
+This book doesn't reject existing org theory. Instead, it tries to **place much of that theory back on top of observation**.
+
+- **Conway's Law (organizational structure mirrors architecture)** — this book provides a means to **see Conway's Law-described correlations weekly through Git history × EIS**. Its contribution sits on the side of making the theory observable.
+- **Team Topologies (designing organizations through flow efficiency and cognitive load)** — the layer structure here (Implementation / Intermediate / Principle) is a different cut from Team Topologies' team types and is meant to be used together. Layer is the **abstraction-level** axis; Team Topologies is the **responsibility-type** axis.
+- **Staff Engineer literature (Will Larson and others)** — this book's Role × Layer takes Staff Engineer's archetype discussion and generalizes it. Tech Lead / Architect / Solver / Right Hand variants are adopted as-is.
+- **Wardley Mapping (strategy via the evolution stage of components)** — pairs naturally with this book's AI-era reshaping prediction. This book's scope is narrower: it stays on people and organizational placement.
+
+The difference from these is that this book **assumes observation as a routine operation**. Many org theories are correct as theories but never required **data you could check weekly** on the floor. This book fills that gap with EIS. Put another way: it tries to **turn org theory into a science you can measure every week.**
 
 The point of introducing new vocabulary is singular: **to give names to things that couldn't be observed before**. The moment a name exists, conversation becomes possible. The moment conversation is possible, design becomes possible. The moment design is possible, it becomes culture.
 

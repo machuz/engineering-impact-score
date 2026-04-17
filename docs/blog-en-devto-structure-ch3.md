@@ -9,6 +9,8 @@ tags: management, leadership, engineering, career
 
 ---
 
+> **Scope of this chapter**: design layer (assembling the vocabulary to describe people as observable three-axis types).
+
 ## The Limit of Seeing People as "Ability"
 
 Engineering organizations discuss people through the language of **ability**.

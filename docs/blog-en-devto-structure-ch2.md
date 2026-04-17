@@ -9,6 +9,8 @@ tags: engineering, leadership, git, career
 
 ---
 
+> **Scope of this chapter**: design layer (defining the observational axes for reading code as structure rather than artifact).
+
 ## Is Code an Artifact, or a Structure?
 
 Ask most organizations "what's this engineer's output?" and you get:
