@@ -95,6 +95,8 @@ Working axis: **can someone explain what this decision is for, and is the though
 > **If not a single theme, UI principle, or UX principle has been written down — that state is more urgent than the next feature meeting.** This is not "an observation target that's pending"; it is **the absence of any reference point for decisions.** A product stacked without a Principle layer becomes motion without direction. **It's fair to say outright: you are probably drifting.**
 >
 > And Principle-layer artifacts are not write-once. **Document them, hold them up as a team, and the moment a contradiction surfaces in discussion, replace or reorganize on the spot** — this cycle is the Principle layer itself. A document written once and never cited produces the same symptom as its absence. Only living principles function as Principle-layer artifacts.
+>
+> That said, **bloat doesn't function either.** If the volume and granularity exceed what a team can actually hold up day to day, it won't reach the floor's decisions no matter how precisely it's written. **Short, quotable, easy to rewrite** — that's the practical spec for the Principle layer. A single page of principles actually shaping this month's decisions is stronger as a Principle layer than a grand thought system sitting in a drawer.
 
 ### Consistency lives on two axes
 
