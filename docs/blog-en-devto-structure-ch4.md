@@ -47,6 +47,8 @@ The layer that **converses with both abstract and concrete**.
 
 The intermediate layer translates the "why" descending from Principle into "how" the Implementation layer can act on, and translates "doesn't work" / "breaks" rising from Implementation into "constraints" the Principle layer can judge against. **Translation's main battlefield is here.**
 
+There's a third function the Intermediate layer carries: **keeping the fire alive** — translating between layers so that decisions made in one layer don't extinguish the morale of another. Covered in the "The Intermediate Layer Keeps the Fire Alive" section below.
+
 ### Principle
 
 The layer of **strategy, vision, worldview**.
@@ -90,6 +92,44 @@ Typical translators in organizations:
 - Strong **Architects** (live in Intermediate, translate to both Implementation and Principle)
 
 > Without translators, large organizations don't function. In organizations without translators, Principle's intent doesn't reach the floor and the floor's voice doesn't reach the executives. **Absence of translation isn't a communication shortage — it's a structural gap.**
+
+### The Intermediate Layer Keeps the Fire Alive
+
+The role of translation isn't only converting grammar. There's a second critical function: **keeping the fire alive.**
+
+By "fire" we mean the floor's morale, momentum, trust in their own work, conviction in what they're building — the **internal energy that drives doing the work.** An organization's productivity ultimately rests on the total amount of this fire.
+
+#### Decisions made in isolation tend to extinguish fire in other layers
+
+When Principle decides in isolation — strategic pivot, roadmap reshuffle, priority change — every decision is rational *within Principle*. But when those decisions reach Implementation untranslated, they land as: "**six months of my work is being thrown away**" / "**my judgment wasn't needed by the organization**." The fire goes out.
+
+When Implementation raises a voice in isolation — "this design will break," "this deadline is impossible" — the concerns are legitimate *within Implementation*. But when they reach Principle untranslated, they get processed as: "**engineers are complaining**" / "**more negativity**." The voice's own fire goes out, and the next person to raise a concern stops bothering.
+
+Each layer's isolated decision is correct from inside that layer. **What's wrong is the absence of translation on the path between layers.** Without translation, a correct decision in one layer arrives in another layer in a form that puts out the fire.
+
+#### Intermediate sits on the propagation path of fire
+
+People in the Intermediate layer can **predict in advance** how Principle's decision will land in Implementation. So instead of pushing it down as-is, they deliver it in a form that doesn't extinguish fire:
+
+- Instead of "six months of my work is being thrown away," they deliver: "What you built (X) remains as the foundation for the new direction (Y). Y stands on top of X."
+- Instead of "more negativity," they elevate: "The Implementation-side concern can be reconstructed as decision input Z for Principle."
+
+This isn't "messaging" or "softer communication." It's **redesigning the decision itself so meaning isn't lost between layers.**
+
+#### Fire can be amplified, not just preserved
+
+Good translation doesn't only **prevent** fire from going out — it can **amplify** it.
+
+- Convert small Implementation wins (bug fix, refactor, test additions) into a form Principle can read: "This accumulated cleanup will speed up next-quarter feature delivery by 30%."
+- Translate Principle's vision into a granularity Implementation hands can engage with: "The first line of code on this screen connects to the moment a user first understands their own organization."
+
+Carrying the felt sense that the work matters — that act itself amplifies fire.
+
+#### The real cost of layer mismatch
+
+In organizations with a hollow Intermediate layer, each layer is making locally-correct decisions, yet **the fire of the organization as a whole gradually goes down.** "Everyone is working in good faith, yet somehow we don't move forward" — what most organizations call this state is, almost certainly, this.
+
+> Layers have no hierarchy. But **they can extinguish the fire of other layers, or amplify it.** The Intermediate layer sits on that propagation path.
 
 ### Translators Are Hard to Evaluate
 
