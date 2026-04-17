@@ -120,7 +120,7 @@ Postures split into two:
 
 - Signal: Quality ↑, Prod ○
 - Field picture:
-  - "Who wrote this part?" "X" "Yeah, figures…"
+  - "Who wrote this schema?" "X." "**Figures. That's X for you.**" — and the reason it holds clicks into place
   - In code review, gives feedback that passes the design backbone through
   - Not flashy, but anywhere they touch becomes organizational bone
   - When an Anchor leaves, that region loses gravity for years
@@ -251,9 +251,9 @@ Organizations often have **people whose talent is obvious, but who are somehow s
 
 Read on the three axes, this reveals itself as specific combinations:
 
-- **Strong Role × Weak Style** — e.g., an Architect candidate in Spread. A placement or role-design failure.
-- **Role × Domain mismatch** — e.g., Inheritance Architect placed on frontend; Emergent Architect crammed into backend.
-- **State misread** — e.g., someone actually Growing being mistaken for Fragile by those around them.
+- **Strong Role × weak Style** — someone whose makeup is Anchor / Inheritance Architect, but emergency handling and coordination meetings drain their days until Style collapses to Spread. "This person should be sitting deep, not sprinting thin every day." A placement failure or task-slicing failure.
+- **Posture locked into one mode** — a backend Inheritance Architect who led the company's core platform gets assigned to lead the first-ever toC native app. On the backend, their origin and their domain fit cleanly, and years of success followed. But they carry the same Inheritance posture into the new domain, trying to port existing abstractions wholesale. Frontend / mobile feedback doesn't land; rewrites pile up. **The failure isn't the origin — it's the posture locked into a single mode.** The rule from the previous section — "postures mix in execution" — can't get through, because past success keeps them from doubting it.
+- **State misread** — an Architect candidate whose commit count dropped this quarter while Quality steadily rose. They're in Growing; the surrounding environment reads it as "low output → stalling / Fragile-ish" and lowers their evaluation.
 
 None of these are solved by **"try harder" interventions**. Change placement. Change the domain. Train the Style. Structural interventions work.
 
