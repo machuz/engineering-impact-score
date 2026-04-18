@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="540" viewBox="0 0 720 540">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+      .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    </style>
+    <linearGradient id="culture-area" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d3869b" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#d3869b" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="reflex-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b8bb26" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#b8bb26" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="720" height="540" rx="12" fill="#1d2021"/>
+  <rect x="0" y="0" width="4" height="540" rx="2" fill="#8ec07c"/>
+  <text x="696" y="24" text-anchor="end" class="mono" fill="#504945" font-size="10">Culture Mechanism · ch7</text>
+
+  <text x="360" y="46" text-anchor="middle" class="sans" fill="#ebdbb2" font-size="22" font-weight="800" letter-spacing="1.2">Culture = The Time-Integral of Interventions</text>
+  <text x="360" y="68" text-anchor="middle" class="sans" fill="#928374" font-size="12">Individual interventions accumulate, shifting from conscious choice to reflex</text>
+
+  <rect x="80" y="110" width="580" height="290" fill="none" stroke="#3c3836" stroke-width="1"/>
+
+  <rect x="80" y="110" width="580" height="90" fill="url(#reflex-bg)"/>
+  <line x1="80" y1="200" x2="660" y2="200" stroke="#b8bb26" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="668" y="204" class="sans" fill="#b8bb26" font-size="11" font-weight="700">Level 4</text>
+  <text x="668" y="216" class="mono" fill="#7c6f64" font-size="9">reflex threshold</text>
+
+  <text x="90" y="130" class="sans" fill="#b8bb26" font-size="12" font-weight="800">Culture = organizational reflex</text>
+  <text x="90" y="148" class="sans" fill="#7c6f64" font-size="10">Vocabulary used without thinking. Structure continues even when anyone leaves.</text>
+
+  <path d="M 80 380
+           Q 180 372, 240 355
+           Q 320 335, 380 290
+           Q 440 240, 500 200
+           Q 560 170, 620 140
+           L 660 130"
+        fill="none" stroke="#d3869b" stroke-width="3"/>
+
+  <path d="M 80 380
+           Q 180 372, 240 355
+           Q 320 335, 380 290
+           Q 440 240, 500 200
+           Q 560 170, 620 140
+           L 660 130
+           L 660 400
+           L 80 400 Z"
+        fill="url(#culture-area)"/>
+
+  <text x="340" y="300" class="sans" fill="#d3869b" font-size="12" font-weight="800">Cultural depth (time integral)</text>
+
+  <line x1="80" y1="400" x2="660" y2="400" stroke="#928374" stroke-width="1.5"/>
+  <text x="80" y="418" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">M0</text>
+  <text x="225" y="418" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">M3</text>
+  <text x="370" y="418" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">M6</text>
+  <text x="515" y="418" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">M9</text>
+  <text x="660" y="418" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">M12</text>
+
+  <g stroke="#83a598" stroke-width="1.5">
+    <line x1="100" y1="395" x2="100" y2="408"/>
+    <line x1="135" y1="395" x2="135" y2="408"/>
+    <line x1="165" y1="395" x2="165" y2="408"/>
+    <line x1="195" y1="395" x2="195" y2="408"/>
+    <line x1="230" y1="395" x2="230" y2="408"/>
+    <line x1="260" y1="395" x2="260" y2="408"/>
+    <line x1="295" y1="395" x2="295" y2="408"/>
+    <line x1="320" y1="395" x2="320" y2="408"/>
+    <line x1="355" y1="395" x2="355" y2="408"/>
+    <line x1="390" y1="395" x2="390" y2="408"/>
+    <line x1="420" y1="395" x2="420" y2="408"/>
+    <line x1="450" y1="395" x2="450" y2="408"/>
+    <line x1="485" y1="395" x2="485" y2="408"/>
+    <line x1="515" y1="395" x2="515" y2="408"/>
+    <line x1="545" y1="395" x2="545" y2="408"/>
+    <line x1="580" y1="395" x2="580" y2="408"/>
+    <line x1="610" y1="395" x2="610" y2="408"/>
+    <line x1="640" y1="395" x2="640" y2="408"/>
+  </g>
+
+  <text x="370" y="440" text-anchor="middle" class="sans" fill="#83a598" font-size="11" font-weight="700">Individual interventions (1-on-1 · pair programming · review · reorg)</text>
+  <text x="370" y="456" text-anchor="middle" class="sans" fill="#7c6f64" font-size="10">= the "operations" covered in chapter 6</text>
+
+  <rect x="40" y="476" width="640" height="46" rx="8" fill="#1d2021" stroke="#504945" stroke-width="1"/>
+  <text x="360" y="496" text-anchor="middle" class="sans" fill="#a89984" font-size="12">Culture only exists once interventions are integrated. Without integration — resetting each time — correct interventions evaporate.</text>
+  <text x="360" y="514" text-anchor="middle" class="sans" fill="#928374" font-size="10">The critical point from Level 3 (designable) to Level 4 (self-running) = the moment vocabulary shifts from "individual's possession" to "organization's reflex"</text>
+</svg>

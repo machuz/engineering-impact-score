@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+      .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="960" height="620" rx="12" fill="#1d2021"/>
+  <rect x="0" y="0" width="4" height="620" rx="2" fill="#8ec07c"/>
+  <text x="936" y="24" text-anchor="end" class="mono" fill="#504945" font-size="10">Culture Signals · ch7</text>
+
+  <text x="480" y="46" text-anchor="middle" class="sans" fill="#ebdbb2" font-size="22" font-weight="800" letter-spacing="1.2">Observing Culture — three buckets of signals</text>
+  <text x="480" y="68" text-anchor="middle" class="sans" fill="#928374" font-size="12">Culture isn't an adjective. With structure-driven vocabulary, its depth can be measured in signals.</text>
+
+  <!-- ============ Bucket 1: In-meeting signals ============ -->
+  <rect x="40" y="100" width="280" height="420" rx="10" fill="#282828" stroke="#fe8019" stroke-width="1.5"/>
+  <rect x="40" y="100" width="280" height="44" rx="10" fill="#fe8019"/>
+  <rect x="40" y="134" width="280" height="10" fill="#fe8019"/>
+  <text x="180" y="130" text-anchor="middle" class="sans" fill="#1d2021" font-size="15" font-weight="800">In-meeting signals</text>
+  <text x="180" y="162" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">transcripts &amp; wearables</text>
+
+  <line x1="60" y1="180" x2="300" y2="180" stroke="#3c3836" stroke-width="1"/>
+
+  <text x="60" y="204" class="sans" fill="#fe8019" font-size="11" font-weight="700">Source</text>
+  <text x="60" y="224" class="sans" fill="#ebdbb2" font-size="12">Meeting transcripts</text>
+  <text x="60" y="242" class="sans" fill="#ebdbb2" font-size="12">Wearable AI</text>
+
+  <line x1="60" y1="264" x2="300" y2="264" stroke="#3c3836" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <text x="60" y="288" class="sans" fill="#fe8019" font-size="11" font-weight="700">Main signals</text>
+  <text x="60" y="310" class="sans" fill="#ebdbb2" font-size="12">● "Which layer?"</text>
+  <text x="60" y="326" class="sans" fill="#928374" font-size="11">  utterance rate (per week)</text>
+  <text x="60" y="352" class="sans" fill="#ebdbb2" font-size="12">● Vocabulary adopters</text>
+  <text x="60" y="368" class="sans" fill="#928374" font-size="11">  adopters / team size</text>
+  <text x="60" y="394" class="sans" fill="#ebdbb2" font-size="12">● Conscious vs reflex</text>
+  <text x="60" y="410" class="sans" fill="#928374" font-size="11">  reflex = Level 4</text>
+  <text x="60" y="436" class="sans" fill="#ebdbb2" font-size="12">● Linguistic realignment</text>
+  <text x="60" y="452" class="sans" fill="#928374" font-size="11">  stop-the-discussion count</text>
+
+  <rect x="60" y="474" width="240" height="30" rx="15" fill="#1d2021" stroke="#fe8019" stroke-width="1.5"/>
+  <text x="180" y="494" text-anchor="middle" class="sans" fill="#fe8019" font-size="11" font-weight="700">Dark matter of decisions</text>
+
+  <!-- ============ Bucket 2: Code / PR signals ============ -->
+  <rect x="340" y="100" width="280" height="420" rx="10" fill="#282828" stroke="#fabd2f" stroke-width="1.5"/>
+  <rect x="340" y="100" width="280" height="44" rx="10" fill="#fabd2f"/>
+  <rect x="340" y="134" width="280" height="10" fill="#fabd2f"/>
+  <text x="480" y="130" text-anchor="middle" class="sans" fill="#1d2021" font-size="15" font-weight="800">Code / PR signals</text>
+  <text x="480" y="162" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">EIS + review analysis</text>
+
+  <line x1="360" y1="180" x2="600" y2="180" stroke="#3c3836" stroke-width="1"/>
+
+  <text x="360" y="204" class="sans" fill="#fabd2f" font-size="11" font-weight="700">Source</text>
+  <text x="360" y="224" class="sans" fill="#ebdbb2" font-size="12">EIS + review parsing</text>
+  <text x="360" y="242" class="sans" fill="#ebdbb2" font-size="12">Doc update history</text>
+
+  <line x1="360" y1="264" x2="600" y2="264" stroke="#3c3836" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <text x="360" y="288" class="sans" fill="#fabd2f" font-size="11" font-weight="700">Main signals</text>
+  <text x="360" y="310" class="sans" fill="#ebdbb2" font-size="12">● Review vocabulary rate</text>
+  <text x="360" y="326" class="sans" fill="#928374" font-size="11">  Design / Survival / Cleanup</text>
+  <text x="360" y="352" class="sans" fill="#ebdbb2" font-size="12">● RFC / design-principle update</text>
+  <text x="360" y="368" class="sans" fill="#928374" font-size="11">  frequency (monthly / quarterly)</text>
+  <text x="360" y="394" class="sans" fill="#ebdbb2" font-size="12">● Commit-message vocabulary</text>
+  <text x="360" y="410" class="sans" fill="#928374" font-size="11">  structural term count</text>
+  <text x="360" y="436" class="sans" fill="#ebdbb2" font-size="12">● Coupling with EIS signals</text>
+  <text x="360" y="452" class="sans" fill="#928374" font-size="11">  Design / Survival median</text>
+
+  <rect x="360" y="474" width="240" height="30" rx="15" fill="#1d2021" stroke="#fabd2f" stroke-width="1.5"/>
+  <text x="480" y="494" text-anchor="middle" class="sans" fill="#fabd2f" font-size="11" font-weight="700">Visible mass (code artifacts)</text>
+
+  <!-- ============ Bucket 3: Git archaeology ============ -->
+  <rect x="640" y="100" width="280" height="420" rx="10" fill="#282828" stroke="#d3869b" stroke-width="1.5"/>
+  <rect x="640" y="100" width="280" height="44" rx="10" fill="#d3869b"/>
+  <rect x="640" y="134" width="280" height="10" fill="#d3869b"/>
+  <text x="780" y="130" text-anchor="middle" class="sans" fill="#1d2021" font-size="15" font-weight="800">Git-archaeology signals</text>
+  <text x="780" y="162" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">full history, ex post</text>
+
+  <line x1="660" y1="180" x2="900" y2="180" stroke="#3c3836" stroke-width="1"/>
+
+  <text x="660" y="204" class="sans" fill="#d3869b" font-size="11" font-weight="700">Source</text>
+  <text x="660" y="224" class="sans" fill="#ebdbb2" font-size="12">Full history (past N months)</text>
+  <text x="660" y="242" class="sans" fill="#ebdbb2" font-size="12">Change over time</text>
+
+  <line x1="660" y1="264" x2="900" y2="264" stroke="#3c3836" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <text x="660" y="288" class="sans" fill="#d3869b" font-size="11" font-weight="700">Main signals</text>
+  <text x="660" y="310" class="sans" fill="#ebdbb2" font-size="12">● New-hire vocab curve</text>
+  <text x="660" y="326" class="sans" fill="#928374" font-size="11">  1st commit → 1 wk → 1 mo</text>
+  <text x="660" y="352" class="sans" fill="#ebdbb2" font-size="12">● Post-review Design lift</text>
+  <text x="660" y="368" class="sans" fill="#928374" font-size="11">  after a transformer touched it</text>
+  <text x="660" y="394" class="sans" fill="#ebdbb2" font-size="12">● Realignment ↔ Survival</text>
+  <text x="660" y="410" class="sans" fill="#928374" font-size="11">  correlation across time</text>
+  <text x="660" y="436" class="sans" fill="#ebdbb2" font-size="12">● Vocabulary lifespan</text>
+  <text x="660" y="452" class="sans" fill="#928374" font-size="11">  usage decay over time</text>
+
+  <rect x="660" y="474" width="240" height="30" rx="15" fill="#1d2021" stroke="#d3869b" stroke-width="1.5"/>
+  <text x="780" y="494" text-anchor="middle" class="sans" fill="#d3869b" font-size="11" font-weight="700">Temporal reading, ex post</text>
+
+  <!-- ============ Bottom band ============ -->
+  <rect x="40" y="540" width="880" height="60" rx="10" fill="#1d2021" stroke="#8ec07c" stroke-width="1.5"/>
+  <text x="480" y="564" text-anchor="middle" class="sans" fill="#8ec07c" font-size="13" font-weight="800">Combine the three buckets to keep watching whether the culture is holding</text>
+  <text x="480" y="584" text-anchor="middle" class="sans" fill="#928374" font-size="11">Culture emerges in numbers — not revenue or attrition, but on the structural-signal side</text>
+</svg>
