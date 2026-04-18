@@ -133,6 +133,20 @@ Across both Ace and Ideal, the following principles — **what the SaaS doesn't 
 
 Of the four stages — observation / interpretation / intervention / re-observation — the stage **humans run the intervention** is deliberately left outside the SaaS. That's the boundary that keeps human judgment from being outsourced to the product.
 
+### Designing so this doesn't turn into evaluation — enforced at the implementation level
+
+Chapter 8 argued that "tech first, literacy second, is the recipe for an accident." Ace's UI is designed to enforce that principle **at the implementation level** — carefully avoiding shapes that could turn into evaluation tools.
+
+Concretely, each organization account picks one of **three visibility modes**:
+
+- **Observation (default)** — anonymous. Members are shown as Member A, B, C… Structural patterns only; no individual total scores. Tuned for maximum psychological safety.
+- **Context** — names and roles become visible. Relative signals and trends are shown, but **individual totals are still hidden.** For understanding relationships.
+- **Full Insight** — full profiles and individual scores visible. A setting meant for operational decisions, adopted only with explicit organizational consent.
+
+The default being the most anonymous — **Observation** — is deliberate. **Information disclosure is staged, and carried by organizational consent** — that's Ace's posture. To structurally cut off the "my signal is being used to evaluate me without my knowledge" fear, the domain model carries full information, while **filtering happens at the presentation layer.** The opposite direction (trying to anonymize on top of fully-exposed data, and leaking on the way) is closed off at the source.
+
+Further, **how far an individual engineer shares their own signal is being designed as their own choice to make.** Not a frame where the organization unilaterally forces disclosure — rather, a frame that **respects the engineer's choice.** Don't full-disclose before the literacy is in place; open up gradually once it is. This is how the social-landing argument from chapter 8 is absorbed as a structural constraint in the UI itself.
+
 ## 8. What changes in the field
 
 **With Ace installed:**
