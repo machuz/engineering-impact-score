@@ -20,7 +20,7 @@
   <rect x="60" y="115" width="84" height="28" rx="14" fill="#1d2021" stroke="#7c6f64" stroke-width="1.5"/>
   <text x="102" y="134" text-anchor="middle" class="mono" fill="#a89984" font-size="13" font-weight="800">Level 0</text>
   <text x="166" y="135" class="sans" fill="#ebdbb2" font-size="16" font-weight="800">Process-dependent</text>
-  <text x="60" y="165" class="sans" fill="#928374" font-size="12">Running on Scrum, OKR, velocity. Observation only at behavior layer. Structure is invisible.</text>
+  <text x="60" y="165" class="sans" fill="#928374" font-size="12">Running on Scrum, OKR, velocity. Observation only at "behavior." Output and accumulation are invisible as structure.</text>
 
   <g transform="translate(480, 184)">
     <line x1="0" y1="0" x2="0" y2="14" stroke="#928374" stroke-width="1.5"/>

@@ -20,7 +20,7 @@
   <rect x="60" y="115" width="84" height="28" rx="14" fill="#1d2021" stroke="#7c6f64" stroke-width="1.5"/>
   <text x="102" y="134" text-anchor="middle" class="mono" fill="#a89984" font-size="13" font-weight="800">Level 0</text>
   <text x="166" y="135" class="jp" fill="#ebdbb2" font-size="16" font-weight="800">プロセス依存</text>
-  <text x="60" y="165" class="jp" fill="#928374" font-size="12">スクラム・OKR・ベロシティで代替。観測は行動層のみ。構造は見えていない</text>
+  <text x="60" y="165" class="jp" fill="#928374" font-size="12">スクラム・OKR・ベロシティで代替。観測は「行動」のみ。出力も蓄積も構造として見えていない</text>
 
   <!-- Arrow down -->
   <g transform="translate(480, 184)">

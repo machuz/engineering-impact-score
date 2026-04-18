@@ -29,7 +29,9 @@ That's the difference this chapter is about. A structure-driven organization tha
 
 The preceding chapters have given **vocabulary and implementations** for structure-driven work — observing with EIS, placing on layers, connecting with transformations, designing interventions across three target layers, sharing language as culture. Each of these is correct in itself. But an organization where these sit **side by side** works as long as a specific person is doing them, and vanishes when that person leaves.
 
-"Existing as an organization" means: **even when a specific person leaves, the structure is preserved.** To satisfy that, three conditions are necessary:
+"Existing as an organization" means: **even when a specific person leaves, the structure is preserved.** Going further — **people don't drive the structure; the structure drives people.** That's the real definition of an organization running as an OS.
+
+To satisfy that, three conditions are necessary:
 
 - **Reproducibility** — anyone observing reaches the same conclusion
 - **Observability** — the organization can read its own state
@@ -48,21 +50,19 @@ Miss any one and structure-driven work is only a life-support device.
 
 What secures reproducibility is **machine observation plus explicit layer definitions**. EIS's seven axes are computed deterministically from `git log` and `git blame`. The boundaries of Role × Style × State are pinned down in code (`archetype.go`). Whoever runs it, whenever, the same input returns the same output.
 
+But reproducibility isn't only about the **observation** matching. The deeper part is **the reproducibility of decisions** — whether the organization returns **the same judgment** for the same situation. Observation reproducibility (anyone sees the same conclusion) plus decision reproducibility (same situation → same judgment) together — only that gets the organization out of the "individual discretion game."
+
 Without reproducibility, "we observe structure-driven-ly" is **individually lyrical rhetoric**. For structure-driven work to stand up *as an OS*, it has to first get out of that personal territory.
 
 ---
 
 ## 2. Observability
 
-**Can the organization read its own state, in real time?**
-
-- Not just a dashboard — **observation that actually connects to decisions**.
-- Organizations that only learn their state *after* a problem appears have no observability.
-- Implementations: the seven axes of signals, per-layer health, transformation volume, records of linguistic realignment in meetings.
+**Can the organization read its own state, in real time?** Not just a dashboard — **observation that actually connects to decisions.** Organizations that only learn their state *after* a problem appears have no observability.
 
 Observability stands on top of reproducibility. Once machine observation has secured reproducibility, the next step is **continuously running it and hooking it into decisions.**
 
-### Code observation and decision observation — making dark matter visible
+### Extension: code observation and decision observation — making dark matter visible
 
 ![The reach of observation — code, decisions, dark matter](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch8-observability-dark-matter-en.svg)
 
@@ -100,6 +100,8 @@ Even with both, some dark matter remains — the human heart, accumulated trust,
 - "Which layer is that?" and "isn't that principle out of date?" get asked **from inside.**
 - Implementation: the "self-correcting property" introduced in chapter 7 — managing the vocabulary's lifespan, publishing observation data to the floor, decomposing interventions across three layers.
 
+Put it another way: **self-correction is the state where the loop "observe → interpret → intervene → re-observe" keeps running without external command.** The entity running the loop isn't management; it's the floor itself.
+
 Organizations without self-correction only change when external consultants or executives say so. When the orders stop, the chaos returns. Organizations that did acquire self-correction, on the other hand, **keep correcting themselves as long as the observation and vocabulary survive — even if anyone leaves.**
 
 Self-correction is the highest-order of the three, standing on top of reproducibility × observability. Even with observation working, if no one acts on it, observation becomes just another **wall value** — **the result is known, and nothing moves.**
@@ -127,7 +129,7 @@ All three together is what it takes for the organization to **run as an OS** —
 The journey from a pre-structure-driven organization to a Level-4 OS can be broken into five stages.
 
 - **Level 0 — Process-dependent**
-  Operating on existing frameworks: Scrum, OKR, velocity, story points. Observation is only at the behavior layer. Structure itself is invisible.
+  Operating on existing frameworks: Scrum, OKR, velocity, story points. Observation is only at **behavior**. **Output** and **accumulation** are both invisible as structure.
 - **Level 1 — Observation introduced**
   EIS (or equivalent observation) starts being read. Vocabulary like Survival / Design / Breadth enters a subset of the organization. Language still belongs to a few people.
 - **Level 2 — Language adopted**
@@ -138,6 +140,8 @@ The journey from a pre-structure-driven organization to a Level-4 OS can be brok
   The floor operates the vocabulary and the observation. Not executive fiat, but "isn't that principle outdated?" from inside. **The structure continues even when anyone leaves.**
 
 Level 4 is where the organization **runs structure-driven thinking as an OS**. This book's entire content is a map of the journey from Level 0 to Level 4.
+
+**The transition from Level 3 to Level 4 happens at the moment the vocabulary shifts from "something individuals possess" to "the organization's reflex."** At Level 3, people using the vocabulary are still *consciously* reaching for it. At Level 4, no one is conscious of it — the vocabulary has become the default setting of conversation. That's the critical point of a structure-driven organization.
 
 ---
 
@@ -155,6 +159,8 @@ When all three conditions are present:
    The dark matter of code is visible via EIS; the dark matter of meetings starts being visible via Plaud-type tools.
 5. **When someone leaves, culture and observation compensate.**
    Knowledge isn't concentrated in one person — it's recorded in structure and passed on to the next.
+6. **Organizations that don't satisfy these conditions collapse faster as they scale.**
+   Here "collapse" doesn't mean the company disappears. People keep getting paid, Slack keeps running, deployments keep going, revenue keeps coming in — from the outside, nothing looks broken. But **the organization is dead as a making organization.** Code that doesn't accumulate into structure gets mass-produced; decisions flip every week; transformers burn out and leave. The gap between "looks functional" and "actually dead" widens with scale, and becomes permanent in organizations that aren't running as an OS.
 
 ---
 
