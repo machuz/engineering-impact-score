@@ -33,6 +33,8 @@ Scene A only has the **wall vocabulary** (Ownership / Excellence / Ship it) — 
 
 ## Culture isn't a definition — it's how the vocabulary gets used
 
+**The interventions covered through chapter 6 — 1-on-1s, pair programming, reviews, reorgs — were individual operations.** When those operations accumulate over time and shift from **an individual's conscious choice** to **everyone's reflex**, that's when culture stands up. In other words, **culture is the time-integral of interventions**. However correct individual interventions are, if they don't get integrated — if they reset every time — there's no culture.
+
 Values, missions, slogans, credos — these are **the result of culture**, or its shadow, not culture itself. Pin them on the wall, broadcast them widely; if they never reach the floor's conversations, they don't exist.
 
 What culture actually is: **the vocabulary used in everyday conversation in this organization, and how it's used.**
@@ -158,6 +160,41 @@ The indicator is simple: **is "which layer is that?" asked from inside the team?
 These questions surfacing **naturally, from inside** = the culture's self-correction is working. This becomes a core indicator of chapter 8's "conditions of a structure-driven organization."
 
 Conversely, a culture that changes **only when executives or outside consultants say so** isn't really a culture — it's compliance with whichever order is current. The moment the orders stop, the confusion returns.
+
+---
+
+## Observing culture — culture can be measured in signals
+
+Culture gets discussed in black-and-white terms: "it's there" or "it isn't." But with the structure-driven vocabulary, **the depth of cultural adoption can be measured in signals**. This is the "conversation / daily language" region of the observability scope covered in the next chapter.
+
+**In-meeting signals** (captured via meeting transcripts / wearable AI):
+
+- How often "which layer is that?" / "which transformation?" gets asked (per week)
+- How many people in the team actually use the structural vocabulary (adopters / team total)
+- Whether the vocabulary is used **consciously** or **reflexively** — the latter is Level 4 (covered in chapter 8's maturity model)
+
+**Code / PR signals** (captured via EIS plus review-comment analysis):
+
+- Rate at which words like Design / Survival / Cleanup / Robust show up in code-review comments
+- Update frequency of RFCs and design-principle documents
+- Number of commit messages that contain structural vocabulary
+
+**Git-archaeology signals** (observable after the fact from history):
+
+- How a new hire's review vocabulary changes from first commit to 1 week and 1 month later
+- The post-review Design-contribution lift on reviews a transformer was involved in
+- Correlation between linguistic realignment in meetings ("which layer?") and subsequent Survival increase
+
+> **From the field — Before / After**
+>
+> A 12-month observation log of a 50-person engineering organization that **installed a culture**:
+>
+> - **Month 0 (Before)**: Code review is "LGTM" and nits. 1-on-1s open with "how are you?". Values are on the wall — cited in meetings exactly 0 times. Median EIS Design axis 28; no transformers identifiable.
+> - **Month 3**: Structure-first 1-on-1s introduced. Review vocabulary (Design / Robust / Cleanup) written down and shared. "Which layer is that?" appears 0–2 times a week — still only 1–2 people using it.
+> - **Month 6**: Vocabulary has spread through the team. 30% of reviews use structural vocabulary. Principle ↔ Structure transformers do "linguistic realignment" 5+ times a week in meetings. Median Design axis rises to 34.
+> - **Month 12 (After)**: New hires participate in conversations using structural vocabulary within one week. "Which layer is that?" 15+ times a week, used by everyone. Values are gone from the wall — replaced by the EIS per-layer dashboard on a shared screen. Median Design axis 45. The transformation coach's "changes in the people they worked with" log has been folded into evaluation.
+>
+> Culture isn't an adjective. **You can watch its emergence in numbers** — as long as those numbers live on the structural-signal side, not on the revenue-and-attrition side.
 
 ---
 
