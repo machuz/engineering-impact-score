@@ -117,6 +117,18 @@ When you open with structure, emotion lands *on top of* structure. "The code sta
 >
 > Emotion is valuable. But handling emotion for a year doesn't move a career. The only thing that eventually deepens the handling of emotion is securing time for structure first.
 
+### Observation is for understanding, not evaluation
+
+Putting structure at the front of a 1-on-1 invariably raises the question: *are we building a panopticon?* Quite the opposite. Opening with structure first is meant to **understand which direction the person has been investing time and energy in** — before anything else.
+
+- Production is low for a month — maybe they weren't slacking; maybe they were spending that time on Design or Survival trial-and-error.
+- Survival is low in a stretch — maybe the quality didn't collapse; maybe the situation genuinely demanded speed.
+- Breadth is wide while Design is thin — maybe they aren't scattering; maybe they're deliberately exploring multiple domains in an early phase.
+
+**Don't judge from the signals alone.** The signals are a map for reading **the direction of someone's effort**. Only once that direction is understood can an intervention land in a way that fits their effort. Interventions made without that understanding collapse back into top-down evaluation — **exactly the posture this book is trying to escape.**
+
+Opening a 1-on-1 with structure isn't there to check "what are you doing?" It's a way of saying **"I see what you've been facing into — I've read it."**
+
 ### Make it your own — a question
 
 > In the 1-on-1s you ran last week —
