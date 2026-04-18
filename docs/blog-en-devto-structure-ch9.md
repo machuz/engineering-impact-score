@@ -17,7 +17,7 @@ tags: management, leadership, product, engineering
 
 **Scene A — observation by hand, at its limit**
 
-An engineering organization of 120, with ~30 repositories spread across the codebase. At the start of the quarter the EM ran EIS on each repo, collected the JSONs locally, and visualized the Design median and the Fragile module distribution. The next week, a production incident hits a feature team. The EM wants "the latest numbers" — **the CLI itself comes back in minutes thanks to caching.** But joining the results across repos, diffing against the last run, piping the changes into Slack and the dashboard — **all of that is by hand.** By the time they're done, the incident has been resolved; the post-mortem ends up running on last month's observation. **The observation doesn't land in time for the decision.** Three months later, the EM stops observing — **not because the CLI is slow, but because the plumbing cost of continuous operation outweighs the decision benefit.**
+An engineering organization of 120, with ~30 repositories spread across the codebase. At the start of the quarter the EM ran EIS on each repo, collected the JSONs locally, and visualized the Design median and the Fragile module distribution. The next week, a production incident hits a feature team. The EM wants "the latest numbers" and reruns EIS. The CLI comes back in minutes. After that, **joining the results across repos, diffing against the last run, piping the changes into Slack and the dashboard — all of it is by hand.** By the time that's done, the incident has been resolved; the post-mortem ends up running on last month's observation. **The observation doesn't land in time for the decision.** Three months later, the EM stops observing — not from the cost of running the CLI, but from **the cost of keeping the continuous-operation plumbing assembled by hand** — which outweighs the decision benefit.
 
 **Scene B — the organization is running on an OS**
 
@@ -62,6 +62,8 @@ Ace is designed in three layers: **interpretation → intervention plumbing → 
 - **People × module join** — Conway's Law verification. Aligns and misalignments between the organizational chart and module boundaries
 - **Time-series risk prediction** — early warning for Fragile Fortress. Combines commit volatility and tested/untested survival to catch the trajectory
 - **Alerts** — notifications keyed to rate of change in observed signals
+
+The essence of this layer isn't "making things visible." It's **accelerating interpretation, breaking information down to the right granularity, raising referenceability, and making insight easier to extract.** Only when these are in place does observation data start functioning as material for decisions. If all you need is a raw JSON dump, the CLI is enough. The SaaS's role is to **rearrange observation into a shape that human cognition can land on easily.**
 
 **Intervention plumbing layer (the core of organization OS)**
 
@@ -122,11 +124,12 @@ Of the four stages — observation / interpretation / intervention / re-observat
 
 When a structure-driven organization runs on Ace, the following change:
 
-1. **Observational operating cost evaporates.** EIS re-runs on every PR merge, dashboards update. The world where an EM hand-massages CSVs locally is over.
-2. **Organizational change persists on a time axis.** Prior organization theory could say "the current health of the organization" but not "how it shifted from three months ago to now." Ace keeps change on the time axis.
-3. **Interventions escape personal dependency.** 1-on-1 templates, review vocabulary dictionaries, reorg checklists all live inside the SaaS. **The operating know-how that used to live in departing people's heads now stays in the organization.**
-4. **Culture signals become visible.** The three buckets defined in ch7 are unified in one dashboard. The depth of cultural adoption becomes readable as numbers.
-5. **Executives and the floor debate in the same language.** Boards and all-hands alike can speak with the same structural signals and the same three intervention layers.
+1. **Interpretation accelerates; insight becomes easier to extract.** Observation shifts from "looking at" to "reading from." Information is broken down at the right granularity; cross-layer and cross-time references become instantaneous. Open the dashboard and "which module is doing what" lands in the head.
+2. **Observational operating cost evaporates.** EIS re-runs on every PR merge, dashboards update. The world where an EM hand-massages CSVs locally is over.
+3. **Organizational change persists on a time axis.** Prior organization theory could say "the current health of the organization" but not "how it shifted from three months ago to now." Ace keeps change on the time axis.
+4. **Interventions escape personal dependency.** 1-on-1 templates, review vocabulary dictionaries, reorg checklists all live inside the SaaS. **The operating know-how that used to live in departing people's heads now stays in the organization.**
+5. **Culture signals become visible.** The three buckets defined in ch7 are unified in one dashboard. The depth of cultural adoption becomes readable as numbers.
+6. **Executives and the floor debate in the same language.** Boards and all-hands alike can speak with the same structural signals and the same three intervention layers.
 
 ## 8. What's next
 
