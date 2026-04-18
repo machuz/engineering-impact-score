@@ -5,7 +5,7 @@ description: "Slot weekly 1-on-1s into the calendar, ask 'how are things going?'
 tags: management, leadership, engineering, productivity
 ---
 
-*Slot weekly 1-on-1s into the calendar and ask "how are things going?" — the same person will still get stuck in the same place six months later. The intervention is trapped at the behavior layer.*
+*Six months of weekly "how are things going?" 1-on-1s won't move the organization one millimeter — the intervention is trapped at the behavior layer. The moment the conversation opens that way, it doesn't touch accumulation by a single gram.*
 
 *Cut with structure, not with emotion. That's the only intervention that moves organizations.*
 
@@ -19,27 +19,23 @@ Wednesday afternoon 1-on-1. The EM asks: "How are things?" The engineer thinks f
 
 The conversation is warm. The EM cares. They'll do this again next week. And **six months later, the same engineer will be reporting the same blockage.**
 
-What's missing in that exchange? **The intervention is confined to the behavior layer.** The concern, the reassurance, the next meeting — all of it pushes on "what you're doing this week." The *quality of what this person produces* and *their position inside the team's structure* — the **output** and **structure** layers — never came up once.
+What's missing in that exchange? **The intervention is confined to the behavior layer.** The concern, the reassurance, the next meeting — all of it pushes on "what you're doing this week." The *quality of what this person produces* and *what has accumulated from their work* — the **output** and **accumulation** layers — never came up once.
 
 ---
 
 ## The Three Layers of Intervention
 
+![Three layers of intervention — accumulation shapes behavior and output](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch6-three-intervention-layers-en.svg)
+
 Interventions aimed at an organization split into three layers, based on what they target:
 
 - **Behavior layer** — what someone is doing
 - **Output layer** — what got produced
-- **Structure layer** — what remains / how it connects
+- **Accumulation layer** — what remains, and how it connects into the conditions of the next behavior
 
-Be careful: **this is a different axis from the "Implementation / Structure / Principle" layers in chapter 4.** Let's mark the distinction up front:
+This is the core of structure-driven thinking — **these three layers are not equal**. **Accumulation shapes the conditions under which behavior and output form.** What has remained, and how it's connected, regulates what people on the ground actually do, and determines the quality of what comes out. So if you only intervene at the behavior layer, and accumulation doesn't shift, behavior reverts on its own.
 
-| | Chapter 4's three layers | This chapter's three layers |
-|---|---|---|
-| What axis | Level of abstraction in the organization | Target of the intervention |
-| Elements | Principle / Structure / Implementation | Behavior / Output / Structure |
-| "Structure" means | The middle layer between Principle and Implementation | Whatever remains / is connected after the fact |
-
-Both use the word "structure," but the **scopes are different**. Chapter 4 is vocabulary for *observing an organization as layers*; this chapter is vocabulary for *decomposing interventions*. Context tells them apart.
+Read in the other direction: **change accumulation, and behavior and output change on their own.** That's the causal direction this book calls "structure-driven." Traditional interventions fail because they run the causality the wrong way — change behavior, hope output improves, hope accumulation follows. The order is inverted.
 
 ### Behavior layer
 
@@ -47,7 +43,7 @@ Both use the word "structure," but the **scopes are different**. Chapter 4 is vo
 
 - Meetings, commits, review time, Slack comments, deploy frequency, on-call hours
 - Easy to observe, easy to change, effects measurable quickly
-- But — **changing behavior alone doesn't leave anything at the output or structure layers.**
+- But — **changing behavior alone doesn't leave anything at the output or accumulation layers.**
 
 "Let's cut meetings." "Let's be more casual on Slack." "Let's do more 1-on-1s." These are behavior-layer interventions. They have their place, but they rarely move organizations on their own.
 
@@ -61,15 +57,17 @@ Both use the word "structure," but the **scopes are different**. Chapter 4 is vo
 
 An RFC that nobody cites. A feature nobody uses after release. Minutes that don't get referenced. **Output that doesn't hook into later decisions or later implementation doesn't accumulate into structure.**
 
-### Structure layer
+### Accumulation layer
 
 **What remained. How things are connected.**
 
 - The seven EIS axes, layer placement, transformation paths, shared conventions, team shape, hiring bar
 - The heaviest layer. The hardest to change.
-- But — **when it changes, everything above it moves.**
+- But — **when this changes, behavior and output change on their own.**
 
-The structure layer is the state that appears **as the accumulated result of individual behaviors and outputs**. That's why you can't touch it directly. But the moment structure changes, the meaning of every behavior and output hanging off it changes too.
+The accumulation layer is the state that appears **as the accumulated result of individual behaviors and outputs** — and at the same time, **the ground that decides the conditions for the next generation of behavior and output.** It's hard to touch directly, but the moment it shifts, every behavior and every output hanging off it changes meaning.
+
+To design interventions in a structure-driven way, start from "**what do we want to accumulate?**" — not from "what behaviors should we change?"
 
 ### The principle: don't mix layers
 
@@ -78,7 +76,7 @@ The structure layer is the state that appears **as the accumulated result of ind
 - "Let's improve communication" → behavior / output / structure all mashed together. No one can tell where the effect is supposed to land
 - "**Increase 1-on-1 frequency**" → behavior layer
 - "**Create a rule that every decision gets written down**" → output layer
-- "**Reconfigure layer placement**" → structure layer
+- "**Reconfigure layer placement**" → accumulation layer
 
 Vague interventions end with "it kind of felt like it helped." Layer-tagged interventions can be **verified in the next observation cycle**.
 
@@ -91,7 +89,7 @@ The traditional 1-on-1 opens emotion-first: "How are things?" "Anything you're s
 Redesign: run the order **structure → output → behavior + emotion.**
 
 ```
-Opening 15 minutes — structure layer share
+Opening 15 minutes — accumulation layer share
   ・Last 3 months of EIS signals
     — Production / Survival / Design / Cleanup / Breadth / Quality / Indispensability
   ・Which layer they sit on (Implementation / Structure / Principle)
@@ -127,9 +125,19 @@ When you open with structure, emotion lands *on top of* structure. "The code sta
 
 > In the 1-on-1s you ran last week —
 >
-> - In how many of them did you spend **15+ minutes on the structure layer**?
+> - In how many of them did you spend **15+ minutes on the accumulation layer**?
 > - Could you concretely cite the **outputs** from the other person's last three months?
 > - Did any 1-on-1 that opened with "how are things?" end **still trapped at the behavior layer**?
+
+### Try this in tomorrow's 1-on-1
+
+> Spend the **first 15 minutes on accumulation only.**
+>
+> - If EIS is set up, share the person's last 3 months of signals (Production / Survival / Design / Cleanup / Breadth / Quality / Indispensability) as-is
+> - If EIS isn't there, ask only: "What has this person **left** over three months? Where is that output **cited** or **referenced**?"
+> - Emotions, blockers, next actions — push them to the back 30 minutes
+>
+> One try is enough to feel whether structure can ride into the conversation at all. That alone changes what a 1-on-1 means.
 
 ---
 
@@ -173,7 +181,7 @@ If every comment lands as an equal item, **nits drown structural concerns.** Mos
 - 🟡 **Non-blocking suggestion**: worth discussing, but this PR can ship without it.
 - 🔴 **Blocking**: structural concern. Affects Design / Survival / Quality.
 
-Just separating them visually is enough to lift review from behavior layer to structure layer.
+Just separating them visually is enough to lift review from behavior layer to accumulation layer.
 
 ---
 
@@ -181,7 +189,7 @@ Just separating them visually is enough to lift review from behavior layer to st
 
 "We're reorganizing" usually ends as a refactor of the tree diagram — boxes move, reporting lines re-draw, new titles get handed out. This is an **output-layer intervention.** The new org chart is the output; it can be evaluated at that moment. And **none of the structure has changed.**
 
-Redesign: **define the target of the reorg as a change in the structure layer.**
+Redesign: **define the target of the reorg as a change in the accumulation layer.**
 
 - Before rewriting the org chart, **draw the layer map** — who sits on which layer, who carries which transformation
 - State the goal in **layer-thinness / missing-transformation** language: "the Structure layer is thin," "the Principle ↔ Structure transformation has stalled"
@@ -199,11 +207,11 @@ Common observation: **behavior is busy, output is thin, structure shows Breadth 
 
 - **Behavior layer** — meeting attendance, participation, review turnaround all at or above average
 - **Output layer** — code volume exists but nothing that's landed as a feature
-- **Structure layer** — on EIS, only Breadth is high; Survival and Design are low (wide, shallow scatter)
+- **Accumulation layer** — on EIS, only Breadth is high; Survival and Design are low (wide, shallow scatter)
 
-Telling this person "work harder" or "focus more" without seeing the structure is a **behavior-layer intervention.** They're already busy. More activity doesn't tighten the scatter.
+Telling this person "work harder" or "focus more" without seeing the accumulation is a **behavior-layer intervention.** They're already busy. More activity doesn't tighten the scatter.
 
-The correct intervention is in the **structure layer**:
+The correct intervention is in the **accumulation layer**:
 
 - **Move the placement**: Breadth is excessive — reposition them on a specific layer or domain
 - **Change the type**: a scattered Producer may fit better as a Specialist settled into one area
@@ -224,6 +232,8 @@ Adding this three-layer intervention vocabulary to the organization shifts the f
 5. **Code review becomes a structural observation record.** LGTM counts get replaced by contribution to the Design layer.
 
 Cutting with structure instead of emotion — that's where this chapter lands.
+
+> **The reason an organization doesn't change, even after years of 1-on-1s, is not that the people are bad or lack talent. It's that the intervention has stayed pinned to the behavior layer — accumulation was never touched.**
 
 ---
 
