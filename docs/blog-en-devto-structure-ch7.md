@@ -33,6 +33,10 @@ Scene A only has the **wall vocabulary** (Ownership / Excellence / Ship it) — 
 
 ## Culture isn't a definition — it's how the vocabulary gets used
 
+**The interventions covered through chapter 6 — 1-on-1s, pair programming, reviews, reorgs — were individual operations.** When those operations accumulate over time and shift from **an individual's conscious choice** to **everyone's reflex**, that's when culture stands up. In other words, **culture is the time-integral of interventions**. However correct individual interventions are, if they don't get integrated — if they reset every time — there's no culture.
+
+![Culture = the time-integral of interventions](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch7-culture-integral-en.svg)
+
 Values, missions, slogans, credos — these are **the result of culture**, or its shadow, not culture itself. Pin them on the wall, broadcast them widely; if they never reach the floor's conversations, they don't exist.
 
 What culture actually is: **the vocabulary used in everyday conversation in this organization, and how it's used.**
@@ -145,6 +149,31 @@ Vocabulary management uses the same discipline as **software refactoring**:
 
 "We used to call it that" stops being an obstacle when the language itself is managed. **Intentionally maintaining the lifespan of vocabulary** is a condition of a healthy culture.
 
+> **From the field — growing a vocabulary through named principles**
+>
+> The design meetings of a philosophy-driven product (codename WLT) kept the product's philosophy and its expression split into two layers, both managed in the form **principle × prohibition × discussion hook**:
+>
+> - **Four philosophy principles** (what the product stands on): Exploration over Search / Continuity of Thought / World as Layers / Quiet Power
+> - **Five expression principles** (how that philosophy is expressed in the UI): Be the Stage / Emotion from Context / Quiet Catalyst / Emotional Minimalism / Let Identity Shine
+> - **Seven UX principles** (the zone where daily UI decisions collide): List is the Hero / Compare Without Losing Context / Never Lose State / Overlay Don't Transition / Store Don't Close / Context is Everything / Ritual over Interaction
+>
+> UX is especially hard to share an understanding of. The team attached an **explicit prohibition** and a **discussion hook** to each principle:
+>
+> ```
+> 📄 Overlay Don't Transition
+> 🚫 Prohibited: losing context through a modal transition
+> ♻️ UI consequence: new information overlays on top; the lower layer stays visible
+> ↩️ Discussion hook: if this clashes with Context is Everything, which wins?
+> ```
+>
+> Three operating habits:
+>
+> 1. **Keep principles under ten.** Beyond that, split. A principle you can't remember never gets used.
+> 2. **Welcome clashes.** Each discussion hook pre-declares "if this clashes with X, how do we adjudicate?"
+> 3. **Revise the principles themselves periodically.** Principles aren't sacred — when they stop fitting reality, rewrite them.
+>
+> Run it this way and meetings shift from "argue from passion" to "**argue from structure**." When someone tries to bend a principle, the prohibition plays the role of a linguistic stop — the same mechanism as this chapter's "which layer is that?" A word only takes hold when it's handed over **as a pair: prohibition plus discussion hook**.
+
 ## The self-correcting property of culture
 
 Even a settled culture isn't permanently correct. Vocabulary containing mistakes can settle too. **The real strength of a culture is whether it can self-correct when it's wrong.**
@@ -158,6 +187,45 @@ The indicator is simple: **is "which layer is that?" asked from inside the team?
 These questions surfacing **naturally, from inside** = the culture's self-correction is working. This becomes a core indicator of chapter 8's "conditions of a structure-driven organization."
 
 Conversely, a culture that changes **only when executives or outside consultants say so** isn't really a culture — it's compliance with whichever order is current. The moment the orders stop, the confusion returns.
+
+---
+
+## Observing culture — culture can be measured in signals
+
+Culture gets discussed in black-and-white terms: "it's there" or "it isn't." But with the structure-driven vocabulary, **the depth of cultural adoption can be measured in signals**. This is the "conversation / daily language" region of the observability scope covered in the next chapter.
+
+![Observing culture — three buckets of signals](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch7-culture-signals-en.svg)
+
+**In-meeting signals** (captured via meeting transcripts / wearable AI):
+
+- How often "which layer is that?" / "which transformation?" gets asked (per week)
+- How many people in the team actually use the structural vocabulary (adopters / team total)
+- Whether the vocabulary is used **consciously** or **reflexively** — the latter is Level 4 (covered in chapter 8's maturity model)
+
+**Code / PR signals** (captured via EIS plus review-comment analysis):
+
+- Rate at which words like Design / Survival / Cleanup / Quality show up in code-review comments
+- Update frequency of RFCs and design-principle documents
+- Number of commit messages that contain structural vocabulary
+
+**Git-archaeology signals** (observable after the fact from history):
+
+- How a new hire's review vocabulary changes from first commit to 1 week and 1 month later
+- The post-review Design-contribution lift on reviews a transformer was involved in
+- Correlation between linguistic realignment in meetings ("which layer?") and subsequent Survival increase
+
+![Installing Culture — a 12-month observation log](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch7-culture-trajectory-en.svg)
+
+> **From the field — Before / After**
+>
+> A 12-month observation log of a 50-person engineering organization that **installed a culture**:
+>
+> - **Month 0 (Before)**: Code review is "LGTM" and nits. 1-on-1s open with "how are you?". Values are on the wall — cited in meetings exactly 0 times. Median EIS Design axis 28; no transformers identifiable.
+> - **Month 3**: Structure-first 1-on-1s introduced. Review vocabulary (Design / Survival / Cleanup / Quality) written down and shared. "Which layer is that?" appears 0–2 times a week — still only 1–2 people using it.
+> - **Month 6**: Vocabulary has spread through the team. 30% of reviews use structural vocabulary. Principle ↔ Structure transformers do "linguistic realignment" 5+ times a week in meetings. Median Design axis rises to 34.
+> - **Month 12 (After)**: New hires participate in conversations using structural vocabulary within one week. "Which layer is that?" 15+ times a week, used by everyone. Values are gone from the wall — replaced by the EIS per-layer dashboard on a shared screen. Median Design axis 45. The transformation coach's "changes in the people they worked with" log has been folded into evaluation.
+>
+> Culture isn't an adjective. **You can watch its emergence in numbers** — as long as those numbers live on the structural-signal side, not on the revenue-and-attrition side.
 
 ---
 

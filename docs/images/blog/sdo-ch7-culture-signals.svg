@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Noto+Sans+JP:wght@400;700;800&amp;display=swap');
+      .mono { font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace; }
+      .jp   { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', -apple-system, 'Segoe UI', sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="960" height="620" rx="12" fill="#1d2021"/>
+  <rect x="0" y="0" width="4" height="620" rx="2" fill="#8ec07c"/>
+  <text x="936" y="24" text-anchor="end" class="mono" fill="#504945" font-size="10">Culture Signals · ch7</text>
+
+  <text x="480" y="46" text-anchor="middle" class="jp" fill="#ebdbb2" font-size="22" font-weight="800" letter-spacing="1.5">文化を観測する — シグナルの 3 バケツ</text>
+  <text x="480" y="68" text-anchor="middle" class="jp" fill="#928374" font-size="12">文化は形容詞ではない。構造駆動の語彙があれば、定着度はシグナルで測れる</text>
+
+  <!-- ============ Bucket 1: In-meeting signals ============ -->
+  <rect x="40" y="100" width="280" height="420" rx="10" fill="#282828" stroke="#fe8019" stroke-width="1.5"/>
+  <rect x="40" y="100" width="280" height="44" rx="10" fill="#fe8019"/>
+  <rect x="40" y="134" width="280" height="10" fill="#fe8019"/>
+  <text x="180" y="130" text-anchor="middle" class="jp" fill="#1d2021" font-size="15" font-weight="800">会議内シグナル</text>
+  <text x="180" y="162" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">In-meeting signals</text>
+
+  <line x1="60" y1="180" x2="300" y2="180" stroke="#3c3836" stroke-width="1"/>
+
+  <text x="60" y="204" class="jp" fill="#fe8019" font-size="11" font-weight="700">データ源</text>
+  <text x="60" y="224" class="jp" fill="#ebdbb2" font-size="12">会議書き起こし</text>
+  <text x="60" y="242" class="jp" fill="#ebdbb2" font-size="12">ウェアラブル AI</text>
+
+  <line x1="60" y1="264" x2="300" y2="264" stroke="#3c3836" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <text x="60" y="288" class="jp" fill="#fe8019" font-size="11" font-weight="700">主なシグナル</text>
+  <text x="60" y="310" class="jp" fill="#ebdbb2" font-size="12">●「どのレイヤー？」</text>
+  <text x="60" y="326" class="jp" fill="#928374" font-size="11">　発話頻度（週あたり）</text>
+  <text x="60" y="352" class="jp" fill="#ebdbb2" font-size="12">● 語彙使用者の広がり</text>
+  <text x="60" y="368" class="jp" fill="#928374" font-size="11">　定着者数 / チーム総数</text>
+  <text x="60" y="394" class="jp" fill="#ebdbb2" font-size="12">● 意識的 vs 反射的</text>
+  <text x="60" y="410" class="jp" fill="#928374" font-size="11">　反射的が Level 4</text>
+  <text x="60" y="436" class="jp" fill="#ebdbb2" font-size="12">● 変換者の言語的整流</text>
+  <text x="60" y="452" class="jp" fill="#928374" font-size="11">　回数（議論を止める）</text>
+
+  <rect x="60" y="474" width="240" height="30" rx="15" fill="#1d2021" stroke="#fe8019" stroke-width="1.5"/>
+  <text x="180" y="494" text-anchor="middle" class="jp" fill="#fe8019" font-size="11" font-weight="700">意思決定のダークマター</text>
+
+  <!-- ============ Bucket 2: Code / PR signals ============ -->
+  <rect x="340" y="100" width="280" height="420" rx="10" fill="#282828" stroke="#fabd2f" stroke-width="1.5"/>
+  <rect x="340" y="100" width="280" height="44" rx="10" fill="#fabd2f"/>
+  <rect x="340" y="134" width="280" height="10" fill="#fabd2f"/>
+  <text x="480" y="130" text-anchor="middle" class="jp" fill="#1d2021" font-size="15" font-weight="800">コード・PR シグナル</text>
+  <text x="480" y="162" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">Code / PR signals</text>
+
+  <line x1="360" y1="180" x2="600" y2="180" stroke="#3c3836" stroke-width="1"/>
+
+  <text x="360" y="204" class="jp" fill="#fabd2f" font-size="11" font-weight="700">データ源</text>
+  <text x="360" y="224" class="jp" fill="#ebdbb2" font-size="12">EIS + レビュー解析</text>
+  <text x="360" y="242" class="jp" fill="#ebdbb2" font-size="12">ドキュメント更新履歴</text>
+
+  <line x1="360" y1="264" x2="600" y2="264" stroke="#3c3836" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <text x="360" y="288" class="jp" fill="#fabd2f" font-size="11" font-weight="700">主なシグナル</text>
+  <text x="360" y="310" class="jp" fill="#ebdbb2" font-size="12">● レビュー語彙の出現率</text>
+  <text x="360" y="326" class="jp" fill="#928374" font-size="11">　Design / Survival / Cleanup</text>
+  <text x="360" y="352" class="jp" fill="#ebdbb2" font-size="12">● RFC・設計原則の更新</text>
+  <text x="360" y="368" class="jp" fill="#928374" font-size="11">　頻度（月次・四半期）</text>
+  <text x="360" y="394" class="jp" fill="#ebdbb2" font-size="12">● コミットメッセージ</text>
+  <text x="360" y="410" class="jp" fill="#928374" font-size="11">　構造語彙の含有件数</text>
+  <text x="360" y="436" class="jp" fill="#ebdbb2" font-size="12">● EIS シグナルとの連動</text>
+  <text x="360" y="452" class="jp" fill="#928374" font-size="11">　Design / Survival 中央値</text>
+
+  <rect x="360" y="474" width="240" height="30" rx="15" fill="#1d2021" stroke="#fabd2f" stroke-width="1.5"/>
+  <text x="480" y="494" text-anchor="middle" class="jp" fill="#fabd2f" font-size="11" font-weight="700">成果物としての可視質量</text>
+
+  <!-- ============ Bucket 3: Git archaeology ============ -->
+  <rect x="640" y="100" width="280" height="420" rx="10" fill="#282828" stroke="#d3869b" stroke-width="1.5"/>
+  <rect x="640" y="100" width="280" height="44" rx="10" fill="#d3869b"/>
+  <rect x="640" y="134" width="280" height="10" fill="#d3869b"/>
+  <text x="780" y="130" text-anchor="middle" class="jp" fill="#1d2021" font-size="15" font-weight="800">Git 考古学シグナル</text>
+  <text x="780" y="162" text-anchor="middle" class="mono" fill="#7c6f64" font-size="10">Git archaeology signals</text>
+
+  <line x1="660" y1="180" x2="900" y2="180" stroke="#3c3836" stroke-width="1"/>
+
+  <text x="660" y="204" class="jp" fill="#d3869b" font-size="11" font-weight="700">データ源</text>
+  <text x="660" y="224" class="jp" fill="#ebdbb2" font-size="12">履歴全体（過去 N ヶ月）</text>
+  <text x="660" y="242" class="jp" fill="#ebdbb2" font-size="12">時系列の変化</text>
+
+  <line x1="660" y1="264" x2="900" y2="264" stroke="#3c3836" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <text x="660" y="288" class="jp" fill="#d3869b" font-size="11" font-weight="700">主なシグナル</text>
+  <text x="660" y="310" class="jp" fill="#ebdbb2" font-size="12">● 新人の語彙習得曲線</text>
+  <text x="660" y="326" class="jp" fill="#928374" font-size="11">　初コミット → 1 週間 → 1 ヶ月</text>
+  <text x="660" y="352" class="jp" fill="#ebdbb2" font-size="12">● 変換者レビュー後の</text>
+  <text x="660" y="368" class="jp" fill="#928374" font-size="11">　Design 貢献の上昇度</text>
+  <text x="660" y="394" class="jp" fill="#ebdbb2" font-size="12">● 言語的整流と</text>
+  <text x="660" y="410" class="jp" fill="#928374" font-size="11">　Survival 上昇の相関</text>
+  <text x="660" y="436" class="jp" fill="#ebdbb2" font-size="12">● 語彙の寿命</text>
+  <text x="660" y="452" class="jp" fill="#928374" font-size="11">　使用頻度の時系列減衰</text>
+
+  <rect x="660" y="474" width="240" height="30" rx="15" fill="#1d2021" stroke="#d3869b" stroke-width="1.5"/>
+  <text x="780" y="494" text-anchor="middle" class="jp" fill="#d3869b" font-size="11" font-weight="700">事後に読む時間的な変化</text>
+
+  <!-- ============ Bottom band ============ -->
+  <rect x="40" y="540" width="880" height="60" rx="10" fill="#1d2021" stroke="#8ec07c" stroke-width="1.5"/>
+  <text x="480" y="564" text-anchor="middle" class="jp" fill="#8ec07c" font-size="13" font-weight="800">3 バケツを組み合わせて、文化の定着度を継続観測する</text>
+  <text x="480" y="584" text-anchor="middle" class="jp" fill="#928374" font-size="11">文化は数字で立ち上がる——ただし数字は、売上でも離職率でもなく、構造シグナルの側に置かれる</text>
+</svg>
