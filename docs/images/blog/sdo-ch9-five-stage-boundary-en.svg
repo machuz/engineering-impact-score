@@ -59,8 +59,9 @@
   <line x1="550" y1="195" x2="680" y2="195" stroke="#665c54" stroke-width="1.5" marker-end="url(#arr5-en)"/>
   <line x1="760" y1="195" x2="830" y2="195" stroke="#665c54" stroke-width="1.5" marker-end="url(#arr5-en)"/>
 
-  <path d="M 870 157 Q 870 90, 480 78 Q 110 90, 110 157" stroke="#8ec07c" stroke-width="2" stroke-dasharray="5 3" fill="none" marker-end="url(#arr5-loop-en)"/>
-  <text x="480" y="75" text-anchor="middle" class="sans" fill="#8ec07c" font-size="11" font-weight="700">into the next cycle (loop)</text>
+  <path d="M 870 157 Q 870 78, 480 66 Q 110 78, 110 157" stroke="#8ec07c" stroke-width="2" stroke-dasharray="5 3" fill="none" marker-end="url(#arr5-loop-en)"/>
+  <rect x="394" y="80" width="172" height="20" rx="4" fill="#1d2021"/>
+  <text x="480" y="94" text-anchor="middle" class="sans" fill="#8ec07c" font-size="11" font-weight="700">into the next cycle (loop)</text>
 
   <rect x="422" y="294" width="176" height="58" rx="6" fill="#1d2021" stroke="#cc241d" stroke-width="1"/>
   <text x="510" y="310" text-anchor="middle" class="sans" fill="#fb4934" font-size="10" font-weight="700">ch6's three layers</text>
