@@ -7,6 +7,8 @@ tags: management, leadership, product, engineering
 
 *For a hundred years, organization theory has closed inside books and consultancies. The option to build an OS opens only now — because observation itself has become possible.*
 
+*What the previous eight chapters built up as theory, this chapter takes toward the plumbing that settles it into an organization.*
+
 *This one chapter steps a foot outside the theory book. What's on the table is **the moment the structure-driven framework stands up as a product.***
 
 *To be clear upfront — this product lineup is not for automating evaluation. It exists to leave the plumbing of observation and self-correction inside the organization.*
@@ -43,6 +45,8 @@ The limit lives somewhere else. It's **the cost of building and maintaining the 
 None of these are things the CLI "refuses to do." They're things **you have to assemble around the CLI.** At 20 people, you can handwrite it. Up to ~50, you can get by with scripts. Past 100 people and a few dozen repos, **the plumbing maintenance itself becomes a full-time job.** And the moment its author leaves, observation halts.
 
 This book argues the thinking and the design; it doesn't insist on who has to ship the plumbing. Teams that don't use OrbitLens are free to assemble the six elements above in-house — that's a legitimate choice. But **the cost of maintaining and inheriting the plumbing stays on the organization** exactly as described.
+
+The typical decay pattern of self-built plumbing goes like this. A team assembles EIS + a scheduler + a BI tool into a custom dashboard; for half a year it runs cleanly. Then one of the one or two people who built it leaves. By the next quarter the scheduler has stopped somewhere and no one notices. The incentive to fix it is weak — observation is treated not as "code we have to defend" but as a **tool we use if it's convenient.** A year on, the dashboard has gone stale and the organization is back to "nobody is observing." **The priority of observation drops every day, inside the routine of daily work** — that's the irreversible gravity of hand-run plumbing.
 
 **As long as observation is run by hand, it ends as a personal technique — not as a culture.** You need a device that **sits outside the organization and keeps observing** — an **observation SaaS**.
 
@@ -174,19 +178,19 @@ Further, **how far an individual engineer shares their own signal is being desig
 
 ## 8. What changes in the field
 
-**With Ace installed:**
+**With an observation SaaS in place (OrbitLens Ace, in this book):**
 
 1. **Interpretation accelerates; insight becomes easier to extract.** Observation shifts from "looking at" to "reading from." Information is broken down at the right granularity; cross-layer and cross-time references are instant. Open the dashboard and "which module is doing what" lands in the head.
 2. **Observational operating cost evaporates.** EIS re-runs on every PR merge, dashboards update. The world where an EM hand-massages CSVs locally is over.
 3. **Organizational change persists on a time axis.** Prior organization theory could say "the current health of the organization" but not "how it shifted from three months ago to now." Ace keeps change on the time axis.
 
-**With Ideal installed (future):**
+**With an organization-OS SaaS in place (OrbitLens Ideal, future):**
 
 4. **Interventions escape personal dependency.** 1-on-1 templates, review vocabulary dictionaries, reorg checklists all live inside the SaaS. **The operating know-how that used to live in departing people's heads now stays in the organization.**
 5. **Culture signals become visible.** The three buckets defined in ch7 are unified in one dashboard. The depth of cultural adoption becomes readable as numbers.
 6. **Executives and the floor debate in the same language.** Boards and all-hands alike can speak with the same structural signals and the same three intervention layers.
 
-Enter with Ace; deepen with Ideal — that staged path is how structure-driven gets implemented.
+Enter with the observation SaaS; deepen with the organization-OS SaaS — that staged path is how structure-driven gets implemented.
 
 ## 9. What's next
 
