@@ -28,9 +28,9 @@ In OS terms:
 - **Kernel** = the principle-layer philosophy (the top of the three-layer model from ch4)
 - **Drivers** = transformers (people who translate principle ↔ structure and structure ↔ implementation)
 - **Processes** = individual developers and feature teams (running in the implementation layer)
-- **File system** = the time-series structure the observation SaaS holds (Ace)
-- **User space** = the plumbing of intervention, placement, and re-observation (Ideal)
-- **Package manager** = True (importing external modules)
+- **File system** = the time-series structure the observation SaaS holds (OrbitLens Ace)
+- **User space** = the plumbing of intervention, placement, and re-observation (OrbitLens Ideal)
+- **Package manager** = OrbitLens True (importing external modules)
 
 ![OS and structure-driven organization — a Rosetta table](https://cdn.jsdelivr.net/gh/machuz/eis@main/docs/images/blog/sdo-ch10-os-rosetta-en.svg)
 
@@ -103,7 +103,7 @@ A structure-driven organization is designed to run **without requiring a specifi
 
 1. **Observation** — everyone gets the same result from EIS (CLI)
 2. **Vocabulary** — the structural vocabulary this book defines; anyone can learn and use it
-3. **Plumbing** — OrbitLens Ace + Ideal (SaaS) leaves the plumbing inside the organization
+3. **Plumbing** — OrbitLens Ace + OrbitLens Ideal (SaaS) leaves the plumbing inside the organization
 
 With these three in place, **the organization keeps running even when the founder or the strong EM leaves.** That's OS-level reproducibility.
 
@@ -131,7 +131,7 @@ That's also why this book is a **vocabulary dictionary.** Serving as a glossary 
 Structure-driven engineering organization theory is not finished. Expansion points:
 
 - **Observation deepens** — change_pressure, tested_survival, module_vitality, and further. EIS keeps evolving. Precision of observation begets precision of intervention.
-- **The SaaS matures** — Ace's interpretation, Ideal's plumbing, True's matching. The three coupling organically, **so the organization moves as one loop,** is the target state.
+- **The SaaS matures** — OrbitLens Ace's interpretation, OrbitLens Ideal's plumbing, OrbitLens True's matching. The three coupling organically, **so the organization moves as one loop,** is the target state.
 - **Language updates** — the structure-driven vocabulary also needs updating as reality shifts. Chapter 7's "lifespan of language" applies to this book itself.
 - **Adjacent domains** — this book took engineering organizations as its object, but the frame of **structure × observation × language** should extend to design organizations, research organizations, business organizations.
 
