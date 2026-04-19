@@ -32,7 +32,13 @@ In OS terms:
 - **User space** = the plumbing of intervention, placement, and re-observation (Ideal)
 - **Package manager** = True (importing external modules)
 
+![OS and structure-driven organization — a Rosetta table](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch10-os-rosetta-en.svg)
+
 An OS doesn't manage its individual processes. It **provides the discipline and the wiring that lets processes run.** That's the abstraction level a structure-driven organization aims at.
+
+Put another way: **an OS is the layer that does not directly control individual behavior, but determines the behavior of the whole.** That's the layer structure-driven is building.
+
+Organizations have, until now, been **systems that depend on people.** To turn an organization into an OS is **to shift that dependence onto structure.**
 
 ![The structure-driven organization OS stack](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch10-os-stack-en.svg)
 
@@ -71,6 +77,8 @@ In structure-driven, the EM's job becomes **designing structure**:
 - **Cover gaps** → **develop transformers**
 - **Lead** → **curate the vocabulary**
 
+![The EM's job changes — five transitions](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch10-em-role-shift-en.svg)
+
 The purpose of the 1-on-1 shifts too. Not "how have you been?" but **"Your archetype right now is Role × Style × State = X; your Design axis has been plateauing. Let's figure out what to try over the next three months, and what structurally-correct placement change would help."** That is the baseline form of a structure-driven 1-on-1.
 
 The EM becomes **the organization's OS engineer.**
@@ -85,9 +93,11 @@ Under structure-driven: "My archetype is Anchor (Role) × Builder (Style) × Act
 
 This vocabulary **travels.** In the next organization: "I'm coming in as Anchor × Builder. At my previous job I pulled the median Design axis from 28 to 45." Personal growth accumulates not as a subjective story or HR evaluation, but as **observable structural contribution.**
 
-What "I worked hard" could never fully describe about a developer's value — **now gets described in the language of structure.** That is the biggest gift structure-driven gives developers.
+At first it feels off. Some people resist describing themselves in numbers and types. But as the vocabulary settles in, it **becomes a natural form of self-recognition.** What "I worked hard" could never fully describe about a developer's value — **now gets described in the language of structure.** That is the biggest gift structure-driven gives developers.
 
 ## 5. Reproducibility as an OS
+
+**An organization without reproducibility keeps depending on individuals. An organization that depends on individuals collapses with them.**
 
 A structure-driven organization is designed to run **without requiring a specific genius.** Three ingredients:
 
