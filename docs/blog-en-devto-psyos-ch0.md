@@ -129,4 +129,4 @@ The Japanese original book is [here on GitHub Pages](https://machuz.github.io/ei
 
 ---
 
-*Next: [Psychological OS #1 — The Observer Can't Reach]()*
+*Next: [Psychological OS #1 — The Observer Can't Reach: How to Know Your Own State](./psychological-os-1)*
