@@ -32,7 +32,7 @@ In OS terms:
 - **User space** = the plumbing of intervention, placement, and re-observation (Ideal)
 - **Package manager** = True (importing external modules)
 
-![OS and structure-driven organization — a Rosetta table](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch10-os-rosetta-en.svg)
+![OS and structure-driven organization — a Rosetta table](https://cdn.jsdelivr.net/gh/machuz/eis@main/docs/images/blog/sdo-ch10-os-rosetta-en.svg)
 
 An OS doesn't manage its individual processes. It **provides the discipline and the wiring that lets processes run.** That's the abstraction level a structure-driven organization aims at.
 
@@ -40,7 +40,7 @@ Put another way: **an OS is the layer that does not directly control individual 
 
 Organizations have, until now, been **systems that depend on people.** To turn an organization into an OS is **to shift that dependence onto structure.**
 
-![The structure-driven organization OS stack](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch10-os-stack-en.svg)
+![The structure-driven organization OS stack](https://cdn.jsdelivr.net/gh/machuz/eis@main/docs/images/blog/sdo-ch10-os-stack-en.svg)
 
 ## 2. What structure-driven covers, and what it doesn't
 
@@ -77,7 +77,7 @@ In structure-driven, the EM's job becomes **designing structure**:
 - **Cover gaps** → **develop transformers**
 - **Lead** → **curate the vocabulary**
 
-![The EM's job changes — five transitions](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch10-em-role-shift-en.svg)
+![The EM's job changes — five transitions](https://cdn.jsdelivr.net/gh/machuz/eis@main/docs/images/blog/sdo-ch10-em-role-shift-en.svg)
 
 The purpose of the 1-on-1 shifts too. Not "how have you been?" but **"Your archetype right now is Role × Style × State = X; your Design axis has been plateauing. Let's figure out what to try over the next three months, and what structurally-correct placement change would help."** That is the baseline form of a structure-driven 1-on-1.
 
