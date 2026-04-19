@@ -5,7 +5,7 @@ description: "What structure-driven engineering organization theory was building
 tags: management, leadership, engineering, culture
 ---
 
-*In chapter 0 we wrote: "observation became possible, and so the organization became engineerable." Nine chapters of work have piled up behind that single sentence.*
+*In the [opening chapter](https://dev.to/machuz/structure-driven-organization-theory-0-why-existing-org-theory-doesnt-work-1101) we wrote: **"Observation, not evaluation. Structure, not people. Design, not emotion."** Ten chapters of work have piled up behind those three lines.*
 
 *What structure-driven engineering organization theory was ultimately building — it wasn't management, wasn't culture, wasn't process, wasn't product. It was **the organization's OS.***
 
