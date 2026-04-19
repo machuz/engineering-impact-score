@@ -42,6 +42,8 @@ The limit lives somewhere else. It's **the cost of building and maintaining the 
 
 None of these are things the CLI "refuses to do." They're things **you have to assemble around the CLI.** At 20 people, you can handwrite it. Up to ~50, you can get by with scripts. Past 100 people and a few dozen repos, **the plumbing maintenance itself becomes a full-time job.** And the moment its author leaves, observation halts.
 
+This book argues the thinking and the design; it doesn't insist on who has to ship the plumbing. Teams that don't use OrbitLens are free to assemble the six elements above in-house — that's a legitimate choice. But **the cost of maintaining and inheriting the plumbing stays on the organization** exactly as described.
+
 **As long as observation is run by hand, it ends as a personal technique — not as a culture.** You need a device that **sits outside the organization and keeps observing** — an **observation SaaS**.
 
 ## 2. Telescope, observatory, organization OS
@@ -65,9 +67,9 @@ The CLI gets no recommendations, predictions, or intervention templates. EIS sta
 
 ## 3. Ace's functional scope — observation rearranged for easy reach
 
-**Ace isn't a management tool. It's a device for slowing observation down to the speed human cognition can handle.**
+**Ace isn't a management tool. It's the device for reading the organization's current state and its gaps** — slowing observation down to the speed human cognition can handle, and surfacing structural gaps.
 
-Ace's scope is narrowed to **observation interpretation.** No organization-OS plumbing lives inside it.
+Ace's scope is narrowed to **observation, interpretation, and gap discovery.** No organization-OS plumbing lives inside it.
 
 - **Structural Summary** — the organizational structural summary. Which archetypes number how many; which modules are Stable / Fragile / Turbulent / Critical / Dead
 - **People × module join** — Conway's Law verification. Alignments and misalignments between the organizational chart and module boundaries
@@ -78,19 +80,20 @@ The essence of Ace isn't "making things visible." It's **accelerating interpreta
 
 **"The value is that it's pleasant to use casually."** That's Ace's design stance. Heavy operational workflows, thick onboarding processes, branching admin permissions — all kept minimal. A single EM or a small team can open it on day one. The lightness of Linear, the responsiveness of Raycast, brought to organization observation.
 
-The other piece of Ace's differentiation is **connectivity to True and Ideal.** The moment observation lands in Ace, the same structural vocabulary reaches:
+The other piece of Ace's differentiation is **connectivity to True and Ideal.** The moment Ace surfaces an organizational gap, the question of how to close it forks into two directions on the same structural vocabulary:
 
-- **Into True** — observed structural gaps (e.g., not enough Architect-level Design carriers, Indispensability lopsided on a specific module) flow directly into **hiring and matching vocabulary.** "Find a candidate in the Architect range" or "who can relieve this Indispensability concentration" falls straight out of Ace's signals into True's search conditions.
-- **Into Ideal** — the observation read in Ace threads into Ideal's **intervention templates and records.** "Did the Fragile-trending module we discussed in last week's 1-on-1 move this week?" closes inside one screen.
+- **Fill it from outside → connection to True** — observed structural gaps (not enough Architect-level Design carriers, Indispensability lopsided on a specific module) flow directly into **hiring and matching conditions.** "Find a candidate in the Architect range" or "who can relieve this Indispensability concentration" falls straight out of Ace's signals into True's search conditions.
+- **Run with what's inside → connection to Ideal** — the observation read in Ace threads into Ideal's **placement suggestions, intervention templates, and records.** "Did the Fragile-trending module we discussed in last week's 1-on-1 move this week?" closes inside one screen.
 
-Standalone observation SaaS products exist. Ace's positioning is that **observation → people → intervention is carried by a single vocabulary.** Against competing stacks that sum up separate tools for observation, recruiting, and operations, structure-driven's **unified vocabulary** drops the integration cost to near zero — this is the position the OrbitLens lineup as a whole is set up to take.
+Standalone observation SaaS products exist. Ace's positioning is that **observation → people → operations is carried by a single vocabulary.** Against competing stacks that sum up separate tools for observation, recruiting, and operations, structure-driven's **unified vocabulary** drops the integration cost to near zero — this is the position the OrbitLens lineup as a whole is set up to take.
 
 ## 4. Ideal's role — the operational layer as organization OS
 
-**Ideal isn't an operations-support tool. It's the OS that plumbs the observation-and-intervention loop into the organization.**
+**Ideal isn't an operations-support tool. It's the organization OS for running the organization with the people already inside.**
 
-Observation alone doesn't make an organization move. Taking observation and **intervening, recording, re-observing** — that plumbing is Ideal's job.
+Observation alone doesn't make an organization move. Taking the current state and gaps surfaced by Ace, and **running the organization with the people already inside (including new hires brought in via True)** — that plumbing is Ideal's job. Observe → place → intervene → record → re-observe: this internal loop is what Ideal assembles.
 
+- **Placement suggestions** — for structural gaps surfaced by Ace (Architect shortfall, Indispensability concentration), who to reassign where **from within existing members** (internal fulfillment)
 - **Intervention templates** — 1-on-1s, reviews, pair programming, reorgs, each decomposed into the chapter 6 three-layer frame (behavior / output / accumulation)
 - **Intervention records** — who intervened with whom, in what context; with back-links to the corresponding observation data
 - **Structural vocabulary dashboard** — time-series view of structural-vocabulary uptake in a team (the ch7 culture signal)
@@ -115,13 +118,15 @@ Ideal is **assembled on top of Ace.** It's the layer that connects observation-a
 - Internal: **orbitlens** (repository, code, internal documents)
 - Legal: **Orbitlens, Inc.**
 
-The three-product lineup — **each defined by what it is not**:
+The three-product lineup — **each defined by what it is not, and by its position in the structure-driven loop**:
 
-- **OrbitLens Ace** — not a management tool. **A device for slowing observation down to the speed human cognition can handle.** Rearranges EIS signals into readable form and puts them in hand.
-- **OrbitLens True** — not a hiring product. **A translation layer that connects observed structural gaps to the talent market.** Architect shortages, Indispensability concentrations and similar structural signals drop directly into matching conditions.
-- **OrbitLens Ideal** — not an operations-support tool. **The OS that plumbs the observation-and-intervention loop into the organization.** (Not yet started.)
+- **OrbitLens Ace** — not a management tool. **The product for reading the organization's current state and its gaps** (internal observation). Visualization, interpretation, gap discovery.
+- **OrbitLens True** — not a hiring product. **The product for filling the missing structure from outside** (outward-facing). Translates structural gaps into talent-market conditions and proposes candidates.
+- **OrbitLens Ideal** — not an operations-support tool. **The organization OS for running the organization with the people already inside** (inward-facing). Placement, intervention, recording, re-observation, cultural uptake. (Not yet started.)
 
 The three are independent products, but they **sit on the same structural vocabulary** — seven axes, archetypes, three layers, transformation, the three intervention layers, culture signals. Shared vocabulary is what plumbs the products together.
+
+**Ace surfaces the gap → True fills from outside / Ideal moves things inside → Ace re-observes.** The three products occupy three positions in the structure-driven loop; Ace is both start and end, and the loop closes through it. The **separation of suggestions** makes the division crisp: True's suggestion is **who fills the gap** (talent proposal, outward); Ideal's suggestion is **how to move the organization** (operations proposal, inward).
 
 ## 6. The moment organization theory becomes SaaS
 
