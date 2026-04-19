@@ -18,6 +18,7 @@ on:
           - publish-all
           - publish-file
           - reorder-structure-series
+          - recreate-structure-ch6-onwards
         default: 'init'
       file:
         description: 'File path (only for publish-file, e.g. docs/blog-en-devto-ch8.md)'
@@ -92,6 +93,18 @@ jobs:
             docs/blog-en-devto-structure-ch3.md \
             docs/blog-en-devto-structure-ch4.md \
             docs/blog-en-devto-structure-ch5.md \
+            docs/blog-en-devto-structure-ch6.md \
+            docs/blog-en-devto-structure-ch7.md \
+            docs/blog-en-devto-structure-ch8.md \
+            docs/blog-en-devto-structure-ch9.md \
+            docs/blog-en-devto-structure-ch10.md
+
+      - name: Recreate SDO ch6-ch10 on dev.to
+        if: github.event_name == 'workflow_dispatch' && inputs.action == 'recreate-structure-ch6-onwards'
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+        run: |
+          python scripts/recreate-devto-articles.py \
             docs/blog-en-devto-structure-ch6.md \
             docs/blog-en-devto-structure-ch7.md \
             docs/blog-en-devto-structure-ch8.md \
