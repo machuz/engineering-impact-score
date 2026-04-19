@@ -95,21 +95,21 @@
   <text x="440" y="217" text-anchor="middle" class="jp" fill="#928374" font-size="9">ダッシュボード安定</text>
 
   <!-- M7 担当転職 -->
-  <line x1="520" y1="160" x2="520" y2="208" stroke="#fe8019" stroke-width="1" stroke-dasharray="3 2"/>
-  <rect x="443" y="210" width="154" height="40" rx="4" fill="#1d2021" stroke="#fe8019" stroke-width="1.5"/>
-  <text x="520" y="227" text-anchor="middle" class="jp" fill="#fe8019" font-size="10" font-weight="700">⚠ 配管主担当の転職</text>
-  <text x="520" y="243" text-anchor="middle" class="jp" fill="#928374" font-size="9">ノウハウが組織を離れる</text>
+  <line x1="520" y1="160" x2="520" y2="268" stroke="#fe8019" stroke-width="1" stroke-dasharray="3 2"/>
+  <rect x="443" y="270" width="154" height="40" rx="4" fill="#1d2021" stroke="#fe8019" stroke-width="1.5"/>
+  <text x="520" y="287" text-anchor="middle" class="jp" fill="#fe8019" font-size="10" font-weight="700">⚠ 配管主担当の転職</text>
+  <text x="520" y="303" text-anchor="middle" class="jp" fill="#928374" font-size="9">ノウハウが組織を離れる</text>
 
   <!-- M9 scheduler stop -->
   <line x1="680" y1="270" x2="680" y2="310" stroke="#fb4934" stroke-width="1" stroke-dasharray="3 2"/>
-  <rect x="600" y="312" width="160" height="40" rx="4" fill="#1d2021" stroke="#fb4934" stroke-width="1.5"/>
-  <text x="680" y="329" text-anchor="middle" class="jp" fill="#fb4934" font-size="10" font-weight="700">⚠ スケジューラ停止</text>
-  <text x="680" y="345" text-anchor="middle" class="jp" fill="#928374" font-size="9">誰も気付かない / 直さない</text>
+  <rect x="580" y="312" width="180" height="40" rx="4" fill="#1d2021" stroke="#fb4934" stroke-width="1.5"/>
+  <text x="670" y="329" text-anchor="middle" class="jp" fill="#fb4934" font-size="10" font-weight="700">⚠ スケジューラ停止</text>
+  <text x="670" y="345" text-anchor="middle" class="jp" fill="#928374" font-size="9">誰も気付かない / 直さない</text>
 
   <!-- M12 death -->
-  <line x1="880" y1="350" x2="800" y2="350" stroke="#cc241d" stroke-width="1" stroke-dasharray="3 2"/>
-  <rect x="702" y="338" width="96" height="24" rx="4" fill="#1d2021" stroke="#cc241d" stroke-width="1.5"/>
-  <text x="750" y="355" text-anchor="middle" class="jp" fill="#cc241d" font-size="10" font-weight="700">☠ ダッシュボード死</text>
+  <line x1="880" y1="350" x2="920" y2="350" stroke="#cc241d" stroke-width="1" stroke-dasharray="3 2"/>
+  <rect x="810" y="338" width="120" height="24" rx="4" fill="#1d2021" stroke="#cc241d" stroke-width="1.5"/>
+  <text x="870" y="355" text-anchor="middle" class="jp" fill="#cc241d" font-size="10" font-weight="700">☠ ダッシュボード死</text>
 
   <!-- Bottom explanation -->
   <rect x="40" y="420" width="880" height="60" rx="10" fill="#1d2021" stroke="#504945" stroke-width="1"/>
