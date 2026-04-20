@@ -23,6 +23,8 @@ This is a sister work. [Structure-Driven Engineering Organization Theory](https:
 
 Psychological OS sits deeper than thought or personality. **It's the base layer of decision-making.**
 
+![Psychological OS as the base layer: thoughts (top, rapid) / personality (middle, stable) / Psychological OS (bottom, foundational)](https://raw.githubusercontent.com/machuz/eis/main/books/psychological-os/images/ch0-base-layer-en.png)
+
 When two people receive the same information, what makes one decide to move and the other stay still — that's this layer underneath. Not the content of thought, not the surface of personality, but the foundation those sit on. **The moment this base layer gets overwritten from outside, however correctly you think, what you produce is no longer your own will.**
 
 ---
