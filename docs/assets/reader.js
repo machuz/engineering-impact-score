@@ -49,14 +49,19 @@
         ${cfg.lang === 'ja' ? '観測' : 'Observe'}
       </span>
       <span class="orbit-spacer"></span>
-      <div class="orbit-tools">
-        <button class="orbit-tool" id="tool-theme" title="Toggle theme (T)">◐</button>
+      <button class="orbit-menu-toggle" id="orbit-menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+      <div class="orbit-tools" id="orbit-tools">
+        <button class="orbit-tool" id="tool-theme" data-closes-menu title="Toggle theme (T)">◐</button>
         <button class="orbit-tool" id="tool-font-s" title="Smaller text">A−</button>
         <button class="orbit-tool" id="tool-font-l" title="Larger text">A+</button>
-        <button class="orbit-tool" id="tool-help" title="Shortcuts (?)">?</button>
-        <a class="orbit-tool" id="tool-en" href="${cfg.chapters[0].en}" target="_blank" rel="noopener">EN ↗</a>
+        <button class="orbit-tool" id="tool-help" data-closes-menu title="Shortcuts (?)">?</button>
+        <a class="orbit-tool" id="tool-en" data-closes-menu href="${cfg.chapters[0].en}" target="_blank" rel="noopener">EN ↗</a>
       </div>
-      <div class="progress-bar" id="progress-bar"></div>
+      <div class="progress-track" id="progress-track" role="slider" tabindex="0" aria-label="${cfg.lang === 'ja' ? 'ページ位置' : 'Page position'}">
+        <div class="progress-markers" id="progress-markers"></div>
+        <div class="progress-bar" id="progress-bar"></div>
+        <div class="progress-thumb" id="progress-thumb" aria-hidden="true"></div>
+      </div>
     </nav>
 
     <div class="reader-layout">
@@ -201,6 +206,11 @@
   async function renderHome() {
     inlineToc.style.display = 'none';
     crumbBook.textContent = cfg.title;
+    // Clear any leftover progress markers from a previously rendered chapter
+    const markersEl = document.getElementById('progress-markers');
+    if (markersEl) markersEl.innerHTML = '';
+    tocHeadings = [];
+    tocLinkMap = new Map();
 
     let html = `
       <section class="book-cover-section">
@@ -301,6 +311,17 @@
         </div>
       `;
 
+      const mobileSectionsHtml = `
+        <details class="mobile-section-list" id="mobile-section-list">
+          <summary>
+            <span class="msl-label">${cfg.lang === 'ja' ? 'この章の目次' : 'On this page'}</span>
+            <span class="msl-current" id="msl-current"></span>
+            <span class="msl-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <ol class="mobile-section-items" id="mobile-section-items"></ol>
+        </details>
+      `;
+
       const rendered = marked.parse(body);
       const articleHtml = `<article class="chapter-content">${rendered}</article>`;
 
@@ -312,7 +333,17 @@
         </nav>
       `;
 
-      main.innerHTML = barHtml + articleHtml + navHtml;
+      main.innerHTML = barHtml + mobileSectionsHtml + articleHtml + navHtml;
+
+      // Auto-close mobile section accordion after tap
+      const msl = main.querySelector('.mobile-section-list');
+      if (msl) {
+        msl.addEventListener('click', (e) => {
+          if (e.target.closest('a')) {
+            setTimeout(() => msl.removeAttribute('open'), 150);
+          }
+        });
+      }
 
       // Enhance rendered content
       enhanceCodeBlocks();
@@ -449,7 +480,13 @@
 
   function buildInlineTOC() {
     const heads = Array.from(main.querySelectorAll('article.chapter-content h2, article.chapter-content h3'));
-    if (!heads.length) { inlineToc.style.display = 'none'; tocHeadings = []; return; }
+    if (!heads.length) {
+      inlineToc.style.display = 'none';
+      tocHeadings = [];
+      const mk = document.getElementById('progress-markers');
+      if (mk) mk.innerHTML = '';
+      return;
+    }
     inlineTocList.innerHTML = heads.map((h) => {
       const lvl = h.tagName === 'H3' ? 3 : 2;
       const text = h.textContent.replace(/^§/, '').trim();
@@ -468,6 +505,30 @@
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // Populate mobile section list (Zenn-style "この章の目次")
+    const mobileItems = document.getElementById('mobile-section-items');
+    if (mobileItems) {
+      mobileItems.innerHTML = heads.map((h) => {
+        const lvl = h.tagName === 'H3' ? 3 : 2;
+        const text = h.textContent.replace(/^§/, '').trim();
+        return `<li><a href="#${h.id}" class="level-${lvl}">${escapeHTML(text)}</a></li>`;
+      }).join('');
+    }
+
+    // Populate progress markers — one tick per H2
+    const markers = document.getElementById('progress-markers');
+    if (markers) {
+      const h2Heads = heads.filter(h => h.tagName === 'H2');
+      const doc = document.documentElement;
+      const scrollMax = doc.scrollHeight - doc.clientHeight;
+      markers.innerHTML = h2Heads.map((h) => {
+        const top = h.getBoundingClientRect().top + window.scrollY;
+        const pct = scrollMax > 0 ? Math.min(100, (top / scrollMax) * 100) : 0;
+        return `<span class="progress-marker" style="left: ${pct}%" data-target="${h.id}"></span>`;
+      }).join('');
+    }
+
     updateActiveHeading();
   }
 
@@ -495,9 +556,16 @@
         active.scrollIntoView({ block: 'nearest' });
       }
     }
+    // Mobile section-list summary label reflects the current H2
+    const mslCurrent = document.getElementById('msl-current');
+    if (mslCurrent && current && current.tagName === 'H2') {
+      mslCurrent.textContent = '· ' + current.textContent.replace(/^§/, '').trim();
+    }
   }
 
   // ---------- Progress bar + scroll save ----------
+  const progressTrack = document.getElementById('progress-track');
+  const progressThumb = document.getElementById('progress-thumb');
   let progressRaf = null;
   function updateProgress() {
     if (progressRaf) return;
@@ -507,7 +575,9 @@
       const scrollTop = window.scrollY;
       const scrollHeight = doc.scrollHeight - doc.clientHeight;
       const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-      progressBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      const clamped = Math.min(100, Math.max(0, pct));
+      progressBar.style.width = clamped + '%';
+      if (progressThumb) progressThumb.style.left = clamped + '%';
       // Save scroll position per chapter
       const slug = decodeURIComponent(window.location.hash.slice(1));
       if (slug) sessionStorage.setItem(LS_SCROLL(slug), String(scrollTop));
@@ -516,6 +586,45 @@
   window.addEventListener('scroll', updateProgress, { passive: true });
   window.addEventListener('scroll', updateActiveHeading, { passive: true });
   window.addEventListener('resize', updateActiveHeading);
+  // Recalculate progress markers when layout changes (resize, font-size, etc.)
+  let resizeMarkersTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeMarkersTimer);
+    resizeMarkersTimer = setTimeout(() => {
+      if (document.querySelector('article.chapter-content')) buildInlineTOC();
+    }, 120);
+  });
+
+  // Progress track — draggable scrubber
+  let isDragging = false;
+  function trackScrollFromClientX(clientX) {
+    if (!progressTrack) return;
+    const rect = progressTrack.getBoundingClientRect();
+    const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    const doc = document.documentElement;
+    const target = ratio * (doc.scrollHeight - doc.clientHeight);
+    window.scrollTo({ top: target, behavior: isDragging ? 'auto' : 'smooth' });
+  }
+  if (progressTrack) {
+    progressTrack.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      try { progressTrack.setPointerCapture(e.pointerId); } catch (_) {}
+      progressTrack.classList.add('dragging');
+      trackScrollFromClientX(e.clientX);
+    });
+    progressTrack.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      trackScrollFromClientX(e.clientX);
+    });
+    progressTrack.addEventListener('pointerup', () => {
+      isDragging = false;
+      progressTrack.classList.remove('dragging');
+    });
+    progressTrack.addEventListener('pointercancel', () => {
+      isDragging = false;
+      progressTrack.classList.remove('dragging');
+    });
+  }
 
   // ---------- Hash routing ----------
   function scrollToSection(idx) {
@@ -556,6 +665,32 @@
   shortcutOverlay.addEventListener('click', (e) => {
     if (e.target === shortcutOverlay) shortcutOverlay.classList.remove('open');
   });
+
+  // Mobile hamburger — stores font-size buttons so A-/A+ can be tapped repeatedly.
+  // Theme / help / EN carry data-closes-menu and auto-close on tap.
+  const orbitMenuToggle = document.getElementById('orbit-menu-toggle');
+  const orbitTools = document.getElementById('orbit-tools');
+  function closeOrbitMenu() {
+    if (!orbitTools) return;
+    orbitTools.classList.remove('open');
+    if (orbitMenuToggle) orbitMenuToggle.setAttribute('aria-expanded', 'false');
+  }
+  if (orbitMenuToggle && orbitTools) {
+    orbitMenuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const opened = orbitTools.classList.toggle('open');
+      orbitMenuToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
+    });
+    orbitTools.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-closes-menu]');
+      if (el) closeOrbitMenu();
+    });
+    document.addEventListener('click', (e) => {
+      if (!orbitTools.classList.contains('open')) return;
+      if (e.target.closest('.orbit-tools, .orbit-menu-toggle')) return;
+      closeOrbitMenu();
+    });
+  }
 
   function toggleTheme() {
     const light = document.body.classList.toggle('theme-light');
