@@ -1,5 +1,5 @@
 /* ======================================================================
-   OrbitLens Reader — dark void, Ideal D-01 magenta accent
+   OrbitLens Reader — dark void, royal violet accent
    Ideal design principles: D-01 purple, D-04 numbers as heroes,
    D-06 compass rose, D-11 notebook margin, D-29 reticle on focus,
    UX-06 scope always visible.
@@ -15,7 +15,7 @@
   --paper-hi: #1a2238;
   --border: #1e2a45;
   --border-hi: #2a3a5e;
-  --border-glow: #4a2e44;
+  --border-glow: #3c2d70;
 
   /* Text (Ideal gruvbox-warm) */
   --text: #ebdbb2;
@@ -24,29 +24,28 @@
   --muted: #928374;
   --dim: #665c54;
 
-  /* Ideal D-01 magenta primary */
-  --purple: #b16286;
-  --purple-dim: #8a4858;
-  --purple-bright: #d3869b;
-  --purple-deep: #6b3a4f;
-  --purple-glow: rgba(177, 98, 134, 0.22);
+  /* Royal violet — intellectual, deep but vivid */
+  --purple: #7c5ce0;
+  --purple-dim: #5e44b5;
+  --purple-bright: #a188ed;
+  --purple-deep: #3f2d85;
+  --purple-glow: rgba(124, 92, 224, 0.22);
 
   /* Code tokens */
   --code-bg: #1c2540;
-  --code-text: #d3869b;
+  --code-text: #a188ed;
   --pre-bg: #06080e;
   --pre-text: #e8dfc7;
   --quote-bg: #181f36;
-  --quote-border: #b16286;
-  --selection: rgba(177, 98, 134, 0.28);
+  --quote-border: #7c5ce0;
+  --selection: rgba(124, 92, 224, 0.28);
   --shadow: rgba(0, 0, 0, 0.55);
 
   --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   --sans: 'Inter', 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, -apple-system, BlinkMacSystemFont, sans-serif;
   --jp: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;
-  --display: 'Fraunces', 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
-  --mincho: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
-  --serif: var(--mincho);
+  --display: 'Inter Tight', 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  --serif: var(--sans);
 
   --font-size: 17px;
   --line-height: 1.95;
@@ -114,11 +113,11 @@ a:hover { color: var(--text-strong); text-decoration: underline; text-underline-
   background-image:
     radial-gradient(1px 1px at 12% 18%, rgba(235,219,178,0.45), transparent),
     radial-gradient(1px 1px at 28% 72%, rgba(235,219,178,0.28), transparent),
-    radial-gradient(1.5px 1.5px at 52% 10%, rgba(211,134,155,0.55), transparent),
+    radial-gradient(1.5px 1.5px at 52% 10%, rgba(161,136,237,0.55), transparent),
     radial-gradient(1px 1px at 68% 42%, rgba(235,219,178,0.22), transparent),
     radial-gradient(1px 1px at 91% 78%, rgba(235,219,178,0.38), transparent),
     radial-gradient(1px 1px at 42% 86%, rgba(235,219,178,0.28), transparent),
-    radial-gradient(1px 1px at 82% 20%, rgba(211,134,155,0.4), transparent),
+    radial-gradient(1px 1px at 82% 20%, rgba(161,136,237,0.4), transparent),
     radial-gradient(1px 1px at 18% 56%, rgba(235,219,178,0.32), transparent),
     radial-gradient(1.5px 1.5px at 95% 38%, rgba(235,219,178,0.36), transparent);
 }
@@ -170,9 +169,9 @@ body.theme-light .orbit-bar a:hover { color: #f2e4c0; }
   font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
   padding: 3px 9px;
   color: var(--purple-bright);
-  border: 1px solid rgba(177, 98, 134, 0.35);
+  border: 1px solid rgba(124, 92, 224, 0.35);
   border-radius: 3px;
-  background: rgba(177, 98, 134, 0.05);
+  background: rgba(124, 92, 224, 0.05);
 }
 .private-chip svg { width: 10px; height: 10px; }
 
@@ -195,7 +194,7 @@ body.theme-light .orbit-bar a:hover { color: #f2e4c0; }
   text-transform: uppercase;
 }
 .orbit-tool:hover { border-color: var(--purple-dim); color: var(--purple-bright); text-decoration: none; }
-.orbit-tool.active { background: rgba(177, 98, 134, 0.08); color: var(--purple-bright); border-color: var(--purple-dim); }
+.orbit-tool.active { background: rgba(124, 92, 224, 0.08); color: var(--purple-bright); border-color: var(--purple-dim); }
 
 /* Progress bar at bottom edge */
 .progress-bar {
@@ -349,7 +348,7 @@ body.theme-light .orbit-bar a:hover { color: #f2e4c0; }
 }
 .compass-divider .line {
   flex: 1; height: 1px;
-  background: linear-gradient(to right, transparent, rgba(138, 72, 88, 0.5), transparent);
+  background: linear-gradient(to right, transparent, rgba(94, 68, 181, 0.5), transparent);
 }
 .compass-divider svg { width: 22px; height: 22px; flex-shrink: 0; }
 
@@ -405,13 +404,13 @@ body.theme-light .orbit-bar a:hover { color: #f2e4c0; }
   margin-bottom: 10px;
 }
 .book-title-main {
-  font-family: var(--mincho);
-  font-size: clamp(1.9rem, 3.6vw, 2.5rem);
-  font-weight: 600;
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 3.2vw, 2.15rem);
+  font-weight: 700;
   color: var(--text-strong);
-  line-height: 1.25;
-  letter-spacing: 0.02em;
-  margin-bottom: 12px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
 }
 .book-subtitle-main {
   font-size: 15px;
@@ -524,12 +523,12 @@ body.theme-light .orbit-bar a:hover { color: #f2e4c0; }
   z-index: 1;
 }
 .toc-list .toc-title-text {
-  font-family: var(--mincho);
-  font-size: 16px;
-  line-height: 1.5;
+  font-family: var(--display);
+  font-size: 14.5px;
+  line-height: 1.55;
   font-weight: 500;
   color: var(--text);
-  letter-spacing: 0.01em;
+  letter-spacing: -0.005em;
 }
 .toc-list .toc-en-badge {
   font-family: var(--mono);
@@ -582,7 +581,7 @@ body.theme-light .orbit-bar a:hover { color: #f2e4c0; }
   letter-spacing: 2px;
   text-transform: uppercase;
   transition: all .12s;
-  background: rgba(177, 98, 134, 0.05);
+  background: rgba(124, 92, 224, 0.05);
 }
 .chapter-bar .en-link:hover { background: var(--purple); color: var(--bg-void); border-color: var(--purple); text-decoration: none; }
 
@@ -608,37 +607,37 @@ article.chapter-content::before {
 
 /* Typography */
 .chapter-content h1 {
-  font-family: var(--mincho);
-  font-size: clamp(1.7rem, 3.2vw, 2.1rem);
-  font-weight: 600;
+  font-family: var(--display);
+  font-size: clamp(1.55rem, 3vw, 1.95rem);
+  font-weight: 700;
   color: var(--text-strong);
   line-height: 1.4;
   margin: 0 0 1em;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
   padding-bottom: 0.5em;
   border-bottom: 2px solid var(--border-hi);
 }
 .chapter-content h2 {
-  font-family: var(--mincho);
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-family: var(--display);
+  font-size: 1.32rem;
+  font-weight: 700;
   color: var(--text-strong);
   margin: 2.4em 0 0.9em;
   padding-bottom: 0.4em;
   border-bottom: 1px solid var(--border);
   scroll-margin-top: 88px;
   position: relative;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
 }
 .chapter-content h3 {
-  font-family: var(--mincho);
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-family: var(--display);
+  font-size: 1.12rem;
+  font-weight: 700;
   color: var(--text-strong);
   margin: 1.9em 0 0.7em;
   scroll-margin-top: 88px;
   position: relative;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
 }
 .chapter-content h4 {
   font-size: 0.98rem;
@@ -743,8 +742,8 @@ article.chapter-content::before {
 .copy-btn {
   position: absolute;
   top: 10px; right: 10px;
-  background: rgba(177, 98, 134, 0.08);
-  border: 1px solid rgba(177, 98, 134, 0.2);
+  background: rgba(124, 92, 224, 0.08);
+  border: 1px solid rgba(124, 92, 224, 0.2);
   color: var(--purple-bright);
   font-family: var(--mono);
   font-size: 10px;
@@ -757,7 +756,7 @@ article.chapter-content::before {
   text-transform: uppercase;
 }
 .chapter-content pre:hover .copy-btn { opacity: 1; }
-.copy-btn:hover { background: rgba(177, 98, 134, 0.2); border-color: var(--purple); }
+.copy-btn:hover { background: rgba(124, 92, 224, 0.2); border-color: var(--purple); }
 .copy-btn.copied { color: var(--text-strong); border-color: var(--purple); }
 
 .chapter-content table {
@@ -847,12 +846,11 @@ article.chapter-content::before {
   border-top: 1px dashed var(--border);
 }
 .book-footer .quote {
-  font-family: var(--display);
-  color: var(--text-strong);
+  color: var(--muted);
   font-style: italic;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   margin-bottom: 16px;
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   font-weight: 400;
 }
 .book-footer .foot-links {
