@@ -28,6 +28,7 @@
   --purple: #7c5ce0;
   --purple-dim: #5e44b5;
   --purple-bright: #a188ed;
+  --purple-soft: #8a76c9;
   --purple-deep: #3f2d85;
   --purple-glow: rgba(124, 92, 224, 0.22);
 
@@ -52,33 +53,45 @@
   --content-max: 740px;
 }
 
-/* Optional light theme — fully cool blue-gray, pairs with purple accent (no warm/sepia) */
+/* Optional light theme — "observation space": muddied whites, minimal contrast, code-block as the gravity core.
+   Principles: read by density, not by brightness. Whites are dialed down, card/bg gap is small, only the code
+   fence pushes hard. Purple shifts to a livelier indigo (#6D5EF5) with a lavender soft counterpart. */
 body.theme-light {
-  --bg-void: #e7ebf2;
-  --bg-deep: #dce1ea;
-  --paper: #f4f6fa;
-  --paper-hi: #ffffff;
-  --border: #c8cdd6;
-  --border-hi: #9da4b0;
+  --bg-void: #eceef3;          /* bg-base — slightly cloudy, not SaaS white */
+  --bg-deep: #e4e7ee;          /* bg-subtle */
+  --paper: #f3f4f8;            /* surface-primary — a whisper above bg, not pure white */
+  --paper-hi: #eff1f6;         /* surface-secondary */
+  --border: #d8dbe3;           /* border melts into space */
+  --border-hi: #b8bdc8;
   --border-glow: #8b7bbf;
-  --text: #1a1f29;
-  --text-strong: #0b0f16;
+  --text: #1c1f26;             /* text-primary — dark but not crushed */
+  --text-strong: #0f1218;
   --body: #2d3340;
-  --muted: #636b78;
-  --dim: #8f96a3;
-  --purple: #5a3fb5;
+  --muted: #6b7280;            /* text-secondary */
+  --dim: #9aa0ab;
+  --purple: #6d5ef5;           /* accent-primary — structural, alive */
   --purple-dim: #6d5bc2;
-  --purple-bright: #7c5cd9;
-  --purple-deep: #3a2680;
-  --purple-glow: rgba(90, 63, 181, 0.12);
-  --code-bg: #e3e8f0;
-  --code-text: #5a3fb5;
-  --pre-bg: #1a1d25;
-  --pre-text: #d8dde6;
-  --quote-bg: #e5e9f0;
-  --quote-border: #5a3fb5;
-  --selection: rgba(90, 63, 181, 0.16);
-  --shadow: rgba(30, 40, 55, 0.10);
+  --purple-bright: #8b7cff;
+  --purple-soft: #a78bfa;      /* accent-secondary — auxiliary */
+  --purple-deep: #4b3fc7;
+  --purple-glow: rgba(109, 94, 245, 0.12);
+  --code-bg: #eff1f6;          /* inline code + table headers */
+  --code-text: #6d5ef5;
+  --pre-bg: #0f1115;           /* the gravity core — nearly black */
+  --pre-text: #dce2ec;
+  --quote-bg: #eaecf2;
+  --quote-border: #6d5ef5;
+  --selection: rgba(109, 94, 245, 0.14);
+  --shadow: rgba(20, 22, 30, 0.06);   /* bleed, not float */
+}
+
+/* Light mode background — radial gravitational wells + vertical layer */
+body.theme-light {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% -10%, rgba(124, 92, 224, 0.08), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 90% 110%, rgba(60, 80, 130, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg-void), var(--bg-deep));
+  background-attachment: fixed;
 }
 
 body.font-serif { --sans: var(--serif); }
@@ -762,7 +775,7 @@ article.chapter-content::before {
 .chapter-content a.xref {
   color: var(--purple-bright);
   text-decoration: none;
-  border-bottom: 1px dotted var(--purple-dim);
+  border-bottom: 1px dotted var(--purple-soft);
   padding-bottom: 1px;
   transition: color .12s, border-color .12s;
 }
@@ -1120,6 +1133,134 @@ body.theme-light .firewall { background: rgba(26, 30, 42, 0.92); color: #bcc3d0;
 @media (max-width: 720px) {
   .firewall { font-size: 10px; padding: 9px 14px; }
   .firewall-msg span:not(.firewall-tag):not(strong) { display: none; }
+}
+
+/* ======================================================================
+   Light-mode overrides — observation space
+   - Read by density, not by brightness
+   - Whites are muddied; card/bg difference is a whisper
+   - Code block is the gravity core — pushed hard, everything else recedes
+   - Purple split: primary for structure (H2 bar, quote), soft for auxiliary
+   ====================================================================== */
+
+/* Background — quiet vertical stratum, no radial drama */
+body.theme-light {
+  background: linear-gradient(180deg, var(--bg-void), var(--bg-deep));
+  background-attachment: fixed;
+}
+
+/* Reading surface — barely a lift from the field, a bleeding shadow */
+body.theme-light article.chapter-content {
+  box-shadow: 0 2px 10px var(--shadow);
+  padding: 56px 56px 64px;
+  border-radius: 12px;
+}
+body.theme-light article.chapter-content::before {
+  background: linear-gradient(90deg, transparent, var(--purple-soft), transparent);
+  opacity: 0.45;
+  height: 1px;
+}
+
+/* H1 — structural, not dramatic. Weight 600, barely-there rule below */
+body.theme-light .chapter-content h1 {
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 3.3vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+  margin: 0 0 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid rgba(28, 31, 38, 0.06);
+}
+
+/* H2 — vertical purple pillar as the structural marker */
+body.theme-light .chapter-content h2 {
+  position: relative;
+  margin-top: 2.5em;
+  margin-bottom: 0.75em;
+  padding-top: 0;
+  padding-left: 16px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--text-primary, var(--text-strong));
+}
+body.theme-light .chapter-content h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.25em;
+  bottom: 0.25em;
+  width: 4px;
+  height: auto;
+  background: var(--purple);
+  border-radius: 2px;
+}
+
+/* Cover hero — one abnormal element on the Cover page. Slight upscale +
+   a deep violet drop-shadow so the number looks like it's pressing on the field.
+   This is the single "異様" feature — everything else stays quiet. */
+body.theme-light .book-code-hero {
+  font-weight: 300;
+  color: var(--text-strong);
+  transform: scale(1.05);
+  transform-origin: left center;
+  filter: drop-shadow(0 24px 48px rgba(74, 58, 190, 0.25));
+  transition: filter .4s ease;
+}
+
+/* Cover subtitle — the "decisive line" promoted out of the summary block */
+body.theme-light .book-subtitle-main {
+  font-size: clamp(17px, 1.7vw, 20px);
+  font-weight: 600;
+  color: var(--purple-bright);
+  letter-spacing: 0.01em;
+  line-height: 1.55;
+}
+
+/* Emphasis (em) — stop competing with purple structural marks.
+   Italicise with a soft body color; purple is reserved for structure now. */
+body.theme-light .chapter-content em {
+  color: var(--text);
+  font-style: italic;
+}
+
+/* Sidebars recede — present but distant; brighten on focus */
+body.theme-light .book-toc-sidebar {
+  opacity: 0.55;
+  transition: opacity .3s ease;
+}
+body.theme-light .book-toc-sidebar:hover,
+body.theme-light .book-toc-sidebar:focus-within {
+  opacity: 1;
+}
+body.theme-light .inline-toc {
+  opacity: 0.55;
+  transition: opacity .3s ease;
+}
+body.theme-light .inline-toc:hover,
+body.theme-light .inline-toc:focus-within {
+  opacity: 1;
+}
+
+/* Cover panels — soft bleed, not a float */
+body.theme-light .toc-grid,
+body.theme-light .book-switch-item,
+body.theme-light .book-meta {
+  box-shadow: 0 2px 10px var(--shadow);
+}
+
+/* The gravity core — code fence pushes hard, only element with real shadow */
+body.theme-light .chapter-content pre {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(15, 17, 21, 0.22);
+}
+
+/* Blockquote — subtle purple rail */
+body.theme-light .chapter-content blockquote {
+  border-left-width: 3px;
+  box-shadow: none;
 }
 
 /* Print */
