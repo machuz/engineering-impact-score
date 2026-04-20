@@ -1,7 +1,7 @@
 ---
 title: "Psychological OS #1 — The Observer Can't Reach: How to Know Your Own State"
 series: "Psychological OS"
-published: false
+published: true
 description: "You can't directly observe your own Psychological OS — observer and observed are the same system. Three paths that create distance, and a practical case of using them."
 tags: career, productivity, leadership, philosophy
 cover_image: https://raw.githubusercontent.com/machuz/eis/main/books/psychological-os/images/cover.png?v=1

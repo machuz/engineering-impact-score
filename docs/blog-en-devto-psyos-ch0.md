@@ -1,7 +1,7 @@
 ---
 title: "Psychological OS #0 — Why Some People Keep Burning While Others Fade"
 series: "Psychological OS"
-published: false
+published: true
 description: "An operating principle for staying yourself. Why some people keep their heat while others lose it — and what the invisible base layer of decision-making really is."
 tags: career, productivity, leadership, philosophy
 cover_image: https://raw.githubusercontent.com/machuz/eis/main/books/psychological-os/images/cover.png?v=1

@@ -1,7 +1,7 @@
 ---
 title: "Psychological OS #2 — What a Strong Psychological OS Actually Is: Heat, Attachment, Vector"
 series: "Psychological OS"
-published: false
+published: true
 description: "A strong Psychological OS isn't perfection. It's heat kept pointing inward, attachment directed to the right target, and vectors aligned so external pressure doesn't erode purity."
 tags: career, productivity, leadership, philosophy
 cover_image: https://raw.githubusercontent.com/machuz/eis/main/books/psychological-os/images/cover.png?v=1
