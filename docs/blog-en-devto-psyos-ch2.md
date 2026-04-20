@@ -45,7 +45,7 @@ What comes next is sharper.
 
 > Those are decorations. Success, failure, the eyes of others. Be free of them.
 
-Success and failure, from Psychological OS's perspective, are **in the same category**. Both are decorations. Both are external evaluation. Getting cocky from winning and shrinking from losing both steal heat. **Heat exists only outside the success/failure axis.**
+Success and failure, from Psychological OS's perspective, are **in the same category**. Both are decorations. Both are external evaluation. Getting cocky from winning and shrinking from losing both steal heat. **Heat exists on a different dimension from the success/failure axis.**
 
 A strong Psychological OS passes through wins and losses without letting either alter its heat. In both cases, it routes the heat into the next motion.
 
