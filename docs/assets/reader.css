@@ -682,6 +682,15 @@ article.chapter-content::before {
   font-size: 0.97em;
   position: relative;
 }
+.chapter-content a.xref {
+  color: var(--purple-bright);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--purple-dim);
+  padding-bottom: 1px;
+  transition: color .12s, border-color .12s;
+}
+.chapter-content a.xref:hover { color: var(--text-strong); border-bottom-color: var(--purple-bright); text-decoration: none; }
+
 .chapter-content blockquote p { margin: 0.4em 0; }
 .chapter-content blockquote p:first-child { margin-top: 0; }
 .chapter-content blockquote p:last-child { margin-bottom: 0; }

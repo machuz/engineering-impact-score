@@ -423,6 +423,17 @@ section { padding: 80px 0; position: relative; scroll-margin-top: 80px; }
 }
 .book-btn-secondary:hover { border-color: var(--purple-dim); color: var(--purple-bright); text-decoration: none; }
 
+/* ===== Triad figure (library three-layer diagram) ===== */
+.triad-figure {
+  margin: 0 auto 44px;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(124, 92, 224, 0.04), rgba(10, 14, 23, 0));
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  max-width: 960px;
+}
+.triad-figure img { display: block; width: 100%; height: auto; }
+
 /* ===== Mini cards (whitepapers) ===== */
 .mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 @media (max-width: 720px) { .mini-grid { grid-template-columns: 1fr; } }
@@ -573,9 +584,44 @@ footer.page-footer {
 [data-lang="ja"] { display: none; }
 body.ja [data-lang="en"] { display: none; }
 body.ja [data-lang="ja"] { display: block; }
+body.ja .article[data-lang="ja"] { display: flex; }
+body.ja .mini[data-lang="ja"] { display: block; }
 [data-lang-inline="ja"] { display: none; }
 body.ja [data-lang-inline="en"] { display: none; }
 body.ja [data-lang-inline="ja"] { display: inline; }
+
+/* ===== Page TOC (right-sticky scrollspy) ===== */
+.page-toc {
+  position: fixed;
+  top: 90px;
+  right: 24px;
+  z-index: 30;
+  width: 170px;
+  padding-left: 14px;
+  border-left: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.page-toc-label {
+  font-size: 9px; letter-spacing: 2px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+.page-toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+.page-toc a {
+  display: block;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 5px 10px 5px 12px;
+  margin-left: -14px;
+  border-left: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.page-toc a:hover { color: var(--text-strong); text-decoration: none; }
+.page-toc a.active { color: var(--purple-bright); border-left-color: var(--purple); }
+@media (max-width: 1280px) { .page-toc { display: none; } }
 
 @media (max-width: 720px) {
   .hero { padding: 110px 24px 60px; }
@@ -589,6 +635,17 @@ body.ja [data-lang-inline="ja"] { display: inline; }
 <body>
 
 <div class="starfield"></div>
+
+<!-- Page TOC (right-sticky scrollspy) -->
+<nav class="page-toc" aria-label="On this page">
+  <ol>
+    <li><a href="#books" data-spy="books"><span data-lang-inline="en">The Library</span><span data-lang-inline="ja">ライブラリ</span></a></li>
+    <li><a href="#whitepapers" data-spy="whitepapers"><span data-lang-inline="en">Whitepapers</span><span data-lang-inline="ja">ホワイトペーパー</span></a></li>
+    <li><a href="#research" data-spy="research"><span data-lang-inline="en">Research</span><span data-lang-inline="ja">リサーチ</span></a></li>
+    <li><a href="#articles" data-spy="articles"><span data-lang-inline="en">Articles</span><span data-lang-inline="ja">記事</span></a></li>
+    <li><a href="#tools" data-spy="tools"><span data-lang-inline="en">Tools</span><span data-lang-inline="ja">ツール</span></a></li>
+  </ol>
+</nav>
 
 <!-- Fixed breadcrumb (UX-06 scope always visible) -->
 <nav class="breadcrumb">
@@ -687,70 +744,7 @@ body.ja [data-lang-inline="ja"] { display: inline; }
   </svg>
 </div>
 
-<!-- Three layers -->
-<section>
-  <div class="container">
-    <div class="compass-divider">
-      <span class="line"></span>
-      <svg viewBox="0 0 22 22" fill="none">
-        <path d="M11 2 L13 11 L11 9 L9 11 Z" fill="currentColor"/>
-        <path d="M11 20 L9 11 L11 13 L13 11 Z" fill="currentColor" opacity="0.5"/>
-        <path d="M2 11 L11 9 L9 11 L11 13 Z" fill="currentColor" opacity="0.5"/>
-        <path d="M20 11 L11 13 L13 11 L11 9 Z" fill="currentColor" opacity="0.5"/>
-        <circle cx="11" cy="11" r="1" fill="currentColor"/>
-      </svg>
-      <span class="line"></span>
-    </div>
-    <div class="section-head">
-      <div class="section-label">Three Layers</div>
-      <div class="section-count">3 vantages</div>
-    </div>
-    <p class="section-lede" data-lang="en">
-      Each book covers a different layer. They share one stance: don't judge from outside, observe what's already there.
-    </p>
-    <p class="section-lede" data-lang="ja">
-      3冊はそれぞれ異なる層を扱う。立場は一つ —— 外から裁かず、そこにあるものを観測する。
-    </p>
-
-    <div class="tenets">
-      <div class="tenet">
-        <div class="tenet-num">L1 / Trace</div>
-        <div class="tenet-title" data-lang="en">Git Archaeology</div>
-        <div class="tenet-title" data-lang="ja">Git考古学</div>
-        <p class="tenet-body" data-lang="en">
-          Git log and blame are the archaeological record of what actually survived. We observe impact from <em>traces</em>, not from self-reports.
-        </p>
-        <p class="tenet-body" data-lang="ja">
-          git log と git blame は、実際に残ったものの<em>考古学的記録</em>。自己申告ではなく痕跡から、インパクトを観測する。
-        </p>
-      </div>
-      <div class="tenet">
-        <div class="tenet-num">L2 / Structure</div>
-        <div class="tenet-title" data-lang="en">Structure-Driven Org</div>
-        <div class="tenet-title" data-lang="ja">構造駆動エンジニアリング組織論</div>
-        <p class="tenet-body" data-lang="en">
-          Organizations break at the same places repeatedly because the subject is always "people." We switch the subject to <em>structure</em>.
-        </p>
-        <p class="tenet-body" data-lang="ja">
-          組織は同じ場所で壊れ続ける。主語がずっと「人」のままだからだ。主語を<em>構造</em>に切り替える。
-        </p>
-      </div>
-      <div class="tenet">
-        <div class="tenet-num">L3 / Interior</div>
-        <div class="tenet-title" data-lang="en">Psychological OS</div>
-        <div class="tenet-title" data-lang="ja">心理OS</div>
-        <p class="tenet-body" data-lang="en">
-          Structure keeps organizations from breaking people. <em>Psychological OS</em> keeps success and consensus from breaking you.
-        </p>
-        <p class="tenet-body" data-lang="ja">
-          組織が人を壊さないために構造駆動が要る。成功や正論が自分を壊さないために<em>心理OS</em>が要る。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Books -->
+<!-- The Library (three books, three layers, one diagram) -->
 <section id="books">
   <div class="container">
     <div class="compass-divider">
@@ -764,37 +758,41 @@ body.ja [data-lang-inline="ja"] { display: inline; }
     </div>
     <div class="section-head">
       <div class="section-label">The Library</div>
-      <div class="section-count">3 books · 34 chapters</div>
+      <div class="section-count">3 books · 34 chapters · 3 layers</div>
     </div>
     <p class="section-lede" data-lang="en">
-      Each book is self-contained. Start with whichever layer calls you.
+      Three layers of observation — interior, structure, trace. If where to start matters, begin at the innermost layer (Psychological OS) and read outward only as far as you need.
     </p>
     <p class="section-lede" data-lang="ja">
-      それぞれ独立して読める。気になる層から始めていい。
+      個人・組織・痕跡の3層観測。どこから読むか迷うなら、一番内側（心理OS）から外へ、必要な分だけ進めばいい。
     </p>
+
+    <figure class="triad-figure">
+      <img src="./images/library-triad.svg" alt="Three layers of the OrbitLens Library — Psychological OS (L3 Interior) translates heat into Structure-Driven Organization (L2), which settles as traces observed by Git Archaeology (L1).">
+    </figure>
 
     <div class="books">
       <div class="book">
         <div class="book-code">BOOK · 1</div>
-        <div class="book-tag">17 chapters</div>
-        <div class="book-title" data-lang="en">Git Archaeology</div>
-        <div class="book-title" data-lang="ja">git考古学</div>
-        <div class="book-subtitle">Engineering Impact Signal</div>
+        <div class="book-tag">L1 · Interior · 6 chapters</div>
+        <div class="book-title" data-lang="en">Psychological OS</div>
+        <div class="book-title" data-lang="ja">心理OS</div>
+        <div class="book-subtitle">The Inner Operating Principle</div>
         <p class="book-tagline" data-lang="en">
-          Git history alone reveals the gravity of each engineer. No external APIs. No AI tokens. Just git log, git blame, seven axes, and a telescope.
+          The operating principle for staying in motion by your own will — without being overwritten by external success, correctness, or consensus. Dual with Structure-Driven.
         </p>
         <p class="book-tagline" data-lang="ja">
-          Git履歴だけで、各エンジニアの重力が見える。外部API不要、AIトークン不要 —— git log と git blame、7軸、そして望遠鏡。
+          外部の成功・正論・空気に上書きされず、自分の意思で動き続けるための作動原理。一番内側の層から始められる。
         </p>
         <div class="book-actions">
-          <a href="./git-archaeology/" class="book-btn book-btn-primary"><span data-lang-inline="en">Read JP →</span><span data-lang-inline="ja">日本語で読む →</span></a>
-          <a href="https://dev.to/machuz/git-archaeology-0-what-if-git-history-could-tell-you-who-your-strongest-engineers-are-5397" class="book-btn book-btn-secondary" target="_blank" rel="noopener">EN · dev.to ↗</a>
+          <a href="./psychological-os/" class="book-btn book-btn-primary"><span data-lang-inline="en">Read JP →</span><span data-lang-inline="ja">日本語で読む →</span></a>
+          <a href="https://dev.to/machuz/psychological-os-0-why-some-people-keep-burning-while-others-fade-2cgj" class="book-btn book-btn-secondary" target="_blank" rel="noopener">EN · dev.to ↗</a>
         </div>
       </div>
 
       <div class="book">
         <div class="book-code">BOOK · 2</div>
-        <div class="book-tag">11 chapters</div>
+        <div class="book-tag">L2 · Structure · 11 chapters</div>
         <div class="book-title" data-lang="en">Structure-Driven Org Theory</div>
         <div class="book-title" data-lang="ja">構造駆動エンジニアリング組織論</div>
         <div class="book-subtitle">The Outer Physics</div>
@@ -812,19 +810,19 @@ body.ja [data-lang-inline="ja"] { display: inline; }
 
       <div class="book">
         <div class="book-code">BOOK · 3</div>
-        <div class="book-tag">6 chapters</div>
-        <div class="book-title" data-lang="en">Psychological OS</div>
-        <div class="book-title" data-lang="ja">心理OS</div>
-        <div class="book-subtitle">The Inner Operating Principle</div>
+        <div class="book-tag">L3 · Trace · 17 chapters</div>
+        <div class="book-title" data-lang="en">Git Archaeology</div>
+        <div class="book-title" data-lang="ja">git考古学</div>
+        <div class="book-subtitle">Engineering Impact Signal</div>
         <p class="book-tagline" data-lang="en">
-          The operating principle for staying in motion by your own will — without being overwritten by external success, correctness, or consensus. Dual with Structure-Driven.
+          Git history alone reveals the gravity of each engineer. No external APIs. No AI tokens. Just git log, git blame, seven axes, and a telescope.
         </p>
         <p class="book-tagline" data-lang="ja">
-          外部の成功・正論・空気に上書きされず、自分の意思で動き続けるための作動原理。構造駆動の姉妹編。
+          Git履歴だけで、各エンジニアの重力が見える。外部API不要、AIトークン不要 —— git log と git blame、7軸、そして望遠鏡。
         </p>
         <div class="book-actions">
-          <a href="./psychological-os/" class="book-btn book-btn-primary"><span data-lang-inline="en">Read JP →</span><span data-lang-inline="ja">日本語で読む →</span></a>
-          <a href="https://dev.to/machuz/psychological-os-0-why-some-people-keep-burning-while-others-fade-2cgj" class="book-btn book-btn-secondary" target="_blank" rel="noopener">EN · dev.to ↗</a>
+          <a href="./git-archaeology/" class="book-btn book-btn-primary"><span data-lang-inline="en">Read JP →</span><span data-lang-inline="ja">日本語で読む →</span></a>
+          <a href="https://dev.to/machuz/git-archaeology-0-what-if-git-history-could-tell-you-who-your-strongest-engineers-are-5397" class="book-btn book-btn-secondary" target="_blank" rel="noopener">EN · dev.to ↗</a>
         </div>
       </div>
     </div>
@@ -832,7 +830,7 @@ body.ja [data-lang-inline="ja"] { display: inline; }
 </section>
 
 <!-- Whitepapers -->
-<section>
+<section id="whitepapers">
   <div class="container">
     <div class="compass-divider">
       <span class="line"></span>
@@ -856,15 +854,15 @@ body.ja [data-lang-inline="ja"] { display: inline; }
     </p>
 
     <div class="mini-grid">
-      <a href="https://github.com/machuz/eis/blob/main/docs/whitepaper.md" class="mini" target="_blank" rel="noopener">
+      <a href="https://github.com/machuz/eis/blob/main/docs/whitepaper.md" class="mini" target="_blank" rel="noopener" data-lang="en">
         <div class="mini-arrow">→</div>
-        <div class="mini-label">Whitepaper · EN</div>
+        <div class="mini-label">Whitepaper</div>
         <div class="mini-title">Engineering Impact Signal</div>
         <div class="mini-desc">A telescope for engineering gravity — seven observation axes, three-axis engineer topology, game-resistant by design.</div>
       </a>
-      <a href="https://github.com/machuz/eis/blob/main/docs/whitepaper-ja.md" class="mini" target="_blank" rel="noopener">
+      <a href="https://github.com/machuz/eis/blob/main/docs/whitepaper-ja.md" class="mini" target="_blank" rel="noopener" data-lang="ja">
         <div class="mini-arrow">→</div>
-        <div class="mini-label">ホワイトペーパー · JA</div>
+        <div class="mini-label">ホワイトペーパー</div>
         <div class="mini-title">Engineering Impact Signal</div>
         <div class="mini-desc">エンジニアリングの重力を測る望遠鏡 —— 7軸観測、3軸エンジニアトポロジー、ゲーム耐性で信号の純度を保つ。</div>
       </a>
@@ -872,8 +870,64 @@ body.ja [data-lang-inline="ja"] { display: inline; }
   </div>
 </section>
 
+<!-- Research -->
+<section id="research">
+  <div class="container">
+    <div class="compass-divider">
+      <span class="line"></span>
+      <svg viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="0.6"/>
+        <circle cx="11" cy="11" r="4" stroke="currentColor" stroke-width="0.5"/>
+        <circle cx="11" cy="11" r="1.2" fill="currentColor"/>
+        <line x1="11" y1="1" x2="11" y2="4" stroke="currentColor" stroke-width="0.5"/>
+        <line x1="11" y1="18" x2="11" y2="21" stroke="currentColor" stroke-width="0.5"/>
+        <line x1="1" y1="11" x2="4" y2="11" stroke="currentColor" stroke-width="0.5"/>
+        <line x1="18" y1="11" x2="21" y2="11" stroke="currentColor" stroke-width="0.5"/>
+      </svg>
+      <span class="line"></span>
+    </div>
+    <div class="section-head">
+      <div class="section-label">Research</div>
+      <div class="section-count">29 repos · 55,343 engineers</div>
+    </div>
+    <p class="section-lede" data-lang="en">
+      Field observations with EIS. The OSS Gravity Map charts how engineering gravity distributes across language ecosystems.
+    </p>
+    <p class="section-lede" data-lang="ja">
+      EIS による観測結果。OSS Gravity Map は、言語エコシステムごとにエンジニアリングの重力がどう分布しているかを観測する。
+    </p>
+
+    <div class="mini-grid">
+      <a href="../research/oss-gravity-map/analysis/oss-gravity-map-en.html" class="mini" data-lang="en">
+        <div class="mini-arrow">→</div>
+        <div class="mini-label">OSS Gravity Map</div>
+        <div class="mini-title">Do Physical Laws Exist in the Universe of Code?</div>
+        <div class="mini-desc">Structural analysis across 29 repositories and 55,343 engineers. Gravity follows different laws depending on language family.</div>
+      </a>
+      <a href="../research/oss-gravity-map/analysis/oss-gravity-map-ja.html" class="mini" data-lang="ja">
+        <div class="mini-arrow">→</div>
+        <div class="mini-label">OSS Gravity Map</div>
+        <div class="mini-title">コードの宇宙に物理法則は存在するか</div>
+        <div class="mini-desc">29リポジトリ・55,343エンジニアの構造分析。言語ファミリーごとに重力の法則が体系的に異なることを観測した。</div>
+      </a>
+      <a href="../research/oss-gravity-map/analysis/top50.html" class="mini" data-lang="en">
+        <div class="mini-arrow">→</div>
+        <div class="mini-label">Top 50 Engineers</div>
+        <div class="mini-title">The Strongest Engineers in the OSS Universe</div>
+        <div class="mini-desc">The stars with the strongest gravity across all 29 repositories, ranked and profiled.</div>
+      </a>
+      <a href="../research/oss-gravity-map/analysis/top50-ja.html" class="mini" data-lang="ja">
+        <div class="mini-arrow">→</div>
+        <div class="mini-label">Top 50 エンジニア</div>
+        <div class="mini-title">OSS 宇宙で最も強い重力を持つ星たち</div>
+        <div class="mini-desc">29 リポジトリ横断で、最も強い重力を持つエンジニアたちのランキングとプロファイル。</div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- Articles -->
-<section>
+<section id="articles">
   <div class="container-narrow">
     <div class="compass-divider">
       <span class="line"></span>
@@ -896,27 +950,38 @@ body.ja [data-lang-inline="ja"] { display: inline; }
     </p>
 
     <div class="article-list">
-      <a href="https://dev.to/machuz/dora-space-linearb-and-the-question-they-all-leave-unanswered-41di" class="article" target="_blank" rel="noopener">
+      <!-- 01 Complete Guide -->
+      <a href="https://dev.to/machuz/git-archaeology-a-complete-theory-of-software-universes-1057" class="article" target="_blank" rel="noopener" data-lang="en">
         <div class="article-idx">01</div>
-        <div class="article-body">
-          <div class="article-title">EIS vs DORA vs SPACE vs LinearB — How OrbitLens differs from the rest</div>
-          <div class="article-sub">comparison · positioning</div>
-        </div>
-        <div class="article-lang">EN ↗</div>
-      </a>
-      <a href="https://dev.to/machuz/git-archaeology-a-complete-theory-of-software-universes-1057" class="article" target="_blank" rel="noopener">
-        <div class="article-idx">02</div>
         <div class="article-body">
           <div class="article-title">Git Archaeology — A Complete Theory of Software Universes</div>
           <div class="article-sub">long-form origin article</div>
         </div>
         <div class="article-lang">EN ↗</div>
       </a>
-      <a href="./articles/git-archaeology-complete/" class="article">
-        <div class="article-idx">03</div>
+      <a href="./articles/git-archaeology-complete/" class="article" data-lang="ja">
+        <div class="article-idx">01</div>
         <div class="article-body">
           <div class="article-title">Engineering Impact Signal —— 完全版</div>
           <div class="article-sub">原点の長尺記事</div>
+        </div>
+        <div class="article-lang">JA →</div>
+      </a>
+
+      <!-- 02 DORA/SPACE/LinearB comparison -->
+      <a href="https://dev.to/machuz/dora-space-linearb-and-the-question-they-all-leave-unanswered-41di" class="article" target="_blank" rel="noopener" data-lang="en">
+        <div class="article-idx">02</div>
+        <div class="article-body">
+          <div class="article-title">EIS vs DORA vs SPACE vs LinearB — How OrbitLens differs from the rest</div>
+          <div class="article-sub">comparison · positioning</div>
+        </div>
+        <div class="article-lang">EN ↗</div>
+      </a>
+      <a href="./articles/dora-space-comparison/" class="article" data-lang="ja">
+        <div class="article-idx">02</div>
+        <div class="article-body">
+          <div class="article-title">EIS と DORA・SPACE・LinearB —— 観測する対象の違い</div>
+          <div class="article-sub">比較 · ポジショニング</div>
         </div>
         <div class="article-lang">JA →</div>
       </a>
@@ -925,7 +990,7 @@ body.ja [data-lang-inline="ja"] { display: inline; }
 </section>
 
 <!-- Tools -->
-<section>
+<section id="tools">
   <div class="container">
     <div class="compass-divider">
       <span class="line"></span>
@@ -1012,10 +1077,10 @@ const savedLang = localStorage.getItem('orbit-lang');
 const initialLang = savedLang || (navigator.language && navigator.language.startsWith('ja') ? 'ja' : 'en');
 setLang(initialLang);
 
-// Keyboard shortcuts (j/k → scroll between sections, ? → focus search)
+// Keyboard shortcuts (j/k → scroll between sections)
 document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-  const sections = Array.from(document.querySelectorAll('section'));
+  const sections = Array.from(document.querySelectorAll('section[id]'));
   const currentY = window.scrollY + 90;
   if (e.key === 'j') {
     const next = sections.find(s => s.offsetTop > currentY + 30);
@@ -1025,6 +1090,37 @@ document.addEventListener('keydown', (e) => {
     if (prev) prev.scrollIntoView({ behavior: 'smooth' });
   }
 });
+
+// Scrollspy: highlight page TOC entry matching current section
+(function(){
+  const links = Array.from(document.querySelectorAll('.page-toc a[data-spy]'));
+  if (!links.length) return;
+  const linkMap = new Map(links.map(a => [a.dataset.spy, a]));
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+
+  function updateActive(){
+    const scrollY = window.scrollY;
+    const probe = scrollY + window.innerHeight * 0.35;
+    let current = sections[0];
+    for (const s of sections) {
+      const top = s.getBoundingClientRect().top + scrollY;
+      if (top <= probe) current = s;
+      else break;
+    }
+    // If at (or near) page bottom, force last section
+    const atBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 8);
+    if (atBottom) current = sections[sections.length - 1];
+
+    links.forEach(a => a.classList.remove('active'));
+    if (current) {
+      const a = linkMap.get(current.id);
+      if (a) a.classList.add('active');
+    }
+  }
+  window.addEventListener('scroll', updateActive, { passive: true });
+  window.addEventListener('resize', updateActive);
+  updateActive();
+})();
 </script>
 
 </body>

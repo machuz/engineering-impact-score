@@ -188,6 +188,7 @@
 
   // ---------- Core: load chapter ----------
   let activeObserver = null;
+  let currentSlug = null;
 
   async function renderHome() {
     inlineToc.style.display = 'none';
@@ -295,8 +296,10 @@
       // Enhance rendered content
       enhanceCodeBlocks();
       enhanceHeadings();
+      linkifyCrossRefs();
       buildInlineTOC();
       setActiveSidebar(slug);
+      currentSlug = slug;
       toolEn.href = chapter.en;
       crumbBook.textContent = chapter.title;
       document.title = chapter.title + ' — ' + cfg.title;
@@ -346,10 +349,15 @@
     });
   }
   function enhanceHeadings() {
+    let h2idx = 0;
     main.querySelectorAll('article.chapter-content h2, article.chapter-content h3').forEach((h) => {
       const text = h.textContent;
       const id = h.id || slugify(text) || 'h-' + Math.random().toString(36).slice(2, 7);
       h.id = id;
+      if (h.tagName === 'H2') {
+        h2idx++;
+        h.setAttribute('data-section', String(h2idx));
+      }
       const anchor = document.createElement('a');
       anchor.className = 'heading-anchor';
       anchor.href = '#' + id;
@@ -357,12 +365,62 @@
       anchor.setAttribute('aria-label', 'Link to section');
       anchor.addEventListener('click', (e) => {
         e.preventDefault();
-        const url = window.location.origin + window.location.pathname + window.location.hash;
-        // Use location hash: we're already inside #slug; add sub-section via scroll
         history.replaceState(null, '', '#' + (window.location.hash.slice(1) || '') + '-' + id);
         h.scrollIntoView({ behavior: 'smooth' });
       });
       h.prepend(anchor);
+    });
+  }
+
+  // Linkify in-text cross-references like "ch3 §5" or "第3章 §5"
+  // to #chN-sM hashes that jump-load the target chapter + scroll to the Nth h2.
+  function linkifyCrossRefs() {
+    const article = main.querySelector('article.chapter-content');
+    if (!article) return;
+    const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) => {
+        const p = node.parentElement;
+        if (!p || p.closest('a, code, pre, h1, h2, h3, h4')) return NodeFilter.FILTER_REJECT;
+        return /(ch|第)\s*\d+/i.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    const nodes = [];
+    let n; while ((n = walker.nextNode())) nodes.push(n);
+    // Matches: ch3 §5 / ch3§5 / ch3 / 第3章 §5 / 第3章§5 / 第3章
+    const re = /(ch(\d+)|第(\d+)章)(?:\s*§\s*(\d+))?/gi;
+    nodes.forEach((node) => {
+      const text = node.nodeValue;
+      if (!re.test(text)) return;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let lastIdx = 0;
+      let m;
+      while ((m = re.exec(text)) !== null) {
+        if (m.index > lastIdx) frag.appendChild(document.createTextNode(text.slice(lastIdx, m.index)));
+        const chNum = m[2] || m[3];
+        const sNum = m[4];
+        const chSlug = 'ch' + chNum;
+        // Only linkify if the referenced chapter exists in this book
+        if (cfg.chapters.some(c => c.slug === chSlug) && chSlug !== currentSlug) {
+          const a = document.createElement('a');
+          a.className = 'xref';
+          a.textContent = m[0];
+          a.href = '#' + chSlug + (sNum ? '-s' + sNum : '');
+          frag.appendChild(a);
+        } else if (sNum && chSlug === currentSlug) {
+          // Same-chapter section reference
+          const a = document.createElement('a');
+          a.className = 'xref';
+          a.textContent = m[0];
+          a.href = '#' + chSlug + '-s' + sNum;
+          frag.appendChild(a);
+        } else {
+          frag.appendChild(document.createTextNode(m[0]));
+        }
+        lastIdx = m.index + m[0].length;
+      }
+      if (lastIdx < text.length) frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+      node.parentNode.replaceChild(frag, node);
     });
   }
 
@@ -424,18 +482,33 @@
   window.addEventListener('scroll', updateProgress, { passive: true });
 
   // ---------- Hash routing ----------
-  function handleHashChange() {
-    const slug = decodeURIComponent(window.location.hash.slice(1)).split('-')[0];
-    // Handle "#chN-subheading" -> just load chapter N
-    const actualSlug = decodeURIComponent(window.location.hash.slice(1));
-    if (!actualSlug) {
-      renderHome();
-      return;
+  function scrollToSection(idx) {
+    const h2 = main.querySelector(`article.chapter-content h2[data-section="${idx}"]`);
+    if (h2) h2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function parseHash(raw) {
+    if (!raw) return { slug: null, sectionIdx: null };
+    // #chN-sM or #chN or #epilogue-sM or #epilogue
+    const m = raw.match(/^(ch\d+|epilogue)(?:-s(\d+))?/);
+    if (m) return { slug: m[1], sectionIdx: m[2] ? parseInt(m[2], 10) : null };
+    // Legacy: #chN-<slug> where slug is a heading slug — match chapter prefix
+    const chMatch = raw.match(/^(ch\d+|epilogue)/);
+    if (chMatch) return { slug: chMatch[1], sectionIdx: null };
+    return { slug: null, sectionIdx: null };
+  }
+  async function handleHashChange() {
+    const raw = decodeURIComponent(window.location.hash.slice(1));
+    const { slug, sectionIdx } = parseHash(raw);
+    if (!slug) { renderHome(); return; }
+    const chapter = cfg.chapters.find(c => c.slug === slug);
+    if (!chapter) { renderHome(); return; }
+
+    if (currentSlug !== slug) {
+      await loadChapter(slug);
     }
-    // If slug matches a chapter, load it
-    const chapter = cfg.chapters.find(c => actualSlug === c.slug || actualSlug.startsWith(c.slug + '-'));
-    if (chapter) loadChapter(chapter.slug);
-    else renderHome();
+    if (sectionIdx) {
+      requestAnimationFrame(() => scrollToSection(sectionIdx));
+    }
   }
   window.addEventListener('hashchange', handleHashChange);
 
