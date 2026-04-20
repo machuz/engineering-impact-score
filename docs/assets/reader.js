@@ -318,7 +318,6 @@
   function clearActiveSidebar() {
     sidebarChapters.querySelectorAll('a').forEach(a => a.classList.remove('current'));
     mobileChapters.querySelectorAll('a').forEach(a => a.classList.remove('current'));
-    inlineToc.style.display = 'none';
   }
   function setActiveSidebar(slug) {
     clearActiveSidebar();
