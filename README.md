@@ -417,61 +417,17 @@ For deeper qualitative analysis (actionable insights, team recommendations), you
 claude "Follow the instructions in PROMPT.md to calculate Engineering Impact Signals for my team. Use config.yaml for configuration."
 ```
 
-## Blog Posts — git考古学 / Git Archaeology
+## Library
 
-**Complete Summary (全17章の要約)**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-a-complete-theory-of-software-universes-1057) — Git Archaeology — A Complete Theory of Software Universes
+All three books are free to read on **OrbitLens Library**.
 
-**#0 — Introduction**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-0-what-if-git-history-could-tell-you-who-your-strongest-engineers-are-5397) — Git Archaeology #0: What If Git History Could Tell You Who Your Strongest Engineers Are?
+👉 **https://library.orbitlens.io/**
 
-**#1 — Individual Profiling**
-- [English / dev.to](https://dev.to/machuz/measuring-engineering-impact-from-git-history-alone-f6c) — Git Archaeology #1: Measuring Engineering Impact from Git History Alone
+- **Book 1 — Psychological OS** (心理OS) — the internal operating principle for staying in motion by your own will
+- **Book 2 — Structure-Driven Engineering Organization Theory** (構造駆動エンジニアリング組織論) — observation over evaluation, structure over people
+- **Book 3 — Git Archaeology** (git考古学) — gravity, civilization, and the age of AI, read from the strata of code (17 chapters)
 
-**#2 — Team Analysis**
-- [English / dev.to](https://dev.to/machuz/beyond-individual-scores-measuring-team-health-from-git-history-3n9f) — Git Archaeology #2: Beyond Individual Scores — Measuring Team Health
-
-**#3 — Architect Evolution**
-- [English / dev.to](https://dev.to/machuz/two-paths-to-architect-how-engineers-evolve-differently-1ga) — Git Archaeology #3: Two Paths to Architect — How Engineers Evolve Differently
-
-**#4 — Backend Architect Concentration**
-- [English / dev.to](https://dev.to/machuz/backend-architects-converge-the-sacred-work-of-laying-souls-to-rest-m6d) — Git Archaeology #4: Backend Architects Converge — The Sacred Work of Laying Souls to Rest
-
-**#5 — Timeline**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-5-timeline-scores-dont-lie-and-they-capture-hesitation-too-1gi5) — Git Archaeology #5: Timeline — Scores Don't Lie, and They Capture Hesitation Too
-
-**#6 — Team Timeline & Evolution Models**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-6-teams-evolve-the-laws-of-organization-revealed-by-timelines-4lei) — Git Archaeology #6: Teams Evolve — The Laws of Organization Revealed by Timelines
-
-**#7 — Observing the Universe of Code**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-7-observing-the-universe-of-code-1op0) — Git Archaeology #7: Observing the Universe of Code
-
-**#8 — Engineering Relativity**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-8-engineering-relativity-why-the-same-engineer-gets-different-scores-5dnl) — Git Archaeology #8: Engineering Relativity — Why the Same Engineer Gets Different Scores
-
-**#9 — Origin: The Big Bang of Code Universes**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-9-collapse-good-architects-and-black-hole-engineers-1dcn) — Git Archaeology #9: Origin — The Big Bang of Code Universes
-
-**#10 — Dark Matter: The Invisible Gravity**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-10-dark-matter-the-invisible-gravity-45ne) — Git Archaeology #10: Dark Matter — The Invisible Gravity
-
-**#11 — Entropy: The Universe Always Tends Toward Disorder**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-11-entropy-the-universe-always-tends-toward-disorder-ak9) — Git Archaeology #11: Entropy — The Universe Always Tends Toward Disorder
-
-**#12 — Collapse: Good Architects and Black Hole Engineers**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-12-collapse-good-architects-and-black-hole-engineers-3fed) — Git Archaeology #12: Collapse — Good Architects and Black Hole Engineers
-
-**#13 — Cosmology of Code**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-13-cosmology-of-code-dci) — Git Archaeology #13: Cosmology of Code
-
-**#14 — Civilization**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-14-civilization-why-only-some-codebases-become-civilizations-2nl3) — Git Archaeology #14: Civilization — Why Only Some Codebases Become Civilizations
-
-**#15 — AI Creates Stars, Not Gravity**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-15-ai-creates-stars-not-gravity-4i05) — Git Archaeology #15: AI Creates Stars, Not Gravity
-
-**#16 (Final) — The Engineers Who Shape Gravity**
-- [English / dev.to](https://dev.to/machuz/git-archaeology-16-the-engineers-who-shape-gravity-3fmi) — Git Archaeology #16 (Final): The Engineers Who Shape Gravity
+Each chapter is mirrored on [dev.to](https://dev.to/machuz) for English readers.
 
 ```
       ✦       *        ✧

@@ -262,6 +262,9 @@ def detect_platform(filepath: Path) -> str:
         return "devto"
     elif "hatena" in name:
         return "hatena"
+    elif "blog-ja-note-" in name or "blog-ja-x-" in name:
+        # note (note.com) and X (twitter/x.com) are manually published; skip CI automation.
+        return "skip"
     else:
         raise ValueError(f"Cannot detect platform from filename: {name}")
 
@@ -360,6 +363,10 @@ def publish_file(filepath: Path):
     mapping = load_mapping()
     platform = detect_platform(filepath)
     filename = filepath.name
+
+    if platform == "skip":
+        print(f"Skipping {filename} (manual-publish target)")
+        return
 
     print(f"Publishing {filename} to {platform}...")
 
