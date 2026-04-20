@@ -27,7 +27,7 @@
 
     <nav class="orbit-bar">
       <a href="../" class="crumb-logo">
-        <img src="../images/orbitlens-mark.svg" alt="">
+        <img src="../images/orbitlens-inversion.png" alt="">
         <span class="crumb-brand">ORBITLENS</span>
       </a>
       <span class="crumb-sep">/</span>
