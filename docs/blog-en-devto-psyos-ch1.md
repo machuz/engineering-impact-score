@@ -31,6 +31,8 @@ What these share: **you can't recognize the stop as a stop**. When Psychological
 
 Since direct observation isn't possible, people with strong Psychological OS have **ways to create distance between observer and target**. If you can create even a momentary separation, observation becomes possible. Three approaches:
 
+![Three paths that create distance between observer and observed: Inquiry / Time-shift / Reflection](https://raw.githubusercontent.com/machuz/eis/main/books/psychological-os/images/ch1-three-paths-en.png)
+
 **Inquiry** — ask yourself a sharp question. The instant you form the question, there's a brief separation between the asker and the asked.
 
 **Time-shift** — contrast your past self with your present self. Your self from six months ago has become "another person" to your current self. Time creates distance.

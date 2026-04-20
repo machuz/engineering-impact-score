@@ -11,6 +11,8 @@ Chapter 2 was the interior: inner operating intensity. Heat purity, subject plac
 
 But the individual's Psychological OS isn't closed to the outside. It transmits inside groups, reflects, gets suppressed. And **when someone with a strong Psychological OS enters an organization, something necessarily breaks. And usually no one even notices that anything is breaking.** It's not one side attacking the other. **Both sides break each other.**
 
+![Bidirectional destruction: organization's single-layer decisions erode individual heat, while the individual's strength-side-effects destabilize the organization's average](https://raw.githubusercontent.com/machuz/eis/main/books/psychological-os/images/ch3-bidirectional-destruction-en.png)
+
 This chapter handles that collision plane in five stages: contagion, separation, erosion, distortion, exit.
 
 ## 1. Contagion — Psychological OS is not closed
