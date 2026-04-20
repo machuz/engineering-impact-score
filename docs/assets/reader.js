@@ -541,7 +541,7 @@
       });
     });
 
-    // Populate mobile section list (Zenn-style "この章の目次")
+    // Populate mobile section list (article-style "この章の目次" inline accordion)
     const mobileItems = document.getElementById('mobile-section-items');
     if (mobileItems) {
       mobileItems.innerHTML = heads.map((h) => {

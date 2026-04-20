@@ -843,7 +843,7 @@ a.book-meta-link:hover { color: var(--purple-bright); text-decoration: none; }
 .chapter-bar .en-link:hover { background: var(--purple); color: var(--bg-void); border-color: var(--purple); text-decoration: none; }
 
 /* Chapter title — displayed prominently above the section TOC accordion.
-   Replaces the markdown H1 (which is stripped from body). Zenn-style. */
+   Replaces the markdown H1 (which is stripped from body). Multi-chapter book reader style. */
 .chapter-title-display {
   font-family: var(--display);
   font-size: clamp(1.85rem, 4vw, 2.4rem);
@@ -1176,7 +1176,7 @@ article.chapter-content::before {
 .mobile-toc-toggle:hover { background: var(--purple-bright); }
 @media (max-width: 940px) { .mobile-toc-toggle { display: flex; } }
 
-/* Mobile section TOC — Zenn-style "On this page" inline accordion */
+/* Mobile section TOC — article-style "On this page" inline accordion */
 .mobile-section-list {
   display: none;   /* desktop hides this; right-rail inline-toc + left sidebar cover it */
   margin: 8px 0 24px;
