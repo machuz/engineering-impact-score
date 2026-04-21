@@ -136,7 +136,7 @@ Architect はひとつの型ではない。**進化の出自が 2 つある**。
   - 派手ではないが、触れた領域は組織の骨になる
   - Anchor が辞めると、その領域は数年にわたって重力を失う
 
-Anchor は騒がない。目立たない。だから**観測なしでは見逃される**のが典型だ。Anchor が育った先にいるのが Inheritance Architect である。
+Anchor は騒がない。目立たない。だから**観測なしでは見逃される**のが典型だ。組織論的には、Anchor は[心理OS のプール](https://library.orbitlens.io/psychological-os/#ch3)への熱の伝播源として働いている——熱源はしばしば Architect 側にあり、Anchor はそれを領域に定着させる役だ。Anchor が育った先にいるのが Inheritance Architect である。
 
 ### Cleaner
 

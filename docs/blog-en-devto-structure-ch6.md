@@ -8,7 +8,7 @@ tags: management, leadership, engineering, productivity
 
 > *Part 6 of the **Structure-Driven Engineering Organization Theory** series. New here? → [Start from #0: Why Existing Org Theory Doesn't Work](https://dev.to/machuz/structure-driven-organization-theory-0-why-existing-org-theory-doesnt-work-1101)*
 
-*Six months of weekly "how are things going?" 1-on-1s won't move the organization one millimeter — the intervention is trapped at the behavior layer. The moment the conversation opens that way, it doesn't touch accumulation by a single gram.*
+*Six months of weekly "how are things going?" 1-on-1s won't move the organization one millimeter — the intervention is trapped at the behavior layer. [Reassurance at the behavior layer can't relight the heat of internal pressure](https://library.orbitlens.io/psychological-os/#ch2). The moment the conversation opens that way, it doesn't touch accumulation by a single gram.*
 
 *Cut with structure, not with feeling. That's the only intervention that reaches an organization's accumulation.*
 

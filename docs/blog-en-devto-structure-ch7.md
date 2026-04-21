@@ -74,7 +74,7 @@ But if the only person who can stop is a single person, the culture vanishes the
 
 Traditional evaluation looks only at **output and behavior**. Code volume, feature releases, meeting attendance, 1-on-1 frequency — these are easy to observe.
 
-**Transformation is invisible to traditional evaluation.** A transformer's work gets recorded thinly as "ran a meeting," "wrote a doc," "reviewed code." It never climbs the evaluation ladder. The transformer burns out. They leave. The organization loses the transformation without noticing.
+**Transformation is invisible to traditional evaluation.** A transformer's work gets recorded thinly as "ran a meeting," "wrote a doc," "reviewed code." It never climbs the evaluation ladder. The transformer burns out. They leave — [translation labor that runs on external pressure alone loses its heat](https://library.orbitlens.io/psychological-os/#ch2). The organization loses the transformation without noticing.
 
 To make transformation a target of evaluation as part of culture, you need **vocabulary for observing the signals of transformation.**
 

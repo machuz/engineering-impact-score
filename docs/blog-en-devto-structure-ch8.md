@@ -133,7 +133,7 @@ Even with both tracks running, some dark matter remains — the human heart, acc
 
 Put it another way: **self-correction is the state where the loop "observe → interpret → intervene → re-observe" keeps running without external command.** The entity running the loop isn't management; it's the floor itself.
 
-Organizations without self-correction only change when external consultants or executives say so. When the orders stop, the chaos returns. Organizations that did acquire self-correction, on the other hand, **keep correcting themselves as long as the observation and vocabulary survive — even if anyone leaves.**
+Organizations without self-correction only change when external consultants or executives say so. When the orders stop, the chaos returns — [a pool warmed by external pressure cools the moment the pressure goes](https://library.orbitlens.io/psychological-os/#ch3). Organizations that did acquire self-correction, on the other hand, **keep correcting themselves as long as the observation and vocabulary survive — even if anyone leaves.**
 
 Self-correction is the highest-order of the three, standing on top of reproducibility × observability. Even with observation working, if no one acts on it, observation becomes just another **wall value** — **the result is known, and nothing moves.**
 

@@ -44,7 +44,7 @@ The chapter's central claim: **the fourth (product structure) is isomorphic to t
 
 Not metaphorically. As a **design principle**.
 
-- An organization with a thin Structure layer and stalled transformation also has broken information architecture in its product.
+- An organization with a thin Structure layer and stalled transformation also has broken information architecture in its product (when the [heat of individuals](https://library.orbitlens.io/psychological-os/#ch3) who set principle disappears, the Structure layer drifts toward averaging).
 - An organization where product Principle (themes / principles) isn't settled also has an unsettled organizational Principle.
 - An organization with a scattered product Implementation also has engineers with mixed Styles in *their* implementation layer.
 - An organization where the Principle ↔ Structure transformation has stalled is also a place where themes don't descend into information architecture on the product side.

@@ -164,7 +164,7 @@ Typical transformers in organizations:
 
 The role of transformation isn't only converting grammar. There's a second critical function: **keeping the fire alive.**
 
-By "fire" we mean the floor's morale, momentum, trust in their own work, conviction in what they're building — the **internal energy that drives doing the work.** An organization's productivity ultimately rests on the total amount of this fire.
+By "[fire](https://library.orbitlens.io/psychological-os/#ch2)" we mean the floor's morale, momentum, trust in their own work, conviction in what they're building — the **internal energy that drives doing the work.** An organization's productivity ultimately rests on the total amount of this fire.
 
 ![Fire Propagation — with or without a transformer](https://raw.githubusercontent.com/machuz/eis/main/docs/images/blog/sdo-ch4-fire-propagation-en.png)
 
