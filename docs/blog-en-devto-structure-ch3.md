@@ -169,7 +169,7 @@ Cleaners are **the device that lowers organizational entropy**. Hard to see in a
 
 Producers create **organizational speed**. In market-deadline launches, all Anchors means design discussion drains time. Producers drive forward so **working code — the thing design discussions actually need** — gets built first.
 
-> **A note for the AI era.** The "volume and speed" that defines Producer is **the domain AI can most replace**. The era of differentiating by code-generation speed is nearly over. Remaining as a pure Producer means being replaced. A High-Gravity Producer has an evolution path toward Emergent Architect — **without that evolution, the Producer archetype's value will fade**. Organizations need to design that evolution path, not just keep hiring Producers.
+> **A note for the AI era.** The "volume and speed" that defines Producer is **the domain AI can most replace**. The era of differentiating by code-generation speed is nearly over. Remaining as a pure Producer means settling into the territory AI most easily substitutes. A High-Gravity Producer has an evolution path toward Emergent Architect — **without that evolution, the Producer archetype's value will fade**. Organizations need to design that evolution path, not just keep hiring Producers.
 
 ### Specialist
 
@@ -272,7 +272,7 @@ Read on the three axes, this reveals itself as specific combinations:
 - **Posture locked into one mode** — a backend Inheritance Architect who led the company's core platform gets assigned to lead the first-ever toC native app. On the backend, their origin and their domain fit cleanly, and years of success followed. But they carry the same refinement posture into the new domain, trying to port existing abstractions wholesale. Frontend / mobile feedback doesn't land; rewrites pile up. **The failure isn't the origin — it's the posture locked into a single mode.** The rule from the previous section — "postures mix in execution" — can't get through, because past success keeps them from doubting it.
 - **State misread** — an Architect candidate whose commit count dropped this quarter while Quality steadily rose. They're in Growing; the surrounding environment reads it as "low output → stalling / Fragile-ish" and lowers their evaluation.
 
-None of these are solved by **"try harder" interventions**. Change placement. Change the domain. Train the Style. Structural interventions work.
+None of these move under **"try harder" interventions**. Change placement. Change the domain. Train the Style. The intervention point lies on the structure side.
 
 ## Types Are Not Fixed
 
