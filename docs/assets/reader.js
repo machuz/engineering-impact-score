@@ -602,6 +602,7 @@
   const progressTrack = document.getElementById('progress-track');
   const progressThumb = document.getElementById('progress-thumb');
   let progressRaf = null;
+  let lastProgressPct = -1;
   function updateProgress() {
     if (progressRaf) return;
     progressRaf = requestAnimationFrame(() => {
@@ -616,6 +617,32 @@
       // Save scroll position per chapter
       const slug = decodeURIComponent(window.location.hash.slice(1));
       if (slug) sessionStorage.setItem(LS_SCROLL(slug), String(scrollTop));
+
+      // --- marker ping on cross ---
+      // Skip pings while dragging (scrubbing noise) and on the very first call.
+      if (
+        lastProgressPct >= 0 &&
+        progressTrack &&
+        !progressTrack.classList.contains('dragging')
+      ) {
+        const markersNow = document.querySelectorAll('.progress-marker');
+        if (markersNow.length) {
+          const lo = Math.min(lastProgressPct, clamped);
+          const hi = Math.max(lastProgressPct, clamped);
+          markersNow.forEach((m) => {
+            const mpct = parseFloat(m.style.left);
+            if (isNaN(mpct)) return;
+            if (mpct > lo && mpct <= hi && !m.classList.contains('ping')) {
+              // restart animation reliably
+              m.classList.remove('ping');
+              void m.offsetWidth;
+              m.classList.add('ping');
+              setTimeout(() => m.classList.remove('ping'), 1000);
+            }
+          });
+        }
+      }
+      lastProgressPct = clamped;
     });
   }
   window.addEventListener('scroll', updateProgress, { passive: true });
