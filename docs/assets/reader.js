@@ -612,8 +612,13 @@
       const scrollHeight = doc.scrollHeight - doc.clientHeight;
       const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
       const clamped = Math.min(100, Math.max(0, pct));
-      progressBar.style.width = clamped + '%';
-      if (progressThumb) progressThumb.style.left = clamped + '%';
+      const dragging = progressTrack && progressTrack.classList.contains('dragging');
+      // While dragging, the pointer handler paints thumb/bar directly — skip the
+      // scroll-round-trip writes here to keep the drag 1:1 with the pointer.
+      if (!dragging) {
+        progressBar.style.width = clamped + '%';
+        if (progressThumb) progressThumb.style.left = clamped + '%';
+      }
       // Save scroll position per chapter
       const slug = decodeURIComponent(window.location.hash.slice(1));
       if (slug) sessionStorage.setItem(LS_SCROLL(slug), String(scrollTop));
@@ -622,8 +627,7 @@
       // Skip pings while dragging (scrubbing noise) and on the very first call.
       if (
         lastProgressPct >= 0 &&
-        progressTrack &&
-        !progressTrack.classList.contains('dragging')
+        !dragging
       ) {
         const markersNow = document.querySelectorAll('.progress-marker');
         if (markersNow.length) {
@@ -665,6 +669,15 @@
     const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
     const doc = document.documentElement;
     const target = ratio * (doc.scrollHeight - doc.clientHeight);
+    // While dragging, paint thumb + fill directly from the pointer so the motion
+    // is 1:1 with no scroll-round-trip lag. Also keep lastProgressPct in sync so
+    // the pointer release doesn't fire a false ping volley.
+    if (isDragging) {
+      const pct = ratio * 100;
+      progressBar.style.width = pct + '%';
+      if (progressThumb) progressThumb.style.left = pct + '%';
+      lastProgressPct = pct;
+    }
     window.scrollTo({ top: target, behavior: isDragging ? 'auto' : 'smooth' });
   }
   if (progressTrack) {
