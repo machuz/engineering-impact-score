@@ -142,7 +142,7 @@ Postures split into two:
   - Not flashy, but anywhere they touch becomes organizational bone
   - When an Anchor leaves, that region loses gravity for years
 
-Anchors don't make noise. So **without observation they get overlooked** — the typical failure mode. The phase beyond Anchor is Inheritance Architect.
+Anchors don't make noise. So **without observation they get overlooked** — the typical failure mode. Structurally, an Anchor works as a propagator feeding the [psychological-OS pool](https://library.orbitlens.io/psychological-os/#ch3) — the heat source often sits on the Architect side, and the Anchor is the one who makes it take root in a territory. The phase beyond Anchor is Inheritance Architect.
 
 ### Cleaner
 

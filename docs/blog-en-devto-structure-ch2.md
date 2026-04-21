@@ -57,7 +57,7 @@ Cleaning up someone else's past debt doesn't ship new functionality. Line count 
 
 But **without people who do this, the organization rots**. A codebase, unless deliberately cleaned, only grows in entropy over time.
 
-Artifact view misses this kind of contribution. The cleaners end up as "unflashy but necessary people," consumed inside the vague gratitude of the beneficiaries. With structural view, you can observe **how much debt was reduced** by a cleanup.
+Artifact view misses this kind of contribution. The cleaners end up as "unflashy but necessary people," consumed inside the vague gratitude of the beneficiaries — [heat that runs on external pressure alone does not last](https://library.orbitlens.io/psychological-os/#ch2). With structural view, you can observe **how much debt was reduced** by a cleanup.
 
 ### 3. The Gradient of Rewrites Isn't Visible
 

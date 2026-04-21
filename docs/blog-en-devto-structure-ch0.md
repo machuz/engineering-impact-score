@@ -115,7 +115,7 @@ This is the critical point:
 
 **"Effort" can't be observed. But "contribution to structure" can.**
 
-Conventional org theory has been trying to handle unobservable effort. Structure-Driven Engineering Organization Theory starts from observable structural contribution. They look like similar problems, but the inputs are different. Different inputs yield different decisions.
+Conventional org theory has been trying to handle unobservable effort ([an individual's psychological-OS state is out of any observer's reach](https://library.orbitlens.io/psychological-os/#ch1) — even from inside the person, it doesn't quite come into view). Structure-Driven Engineering Organization Theory starts from observable structural contribution. They look like similar problems, but the inputs are different. Different inputs yield different decisions.
 
 ## What Happens in an Organization That Fails to Observe
 
