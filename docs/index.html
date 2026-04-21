@@ -452,6 +452,195 @@ a:hover { color: var(--text-strong); }
 }
 .intervention-strip .sep { width: 1px; height: 14px; background: rgba(138, 72, 88, 0.5); }
 
+/* ===== Hub redesign: hero tagline / subline / CTA grid ===== */
+.hero-tagline {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.55rem, 3.4vw, 2.25rem);
+  letter-spacing: -0.015em;
+  line-height: 1.38;
+  color: var(--text-strong);
+  margin: 6px 0 18px;
+  max-width: 780px;
+}
+.hero-tagline .accent { color: var(--purple-bright); }
+.hero-subline {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 640px;
+  margin-bottom: 8px;
+  font-weight: 300;
+}
+.hero-cta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 210px));
+  gap: 12px;
+  justify-content: start;
+  margin: 34px 0 30px;
+}
+@media (max-width: 720px) {
+  .hero-cta-grid { grid-template-columns: 1fr; max-width: 340px; }
+}
+.cta {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 14px 18px;
+  border: 1px solid var(--border-glow);
+  border-radius: 8px;
+  background: rgba(124, 92, 224, 0.05);
+  text-decoration: none;
+  transition: transform 150ms ease, background 150ms ease, border-color 150ms ease;
+}
+.cta:hover {
+  background: rgba(124, 92, 224, 0.14);
+  border-color: var(--purple-bright);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+.cta-tag {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--purple-dim);
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.cta-dot {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+}
+.cta-dot.p1 { background: var(--purple-bright); }
+.cta-dot.p2 { background: var(--purple-dim); }
+.cta-dot.p3 { background: var(--text-muted); }
+.cta-label {
+  font-size: 15px; font-weight: 500;
+  color: var(--text-strong);
+  line-height: 1.35;
+}
+
+/* ===== System map banner (triad elevated) ===== */
+.system-map {
+  max-width: 1080px;
+  margin: 28px auto 12px;
+  padding: 0 32px;
+}
+
+/* ===== Why section (emotional anchor) ===== */
+.why-section {
+  max-width: 760px;
+  margin: 56px auto 24px;
+  padding: 0 32px;
+  text-align: center;
+}
+.why-section .stanza {
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.9;
+  color: var(--text);
+  font-weight: 300;
+}
+.why-section .stanza .accent { color: var(--purple-bright); font-weight: 500; }
+.why-section .stanza p { margin-bottom: 4px; }
+.why-section .stanza .final {
+  color: var(--text-strong);
+  font-weight: 500;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  letter-spacing: -0.005em;
+}
+
+/* ===== Core vocabulary cards ===== */
+.vocab-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 26px;
+}
+@media (max-width: 960px) { .vocab-grid { grid-template-columns: 1fr; } }
+.vocab-card {
+  padding: 22px 22px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 150ms ease, background 150ms ease;
+  text-decoration: none;
+  display: block;
+}
+.vocab-card:hover {
+  border-color: var(--border-glow);
+  background: var(--bg-card-hi);
+  text-decoration: none;
+}
+.vocab-card .tag {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--purple-dim);
+  margin-bottom: 12px;
+}
+.vocab-card h3 {
+  font-family: var(--display);
+  font-size: 17px; font-weight: 700;
+  color: var(--text-strong);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.vocab-card .ja-title {
+  font-size: 13px;
+  color: var(--purple-bright);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.vocab-card .definition {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+/* ===== Recommended reading path ===== */
+.path-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 26px;
+}
+@media (max-width: 960px) { .path-grid { grid-template-columns: 1fr; } }
+.path-step {
+  padding: 22px 22px 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(124, 92, 224, 0.045), rgba(10, 14, 23, 0));
+  text-decoration: none;
+  transition: border-color 150ms ease, background 150ms ease;
+  display: block;
+}
+.path-step:hover {
+  border-color: var(--purple-dim);
+  background: linear-gradient(180deg, rgba(124, 92, 224, 0.1), rgba(10, 14, 23, 0));
+  text-decoration: none;
+}
+.path-step .step-num {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--purple-dim);
+  margin-bottom: 10px;
+}
+.path-step h4 {
+  font-family: var(--display);
+  font-size: 16px; font-weight: 600;
+  color: var(--text-strong);
+  margin-bottom: 6px;
+  letter-spacing: -0.005em;
+}
+.path-step .summary {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.path-step .time {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 1.5px;
+  color: var(--purple-bright);
+  margin-top: 12px;
+  display: inline-block;
+}
+
 /* Radar 12-tick divider */
 .radar-divider {
   width: 100%; max-width: 1080px;
@@ -875,6 +1064,8 @@ body.ja .book-btn[data-lang="ja"] { display: inline-flex; }
 <!-- Page TOC (right-sticky scrollspy) -->
 <nav class="page-toc" aria-label="On this page">
   <ol>
+    <li><a href="#vocabulary" data-spy="vocabulary"><span data-lang-inline="en">Vocabulary</span><span data-lang-inline="ja">3つの語</span></a></li>
+    <li><a href="#path" data-spy="path"><span data-lang-inline="en">Reading Path</span><span data-lang-inline="ja">読む順番</span></a></li>
     <li><a href="#books" data-spy="books"><span data-lang-inline="en">The Library</span><span data-lang-inline="ja">ライブラリ</span></a></li>
     <li><a href="#whitepapers" data-spy="whitepapers"><span data-lang-inline="en">Whitepapers</span><span data-lang-inline="ja">ホワイトペーパー</span></a></li>
     <li><a href="#research" data-spy="research"><span data-lang-inline="en">Research</span><span data-lang-inline="ja">リサーチ</span></a></li>
@@ -945,12 +1136,31 @@ body.ja .book-btn[data-lang="ja"] { display: inline-flex; }
     <span data-lang="en">OrbitLens <span class="word-accent">Library</span></span>
     <span data-lang="ja">OrbitLens <span class="word-accent">Library</span></span>
   </h1>
-  <p class="lede" data-lang="en">
-    Three books, one premise: engineering strength is observable — not managed, not evaluated, but <em>observed</em>. Individual heat, organizational structure, and the Git history that records them.
-  </p>
-  <p class="lede" data-lang="ja">
-    3冊の本、1つの前提 —— エンジニアリングの強さは<em>観測できる</em>。管理ではなく評価ではなく、観測する。個人の熱、組織の構造、それらを記録するGit履歴。
-  </p>
+
+  <p class="hero-tagline" data-lang="en">People and organizations move by <span class="accent">structure</span>, not effort.</p>
+  <p class="hero-tagline" data-lang="ja">人と組織は「<span class="accent">構造</span>」で動いている。</p>
+
+  <p class="hero-subline" data-lang="en">A framework for observing, understanding, and designing the invisible heat and structure underneath.</p>
+  <p class="hero-subline" data-lang="ja">見えない「熱」と「構造」を観測し、理解し、設計するための体系。</p>
+
+  <div class="hero-cta-grid">
+    <a href="#vocabulary" class="cta">
+      <span class="cta-tag"><span class="cta-dot p1"></span>3 min</span>
+      <span class="cta-label" data-lang-inline="en">First look</span>
+      <span class="cta-label" data-lang-inline="ja">はじめて読む</span>
+    </a>
+    <a href="#path" class="cta">
+      <span class="cta-tag"><span class="cta-dot p2"></span>10 min</span>
+      <span class="cta-label" data-lang-inline="en">Understand the thought</span>
+      <span class="cta-label" data-lang-inline="ja">思想を理解する</span>
+    </a>
+    <a href="#books" class="cta">
+      <span class="cta-tag"><span class="cta-dot p3"></span>3 books</span>
+      <span class="cta-label" data-lang-inline="en">Read deep</span>
+      <span class="cta-label" data-lang-inline="ja">深く読む</span>
+    </a>
+  </div>
+
   <div class="motto" data-lang="en">
     So <strong>sincere work</strong> finds its orbit.
   </div>
@@ -990,6 +1200,131 @@ body.ja .book-btn[data-lang="ja"] { display: inline-flex; }
   </svg>
 </div>
 
+<!-- System map — triad diagram elevated to near first view -->
+<section class="system-map">
+  <figure class="triad-figure">
+    <img src="./images/library-triad.svg" alt="Three layers of the OrbitLens Library — Psychological OS (L3 Interior) translates heat into Structure-Driven Organization (L2), which settles as traces observed by Git Archaeology (L1).">
+  </figure>
+</section>
+
+<!-- Why — emotional anchor -->
+<section class="why-section">
+  <div class="stanza" data-lang="en">
+    <p>Most people don't know <span class="accent">why they can't move</span>.</p>
+    <p>Organizations don't see <span class="accent">why they break</span>.</p>
+    <p class="final">What's missing is sight of the <span class="accent">structure</span> underneath.</p>
+  </div>
+  <div class="stanza" data-lang="ja">
+    <p>多くの人は、自分が<span class="accent">なぜ動けないのか</span>を知らない。</p>
+    <p>組織は、<span class="accent">なぜ壊れるのか</span>を見えていない。</p>
+    <p class="final">足りないのは、その下にある「<span class="accent">構造</span>」が見えているかどうか。</p>
+  </div>
+</section>
+
+<!-- Vocabulary — three one-liner cards -->
+<section id="vocabulary">
+  <div class="container">
+    <div class="compass-divider">
+      <span class="line"></span>
+      <svg viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="0.6"/>
+        <circle cx="11" cy="11" r="5" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+        <circle cx="11" cy="11" r="1.5" fill="currentColor"/>
+      </svg>
+      <span class="line"></span>
+    </div>
+    <div class="section-head">
+      <div class="section-label">Core Vocabulary</div>
+      <div class="section-count">3 terms · one-liners</div>
+    </div>
+    <p class="section-lede" data-lang="en">
+      Three terms hold the whole thing. If you can keep these in your head, the rest of the library has a place to land.
+    </p>
+    <p class="section-lede" data-lang="ja">
+      3つの語で全体が持つ。この3つが頭に残っていれば、ライブラリの残りは着地点を持つ。
+    </p>
+
+    <div class="vocab-grid">
+      <a class="vocab-card" href="./psychological-os/">
+        <div class="tag">Book 1 · Interior</div>
+        <h3 data-lang-inline="en">Psychological OS</h3>
+        <h3 data-lang-inline="ja">Psychological OS</h3>
+        <div class="ja-title">心理OS</div>
+        <p class="definition" data-lang-inline="en">The operating principle that treats a person's inner state as structure.</p>
+        <p class="definition" data-lang-inline="ja">人間の内面を「構造として扱う」ための作動原理。</p>
+      </a>
+      <a class="vocab-card" href="./structure-driven-org/">
+        <div class="tag">Book 2 · Structure</div>
+        <h3 data-lang-inline="en">Structure-Driven</h3>
+        <h3 data-lang-inline="ja">Structure-Driven</h3>
+        <div class="ja-title">構造駆動</div>
+        <p class="definition" data-lang-inline="en">Designing the organization as structure — not as people.</p>
+        <p class="definition" data-lang-inline="ja">組織を「構造」として設計する思想。人ではなく構造を動かす。</p>
+      </a>
+      <a class="vocab-card" href="./git-archaeology/">
+        <div class="tag">Book 3 · Strata</div>
+        <h3 data-lang-inline="en">Git Archaeology · EIS</h3>
+        <h3 data-lang-inline="ja">Git Archaeology · EIS</h3>
+        <div class="ja-title">git考古学</div>
+        <p class="definition" data-lang-inline="en">A telescope that observes an engineer's gravity from git history alone.</p>
+        <p class="definition" data-lang-inline="ja">git履歴だけから、エンジニアの影響力（重力）を観測する望遠鏡。</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Recommended Path — 3 steps -->
+<section id="path">
+  <div class="container">
+    <div class="compass-divider">
+      <span class="line"></span>
+      <svg viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="0.6"/>
+        <circle cx="11" cy="11" r="5" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+        <circle cx="11" cy="11" r="1.5" fill="currentColor"/>
+      </svg>
+      <span class="line"></span>
+    </div>
+    <div class="section-head">
+      <div class="section-label">Recommended Path</div>
+      <div class="section-count">step 1 → 2 → 3</div>
+    </div>
+    <p class="section-lede" data-lang="en">
+      If you're not sure where to start, begin at the innermost layer and move outward only as far as you need. Each step stands on its own; taken together, they close a loop.
+    </p>
+    <p class="section-lede" data-lang="ja">
+      迷ったら、一番内側の層から外へ。必要な分だけ進めばいい。各ステップは単独でも成立し、3つで一周する。
+    </p>
+
+    <div class="path-grid">
+      <a class="path-step" href="./psychological-os/">
+        <div class="step-num">Step 1 · Interior</div>
+        <h4 data-lang-inline="en">The inner operating principle</h4>
+        <h4 data-lang-inline="ja">個人の作動原理から始める</h4>
+        <p class="summary" data-lang-inline="en">Heat, purity, direction. What keeps a person moving under their own will.</p>
+        <p class="summary" data-lang-inline="ja">熱とは何か、どう純度を保ち、どう内圧で動き続けるか。</p>
+        <span class="time">~30 min · 6 chapters</span>
+      </a>
+      <a class="path-step" href="./structure-driven-org/">
+        <div class="step-num">Step 2 · Structure</div>
+        <h4 data-lang-inline="en">The outer physics of organizations</h4>
+        <h4 data-lang-inline="ja">組織の外側の物理</h4>
+        <p class="summary" data-lang-inline="en">Three layers, two transformations, the archetypes of Role × Style × State.</p>
+        <p class="summary" data-lang-inline="ja">3層 + 2変換、Role × Style × State の観測言語。配置で組織を動かす。</p>
+        <span class="time">~60 min · 11 chapters</span>
+      </a>
+      <a class="path-step" href="./git-archaeology/">
+        <div class="step-num">Step 3 · Strata</div>
+        <h4 data-lang-inline="en">The empirical record of observation</h4>
+        <h4 data-lang-inline="ja">観測の実録</h4>
+        <p class="summary" data-lang-inline="en">The 7-axis signal, timeline evolution, and archetype dynamics, all from git.</p>
+        <p class="summary" data-lang-inline="ja">7軸観測、タイムライン進化、アーキタイプ遷移 —— すべて git 履歴から。</p>
+        <span class="time">~90 min · 17 chapters</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- The Library (three books, three layers, one diagram) -->
 <section id="books">
   <div class="container">
@@ -1007,15 +1342,11 @@ body.ja .book-btn[data-lang="ja"] { display: inline-flex; }
       <div class="section-count">3 books · 34 chapters · 3 layers</div>
     </div>
     <p class="section-lede" data-lang="en">
-      Three layers of observation — interior, structure, strata. If where to start matters, begin at the innermost layer (Psychological OS) and read outward only as far as you need.
+      Three layers of observation — interior, structure, strata. Each book stands alone; together they close a loop.
     </p>
     <p class="section-lede" data-lang="ja">
-      個人・組織・痕跡の3層観測。どこから読むか迷うなら、一番内側（心理OS）から外へ、必要な分だけ進めばいい。
+      個人・組織・痕跡の3層観測。各冊は単独でも成立し、3冊で一周する。
     </p>
-
-    <figure class="triad-figure">
-      <img src="./images/library-triad.svg" alt="Three layers of the OrbitLens Library — Psychological OS (L3 Interior) translates heat into Structure-Driven Organization (L2), which settles as traces observed by Git Archaeology (L1).">
-    </figure>
 
     <div class="books">
       <div class="book">
@@ -1360,8 +1691,8 @@ document.addEventListener('keydown', (e) => {
   const linkMap = new Map(links.map(a => [a.dataset.spy, a]));
 
   const SECTION_NAMES = {
-    en: { books: 'The Library', whitepapers: 'Whitepapers', research: 'Research', articles: 'Articles', tools: 'Tools' },
-    ja: { books: 'ライブラリ', whitepapers: 'ホワイトペーパー', research: 'リサーチ', articles: '記事', tools: 'ツール' }
+    en: { vocabulary: 'Vocabulary', path: 'Reading Path', books: 'The Library', whitepapers: 'Whitepapers', research: 'Research', articles: 'Articles', tools: 'Tools' },
+    ja: { vocabulary: '3つの語', path: '読む順番', books: 'ライブラリ', whitepapers: 'ホワイトペーパー', research: 'リサーチ', articles: '記事', tools: 'ツール' }
   };
   const crumbSection = document.getElementById('crumb-section');
   let currentSectionId = null;
