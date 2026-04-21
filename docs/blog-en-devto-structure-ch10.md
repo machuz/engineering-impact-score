@@ -165,6 +165,46 @@ Ultimately, organization theory can be rewritten as **"the configuration file th
 
 Leaving the plumbing and the vocabulary **inside the organization** — that is this book's answer.
 
+## 8. Boundary Conditions — what we treat as outside pressure
+
+Structure-driven theory handles the **inner physics** of an organization. But no organization runs in a vacuum. **Immovable pressure arrives from the outside.**
+
+- **Market** — customers, competitors, and regulation apply adaptation pressure on structural choices
+- **Capital** — burn rate and runway distort the time axis
+- **Labor market** — hiring difficulty, compensation benchmarks, and exit fairness govern who comes and goes
+- **Chance** — luck and discontinuous events
+
+These matter to the organization, but **they are not objects the structure-driven frame optimizes from inside**. Pulling them inside would scatter the thought and break the inner language. Instead, we treat them as **boundary conditions** — immovable constants that appear in the structure-driven equations.
+
+![Boundary Conditions — inner cosmos and outer cosmos](https://raw.githubusercontent.com/machuz/eis/main/docs/images/library-boundary.svg)
+
+### Three boundary coefficients
+
+| Coefficient | Origin | Effect on the inner cosmos |
+|---|---|---|
+| **Time compression** | Capital, runway | Is there time to grow transformers? Does osmotic mode work, or is sudden mode required? |
+| **Structure adaptation pressure** | Market, competition, regulation | When the product layer shifts abruptly, can the structure layer keep up? |
+| **Heat retention** | Labor market, compensation, exit fairness | Can strong individuals be held by inner [heat purity](https://library.orbitlens.io/psychological-os/#ch2) alone? |
+
+On top of these, there is an **unobservable residual (chance)** — a term that cannot be constantized. It remains outside observation as permanent residual noise. This book names its existence but does not handle it.
+
+### The single test — is it observable?
+
+To separate inside from outside, one criterion is enough.
+
+> **Is it observable?**
+
+- YES — **handle it inside the inner cosmos.** Design it via structure, placement, and vocabulary.
+- NO — **place it in the outer cosmos as a boundary condition; receive only the pressure.** Don't reach out to change the outside.
+
+Drawing this line is what keeps the inner logic closed while still allowing the connection to the outside to be **written down as a boundary condition**. Without closing the inside rigorously, the connection to the outside has no structure in the first place.
+
+### We declare only the existence of the fourth book
+
+Designing the boundary conditions themselves — connecting to the market, time-designing capital, translating into the labor market, shaping compensation — lives at a different range. **Boundary Design** — the fourth book — is where that work belongs. Within this book, we stop at pointing to its existence.
+
+Treating the organization as a closed cosmos is itself a design choice.
+
 ---
 
 ## Coda
