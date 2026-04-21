@@ -183,7 +183,7 @@ Five foundational premises.
 4. **Product and organization are isomorphic.** Product UX badness is congruent with organizational layer badness. Fixing one can reveal how to fix the other.
 5. **Structure, not emotion, drives decisions.** Not because emotion is dismissed — because emotion and structure must not be blended. The emotionally-right call and the structurally-right call can be handled separately.
 
-These five may sound cold to some readers. The intent isn't coldness. The practical goal is exactly the opposite: **observation lets us treat people more fairly**.
+These five may sound cold to some readers. The intent isn't coldness. The practical goal is exactly the opposite: **under observation, people come into view more fairly**.
 
 People who slipped through the subjective-evaluation net and were genuinely contributing finally become visible. People who were over-valued subjectively become visible for what they *aren't* securing. Both are healthy information for the organization.
 

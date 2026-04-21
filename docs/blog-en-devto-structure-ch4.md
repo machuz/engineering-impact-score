@@ -282,7 +282,7 @@ In chapter 3 we listed three patterns of "talented but spinning." Most of them c
 - An Anchor who is **already a Structure ↔ Implementation transformer** — staying close to code while guarding the structural spine — promoted into a **pure Structure-layer role cut off from code**. The problem isn't "being lifted to Structure" per se; it's **being severed from Implementation**, which removes the very interface the Anchor's transformation capability runs on.
 - A Producer placed at Structure, getting drained by strategy debates
 
-**Don't change the person — change the placement.** This is why layer design is the operative lever in org theory.
+**Don't change the person — change the placement.** This is what it means to slot layer design into org theory.
 
 ## Reading "Strong" Executive Roles Through the Layers
 
