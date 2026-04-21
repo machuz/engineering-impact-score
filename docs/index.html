@@ -19,6 +19,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://raw.githubusercontent.com/machuz/eis/main/docs/images/orbitlens-royal-purple-shadow.png">
 <link rel="icon" type="image/png" href="./images/orbitlens-royal-purple-shadow.png">
+<link rel="preload" as="image" href="./images/orbitlens-royal-purple-shadow.png" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -774,7 +775,7 @@ body.ja .book-btn[data-lang="ja"] { display: inline-flex; }
     <text x="60" y="10" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="currentColor" letter-spacing="1">N</text>
   </svg>
 
-  <img src="./images/orbitlens-royal-purple-shadow.png" alt="OrbitLens" class="hero-logo">
+  <img src="./images/orbitlens-royal-purple-shadow.png" alt="OrbitLens" class="hero-logo" decoding="sync" fetchpriority="high">
   <div class="eyebrow" data-lang-inline="en">Notes at the Observatory</div>
   <div class="eyebrow" data-lang-inline="ja">観測所の手記</div>
   <h1>
