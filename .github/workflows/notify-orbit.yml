@@ -1,0 +1,53 @@
+name: "Notify Orbit of release"
+
+# On a semver tag push, dispatch an `eis-released` event to the
+# orbitlensio/orbitlens repo. The listener there
+# (.github/workflows/eis-released.yml) runs `go get` + opens a PR
+# that bumps services/ace/{backend,worker} to the new tag.
+#
+# Why: the orbit SaaS and the local eis CLI diverging on internal
+# scoring / classification is a silent correctness bug. Dependabot
+# catches it on a daily poll, but minutes-hours of drift between
+# tag-push and next-dependabot-run is long enough to write
+# wrong-archetype observations that then have to be rewritten.
+# This dispatch closes that window.
+#
+# Auth: a GitHub App (not a PAT). The app is installed on
+# orbitlensio/orbitlens with Contents:read + PullRequests:write +
+# Actions:write (the last one is what `repository_dispatch`
+# requires). Credentials are stored as repo secrets here:
+#
+#   AUTOBUMP_APP_ID   — App ID (integer). Stored as secret for
+#                       parity with the key, though not actually
+#                       secret.
+#   AUTOBUMP_APP_KEY  — PEM private key generated on the app page.
+#
+# One-time setup lives in the orbit repo at
+# docs/ops/auto-bump-github-app.md.
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint app token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.AUTOBUMP_APP_ID }}
+          private-key: ${{ secrets.AUTOBUMP_APP_KEY }}
+          owner: orbitlensio
+          repositories: orbitlens
+
+      - name: Dispatch to orbitlensio/orbitlens
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          repository: orbitlensio/orbitlens
+          event-type: eis-released
+          client-payload: |
+            {"tag": "${{ github.ref_name }}"}
