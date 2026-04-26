@@ -4,6 +4,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"reflect"
 	"testing"
 
 	"github.com/machuz/eis/v2/internal/config"
@@ -12,34 +13,33 @@ import (
 // TestRun_OnPeriodCompleteFiresPerWindow is the contract test for the
 // streaming callback. SaaS callers depend on this firing once per
 // window with every domain present, so a worker that dies mid-run
-// has the previously-emitted periods already on disk. Two regressions
-// would silently break that:
+// has the previously-emitted periods already on disk. Three classes
+// of regression would silently break that:
 //
 //  1. The loop reverts to domain-outer/period-inner — OnPeriodComplete
 //     would fire len(domains)*len(windows) times instead of len(windows),
 //     and each call would only carry one domain.
 //  2. The callback emission is moved out of the period loop — the
 //     caller would only get the very last window or nothing at all.
+//  3. The streaming path drifts from the synchronous return — the
+//     SaaS persists the streamed value, but renders the synchronous
+//     return; if the two diverge, the FE would show a different
+//     archetype/score from what was persisted.
 //
 // The fixture uses a single-domain repo because what we're locking
-// is the firing pattern (one event per window), not multi-domain
-// aggregation. Multi-domain aggregation is exercised end-to-end by
-// the SaaS integration that consumes this callback.
+// is the firing pattern and value parity (one event per window, same
+// values as the synchronous return). Multi-domain aggregation is
+// exercised end-to-end by the SaaS integration that consumes this
+// callback.
 func TestRun_OnPeriodCompleteFiresPerWindow(t *testing.T) {
 	dir := buildTimelineFixtureRepo(t)
 
 	cfg := config.Default()
 
-	type capture struct {
-		domains []string
-		periods []string
-	}
-	var emitted []capture
+	// Capture every emitted event in order so we can assert byte-for-byte
+	// equality against the synchronous return value below.
+	var emitted []map[string]PeriodResult
 
-	// Two periods backward from now: Periods=2, Span="1m". The fixture
-	// has commits in 2024-01 and 2024-06, both well before "now", so
-	// pkgtimeline produces two windows and we expect two callback
-	// invocations.
 	results, err := Run(
 		Options{
 			Span:         "1m",
@@ -51,12 +51,14 @@ func TestRun_OnPeriodCompleteFiresPerWindow(t *testing.T) {
 		cfg,
 		&Callbacks{
 			OnPeriodComplete: func(domains map[string]PeriodResult) {
-				cap := capture{}
+				// Snapshot the map by value — the caller is allowed to
+				// mutate the map after the callback returns, and we
+				// don't want the assertion to silently see stale data.
+				snap := make(map[string]PeriodResult, len(domains))
 				for d, pr := range domains {
-					cap.domains = append(cap.domains, d)
-					cap.periods = append(cap.periods, pr.Label)
+					snap[d] = pr
 				}
-				emitted = append(emitted, cap)
+				emitted = append(emitted, snap)
 			},
 		},
 	)
@@ -64,23 +66,47 @@ func TestRun_OnPeriodCompleteFiresPerWindow(t *testing.T) {
 		t.Fatalf("Run: %v", err)
 	}
 
+	// (1) Firing pattern: exactly one event per window.
 	if len(emitted) != 2 {
 		t.Fatalf("OnPeriodComplete fired %d times, want 2 (one per window)", len(emitted))
 	}
 	for i, ev := range emitted {
-		if len(ev.domains) == 0 {
+		if len(ev) == 0 {
 			t.Errorf("event %d: empty domains map (callback fired before any domain produced a result)", i)
 		}
 	}
 
-	// The returned []DomainTimeline must still be populated correctly —
-	// the loop refactor preserves the original API shape.
+	// (2) Synchronous return is still populated — refactor preserves shape.
 	if len(results) == 0 {
 		t.Fatal("Run returned 0 DomainTimeline entries; expected at least one for the fixture")
 	}
 	for _, dt := range results {
 		if len(dt.Periods) != 2 {
 			t.Errorf("domain %q has %d periods, want 2", dt.Domain, len(dt.Periods))
+		}
+	}
+
+	// (3) Streaming-vs-sync parity: each emitted PeriodResult must
+	// equal the same (domain, period-index) entry in the returned
+	// []DomainTimeline. If these ever drift the SaaS persists one
+	// archetype and the FE shows another.
+	streamedByDomain := make(map[string][]PeriodResult, len(results))
+	for _, ev := range emitted {
+		for d, pr := range ev {
+			streamedByDomain[d] = append(streamedByDomain[d], pr)
+		}
+	}
+	for _, dt := range results {
+		streamed := streamedByDomain[dt.Domain]
+		if len(streamed) != len(dt.Periods) {
+			t.Errorf("domain %q: streamed %d periods, sync returned %d", dt.Domain, len(streamed), len(dt.Periods))
+			continue
+		}
+		for i, syncPR := range dt.Periods {
+			if !reflect.DeepEqual(syncPR, streamed[i]) {
+				t.Errorf("domain %q period %d: streamed value drifts from sync return\n  streamed=%+v\n  sync=    %+v",
+					dt.Domain, i, streamed[i], syncPR)
+			}
 		}
 	}
 }
