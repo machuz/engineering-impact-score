@@ -9,6 +9,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"time"
 
@@ -34,6 +35,12 @@ type Options struct {
 	SampleSize   int
 	ActiveDays   int
 	CacheEnabled bool // enable disk cache for blame/log results
+	// PerRepo, when true, computes per-(repo, domain, period) scored
+	// results in addition to the merged per-domain rollup. The result
+	// lands in PeriodResult.PerRepo. Default false to keep existing CLI
+	// callers byte-stable; SaaS callers (which persist per-period
+	// snapshots and need per-repo breakdowns for StarDetail) opt in.
+	PerRepo bool
 }
 
 // Callbacks for progress reporting during timeline analysis.
@@ -350,6 +357,19 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 			}
 
 			acc := newAccumulator()
+			// repoAccs holds per-repo accumulators in parallel with the
+			// merged `acc` so `Options.PerRepo=true` callers can score
+			// each repo independently. We populate both side-by-side
+			// inside the same for loop so the per-repo numbers are
+			// guaranteed to be derived from the same blame/commit data
+			// the merged total saw — no second pass, no drift.
+			//
+			// Entries are keyed by repo name. nil when PerRepo is off
+			// so existing CLI callers don't pay for unused work.
+			var repoAccs map[string]*accumulator
+			if opts.PerRepo {
+				repoAccs = make(map[string]*accumulator, len(drepos))
+			}
 
 			for _, repo := range drepos {
 				// Filter commits to this period
@@ -369,14 +389,28 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 
 				acc.repoCount++
 
+				var racc *accumulator
+				if opts.PerRepo {
+					racc = newAccumulator()
+					racc.repoCount = 1
+					repoAccs[repo.name] = racc
+				}
+
 				// Production
 				prod := metric.CalcProduction(periodCommits, cfg.ExcludeFilePatterns)
 				mergeMap(acc.raw.Production, prod)
+				if racc != nil {
+					mergeMap(racc.raw.Production, prod)
+				}
 
 				// Lines
 				added, deleted := metric.CalcLines(periodCommits, cfg.ExcludeFilePatterns)
 				mergeMapInt(acc.raw.LinesAdded, added)
 				mergeMapInt(acc.raw.LinesDeleted, deleted)
+				if racc != nil {
+					mergeMapInt(racc.raw.LinesAdded, added)
+					mergeMapInt(racc.raw.LinesDeleted, deleted)
+				}
 
 				// Quality
 				allCommits := make([]git.Commit, len(periodCommits), len(periodCommits)+len(periodMerges))
@@ -384,10 +418,16 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 				allCommits = append(allCommits, periodMerges...)
 				qual := metric.CalcQuality(allCommits)
 				mergeMapAvg(acc.raw.Quality, qual, acc.qualityCounts)
+				if racc != nil {
+					mergeMapAvg(racc.raw.Quality, qual, racc.qualityCounts)
+				}
 
 				// Design
 				design := metric.CalcDesign(periodCommits, cfg.ArchitecturePatterns)
 				mergeMap(acc.raw.Design, design)
+				if racc != nil {
+					mergeMap(racc.raw.Design, design)
+				}
 
 				// Breadth + date tracking
 				for _, c := range periodCommits {
@@ -402,6 +442,20 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 					}
 					if last, ok := acc.authorLastDate[c.Author]; !ok || c.Date.After(last) {
 						acc.authorLastDate[c.Author] = c.Date
+					}
+
+					if racc != nil {
+						if _, ok := racc.authorRepoCommits[c.Author]; !ok {
+							racc.authorRepoCommits[c.Author] = make(map[string]int)
+						}
+						racc.authorRepoCommits[c.Author][repo.name]++
+						racc.raw.TotalCommits[c.Author]++
+						if first, ok := racc.authorFirstDate[c.Author]; !ok || c.Date.Before(first) {
+							racc.authorFirstDate[c.Author] = c.Date
+						}
+						if last, ok := racc.authorLastDate[c.Author]; !ok || c.Date.After(last) {
+							racc.authorLastDate[c.Author] = c.Date
+						}
 					}
 				}
 
@@ -485,15 +539,28 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 					mergeMap(acc.raw.RawSurvival, survResult.Raw)
 					mergeMap(acc.raw.RobustSurvival, survResult.Robust)
 					mergeMap(acc.raw.DormantSurvival, survResult.Dormant)
+					if racc != nil {
+						mergeMap(racc.raw.Survival, survResult.Decayed)
+						mergeMap(racc.raw.RawSurvival, survResult.Raw)
+						mergeMap(racc.raw.RobustSurvival, survResult.Robust)
+						mergeMap(racc.raw.DormantSurvival, survResult.Dormant)
+					}
 				} else {
 					survResult := metric.CalcSurvival(blameLines, cfg.Tau, window.End)
 					mergeMap(acc.raw.Survival, survResult.Decayed)
 					mergeMap(acc.raw.RawSurvival, survResult.Raw)
+					if racc != nil {
+						mergeMap(racc.raw.Survival, survResult.Decayed)
+						mergeMap(racc.raw.RawSurvival, survResult.Raw)
+					}
 				}
 
 				// Indispensability
 				indisp, _ := metric.CalcIndispensability(blameLines, cfg.BusFactor.Critical, cfg.BusFactor.High)
 				mergeMap(acc.raw.Indispensability, indisp)
+				if racc != nil {
+					mergeMap(racc.raw.Indispensability, indisp)
+				}
 
 				// Debt
 				fixCommits := metric.GetFixCommits(periodCommits)
@@ -513,6 +580,9 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 						}
 					}
 					mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
+					if racc != nil {
+						mergeMapAvg(racc.raw.DebtCleanup, debt, racc.debtCounts)
+					}
 				}
 			}
 
@@ -529,6 +599,27 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 					acc.raw.Breadth[author] = float64(count)
 				}
 			}
+			// Per-repo Breadth: each repo's authors contribute to that
+			// repo's own Breadth based on commits-in-this-repo only. With a
+			// single repo per accumulator the count saturates at 1 (the
+			// only repo the author touched). The CLI/SaaS rendering of
+			// per-repo Breadth is therefore always {0, 1}, mirroring
+			// analyzer.RepoResult.Results[*].Breadth shape.
+			if repoAccs != nil {
+				for _, racc := range repoAccs {
+					for author, repoCommits := range racc.authorRepoCommits {
+						count := 0
+						for _, commits := range repoCommits {
+							if commits >= minCommitsForBreadth {
+								count++
+							}
+						}
+						if count > 0 {
+							racc.raw.Breadth[author] = float64(count)
+						}
+					}
+				}
+			}
 
 			// Convert production to per-day rate
 			for author, total := range acc.raw.Production {
@@ -539,6 +630,19 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 					days = 1
 				}
 				acc.raw.Production[author] = total / days
+			}
+			if repoAccs != nil {
+				for _, racc := range repoAccs {
+					for author, total := range racc.raw.Production {
+						first := racc.authorFirstDate[author]
+						last := racc.authorLastDate[author]
+						days := last.Sub(first).Hours() / 24
+						if days < 1 {
+							days = 1
+						}
+						racc.raw.Production[author] = total / days
+					}
+				}
 			}
 
 			// Override ActiveDays to cover the full period
@@ -557,11 +661,42 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 				}
 			}
 
+			// Score per-repo accumulators under the same window/cfg.
+			// Iterate in deterministic repo-name order (W-02) so repeated
+			// runs of the same input produce byte-identical PerRepo slices.
+			var perRepoOut []RepoPeriodResult
+			if repoAccs != nil {
+				repoNames := make([]string, 0, len(repoAccs))
+				for name := range repoAccs {
+					repoNames = append(repoNames, name)
+				}
+				sort.Strings(repoNames)
+				for _, name := range repoNames {
+					racc := repoAccs[name]
+					rscored := scorer.ScoreAt(racc.raw, &periodCfg, racc.authorLastDate, window.End)
+					var rfiltered []scorer.Result
+					for _, r := range rscored {
+						if !cfg.IsExcludedAuthor(r.Author) {
+							rfiltered = append(rfiltered, r)
+						}
+					}
+					if len(rfiltered) == 0 {
+						continue
+					}
+					perRepoOut = append(perRepoOut, RepoPeriodResult{
+						RepoName: name,
+						Domain:   string(d),
+						Members:  rfiltered,
+					})
+				}
+			}
+
 			pr := PeriodResult{
 				Label:   window.Label,
 				Start:   window.Start.Format("2006-01-02"),
 				End:     window.End.Format("2006-01-02"),
 				Members: filtered,
+				PerRepo: perRepoOut,
 			}
 			windowDomainResults[string(d)] = pr
 			domainPeriodMap[string(d)] = append(domainPeriodMap[string(d)], pr)
