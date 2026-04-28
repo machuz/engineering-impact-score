@@ -111,6 +111,152 @@ func TestRun_OnPeriodCompleteFiresPerWindow(t *testing.T) {
 	}
 }
 
+// TestRun_PerRepoEmitsPerRepoBreakdown locks the contract that
+// Options.PerRepo=true populates PeriodResult.PerRepo for every
+// emitted period. The bug this guards against:
+//
+//   - SaaS timeline observations land in observations_snapshots
+//     without per-repo data, StarDetail's "Per-Repository Breakdown"
+//     panel renders empty for every historical month, and users
+//     observe "per-repo missing" — exactly the production incident
+//     waitinglisthq surfaced.
+//
+// Correctness assertions:
+//
+//  1. PerRepo is empty when Options.PerRepo is false (default — old
+//     CLI callers stay byte-stable).
+//  2. PerRepo is populated when Options.PerRepo is true.
+//  3. Each per-repo entry's RepoName matches a real input repo.
+//  4. The union of per-repo authors equals the merged Members'
+//     author set (no author lost to the per-repo split).
+func TestRun_PerRepoEmitsPerRepoBreakdown(t *testing.T) {
+	repoA := buildTimelineFixtureRepo(t)
+	repoB := buildTimelineFixtureRepoB(t)
+
+	cfg := config.Default()
+
+	// Off by default — existing CLI behaviour preserved.
+	resultsOff, err := Run(
+		Options{Span: "1m", Since: "2024-01-01", Workers: 1, PressureMode: "include"},
+		[]string{repoA, repoB},
+		cfg,
+		nil,
+	)
+	if err != nil {
+		t.Fatalf("Run (PerRepo=false): %v", err)
+	}
+	for _, dt := range resultsOff {
+		for _, p := range dt.Periods {
+			if len(p.PerRepo) != 0 {
+				t.Errorf("PerRepo populated despite Options.PerRepo=false (period %s, len=%d)",
+					p.Label, len(p.PerRepo))
+			}
+		}
+	}
+
+	// On — per-repo breakdown lands on every period.
+	resultsOn, err := Run(
+		Options{Span: "1m", Since: "2024-01-01", Workers: 1, PressureMode: "include", PerRepo: true},
+		[]string{repoA, repoB},
+		cfg,
+		nil,
+	)
+	if err != nil {
+		t.Fatalf("Run (PerRepo=true): %v", err)
+	}
+	if len(resultsOn) == 0 {
+		t.Fatal("Run returned 0 DomainTimeline entries")
+	}
+	sawPerRepo := false
+	for _, dt := range resultsOn {
+		for _, p := range dt.Periods {
+			if len(p.PerRepo) == 0 {
+				continue // periods with no scored authors are allowed; just don't assert on them.
+			}
+			sawPerRepo = true
+			// (3) RepoName references a real input repo.
+			validNames := map[string]bool{
+				filepath.Base(repoA): true,
+				filepath.Base(repoB): true,
+			}
+			for _, pr := range p.PerRepo {
+				if !validNames[pr.RepoName] {
+					t.Errorf("PerRepo emitted unknown repo %q (expected one of %v)", pr.RepoName, validNames)
+				}
+				if len(pr.Members) == 0 {
+					t.Errorf("PerRepo entry %q has zero members despite being emitted", pr.RepoName)
+				}
+			}
+			// (4) Union of per-repo authors == merged authors.
+			mergedAuthors := map[string]bool{}
+			for _, m := range p.Members {
+				mergedAuthors[m.Author] = true
+			}
+			perRepoAuthors := map[string]bool{}
+			for _, pr := range p.PerRepo {
+				for _, m := range pr.Members {
+					perRepoAuthors[m.Author] = true
+				}
+			}
+			for a := range mergedAuthors {
+				if !perRepoAuthors[a] {
+					t.Errorf("period %s: author %q in merged Members but missing from PerRepo union",
+						p.Label, a)
+				}
+			}
+		}
+	}
+	if !sawPerRepo {
+		t.Fatal("PerRepo never populated across any period — fixture should produce at least one")
+	}
+}
+
+// buildTimelineFixtureRepoB constructs a second fixture repo with
+// distinct content so per-repo breakdown can be asserted against
+// distinct repo names.
+func buildTimelineFixtureRepoB(t *testing.T) string {
+	t.Helper()
+	dir := t.TempDir()
+
+	mustGit := func(args ...string) {
+		cmd := exec.Command("git", append([]string{"-C", dir}, args...)...)
+		if out, err := cmd.CombinedOutput(); err != nil {
+			t.Fatalf("git %v: %v\n%s", args, err, out)
+		}
+	}
+
+	mustGit("init", "-q", "-b", "main")
+	mustGit("config", "user.email", "test@test")
+	mustGit("config", "user.name", "test")
+
+	commit := func(date, message, file, content string) {
+		path := filepath.Join(dir, file)
+		if err := os.WriteFile(path, []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+		if out, err := exec.Command("git", "-C", dir, "add", file).CombinedOutput(); err != nil {
+			t.Fatalf("git add %s: %v\n%s", file, err, out)
+		}
+		cmd := exec.Command("git", "-C", dir, "commit", "-m", message)
+		cmd.Env = append(os.Environ(),
+			"GIT_AUTHOR_DATE="+date+"T10:00:00+00:00",
+			"GIT_COMMITTER_DATE="+date+"T10:00:00+00:00",
+			"GIT_AUTHOR_NAME=other",
+			"GIT_AUTHOR_EMAIL=other@test",
+			"GIT_COMMITTER_NAME=other",
+			"GIT_COMMITTER_EMAIL=other@test",
+		)
+		if out, err := cmd.CombinedOutput(); err != nil {
+			t.Fatalf("git commit %s: %v\n%s", message, err, out)
+		}
+	}
+
+	commit("2024-01-20", "first-b", "x.go", "package b\n\nfunc X() {}\n")
+	commit("2024-06-15", "second-b", "y.go", "package b\n\nfunc Y() {}\n")
+
+	return dir
+}
+
 // buildTimelineFixtureRepo builds a tiny git repo with a couple of
 // commits at fixed dates. Author/committer dates are forced via env
 // so the fixture is deterministic across machines.

@@ -13,6 +13,28 @@ type PeriodResult struct {
 	Start   string // ISO date
 	End     string // ISO date
 	Members []scorer.Result
+	// PerRepo breaks Members down by source repo. Populated when
+	// pkg/timeline.Run is invoked with Options.PerRepo=true. Empty
+	// otherwise so existing CLI consumers (which only need the merged
+	// per-domain Members) stay byte-identical to v2.2.5 output.
+	//
+	// Why this exists: SaaS callers persist timeline observations as
+	// per-period snapshots and expose StarDetail's "Per-Repository
+	// Breakdown" panel from those snapshots. Without per-repo data on
+	// the period the panel renders empty for every historical month —
+	// the same shape the org-analysis path (analyzer.Run with
+	// Options.PerRepo=true) already produces via DomainResults.PerRepo.
+	PerRepo []RepoPeriodResult
+}
+
+// RepoPeriodResult holds per-author scored results for a single repo
+// within a single period of a domain timeline. Mirrors the shape of
+// analyzer.RepoResult.Results so SaaS converters can fan out per-repo
+// rows the same way.
+type RepoPeriodResult struct {
+	RepoName string
+	Domain   string
+	Members  []scorer.Result
 }
 
 // AuthorTimeline tracks one author's scores across periods.

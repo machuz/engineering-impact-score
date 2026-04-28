@@ -3,6 +3,7 @@ package timeline
 import "github.com/machuz/eis/v2/internal/timeline"
 
 type PeriodResult = timeline.PeriodResult
+type RepoPeriodResult = timeline.RepoPeriodResult
 type AuthorTimeline = timeline.AuthorTimeline
 type AuthorPeriod = timeline.AuthorPeriod
 type Transition = timeline.Transition
