@@ -662,10 +662,7 @@ func FilterFilesBySize(ctx context.Context, repoPath, commitHash string, files [
 	// real code because of an ls-tree quirk.
 	sizes := make(map[string]int64, len(files))
 	for start := 0; start < len(files); start += filterChunkSize {
-		end := start + filterChunkSize
-		if end > len(files) {
-			end = len(files)
-		}
+		end := min(start+filterChunkSize, len(files))
 		args := []string{"ls-tree", "-l", "-z", ref, "--"}
 		args = append(args, files[start:end]...)
 
@@ -680,17 +677,15 @@ func FilterFilesBySize(ctx context.Context, repoPath, commitHash string, files [
 		_ = stdout.Close()
 		_ = cmd.Wait()
 
-		for _, rec := range strings.Split(string(raw), "\x00") {
+		for rec := range strings.SplitSeq(string(raw), "\x00") {
 			if rec == "" {
 				continue
 			}
 			// Format: "<mode> <type> <object> <size>\t<path>"
-			tab := strings.IndexByte(rec, '\t')
-			if tab < 0 {
+			meta, path, ok := strings.Cut(rec, "\t")
+			if !ok {
 				continue
 			}
-			meta := rec[:tab]
-			path := rec[tab+1:]
 			fields := strings.Fields(meta)
 			if len(fields) < 4 {
 				continue
