@@ -12,7 +12,7 @@ import (
 // to raw blame count, yielding a 0-1 survival rate.
 // This measures how well a module's code endures over time,
 // independent of who wrote it.
-func CalcModuleSurvival(blameLines []git.BlameLine, tau float64, now time.Time) map[string]float64 {
+func CalcModuleSurvival(blameLines []git.BlameLine, tau float64, now time.Time, mr ModuleResolver) map[string]float64 {
 	type modStats struct {
 		decayedSum float64
 		rawCount   float64
@@ -21,7 +21,7 @@ func CalcModuleSurvival(blameLines []git.BlameLine, tau float64, now time.Time) 
 	modules := make(map[string]*modStats)
 
 	for _, bl := range blameLines {
-		mod := ModuleOf(bl.Filename)
+		mod := mr.ModuleOf(bl.Filename)
 
 		ms, ok := modules[mod]
 		if !ok {

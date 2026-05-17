@@ -70,13 +70,14 @@ type RepoResult struct {
 
 // domainAccumulator holds per-domain scoring state
 type domainAccumulator struct {
-	raw               *metric.RawScores
-	qualityCounts     map[string]int
-	debtCounts        map[string]int
-	authorRepoCommits map[string]map[string]int // author -> repo -> commit count
-	authorFirstDate   map[string]time.Time      // earliest commit date per author
-	authorLastDate    map[string]time.Time      // latest commit date per author
-	repoCount         int
+	raw                 *metric.RawScores
+	qualityCounts       map[string]int
+	debtCounts          map[string]int
+	authorRepoCommits   map[string]map[string]int // author -> repo -> commit count
+	authorModuleCommits map[string]map[string]int // author -> module -> commit count
+	authorFirstDate     map[string]time.Time      // earliest commit date per author
+	authorLastDate      map[string]time.Time      // latest commit date per author
+	repoCount           int
 	risks             []metric.ModuleRisk   // accumulated bus factor risks
 	changePressure    metric.ChangePressure // accumulated change pressure across repos
 
@@ -94,19 +95,21 @@ type domainAccumulator struct {
 	totalTestFiles int // sum of test files across all repos in this domain
 
 	// Per-module file counts across all repos in this domain — used by
-	// ScoreModules to compute Vitality=Fragile. Keyed on ModuleOf(path).
+	// ScoreModules to compute Vitality=Fragile. Keyed on the module id
+	// from the convention-aware metric.ModuleResolver.
 	moduleAllFiles  map[string]int
 	moduleTestFiles map[string]int
 }
 
 func newDomainAccumulator() *domainAccumulator {
 	return &domainAccumulator{
-		raw:               metric.NewRawScores(),
-		qualityCounts:     make(map[string]int),
-		debtCounts:        make(map[string]int),
-		authorRepoCommits: make(map[string]map[string]int),
-		authorFirstDate:   make(map[string]time.Time),
-		authorLastDate:    make(map[string]time.Time),
+		raw:                 metric.NewRawScores(),
+		qualityCounts:       make(map[string]int),
+		debtCounts:          make(map[string]int),
+		authorRepoCommits:   make(map[string]map[string]int),
+		authorModuleCommits: make(map[string]map[string]int),
+		authorFirstDate:     make(map[string]time.Time),
+		authorLastDate:      make(map[string]time.Time),
 		changePressure:       make(metric.ChangePressure),
 		moduleSurvival:       make(map[string]float64),
 		modulePressure:       make(metric.ChangePressure),
@@ -288,6 +291,10 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		workers = 4
 	}
 
+	// Convention-aware module resolver, built once from config so every
+	// metric call in this run resolves modules identically (W-02/W-03).
+	moduleResolver := metric.NewModuleResolver(cfg.ModuleConventionDirs)
+
 	// Initialize cache
 	cacheStore := cache.New(!opts.NoCache)
 
@@ -450,12 +457,25 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		design := metric.CalcDesign(commits, cfg.ArchitecturePatterns)
 		mergeMap(acc.raw.Design, design)
 
-		// Track breadth with commit counts per repo, and date ranges for production rate
+		// Track breadth with commit counts per repo AND per module, plus
+		// date ranges for production rate.
 		for _, c := range commits {
 			if _, ok := acc.authorRepoCommits[c.Author]; !ok {
 				acc.authorRepoCommits[c.Author] = make(map[string]int)
 			}
 			acc.authorRepoCommits[c.Author][repoName]++
+			// Per-module commit counts feed module-unit Breadth. A commit
+			// counts once per distinct module it touches.
+			if _, ok := acc.authorModuleCommits[c.Author]; !ok {
+				acc.authorModuleCommits[c.Author] = make(map[string]int)
+			}
+			touchedModules := make(map[string]bool)
+			for _, fs := range c.FileStats {
+				touchedModules[moduleResolver.ModuleOf(fs.Filename)] = true
+			}
+			for mod := range touchedModules {
+				acc.authorModuleCommits[c.Author][mod]++
+			}
 			acc.raw.TotalCommits[c.Author]++
 
 			if first, ok := acc.authorFirstDate[c.Author]; !ok || c.Date.Before(first) {
@@ -476,7 +496,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		}
 
 		// Module Science: Co-change Coupling (uses commit data, no extra git calls)
-		cochange := metric.CalcCochange(commits)
+		cochange := metric.CalcCochange(commits, moduleResolver)
 		acc.cochangeResults = append(acc.cochangeResults, cochange)
 
 		// Step 2: Blame analysis (feeds Survival, Indispensability)
@@ -534,7 +554,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		// Build the test-coverage lookup for this repo. Uses the filtered blame
 		// file list (already in-scope) as the manifest — test files and prod
 		// files share extensions so the lookup is accurate for code files.
-		testedSet := metric.BuildTestedSet(files)
+		testedSet := metric.BuildTestedSet(files, moduleResolver)
 		acc.totalFiles += testedSet.TotalFiles
 		acc.totalTestFiles += testedSet.TotalTestFiles
 		testedSet.ForEachModule(func(mod string, total, test int) {
@@ -547,7 +567,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		var repoSurvDecayed, repoSurvRaw, repoSurvRobust, repoSurvDormant map[string]float64
 		var repoSurvTested, repoSurvUntested map[string]float64
 		if opts.PressureMode == "include" {
-			repoPressure := metric.CalcChangePressure(commits, blameLines)
+			repoPressure := metric.CalcChangePressure(commits, blameLines, moduleResolver)
 			for mod, p := range repoPressure {
 				key := repoName + "/" + mod
 				acc.changePressure[key] = p
@@ -579,7 +599,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 			if substantialAuthors < 2 {
 				pressureThreshold = math.Inf(1) // everything becomes dormant
 			}
-			survResult := metric.CalcSurvivalFull(blameLines, cfg.Tau, start, repoPressure, pressureThreshold, testedSet, cfg.UntestedSurvivalWeight)
+			survResult := metric.CalcSurvivalFull(blameLines, cfg.Tau, start, repoPressure, pressureThreshold, moduleResolver, testedSet, cfg.UntestedSurvivalWeight)
 			repoSurvDecayed = survResult.Decayed
 			repoSurvRaw = survResult.Raw
 			repoSurvRobust = survResult.Robust
@@ -595,7 +615,7 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		} else {
 			// Classic mode: no pressure split, but still apply the tested-weighting
 			// so comment-era repos still benefit from gaming resistance.
-			survResult := metric.CalcSurvivalFull(blameLines, cfg.Tau, start, nil, 0, testedSet, cfg.UntestedSurvivalWeight)
+			survResult := metric.CalcSurvivalFull(blameLines, cfg.Tau, start, nil, 0, moduleResolver, testedSet, cfg.UntestedSurvivalWeight)
 			repoSurvDecayed = survResult.Decayed
 			repoSurvRaw = survResult.Raw
 			repoSurvTested = survResult.Tested
@@ -645,11 +665,11 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		mergeMapAvg(acc.raw.DebtCleanup, debt, acc.debtCounts)
 
 		// Module Science: Ownership Fragmentation (uses blame data)
-		ownership := metric.CalcOwnershipFragmentation(blameLines)
+		ownership := metric.CalcOwnershipFragmentation(blameLines, moduleResolver)
 		acc.ownership = append(acc.ownership, ownership...)
 
 		// Module Science Phase 2: Per-module survival rate
-		repoModSurv := metric.CalcModuleSurvival(blameLines, cfg.Tau, start)
+		repoModSurv := metric.CalcModuleSurvival(blameLines, cfg.Tau, start, moduleResolver)
 		for mod, surv := range repoModSurv {
 			if existing, ok := acc.moduleSurvival[mod]; ok {
 				acc.moduleSurvival[mod] = (existing + surv) / 2
@@ -738,18 +758,18 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 			continue
 		}
 
-		// Breadth: count repos where author has >= 3 commits
-		const minCommitsForBreadth = 3
-		for author, repos := range acc.authorRepoCommits {
-			count := 0
-			for _, commits := range repos {
-				if commits >= minCommitsForBreadth {
-					count++
-				}
-			}
-			if count > 0 {
-				acc.raw.Breadth[author] = float64(count)
-			}
+		// Breadth: unit follows the analysis scope (repo for multi-repo,
+		// module for monorepo) via the shared computeBreadth helper, so the
+		// CLI, analyzer and timeline pipelines can't drift (W-02).
+		breadth := metric.ComputeBreadth(
+			acc.authorRepoCommits,
+			acc.authorModuleCommits,
+			cfg.BreadthUnit(),
+			cfg.BreadthMinCommits(),
+			acc.repoCount,
+		)
+		for author, b := range breadth {
+			acc.raw.Breadth[author] = b
 		}
 
 		// Convert production total to per-day rate for absolute scoring
@@ -833,7 +853,10 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 					}
 					ra.acc.raw.Production[author] = total / days
 				}
-				// Breadth is 1 for single repo
+				// Per-repo Breadth saturates at 1: a per-repo breakdown is
+				// scoped to one repo, so repo-unit Breadth is always {0,1}.
+				// Module-unit Breadth is a run-level decision reported on
+				// the merged result, not re-derived per repo here.
 				for author := range ra.acc.raw.TotalCommits {
 					ra.acc.raw.Breadth[author] = 1
 				}

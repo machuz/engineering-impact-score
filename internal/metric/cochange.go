@@ -32,7 +32,7 @@ type CochangeResult struct {
 // the modular design framework proposed by Baldwin & Clark.
 // High coupling between modules that should be independent signals
 // a leaky boundary — a structural risk invisible from code alone.
-func CalcCochange(commits []git.Commit) CochangeResult {
+func CalcCochange(commits []git.Commit, mr ModuleResolver) CochangeResult {
 	// Count commits per module (a commit counts once per module it touches)
 	moduleCommits := make(map[string]int)
 
@@ -43,7 +43,7 @@ func CalcCochange(commits []git.Commit) CochangeResult {
 		// Unique modules touched by this commit
 		touched := make(map[string]bool)
 		for _, fs := range c.FileStats {
-			mod := ModuleOf(fs.Filename)
+			mod := mr.ModuleOf(fs.Filename)
 			touched[mod] = true
 		}
 

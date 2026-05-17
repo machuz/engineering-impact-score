@@ -9,10 +9,11 @@ type DebtData = metric.DebtData
 type ModuleRisk = metric.ModuleRisk
 type VerboseFunc = metric.VerboseFunc
 
-// Module Topology types
+// Module topology / resolution
 type ModulePair = metric.ModulePair
 type CochangeResult = metric.CochangeResult
 type ModuleOwnership = metric.ModuleOwnership
+type ModuleResolver = metric.ModuleResolver
 
 var (
 	CalcProduction           = metric.CalcProduction
@@ -26,8 +27,14 @@ var (
 	CalcChangePressure       = metric.CalcChangePressure
 	GetFixCommits            = metric.GetFixCommits
 	IsExcluded               = metric.IsExcluded
-	ModuleOf                 = metric.ModuleOf
 	NewRawScores             = metric.NewRawScores
+
+	// Module resolution (convention-aware)
+	NewModuleResolver           = metric.NewModuleResolver
+	DefaultModuleConventionDirs = metric.DefaultModuleConventionDirs
+
+	// Breadth
+	ComputeBreadth = metric.ComputeBreadth
 
 	// Module Topology
 	CalcCochange               = metric.CalcCochange

@@ -222,6 +222,57 @@ domains:
 	}
 }
 
+// When the config omits breadth and module_convention_dirs, the defaults
+// kick in: unit "auto", min_commits 3, and a nil convention override (so
+// the metric layer uses the built-in default set).
+func TestBreadthAndConventionDefaults(t *testing.T) {
+	cfg := loadFromString(t, "tau: 180\n")
+	if cfg.BreadthUnit() != "auto" {
+		t.Errorf("default breadth unit = %q, want auto", cfg.BreadthUnit())
+	}
+	if cfg.BreadthMinCommits() != 3 {
+		t.Errorf("default breadth min_commits = %d, want 3", cfg.BreadthMinCommits())
+	}
+	if len(cfg.ModuleConventionDirs) != 0 {
+		t.Errorf("module_convention_dirs should be empty by default, got %v", cfg.ModuleConventionDirs)
+	}
+}
+
+// Explicit breadth + module_convention_dirs values are parsed and honoured.
+func TestBreadthAndConventionFromYAML(t *testing.T) {
+	yaml := `
+tau: 180
+breadth:
+  unit: module
+  min_commits: 5
+module_convention_dirs:
+  - domains
+  - cmd
+`
+	cfg := loadFromString(t, yaml)
+	if cfg.BreadthUnit() != "module" {
+		t.Errorf("breadth unit = %q, want module", cfg.BreadthUnit())
+	}
+	if cfg.BreadthMinCommits() != 5 {
+		t.Errorf("breadth min_commits = %d, want 5", cfg.BreadthMinCommits())
+	}
+	if len(cfg.ModuleConventionDirs) != 2 || cfg.ModuleConventionDirs[0] != "domains" {
+		t.Errorf("module_convention_dirs = %v, want [domains cmd]", cfg.ModuleConventionDirs)
+	}
+}
+
+// An invalid breadth.unit is rejected by Validate.
+func TestBreadthUnitValidation(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, "eis.yaml")
+	if err := os.WriteFile(path, []byte("tau: 180\nbreadth:\n  unit: bogus\n"), 0644); err != nil {
+		t.Fatalf("write temp config: %v", err)
+	}
+	if _, err := Load(path, true); err == nil {
+		t.Error("Load should reject breadth.unit: bogus")
+	}
+}
+
 // loadFromString writes YAML to a temp file and loads it as Config.
 func loadFromString(t *testing.T, yamlContent string) *Config {
 	t.Helper()
