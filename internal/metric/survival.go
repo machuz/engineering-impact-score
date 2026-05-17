@@ -29,13 +29,16 @@ type SurvivalResult struct {
 const DefaultUntestedWeight = 0.5
 
 func CalcSurvival(blameLines []git.BlameLine, tau float64, now time.Time) SurvivalResult {
-	return calcSurvivalImpl(blameLines, tau, now, nil, 0, nil, 1.0)
+	// No pressure split → ModuleResolver is unused; pass the zero value.
+	return calcSurvivalImpl(blameLines, tau, now, nil, 0, ModuleResolver{}, nil, 1.0)
 }
 
 // CalcSurvivalWithPressure splits survival into robust (high-pressure modules)
 // and dormant (low-pressure modules) based on change pressure threshold.
-func CalcSurvivalWithPressure(blameLines []git.BlameLine, tau float64, now time.Time, pressure ChangePressure, threshold float64) SurvivalResult {
-	return calcSurvivalImpl(blameLines, tau, now, pressure, threshold, nil, 1.0)
+// mr must use the same convention set as the resolver that built `pressure`,
+// so the module keys line up.
+func CalcSurvivalWithPressure(blameLines []git.BlameLine, tau float64, now time.Time, pressure ChangePressure, threshold float64, mr ModuleResolver) SurvivalResult {
+	return calcSurvivalImpl(blameLines, tau, now, pressure, threshold, mr, nil, 1.0)
 }
 
 // CalcSurvivalFull is the comprehensive survival calculator. It produces the
@@ -45,11 +48,12 @@ func CalcSurvivalWithPressure(blameLines []git.BlameLine, tau float64, now time.
 // proportionally less to Impact.
 //
 // Pass nil `tested` (or untestedWeight=1.0) to skip the test-coverage weighting.
-func CalcSurvivalFull(blameLines []git.BlameLine, tau float64, now time.Time, pressure ChangePressure, threshold float64, tested *TestedSet, untestedWeight float64) SurvivalResult {
-	return calcSurvivalImpl(blameLines, tau, now, pressure, threshold, tested, untestedWeight)
+// mr must use the same convention set as the resolver that built `pressure`.
+func CalcSurvivalFull(blameLines []git.BlameLine, tau float64, now time.Time, pressure ChangePressure, threshold float64, mr ModuleResolver, tested *TestedSet, untestedWeight float64) SurvivalResult {
+	return calcSurvivalImpl(blameLines, tau, now, pressure, threshold, mr, tested, untestedWeight)
 }
 
-func calcSurvivalImpl(blameLines []git.BlameLine, tau float64, now time.Time, pressure ChangePressure, threshold float64, tested *TestedSet, untestedWeight float64) SurvivalResult {
+func calcSurvivalImpl(blameLines []git.BlameLine, tau float64, now time.Time, pressure ChangePressure, threshold float64, mr ModuleResolver, tested *TestedSet, untestedWeight float64) SurvivalResult {
 	decayed := make(map[string]float64)
 	raw := make(map[string]float64)
 	robust := make(map[string]float64)
@@ -92,7 +96,7 @@ func calcSurvivalImpl(blameLines []git.BlameLine, tau float64, now time.Time, pr
 		decayed[bl.Author] += effective
 
 		if usePressure {
-			mod := ModuleOf(bl.Filename)
+			mod := mr.ModuleOf(bl.Filename)
 			if pressure[mod] >= threshold {
 				robust[bl.Author] += effective
 			} else {

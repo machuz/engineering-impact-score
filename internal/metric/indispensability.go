@@ -111,17 +111,17 @@ type ModuleOwnership struct {
 }
 
 // CalcOwnershipFragmentation analyzes blame-line distribution per module.
-// Uses ModuleOf() (3-level path) for consistency with ChangePressure.
+// Uses the convention-aware ModuleResolver for consistency with ChangePressure.
 //
 // This complements CalcIndispensability: Indispensability measures person-level
 // risk ("this person owns too much"), while OwnershipFragmentation measures
 // module-level risk ("this module's knowledge is too concentrated/scattered").
-func CalcOwnershipFragmentation(blameLines []git.BlameLine) []ModuleOwnership {
+func CalcOwnershipFragmentation(blameLines []git.BlameLine, mr ModuleResolver) []ModuleOwnership {
 	// Group blame lines by module → author → count
 	moduleAuthors := make(map[string]map[string]int)
 
 	for _, bl := range blameLines {
-		mod := ModuleOf(bl.Filename)
+		mod := mr.ModuleOf(bl.Filename)
 		if _, ok := moduleAuthors[mod]; !ok {
 			moduleAuthors[mod] = make(map[string]int)
 		}

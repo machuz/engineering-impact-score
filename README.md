@@ -132,7 +132,7 @@ Time-decayed survival is also naturally resistant to gaming — you can't inflat
 | **First-pass Quality** | 10% | Low fix/revert commit ratio |
 | **Code Survival** | **25%** | Recency-weighted blame survival (tau=180 exponential decay) |
 | **Design** | 20% | Commits to architecture files |
-| **Breadth** | 10% | Number of repositories contributed to |
+| **Breadth** | 10% | Distinct repos (multi-repo) or modules (monorepo) contributed to — unit follows analysis scope, configurable via `breadth.unit` |
 | **Debt Cleanup** | 15% | Ratio of others' debt cleaned vs. own debt generated |
 | **Indispensability** | 5% | Modules where you own 80%+ of blame lines (Bus Factor) |
 

@@ -1,9 +1,7 @@
 package metric
 
 import (
-	"path/filepath"
 	"sort"
-	"strings"
 
 	"github.com/machuz/eis/v2/internal/git"
 )
@@ -11,27 +9,15 @@ import (
 // ChangePressure maps module path → pressure value (commits / blame lines).
 type ChangePressure map[string]float64
 
-// ModuleOf extracts a module identifier from a file path.
-// Uses the first 3 directory components (e.g. "app/domain/payment").
-// For shallower paths, uses the parent directory.
-func ModuleOf(path string) string {
-	dir := filepath.Dir(path)
-	parts := strings.Split(filepath.ToSlash(dir), "/")
-	if len(parts) > 3 {
-		parts = parts[:3]
-	}
-	return strings.Join(parts, "/")
-}
-
 // CalcChangePressure computes per-module change pressure.
 // pressure = commits_touching_module / blame_lines_in_module
-func CalcChangePressure(commits []git.Commit, blameLines []git.BlameLine) ChangePressure {
+func CalcChangePressure(commits []git.Commit, blameLines []git.BlameLine, mr ModuleResolver) ChangePressure {
 	// Count commits per module (a commit counts once per module it touches)
 	moduleCommits := make(map[string]int)
 	for _, c := range commits {
 		touched := make(map[string]bool)
 		for _, fs := range c.FileStats {
-			mod := ModuleOf(fs.Filename)
+			mod := mr.ModuleOf(fs.Filename)
 			touched[mod] = true
 		}
 		for mod := range touched {
@@ -42,7 +28,7 @@ func CalcChangePressure(commits []git.Commit, blameLines []git.BlameLine) Change
 	// Count blame lines per module
 	moduleBlameLines := make(map[string]int)
 	for _, bl := range blameLines {
-		mod := ModuleOf(bl.Filename)
+		mod := mr.ModuleOf(bl.Filename)
 		moduleBlameLines[mod]++
 	}
 

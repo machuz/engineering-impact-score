@@ -132,7 +132,7 @@ func (ts *TestedSet) ForEachModule(fn func(module string, total, test int)) {
 
 // BuildTestedSet inspects the full file manifest once and returns a lookup
 // that callers can query per blame line.
-func BuildTestedSet(allFiles []string) *TestedSet {
+func BuildTestedSet(allFiles []string, mr ModuleResolver) *TestedSet {
 	ts := &TestedSet{
 		tested:           make(map[string]bool, len(allFiles)),
 		moduleTotalFiles: make(map[string]int),
@@ -149,7 +149,7 @@ func BuildTestedSet(allFiles []string) *TestedSet {
 	testFiles := make(map[string]struct{}, len(allFiles)/4)
 	dirHasTest := make(map[string]bool)
 	for _, f := range allFiles {
-		mod := ModuleOf(f)
+		mod := mr.ModuleOf(f)
 		ts.moduleTotalFiles[mod]++
 		if IsTestFile(f) {
 			testFiles[f] = struct{}{}

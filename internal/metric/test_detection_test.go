@@ -45,7 +45,7 @@ func TestTestedSet_SiblingPair(t *testing.T) {
 		"pkg/user_test.go",
 		"pkg/billing.go", // no sibling test
 	}
-	ts := BuildTestedSet(files)
+	ts := BuildTestedSet(files, ModuleResolver{})
 	if !ts.IsTested("pkg/user.go") {
 		t.Error("user.go must be tested (sibling pair)")
 	}
@@ -66,7 +66,7 @@ func TestTestedSet_ModuleFallback(t *testing.T) {
 		"api/router_test.go", // covers router, modulé has one test
 		"legacy/old.go",       // no test anywhere in legacy/
 	}
-	ts := BuildTestedSet(files)
+	ts := BuildTestedSet(files, ModuleResolver{})
 	if !ts.IsTested("api/router.go") {
 		t.Error("router.go tested via sibling")
 	}
@@ -86,7 +86,7 @@ func TestTestedSet_CrossLanguage(t *testing.T) {
 		"frontend/src/Button.test.tsx",
 		"untested/forgotten.go",
 	}
-	ts := BuildTestedSet(files)
+	ts := BuildTestedSet(files, ModuleResolver{})
 	if !ts.IsTested("backend/user.py") {
 		t.Error("py sibling pair failed")
 	}
@@ -100,7 +100,7 @@ func TestTestedSet_CrossLanguage(t *testing.T) {
 
 func TestTestedSet_Ratio(t *testing.T) {
 	files := []string{"a.go", "a_test.go", "b.go", "c.go"}
-	ts := BuildTestedSet(files)
+	ts := BuildTestedSet(files, ModuleResolver{})
 	if ts.TotalFiles != 4 || ts.TotalTestFiles != 1 {
 		t.Errorf("counts off: total=%d tests=%d", ts.TotalFiles, ts.TotalTestFiles)
 	}
@@ -117,7 +117,7 @@ func TestTestedSet_NilReceiver(t *testing.T) {
 }
 
 func TestTestedSet_EmptyRepo(t *testing.T) {
-	ts := BuildTestedSet(nil)
+	ts := BuildTestedSet(nil, ModuleResolver{})
 	if ts == nil {
 		t.Fatal("should not return nil for empty input")
 	}
@@ -140,7 +140,7 @@ func TestTestedSet_ModuleTestRatio(t *testing.T) {
 		"legacy/b.go",
 		"legacy/c.go",
 	}
-	ts := BuildTestedSet(files)
+	ts := BuildTestedSet(files, ModuleResolver{})
 
 	apiRatio, ok := ts.ModuleTestRatio("api")
 	if !ok {

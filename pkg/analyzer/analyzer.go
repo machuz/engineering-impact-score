@@ -90,32 +90,38 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		workers = 4
 	}
 
+	// Convention-aware module resolver, built once from config so every
+	// metric call in this run resolves modules identically (W-02/W-03).
+	moduleResolver := metric.NewModuleResolver(cfg.ModuleConventionDirs)
+
 	// Initialize cache store
 	cacheStore := cache.NewWithDir(opts.CacheEnabled, opts.CacheDir)
 
 	type accumulator struct {
-		raw               *metric.RawScores
-		qualityCounts     map[string]int
-		debtCounts        map[string]int
-		authorRepoCommits map[string]map[string]int
-		authorFirstDate   map[string]time.Time
-		authorLastDate    map[string]time.Time
-		repoCount         int
-		risks             []metric.ModuleRisk
-		changePressure    metric.ChangePressure
+		raw                 *metric.RawScores
+		qualityCounts       map[string]int
+		debtCounts          map[string]int
+		authorRepoCommits   map[string]map[string]int
+		authorModuleCommits map[string]map[string]int
+		authorFirstDate     map[string]time.Time
+		authorLastDate      map[string]time.Time
+		repoCount           int
+		risks               []metric.ModuleRisk
+		changePressure      metric.ChangePressure
 		// Module Topology accumulators
-		allCommits  []git.Commit
+		allCommits    []git.Commit
 		allBlameLines []git.BlameLine
 	}
 	newAcc := func() *accumulator {
 		return &accumulator{
-			raw:               metric.NewRawScores(),
-			qualityCounts:     make(map[string]int),
-			debtCounts:        make(map[string]int),
-			authorRepoCommits: make(map[string]map[string]int),
-			authorFirstDate:   make(map[string]time.Time),
-			authorLastDate:    make(map[string]time.Time),
-			changePressure:    make(metric.ChangePressure),
+			raw:                 metric.NewRawScores(),
+			qualityCounts:       make(map[string]int),
+			debtCounts:          make(map[string]int),
+			authorRepoCommits:   make(map[string]map[string]int),
+			authorModuleCommits: make(map[string]map[string]int),
+			authorFirstDate:     make(map[string]time.Time),
+			authorLastDate:      make(map[string]time.Time),
+			changePressure:      make(metric.ChangePressure),
 		}
 	}
 	type repoAccState struct {
@@ -230,6 +236,19 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 				acc.authorRepoCommits[c.Author] = make(map[string]int)
 			}
 			acc.authorRepoCommits[c.Author][repoName]++
+			// Per-module commit counts feed module-unit Breadth. A commit
+			// counts once per distinct module it touches (W-02: dedup so
+			// touching three files in one module isn't three "modules").
+			if _, ok := acc.authorModuleCommits[c.Author]; !ok {
+				acc.authorModuleCommits[c.Author] = make(map[string]int)
+			}
+			touchedModules := make(map[string]bool)
+			for _, fs := range c.FileStats {
+				touchedModules[moduleResolver.ModuleOf(fs.Filename)] = true
+			}
+			for mod := range touchedModules {
+				acc.authorModuleCommits[c.Author][mod]++
+			}
 			acc.raw.TotalCommits[c.Author]++
 			if first, ok := acc.authorFirstDate[c.Author]; !ok || c.Date.Before(first) {
 				acc.authorFirstDate[c.Author] = c.Date
@@ -283,7 +302,7 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 
 		var repoSurvDecayed, repoSurvRaw, repoSurvRobust, repoSurvDormant map[string]float64
 		if opts.PressureMode != "ignore" {
-			repoPressure := metric.CalcChangePressure(commits, blameLines)
+			repoPressure := metric.CalcChangePressure(commits, blameLines, moduleResolver)
 			for mod, p := range repoPressure {
 				acc.changePressure[repoName+"/"+mod] = p
 			}
@@ -302,7 +321,7 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 			if substantial < 2 {
 				threshold = math.Inf(1)
 			}
-			sr := metric.CalcSurvivalWithPressure(blameLines, cfg.Tau, start, repoPressure, threshold)
+			sr := metric.CalcSurvivalWithPressure(blameLines, cfg.Tau, start, repoPressure, threshold, moduleResolver)
 			repoSurvDecayed, repoSurvRaw, repoSurvRobust, repoSurvDormant = sr.Decayed, sr.Raw, sr.Robust, sr.Dormant
 			mergeMap(acc.raw.Survival, repoSurvDecayed)
 			mergeMap(acc.raw.RawSurvival, repoSurvRaw)
@@ -376,16 +395,18 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		if !ok {
 			continue
 		}
-		for author, repos := range acc.authorRepoCommits {
-			count := 0
-			for _, n := range repos {
-				if n >= 3 {
-					count++
-				}
-			}
-			if count > 0 {
-				acc.raw.Breadth[author] = float64(count)
-			}
+		// Breadth: unit follows the analysis scope (repo for multi-repo,
+		// module for monorepo) via the shared computeBreadth helper, so
+		// the analyzer and timeline pipelines can't drift (W-02).
+		breadth := metric.ComputeBreadth(
+			acc.authorRepoCommits,
+			acc.authorModuleCommits,
+			cfg.BreadthUnit(),
+			cfg.BreadthMinCommits(),
+			acc.repoCount,
+		)
+		for author, b := range breadth {
+			acc.raw.Breadth[author] = b
 		}
 		for author, total := range acc.raw.Production {
 			first, last := acc.authorFirstDate[author], acc.authorLastDate[author]
@@ -406,9 +427,9 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 			continue
 		}
 		// Module Topology — compute from accumulated commits/blameLines
-		cochange := metric.CalcCochange(acc.allCommits)
-		ownership := metric.CalcOwnershipFragmentation(acc.allBlameLines)
-		moduleSurvival := metric.CalcModuleSurvival(acc.allBlameLines, cfg.Tau, start)
+		cochange := metric.CalcCochange(acc.allCommits, moduleResolver)
+		ownership := metric.CalcOwnershipFragmentation(acc.allBlameLines, moduleResolver)
+		moduleSurvival := metric.CalcModuleSurvival(acc.allBlameLines, cfg.Tau, start, moduleResolver)
 
 		dr := DomainResults{
 			Domain: d, Results: filtered, Risks: acc.risks, RepoCount: acc.repoCount,
@@ -427,6 +448,11 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 					}
 					ra.acc.raw.Production[a] = t / days
 				}
+				// Per-repo Breadth saturates at 1: a per-repo breakdown is
+				// scoped to exactly one repo, so the repo-unit count is
+				// always {0,1}. Module-unit Breadth is a run-level decision
+				// (see ComputeBreadth) and is reported on the merged result,
+				// not re-derived here.
 				for a := range ra.acc.raw.TotalCommits {
 					ra.acc.raw.Breadth[a] = 1
 				}
@@ -439,9 +465,9 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 				}
 				if len(rf) > 0 {
 					// Per-repo module topology
-					repoCochange := metric.CalcCochange(ra.commits)
-					repoOwnership := metric.CalcOwnershipFragmentation(ra.blameLines)
-					repoModuleSurvival := metric.CalcModuleSurvival(ra.blameLines, cfg.Tau, start)
+					repoCochange := metric.CalcCochange(ra.commits, moduleResolver)
+					repoOwnership := metric.CalcOwnershipFragmentation(ra.blameLines, moduleResolver)
+					repoModuleSurvival := metric.CalcModuleSurvival(ra.blameLines, cfg.Tau, start, moduleResolver)
 					dr.PerRepo = append(dr.PerRepo, RepoResult{
 						RepoName: ra.repoName, Domain: ra.domain, Results: rf,
 						Cochange: repoCochange, Ownership: repoOwnership, ModuleSurvival: repoModuleSurvival,

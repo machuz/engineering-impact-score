@@ -22,11 +22,19 @@ type Config struct {
 	DefaultDomains       *bool                `yaml:"default_domains"`
 	Domains              DomainsConfig        `yaml:"domains"`
 	Teams                map[string]TeamEntry `yaml:"teams"`
-	BreadthMax           int                  `yaml:"breadth_max"`
 	ProductionDailyRef   float64              `yaml:"production_daily_ref"`
 	ExcludeRepos         []string             `yaml:"exclude_repos"`
 	ActiveDays           int                  `yaml:"active_days"`
 	BlameTimeout         int                  `yaml:"blame_timeout"`
+	// ModuleConventionDirs is the set of monorepo-convention top-level
+	// directories used by module resolution. When a file path's FIRST
+	// component is one of these, the module is its first 2 components
+	// (e.g. "services/ace"). When this list is set in config it REPLACES
+	// the built-in default set (services, packages, apps, modules, libs);
+	// when empty, the default set is used.
+	ModuleConventionDirs []string `yaml:"module_convention_dirs"`
+	// Breadth controls how the Breadth axis counts an author's reach.
+	Breadth Breadth `yaml:"breadth"`
 	// MaxBlameFileBytes is the upper bound (in bytes) for files passed to
 	// git blame. Files whose blob size exceeds this are skipped before the
 	// blame call, which protects against pathological huge single-line
@@ -91,12 +99,27 @@ type BusFactor struct {
 	High     float64 `yaml:"high"`
 }
 
+// Breadth configures the unit and threshold of the Breadth axis.
+//
+// Unit decides what an author's reach is counted over:
+//   - "auto"   — repo unit for multi-repo analysis, module unit for a
+//     single-repo (monorepo) analysis. The unit is decided once per
+//     analysis run, so every author in one run is counted the same way.
+//   - "repo"   — always count distinct repos.
+//   - "module" — always count distinct modules (convention-aware).
+//
+// MinCommits is the minimum commit count an author needs in a repo (or
+// module) for that repo/module to count toward Breadth.
+type Breadth struct {
+	Unit       string `yaml:"unit"`
+	MinCommits int    `yaml:"min_commits"`
+}
+
 func Default() *Config {
 	return &Config{
 		Tau:                    180,
 		SampleSize:             500,
 		DebtThreshold:          10,
-		BreadthMax:             5,
 		ActiveDays:             30,
 		BlameTimeout:           120,
 		MaxBlameFileBytes:      5 * 1024 * 1024,
@@ -144,6 +167,10 @@ func Default() *Config {
 		BusFactor: BusFactor{
 			Critical: 0.80,
 			High:     0.60,
+		},
+		Breadth: Breadth{
+			Unit:       "auto",
+			MinCommits: 3,
 		},
 	}
 }
@@ -196,7 +223,37 @@ func (c *Config) Validate() error {
 		return fmt.Errorf("bus_factor.critical (%f) must be greater than bus_factor.high (%f)", c.BusFactor.Critical, c.BusFactor.High)
 	}
 
+	switch c.Breadth.Unit {
+	case "", "auto", "repo", "module":
+		// ok ("" is treated as "auto" by the resolver)
+	default:
+		return fmt.Errorf("breadth.unit must be one of auto|repo|module, got %q", c.Breadth.Unit)
+	}
+	// MinCommits == 0 means "omitted" → BreadthMinCommits() falls back to 3.
+	// A negative value is an explicit mistake.
+	if c.Breadth.MinCommits < 0 {
+		return fmt.Errorf("breadth.min_commits must be non-negative, got %d", c.Breadth.MinCommits)
+	}
+
 	return nil
+}
+
+// BreadthUnit returns the configured Breadth unit, normalizing the empty
+// string (config omitted the key) to "auto".
+func (c *Config) BreadthUnit() string {
+	if c.Breadth.Unit == "" {
+		return "auto"
+	}
+	return c.Breadth.Unit
+}
+
+// BreadthMinCommits returns the configured Breadth min-commits threshold,
+// falling back to 3 when the config omitted the key (zero value).
+func (c *Config) BreadthMinCommits() int {
+	if c.Breadth.MinCommits < 1 {
+		return 3
+	}
+	return c.Breadth.MinCommits
 }
 
 // UseDefaultDomains returns whether built-in domain extension mappings should be used.

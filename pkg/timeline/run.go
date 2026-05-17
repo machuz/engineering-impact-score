@@ -205,6 +205,10 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		workers = 4
 	}
 
+	// Convention-aware module resolver, built once from config so every
+	// metric call in this run resolves modules identically (W-02/W-03).
+	moduleResolver := metric.NewModuleResolver(cfg.ModuleConventionDirs)
+
 	// Parse span
 	spanMonths, spanDays, err := ParseSpan(opts.Span)
 	if err != nil {
@@ -435,6 +439,18 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 						acc.authorRepoCommits[c.Author] = make(map[string]int)
 					}
 					acc.authorRepoCommits[c.Author][repo.name]++
+					// Per-module commit counts feed module-unit Breadth.
+					// A commit counts once per distinct module it touches.
+					if _, ok := acc.authorModuleCommits[c.Author]; !ok {
+						acc.authorModuleCommits[c.Author] = make(map[string]int)
+					}
+					touchedModules := make(map[string]bool)
+					for _, fs := range c.FileStats {
+						touchedModules[moduleResolver.ModuleOf(fs.Filename)] = true
+					}
+					for mod := range touchedModules {
+						acc.authorModuleCommits[c.Author][mod]++
+					}
 					acc.raw.TotalCommits[c.Author]++
 
 					if first, ok := acc.authorFirstDate[c.Author]; !ok || c.Date.Before(first) {
@@ -449,6 +465,12 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 							racc.authorRepoCommits[c.Author] = make(map[string]int)
 						}
 						racc.authorRepoCommits[c.Author][repo.name]++
+						if _, ok := racc.authorModuleCommits[c.Author]; !ok {
+							racc.authorModuleCommits[c.Author] = make(map[string]int)
+						}
+						for mod := range touchedModules {
+							racc.authorModuleCommits[c.Author][mod]++
+						}
 						racc.raw.TotalCommits[c.Author]++
 						if first, ok := racc.authorFirstDate[c.Author]; !ok || c.Date.Before(first) {
 							racc.authorFirstDate[c.Author] = c.Date
@@ -527,7 +549,7 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 					pressureMode = "include"
 				}
 				if pressureMode == "include" {
-					repoPressure := metric.CalcChangePressure(periodCommits, blameLines)
+					repoPressure := metric.CalcChangePressure(periodCommits, blameLines, moduleResolver)
 					for mod, p := range repoPressure {
 						key := repo.name + "/" + mod
 						acc.changePressure[key] = p
@@ -548,7 +570,7 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 					if substantialAuthors < 2 {
 						pressureThreshold = math.Inf(1)
 					}
-					survResult := metric.CalcSurvivalWithPressure(blameLines, cfg.Tau, window.End, repoPressure, pressureThreshold)
+					survResult := metric.CalcSurvivalWithPressure(blameLines, cfg.Tau, window.End, repoPressure, pressureThreshold, moduleResolver)
 					mergeMap(acc.raw.Survival, survResult.Decayed)
 					mergeMap(acc.raw.RawSurvival, survResult.Raw)
 					mergeMap(acc.raw.RobustSurvival, survResult.Robust)
@@ -600,37 +622,36 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 				}
 			}
 
-			// Breadth
-			const minCommitsForBreadth = 3
-			for author, repoCommits := range acc.authorRepoCommits {
-				count := 0
-				for _, commits := range repoCommits {
-					if commits >= minCommitsForBreadth {
-						count++
-					}
-				}
-				if count > 0 {
-					acc.raw.Breadth[author] = float64(count)
-				}
+			// Breadth: unit follows the analysis scope (repo for multi-repo,
+			// module for monorepo) via the shared computeBreadth helper, so
+			// the timeline and analyzer pipelines can't drift (W-02).
+			breadth := metric.ComputeBreadth(
+				acc.authorRepoCommits,
+				acc.authorModuleCommits,
+				cfg.BreadthUnit(),
+				cfg.BreadthMinCommits(),
+				acc.repoCount,
+			)
+			for author, b := range breadth {
+				acc.raw.Breadth[author] = b
 			}
-			// Per-repo Breadth: each repo's authors contribute to that
-			// repo's own Breadth based on commits-in-this-repo only. With a
-			// single repo per accumulator the count saturates at 1 (the
-			// only repo the author touched). The CLI/SaaS rendering of
-			// per-repo Breadth is therefore always {0, 1}, mirroring
-			// analyzer.RepoResult.Results[*].Breadth shape.
+			// Per-repo Breadth: each per-repo accumulator is scoped to a
+			// single repo. Under repo-unit counting the value saturates at
+			// {0,1}; under module-unit (monorepo) counting it reflects how
+			// many modules the author reached inside that repo. The unit is
+			// the run-level decision from ComputeBreadth, applied here with
+			// repoCount=1 so per-repo and merged use the same logic.
 			if repoAccs != nil {
 				for _, racc := range repoAccs {
-					for author, repoCommits := range racc.authorRepoCommits {
-						count := 0
-						for _, commits := range repoCommits {
-							if commits >= minCommitsForBreadth {
-								count++
-							}
-						}
-						if count > 0 {
-							racc.raw.Breadth[author] = float64(count)
-						}
+					rb := metric.ComputeBreadth(
+						racc.authorRepoCommits,
+						racc.authorModuleCommits,
+						cfg.BreadthUnit(),
+						cfg.BreadthMinCommits(),
+						1,
+					)
+					for author, b := range rb {
+						racc.raw.Breadth[author] = b
 					}
 				}
 			}
@@ -774,25 +795,27 @@ func BuildTeamPeriodResults(d string, periods []PeriodResult, cfg *config.Config
 // --- internal helpers (same as pkg/analyzer) ---
 
 type accumulator struct {
-	raw               *metric.RawScores
-	qualityCounts     map[string]int
-	debtCounts        map[string]int
-	authorRepoCommits map[string]map[string]int
-	authorFirstDate   map[string]time.Time
-	authorLastDate    map[string]time.Time
-	repoCount         int
-	changePressure    metric.ChangePressure
+	raw                 *metric.RawScores
+	qualityCounts       map[string]int
+	debtCounts          map[string]int
+	authorRepoCommits   map[string]map[string]int
+	authorModuleCommits map[string]map[string]int
+	authorFirstDate     map[string]time.Time
+	authorLastDate      map[string]time.Time
+	repoCount           int
+	changePressure      metric.ChangePressure
 }
 
 func newAccumulator() *accumulator {
 	return &accumulator{
-		raw:               metric.NewRawScores(),
-		qualityCounts:     make(map[string]int),
-		debtCounts:        make(map[string]int),
-		authorRepoCommits: make(map[string]map[string]int),
-		authorFirstDate:   make(map[string]time.Time),
-		authorLastDate:    make(map[string]time.Time),
-		changePressure:    make(metric.ChangePressure),
+		raw:                 metric.NewRawScores(),
+		qualityCounts:       make(map[string]int),
+		debtCounts:          make(map[string]int),
+		authorRepoCommits:   make(map[string]map[string]int),
+		authorModuleCommits: make(map[string]map[string]int),
+		authorFirstDate:     make(map[string]time.Time),
+		authorLastDate:      make(map[string]time.Time),
+		changePressure:      make(metric.ChangePressure),
 	}
 }
 

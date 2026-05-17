@@ -187,8 +187,12 @@ func SampleFiles(files []string, maxFiles int) []string {
 	return result
 }
 
-// moduleOfPath extracts a module identifier from a file path.
-// Uses the first 3 directory components (mirrors metric.ModuleOf).
+// moduleOfPath buckets a file path for stratified blame sampling only.
+// It uses the first 3 directory components purely to spread the sample
+// across the tree — it is NOT the metric module identity (see the
+// convention-aware metric.ModuleResolver for that) and the two are
+// intentionally allowed to differ. The git package cannot import metric
+// (metric imports git), and sampling does not need module accuracy.
 func moduleOfPath(path string) string {
 	dir := filepath.Dir(path)
 	parts := strings.Split(filepath.ToSlash(dir), "/")
