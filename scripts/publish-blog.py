@@ -174,13 +174,23 @@ def hatena_parse_title_and_body(filepath: Path) -> tuple[str, str]:
     return title, body
 
 
+def hatena_categories_for(filename: str) -> list[str]:
+    """Return Hatena categories appropriate for the given filename."""
+    if "psyos" in filename:
+        return ["心理OS", "エンジニアリング", "組織論"]
+    if "structure" in filename:
+        return ["構造駆動", "エンジニアリング", "組織論"]
+    # default: git考古学 series
+    return ["git考古学", "engineering-impact-score", "エンジニアリング"]
+
+
 def hatena_publish(filepath: Path, mapping: dict) -> dict:
     """Publish or update a Hatena Blog entry."""
     title, body = hatena_parse_title_and_body(filepath)
     filename = filepath.name
     entry_id = mapping.get(filename, {}).get("hatena_id")
 
-    categories = ["git考古学", "engineering-impact-score", "エンジニアリング"]
+    categories = hatena_categories_for(filename)
     xml_data = hatena_build_xml(title, body, categories=categories)
 
     headers = {
