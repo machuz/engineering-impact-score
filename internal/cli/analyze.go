@@ -291,9 +291,10 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		workers = 4
 	}
 
-	// Convention-aware module resolver, built once from config so every
-	// metric call in this run resolves modules identically (W-02/W-03).
-	moduleResolver := metric.NewModuleResolver(cfg.ModuleConventionDirs)
+	// Module resolvers are built per repo (see the loop below) so each
+	// repo can honor its own RepoOverrides without leaking pattern sets
+	// across repos. Resolution remains deterministic per repo (W-02/W-03)
+	// because it depends only on the resolved pattern list.
 
 	// Initialize cache
 	cacheStore := cache.New(!opts.NoCache)
@@ -379,6 +380,13 @@ func RunAnalyzePipeline(opts AnalyzeOptions, paths []string) ([]DomainResults, *
 		}
 		acc.repoCount++
 		totalAnalyzed++
+
+		// Per-repo module resolver: honors RepoOverrides for this specific
+		// repo (lookup key is the repo's base name, matching the CLI's
+		// repoName-only identifier convention). Falls back to org-level
+		// ModulePatterns and then to DefaultModulePatterns inside
+		// PatternsForRepo.
+		moduleResolver := metric.NewModuleResolver(config.PatternsForRepo(cfg, repoName))
 
 		// Get HEAD hash for cache keys
 		headHash, _ := git.HeadHash(ctx, repoPath)

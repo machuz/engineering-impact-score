@@ -5,61 +5,153 @@ import (
 	"strings"
 )
 
-// DefaultModuleConventionDirs is the built-in set of monorepo-convention
-// top-level directories. When a file path's FIRST component is one of
-// these, the module is taken as its first 2 components (e.g.
-// "services/ace"), anchoring module identity to a real project boundary
-// instead of an arbitrary depth cut.
-var DefaultModuleConventionDirs = []string{"services", "packages", "apps", "modules", "libs"}
+// DefaultModulePatterns is the built-in set of glob patterns used by module
+// resolution when no caller-supplied pattern list is provided. It mirrors
+// the historical "convention dirs" set (services, packages, apps, modules,
+// libs), expressed as globs so users can extend / refine it.
+//
+// The canonical default lives in package config (config.DefaultModulePatterns).
+// This copy exists so the metric layer remains import-cycle-free; the two
+// MUST stay in lockstep. A test in internal/metric/module_test.go asserts
+// that intent at the value level.
+var DefaultModulePatterns = []string{
+	"services/*",
+	"packages/*",
+	"apps/*",
+	"modules/*",
+	"libs/*",
+}
+
+// parsedPattern is a pre-compiled glob pattern. Each component is either a
+// literal path-component (Wildcard == false) or a single-component wildcard
+// (`*`, Wildcard == true). Multi-component wildcards (`**`) are not
+// supported — a `*` matches exactly ONE path component.
+type parsedPattern struct {
+	components []patternComponent
+}
+
+type patternComponent struct {
+	Literal  string
+	Wildcard bool
+}
 
 // ModuleResolver maps a file path to a module identifier.
 //
 // Resolution is pure and deterministic (W-02 / W-03): the result depends
-// only on (path, convention set). There is no package-level mutable state —
-// a resolver is a value, constructed once from a convention set and threaded
-// down to the metric functions that need it.
+// only on (path, pattern list). The resolver carries no mutable state — it
+// is a value, constructed once for a given pattern list and threaded down
+// to the metric functions that need it.
 //
 // Resolution rule:
-//   - If the path's FIRST directory component is a known convention dir,
-//     the module is its first 2 components: "<conventionDir>/<child>"
-//     (e.g. "services/ace/backend/internal/x.go" -> "services/ace").
-//   - Otherwise the module is the first 2 components of the path's dir
-//     (e.g. "a/b/c/d.go" -> "a/b"). This conservative 2-layer default
-//     yields fewer, larger modules than the historical 3-layer split, so
-//     Breadth and module metrics don't inflate on deep trees.
-//   - A dir with fewer than 2 components collapses to whatever components
-//     exist (the whole dir, or "." for a root-level file).
+//   - For each pattern, walk the path's components against the pattern's
+//     components. If every pattern component matches (literal-equal or
+//     wildcard), the pattern HAS MATCHED and the module identifier is the
+//     first N components of the path (N = len(pattern.components)).
+//   - The winner across all matching patterns is the LONGEST module
+//     identifier; ties are broken by pattern order (first wins).
+//   - If NO pattern matches, fall back to the conservative 2-component
+//     default (e.g. "a/b/c/d.go" -> "a/b"). A path with fewer than 2
+//     components collapses to whatever components exist (the whole dir,
+//     or "." for a root-level file).
 type ModuleResolver struct {
-	convention map[string]bool
+	patterns []parsedPattern
 }
 
-// NewModuleResolver builds a resolver from a convention-dir set. When
-// conventionDirs is empty, the built-in DefaultModuleConventionDirs is
-// used; when non-empty it REPLACES the default set entirely.
-func NewModuleResolver(conventionDirs []string) ModuleResolver {
-	dirs := conventionDirs
-	if len(dirs) == 0 {
-		dirs = DefaultModuleConventionDirs
+// NewModuleResolver builds a resolver from a glob-pattern list. When the
+// list is empty (nil or len 0), DefaultModulePatterns is used. Per-repo
+// overrides are not handled here — the caller picks the right pattern list
+// (see config.PatternsForRepo) and passes it in. This keeps the resolver
+// value scoped to (repo, patterns) instead of baking a full override map
+// into a single resolver instance.
+//
+// Empty pattern strings and patterns consisting entirely of separators
+// are dropped silently — they can't match anything meaningful and would
+// otherwise produce ambiguous "match at depth 0" hits.
+func NewModuleResolver(patterns []string) ModuleResolver {
+	src := patterns
+	if len(src) == 0 {
+		src = DefaultModulePatterns
 	}
-	conv := make(map[string]bool, len(dirs))
-	for _, d := range dirs {
-		conv[d] = true
+	out := make([]parsedPattern, 0, len(src))
+	for _, p := range src {
+		pp, ok := compilePattern(p)
+		if !ok {
+			continue
+		}
+		out = append(out, pp)
 	}
-	return ModuleResolver{convention: conv}
+	return ModuleResolver{patterns: out}
+}
+
+// compilePattern splits a glob pattern into components. Returns (_, false)
+// when the pattern has zero meaningful components (e.g. "", "/", "///").
+//
+// Consecutive `*` ("**") is treated as TWO single-component wildcards,
+// matching exactly two path components — not "any depth". The contract is
+// "`*` = a single path component"; "**" is not a separate operator.
+func compilePattern(s string) (parsedPattern, bool) {
+	clean := strings.Trim(filepath.ToSlash(s), "/")
+	if clean == "" {
+		return parsedPattern{}, false
+	}
+	parts := strings.Split(clean, "/")
+	comps := make([]patternComponent, 0, len(parts))
+	for _, p := range parts {
+		if p == "" {
+			// Skip empty segments from accidental "//" in a pattern.
+			continue
+		}
+		if p == "*" {
+			comps = append(comps, patternComponent{Wildcard: true})
+		} else {
+			comps = append(comps, patternComponent{Literal: p})
+		}
+	}
+	if len(comps) == 0 {
+		return parsedPattern{}, false
+	}
+	return parsedPattern{components: comps}, true
 }
 
 // ModuleOf returns the module identifier for a file path under this
-// resolver's convention set. See ModuleResolver for the resolution rule.
+// resolver's pattern set. See ModuleResolver for the resolution rule.
 func (r ModuleResolver) ModuleOf(path string) string {
 	dir := filepath.Dir(path)
 	parts := strings.Split(filepath.ToSlash(dir), "/")
 
-	// Convention hit: first component is a known monorepo dir → 2 components.
-	if len(parts) >= 2 && r.convention[parts[0]] {
-		return parts[0] + "/" + parts[1]
+	// Try each pattern; keep the longest module identifier (most specific
+	// match wins). Ties go to the pattern listed first — we only replace
+	// `best` when strictly longer.
+	bestLen := 0
+	var best string
+	for _, pat := range r.patterns {
+		n := len(pat.components)
+		if n == 0 || n > len(parts) {
+			continue
+		}
+		matched := true
+		for i, c := range pat.components {
+			if c.Wildcard {
+				continue
+			}
+			if parts[i] != c.Literal {
+				matched = false
+				break
+			}
+		}
+		if !matched {
+			continue
+		}
+		if n > bestLen {
+			bestLen = n
+			best = strings.Join(parts[:n], "/")
+		}
+	}
+	if bestLen > 0 {
+		return best
 	}
 
-	// Default: conservative 2-component module.
+	// No pattern matched: conservative 2-component default.
 	if len(parts) > 2 {
 		parts = parts[:2]
 	}

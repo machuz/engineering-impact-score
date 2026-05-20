@@ -222,10 +222,10 @@ domains:
 	}
 }
 
-// When the config omits breadth and module_convention_dirs, the defaults
-// kick in: unit "auto", min_commits 3, and a nil convention override (so
-// the metric layer uses the built-in default set).
-func TestBreadthAndConventionDefaults(t *testing.T) {
+// When the config omits breadth and module_patterns, the defaults kick in:
+// unit "auto", min_commits 3, and a nil pattern override (so the metric
+// layer / PatternsForRepo fall through to DefaultModulePatterns).
+func TestBreadthAndModulePatternDefaults(t *testing.T) {
 	cfg := loadFromString(t, "tau: 180\n")
 	if cfg.BreadthUnit() != "auto" {
 		t.Errorf("default breadth unit = %q, want auto", cfg.BreadthUnit())
@@ -233,21 +233,24 @@ func TestBreadthAndConventionDefaults(t *testing.T) {
 	if cfg.BreadthMinCommits() != 3 {
 		t.Errorf("default breadth min_commits = %d, want 3", cfg.BreadthMinCommits())
 	}
-	if len(cfg.ModuleConventionDirs) != 0 {
-		t.Errorf("module_convention_dirs should be empty by default, got %v", cfg.ModuleConventionDirs)
+	if len(cfg.ModulePatterns) != 0 {
+		t.Errorf("module_patterns should be empty by default, got %v", cfg.ModulePatterns)
+	}
+	if len(cfg.RepoOverrides) != 0 {
+		t.Errorf("repo_overrides should be empty by default, got %v", cfg.RepoOverrides)
 	}
 }
 
-// Explicit breadth + module_convention_dirs values are parsed and honoured.
-func TestBreadthAndConventionFromYAML(t *testing.T) {
+// Explicit breadth + module_patterns values are parsed and honoured.
+func TestBreadthAndModulePatternsFromYAML(t *testing.T) {
 	yaml := `
 tau: 180
 breadth:
   unit: module
   min_commits: 5
-module_convention_dirs:
-  - domains
-  - cmd
+module_patterns:
+  - "domains/*"
+  - "cmd/*"
 `
 	cfg := loadFromString(t, yaml)
 	if cfg.BreadthUnit() != "module" {
@@ -256,8 +259,68 @@ module_convention_dirs:
 	if cfg.BreadthMinCommits() != 5 {
 		t.Errorf("breadth min_commits = %d, want 5", cfg.BreadthMinCommits())
 	}
-	if len(cfg.ModuleConventionDirs) != 2 || cfg.ModuleConventionDirs[0] != "domains" {
-		t.Errorf("module_convention_dirs = %v, want [domains cmd]", cfg.ModuleConventionDirs)
+	if len(cfg.ModulePatterns) != 2 || cfg.ModulePatterns[0] != "domains/*" {
+		t.Errorf("module_patterns = %v, want [domains/* cmd/*]", cfg.ModulePatterns)
+	}
+}
+
+// Per-repo overrides parse into a map keyed by the repo identifier and
+// carry their own ModulePatterns list.
+func TestRepoOverridesFromYAML(t *testing.T) {
+	yaml := `
+tau: 180
+module_patterns:
+  - "services/*"
+repo_overrides:
+  mono:
+    module_patterns:
+      - "apps/*/lib"
+      - "apps/*"
+`
+	cfg := loadFromString(t, yaml)
+	ov, ok := cfg.RepoOverrides["mono"]
+	if !ok {
+		t.Fatalf("repo_overrides[mono] missing")
+	}
+	if len(ov.ModulePatterns) != 2 || ov.ModulePatterns[0] != "apps/*/lib" {
+		t.Errorf("repo_overrides[mono].module_patterns = %v, want [apps/*/lib apps/*]", ov.ModulePatterns)
+	}
+}
+
+// PatternsForRepo prefers the per-repo override; falls back to the
+// org-level ModulePatterns; falls back to DefaultModulePatterns last.
+func TestPatternsForRepoLookup(t *testing.T) {
+	cfg := &Config{
+		ModulePatterns: []string{"services/*"},
+		RepoOverrides: map[string]RepoConfig{
+			"mono": {ModulePatterns: []string{"apps/*"}},
+		},
+	}
+
+	if got := PatternsForRepo(cfg, "mono"); len(got) != 1 || got[0] != "apps/*" {
+		t.Errorf("override path: PatternsForRepo(mono) = %v, want [apps/*]", got)
+	}
+	if got := PatternsForRepo(cfg, "other"); len(got) != 1 || got[0] != "services/*" {
+		t.Errorf("org-level path: PatternsForRepo(other) = %v, want [services/*]", got)
+	}
+
+	empty := &Config{}
+	got := PatternsForRepo(empty, "anything")
+	if len(got) != len(DefaultModulePatterns) || got[0] != DefaultModulePatterns[0] {
+		t.Errorf("default fallback: PatternsForRepo = %v, want DefaultModulePatterns", got)
+	}
+
+	// A repo override with an empty pattern list is treated as "no override"
+	// — falls through to the org-level patterns. Keeping the empty-vs-nil
+	// distinction out of YAML semantics.
+	cfgEmptyOverride := &Config{
+		ModulePatterns: []string{"services/*"},
+		RepoOverrides: map[string]RepoConfig{
+			"mono": {ModulePatterns: nil},
+		},
+	}
+	if got := PatternsForRepo(cfgEmptyOverride, "mono"); len(got) != 1 || got[0] != "services/*" {
+		t.Errorf("empty override path: PatternsForRepo(mono) = %v, want org-level [services/*]", got)
 	}
 }
 

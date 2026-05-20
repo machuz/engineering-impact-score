@@ -122,17 +122,40 @@ breadth:
   unit: auto
   min_commits: 3
 
-# Monorepo-convention top-level directories used by module resolution.
-# When a file path's FIRST component is one of these, the module is its
-# first 2 components (e.g. "services/ace"). When this list is set it
-# REPLACES the built-in default set; when omitted, the default is used.
-# Built-in default: [services, packages, apps, modules, libs]
-# module_convention_dirs:
-#   - services
-#   - packages
-#   - apps
-#   - modules
-#   - libs
+# Glob patterns used by module resolution. Each `*` matches a SINGLE path
+# component (no `/`). When a file path matches a pattern, the module
+# identifier is the substituted prefix.
+#
+# Examples:
+#   "services/*"   services/ace/backend/foo.go -> services/ace
+#   "apps/*/lib"   apps/api/lib/utils/foo.go   -> apps/api/lib
+#
+# Multiple matches resolve to the LONGEST module identifier (most specific
+# wins); ties are broken by first-listed. Paths that match nothing fall
+# back to the conservative 2-component default (e.g. "a/b/c/d.go" -> "a/b").
+#
+# When omitted, the built-in default list is used:
+#   [services/*, packages/*, apps/*, modules/*, libs/*]
+# module_patterns:
+#   - "services/*"
+#   - "packages/*"
+#   - "apps/*/lib"
+#   - "modules/*"
+#   - "libs/*"
+
+# Per-repo overrides: when a repo name appears here with a non-empty
+# `module_patterns`, that list REPLACES the org-level patterns for THAT
+# repo only. The key is the repo's identifier (CLI: filepath.Base of the
+# path you analyze; SaaS: typically "owner/name").
+# repo_overrides:
+#   ace:
+#     module_patterns:
+#       - "services/*"
+#       - "packages/*"
+#   "waitinglisthq/api-monorepo":
+#     module_patterns:
+#       - "apps/*/lib"
+#       - "apps/*"
 
 # Production baseline: daily lines changed for 100% score
 production_daily_ref: 1000

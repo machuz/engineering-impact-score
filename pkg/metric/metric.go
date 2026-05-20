@@ -29,9 +29,9 @@ var (
 	IsExcluded               = metric.IsExcluded
 	NewRawScores             = metric.NewRawScores
 
-	// Module resolution (convention-aware)
-	NewModuleResolver           = metric.NewModuleResolver
-	DefaultModuleConventionDirs = metric.DefaultModuleConventionDirs
+	// Module resolution (glob-pattern based)
+	NewModuleResolver     = metric.NewModuleResolver
+	DefaultModulePatterns = metric.DefaultModulePatterns
 
 	// Breadth
 	ComputeBreadth = metric.ComputeBreadth

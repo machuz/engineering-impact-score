@@ -26,13 +26,28 @@ type Config struct {
 	ExcludeRepos         []string             `yaml:"exclude_repos"`
 	ActiveDays           int                  `yaml:"active_days"`
 	BlameTimeout         int                  `yaml:"blame_timeout"`
-	// ModuleConventionDirs is the set of monorepo-convention top-level
-	// directories used by module resolution. When a file path's FIRST
-	// component is one of these, the module is its first 2 components
-	// (e.g. "services/ace"). When this list is set in config it REPLACES
-	// the built-in default set (services, packages, apps, modules, libs);
-	// when empty, the default set is used.
-	ModuleConventionDirs []string `yaml:"module_convention_dirs"`
+	// ModulePatterns is the set of glob patterns used by module resolution.
+	// Each pattern's components are matched against a file path; `*` matches
+	// a SINGLE path component (no `/`). On match, the module identifier is
+	// the substituted prefix of length len(pattern.components).
+	//
+	// Examples:
+	//   "services/*"     services/ace/backend/foo.go -> services/ace
+	//   "apps/*/lib"     apps/api/lib/utils/foo.go  -> apps/api/lib
+	//
+	// When multiple patterns match the same path, the LONGEST resulting
+	// module identifier wins; ties are broken by first-listed.
+	// When ModulePatterns is empty (and no per-repo override applies),
+	// DefaultModulePatterns is used. Paths matching nothing fall back to
+	// the conservative 2-component default (e.g. "a/b/c/d.go" -> "a/b").
+	ModulePatterns []string `yaml:"module_patterns"`
+	// RepoOverrides keys per-repo module pattern lists by the repo's
+	// full identifier (matching whatever the caller threads down — for
+	// the CLI today this is filepath.Base(repoPath); for SaaS callers
+	// it's typically "owner/name"). A non-empty override REPLACES
+	// ModulePatterns for that repo. An empty / missing override uses
+	// the org-level ModulePatterns.
+	RepoOverrides map[string]RepoConfig `yaml:"repo_overrides"`
 	// Breadth controls how the Breadth axis counts an author's reach.
 	Breadth Breadth `yaml:"breadth"`
 	// MaxBlameFileBytes is the upper bound (in bytes) for files passed to
@@ -51,6 +66,45 @@ type Config struct {
 type TeamEntry struct {
 	Domain  string   `yaml:"domain"`
 	Members []string `yaml:"members"`
+}
+
+// RepoConfig holds per-repo overrides. Only fields relevant for repo-level
+// overrides live here — anything missing falls back to the org-level Config.
+type RepoConfig struct {
+	// ModulePatterns, when non-empty, fully REPLACES Config.ModulePatterns
+	// for this repo. An empty/nil list means "no override" — use the
+	// org-level patterns (or DefaultModulePatterns if those are empty too).
+	ModulePatterns []string `yaml:"module_patterns"`
+}
+
+// DefaultModulePatterns is the built-in set of monorepo-convention glob
+// patterns. Equivalent to the historical "convention dirs" hard-coded list,
+// but expressed as glob patterns so users can extend / refine it.
+var DefaultModulePatterns = []string{
+	"services/*",
+	"packages/*",
+	"apps/*",
+	"modules/*",
+	"libs/*",
+}
+
+// PatternsForRepo returns the effective module-pattern list for a repo,
+// honoring RepoOverrides first, then Config.ModulePatterns, then
+// DefaultModulePatterns. The lookup key is whatever the caller threads
+// in (CLI: repo base name; SaaS: typically "owner/name"). To explicitly
+// suppress conventions for one repo, set its override ModulePatterns to
+// a sentinel like ["-"] — the simple len==0 → defaults semantics means
+// an empty list reverts to defaults, not to "no patterns at all".
+func PatternsForRepo(cfg *Config, repoName string) []string {
+	if cfg != nil {
+		if ov, ok := cfg.RepoOverrides[repoName]; ok && len(ov.ModulePatterns) > 0 {
+			return ov.ModulePatterns
+		}
+		if len(cfg.ModulePatterns) > 0 {
+			return cfg.ModulePatterns
+		}
+	}
+	return DefaultModulePatterns
 }
 
 // DomainsConfig maps domain names to their configuration.
