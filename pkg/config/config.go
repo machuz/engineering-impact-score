@@ -7,6 +7,11 @@ type Weights = config.Weights
 type BusFactor = config.BusFactor
 type TeamEntry = config.TeamEntry
 type DomainsConfig = config.DomainsConfig
+type RepoConfig = config.RepoConfig
 
-var Load = config.Load
-var Default = config.Default
+var (
+	Load                  = config.Load
+	Default               = config.Default
+	PatternsForRepo       = config.PatternsForRepo
+	DefaultModulePatterns = config.DefaultModulePatterns
+)

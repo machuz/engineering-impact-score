@@ -90,9 +90,10 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		workers = 4
 	}
 
-	// Convention-aware module resolver, built once from config so every
-	// metric call in this run resolves modules identically (W-02/W-03).
-	moduleResolver := metric.NewModuleResolver(cfg.ModuleConventionDirs)
+	// Module resolvers are built per repo (see the loop below) so each
+	// repo can honor its own RepoOverrides without leaking pattern sets
+	// across repos. Resolution remains deterministic per repo (W-02/W-03)
+	// because it depends only on the resolved pattern list.
 
 	// Initialize cache store
 	cacheStore := cache.NewWithDir(opts.CacheEnabled, opts.CacheDir)
@@ -132,6 +133,11 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		authorLastDate  map[string]time.Time
 		commits         []git.Commit
 		blameLines      []git.BlameLine
+		// resolver carries this repo's effective ModuleResolver so per-repo
+		// rollups (Cochange / Ownership / ModuleSurvival) honor RepoOverrides
+		// instead of falling back to the org-level resolver used for the
+		// domain merge.
+		resolver metric.ModuleResolver
 	}
 
 	accumulators := make(map[domain.Domain]*accumulator)
@@ -180,6 +186,11 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 			accumulators[repoDomain] = acc
 		}
 		acc.repoCount++
+
+		// Per-repo module resolver: honors RepoOverrides for this repo.
+		// The lookup key here is repoName (filepath.Base) — match that in
+		// the YAML repo_overrides map.
+		moduleResolver := metric.NewModuleResolver(config.PatternsForRepo(cfg, repoName))
 
 		// Get HEAD hash for cache keys
 		headHash, _ := git.HeadHash(ctx, repoPath)
@@ -379,6 +390,7 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 				acc: &accumulator{raw: rr}, repoName: repoName, domain: repoDomain,
 				authorFirstDate: rf, authorLastDate: rl,
 				commits: commits, blameLines: blameLines,
+				resolver: moduleResolver,
 			})
 		}
 	}
@@ -426,10 +438,14 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		if len(filtered) == 0 {
 			continue
 		}
-		// Module Topology — compute from accumulated commits/blameLines
-		cochange := metric.CalcCochange(acc.allCommits, moduleResolver)
-		ownership := metric.CalcOwnershipFragmentation(acc.allBlameLines, moduleResolver)
-		moduleSurvival := metric.CalcModuleSurvival(acc.allBlameLines, cfg.Tau, start, moduleResolver)
+		// Module Topology — compute from accumulated cross-repo commits.
+		// Use the ORG-level resolver here: this rollup spans multiple repos
+		// in a domain, so per-repo overrides don't apply uniformly. Per-repo
+		// overrides only kick in for per-repo breakdowns below.
+		domainResolver := metric.NewModuleResolver(config.PatternsForRepo(cfg, ""))
+		cochange := metric.CalcCochange(acc.allCommits, domainResolver)
+		ownership := metric.CalcOwnershipFragmentation(acc.allBlameLines, domainResolver)
+		moduleSurvival := metric.CalcModuleSurvival(acc.allBlameLines, cfg.Tau, start, domainResolver)
 
 		dr := DomainResults{
 			Domain: d, Results: filtered, Risks: acc.risks, RepoCount: acc.repoCount,
@@ -464,10 +480,11 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 					}
 				}
 				if len(rf) > 0 {
-					// Per-repo module topology
-					repoCochange := metric.CalcCochange(ra.commits, moduleResolver)
-					repoOwnership := metric.CalcOwnershipFragmentation(ra.blameLines, moduleResolver)
-					repoModuleSurvival := metric.CalcModuleSurvival(ra.blameLines, cfg.Tau, start, moduleResolver)
+					// Per-repo module topology, using THIS repo's resolver
+					// (which honors RepoOverrides).
+					repoCochange := metric.CalcCochange(ra.commits, ra.resolver)
+					repoOwnership := metric.CalcOwnershipFragmentation(ra.blameLines, ra.resolver)
+					repoModuleSurvival := metric.CalcModuleSurvival(ra.blameLines, cfg.Tau, start, ra.resolver)
 					dr.PerRepo = append(dr.PerRepo, RepoResult{
 						RepoName: ra.repoName, Domain: ra.domain, Results: rf,
 						Cochange: repoCochange, Ownership: repoOwnership, ModuleSurvival: repoModuleSurvival,

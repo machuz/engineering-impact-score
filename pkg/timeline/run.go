@@ -205,9 +205,10 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 		workers = 4
 	}
 
-	// Convention-aware module resolver, built once from config so every
-	// metric call in this run resolves modules identically (W-02/W-03).
-	moduleResolver := metric.NewModuleResolver(cfg.ModuleConventionDirs)
+	// Module resolvers are built per repo (see the inner loop) so each
+	// repo can honor its own RepoOverrides. Per-repo resolution remains
+	// deterministic (W-02/W-03) because it depends only on the resolved
+	// pattern list.
 
 	// Parse span
 	spanMonths, spanDays, err := ParseSpan(opts.Span)
@@ -376,6 +377,10 @@ func Run(opts Options, repoPaths []string, cfg *config.Config, cb *Callbacks) ([
 			}
 
 			for _, repo := range drepos {
+				// Per-repo module resolver: honors RepoOverrides keyed by
+				// repo.name (the same identifier the YAML uses).
+				moduleResolver := metric.NewModuleResolver(config.PatternsForRepo(cfg, repo.name))
+
 				// Filter commits to this period
 				var periodCommits []git.Commit
 				for _, c := range repo.commits {

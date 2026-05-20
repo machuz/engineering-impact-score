@@ -2,11 +2,10 @@ package metric
 
 import "testing"
 
-// Convention-aware resolution: a path whose first component is a known
-// monorepo dir collapses to "<conventionDir>/<child>", anchoring module
-// identity to a real project boundary instead of an arbitrary depth.
-func TestModuleResolver_ConventionHit(t *testing.T) {
-	r := NewModuleResolver(nil) // default convention set
+// Glob-pattern resolution: a path matching "services/*" collapses to the
+// 2-component prefix, anchoring module identity to a real project boundary.
+func TestModuleResolver_GlobMatch(t *testing.T) {
+	r := NewModuleResolver(nil) // default pattern set
 	cases := []struct {
 		path string
 		want string
@@ -25,16 +24,30 @@ func TestModuleResolver_ConventionHit(t *testing.T) {
 	}
 }
 
-// Non-convention paths fall back to the conservative 2-component module —
-// intentionally shallower than the historical 3-layer split so module
-// metrics and Breadth don't inflate on deep trees.
-func TestModuleResolver_NonConventionFallback(t *testing.T) {
-	r := NewModuleResolver(nil)
+// A deeper pattern ("apps/*/lib") picks out a 3-component module identifier
+// when the literal "lib" segment is in the right slot.
+func TestModuleResolver_DeeperPattern(t *testing.T) {
+	r := NewModuleResolver([]string{"apps/*/lib"})
+	if got := r.ModuleOf("apps/api/lib/utils/foo.go"); got != "apps/api/lib" {
+		t.Errorf("ModuleOf(apps/api/lib/...) = %q, want apps/api/lib", got)
+	}
+	// Same prefix shape but the "lib" slot mismatches → no glob hit,
+	// falls back to the conservative 2-component default.
+	if got := r.ModuleOf("apps/api/bin/foo.go"); got != "apps/api" {
+		t.Errorf("ModuleOf(apps/api/bin/...) = %q, want apps/api (fallback)", got)
+	}
+}
+
+// Non-matching paths fall back to the conservative 2-component default —
+// intentionally shallower than a deep-tree explosion would suggest.
+func TestModuleResolver_NoMatchFallback(t *testing.T) {
+	// Use an explicit pattern that won't match these paths.
+	r := NewModuleResolver([]string{"services/*"})
 	cases := []struct {
 		path string
 		want string
 	}{
-		{"a/b/c/d.go", "a/b"}, // 4-deep: was "a/b/c" under 3-layer
+		{"a/b/c/d.go", "a/b"},
 		{"internal/metric/survival.go", "internal/metric"},
 		{"src/components/forms/Input.tsx", "src/components"},
 	}
@@ -45,7 +58,7 @@ func TestModuleResolver_NonConventionFallback(t *testing.T) {
 	}
 }
 
-// Short paths must not panic and must collapse sanely: a 2-component dir
+// Short paths must not panic and must collapse sanely: a 1-component dir
 // stays whole, a root-level file resolves to ".".
 func TestModuleResolver_ShortPaths(t *testing.T) {
 	r := NewModuleResolver(nil)
@@ -65,54 +78,103 @@ func TestModuleResolver_ShortPaths(t *testing.T) {
 	}
 }
 
-// A custom convention set REPLACES the default — "services" is no longer a
-// convention dir, and the new "domains" dir is.
-func TestModuleResolver_CustomConventionReplacesDefault(t *testing.T) {
-	r := NewModuleResolver([]string{"domains"})
+// Multiple-pattern, longest-wins: the most specific match controls the
+// module identifier. Both "apps/*" (2 comps) and "apps/*/lib" (3 comps)
+// can match "apps/api/lib/x.go"; the 3-comp pattern wins.
+func TestModuleResolver_LongestWins(t *testing.T) {
+	r := NewModuleResolver([]string{"apps/*", "apps/*/lib"})
+	if got := r.ModuleOf("apps/api/lib/x.go"); got != "apps/api/lib" {
+		t.Errorf("longest-wins: ModuleOf(apps/api/lib/x.go) = %q, want apps/api/lib", got)
+	}
+	// "apps/web/main.go" doesn't have a "lib" slot — only the 2-comp pattern
+	// matches.
+	if got := r.ModuleOf("apps/web/main.go"); got != "apps/web" {
+		t.Errorf("only shorter matches: ModuleOf(apps/web/main.go) = %q, want apps/web", got)
+	}
+}
 
-	// "domains" is now a convention dir.
+// Tie-break (same-length matches): the pattern listed FIRST in the input
+// wins. We compare two patterns that resolve to module identifiers of the
+// same length but spelled differently; the first listed pattern's match
+// is the one that gets kept.
+func TestModuleResolver_TieBreakByOrder(t *testing.T) {
+	// Both patterns match "services/ace/foo.go" at depth 2 and yield the
+	// SAME module id ("services/ace") — that's by design (same depth →
+	// same prefix). Use a synthetic case where two equally-deep patterns
+	// each match a different path; here we just confirm that swapping
+	// pattern order doesn't change the resolved id when both match the
+	// same depth (since both patterns yield the same prefix).
+	a := NewModuleResolver([]string{"services/*", "*/ace"})
+	b := NewModuleResolver([]string{"*/ace", "services/*"})
+	// Path matches both patterns: services/ace/...
+	pa := a.ModuleOf("services/ace/backend/x.go")
+	pb := b.ModuleOf("services/ace/backend/x.go")
+	if pa != pb {
+		t.Errorf("tie-break should yield the same prefix regardless of order: %q vs %q", pa, pb)
+	}
+	if pa != "services/ace" {
+		t.Errorf("tie-break: ModuleOf(services/ace/...) = %q, want services/ace", pa)
+	}
+}
+
+// Single-component path: the conservative 2-component fallback collapses
+// it to whatever components exist.
+func TestModuleResolver_SingleComponentPath(t *testing.T) {
+	r := NewModuleResolver([]string{"services/*"})
+	if got := r.ModuleOf("README.md"); got != "." {
+		t.Errorf("ModuleOf(README.md) = %q, want .", got)
+	}
+	if got := r.ModuleOf("services"); got != "." {
+		t.Errorf("ModuleOf(services) = %q, want . (single-component file at root)", got)
+	}
+}
+
+// A custom pattern set REPLACES the default — "services" is no longer
+// a module-anchoring pattern, and the new "domains/*" is.
+func TestModuleResolver_CustomReplacesDefault(t *testing.T) {
+	r := NewModuleResolver([]string{"domains/*"})
 	if got := r.ModuleOf("domains/payment/charge.go"); got != "domains/payment" {
-		t.Errorf("custom convention: ModuleOf(domains/...) = %q, want domains/payment", got)
+		t.Errorf("custom pattern: ModuleOf(domains/...) = %q, want domains/payment", got)
 	}
 	// "services" is NOT in the custom set → plain 2-layer fallback.
 	if got := r.ModuleOf("services/ace/backend/internal/x.go"); got != "services/ace" {
-		// 2-layer fallback of "services/ace/backend/internal" is "services/ace"
-		t.Errorf("custom convention: ModuleOf(services/...) = %q, want services/ace (fallback)", got)
-	}
-	// A deep non-convention path still collapses to 2 components.
-	if got := r.ModuleOf("packages/ui/src/Button.tsx"); got != "packages/ui" {
-		t.Errorf("custom convention: ModuleOf(packages/...) = %q, want packages/ui (fallback)", got)
+		t.Errorf("custom pattern: ModuleOf(services/...) = %q, want services/ace (fallback)", got)
 	}
 }
 
-// Depth invariant: no matter how deep the path, a module is at most 2
-// components — the historical 3-layer split is gone. This holds whether or
-// not the path sits under a convention dir (both the convention rule and
-// the fallback cap at 2). The convention set exists to anchor module
-// identity to project boundaries and as a config-stable forward hook; it
-// does not re-introduce depth.
-func TestModuleResolver_DepthCappedAtTwo(t *testing.T) {
-	withServices := NewModuleResolver([]string{"services"})
-	noServices := NewModuleResolver([]string{"apps"}) // "services" not a convention dir here
-
-	deep := "services/ace/backend/internal/metric/x.go"
-	if got := withServices.ModuleOf(deep); got != "services/ace" {
-		t.Errorf("convention path: ModuleOf(%q) = %q, want services/ace", deep, got)
-	}
-	if got := noServices.ModuleOf(deep); got != "services/ace" {
-		t.Errorf("fallback path: ModuleOf(%q) = %q, want services/ace (still 2-layer)", deep, got)
-	}
-}
-
-// Empty convention set falls back to the built-in default.
+// Empty pattern set falls back to the built-in default, and the default
+// must include "packages/*" (so "packages/ui/..." resolves to "packages/ui").
 func TestNewModuleResolver_EmptyUsesDefault(t *testing.T) {
 	rEmpty := NewModuleResolver(nil)
-	rExplicit := NewModuleResolver(DefaultModuleConventionDirs)
+	rExplicit := NewModuleResolver(DefaultModulePatterns)
 	path := "packages/ui/src/Button.tsx"
 	if rEmpty.ModuleOf(path) != rExplicit.ModuleOf(path) {
-		t.Errorf("empty convention set must equal explicit default set")
+		t.Errorf("empty pattern set must equal explicit default set")
 	}
 	if rEmpty.ModuleOf(path) != "packages/ui" {
-		t.Errorf("default set must treat 'packages' as a convention dir")
+		t.Errorf("default set must treat packages/* as a module pattern")
+	}
+}
+
+// Edge cases in pattern compilation: empty patterns, separator-only
+// patterns, and consecutive `*` ("**") must not crash.
+//   - "" and "/" are dropped (zero meaningful components).
+//   - "**" parses as two single-component wildcards (matches at depth 2).
+func TestNewModuleResolver_PatternEdgeCases(t *testing.T) {
+	// Empty/separator-only patterns are dropped silently.
+	r := NewModuleResolver([]string{"", "/", "services/*"})
+	if got := r.ModuleOf("services/ace/x.go"); got != "services/ace" {
+		t.Errorf("after dropping junk patterns: ModuleOf(services/ace/x.go) = %q, want services/ace", got)
+	}
+
+	// "**" → matches exactly 2 components → produces a 2-component module id
+	// for ANY 2+component path. The resolver's "longest wins" rule then
+	// applies between this and any other pattern.
+	rss := NewModuleResolver([]string{"**"})
+	if got := rss.ModuleOf("a/b/c/d.go"); got != "a/b" {
+		t.Errorf("'**' pattern: ModuleOf(a/b/c/d.go) = %q, want a/b", got)
+	}
+	if got := rss.ModuleOf("a.go"); got != "." {
+		t.Errorf("'**' pattern: ModuleOf(a.go) = %q, want . (no match → 2-comp fallback collapses to dir)", got)
 	}
 }
